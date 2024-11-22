@@ -1,0 +1,335 @@
+SET-A [5 X 10 = 50]
+--------------------
+
+Program-1 :- [Sum of the natural numbers ]
+------------------------------------------
+Write a C program to calculate and print the sum of the first N natural numbers without using loops.
+
+Example:
+----------
+Sample Input:
+int n = 10  
+
+Sample Output:
+The sum of the first 10 natural numbers is: 55 
+​
+Program-2 :- [Converting the days into years-months-days]
+---------------------------------------------------------
+Write a C program to take a number of days as input and convert it into the format (years:months:days).
+
+Example:
+
+Sample Input:
+-------------
+int days = 500
+
+Sample Output:
+--------------
+1 year, 4 months, and 15 days.
+
+Program-3 :-
+------------
+Title :- [ Biggest number among three numbers ]
+------------------------------------------------
+Write a C Program to find the biggest number among three numbers without using any loops or if-else statements ? 
+
+Sample-Input :-
+---------------
+Enter First number -> 30.
+Enter Second number -> 20.
+Enter Third number -> 40.
+
+Sample-Output :-
+----------------
+The Biggest number is 40.
+
+Program-4 :- [Areas of Square and Rectangle]
+--------------------------------------------
+Write a C program to calculate and print the area of a square and a rectangle.
+
+Formulas:
+---------
+The area of a square is calculated using the formula:
+Area of Square = Side × Side
+
+The area of a rectangle is calculated using the formula:
+-> Area of Rectangle = Length × Breadth
+
+Sample-run:
+-----------
+
+Sample Input:
+--------------
+Side of square: 5
+Length and breadth of rectangle: 4, 5
+
+Sample Output:
+--------------
+The area of the square with side 5 is: 25
+The area of the rectangle with length 4 and breadth 5 is: 20
+
+Program-5 :- [Compound Interest]
+--------------------------------
+ Write a C program to calculate the Compound Interest for a given principal amount, rate of interest, and time period.
+
+The formula for calculating Compound Interest is:
+--------------------------------------------------
+                                      _        _ Time
+                                     |    Rate  |
+Compound Interest (CI) = Principal × |1 + ----- |  − Principal
+                                     |_    100 _|
+
+The program should take inputs for the principal amount, rate of interest, and time period (in years), then calculate and display the Compound Interest.
+
+Sample-run:
+------------
+Sample Input:
+--------------
+Enter principal amount: 1500
+Enter rate of interest: 4
+Enter time period (in years): 3
+
+Sample Output:
+--------------
+Compound Interest is: 184.97
+
+SET-B [5 X 10 = 50]
+-------------------
+
+Program-1 :- [Calculator]
+--------------------------
+Write a C program to declare and initialize two variables, such as int a = 10, b = 20, and print the results of addition, subtraction, multiplication, division, and modulus operations.
+
+Sample-run:
+-----------
+
+Sample Input:
+---------------
+a = 20, b = 10
+
+Sample Output:
+--------------
+Addition: 30
+Subtraction: 10
+Multiplication: 200
+Division: 2
+Modulus: 0
+
+Program-2 :-
+------------
+Title :- [Even/Odd w-o-u if-else]
+----------------------------------
+Write a C program to check whether a given number is even or odd without using if-else or ternary operator ?
+
+Sample-Input :-
+---------------
+Enter a number -> 39
+
+Sample-output :-
+----------------
+The number 39 is odd number.
+
+Program-3 :- [Profit, VAT Calculations]
+---------------------------------------
+A shopkeeper buys a TV set for Rs. 3500 and sells it at a profit of 27%. Additionally, a VAT of 12.7% and a service charge of 3.87% are applied.
+
+Write a C program to display the total selling price, profit, VAT, and service charge.
+
+To calculate the selling price, profit, VAT, and service charge, follow these steps:
+
+i) Calculate the selling price:
+--------------------------------
+Selling Price = Cost Price + Profit
+Profit = 27% of Rs. 3500
+Selling Price = Rs. 3500 + Profit
+
+ii Calculate the profit:
+-------------------------
+Profit = Selling Price - Cost Price
+
+iii) Calculate VAT:
+--------------------
+VAT = 12.7% of Selling Price
+
+iv) Calculate Service Charge:
+------------------------------
+Service Charge = 3.87% of Selling Price
+
+Program-4 :-
+------------
+Title :-  [Reverse a number]
+-----------------------------
+Write a C program to reverse a number without using if-else conditional statements and without using while-loop, for-loop, or do-while loop ? 
+----------------------------------------------=======-----------------------------------------------------------------------------------------
+E.g. :-
+-----
+input number  = 123 [original number]
+output number = 321 [reverse number]
+
+Program-5 :- [ok]
+-----------------
+Write a C program (without using the ternary operator) to calculate the electricity bill for a given number of units consumed by a customer. The billing rates are as follows:
+
+For the first 100 units, the rate is Rs. 3.00 per unit.
+For units between 101 and 200, the rate is Rs. 4.50 per unit.
+For units above 200, the rate is Rs. 6.00 per unit.
+
+Examples:
+
+-> Units consumed less than or equal to 100
+
+Sample-run-1
+------------
+Sample Input: units consumed: 75
+Sample Output: The total electricity bill is: Rs. 225.00
+
+-> Units consumed between 101 and 200
+
+Sample-run-2
+------------
+Sample Input: units consumed: 150
+Sample Output: The total electricity bill is: Rs. 525.00
+
+-> Units consumed above 200
+
+Sample-run-2
+------------
+Sample Input: units consumed: 250
+Sample Output: The total electricity bill is: Rs. 1050.00
+
+SET-C [5 X 10 = 50]
+--------------------
+
+Program-1 :- [Positive or Negative or Zero]
+-------------------------------------------
+Write a C program that takes an integer as input and checks whether it is positive, negative, or zero. Display an appropriate message as output without using the ternary operator.
+
+Sample-run:
+------------
+i). 
+---
+Sample Input:
+Enter an integer: 15
+
+Sample Output:
+The number is positive.
+
+ii).
+---- 
+Sample Input:
+Enter an integer: -8
+
+Sample Output:
+The number is negative.
+
+iii).
+----- 
+Sample Input:
+Enter an integer: 0
+
+Sample Output:
+The number is zero.
+
+Program-2 :-
+------------
+Write a C program without using the ternary operator for a bookstore named "BookWorld" that calculates the discounted amount based on the total purchase amount.
+
+The store provides three types of discounts to its customers:
+
+If the total purchase amount is less than Rs. 1000, there is no discount.
+If the total purchase amount is between Rs. 1000 and Rs. 5000 (inclusive), customers receive a 5% discount on the total purchase amount.
+If the total purchase amount is greater than Rs. 5000, customers receive a 10% discount on the total purchase amount.
+
+Sample-run
+----------
+Sample Input: purchase amount = 999
+Sample Output: Total amount = 999
+
+Sample Input: purchase amount = 2000
+Sample Output: Total amount including 5% discount = 1900
+
+Sample Input: purchase amount = 10000
+Sample Output: Total amount including 10% discount = 9000
+
+Program-3 :- [Simple-Interest]
+------------------------------
+Write a C program to calculate the Simple Interest for a given principal amount, rate of interest, and time period.
+
+The formula for calculating Simple Interest is:
+
+Simple Interest (SI) = Principal × Rate × Time
+                       -----------------------
+                                100
+
+The program should take inputs for the principal amount, rate of interest, and time period, then calculate and display the Simple Interest.
+
+Sample-run:
+-----------
+Sample Input:
+--------------
+Enter principal amount: 1000
+Enter rate of interest: 5
+Enter time period (in years): 2
+
+Sample Output:
+---------------
+Simple Interest is: 100.00
+
+Program-4 :- [Previous or Next Multiple of Ten]
+------------------------------------------------
+Write a C program without using control statements to determine the next or previous multiple of 10 for a given two-digit number.
+
+The program should follow these rules:
+---------------------------------------
+If the last digit of the given number is greater than or equal to 5, the program should print the next multiple of 10.
+If the last digit of the given number is less than 5, the program should print the previous multiple of 10.
+Examples:
+
+Sample Input 1:
+---------------
+int a = 34;
+Sample Output 1: 30
+
+Sample Input 2:
+---------------
+int a = 25;
+Sample Output 2: 30
+
+Sample Input 3:
+---------------
+int a = 86;
+Sample Output 3: 90
+
+Program-5 :- [ok]
+-----------------
+You are developing a program for an online bus ticket booking platform called "BusTicketBooker."
+
+The platform offers tickets at a fixed price of Rs. 300 per seat. However, there are discounts available for senior citizens:
+
+If a passenger’s age is between 60 and 100 (inclusive), they receive a 20% discount on the total booking cost.
+Write a C program for "BusTicketBooker" that takes the number of tickets and the age of the passenger as inputs and calculates the total booking cost after applying any applicable discount using the ternary operator.
+The program should then display the bill with a suitable message, showing the total cost before discount, the discount amount (if applicable), and the total cost after discount.
+
+Your task is to implement the program logic inside the main function using only the ternary operator.
+
+Examples:
+---------
+-> Passenger is not a senior citizen
+
+Sample Input:
+Number of tickets: 3
+Age of the passenger: 45
+Sample Output:
+Total cost before discount: Rs. 900.00
+Discount amount: Rs. 0.00
+Total cost after discount: Rs. 900.00
+
+-> Passenger is a senior citizen
+
+Sample Input:
+Number of tickets: 2
+Age of the passenger: 65
+Sample Output:
+Total cost before discount: Rs. 600.00
+Discount amount: Rs. 120.00
+Total cost after discount: Rs. 480.00

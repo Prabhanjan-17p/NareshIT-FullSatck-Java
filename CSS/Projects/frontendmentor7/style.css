@@ -1,0 +1,186 @@
+@import url('https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Noto+Sans:ital,wght@0,100..900;1,100..900&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+    font-family: "Roboto", serif;
+}
+#backimg{
+    width: 100vw;
+    height: 98vh;
+    position: absolute;
+    z-index: -1;
+}
+.mainnav{
+    margin-top: 6px;
+    height: 46px;
+    width: 100vw;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+.navbo1 img{
+    height: 120px;
+}
+.pl{
+    font-size: 32px;
+    color: green;
+}
+.navbox2 ul{
+    display: flex;
+    list-style: none;
+    gap: 12px;
+}
+.navbox2 ul li{
+    list-style: none;
+    color: green;
+    font-size: 18px;
+    font-weight: 700;
+}
+.navbox2 ul li{
+
+    cursor: pointer;
+}
+.navbox3{
+    margin-left: -228px;
+}
+.navbox3 button{
+    width: 90px;
+    height: 28px;
+    border-radius: 4px;
+}
+.navbox3 button:hover{
+    cursor: pointer;
+    background-color: rgba(0, 128, 0, 0.838);
+    color: white;
+}
+.btn2{
+    background-color: green;
+    color: white;
+}
+.checkin{
+    width: 68px;
+    height: 30px;
+    border: 1px solid black;
+    background-color: green;
+    border-radius: 50px;
+    display: flex;
+    align-items: center;
+    margin: 0 8px;
+}
+.checkcir{
+    margin-left: 4px;
+    width: 22px;
+    height: 22px;
+    border: 1px solid black;
+    background-color: white;
+    border-radius: 50%;
+    box-shadow: 2px 0px 1px black;
+}
+.mainbox{
+    width: 100vw;
+    height: 98vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.maincont{
+    background-color: rgba(235, 238, 241, 0.582);
+    height: 75vh;
+    width: 50vw;
+    border: 1px solid black;
+    border-radius: 9px;
+    padding: 12px;
+}
+.mainbox1{
+    width: 50vw;
+    height: 44px;
+    display: flex;
+    justify-content: right;
+}
+.mainbox1 h3{
+    margin-right: 33px;
+    align-self: center;
+    color: green;
+}
+.mainbox2{
+    margin-top: 12px;
+    margin-bottom: 12px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.mainbox3{
+    height: 63vh;
+    width: 50vw;
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+.unmainbox{
+    height: 55vh;
+    border-radius: 4px;
+    width: 24vw;
+    border: 1px solid black;
+    padding: 23px;
+}
+.unbox2{
+    display: flex;
+    margin-bottom: 12px;
+}
+.unbox2 sub{
+    margin-top: 25px;
+    margin-left: 8px;
+    font-size: 16px;
+} 
+hr{
+    height: 1px;
+    color: black;
+    background-color: black;
+}
+.unbox1{
+    margin-top: 28px;
+    margin-bottom: 12px;
+}
+.unbox2 h3{
+    font-size: 42px;
+}
+.unbox2 sup{
+    margin-top: 4px;
+    font-size: 22px;
+}
+.unbox3{
+    margin-top: 22px;
+    padding: 12px;
+    width: 15vw;
+}
+.unbox3 button{
+    background-color: green;
+    color: white;
+    border-radius: 8px;
+    width: 19vw;
+    height: 42px;
+    font-size: 17px;
+}
+.unbox3 button:hover{
+    cursor: pointer;
+    background-color: rgba(0, 128, 0, 0.838);
+    font-size: 16px;
+}
+.unbox3 ul {
+    list-style: none;
+}
+.unbox3 ul li {
+    display: flex;
+    text-align: center;
+    margin-left: -12px;
+    margin-bottom: 18px;
+    gap: 12px;
+}
+.unbox3 ul li img {
+    height: 18px;
+}
+.h3ofbox2{
+    display: flex;
+    align-items: center;
+}

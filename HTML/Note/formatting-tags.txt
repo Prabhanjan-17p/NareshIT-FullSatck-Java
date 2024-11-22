@@ -1,0 +1,19 @@
+Formatting Tags are used to format the texts such as making the text as bold,italic,highlight etc.., formatting tags are inline elements mostly
+
+1. b -- used to make text bold
+2. strong -- also used to make text bold but having higher impact to SEO since search engine understand b and strong differntly
+3. i -- used to make text italic
+4. em --also used to make text italic but having higher impact to SEO since search engine understand i and em differntly
+5. u -- used to make text underlined
+6. mark -- used to highlight the text
+7. del -- used to strike out a word/senetence but in perspective of search engine, it's deleted
+8. ins -- used to insert certain value in the place of del
+9. sub -- used to make value subscript
+10. sup -- used to make value superscript
+11. hr -- used to get horizontal line, 
+12. br -- used to break the lines
+13. pre -- used to make text appears as it is.
+14. code -- used to write any codes
+13. address -- used to assign the address.
+
+

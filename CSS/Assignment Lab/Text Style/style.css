@@ -1,0 +1,31 @@
+
+  /* text-shadow:  0px(left-right) 0px(top-bottom) 12px(spread color-shadow) color */
+
+
+.con{
+    text-align: center;
+    height: 100vh;
+    width: 100vw;
+}
+.h11{
+    text-shadow: 1px 1px 2px black;
+}
+.h12{
+
+    /* 0px(left-right) 0px(top-bottom) 12px(spread color-shadow) color */
+    text-shadow: 0px 0px 12px rgba(0, 0, 24, 0.5);
+}
+.h13{
+    text-shadow:  2px -2px 2px red , -2px -3px 2px blue;
+}
+.h14{
+    text-shadow: 2px 2px 7px magenta, 2px -2px 7px magenta, 2px 2px 7px magenta;
+    color: #fff;
+}
+.h15{
+    height: 42px;
+    color: #fff;
+    width: 100vw;
+    background-color: gray;
+    text-shadow: -1px -2px 3px black;
+}

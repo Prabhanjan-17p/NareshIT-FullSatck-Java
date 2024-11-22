@@ -1,0 +1,27 @@
+.banner{
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    overflow: hidden;
+    position: relative;
+}
+.banner .slider{
+    position: absolute;
+    width: 200px;
+    height: 250px;
+    top: 10%;
+    left: calc(50%-100px);
+    transform-style: preserve-3d;
+    transform: perspective(1000px);
+}
+.banner .slider .item{
+    position: absolute;
+    inset: 0 0 0 0;
+    transform: translateZ(550px);
+
+}
+.banner .slider .item img{
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+}

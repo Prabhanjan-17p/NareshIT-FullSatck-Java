@@ -1,0 +1,5 @@
+Transform: Transform is a property which contains sub properties such as scale,rotate,translate etc..,
+scale: scale is used to zoom the element
+rotate is used to rotate the element
+translate: translate  is used to move the element
+tranition: transition is used to observe the change from one state to another state

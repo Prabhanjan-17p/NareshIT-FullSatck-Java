@@ -1,0 +1,799 @@
+MCQs [basics & operators]
+--------------------------
+
+Q-1).
+What will be the output of the following code snippet?
+
+int main() {
+	int a = 3, b = 5;
+	int t = a;
+	a = b;
+	b = t;
+	printf(“%d %d”, a, b);
+	return 0;
+}
+
+	a). 53
+	b). 33
+	c). 55
+	d). 5 3
+
+answer :-
+---------
+d). 5 3
+
+Q-2).
+-----
+What will be the output of the following C code snippet?
+
+#include <stdio.h>
+
+int main() {
+	int sum = 2 + 4 / 2 + 6 * 2;
+	printf("%d", sum);
+	return 0;
+}
+
+	a). 2
+	b). 15
+	c). 16
+	d). 18
+
+ans :- c). 16.
+
+Q-3).
+-----
+Which operator is used to find the remainder after division in C?
+
+a) /
+b) %
+c) #
+d) \
+
+ans: b) %
+
+Q-4).
+-----
+Which of the following is not a valid variable name in C?
+
+	a) _count
+	b) 2value
+	c) value_2
+	d) count
+
+ans :- b) 2value
+(Explanation: Variable names cannot start with a number in C.)
+
+Q-5).
+-----
+What will be the output of the following code?
+
+int x = 10, y = 20;
+int z = (x > y) ? x : y;
+printf("%d", z);
+
+	a) 10
+	b) 20
+	c) 0
+	d) Compilation error
+
+ans :- b) 20
+(Explanation: The conditional (ternary) operator checks if x > y. Since it’s false, it returns y, which is 20.)
+
+Q-6).
+-----
+
+What is the output of the following code snippet?
+
+int x = 5, y = 10, z;
+z = x++ + --y;
+printf("%d %d %d", x, y, z);
+
+	a) 6 9 15
+	b) 5 10 15
+	c) 5 9 15
+	d) 6 10 15
+
+Answer: a) 6 9 14
+(Explanation: x++ uses 5, --y changes y to 9 before addition, so z = 5 + 9 = 15. x is incremented to 6 afterward.)
+
+Q-7).
+-----
+Which header file is required to use the printf and scanf functions?
+
+a) stdlib.h
+b) stdio.h
+c) conio.h
+d) math.h
+
+ans :- b) stdio.h
+
+Q-8).
+-----
+If a = 5 and b = 2, what is the value of a / b in C?
+
+	a) 2.5
+	b) 2
+	c) 3
+	d) 2.0
+
+ans :- b) 2
+(Explanation: Division between two integers in C yields an integer result, so 5 / 2 = 2.)
+
+Q-9).
+-----
+What is the size of an int data type in most C compilers?
+
+a) 1 byte
+b) 2 bytes
+c) 4 bytes
+d) 8 bytes
+
+ans :- c) 4 bytes
+
+Q-10).
+
+What will be the output of the following code?
+
+int a = 5;
+int b = 2;
+printf("%f", (float)a / b);
+
+a) 2
+b) 2.5
+c) 5.0
+d) Error
+
+answer: b) 2.5
+
+Q-11).
+------
+Which of the following is not a valid data type in C?
+
+a) int
+b) float
+c) string
+d) char
+
+ans :- c) string
+
+Q-12).
+------
+What will be the output of this code?
+
+int x = 10;
+printf("%d", !x);
+
+a) 1
+b) 0
+c) 10
+d) -1
+
+ans :- b). 0
+
+Q-13).
+------
+What is & at the scanf() statement refer?
+
+a). value.
+b). address.
+c). location.
+d). none of the above.
+
+ans :- b). address.
+
+Q-14).
+------
+What will be the output of the following code?
+
+int x = 6;
+int y = 3;
+printf("%d", x >> 1);
+
+a) 3
+b) 6
+c) 12
+d) Undefined behavior
+
+answer: a) 3
+
+Q-15).
+------
+What will be the output of the following code?
+
+int a = 4, b = 5, c;
+c = (a | b) & (a ^ b);
+printf("%d", c);
+
+a) 4
+b) 1
+c) 5
+d) 7
+answer: b) 1
+
+Q-16).
+------
+Which of the following statements about logical operators is true?
+
+a) && has a higher precedence than ||.
+b) || has a higher precedence than &&.
+c) && and || have the same precedence.
+d) || has a higher precedence than ==.
+
+answer: a) && has a higher precedence than ||
+
+Q-17).
+------
+What will be the output of the following code?
+
+ int a = 5, b = 0, c = 10;
+ (a && b || c)?printf("True"):printf("False");
+
+a) True
+b) False
+c) 1
+d) 0
+
+answer: A) True
+(Explanation: a && b is 0 (false), but || c with c being non-zero makes the entire expression true.)
+
+Q-18).
+------
+Which of the following expressions will evaluate to true?
+
+int x = 0, y = -1, z = 5;
+
+a) (x || y) && z
+b) (x && y) || z
+c) !(x && y) && z
+d) All of the above
+
+answer: d) All of the above
+(Explanation: Each expression results in a non-zero value, thus evaluating to true.)
+
+Q-19).
+------
+What will be the output of the following code?
+
+ int a = 1, b = 2;
+((a << 1) && (b << 1))?printf("Yes"):printf("No");
+a) Yes
+b) No
+c) 1
+d) 0
+
+answer: A) Yes
+(Explanation: a << 1 results in 2 (non-zero), and b << 1 results in 4 (non-zero), so both are true.)
+
+Q-20).
+------
+What will be the output of the following code?
+
+int x = 10, y = 20;
+int result = (x > y) ? ((x > 15) ? x : y) : ((y > 15) ? y : x);
+printf("%d", result);
+
+a) 10
+b) 15
+c) 20
+d) 0
+
+answer: c) 20
+(Explanation: Since x > y is false, the second part is evaluated. Since y > 15 is true, y (20) is printed.)
+
+Q-21).
+------
+What is the output of the following code snippet?
+
+int x = 3;
+int result = (x < 5) ? ((x < 2) ? 2 : 4) : 6;
+printf("%d", result);
+
+a) 2
+b) 3
+c) 4
+d) 6
+answer: c) 4
+(Explanation: Since x < 5 is true, it checks (x < 2), which is false, so it returns 4.)
+
+Q-22).
+----
+What will be the output of the following C code snippet?
+
+#include <stdio.h>
+int main() {
+	int first = 10, second = 20;
+	int third = first + second;
+	{
+		int third = second - first;
+		printf("%d ", third);
+	}
+	printf("%d", third);
+	return 0;
+}
+
+a). 10 30
+b). 30 10
+c). 10 20
+d). Syntax error
+
+ans :- a). 10 30
+
+Q-23).
+------
+What does the following code print?
+
+int a = -1, b = 1, c = 0;
+int result = (a > 0) ? (b > 0 ? b : c) : (c == 0 ? a : b);
+printf("%d", result);
+
+a) -1
+b) 0
+c) 1
+d) Undefined
+
+answer: A) -1
+(Explanation: a > 0 is false, so it goes to (c == 0 ? a : b). Since c == 0 is true, it returns a (-1).)
+
+Q-24).
+------
+Which of the following is NOT a valid relational operator in C?
+
+a) <=
+b) >=
+c) !=
+d) <>
+
+answer: D) <>
+
+Q-25).
+------
+Which of the following is NOT a valid relational operator in C?
+a) <=
+b) >=
+c) !=
+d) <>
+
+answer: D) <>
+
+Q-26).
+------
+Which of the following operators has the highest precedence in C?
+
+a) && (Logical AND)
+b) || (Logical OR)
+c) * (Multiplication)
+d) + (Addition)
+
+answer: c) * (Multiplication)
+(Explanation: In C, the multiplication operator has higher precedence than logical AND and OR, as well as addition.)
+
+Q-27).
+------
+Which format specifier is used to print an integer value in decimal format?
+
+a)%d
+b)%f
+c)%c
+d)%s
+
+answer :- a). %d
+
+Q-28).
+------
+
+The format identifier ‘%i’ is also used for _ datatype?
+
+a)char
+b)int
+c)float
+d)double
+
+answer :- b). int
+
+Q-29).
+------
+#include <stdio.h>
+
+int main() {
+    int x = 1, y = 2;
+    printf(“%d%d”, x);
+    return 0;
+}
+
+a). error
+b). 1
+c). 1 garbage value
+d). none of the above.
+
+answer :- c). 1 garbage value
+ 
+Q-30).
+-------
+What will be the output of the following code ?
+
+#include <stdio.h>
+
+int main() {
+    int x = 2, y = 1;
+    x = x++ + ++x + y++ - --y;
+    printf("%d", x);
+    return 0;
+}
+
+a) 7
+b) 6
+c) 5
+d) 4
+
+answer: A) 6
+
+
+Q-31).
+------
+What is the output of the following code?
+
+int main() {
+    int x;
+    x = (5 > 3 ? 4 : 2) + 3, 2 * 3, 7 - 1;
+    printf("%d", x);
+    return 0;
+}
+
+a) 4
+b) 5
+c) 7
+d) 6
+
+answer: B) 7
+
+Q-32).
+------
+What is the output of the following code?
+
+int main() {
+    int i = 3;
+    printf("%d %d %d", i, i << 1, i << 2);
+    return 0;
+}
+
+a) 3 6 12
+b) 3 3 3
+c) 3 12 6
+d) 3 2 8
+
+answer: A) 3 6 12
+
+Q-33).
+------
+What is the output of the following code?
+
+int main() {
+    int x = 8;
+    printf("%d %d %d", x, x == 8, x < 5);
+    return 0;
+}
+
+a) 8 1 1
+b) 8 0 1
+c) 8 1 0
+d) 8 0 0
+
+answer: C) 8 1 0
+
+Q-34).
+------
+What is the output of the following program?
+
+int main() {
+    int i = 5;
+    printf("%d %d %d", i, i && 0, i || 0);
+    return 0;
+}
+
+a) 5 1 1
+b) 5 0 1
+c) Garbage value
+d) Compilation error
+
+answer: B) 5 0 1
+
+Q-35).
+------
+Which of the following operators has the highest precedence?
+
+a) Assignment (=)
+b) Logical AND (&&)
+c) Ternary (?:)
+d) Addition (+)
+
+answer: c) Ternary (?:)
+
+Q-36).
+------
+What will be the output of the following code?
+
+int a = 5;
+int b = 10;
+int c = (a > b) ? a : (b > 15) ? b : 0;
+printf("%d", c);
+
+a) 5
+b) 10
+c) 0
+d) Compilation error
+
+answer: c) 0
+
+Q-37).
+------
+Which of the following correctly describes the ternary operator in C?
+
+a) It is a unary operator.
+b) It requires three operands.
+c) It cannot be used in expressions.
+d) It only evaluates to a boolean value.
+
+answer: b) It requires three operands.
+
+
+Q-38).
+------
+What is the output of the following expression?
+
+int m = 6, n = 4;
+int result = (m > n) ? (m + n) : (m - n);
+
+a) 2
+b) 10
+c) 0
+d) 4
+
+answer: b) 10
+
+Q-39).
+------
+Who is the creator of the C programming language?
+
+a) James Gosling
+b) Bjarne Stroustrup
+c) Dennis Ritchie
+d) Brian Kernighan
+
+answer: c) Dennis Ritchie
+
+Q-40).
+------
+In which year was the C programming language first introduced?
+
+a) 1969
+b) 1972
+c) 1978
+d) 1983
+
+answer: b) 1972
+
+Q-41).
+------
+Which of the following languages influenced the development of C?
+
+a) Fortran
+b) Pascal
+c) ALGOL
+d) All of the above
+
+answer: d) All of the above
+
+Q-42).
+------
+What is the output of this program on a 32-bit C compiler?
+
+#include <stdio.h>
+
+int main() {
+    int x = 3;
+    x = x * 2 + x++;
+    printf("%d", x);
+    return 0;
+}
+
+a) 6
+b) 7
+c) 9
+d) 10
+
+answer: b) 9
+
+
+Q-43).
+------
+What is the output of the following program?
+
+#include <stdio.h>
+
+int main() {
+    int y = 5;
+    int z = printf("%d", y) + printf("%d", y + 1);
+    printf("%d", z);
+    return 0;
+}
+
+a) 5 6 2
+b) 56
+c) 5 6 11
+d) 5 5 10
+
+answer: a). 5 6 2
+
+
+Q-44).
+------
+What will be the output of the following program?
+
+#include <stdio.h>
+
+int main() {
+    int a = 15, b = 20, c = 10;
+    int result = (a < b) && (b != c) || (c == a);
+    printf("result = %d\n", result);
+    return 0;
+}
+
+a) result = 0
+b) result = 1
+c) result = 2
+d) result = -1
+
+answer: b) result = 1
+
+
+Q-45).
+-----
+What is the output of the following program?
+
+#include <stdio.h>
+
+int main() {
+    int x = 5;
+    int y = 6;
+    int output = (x *= 2) + (y += 3);
+    printf("output = %d\n", output);
+    return 0;
+}
+
+a) output = 11
+b) output = 15
+c) output = 12
+d) output = 19
+
+answer: d) output = 19
+
+Q-46).
+------
+#include <stdio.h>
+
+int main() {
+    int x = 5, y, z;
+    y = ++x;
+    z = x--;
+    printf("%d %d %d", x, y, z);
+    return 0;
+}
+
+What will be the output of the above code?
+
+a) 5 6 6
+
+b) 4 6 5
+
+c) 5 5 5
+
+d) 4 5 6
+
+answer: a). 5 6 6
+
+Q-47).
+------
+#include <stdio.h>
+
+int main() {
+    int a = 5, b = 3, c, d;
+    c = a < b && a > 2;
+    d = a < b || b > 2;
+    printf("%d %d %d %d", a, b, c, d);
+    return 0;
+}
+
+What will be the output of the above program?
+
+a) 5 3 1 1
+
+b) 5 3 0 1
+
+c) 5 3 1 0
+
+d) 5 3 0 0
+
+answer: b) 5 3 0 1
+
+
+Q-48).
+------
+#include <stdio.h>
+
+int main() {
+   int a = 10, b = 5, c = 0;
+    
+    (a > b)?c++:(b < 10)?c += 2:b++;
+
+    
+    printf("%d", c);
+    return 0;
+
+}
+What will be the output of the above program?
+
+a) 0
+
+b) 1
+
+c) 5
+
+d) 6
+
+Correct Answer: b) 1
+
+Q-49).
+------
+#include <stdio.h>
+
+int main() {
+ 	int x = 15, y = 10, max=0;
+	max= (x > y) ? x: y;
+    	max = (max % 2 == 0) ? max : -max;
+	printf("%d", max);
+ 	return 0;
+}
+
+What will be the output of the above program?
+
+a) -15
+
+b) 15
+
+c) -10
+
+d) 10
+
+answer: a) -15
+
+Q-50).
+------
+#include <stdio.h>
+
+int main() {
+   int x = 15, y = 10, max=0;
+
+   max= (x < y) ? x: y;
+    
+
+    max = (max % 2 == 0) ? max : -max;
+
+    printf("%d", max);
+    return 0;
+}
+
+What will be the output of the above program?
+
+a) -15
+
+b) 15
+
+c) -10
+
+d) 10
+
+answer: d) 10
+
+
+

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form</title>
+</head>
+
+<body>
+    <form action="">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name">
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email">
+
+        <!-- Radio Button -->
+        <p>Select Your Gender</p>
+        <input type="radio" name="Gender" id="male">
+        <label for="male">Male</label>
+        <input type="radio" name="Gender" id="Female">
+        <label for="Female">Female</label>
+        <input type="radio" name="Gender" id="Other">
+        <label for="Other">Other</label>
+
+        <!-- Check Box -->
+        <p>Select Your Course</p>
+        <input type="checkbox" name="Course" id="cs">
+        <label for="cs">CS</label>
+        <input type="checkbox" name="Course" id="EEE">
+        <label for="EEE">EEE</label>
+        <input type="checkbox" name="Course" id="AI">
+        <label for="AI">AI</label>
+
+
+        <!-- Dropdwon Button -->
+        <p>Select Your Course</p>
+        <select name="Course" id="">
+            <option value="CS">CS</option>
+            <option value="EEE">EEE</option>
+            <option value="AI">AI</option>
+        </select>
+
+        <!-- Dropdwon Button With Division -->
+        <p>Select Your Course</p>
+        <select name="Course" id="">
+          <optgroup label="CS Course">
+            <option value="CS">CS</option>
+            <option value="EEE">EEE</option>
+            <option value="AI">AI</option>
+          </optgroup>
+          <optgroup label="Ele Course">
+            <option value="CS">CS</option>
+            <option value="EEE">EEE</option>
+            <option value="AI">AI</option>
+          </optgroup>
+        </select>
+    </form>
+</body>
+
+</html>

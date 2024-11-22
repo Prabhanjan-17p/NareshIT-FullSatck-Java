@@ -1,0 +1,20 @@
+Flex is used to arrange elements within parent in one direction
+either row or column.
+Flex property always applies to parent container
+display:flex (all children elements arranges by default in row and adjusts in container)
+
+--- flex-direction: row/column/row-reverse/column-reverse;
+--- flex-wrap:it divides the elements into multiple rows/columns if needed(nowrap/wrap/wrap-reverse)
+--- gap: used to provide gap between the items
+--- justify-content: used to move items in main axis(flex-direction) -- start/flex-start/end/flex-end/left/right/center/space-between/space-around/space-evenly/stretch
+--- align-items: used to move items in cross axis(opp to flex-direction) --- left/start/right/end/center;
+align-content: if flex-wrap is there, then align-content is used to adjust the space between the lines
+flex-flow: it is a shortcut for flex-direction and flex-wrap
+
+single element properties:
+flex-basis: it allows item to have specific width irrective of growth or shrink
+flex-grow: when all items starts to grow, this property allow specific item to grow more
+flex-shrink:when all items starts to shrink, this property allow specific item to shrink more
+order: by default all elements order is 0, so elements with positive order will display later and negive order will be displayed before
+justify-self: we can arrange/move an item in main axis
+align-self:we can arrange/move an item in cross axis

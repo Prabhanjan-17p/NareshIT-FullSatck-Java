@@ -1,0 +1,36 @@
+.c1{
+    height: 30px ;
+    width: 100vw;
+    border: 1px solid ;
+    background: linear-gradient(red 50%,yellow 40% ,green );
+}
+.c2{
+    height: 50px ;
+    width: 100vw;
+    border: 1px solid ;
+    background: linear-gradient(red,yellow,green,blue,pink,black,yellow);
+}
+.c3{
+    height: 50px ;
+    width: 100vw;
+    border: 1px solid ;
+    background: linear-gradient(red 20px,yellow,green);
+    /* evenly color ussed */
+    /*  */
+}
+.c4{
+    /* height: 50px ; */
+    width: 100vw;
+    border: 1px solid ;
+    background: linear-gradient(to left ,red ,yellow,green);
+    text-align: center;
+    color: gray;
+}
+.c5{
+    height: 150px ;
+    width: 150px;
+    border: 1px solid ;
+    background: radial-gradient(red ,yellow,green);
+    text-align: center;
+    color: gray;
+}

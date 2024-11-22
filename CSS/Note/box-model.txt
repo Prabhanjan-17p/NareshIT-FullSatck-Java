@@ -1,0 +1,16 @@
+Box model considers every element in UI as box.
+A box will have 4 attributes
+ --- border: outermost of any box is called border
+    border: border-size border-style border-color;
+  we can also assign spefic border by border-left,border-right,border-top,border-bottom
+ --- border-radius: border-radius is nothing but corner radius of an element/box.
+   border-radius:size;
+   we can also set border-top-left-radius,border-top-right-radius,border-bottom-left-radius,border-bottom-right-radius
+ ---  padding: padding is the space between border and content
+ padding:size; it applies padding to all sides
+ padding: size1 size2; it applies top and bottom size1 and left and right size2
+
+ -- Increase in padding generally, it increases height and width also.
+ we can set box-sizing:border-box to maintain same height and width
+
+ -- margin: margin is th space outside the border. it can be applied similar to padding

@@ -1,0 +1,31 @@
+HTML stands for Hypertext Markup language. 
+GML  ---> SGML   ---> HTML .
+current version is HTML5
+Html consists of tag. there are two representation of tags
+<opentag>  , </closetag>
+html code will be between <html> and </html>
+html consists head and body
+head is used for meta data and body is used for actual website
+
+To get basic template we can use emmets --> !+enter or html:5+enter
+
+To comment something in HTML, 
+<!-- comment -->
+
+first code:
+<!--  This is my first HTML file  -->
+<!DOCTYPE html> <!-- this line means following document is a html document -->
+<html lang="en"> <!-- this is html open tag with an attribute lang with value en -->
+<head><!-- head starts -->
+    <meta charset="UTF-8"><!-- charcter set - unicode transmission format -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- viewport setting-->
+    <title>Document</title><!-- title will come on top (tab section)-->
+</head><!-- head is closed -->
+<body><!-- body open tag -->
+   hello world 
+</body><!-- body close tag -->
+</html><!-- html close tag -->
+
+
+
+

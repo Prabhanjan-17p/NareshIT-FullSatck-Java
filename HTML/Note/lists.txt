@@ -1,0 +1,26 @@
+lists are used to list of certain items.
+  eg: dropdown list, shopping list, kirana,voter,menu,order,students, expenses, employee, markslist, , contact list, attendance, course
+
+  Lists in HTML are three types
+  1. ordered List:
+  items in this lists are of specific order. it has a tag ol and each list item will be li. default type is numbers
+  <ol>
+    <li>raj</li>
+    <li>raman</li>
+    <li>rani</li>
+  </ol>
+  we can also give types of a, A, i, I for different orders
+
+  2. Unordered List: items in this list are of no order ,by default represented by bullet points. 
+  <ul>
+     <li>raj</li>
+    <li>raman</li>
+    <li>rani</li>
+  </ul> 
+  we can also give types such as circle,rectangle,none
+
+  one list can be inserted inside another link known as nested lists
+
+  3. Definition lists: Definition lists are used to define certain words,events,historical milestones
+  it is represented by 'dl' tag ,it also have dt(definition term) and dd(definition data).
+  

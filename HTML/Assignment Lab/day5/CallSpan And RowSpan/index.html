@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CallSpan And rowspan</title>
+</head>
+<body>
+    <h2>Example using Rowspan</h2>
+    <table border="1" cellpadding="10" cellspacing="0">
+        <tr>
+            <th rowspan="3">Name</th>
+            <th>Age</th>
+        </tr>
+        <tr>
+            <td>34</td>
+        </tr>
+        <tr>
+            <td>45</td>
+        </tr>
+        <tr>
+            <th colspan="2">Name</th>
+        </tr>
+    </table>
+
+    <h2>Using CallSpan</h2>
+    <table  border="1" cellpadding="10" cellspacing="0">
+        <tr>
+            <th>Name</th>
+            <th colspan="2">Details</th>
+        </tr>
+        <tr>
+            <td>jhon</td>
+            <td>23</td>
+            <td>new Work</td>
+        </tr>
+        <tr>
+            <td>jhon</td>
+            <td>23</td>
+            <td>new Work</td>
+        </tr>
+        <tr>
+            <td colspan="3">The rowspan acroos all the column</td>
+        </tr>
+    </table>
+
+    <h2>Combine Rowspan and CallSpan</h2>
+    <table border="1" cellpadding="10" cellspacing="0">
+        <tr>
+            <th colspan="3">Project Information</th>
+        </tr>
+        <tr>
+            <td rowspan="3">dd</td>
+            <td>Task1</td>
+            <td>Progress</td>
+        </tr>
+        <tr>
+            <td>Task2</td>
+            <td>Complet</td>
+        </tr>
+        <tr>
+            <td>Task3</td>
+            <td>Running</td>
+        </tr>
+        <tr>
+            <td colspan="3">End of data</td>
+        </tr>
+    </table>
+
+    <h2>Complex Rowspan And Calsoan</h2>
+    <table  border="1" cellpadding="10" cellspacing="0" >
+        <tr>
+            <th rowspan="2">Name</th>
+            <th colspan="2">Contact</th>
+            <th rowspan="2">City</th>
+        </tr>
+        <tr>
+            <td>Email</td>
+            <td>Phone</td>
+        </tr>
+        <tr>
+            <td>Jhon</td>
+            <td>jhon@gamil.com</td>
+            <td>123-345-987</td>
+            <td>London</td>
+        </tr>
+        <tr>
+            <td>kanha</td>
+            <td>jhon@gamil.com</td>
+            <td>123-345-987</td>
+            <td>India</td>
+        </tr>
+    </table>
+
+    <h2>Nasted Rowspan and colspan</h2>
+    <table border="1" cellpadding="10" cellspacing="0" >
+        <tr>
+            <th rowspan="2">Dipartment</th>
+            <th colspan="3">Employee</th>
+        </tr>
+        <tr>
+            <td>Name</td>
+            <td>Role</td>
+            <td>Year</td>
+        </tr>
+        <tr>
+            <td rowspan="2">HR</td>
+            <td >kanha</td>
+            <td>fullstack</td>
+            <td>12</td>
+        </tr>
+        <tr>
+            <td >kk</td>
+            <td>dv</td>
+            <td>1</td>
+
+        </tr>
+        <tr>
+            <td rowspan="2">IT</td>
+            <td>kk</td>
+            <td>admin</td>
+            <td>2</td>
+        </tr>
+        <tr>
+            <td>jhon</td>
+            <td>Dev</td>
+            <td>1</td>
+        </tr>
+    </table>
+</body>
+</html>

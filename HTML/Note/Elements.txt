@@ -1,0 +1,12 @@
+Elements: elements are nothing but complete tag with its content i.e., open tag+content+close tag
+for eg:
+<h1>
+   hello
+</h1>
+Note: all elements needs not to be closed. some elements don't have any closing tag. they are called void elements or empty elements or self closing elements
+eg: <img src="" alt="" />,<br />,<hr />
+
+we can group the elements and make the groups as block or inline for styling
+  -- general grouping block element - div
+  -- general grouping inline element - span
+

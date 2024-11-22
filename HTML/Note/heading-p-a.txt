@@ -1,0 +1,21 @@
+Headings:
+   Headings are used to display important or main words to represent context.
+   Main Headings will have h1, followed by sub heading h2 and sub sub headings h3 . Each heading is differed by size and importance
+   h1 is given higher importance like page title. It is recommanded to use only one h1 per page
+   In case of h7 or any other unrecogizable tags , HTML treats them as normal paragraph. Total 6 headings are ther from h1 to h6.
+Paragraph: Paragraph are used to display block of text in normal way. we use p tag for paragraph. To generate dummy paragraph, we can use 'lorem' or 'lorem50'(for 50 words).
+Anchor: Anchor tag is used to link one page to another page/external resources
+we use 'a' tag for anchor. it has an attribute href (hyper reference) contains value 'path to redirect'
+<a href="https://www.google.com">click me</a>  --- redirects to google.com
+<a href="https://www.google.com" target="_blank">click me</a>--- redirects to google.com in a new tab
+<a href="some.pdf" download>click me</a>  --- it will download the pdf
+<a href="mailto:abc@gmail.com">click me</a> -- go to the mail
+<a href="tel:58588585">click me</a>
+
+image: To display images we use img tag. img is a self closing tag.no need of closing img tag. img have two attributes (src and alt). 
+  src-- src is used to give the link or path of image.
+  alt -- alt works only when src path is not working.
+
+we can also adjust height and width of image by respective attributes.
+
+

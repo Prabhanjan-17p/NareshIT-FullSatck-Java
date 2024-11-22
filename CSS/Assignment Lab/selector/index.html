@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Selectors In CSS</title>
+    <style>
+        p{
+            /* font-size: 20px; */
+            font-weight: bold;
+            /* color: red; */
+            border: 1px solid black;
+            font-size: 12px;
+        }
+       b{
+        font-size: 22px;
+        color: red;
+       } 
+       h2{
+        color: red;
+       }
+       div{
+        height: auto;
+        width: 100vw;
+        border: 1px solid black;
+        font-size: 18px;
+        background-color: rgb(77, 179, 77);
+       }
+       span{
+        border: 1px solid black;
+        height: 22px;
+        width: 200px;
+       }
+       bb{
+        font-size: 22px;
+        color: rgb(187, 94, 94);
+        font-weight: bold;
+       }
+       .box{
+        height: 120px;
+        width: 180px;
+        border: 1px solid black;
+        padding: 14px;
+
+        font-size: 16px;
+        margin-bottom: 12px;
+       }
+       .box b{
+        font-size: 16px;
+       }
+       #pp1{
+        height: 35px;
+        width: 100vw;
+        border: 1px solid black;
+        margin-top: -5px;
+        margin-bottom: -9px;
+       }
+       .box1{
+        background-color: rgb(90, 77, 77);
+        height: 120px;
+        width: 180px;
+        border: 1px solid black;
+        padding: 14px;
+        font-size: 16px;
+        margin-top: 12px;
+       }
+    </style>
+</head>
+<body><!--  -->
+    <h1>CSS Selector Demo</h1>
+    <p><b>T</b>his is a paragraph styling using element selctor.</p>
+    <h2>This is heading tag </h2>
+    <p><b>A</b>nother paragraph styling using element selctor.</p>
+    <div>
+        <b>Start of Div:</b>This is a paragraph inside a div. <b>End of div</b>
+    </div>
+    <span>
+        <bb>Span:</bb>This is a span using element Selectors
+    </span>
+
+    <div class="box">
+        <b>Start of div:</b>this a div style using class selctor <b>end of div</b>
+    </div>
+    <div class="box">
+        <b>Start of div:</b>this a div style using class selctor <b>end of div</b>
+    </div>
+
+    
+    <p id="pp1"><b>T</b>his is a paragraph styling using element selctor.</p>
+    <span class="neS">
+        <bb>Span:</bb>This is a span using element Selectors
+    </span>
+    <p id="pp1"><b>T</b>his is a paragraph styling using element selctor.</p>
+    <div class="box1">
+        <b>Start of div:</b>this a div style using class selctor <b>end of div</b>
+    </div>
+</body>
+</html>

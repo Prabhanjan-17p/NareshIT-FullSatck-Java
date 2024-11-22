@@ -1,0 +1,41 @@
+CSS(Cascading style sheets) are used to design/style the webpage.They were introduced in 1994. Before understanding CSS,
+we will have some basics of design
+i. color
+ii. font
+iii. layout
+
+How to include CSS into HTML elements?
+There are three ways to apply css to HTML elements
+i. in-line styling: we can apply styling to any element by taking 'style' as an attribute but probelm is we have to apply for each and every element separetely
+ii. internal styling: we can apply styling to any elements by taking 'style' as an element
+<style>
+    selector{
+        //css
+    }
+</style>
+iii. External styling: we can apply styling to any element by writing css separely and link it throw link tag
+<link rel="stylesheet" href="./style.css" >
+
+inline > internal > External
+
+How can you select HTML elements in CSS?
+we can select element in CSS by three ways
+a. tag selector: it selects all elements with specific tag
+b. class selector: it selects elements with specific class name. we have to use dot before class name
+c. id selector: it selects element with specific id. we have to use hash before id
+
+id>class>tag
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,39 @@
+.p1{
+    height: 22px;
+    border: 1px solid ;
+}
+.p2{
+    height: 22px;
+    border: 1px solid ;
+    border-radius: 8px;
+}
+.p3{
+    height: 22px;
+    border: 1px solid ;
+    border-style: dashed;
+}
+.p4{
+    height: 22px;
+    border: 1px solid ;
+    border-style: double;
+}
+.p5{
+    height: 22px;
+    border: 1px solid ;
+    border-style: dotted;
+}
+.p6{
+    height: 22px;
+    border: 1px solid red;
+    border-style: double;
+}
+.p7{
+    height: 22px;
+    border: 1px solid rgb(136, 198, 43);
+    border-width: 12px;
+}
+.p8{
+    height: 22px;
+    border: 1px solid red;
+    border-style: dashed;
+}

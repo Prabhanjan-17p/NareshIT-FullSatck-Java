@@ -1,0 +1,74 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+.box1{
+    height: 100px;
+    width: 100vw;
+    border: 2px solid red;
+    margin: 12px;
+    padding: 22px;
+}
+.box2{
+    height: 40px;
+    width: 100vw;
+    border: 2px solid red;
+    margin-top: -12px;
+    padding: 22px;
+    margin-left: 12px;
+    /* text-align: center; */
+    color: green;
+    font-size: 22px;
+    font-weight: bold;
+}
+.box3{
+    height: 40px;
+    width: 150px;
+    border: 2px solid red;
+    margin-top: 8px;
+    padding: 22px 0;
+    margin-left: 12px;
+    /* text-align: center; */
+    color: olive;
+    font-size: 12px;
+    font-weight: bold;
+}
+.box4{
+    height: 40px;
+    width: 160px;
+    border: 2px solid red;
+    /* margin-top: -12px; */
+    padding: 22px 0;
+    margin-left: 22px;
+    margin-top: 8px;
+    /* text-align: center; */
+    color: green;
+    font-size: 12px;
+    font-weight: bold;
+}
+.box5{
+    height: 40px;
+    width: 160px;
+    border: 2px solid red;
+    /* margin-top: -12px; */
+    padding: 22px ;
+    margin-left: 22px;
+    margin-top: 8px;
+    /* text-align: center; */
+    color: blue;
+    font-size: 12px;
+    font-weight: bold;
+}
+.box6{
+    height: 40px;
+    width: 100vw;
+    border: 2px solid red;
+    /* margin-top: -12px; */
+    padding: 22px 0;
+    margin-left: 22px;
+    margin-top: 8px;
+    /* text-align: center; */
+    color: black;
+    font-size: 12px;
+    font-weight: bold;
+}

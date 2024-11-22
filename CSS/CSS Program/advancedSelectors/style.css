@@ -1,0 +1,86 @@
+/* tag selector */
+/* div{
+    background-color: red;
+} */
+/* .parent{
+    border: 3px dotted black;
+} */
+ /* #box{
+    border: 1px solid black;
+    box-shadow: 2px 3px black;
+ } */
+/* immediate child */
+ /* .parent>h1{
+    background-color: red;
+ } */
+ /* descendant child*/
+ /* .parent h1{
+    background-color: red;
+ } */
+  /* sibling selector */
+/* div+h1{
+background-color: red;
+} */
+
+/* .myDiv>h1 /* direct child */
+/*{
+background-color: red;
+} */
+
+
+/*.myDiv h1 /* descendant */
+/*{
+   background-color: red;
+}*/
+/*h1+p /* adjacent sibling*/
+/*{
+background-color: red;
+}*/
+/* h1~p /* general sibling */
+/*{
+   background-color: red;
+} */
+
+/* pseudo selectors */
+/*pseudo selectors selects an element based on state of the element or position of the element */
+.myDiv3{
+   background-color: red;
+   height: 100px;
+   width: 100px;
+}
+.myDiv3:hover{
+  background-color: green;
+  border-radius: 50%;
+}
+/* a:link{
+   color: brown;
+} */
+/* a:active{
+   color: yellow;
+}
+a:visited{
+   color: bisque;
+}
+input:enabled{
+   background-color: red;
+} */
+/* input[type="text"]{
+   background-color: antiquewhite;
+}
+p:not(.para){
+   color: red;
+} */
+ .child{
+   height: 50px;
+   width: 50px;
+   margin: 10px;
+ }
+/* .child:nth-last-child(odd){
+   background-color: red;
+} */
+p.child:nth-of-type(1){
+background-color: red;
+}
+p.child:nth-last-of-type(1){
+   background-color: red;
+}

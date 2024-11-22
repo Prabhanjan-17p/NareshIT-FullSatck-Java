@@ -1,0 +1,6 @@
+body {
+    /* background-color: plum; */
+    /* background:linear-gradient(blue,white,blue,white,blue,white,blue,white,blue,white,blue,white,blue,white); */
+    background: radial-gradient(green, red, green, red, green, red, green, red);
+    height: 100vh;
+}

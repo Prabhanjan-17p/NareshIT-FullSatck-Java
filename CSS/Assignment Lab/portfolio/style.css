@@ -1,0 +1,365 @@
+@import url('https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Noto+Sans:ital,wght@0,100..900;1,100..900&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Sour+Gummy:ital,wght@0,100..900;1,100..900&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+    font-family: "Sour Gummy", sans-serif;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+}
+body{
+    /* overflow: hidden; */
+    overflow-x: hidden;
+}
+nav{
+    /* background-color: aqua; */
+    width: 100vw;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    /* margin-top: 12px; */
+
+    /* may be change */
+    position: fixed;
+    background-color: white;
+}
+.logo{
+    margin-top: 12px;
+}
+.logo img{
+    height: 70px;
+}
+.navcon ul{
+    display: flex;
+    align-items: center;
+    list-style: none;
+    gap: 22px;
+    text-decoration: none;
+}
+.navcon ul li a{
+    color: black;
+    text-decoration: none;
+    font-size: 18px;
+    transition: all 0.5s ease-in-out;
+}
+.navcon ul li a:hover{
+    color: aqua;
+    
+}
+
+/* main */
+
+.mainHome{
+    width: 100vw;
+    /* background-color: aqua; */
+    height: 87vh;
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    padding: 22px;
+    margin-bottom: 70px;
+    padding-top: 90px;
+}
+.homebox{
+    width: 45vw;
+    height: 83vh;
+    background-color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 22px;
+}
+.homeImage img{
+    height: 350px;
+    width: 350px;
+    border-radius: 10%;
+    object-fit: cover;
+    /* border: 2px solid black; */
+}
+.toright{
+    margin-left: -282px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 22px;
+}
+.homeText{
+    /* flex-direction: column; */
+    /* display: flex; */
+    /* justify-content: center; */
+    /* align-items: center; */
+    /* margin-left: -122px; */
+}
+.homeText h2{
+    color: gray;
+}
+.homeText h1{
+    margin-bottom: -9px;
+    margin-top: -18px;
+    font-size: 42px;
+}
+
+.btnmain button{
+    width: 100px;
+    height: 32px;
+    color: blueviolet;
+    border-radius: 12px;
+    background-color: white;
+    border: 1px solid aqua;
+    margin: -12px 8px;
+    transition: all 0.8s ease;
+}
+.btnmain button:hover{
+    cursor: pointer;
+    background-color: aqua;
+    color: black;
+    border: 1px solid black;
+}
+.mainImg {
+    gap: 22px;
+}
+.mainImg img{
+    height: 38px;
+    margin: -19px 8px;
+}
+
+/* About */
+.mainAbout{
+    box-sizing: border-box;
+    height: 90vh;
+    width: 100vw;
+    /* background-color: aqua; */
+}
+.aboutHead{
+    height: 120px;
+    width: 100vw;
+    /* border: 1px solid black; */
+    text-align: center;
+}
+.aboutHead h2{
+    font-size: 19px;
+    color: gray;
+}
+.aboutHead h1{
+    font-size: 52px;
+    color: black;
+}
+.aboutBoxCard{
+    height: 240px;
+    width: 100vw;
+    /* border: 1px solid black; */
+    display: flex;
+    justify-content: center;
+    gap: 52px;
+}
+.boxAbout{
+    height: 220px;
+    width: 420px;
+    border: 1px solid black;
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 22px;
+    box-shadow: 2px 2px 2px black;
+    transition: all 0.7s ease;
+}
+.boxAbout:hover{
+    box-shadow: -2px -2px 2px rgb(189, 41, 41);
+}
+.boxAbout h2{
+    color: gray;
+    font-size: 20px;
+}
+.aboutPara{
+    height: 160px;
+    width: 100vw;
+    /* border: 1px solid black; */
+    padding: 0px 100px;
+}
+.aboutPara p{
+    margin-top: 15px;
+}
+
+/* experience */
+.experience{
+    height: 89vh;
+    width: 100vw;
+    /* background-color: aqua; */
+}
+.expBox{
+    height: 450px;
+    width: 100vw;
+    /* border: 1px solid black; */
+    display: flex;
+    justify-content: center;
+    gap: 52px;
+}
+.expcard{
+    height: 360px;
+    width: 310px;
+    border: 1px solid black;
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* justify-content: center; */
+    gap: 22px;
+    box-shadow: 2px 2px 2px black;
+    transition: all 0.7s ease;
+    background-color: white;
+}
+.expcard:hover{
+    box-shadow: -2px -2px 2px rgb(189, 41, 41);
+}
+.expcard h1{
+    /* color: gray; */
+    font-size: 17px;
+    margin-top: 53px;
+}
+.imgexp{
+    height: 260px;
+    width: 310px;
+    /* background-color: red; */
+    display: flex;
+    /* justify-content: center; */
+    align-items: center;
+    gap: 10px;
+    padding: 0px 12px;
+}
+.leftcard{
+    height: 240px;
+    width: 190px;
+    /* background-color: green; */
+    display: flex;
+    flex-direction: column;
+    gap: 33px;
+}
+.leftcard img{
+    height: 50px;
+    width: 50px;
+}
+.img1{
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+.img1 h3{
+    color: gray;
+    font-size: 14px;
+}
+/* Project */
+.projectcard{
+    height: 78vh;
+    width: 100vw;
+    /* border: 1px solid black; */
+    display: flex;
+    justify-content: center;
+    gap: 28px;
+    box-sizing: border-box;
+}
+.pcard1{
+    height: 68vh;
+    width: 20vw;
+    border: 1px solid black;
+    border-radius: 14px;
+    box-shadow: 1px 1px 2px black;
+    transition: all 0.7s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.pcard1:hover{
+    box-shadow: -1px -1px 2px red;
+}
+.pcard1 img{
+    height: 150px;
+    width: 250px;
+    border-radius: 10%;
+    object-fit: cover;
+    margin: 22px 0px;
+}
+.pcard1 p{
+    padding: 0px 18px;
+    font-size: 14px;
+}
+.pcard1 button{
+    height: 35px;
+    width: 95px;
+    margin-top: 29px;
+    background-color: white;
+    border-radius: 5px;
+}
+/* Contact US */
+.contactcard{
+    height: 21vh;
+    width: 100vw;
+    /* border: 1px solid ; */
+    display: flex;
+    justify-content: center;
+    gap: 28px;
+    box-sizing: border-box;
+}
+.concard{
+    box-sizing: border-box;
+    width: 45vw;
+    height: 105px;
+    border: 1px solid ;
+    border-radius: 22px;
+    padding: 12px;
+    display: flex;
+}
+.gmailcard{
+    width: 30vw;
+    height: 80px;
+    /* background-color: aqua; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 18px;
+}
+.gmailcard img{
+    height: 50px;
+    width: 50px;
+    margin-right: 12px;
+}
+.gmailcard p{
+    color: blue;
+}
+.gmailcard a{
+    text-decoration: none;
+}
+.linkedincard{
+    display: flex;
+    align-items: center;
+}
+.linkedincard img{
+    height: 50px;
+    width: 50px;
+    margin-right: 12px;
+}
+/* Fotter */
+.footercard{
+    /* height: 20vh; */
+    width: 100vw;
+    /* border: 1px solid ; */
+}
+.footnav{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 33px;
+    margin-bottom: 16px;
+}
+.footnav a{
+    text-decoration: none;
+    color: gray;
+    font-size: 23px;
+}
+.footlast h2{
+    font-size: 14px;
+    text-align: center;
+}

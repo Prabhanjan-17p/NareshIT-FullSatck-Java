@@ -1,0 +1,29 @@
+/* p{
+    font-size: 20px;
+}
+div,p{
+   border:5px solid red;
+   border-bottom-left-radius: 40px;
+   box-sizing: border-box;
+ margin:40px 40px;
+   border-top-right-radius: 40px;
+} */
+#btn {
+    background-color: black;
+    color: white;
+    border: 2px solid red;
+    border-top-right-radius: 15px;
+    border-bottom-left-radius: 15px;
+    padding: 5px 10px 20px 50px;
+}
+
+input {
+    border: none;
+}
+
+#searchBar {
+    height: 50px;
+    border-radius: px;
+    border: 1px solid black;
+    width: max-content;
+}

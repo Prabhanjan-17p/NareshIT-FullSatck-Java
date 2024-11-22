@@ -1,0 +1,11 @@
+we can assign colors in multiple ways
+--- colour name;
+--- hexcode
+--- rgb(value1,value2,value3) -- each color will take 0-255 value
+--- rgba(value1,value2,value3,alpha)  where alpha will be between 0.0 to 1.0
+--- hsl(hue,saturation,lightness) -- hue will be degrees from 0 to 359, saturation and lightness are 0 to 100%
+--- hsla(hue,saturation,lightness,alpha)
+--- linear-gradient(color1,color2.....)
+--- radial-gradient(color1,color2....) -- color transitions are circular
+
+bg images:

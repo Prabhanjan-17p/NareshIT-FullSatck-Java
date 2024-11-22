@@ -1,0 +1,34 @@
+Forms are used to input the user's data/collect responses/login/signup etc..,
+form will be embraced by form tag with attributes such as 
+  -- action: path to which file form data to be submitted
+Form contains multiple inputs
+  input tag is used to collect inputs and it have following attributes
+    -- type -- contains type of the input
+    -- placeholder -- contains some dummy text to appear in input until user enters value. it helps user to find what to enter
+    --value -- we can also predefine some value using value attribute
+    -- name -- it contains the variable by which we submit input data
+    -- id -- used to identify the input uniquely
+
+instead of placeholder , we can use labels, label tag is used to make user identify what to enter and it can also connects with input by having input's id value in label's for.
+
+Different Types of inputs:
+we can use multiple types of inputs such as
+  -- text -- used for alphanumerical values
+  -- email -- used for email addresses
+  -- password -- used for secret info,
+  -- file -- used for uploading a file
+  -- button -- used to create a button
+  -- submit -- used to create a button that can submit the form
+  -- reset -- used to create a button that can reset the form
+  -- date -- used to select a date from calender
+  -- datetime-local -- used to select date with time
+  -- time -- used to select time
+  -- month -- used to select month
+  -- search -- used for searching
+  -- url -- used to collect a link
+  -- range -- used to select a range
+  -- number -- used to enter a numerical value
+  -- hidden -- used to make the textbox which can be submitted but hidden
+  -- color  -- used to select a particular color
+
+<!-- create a simple login form with labels and name attribute  -->

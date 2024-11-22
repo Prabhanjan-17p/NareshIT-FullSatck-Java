@@ -1,0 +1,25 @@
+@import url('./scream.ttf');
+
+* {
+    font-family: 'Courier New', Courier, monospace
+}
+
+img {
+    float: left;
+}
+
+.box {
+    /* float:left; */
+    height: 100px;
+    width: 100px;
+    background-color: red;
+    margin: 10px;
+    color: white;
+    font-size: 25px;
+    display: inline-block;
+    cursor: url('');
+}
+
+/* p{
+    clear: both;
+} */

@@ -1,0 +1,8 @@
+HTML5 introduces lot of features such as
+semantic elements
+picture
+iframe
+drag n drop
+canvas
+svg
+data attributes

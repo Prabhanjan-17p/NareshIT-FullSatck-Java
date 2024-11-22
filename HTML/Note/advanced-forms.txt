@@ -1,0 +1,52 @@
+Radio Buttons: we will use radio buttons when we have to take any one single choice
+we can insert them using input type 'radio', every radio button must have name and label connected
+All radio buttons of similar use must have same have
+ <input type="radio" name="gender" id="m">
+     <label for="m">Male</label>
+     <input type="radio" name="gender" id="f">
+     <label for="f">Female</label>
+Check boxes: we can use check boxes by input type 'check' and we use them when we need to select multiple options
+labels should be connected and all checks of similar cause must have same name
+ <input type="checkbox" name="lang" id="en">
+       <label for="en">English</label>
+        <input type="checkbox" name="lang" id="hi">
+       <label for="hi">Hindi</label>
+        <input type="checkbox" name="lang" id="te">
+       <label for="te">Telugu</label>
+        <input type="checkbox" name="lang" id="mt">
+       <label for="mt">Marathi</label>
+        <input type="checkbox" name="lang" id="kr">
+       <label for="kr">Korean</label>
+we can insert dropdown using select element and each option will have option tag with 'value' attribute
+if we have to select multiple we need to add multiple at the end of attributes of select
+
+we can group option using optgroup with label
+ <select name="branch" size="8" id="" multiple>
+            <optgroup label="ENGG">
+               <option value="EEE">EEE</option>
+            <option value="cse">CSE</option>
+            <option value="ece">ECE</option>
+            <option value="aiml">AIML</option>
+            <option value="mech">Mech</option>
+            </optgroup>
+            <optgroup label="Degree">
+             <option value="bsc">BSC</option>
+              <option value="">BCA</option>
+              <option value="">BCOM</option>
+            </optgroup>
+            <optgroup label="MASTERS">
+             <option value="">MCA</option>
+             <option value="">MBA</option>
+            </optgroup>
+           
+        </select>
+
+we can do validation in HTML form using
+required,
+readonly,
+diabled,
+max,
+min,
+maxlength,
+minlength,
+pattern - regularExpression

@@ -1,0 +1,146 @@
+*{
+    box-sizing: border-box;
+}
+body{
+    height: 100vh;
+    width: 100vw;
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+/* .conainter{
+
+     height: 600px;
+    width: 800px; 
+    border-radius: 16px;
+    display: grid;
+    grid-template-columns: repeat(4,auto);
+    grid-template-rows: repeat(3,auto);
+    padding: 2px;
+    gap: 12px;
+}
+.box1{
+    background-color: blueviolet;
+    grid-column: 1/2;
+    grid-row: 1/3;
+}
+.box2{
+    background-color: aqua;
+    grid-column: 2/4;
+    grid-row: 1/4;
+}
+.box5{
+    background-color: olivedrab;
+    grid-row: 3/5;
+}
+.box3{
+    background-color: brown;
+    grid-row: 1/3;
+}
+.box4{
+    background-color: orchid;
+    grid-row: 3/5;
+}
+.box6{
+    background-color: black;
+    grid-column: 2/3;
+    grid-row: 4/5;
+}
+.box7{
+    background-color: orchid;
+    grid-column: 3/4;
+    grid-row: 4/5;
+}
+.box{
+    height: 120px;
+    width: 120px;
+
+} */
+
+.conainter{
+    width: 600px;
+    display: grid;
+    grid-template-columns: repeat(4,auto);
+    grid-template-rows: repeat(3,auto);
+    gap: 12px;
+}
+.box{
+    /* height: 140px; */
+    height: 173px;
+    width: 175px;
+    border: 1px solid;
+    /* border-radius: 12px; */
+}
+.box2{
+    height: 290px;
+    width: 360px;
+    background-color: rebeccapurple;
+    grid-column: 2/4;
+    grid-row: 1/3;
+}
+.box3{
+    height: 290px;
+    grid-column: 4/5;
+    background-color: aqua;
+    grid-row: 1/3;
+    border-top-right-radius: 12px;
+}
+.box4{
+    height: 290px;
+    grid-row: 2/4;
+    grid-column: 1/2;
+    background-color: aqua;
+    border-bottom-left-radius: 12px;
+}
+/*  */
+.box1{
+    border-top-left-radius: 12px;
+    object-fit: cover;
+}
+.box7{
+    border-bottom-right-radius: 12px;
+}
+.imgcat{
+    border-top-left-radius: 12px;
+    height: 173px;
+    width: 175px;
+   object-fit: cover;
+}
+.imgcat2{
+    border-bottom-left-radius: 12px;
+    width: 175px;
+    height: 289px;
+    object-fit: cover;
+    margin-top: -1px;
+}
+.imgcat3{
+    border-top-right-radius: 12px;
+    width: 175px;
+    height: 289px;
+    object-fit: cover;
+    margin-left: -2px;
+}
+.imgcat5{
+    /* border-top-left-radius: 12px; */
+    height: 172px;
+    width: 176px;
+    object-fit: cover;
+    margin-top: -1px;
+    margin-left: -1px;
+}
+.imgcat6{
+    border-bottom-right-radius: 12px;
+    height: 172px;
+    width: 173px;
+   object-fit: cover;
+   margin-top: -1px;
+   margin-left: -1px;
+}
+
+.imgg{
+    height: 290px;
+    width: 360px;
+    object-fit: cover;
+    margin-left: -1px;
+}

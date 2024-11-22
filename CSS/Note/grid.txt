@@ -1,0 +1,24 @@
+Grid is used to arrange the child items in two direction way 
+i.e., rows and columns
+parent container properties:
+display:grid;  /* it defines the container is a grid*/
+grid-template-columns: width1 width2.... /* it defines the no,of columns along with width of each column */
+grid-template-rows: width1 width2 width3 .... /* if defines no.of rows along with height of each rows
+row-gap: row-gap is used to define the gap between rows
+column-gap: column-gap is used to define gap betweeen columns
+gap: gap is used to define the gap between the elements(rows & column)
+justify-content: it allows child items to move horizontally
+align-items: it allows child-items to move vertically
+grid-template-areas: it is a shortcut to mention grid-template-rows and grid-template-columns at a time.
+place-items:center; to centered all child items
+
+child items properties:
+order: it defined how elements need to be arranged.by dafualt order is 01
+grid-column-start: starting column line number
+grid-column-end: ending column line number
+grid-column: shortcut to mention both grid-column-start and grid-column-end :grid-column-start/grid-column-end
+grid-row-start: starting row line number
+grid-row-end: ending row line number
+grid-row: grid-row-start/grid-row-end
+we can also write grid-area: shortcut to get row and column points
+grid-area:row-start/column-start/row-end/column-end

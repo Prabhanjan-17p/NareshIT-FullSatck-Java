@@ -1,9 +1,11 @@
+@import url('https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Noto+Sans:ital,wght@0,100..900;1,100..900&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Sour+Gummy:ital,wght@0,100..900;1,100..900&display=swap');
+
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    /* background-color: #040304; */
-    /* color: white; */
+    font-family: "Montserrat", sans-serif;
+    scroll-behavior: smooth;
 }
 
 body {
@@ -17,16 +19,12 @@ body {
     height: 95vh;
     background-color: #f2f2f2;
     overflow: hidden;
-    /* border-radius: 20px; */
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
-    /* margin-left: -5px; */
 }
 
 .box iframe {
     height: 105vh;
     width: 100vw;
-    /* border-radius: 20px; */
-    
 }
 
 nav {
@@ -56,7 +54,6 @@ nav {
     justify-content: center;
     align-items: center;
     gap: 25px;
-    /* border-radius: 30px; */
     border-bottom-right-radius: 23px;
     border-bottom-left-radius: 23px;
     padding: 0 20px;
@@ -87,10 +84,9 @@ nav {
     color: #fff;
 }
 
-.rightbox{
+.rightbox {
     height: 60vh;
     width: 4vw;
-    /* background-color: #fff; */
     position: absolute;
     top: 140px;
     right: 0;
@@ -99,30 +95,28 @@ nav {
     justify-content: center;
     gap: 34px;
 }
-.rightbox img{
-    height: 35px;
+
+.rightbox img {
+    height: 30px;
     margin-left: -19px;
 }
-/* Add a smooth transition for the body background color */
+
 body {
     transition: background-color 0.3s ease-in-out;
 }
 
 /* About */
-.about{
+.about {
     width: 100vw;
     height: 70vh;
-    /* border: 1px solid black; */
     background-color: #040304;
-    /* margin-top: 12px; */
     padding: 42px 12px;
 }
-.headabout{
+
+.headabout {
     height: 38px;
     width: 100vw;
-    /* border: 1px solid black; */
     display: flex;
-    /* justify-content: center; */
     flex-direction: column;
     align-items: center;
     font-size: 17px;
@@ -131,52 +125,63 @@ body {
     gap: 11px;
 }
 
- .hcard1{
-    height: 46px;
-    width: 146px;
-    background-color: #942dde;
-    border: 1px solid white ;
+.hcard1 {
+    /* height: 46px; */
+    /* width: 146px; */
+    /* background-color: #942dde; */
+    /* border: 1px solid white; */
     border-radius: 6px;
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
     text-align: center;
+    gap: 6px;
+    color: #942dde;
 }
-.hcard2{
+.hcard1 h2{
+    font-size: 39px;
+}
+.hcard1 hr{
+    width: 18vw;
+    height: 2px;
+    border: none;
+    background-color: #942dde;
+    color: #942dde;
+}
+
+.hcard2 {
     transform: rotate(90deg);
 }
-.colorl{
+
+.colorl {
     height: 120px;
     width: 120px;
     border: 1px solid white;
     position: absolute;
     left: 280px;
-    /* top: 40px; */
     background-color: #268fbc;
-    box-shadow: 2px 2px 182px #268fbc,2px 2px 182px #268fbc,-12px -12px 182px #268fbc;
+    box-shadow: 2px 2px 182px #268fbc, 2px 2px 182px #268fbc, -12px -12px 182px #268fbc;
     margin-top: 92px;
-    /* z-index: ; */
 }
-.aboutcont{
-    /* background-color: #f2f2f2; */
+
+.aboutcont {
     width: 100vw;
     height: 70vh;
-    margin-top: 62px;
+    margin-top: 92px;
     display: flex;
-    /* align-items: center; */
     justify-content: center;
 }
-.ccard1{
+
+.ccard1 {
     height: 50vh;
     width: 45vw;
-    /* background-color: #942dde; */
-    /* background-color: #942dde; */
-
     display: flex;
     align-items: center;
     justify-content: center;
 }
-.ccard2{
+
+.ccard2 {
     height: 50vh;
     width: .3vw;
     background-color: white;
@@ -185,7 +190,8 @@ body {
     align-items: center;
     justify-content: center;
 }
-.ccard3{
+
+.ccard3 {
     height: 50vh;
     width: 45vw;
     background-color: #040304;
@@ -196,159 +202,194 @@ body {
     padding: 0px 28px;
     gap: 16px;
 }
-.ccard1 img{
+
+.ccard3 h3 {
+    color: #942dde;
+    font-size: 26px;
+}
+
+.ccard3 p {
+    font-size: 15px;
+}
+
+.ccard1 img {
     height: 250px;
     width: 250px;
     object-fit: cover;
     border-radius: 24px;
     z-index: 1;
 }
-.hrline{
+
+.hrline {
     width: 30vw;
     margin-right: -250px;
 
 }
-.cbtn button{
-    width: 85px;
+
+.cbtn button {
+    width: 105px;
     height: 35px;
     background-color: aqua;
     border-radius: 7px;
     border: 1px solid white;
+    margin-right: 22px;
+    transition: all 0.5s ease;
 }
-.ccard2 img{
+.cbtn button:hover{
+    cursor: pointer;
+    background-color: #942dde;
+}
+
+.ccard2 img {
     height: 40px;
     width: 40px;
     object-fit: cover;
     display: flex;
     z-index: 1;
 }
+
 /* skill */
-.skills{
+.skills {
     height: 50vh;
     width: 100vw;
     padding: 42px 12px;
     /* display: flex; */
 }
-.skillscard{
+
+.skillscard {
     display: flex;
     width: 100vw;
     height: 70vh;
-    margin-top: 62px;
+    margin-top: 92px;
     display: flex;
     justify-content: center;
 }
-.scard1{
+
+.scard1 {
     height: 110px;
     width: 85px;
     border-radius: 7px;
     border: 1px solid white;
     margin: 13px 0px;
-   
+
 }
-.sc1{
+
+.sc1 {
     width: 88vw;
-    height: 37vh;
+    height: 40vh;
     border: 1px solid aqua;
     padding: 0px 12px;
     border-radius: 7px;
     z-index: 1;
     background-color: #040304;
 }
-#scard11{
-   display: flex;
-   flex-direction: column;
-   justify-content: center;
-   align-items: flex-start;
-   gap: 22px;
-   padding: 0px 22px ;
+
+#scard11 {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 22px;
+    padding: 0px 22px;
 }
-#scard11 h3{
+
+#scard11 h3 {
     color: #942dde;
     font-size: 26px;
 }
-#scard33{
+
+#scard11 p {
+    font-size: 15px;
+}
+
+#scard33 {
     box-sizing: border-box;
     flex-direction: row;
     display: flex;
     justify-content: center;
     align-items: center;
 }
-.upscard{
+
+.upscard {
     display: flex;
     align-items: center;
     gap: 23px;
 
 }
-.scard1{
+
+.scard1 {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
 }
-.scard1 h2{
+
+.scard1 h2 {
     font-size: 14px;
 }
-.scard1:hover img{
+
+.scard1:hover img {
     transform: rotateY(360deg);
-    /* transform: rotateX(90deg); */
     transition: transform 1.2s ease;
 }
-.scard1 img{
-    height: 55px;
-    width: 55px;
+
+.scard1 img {
+    height: 50px;
+    width: 50px;
 }
-.hrr{
+
+.hrr {
     width: 270px;
     margin-left: -13px;
 }
-#cl1{
+
+#cl1 {
     height: 120px;
     width: 120px;
     border: 1px solid white;
     position: absolute;
     left: 1070px;
-    /* top: 40px; */
     background-color: #268fbc;
-    box-shadow: 2px 2px 182px #268fbc,2px 2px 182px #268fbc,-12px -12px 182px #268fbc;
+    box-shadow: 2px 2px 182px #268fbc, 2px 2px 182px #268fbc, -12px -12px 182px #268fbc;
     margin-top: 92px;
-    /* z-index: ; */
 }
 
 /* Project */
-.projectcard{
+.projectcard {
     width: 100vw;
     height: 70vh;
-    /* border: 1px solid white; */
     margin-top: 153px;
     padding: 42px 12px;
 }
-.pcard{
+
+.pcard {
     width: 100vw;
     height: 70vh;
-    /* border: 1px solid white; */
-    margin-top: 45px;
+    margin-top: 75px;
     display: flex;
     justify-content: center;
     align-items: center;
     gap: 53px;
-    
+
 }
-.unpacrd{
+
+.unpacrd {
     background-color: #040304;
-    /* border-radius: 12px; */
-    /* margin-top: -13px; */
+    border-radius: 8px;
+    margin-top: 18px;
     width: 70vw;
-    height: 65vh;
-    border: 1px solid white;
+    height: 70vh;
+    border: 1px solid aqua;
     display: flex;
     justify-content: center;
     align-items: center;
     gap: 25px;
 }
-.pcardbox{
+
+.pcardbox {
     border-radius: 12px;
     width: 20vw;
-    height: 60vh;
+    height: 64vh;
     border: 1px solid white;
     display: flex;
     flex-direction: column;
@@ -356,27 +397,43 @@ body {
     align-items: center;
     gap: 33px;
 }
-.pcardbox p{
+
+.pcardbox p {
     padding: 0px 20px;
 }
-.pcardbox button{
+
+.pcardbox h2 {
+    color: #ffffff;
+}
+
+.pcardbox button {
     height: 30px;
     border-radius: 4px;
     width: 95px;
     border: 1px solid white;
     background-color: aqua;
+    transition: all 0.5s ease;
 }
-.pcardbox img{
+
+.pcardbox button:hover {
+    background-color: #268fbc;
+    cursor: pointer;
+    border: 1px solid aqua;
+}
+
+.pcardbox img {
     height: 20vh;
     width: 18vw;
     object-fit: cover;
     border-radius: 5px;
 }
-.leftimg img{
+
+.leftimg img {
     height: 80px;
     width: 80px;
 }
-#cl12{
+
+#cl12 {
     z-index: -1;
     width: 62vw;
     height: 37vh;
@@ -384,23 +441,98 @@ body {
 }
 
 /* contact */
-.contactcard{
+.contactcard {
     margin-top: 165px;
 }
 
-/* Add responsive design for smaller screens */
-@media (max-width: 768px) {
-    .navcrd {
-        width: 100%;
-        padding: 0 10px;
-    }
-
-    .navcrd ul {
-        flex-direction: column;
-        gap: 10px;
-    }
-
-    .box {
-        height: 90vh;
-    }
+.contactscard {
+    height: 60vh;
+    width: 100vw;
+    margin-top: 75px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
+
+.ccard121 {
+    height: 60vh;
+    width: 60vw;
+    display: flex;
+    flex-direction: column;
+    gap: 23px;
+}
+
+.f1 input {
+    height: 50px;
+    width: 20vw;
+    border: 1px solid white;
+    border-radius: 5px;
+    background-color: transparent;
+    color: white;
+    margin: 13px;
+    padding: 0px 17px;
+}
+
+.f1 textarea {
+    width: 42vw;
+    height: 25vh;
+    border: 1px solid white;
+    margin-left: 12px;
+    margin-top: 12px;
+    background-color: transparent;
+    color: white;
+    border-radius: 8px;
+    padding: 17px;
+}
+
+#f21 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 19px;
+    transition: all 0.5s ease;
+}
+
+.f1 button {
+    width: 180px;
+    height: 50px;
+    border: 1px solid white;
+    font-size: 18px;
+    border-radius: 7px;
+    background-color: #268fbc;
+    transition: all 0.5s ease;
+}
+
+.imgfooter {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 28px;
+    margin-bottom: 32px;
+}
+
+.imgfooter img {
+    height: 20px;
+    width: 20px;
+    object-fit: cover;
+}
+
+/* Footer */
+.footercard {
+    margin-top: 35px;
+    height: 10vh;
+    width: 100vw;
+}
+
+.footername {
+    text-align: center;
+}
+
+#f21:hover button {
+    cursor: pointer;
+    background-color: aqua;
+}
+
+
+/* Add responsive design for smaller screens */
+@media (max-width: 768px) {}

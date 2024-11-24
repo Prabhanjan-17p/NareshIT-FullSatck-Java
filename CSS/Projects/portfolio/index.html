@@ -1,116 +1,32 @@
-<!-- <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <style>
-        *{
-            margin: 0;
-            padding: 0;
-            background-color: black;
-        }
-        .box{
-            /* position: relative; */
-            width: 100vw;
-            height: 95vh;
-            background-color: #f2f2f2;
-            overflow: hidden;
-        }
-        .box iframe{
-            height: 105vh;
-        }
-        .navq{
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            width: 100vw;
-            height: 50px;
-            /* background-color: aliceblue; */
-        }
-        .navcrd{
-            width: 55vw;
-            height: 50px;
-            background-color: rgba(38, 39, 39, 0.781);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 53px;
-            border-bottom-left-radius: 24px;
-            border-bottom-right-radius: 24px;
-        }
-        .navcrd ul{
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            background-color:  rgba(38, 39, 39, 0.781);
-            gap: 93px;
-        }
-        .navcrd ul li{
-            /* background-color: rgba(82, 93, 93, 0.781); */
-            list-style-type: none;
-            /* background-color: aqua; */
-        }
-        .navcrd ul li a{
-            /* gap: 45px; */
-            /* margin: 0px 52px; */
-            font-size: 21px;
-            text-decoration: none;
-            color: white;
-            /* background-color: rgba(82, 93, 93, 0.781); */
-            background-color: rgba(38, 39, 39, 0.781);
-        }
-    </style>
-</head>
-<body>
-    <nav>
-        <div class="navq">
-            <div class="navcrd">
-                <ul>
-                    <li><a href="#">Home</a></li>
-                    <li><a href="#">About</a></li>
-                    <li><a href="#">Services</a></li>
-                    <li><a href="#">Contact</a></li>
-                </ul>
-            </div>
-        </div>
-    </nav>
-    <div class="box">
-        <iframe src='https://my.spline.design/distortingtypography-5a582f3f42b2a048da21fce06786d952/' frameborder='0' width='100%' height='100%'></iframe>
-    </div>
-</body>
-</html> -->
-
-
-
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Pravanjan-Portfolio</title>
     <link rel="stylesheet" href="style.css">
-    <style>
-
-    </style>
+    <link rel="shortcut icon" href="./img/favicon (1).png" type="image/x-icon">
 </head>
 
 <body>
     <nav>
+        <!-- nav Bar -->
         <div class="navq">
             <div class="navcrd">
                 <ul>
-                    <li><a href="#">Home</a></li>
-                    <li><a href="#">About</a></li>
-                    <li><a href="#">Skills</a></li>
-                    <li><a href="#">Contact</a></li>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#abb">About</a></li>
+                    <li><a href="#skll">Skills</a></li>
+                    <li><a href="#cnn">Contact</a></li>
                 </ul>
             </div>
         </div>
     </nav>
+
     <main>
-        <div class="box">
+        <!-- Home -->
+        <div class="box" id="home">
             <div class="leftbox">
                 <!-- <iframe src='https://my.spline.design/distortingtypography-3cb39d54e494c08a83f680b2f9599d2e/'
                     frameborder='0' width='100%' height='100%'></iframe> -->
@@ -119,17 +35,21 @@
                     frameborder='0' width='100%' height='100%'></iframe>
             </div>
             <div class="rightbox">
-                <img src="./img/linkden.svg" alt="">
-                <img src="./img/thread.svg" alt="">
-                <img src="./img/gmail.svg" alt="">
-                <img src="./img/instagram.svg" alt="">
-                <img src="./img/instagram.svg" alt="">
+                <a href=""><img src="./img/linkden.svg" alt=""></a>
+                <a href=""><img src="./img/thread.svg" alt=""></a>
+                <a href=""><img src="./img/gmail.svg" alt=""></a>
+                <a href=""><img src="./img/instagram.svg" alt=""></a>
+                <a href=""><img src="./img/phonecall.svg" alt=""></a>
+                
             </div>
         </div>
-        <div class="about">
+
+        <!-- About -->
+        <div class="about" id="abb">
             <div class="headabout">
                 <div class="hcard1">
                     <h2>About</h2>
+                    <hr>
                 </div>
                 <div class="hcard2"><img src="./img/bottomarrow.svg" alt=""></div>
             </div>
@@ -146,18 +66,20 @@
                     <h3>Hello, I'm Pravanjan</h3>
                     <p>Hi, I’m Prabhanjan Amanta, a passionate coder and creative problem-solver based in Angul, Odisha. With a knack for transforming ideas into functional and visually captivating projects, I specialize in web development, data analytics, and innovative software solutions. Whether it's building sleek interfaces with HTML, CSS, and JavaScript, diving deep into Java, or analyzing data to uncover actionable insights, I thrive on turning challenges into opportunities. Through my journey, I aim to empower others with technology, inspire through my content, and create solutions that make a real-world impact. Welcome to my digital world! </p>
                     <div class="cbtn">
-                        <button>See CV</button>
-                        <button>See CV</button>
+                        <button>Contact Info</button>
+                        <button>See Resume</button>
                     </div>
                 </div>
             </div>
             
         </div>
+
         <!-- skill -->
-        <div class="skills">
+        <div class="skills" id="skll">
             <div class="headabout">
                 <div class="hcard1">
                     <h2>Skills</h2>
+                    <hr>
                 </div>
                 <div class="hcard2" ><img src="./img/bottomarrow.svg" alt=""></div>
             </div>
@@ -228,6 +150,7 @@
             <div class="headabout">
                 <div class="hcard1">
                     <h2>Project</h2>
+                    <hr>
                 </div>
                 <div class="hcard2"><img src="./img/bottomarrow.svg" alt=""></div>
             </div>
@@ -238,23 +161,23 @@
                 </div>
                 <div class="unpacrd">
                     <div class="pcardbox">
-                        <h2>Project Name</h2>
+                        <h2>Voice Assistant</h2>
                         <img src="./img/voiceAssestantWallpaper.jpg" alt="">
-                        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Itaque consequuntur nemo inventore nam omnis a! Assumenda qui ea illo ad tempora modi nobis!
+                        <p>A smart, intuitive voice assistant designed by Prabhanjan Amanta, built using HTML, CSS, and JavaScript, enhancing productivity with seamless interactions.
                         </p>
                         <button>See Now</button>
                     </div>
                     <div class="pcardbox">
-                        <h2>Project Name</h2>
+                        <h2>Voice Assistant</h2>
                         <img src="./img/voiceAssestantWallpaper.jpg" alt="">
-                        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Itaque consequuntur nemo inventore nam omnis a! Assumenda qui ea illo ad tempora modi nobis!
+                        <p>A smart, intuitive voice assistant designed by Prabhanjan Amanta, built using HTML, CSS, and JavaScript, enhancing productivity with seamless interactions.
                         </p>
                         <button>See Now</button>
                     </div>
                     <div class="pcardbox">
-                        <h2>Project Name</h2>
+                        <h2>Voice Assistant</h2>
                         <img src="./img/voiceAssestantWallpaper.jpg" alt="">
-                        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Itaque consequuntur nemo inventore nam omnis a! Assumenda qui ea illo ad tempora modi nobis!
+                        <p>A smart, intuitive voice assistant designed by Prabhanjan Amanta, built using HTML, CSS, and JavaScript, enhancing productivity with seamless interactions.
                         </p>
                         <button>See Now</button>
                     </div>
@@ -266,15 +189,50 @@
          </div>
 
          <!-- contact -->
-          <div class="contactcard">
+          <div class="contactcard" id="cnn">
             <div class="headabout">
                 <div class="hcard1">
                     <h2>Contact</h2>
+                    <hr>
                 </div>
                 <div class="hcard2"><img src="./img/bottomarrow.svg" alt=""></div>
             </div>
+            <div class="contactscard">
+                <div class="card121">
+                    <div class="f1">
+                        <input type="text" placeholder="First Name">
+                        <input type="text" placeholder="Last Name">
+                    </div>
+                    <div class="f1">
+                        <input type="text" placeholder="Mobile Number">
+                        <input type="text" placeholder="Subject For">
+                    </div>
+                    <div class="f1">
+                        <textarea name="" id="" placeholder="Message"></textarea>
+                    </div>
+                    <div class="f1" id="f21">
+                        <button>Send Message</button>
+                    </div>
+                </div>
+            </div>
           </div>
     </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footercard">
+            <div class="imgfooter">
+                <img src="./img/linkden.svg" alt="">
+                <img src="./img/gmail.svg" alt="">
+                <img src="./img/thread.svg" alt="">
+                <img src="./img/instagram.svg" alt="">
+                <img src="./img/phonecall.svg" alt="">
+            </div>
+            <div class="footername">
+                This site belongs to PRAVANJAN &copy; 2024
+            </div>
+        </div>
+    </footer>
 </body>
 
 </html>

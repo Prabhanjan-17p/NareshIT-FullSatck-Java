@@ -3,27 +3,27 @@
 int main()
 {
     // 1- Range Factor of prime numbers
-    int re1, re2, i = 1, res, count = 0;
-    printf("Enter two numbers: ");
-    scanf("%d%d", &re1, &re2);
-    while (re1 <= re2) // 2- 20
-    {
-        i = 1;
-        count = 0;
-        res = re1;
-        while (i <= res)
-        {
-            if (res % i == 0)
-            {
-                count++;
-            }
-            i++;
-        }
-        if (count >= 3);
-        else
-            printf("%d ", res);
-        re1++;
-    }
+    // int re1, re2, i = 1, res, count = 0;
+    // printf("Enter two numbers: ");
+    // scanf("%d%d", &re1, &re2);
+    // while (re1 <= re2) // 2- 20
+    // {
+    //     i = 1;
+    //     count = 0;
+    //     res = re1;
+    //     while (i <= res)
+    //     {
+    //         if (res % i == 0)
+    //         {
+    //             count++;
+    //         }
+    //         i++;
+    //     }
+    //     if (count >= 3);
+    //     else
+    //         printf("%d ", res);
+    //     re1++;
+    // }
 
     // 2- Check the Number is Armstrong number or not
     //  int num1, num2,res=0;
@@ -108,20 +108,20 @@ int main()
 
     int dig = 123;
     int cc = 0;
-    while (dig != 0)
-    {
-        cc++;
-        dig = dig / 10;
-    }
-    printf("Number %d digits", cc);
+    // while (dig != 0)
+    // {
+    //     cc++;
+    //     dig = dig / 10;
+    // }
+    // printf("Number %d digits", cc);
 
-    int i = 1, base, expo, res = 1;
-    while (i <= cc)
-    {
-        res = res * base;
-        i++;
-    }
-
+    // int i = 1, base, expo, res = 1;
+    // while (i <= cc)
+    // {
+    //     res = res * base;
+    //     i++;
+    // }
+   
     // int i=1,base,expo,res=1;
     // // printf("Enter base and exponent: ");
     // // scanf("%d%d", &base, &expo);
@@ -131,6 +131,59 @@ int main()
     //     i++;
     // }
     // printf("Result: %d\n", res);
+
+    //  printf("%d",2<<3); // 2 * 2^3
+    // printf("%d",2 * (2*2*2)); // 2 * 2^3
+
+    // int sum = 540;
+    // float  per = (sum / 600.0) * 100 ;
+    // printf("Perimeter: %f\n", per);
+    // int pp = (int)(per / 10);
+    // printf("Percentage: %d%%\n", pp);
+    // int n = 9;
+    // for (int i = 1; i <= n; i++)
+    // {
+    //     int s = n - i +1;
+    //     for (int  j = 1; j <= s; j++)
+    //     {
+    //         printf("*");
+    //     }
+    //     printf("\n");
+        
+    // }
+    // int n = 9;
+    // for (int i = 1; i <= n; i++)
+    // {
+    //     for (int  j = 1; j <= n; j++)
+    //     {
+    //         if (i >= j)
+    //         {
+    //         printf("%d ",j);
+    //         }
+    //     }
+    //     printf("\n"); 
+    // }
+    int n = 5;
+    for (int i = 1; i <= n*2-1; i++)
+    {
+        if (i <= n)
+        {
+        for (int  j = 1; j <= n; j++)
+        {
+            if (i >= j)
+            {
+            printf("*");
+            }
+        }
+        } else{
+            int z = 2*n-i;
+            for(int j = 1; j <= z; j++){
+                printf("*");
+            }
+        }
+        printf("\n"); 
+    }
+    
 
     return 0;
 }

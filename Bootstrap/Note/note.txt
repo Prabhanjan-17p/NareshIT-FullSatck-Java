@@ -1,0 +1,35 @@
+Bootstrap is Component CSS Library used for UI Purposes. A library is a pre written code used for specific purpose.
+eg:magic css, animate css
+
+How to include a CSS library?
+ find its CDN(Content Delivery Network) link and attach to HTML by link tag.
+
+ We can now use classnames according to documentation.
+
+To understand Bootstrap well, we need to understand
+  -- Colors
+  -- Layout
+  -- Breakpoint
+  -- components
+
+Colors: Bootstrap provides 8 variants of colors with different names
+  primary -- blue
+  secondary -- Grey
+  Danger -- red
+  Success -- Green
+  Warning -- yellow
+  info -- skyblue
+  dark -- black
+  light -- white
+
+Layout: By defaut, Bootstrap Follows Grid Layout of 12 column , Here we can define row by classname 'row' and columns by classname 'col'. 
+we can also define size of the column by classname 'col-length'
+
+we can define padding by p,pt,pb,ps,pe where p is padding,pt is padding-top,pb is padding bottom, ps is padding start,pe is padding end.start and end represents left and right
+
+similarly m for margin.
+
+we can apply border by 'border' property
+we can apply bordeer-radius by 'rounded'
+
+Responsivesness: Bootstrap provides Responsive User Interface by following "Mobile First Design" Principle and using respective breakpoints

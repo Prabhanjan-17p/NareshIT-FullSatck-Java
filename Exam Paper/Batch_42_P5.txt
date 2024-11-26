@@ -1,0 +1,940 @@
+C-Language Weekely_Test
+-----------------------
+
+MCQs [20 X 1 = 20 Marks]
+------------------------
+
+Q-1 :- [ok]
+------
+
+What will be the output of the following code?
+----------------------------------------------
+int x = 2;  
+switch (x) {  
+    default: printf("Default");  
+    case 1: printf("One");  
+    case 2: printf("Two");  
+    case 3: printf("Three");  
+}
+
+a) One
+b) TwoThreeDefault
+c) TwoThree
+d) Compile-time error
+
+Answer: c) TwoThree
+
+Q-2 :- [ok]
+------
+How can you break out of a switch case in C?
+--------------------------------------------
+a) Using continue
+b) Using return
+c) Using break
+d) Using exit()
+
+Answer: c) Using break
+
+Q-3 :- [ok]
+------
+Can a switch statement work with floating-point values in C?
+------------------------------------------------------------
+a) Yes
+b) No
+c) Only with float
+d) Only with double
+
+Answer: b) No
+
+Q-4 :- [ok]
+------
+What will be the output of the following C code?
+-------------------------------------------------
+#include <stdio.h>
+
+int main() {
+    int i = 0, j = 1, k = 2, m;
+    m = i++ || j++ || k++;
+    printf("i = %d j =  %d k = %d m = %d",i, j , k, m);
+    
+    return 0;
+}
+
+a). i = 0 j =  2 k = 2 m = 1
+b). i = 1 j =  2 k = 2 m = 1
+c). i = 1 j =  1 k = 2 m = 1
+d). i = 1 j =  2 k = 2 m = 0
+
+Answer :- b). i = 1 j =  2 k = 2 m = 1
+
+Q-5 :- [ok]
+------
+
+How many decimal places of precision does a float variable typically have in C?
+
+a) 4
+b) 6
+c) 8
+d) 10
+
+Answer: b) 6
+
+Q-6 :- [ok]
+------
+Consider the following code:
+
+#include <stdio.h>
+int main() {
+    int num = 20;
+    switch (printf("%d", num)) {
+        case 1: printf(" Case 1");
+                break;
+        case 2: printf(" Case 2");
+                break;
+        default: printf(" Default case");
+    }
+    return 0;
+}
+
+What will be the output of the program?
+---------------------------------------
+
+a) 2 Case 1
+b) 2 Case 2
+c) 2 Default case
+d) Compile-time error
+
+Answer: b) 2 Case 2
+
+Q-7 :- [ok]
+------
+Consider the following code:
+
+#include <stdio.h>
+int main() {
+    int x;
+    switch (scanf("%d", &x)) {
+        case 0: printf("Case 0");
+                break;
+        case 1: printf("Case 1");
+                break;
+        default: printf("Default case");
+    }
+    return 0;
+}
+
+If the input provided is 10, what will be the output of the program?
+
+a) Case 0
+b) Case 1
+c) Default case
+d) Compile-time error
+
+Answer: b) Case 1
+
+Q-8 :- [ok]
+------
+What will be the output of the following C code?
+
+#include <stdio.h>
+int main() {
+    int a = 2, b = 3;
+    switch (a << b) {
+        case 8: 
+            printf("Case 8\n");
+            break;
+        case 16: 
+            printf("Case 16\n");
+            break;
+        case 32: 
+            printf("Case 32\n");
+            break;
+        default: 
+            printf("Default case\n");
+    }
+    return 0;
+}
+
+a) Case 8
+b) Case 16
+c) Case 32
+d) Default case
+
+Answer: b) Case 16
+
+Q-9 :- [ok]
+------
+What will be the output of the following code?
+-----------------------------------------------
+int i = 0;  
+
+while (i < 3) {  
+    printf("%d ", i);  
+    i++;  
+}
+
+a) 0 1 2
+b) 1 2 3
+c) 0 1 2 3
+d) Infinite loop
+
+Answer: a) 0 1 2
+
+Q-10 :- [ok]
+-------
+What will be the output of the following code?
+-----------------------------------------------
+
+#include <stdio.h>
+
+int main() {
+	int i = 0;  
+
+	while (i < 10) {  
+    		i++;
+        	if(i%2 == 0) continue;
+            	printf("%d ", i);  
+	}
+	return 0;
+}
+
+a). 1, 2, 3, 4, 5, 6, 7, 8, 9.
+b). 1, 2, 3, 4, 5, 6, 7, 8, 9, 10.
+c). 1, 3, 5, 7, 9. 
+d). none of the above.
+
+Answer :- c). 1, 3, 5, 7, 9.
+
+Q-11 :- [ok]
+-------
+What is wrong with the following code?
+--------------------------------------
+int i = 0;  
+while (i <= 5); {  
+    printf("%d", i);  
+    i++;  
+}
+a) Infinite loop
+b) Missing break statement
+c) Semicolon after while creates an empty loop
+d) Nothing is wrong
+
+Answer: c) Semicolon after while creates an empty loop
+
+Q-12 :- [ok]
+-------
+Predict the output:
+--------------------
+int i = 10;  
+while (i > 0) {  
+    printf("%d ", i);  
+    if (i == 5)  
+        break;  
+    i--;  
+}
+
+a) 10 9 8 7 6 5
+b) 10 9 8 7 6
+c) 10 9 8 7 6 5 4 3 2 1
+d) Infinite loop
+
+Answer: a) 10 9 8 7 6 5
+
+Q-13 :- [ok]
+-------
+
+How many times will this loop execute?
+--------------------------------------
+for (int i = 0; i < 5; i++) {}  
+a) 5
+b) 4
+c) 6
+d) Infinite
+
+Answer: a) 5
+
+Q-14 :- [ok]
+-------
+Which part of a for loop is optional?
+
+a) Initialization
+b) Condition
+c) Increment/Decrement
+d) All of the above
+
+Answer: d) All of the above
+
+Q-15 :- [ok]
+-------
+What will be the output of the following C code?
+--------------------------------------------------
+
+#include <stdio.h>
+
+int main() {
+    int sum = 0;
+
+    for (int i = 1; i <= 5; sum += i, i++);
+
+    printf("Sum = %d\n", sum);
+
+    return 0;
+}
+
+a) Sum = 0
+b) Sum = 15
+c) Sum = 10
+d) Compilation error
+
+Answer: b) Sum = 15
+
+Q-16 :- [ok]
+-------
+What will be the output of the following C code?
+--------------------------------------------------
+
+#include <stdio.h>
+#include <stdbool.h>
+int main() {
+    for(int i = 0; true; i++){
+        printf("%d ",i);
+        if(i == 10) break;
+    }
+    
+    return 0;
+}
+
+a). compiletime error.
+b). 0 1 2 3 4 5 6 7 8 9 10 
+c). 0 1 2 3 4 5 6 7 8 9
+d). 1 2 3 4 5 6 7 8 9 10 
+
+Answer :- b). 0 1 2 3 4 5 6 7 8 9 10 
+
+Q-17 :- [ok]
+-------
+What will be the output of the following C code?
+------------------------------------------------
+
+#include <stdio.h>
+
+int main() {
+    int sum = 0;
+
+    for (int i = 1, j = 10; i <= 5 && j >= 6; i++, j--) {
+        sum += i + j;
+    }
+
+    printf("Sum = %d\n", sum);
+
+    return 0;
+}
+
+a) Sum = 55
+b) Sum = 45
+c) Sum = 40
+d) Sum = 50
+
+Answer: a) Sum = 55
+
+Q-18 :-
+-------
+switch statement must have a default case.
+
+a). True
+b). False:
+
+Answer: b). False
+
+Explanation :- A default case is optional, though it is good practice to include it to handle unexpected input.
+--------------
+
+Q-19 :-
+-------
+C Language developed at _________________ ?
+
+a). AT & T's Bell Lab.
+b). Cambridge University.
+c). Sun Mirco System.
+d). None of these.
+
+Answer :- a).
+---------
+
+Q-20 :-
+-------
+Consider the following C code snippet:
+
+#include <stdio.h>
+
+int main() {
+    int i, j;
+    for(i = 1; i <= 3; i++) {
+        for(j = 1; j <= 2; j++) {
+            if(i == j) {
+                break;
+            }
+            printf("%d%d ", i, j);
+        }
+    }
+    return 0;
+}
+
+What will be the output of the above code?
+
+a) 12 12 23
+b) 21 31 32 
+c) 12 12 13
+d) 12 13
+
+Answer: B) 21 31 32 
+-------
+
+SET-A :- [3 X 10 = 30]
+---------
+
+|--------------|
+| Program-1 :- | [switch-if-else]
+|--------------|
+
+[Title:- Calculate the Day of the Week]
+----------------------------------------
+Write a program that takes a number (1-7) as input and prints the day of the week using a switch statement. If the number is outside this range, display an error message.
+
+Test Case-1 :-
+--------------
+Input :- 1
+--------
+
+Output :- "Monday" (Valid)
+----------
+
+Test Case-2 :-
+--------------
+Input :- 7
+--------
+
+Output :- "Sunday" (Valid)
+---------
+
+Test Case-3 :-
+--------------
+Input :- 0/-1
+--------
+
+Output :- "Invalid day number. Enter a number between 1 and 7." (Invalid)
+---------
+
+Test Case-4 :-
+--------------
+Input :- 9
+--------
+
+Output :- "Invalid day number. Enter a number between 1 and 7." (Invalid)
+---------
+
+|--------------|
+| Program-2 :- | [while]
+|--------------|
+
+[Title:- Count Positive and Negative Numbers in a Series]
+---------------------------------------------------------
+Problem Statement :-
+--------------------
+Write a C program that repeatedly accepts integer inputs from the user. The program should count how many of the entered numbers are positive and how many are negative. The program should stop when the user enters a 0. At the end, the program should display the count of positive numbers, negative numbers.
+
+Details :-
+----------
+The program should use a while loop to repeatedly ask the user for input until the user enters 0.
+If the user enters a positive number, increment the positive count.
+If the user enters a negative number, increment the negative count.
+If the user enters 0, the loop should terminate and the program should display the counts of positive numbers, negative numbers, and how many times 0 was entered.
+
+Test-Case-1 :-
+--------------
+Input :-
+---------
+Enter a number: 10  
+Enter a number: -20  
+Enter a number: -30  
+Enter a number: 40  
+Enter a number: 0  
+
+Expected Output :-
+------------------
+Positive numbers: 2  
+Negative numbers: 2  
+Zero entered: 1  
+
+Test-Case-2 :-
+--------------
+Input :-
+--------
+Enter a number: -1  
+Enter a number: -1  
+Enter a number: -1  
+Enter a number: 0  
+
+Expected Output :-
+-------------------
+Positive numbers: 0  
+Negative numbers: 3  
+
+Test-Case-3 :-
+--------------
+Input :-
+--------
+Enter a number: 0  
+
+Expected Output :-
+-------------------
+Positive numbers: 0  
+Negative numbers: 0  
+
+Test-Case-4 :-
+---------------
+Input :-
+---------
+Enter a number: 1  
+Enter a number: 2  
+Enter a number: 3  
+Enter a number: 0  
+
+Expected Output :-
+------------------
+Positive numbers: 3  
+Negative numbers: 0  
+
+|--------------|
+| Program-3 :- | [for-loop]
+|--------------|
+
+[Title :- Automorphic Number ]
+------------------------------
+
+(USING FOR LOOP)
+------------------
+Write a C program to check whether the given number is an automorphic number or not.
+
+Automorphic Number :-
+---------------------
+An automorphic number is a number whose square ends with the same digits as the number itself.
+
+For example :-
+--------------
+
+5, 6, and 25 are automorphic numbers.
+
+-> 5×5=25 → The original number is 5 (single digit), and the last digit is also 5.
+-> 6×6=36 → The original number is 6 (single digit), and the last digit is also 6.
+-> 25×25=625 → The original number is 25 (double digit), and the last two digits are 25.
+
+Test-Cases-1 :- Positive Automorphic Number
+---------------
+Input :-
+--------
+Enter a number: 5
+
+Expected Output :-
+------------------
+5 is an automorphic number.
+
+Explanation: The square of 5 is 25, and the last digit is 5, which matches the original number.
+------------
+
+Test-Cases-2 :- Negative Automorphic Number
+---------------
+Input :-
+--------
+Enter a number: -7
+
+Expected Output :-
+------------------
+7 is not an automorphic number.
+
+Explanation: The square of 7 is 49, and the last digit is 9, which does not match the original number.
+------------
+
+Test-Cases-3 :- Zero Input
+---------------
+Input :-
+--------
+Enter a number: 0
+
+Expected Output :-
+-------------------
+0 is an automorphic number.
+
+Explanation: The square of 0 is 0, and the last digit is also 0, which matches the original number. Therefore, 0 is an automorphic number.
+
+
+SET-B :- [3 X 10 = 30]
+---------
+|--------------|
+| Program-1 :- | [switch-if-else]
+|--------------|
+
+[Title:- Determine Student Grade Based on Total Marks] 
+-------------------------------------------------------
+Write a program that takes the marks of five subjects as input (each subject mark should be between 0 and 100). The program should:
+
+Check if all marks are within the range of 0–100. If any marks are invalid, display an error message and exit.
+If any subject mark is below 35, directly display "Fail" without calculating the total or grade.
+Otherwise, calculate the total marks, percentage, and determine the grade using the following criteria:
+
+-> 90%–100%: Grade A
+-> 75%–89%: Grade B
+-> 50%–74%: Grade C
+-> 35%–49%: Grade D
+-> Below 35%: Fail
+
+Test Cases-1 :-
+---------------
+Input:
+------
+Subject 1: 95
+Subject 2: 89
+Subject 3: 88
+Subject 4: 92
+Subject 5: 91
+
+Output:
+-------
+Total Marks: 455
+Percentage: 91.0%
+Grade: A (Valid)
+
+Test Cases-2 :-
+---------------
+Input:
+------
+Subject 1: 85
+Subject 2: 90
+Subject 3: 110
+Subject 4: 88
+Subject 5: 92
+
+Output:
+-------
+"Invalid input. Marks for each subject must be between 0 and 100." (Invalid)
+
+Test Cases-3 :-
+----------------
+Input:
+------
+Subject 1: 20
+Subject 2: 25
+Subject 3: 30
+Subject 4: 35
+Subject 5: 40
+
+Output:
+--------
+"Fail" (Valid)
+
+Test Cases-4 :-
+----------------
+Input:
+------
+Subject 1: 40
+Subject 2: 50
+Subject 3: 34
+Subject 4: 60
+Subject 5: 70
+
+Output:
+--------
+"Fail" (Valid - One subject is below 35)
+
+|--------------|
+| Program-2 :- | [while]
+|--------------|
+[Title: Check Armstrong Number Using While Loop]
+
+Problem Statement :-
+--------------------
+Write a C program to check whether a given number is an Armstrong number or not using a while loop.
+
+What is an Armstrong Number?
+----------------------------
+An Armstrong number (also known as a narcissistic number) is a number that is equal to the sum of its own digits raised to the power of the number of digits.
+
+For example :-
+---------------
+153 :- [1 pow 3] + [5 pow 3] + [3 pow 3] = 153 (Armstrong number)
+9474: [9 pow 4] + [ 4 pow 4] + [7 pow 4] + [4  pow 4] = 947 (Armstrong number)
+123: [1 pow 3] + [2 pow 3] + [3 pow 3] = 36 (Not an Armstrong number)
+
+Algorithm Overview
+------------------
+-> Read the input number from the user.
+-> Count the number of digits in the number.
+-> Calculate the sum of each digit raised to the power of the total number of digits.
+-> Compare the sum with the original number.
+-> If they are equal, it is an Armstrong number; otherwise, it is not.
+
+Test-Case-1 :-
+---------------
+Enter a number: 153
+
+Sample Output-1 :-
+------------------
+153 is an Armstrong number.
+
+Test-Case-2 :-
+---------------
+Enter a number: 123
+
+Sample Output-2 :-
+------------------
+123 is not an Armstrong number.
+
+Test-Case-3 :- (Invalid):
+--------------
+Enter a number: -9474
+
+Sample Output-3 :-
+------------------
+Invalid input. Enter a positive number.
+
+Test-Case-4 :- (Valid)
+--------------
+Enter a number: 9474
+
+Sample Output-4 :-
+------------------
+9474 is an Armstrong number.
+
+|--------------|
+| Program-3 :- | [for-loop]
+|--------------|
+
+[Title:- Disarim Number]
+------------------------
+
+(USING FOR LOOP)
+Write a C program to check whether a given number is a Disarium number.
+
+Disarium Number :-
+-------------------
+A number is a Disarium number if the sum of the digits raised to the power of their respective positions is equal to the number itself.
+
+Test-Case-1 :-
+--------------
+Sample Input :-
+---------------
+89
+
+Sample Output :-
+----------------
+89 is a Disarium number.
+
+Explanation :-
+--------------
+89:-  8^1 + 9^2 = 89
+
+Test-Case-2 :-
+---------------
+Sample Input :-
+----------------
+175
+
+Sample Output :-
+-----------------
+175 is a Disarium number.
+
+Explanation :-
+---------------
+175: 1^1 + 7^2 + 5^3 = 175
+
+Test-Case-3 :-
+--------------
+Sample Input :-
+----------------
+45
+
+Sample Output :-
+-----------------
+45 is NOT a Disarium number.
+
+Explanation :-
+--------------
+45: 4^1 + 5^2 = 29
+
+
+SET-C :- [3 X 10 = 30]
+--------
+|--------------|
+| Program-1 :- | [switch-if-else]
+|--------------|
+[Title: Determine the Number of Days in a Month Based on User Input]
+--------------------------------------------------------------------
+
+Problem Statement :-
+--------------------
+Write a C program that takes a month number (1-12) as input from the user and prints the number of days in that month using a switch statement. If the user enters a number outside the range of 1-12, the program should display an error message.
+
+Explanation :-
+--------------
+-> Use a switch statement to handle different cases for each month:
+-> For months with 31 days (January, March, May, July, August, October, December), display "31 days".
+-> For months with 30 days (April, June, September, November), display "30 days".
+-> For February (month 2), print "28 or 29 days (depending on leap year)" (Leap years are not considered in this basic program).
+-> For any invalid month number (not between 1 and 12), print "Invalid month number".
+
+Program Logic :-
+----------------
+Prompt the user to enter the month number (1-12).
+Use a switch statement to check the month number and print the corresponding number of days.
+If the input is invalid (not between 1 and 12), print an error message.
+
+Test Case 1 :- [Valid Month with 31 Days]
+--------------
+Input :-
+---------
+Enter Month: 1
+
+Output :-
+---------
+31 days
+
+Test Case 2 :- [Valid Month with 30 Days]
+--------------
+Input :-
+--------
+Enter Month: 4
+
+Output :-
+----------
+30 days
+
+Test Case 3 :- [Invalid Month (Greater than 12)]
+--------------
+Input :-
+--------
+Enter Month: 13
+
+Output :-
+---------
+Invalid month number
+
+Test Case 4 :- [February (28 or 29 days)]
+--------------
+Input :-
+---------
+Enter Month: 2
+
+Output :-
+---------
+28 or 29 days (depending on leap year)
+
+Test Case 5 :- Invalid Month (Less than 1)
+--------------
+Input :-
+--------
+Enter Month: 0/-2[-ve/+ve]
+
+Output :-
+----------
+Invalid month number
+
+|--------------|
+| Program-2 :- | [while]
+|--------------|
+
+Find the Sum of Even Numbers Between Two Given Numbers
+
+Test Case 1 :-  Valid Input (Start and End are Even)
+---------------
+Input :-
+---------
+Enter the start number: 2
+Enter the end number: 8
+
+Expected Output :-
+------------------
+Sum of even numbers: 20
+
+Explanation :- The even numbers between 2 and 8 are 2, 4, 6, and 8. The sum is 2 + 4 + 6 + 8 = 20.
+---------------
+
+Test Case 2 :- Invalid Input (Start Greater Than End)
+--------------
+Input :-
+--------
+Enter the start number: 10
+Enter the end number: 5
+
+Expected Output :- 
+-------------------
+Invalid range. Start number should be less than or equal to end number.
+
+Test Case 3 :-  Valid Input (No Even Numbers Between the Range)
+---------------
+Input :-
+---------
+Enter the start number: 9
+Enter the end number: 9
+
+Expected Output :-
+-------------------
+Sum of even numbers: 0
+Explanation: There are no even numbers between 9 and 9.
+
+Test Case 4 :- Valid Input (Single Even Number)
+--------------
+Input :-
+---------
+Enter the start number: 4
+Enter the end number: 4
+
+Expected Output:
+----------------
+Sum of even numbers: 4
+
+
+|--------------|
+| Program-3 :- | [for-loop]
+|--------------|
+
+[Title:- Prime Number Check]
+----------------------------
+
+(USING FOR LOOP)
+Write a C program to check whether a given number is a prime number or not.
+
+Test-Cases-1 :- Valid Prime Number
+---------------
+Input :-
+--------
+Enter a number: 7
+
+Expected Output :-
+-------------------
+7 is a prime number.
+
+Explanation :- 7 is divisible only by 1 and itself, making it a prime number.
+--------------
+
+Test-Cases-2 :- Invalid (Non-Prime) Number
+---------------
+Input :-
+---------
+Enter a number: 10
+
+Expected Output :-
+------------------
+10 is not a prime number.
+
+Explanation :- 10 is divisible by 1, 2, 5, and 10, so it is not a prime number.
+--------------
+
+Test-Cases-3 :- Invalid Input (Negative Number)
+---------------
+Input :-
+--------
+Enter a number: -5/0
+
+Expected Output :-
+------------------
+Invalid input. Enter a positive integer.

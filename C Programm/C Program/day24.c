@@ -120,26 +120,39 @@ int main()
     // }
 
     //10 -
-    int num =5;
-    for (int i = 1; i < num; i++)
-    {
-        int m = 1;
-        for (int j = 1; j <= num+1; j++)
-        {
-            if (j % 2 == 1)
-            {
-                printf("%d ", i);
+    // int num =5;
+    // for (int i = 1; i < num; i++)
+    // {
+    //     int m = 1;
+    //     for (int j = 1; j <= num+1; j++)
+    //     {
+    //         if (j % 2 == 1)
+    //         {
+    //             printf("%d ", i);
                 
-            } else{
-                printf("%d ", m);
-                m++;
-            }
-        }
-         printf("\n");
+    //         } else{
+    //             printf("%d ", m);
+    //             m++;
+    //         }
+    //     }
+    //      printf("\n");
+    // }
+    
+    int arr[10] = {1, 2, 3, 4, 5}; // Initial array
+    int size = 5;                  // Current size of the array
+    int index = 2; // Index where the new element will be inserted
+    int value = 99; // Value to be inserted
+    for (int i = size; i > index; i--) {
+        arr[i] = arr[i - 1];
     }
-    
-    
-    
+    arr[index] = value;
+    size++;
+    printf("Array after insertion: ");
+    for (int i = 0; i < size; i++) {
+        printf("%d ", arr[i]);
+    }
+    printf("\n");
+
 
     return 0;
 }

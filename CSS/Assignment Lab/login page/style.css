@@ -1,0 +1,110 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+nav{
+    width: 100vw;
+    height: 75px;
+    background-color: red;
+    display: flex;
+    align-items: center;
+    /* justify-content: center; */
+}
+.navhe img{
+    height: 35px;
+    width: 80px;
+    margin-left: 60px;
+}
+main{
+    height: 85vh;
+    width: 100vw;
+    background-color: aqua;
+    display: flex;
+    align-items: center;
+    justify-content: center
+}
+.mainp{
+    width: 80vw;
+    height: 50vh;
+    border: 1px solid black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+}
+.leftp{
+    height: 50vh;
+    width: 38vw;
+    background-color: brown;
+}
+.leftp img{
+    height: 50vh;
+    width: 38vw;
+    object-fit: cover;
+}
+.mhead {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 72px;
+}
+
+#rip{
+    display: flex;
+    /* justify-content: center; */
+    /* align-items: center; */
+    flex-direction: column;
+    /* height: 35px;
+    width: 20vw;     */
+    
+}
+.inuser{
+    height: 40px;
+    width: 20vw;
+    padding: 12px;
+    /* display: flex; */
+    margin-bottom: 12px;
+}
+.inuser input{
+    border: none;
+}
+.inuser input{
+    border: none;
+}
+
+#fi{
+    display: flex;
+    background-color: aliceblue;
+    gap: 12px;
+    align-items: center;
+    width: 28vw;
+    justify-content: center;
+}
+#fi button{
+    width: 60px;
+    height: 25px;
+}
+#fi img{
+    height: 35px;
+    width: 35px;
+}
+.mbody{
+    height: 22vh;
+    width: 28vw;
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    gap: 12px;
+   /* margin-left: -130px; */
+   
+}
+
+
+
+
+footer{
+    width: 100vw;
+    height: 35.5px;
+    background-color: rebeccapurple;
+}

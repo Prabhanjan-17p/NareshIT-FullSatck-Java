@@ -41,7 +41,7 @@ main{
 .left{
     height: 44.5vh;
     width: 29vw;
-    /* background-color: red; */
+    background-color: red;
 }
 .left img{
     height: 100%;

@@ -108,16 +108,16 @@ int main()
     // }
 
     //9-
-    // int num = 5;
-    // for (int  i = 1; i <= num; i++)
-    // {
-    //     int k = i;
-    //     for (int j = 1; j <= num; j++)
-    //     {
-    //         printf("%d ", k++);
-    //     }
-    //     printf("\n");  
-    // }
+    int num = 5;
+    for (int  i = 1; i <= num; i++)
+    {
+        int k = i;
+        for (int j = 1; j <= num; j++) 
+        {
+            printf("%d ", k++);
+        }
+        printf("\n");  
+    }
 
     //10 -
     // int num =5;

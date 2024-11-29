@@ -43,7 +43,7 @@ int main(){
     // }
     
 
-    // // // 4-
+    // // //4-
     // int num = 5;
     // char ch = '@';
     // for (int i = 1; i < num; i++)
@@ -58,19 +58,19 @@ int main(){
     // }
 
     // 5- Fibonacci number calculate
-    int num ;
-    int a = 0, b = 1, c;
-    printf("Enter num: ");
-    scanf("%d",&num);
-    c = a+b;
-    printf("%d %d ",a,b);
-    for (int i = 3; i <= num; i++)
-    {
-        printf("%d ",c);
-        a = b;
-        b = c;
-        c = a+b;
-    }
+    // int num ;
+    // int a = 0, b = 1, c;
+    // printf("Enter num: ");
+    // scanf("%d",&num);
+    // c = a+b;
+    // printf("%d %d ",a,b);
+    // for (int i = 3; i <= num; i++)
+    // {
+    //     printf("%d ",c);
+    //     a = b;
+    //     b = c;
+    //     c = a+b;
+    // }
     
     
     return 0;

@@ -71,6 +71,20 @@ int main(){
     //     b = c;
     //     c = a+b;
     // }
+
+    // 6-
+    int num = 3;
+    int tar = 7;
+    for (int i = 1; i <= num; i++)
+    {
+        for (int j = 1; j <= num; j++)
+        {
+            printf("%4d", tar);
+            tar = (tar == 10) ? 1: tar+1;
+        }
+        printf("\n");
+    }
+    
     
     
     return 0;

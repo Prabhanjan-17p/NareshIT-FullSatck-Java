@@ -33,3 +33,11 @@ we can apply border by 'border' property
 we can apply bordeer-radius by 'rounded'
 
 Responsivesness: Bootstrap provides Responsive User Interface by following "Mobile First Design" Principle and using respective breakpoints
+  no breakpoint -- <576px
+  sm(small)   --- >=576px
+  md  --   >=768px
+  lg  --   >=992px
+  xl  --   >=1200px
+  xxl --   >=1400px
+
+Bootstrap also provides Components such as accordin,carouseld,models,cards etc..,

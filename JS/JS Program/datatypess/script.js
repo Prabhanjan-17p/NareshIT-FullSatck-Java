@@ -1,3 +1,14 @@
+var a = 36,b=27;
+console.log(Math.sqrt(a), Math.cbrt(b));
+console.log(Math.abs(-10))
+console.log(Math.max(5, 6, 1, 5, 6, 9, 23))
+console.log(Math.min(5, 6))
+console.log(Math.floor(4.8))
+console.log(Math.ceil(4.1))
+console.log(Math.round(4.5))
+console.log(Math.pow(3,4),3**4)
+
+
 console.log(Math.ceil(Math.random()*10000));
 // Write a program to print ludo dice 1-6
 console.log((Math.round(Math.random()*5)+1)); // in case of round 
@@ -46,3 +57,5 @@ var bb = 3;
 console.log(`Square = ${aa**2+ bb**2+2*aa*bb}`)
 
 //javascript hero , freecodecamp
+
+// alert(`Square = ${aa**2+ bb**2}`);

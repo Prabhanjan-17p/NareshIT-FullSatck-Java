@@ -1,0 +1,41 @@
+Javascript(JS) is used for the functionality of websites.
+Brendan Eich designed JS in 1995. initially it is named as "Livescript". They renamed "Livescript" to "Javascript". Javascript mainly deals client side programming. Every browser will have an engine, "Browser engine" to run JS. 
+Eg: chrome - v8 , mozilla - spidermonkey, edge - chakra etc..,
+
+Before understanding Js, let's explore Developer Tools
+Developer Tools comes by inpecting a web page in Browser
+  -- Elements -- contains html code+css
+  -- console -- used to debug JS
+  -- sources -- contains file structure
+  -- network -- used for requests
+  -- memory -- contains different memory units
+  -- application -- contains storages
+  -- lighthouse -- used to find performance
+  -- performance -- used to record certain actions
+
+How to include JS to HTML?
+we can include JS in two ways
+  i. internal JS: we can write JS directly in HTML within <script> tag. it is called internal JS
+  ii. external JS: we can write JS in separate file and link it using script tag
+      <script src="./script.js"></script>
+Better to keep always scripts at the end of body
+
+How to do comments in JS?
+There are two ways of commenting in JS. 
+single line comment : comment after double slash
+multi line comment : comment in between /* and */
+
+How to declare variables in JS?
+There are Three ways to declare a variables
+  i. var: var is used to declare a variable of function scope
+  ii. let and const : These are used to declare a variable of block scope
+
+** semicolon is not mandatory because JS uses auto colon insertion technique for Each line
+** Javascript is case-sensitive
+
+console is part of browser and is capable of running the scripts. We use it to Debug our Javascript code
+
+Browser have defeault methods like alert, confirm, prompt etc..,
+
+
+  

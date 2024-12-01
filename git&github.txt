@@ -1,0 +1,22 @@
+Git: Git is a distributed version control system
+Git is an application done by ORACLE. we can download and install from official website
+https://git-scm.com/downloads
+After selecting 64-bit window setup , it downloads the file 
+install it. just make sure your default editor is vscode
+after installing it, open "cmd"
+
+how to make git work in vscode?
+Goto terminal ----> new terminal
+   i. git init
+   ii. git add .
+   iii. git commit -m "message"
+      for first time, you need to enter configs
+      git config --global user.email "youremailid"
+      git config --global user.name "your username"
+      again do add and commit 
+
+Github: Github is a website to share,deploy and test your code
+create an account in github and create a new repository
+
+In terminal , type   git remote add origin "repository link"
+and to push , type git push -u origin main/maste

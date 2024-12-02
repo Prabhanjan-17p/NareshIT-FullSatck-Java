@@ -88,25 +88,39 @@ int main()
     // }
     
     // 5- Enter number 12345678 output --> 12 34 56 78 
-    int num,res,count=1;
-    printf("Enter a number: ");
-    scanf("%d", &num);
-    while (num != 0) {
-        int digit = num % 10;
-        res = res * 10 + digit;
-        num = num / 10;
-    }
-    while (res != 0) {
-        int di = res % 10;
-        printf("%d", di);
-        if (count % 2 == 0)
-        {
-            printf("  ");
-        }
-        count++;
-        res = res / 10;
+    // int num,res,count=1;
+    // printf("Enter a number: ");
+    // scanf("%d", &num);
+    // while (num != 0) {
+    //     int digit = num % 10;
+    //     res = res * 10 + digit;
+    //     num = num / 10;
+    // }
+    // while (res != 0) {
+    //     int di = res % 10;
+    //     printf("%d", di);
+    //     if (count % 2 == 0)
+    //     {
+    //         printf("  ");
+    //     }
+    //     count++;
+    //     res = res / 10;
 
+    // }
+
+
+
+    int n ; char ch;
+    printf("Number of digits:");
+    // scanf("%d",&n);
+    // if (scanf("%d%c",&n,&ch) !=2 || ch != '\n')
+    if (scanf("%d%c",&n,&ch) !=2 || ch != '\n')
+    {
+        printf("Invalid");
+    } else{
+        printf("Number is %d", n);
     }
+    
     
     return 0;
 }

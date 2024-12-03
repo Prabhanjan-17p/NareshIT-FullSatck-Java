@@ -59,3 +59,42 @@ console.log(`Square = ${aa**2+ bb**2+2*aa*bb}`)
 //javascript hero , freecodecamp
 
 // alert(`Square = ${aa**2+ bb**2}`);
+
+
+
+
+var str = "I love javascript   "
+console.log(str[0]) //I
+console.log(str.length) //17
+//length returns total number of characters
+console.log(str.charAt(15)) //p
+console.log(str.indexOf('a'))//8
+//indeOf returns indexof first occurance
+console.log(str.lastIndexOf('a')); //10
+console.log(str.startsWith("I l")) //True
+console.log(str.endsWith("script")) //True
+console.log(str.trim()) //Trim will removes spaces from last and first of the given string
+console.log(str.replace('a',"k"))
+// it replaces for only one time
+console.log(str.toUpperCase())
+//It converts given string into uppercase
+console.log(str.toLowerCase())
+// it converts given string into lowercase
+str="I Love JS"
+console.log(str.split(''))
+//split is used to split the characters based on delimiter
+console.log(str.slice(2,5))
+//slice is used to get sub string of specific index to specific index
+console.log(str.slice(-1))// last value
+
+
+
+
+// check from the given whether they are belongs to agarwals or not
+var n = "pranav agarwal"
+console.log(n.endsWith("agarwal"))
+// check whether a person's middle is mayen or not
+var n1 = "John Mayen patrick"
+console.log(n1.split(' ')[1] == "Mayen")
+//how to check an input value empty or not
+//inp.trim()==""

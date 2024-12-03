@@ -22,3 +22,46 @@ iii. objects
 
 i. number: Any numerical data is number , to find datatype of an element , we can use typeof operator
 numbers have some default method called "Math Methods"
+Math.pow(),Math.sqrt(),Math.cbrt(),Math.ceil(),Math.floor(),Math.round(),Mat.abs(),Math.random()
+
+var num=25.5214;
+num.toFixed() -- used to get number with fixed number of digits after decimal
+num.toPrecision() -- used to get a number with significant digits
+num.toString() -- used to change the base of a number
+
+ii. strings: 
+we can represent strings in three ways
+i. single quote: var s='prasad';
+ii. double quote: var s="prasad"
+There is direct difference between ' or " but In case nested double or nested single quotes occur, at that we can use them differently
+
+String is a collection / array of characters. Each characters contains an index which starts from 0.
+iii. backticks: var s=`prasad`;
+The use of backticks is to get dynamical values without breaking the string
+var str="Javascript"
+console.log(`The name is ${str}`)
+
+string stores each character with index starting from 0.
+toUppercase()
+toLowerCase()
+length
+charAt()
+indexOf()
+lastIndexOf()
+startsWith()
+endsWith()
+split('delimiter')
+trim()
+replace
+replaceAll()
+slice(start,end)
+
+Boolean:
+Boolean is used to store or represent true or false. True is considered as 1 and false is considered as 0
+
+undefined and null:
+undefined: The accidental absence of value
+null: The intentional absence of value
+
+what is Hoisting?
+We can access value before its declaration. In JS Hoisting is possible because Execution context creates memory before actual declaration. 

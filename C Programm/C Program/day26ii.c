@@ -2,6 +2,13 @@
 int main()
 {
     // 1-
+    /*
+    * 
+    * * 
+    * * * 
+    * * * * 
+    * * * * * 
+    */
     //  int num = 5;
     //  for (int i = 1; i <= num; i++)
     //  {
@@ -13,6 +20,13 @@ int main()
     //  }
 
     // 2-
+    /*
+    1 
+    1  2
+    1     3
+    1        4
+    1  2  3  4  5
+    // */
     // int num = 5, k = 1;
     // for (int i = 1; i <= num; i++, k++)
     // {
@@ -34,6 +48,13 @@ int main()
     // }
 
     // 3-
+    /*
+    1
+    3  5
+    5  7  9
+    7  9 11 13
+    9 11 13 15 17
+    */
     // int num = 5, k = 1, k2;
     // for (int i = 1; i <= num; i++)
     // {
@@ -47,6 +68,13 @@ int main()
     // }
 
     // 4-
+    /*
+     1  
+     1   2
+     3   4   5
+     6   7   8   9
+    10  11  12  13  14
+    // */
     //  int num = 5, k = 0;
     //  for (int i = 1; i <= num; i++)
     //  {
@@ -64,6 +92,12 @@ int main()
     //  }
 
     // 5-
+    /*  1
+        2  6
+        3  7 10
+        4  8 11 13
+        5  9 12 14 15
+//   */
     //  int num = 5, k = 1, k2;
     //  for (int i = 1; i <= num; i++)
     //  {
@@ -77,28 +111,29 @@ int main()
     //  }
 
     // // 6-
-    int num = 6, k = 0, n1 = 1, n2 = 1,k2 = 0;
-    for (int i = 1; i <= num; i++)
-    {
-        k = 0;
-        for (int k2=0, j = 0; j < i; j++)
-        {
-            if (j <= 2)
-            {
-                n1 = k2;
-                printf("%3d", k2++);
-            }
-            else
-            {
-                n1 = k;
-                printf("%3d", k);
-                // k = n1 + n2 + k;
-            }
-            k = k+n1;
-        }
-        // k = k + 1;
-        printf("\n");
-    }
+//   0
+//   0  1
+//   0  1  1
+//   0  1  1  2
+//   0  1  1  2  3
+//   0  1  1  2  3  5
+    //  int num = 7; 
+    // for (int i = 1; i <= num; i++) {
+    //     int n1 = 0, n2 = 1, next; 
+    //     for (int j = 1; j <= i; j++) {
+    //         if (j == 1) {
+    //             printf("%3d", n1); 
+    //         } else if (j == 2) {
+    //             printf("%3d", n2); 
+    //         } else {
+    //             next = n1 + n2; 
+    //             printf("%3d", next);
+    //             n1 = n2;       
+    //             n2 = next;
+    //         }
+    //     }
+    //     printf("\n"); 
+    // }
 
     return 0;
 }

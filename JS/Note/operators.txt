@@ -1,0 +1,55 @@
+Operators are used to perform an operation between the operands
+for eg: a + b perform addition operation with a and b as operands and + as Operators
+
+i. Arithematic operators: These operators are used to perform Arithematic operations on two or more operands like
+  Addition(+),subtraction(-),multiplication(*),division(/),modulus(% -- remainder), Exponation( ** )
+
+ii. incremenet and decrement operators: These operators are used to increase/decrease the value by 1
+++ is denoted as increment operator
+-- is denoted as decrement operator
+  pre incr/pre decr --- first update and then return
+  post incr/post decr -- first return and then update
+eg: a=5;
+var p= ++a;
+var k= a++;
+console.log(p+k)
+x=5
+var z= x--;
+var y=--x;
+console.log(z-y);
+
+iii. relational operators:
+relational operators are used to compare two values. Mostly they return boolean values
+like greater than(>), less than(<), greater than or equals to(>=),less than or equals to(<=),double equals(compare two values -- ==), triple equals (===),not equals(!=),strict not equals(!==)
+
+
+Assignment Opertaors:
+Assignment Operators are used to assign the values. These are also called shorthand operators like
++= , -= , *= ,/= ,%= ,**=,=
+
+Logical Operators: 
+Logical Operators are used to combine some statements for comparison like 'and','or','not'
+
+Ternary operator or conditional operator:
+It is used to check the conditional and execute/assign different values based on condition
+var a=15;
+var k= (a>10) ? 5 : 10;
+k will be 5 since the condition is true
+
+
+//special operators
+ i. unary + : unary + is used to convert any data type to number 
+   console.log(2 + +'2')
+ ii. unary -: unary - is used to negate the value
+ var x=20;
+ var y = -x;
+ console.log(y) //-20
+ iii. typeof : typeof is used to  find the datatype of a value
+ var a=20;
+ console.log(typeof(a)); //number
+iv. Nullish(??): Nullish operator is used to assign a value based on whether the first value is undefined or not
+var x= a ?? b;
+if a is undefined , x=b else x value will be a
+v. Optional Chaining(?.):
+it is used to check whether given peoperty existed in the object or not
+eg: obj?.name

@@ -1,0 +1,4 @@
+var variable
+introduction(internal,external)
+devloper tools(console)
+Primitive Data Types(number,string,boolean,undefined,null) 

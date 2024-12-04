@@ -1,0 +1,579 @@
+
+SET-A
+-----
+
+|--------------|
+| Program-1 :- | [ok]
+|--------------|
+
+[Title:- "Counting Non-Divisible Numbers Before Divisible-by-Five Exit"] [while-loop]
+--------------------------------------------------------------------------------------
+
+Write a C program that asks the user to enter numbers repeatedly. If the entered number is divisible by 5, the program should terminate. Before termination, the program should print the count of numbers entered that are not divisible by 5.
+
+Test-Case-1 :-
+---------------
+Input :- 4, 6, 7, 10
+--------
+Output :- Count = 3
+---------
+
+Test-Case-2 :- [Valid]
+----------------------
+Input :- 2, 8, 15
+--------
+Output :- Count = 2
+---------
+
+Test-Case-3 :- [Invalid]
+------------------------
+Input :- -5
+--------
+Output :- Error: Only positive numbers are valid.
+---------
+
+|--------------|
+| Program-2 :- | [ok]
+|--------------|
+
+[Title:- "Calculate Power Using for Loop with Input Validation"] [for-loop]
+---------------------------------------------------------------------------
+Problem Statement :-
+---------------------
+Write a C program to calculate the power of a base number raised to an exponent using a while loop.
+-> The program should take two inputs: the base and the exponent. 
+-----------------------------------------------------------------
+If either the base or the exponent is zero or negative, the program should display the message "Invalid input...Please enter positive values" and terminate. Otherwise, the program should calculate and display the result in the format: base^exponent = result.
+
+Valid Test Cases :-
+--------------------
+Test-Case-1 :-
+--------------
+Input: Base = 2, Exponent = 3
+Output: 2^3 = 8
+
+Test-Case-2 :-
+--------------
+Input: Base = 5, Exponent = 1
+Output: 5^1 = 5
+
+Invalid Test Cases :-
+----------------------
+Test-Case-3 :- (Invalid Base)
+-----------------------------
+Input: Base = -2, Exponent = 3
+Output: Invalid input...Please enter positive values
+
+Test-Case-4 :- (Invalid Exponent) 
+----------------------------------
+Input: Base = 3, Exponent = 0
+Output: Invalid input...Please enter positive values
+
+Test-Case-5 :- (Both Invalid)
+-----------------------------
+Input: Base = 0, Exponent = -3
+Output: Invalid input...Please enter positive values
+
+|--------------|
+| Program-3 :- | [ok]
+|--------------|
+
+[Basic-Pattern]
+---------------
+
+Write C program to print given pattern.
+---------------------------------------
+
+|----------------|
+| 1  2  3  4  5  |
+| 1  2  3  4  5  |
+| 1  2  3  4  5  |
+| 1  2  3  4  5  |
+|----------------|
+
+Valid Test Cases :-
+-------------------
+Test-Case-1 :-
+--------------
+Input: Rows = 4, Columns = 5
+Output:
+
+1  2  3  4  5  
+1  2  3  4  5  
+1  2  3  4  5  
+1  2  3  4  5  
+
+Test-Case-2 :-
+--------------
+Input: Rows = 3, Columns = 5
+Output:
+
+1  2  3  4  5  
+1  2  3  4  5  
+1  2  3  4  5  
+
+Invalid Test Cases :-
+---------------------
+Test-Case-3 :-
+--------------
+Input: Rows = -3, Columns = 5
+Output: Invalid input. Rows and columns must be positive integers.
+
+Test-Case-4 :-
+--------------
+Input: Rows = 4, Columns = -2
+Output: Invalid input. Rows and columns must be positive integers.
+
+Test-Case-5 :-
+--------------
+Input: Rows = 0, Columns = 3
+Output: Invalid input. Rows and columns must be positive integers.
+
+|--------------|
+| Program-4 :- | [ok]
+|--------------|
+
+[Pattern-2]
+-----------
+
+Write C program to print given pattern.
+---------------------------------------
+
+|----------------|
+| 1  2  3  4  5  |
+| 2  3  4  5  6  |
+| 3  4  5  6  7  |
+| 4  5  6  7  8  |
+| 5  6  7  8  9  |
+|----------------|
+
+Valid Test Cases :-
+-------------------
+Test-Case-1 :-
+--------------
+Input: Rows = 5, Columns = 5
+Output:
+
+1  2  3  4  5  
+2  3  4  5  6  
+3  4  5  6  7  
+4  5  6  7  8  
+5  6  7  8  9  
+
+Test-Case-2 :-
+--------------
+Input: Rows = 3, Columns = 3
+Output:
+
+1  2  3  
+2  3  4  
+3  4  5  
+
+Invalid Test Cases :-
+---------------------
+Test-Case-3 :-
+---------------
+Input: Rows = -3, Columns = 5
+Output: Invalid input. Rows and columns must be positive integers.
+
+Test-Case-4 :-
+--------------
+Input: Rows = 4, Columns = -2
+Output: Invalid input. Rows and columns must be positive integers.
+
+Test-Case-5 :-
+---------------
+Input: Rows = 0, Columns = 3
+Output: Invalid input. Rows and columns must be positive integers.
+
+SET-B
+-----
+
+|--------------|
+| Program-1 :- | [ok]
+|--------------|
+
+[Title:- "Sum of Non-Negative Numbers Until Termination"] [While-loop]
+----------------------------------------------------------------------
+Write a C program that calculates the sum of all integers entered by the user until the user enters a negative number. The program should then display the total sum of all non-negative numbers.
+
+Test-Case-1 :- [Valid]
+----------------------
+Input: 5, 10, 20, -1
+Output: Total Sum = 35
+
+Test-Case-2 :- [Valid]
+-----------------------
+Input: 0, 8, 15, -5
+Output: Total Sum = 23
+
+Test-Case-3 :- [Invalid]
+-------------------------
+Input: "abc" (non-integer input)
+Output: Error: Invalid input. Only integers are allowed.
+
+|--------------|
+| Program-2 :- | [ok]
+|--------------|
+
+[Title:- Factorial Calculation] [for-loop]
+------------------------------------------
+
+Write a C program to calculate the factorial of a given positive integer.
+The program should prompt the user to enter a number, compute its factorial, and display the result.
+
+-> If the user enters a negative number, the program should display an error message: "Invalid input. Please enter a positive integer."
+-> If the input is 0, the program should print: "Factorial of 0 = 1," because by definition, 0! = 1.
+
+|-----------------------------------|
+|Formula: n! = 1 × 2 × 3 × ... × n. |
+|-----------------------------------|
+
+Valid Test Cases :-
+-------------------
+Test-Case-1 :-
+--------------
+Input: 5
+Output: Factorial of 5 = 120
+
+Test-Case-2 :-
+---------------
+Input: 3
+Output: Factorial of 3 = 6
+
+Test-Case-3 :-
+---------------
+Input: 0
+Output: Factorial of 0 = 1
+
+Invalid Test Cases :-
+---------------------
+Test-Case-4 :- (Negative Input)
+-------------------------------
+Input: -4
+Output: Invalid input. Please enter a positive integer.
+
+Test-Case-5 :- (Non-integer Input)
+----------------------------------
+Input: "abc" (non-integer)
+Output: Error (Depending on the system, the program might crash or display invalid behavior).
+
+|--------------|
+| Program-3 :- | [ok]
+|--------------|
+
+[Basic-Pattern]
+---------------
+Write C program to print given pattern.
+---------------------------------------
+|----------------|
+| 1  1  1  1  1  |
+| 2  2  2  2  2  |
+| 3  3  3  3  3  |
+| 4  4  4  4  4  |
+| 5  5  5  5  5  |
+|----------------|
+
+Valid Test Cases :-
+-------------------
+Test-Case-1 :-
+---------------
+Input: Rows = 5, Columns = 5
+Output:
+
+1  1  1  1  1  
+2  2  2  2  2  
+3  3  3  3  3  
+4  4  4  4  4  
+5  5  5  5  5  
+
+Test-Case-2 :-
+---------------
+Input: Rows = 3, Columns = 4
+Output:
+
+1  1  1  1  
+2  2  2  2  
+3  3  3  3  
+
+Invalid Test Cases :-
+---------------------
+Test-Case-3 :-
+--------------
+Input: Rows = -3, Columns = 5
+Output: Invalid input. Rows and columns must be positive integers.
+
+Test-Case-4 :-
+--------------
+Input: Rows = 4, Columns = -2
+Output: Invalid input. Rows and columns must be positive integers.
+
+Test-Case-5 :-
+---------------
+Input: Rows = 0, Columns = 3
+Output: Invalid input. Rows and columns must be positive integers.
+
+|--------------|
+| Program-4 :- | [ok]
+|--------------|
+
+[Pattern-2]
+-----------
+
+Write C program to print given pattern.
+----------------------------------------
+
+|-------------|
+| A  B  C  D  |
+| B  C  D  E  |
+| C  D  E  F  |
+| D  E  F  G  |
+|-------------|
+
+Valid Test Cases :-
+-------------------
+
+Test-Case-1 :-
+---------------
+Input: Rows = 4, Columns = 4
+Output:
+
+A  B  C  D  
+B  C  D  E  
+C  D  E  F  
+D  E  F  G  
+
+Test-Case-2 :-
+---------------
+Input: Rows = 3, Columns = 3
+Output:
+
+A  B  C  
+B  C  D  
+C  D  E  
+
+Invalid Test Cases :-
+---------------------
+
+Test-Case-3 :-
+---------------
+Input: Rows = -3, Columns = 4
+Output: Invalid input. Rows and columns must be positive integers.
+
+Test-Case-4 :-
+--------------
+Input: Rows = 4, Columns = -2
+Output: Invalid input. Rows and columns must be positive integers.
+
+Test-Case-5 :-
+---------------
+Input: Rows = 0, Columns = 3
+Output: Invalid input. Rows and columns must be positive integers.
+
+SET-C
+-----
+
+|--------------|
+| Program-1 :- | [ok]
+|--------------|
+
+Write a C program that reads a positive integer N from the user and calculates the sum of even and odd numbers between 1 and N using a while loop.
+The program should then print the sum of even numbers and the sum of odd numbers.
+
+Note: If the user enters a negative value, the program should print "Invalid Input".
+
+Test Case-1 :- (Valid Input - Positive Integer):
+--------------
+Input: N = 5
+
+Output :-
+---------
+Even sum => 2 + 4 = 6
+Odd sum  => 1 + 3 + 5 = 9
+
+Test Case-2 :- (Invalid Input - Negative Integer):
+--------------
+Input: N = -3
+
+Output :-
+---------
+Invalid Input
+
+Test Case-3 :- (Invalid Input - Non-integer Value):
+--------------
+Input: N = 4.5
+
+Output :-
+---------
+Invalid Input
+
+Test Case-4 :- (Invalid Input - String):
+-------------
+Input: N = "hello"
+
+Output :-
+---------
+Invalid Input
+
+|--------------|
+| Program-2 :- | [ok]
+|--------------|
+
+[Title:- Armstrong or Not]
+--------------------------
+
+Write a C program to check whether a given integer is a palindrome. A number is considered a palindrome if the reverse of the number is equal to the original number.
+The program should prompt the user to enter an integer, reverse the number, and then compare it to the original number to determine if it is a palindrome.
+
+Valid Test Cases :-
+-------------------
+Test-Case-1 :-
+--------------
+Input: 121
+Output: 121 is a palindrome.
+
+Test-Case-2 :-
+--------------
+Input: 0
+Output: 0 is a palindrome.
+
+Test-Case-3 :-
+---------------
+Input: 12321
+Output: 12321 is a palindrome.
+
+Test-Case-4 :-
+--------------
+Input: 12345
+Output: 12345 is not a palindrome.
+
+Invalid Test Cases :-
+---------------------
+Test-Case-5 :-
+--------------
+Input: "abc" (non-integer input)
+Output: Error: Invalid input. Please enter an integer.
+
+Test-Case-6 :-
+--------------
+Input: 12.34 (floating-point number)
+Output: Error: Invalid input. Please enter an integer.
+
+|--------------|
+| Program-3 :- | [ok]
+|--------------|
+
+[Basic-Pattern]
+----------------
+
+Write C program to print given pattern.
+---------------------------------------
+
+|---------------|
+| *  *  *  *  * |
+| *  *  *  *  * |
+| *  *  *  *  * |
+| *  *  *  *  * |
+| *  *  *  *  * |
+|---------------|
+
+Valid Test Cases :-
+-------------------
+Test-Case-1 :-
+---------------
+Input: Rows = 5, Columns = 5
+Output:
+
+*  *  *  *  *  
+*  *  *  *  *  
+*  *  *  *  *  
+*  *  *  *  *  
+*  *  *  *  *  
+
+Test-Case-2 :-
+--------------
+Input: Rows = 3, Columns = 4
+Output:
+
+*  *  *  *  
+*  *  *  *  
+*  *  *  *  
+
+Test-Case-3 :-
+---------------
+Input: Rows = 1, Columns = 1
+Output:
+
+*  
+
+Invalid Test Cases :-
+---------------------
+Test-Case-4 :-
+---------------
+Input: Rows = -3, Columns = 5
+Output: Invalid input. Rows and columns must be positive integers.
+
+Test-Case-5 :-
+--------------
+Input: Rows = 4, Columns = -2
+Output: Invalid input. Rows and columns must be positive integers.
+
+Test-Case-6 :-
+---------------
+Input: Rows = 0, Columns = 3
+Output: Invalid input. Rows and columns must be positive integers.
+
+|--------------|
+| Program-4 :- | [ok]
+|--------------|
+
+[Pattern-2]
+------------
+
+Write C program to print given pattern.
+---------------------------------------
+
+|----------------|
+| 5  5  5  5  5  |
+| 4  4  4  4  4  |
+| 3  3  3  3  3  |
+| 2  2  2  2  2  |
+|----------------|
+
+Valid Test Cases :-
+--------------------
+Test-Case-1 :-
+--------------
+Input: Rows = 4, Columns = 5
+Output:
+
+5  5  5  5  5  
+4  4  4  4  4  
+3  3  3  3  3  
+2  2  2  2  2  
+
+Test-Case-2 :-
+--------------
+Input: Rows = 3, Columns = 5
+Output:
+
+5  5  5  5  5  
+4  4  4  4  4  
+3  3  3  3  3  
+
+Invalid Test Cases :-
+----------------------
+Test-Case-3 :-
+--------------
+Input: Rows = -3, Columns = 5
+Output: Invalid input. Rows and columns must be positive integers.
+
+Test-Case-4 :-
+--------------
+Input: Rows = 4, Columns = -2
+Output: Invalid input. Rows and columns must be positive integers.
+
+Test-Case-5 :-
+---------------
+Input: Rows = 0, Columns = 3
+Output: Invalid input. Rows and columns must be positive integers.

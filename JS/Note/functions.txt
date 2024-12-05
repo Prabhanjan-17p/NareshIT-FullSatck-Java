@@ -1,0 +1,38 @@
+Functions are used to perform a specific task. we divide our code into small snippets called functions
+  why functions?
+    -- reusuability
+    -- ease to debug
+syntax:
+ function function_name(parameters)  // function prototype
+ {
+     //function definition
+ }
+
+ function_name(arguments) // function call
+ Eg: function display ()
+{
+    console.log("Hello World")
+}
+display()
+
+functions are called " first class citizens" in JS
+
+-- function can accept values through parameters and functions may return values.
+
+function mnemonicGenerator (fn, mn, ln)
+{
+    var word = fn.charAt(0) + mn.charAt(0) + ln.charAt(0);
+    return word.toUpperCase();
+}
+var fullName = mnemonicGenerator("david", "john", "Henry")
+console.log(fullName)
+function mnemonicGenerator2 (myName)
+{
+    var words = myName.split(' ')
+    var word = words[0].charAt(0) + words[1].charAt(0) + words[2].charAt(0)
+	return word.toUpperCase()
+}
+var fullName = mnemonicGenerator2("david john Henry")
+console.log(fullName)
+
+function can also contain default values in case user doesnot pass argument in function call

@@ -38130,106 +38130,6 @@
 			"typeName": "shape"
 		},
 		{
-			"id": "pointer:pointer",
-			"typeName": "pointer",
-			"x": 7694.504106833843,
-			"y": 14433.49896445345,
-			"lastActivityTimestamp": 1733320253450,
-			"meta": {}
-		},
-		{
-			"followingUserId": null,
-			"opacityForNextShape": 1,
-			"stylesForNextShape": {
-				"tldraw:geo": "rectangle",
-				"tldraw:color": "light-green"
-			},
-			"brush": null,
-			"scribbles": [
-				{
-					"id": "B6DFEgoCbQbPyEjV4WJGn",
-					"size": 1,
-					"color": "muted-1",
-					"opacity": 0.8,
-					"delay": 0,
-					"points": [],
-					"shrink": 0.1,
-					"taper": true,
-					"state": "stopping"
-				},
-				{
-					"id": "t3rxU1aTOyGheWkLcOQJH",
-					"size": 1,
-					"color": "muted-1",
-					"opacity": 0.8,
-					"delay": 0,
-					"points": [],
-					"shrink": 0.1,
-					"taper": true,
-					"state": "stopping"
-				}
-			],
-			"cursor": {
-				"type": "cross",
-				"rotation": 0
-			},
-			"isFocusMode": false,
-			"exportBackground": true,
-			"isDebugMode": false,
-			"isToolLocked": false,
-			"screenBounds": {
-				"x": 0,
-				"y": 0,
-				"w": 1488,
-				"h": 702.4000244140625
-			},
-			"insets": [
-				false,
-				false,
-				true,
-				false
-			],
-			"zoomBrush": null,
-			"isGridMode": false,
-			"isPenMode": false,
-			"chatMessage": "",
-			"isChatting": false,
-			"highlightedUserIds": [],
-			"isFocused": true,
-			"devicePixelRatio": 1.25,
-			"isCoarsePointer": false,
-			"isHoveringCanvas": false,
-			"openMenus": [],
-			"isChangingStyle": false,
-			"isReadonly": false,
-			"meta": {},
-			"duplicateProps": null,
-			"id": "instance:instance",
-			"currentPageId": "page:page",
-			"typeName": "instance"
-		},
-		{
-			"editingShapeId": null,
-			"croppingShapeId": null,
-			"selectedShapeIds": [],
-			"hoveredShapeId": null,
-			"erasingShapeIds": [],
-			"hintingShapeIds": [],
-			"focusedGroupId": null,
-			"meta": {},
-			"id": "instance_page_state:page:page",
-			"pageId": "page:page",
-			"typeName": "instance_page_state"
-		},
-		{
-			"x": -6532.104082419781,
-			"y": -13734.29895224642,
-			"z": 1,
-			"meta": {},
-			"id": "camera:page:page",
-			"typeName": "camera"
-		},
-		{
 			"x": 6770.504137351421,
 			"y": 13739.898973608724,
 			"rotation": 0,
@@ -59418,6 +59318,107 @@
 			},
 			"parentId": "page:page",
 			"index": "bDB8f6",
+			"typeName": "shape"
+		},
+		{
+			"id": "pointer:pointer",
+			"typeName": "pointer",
+			"x": 5850.711020125305,
+			"y": 30760.82759902234,
+			"lastActivityTimestamp": 1733766132860,
+			"meta": {}
+		},
+		{
+			"followingUserId": null,
+			"opacityForNextShape": 1,
+			"stylesForNextShape": {
+				"tldraw:color": "black"
+			},
+			"brush": null,
+			"scribbles": [],
+			"cursor": {
+				"type": "default",
+				"rotation": 0
+			},
+			"isFocusMode": false,
+			"exportBackground": true,
+			"isDebugMode": false,
+			"isToolLocked": false,
+			"screenBounds": {
+				"x": 0,
+				"y": 0,
+				"w": 1488,
+				"h": 702.4000244140625
+			},
+			"insets": [
+				false,
+				false,
+				true,
+				false
+			],
+			"zoomBrush": null,
+			"isGridMode": false,
+			"isPenMode": false,
+			"chatMessage": "",
+			"isChatting": false,
+			"highlightedUserIds": [],
+			"isFocused": true,
+			"devicePixelRatio": 1.25,
+			"isCoarsePointer": false,
+			"isHoveringCanvas": true,
+			"openMenus": [],
+			"isChangingStyle": false,
+			"isReadonly": false,
+			"meta": {},
+			"duplicateProps": null,
+			"id": "instance:instance",
+			"currentPageId": "page:page",
+			"typeName": "instance"
+		},
+		{
+			"editingShapeId": null,
+			"croppingShapeId": null,
+			"selectedShapeIds": [
+				"shape:cKaeGYkjUtPHcFLzKuhRk"
+			],
+			"hoveredShapeId": "shape:cKaeGYkjUtPHcFLzKuhRk",
+			"erasingShapeIds": [],
+			"hintingShapeIds": [],
+			"focusedGroupId": null,
+			"meta": {},
+			"id": "instance_page_state:page:page",
+			"pageId": "page:page",
+			"typeName": "instance_page_state"
+		},
+		{
+			"x": -5080.310995711243,
+			"y": -30451.227592918825,
+			"z": 1,
+			"meta": {},
+			"id": "camera:page:page",
+			"typeName": "camera"
+		},
+		{
+			"x": 5403.510977400696,
+			"y": 30503.827595207644,
+			"rotation": 0,
+			"isLocked": false,
+			"opacity": 1,
+			"meta": {},
+			"id": "shape:cKaeGYkjUtPHcFLzKuhRk",
+			"type": "text",
+			"props": {
+				"color": "black",
+				"size": "m",
+				"w": 481.5125732421875,
+				"text": "int arr[] = {61, 12, 23, 56};\n    int n = 4;\n    printf(\"Unsorted array: \");\n    for (int i = 0; i < n; i++)\n    {\n        printf(\"%d \", arr[i]);\n    }\n    \n    for (int i = 0; i < n; i++)\n    {\n        for (int j = 0; j < n - 1; j++)\n        {\n            if (arr[j] > arr[j + 1])\n            {\n                int temp = arr[j];\n                arr[j] = arr[j + 1];\n                arr[j + 1] = temp;\n            }\n        }\n    }\n    printf(\"\\nSorted array in ascending order is: \");\n    for (int k = 0; k < n; k++)\n    {\n        printf(\"%d \", arr[k]);\n    }",
+				"font": "draw",
+				"textAlign": "start",
+				"autoSize": false,
+				"scale": 1
+			},
+			"parentId": "page:page",
+			"index": "bDCBGO",
 			"typeName": "shape"
 		}
 	]

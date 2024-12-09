@@ -71,6 +71,113 @@ function sum3 (a, b=2)
 {
     console.log(a+b)
 }
-sum3(5, 6)
-sum3(5)
-// write a function taxiFare which accepts no_of_km and fare_per_km as arguments and returns total fare. Incase fare_per_km is not passed, default fare is ₹25
+function add(a,b){
+    return a+b;
+}
+var z=add(5,3)
+console.log(z)
+
+
+
+
+function mul (a, b,...c)
+{
+    console.log(c)
+    return a * b;
+}
+let z1 = mul(5, 6,1,2);
+console.log(z1)
+
+function friends (a, ...b)
+{
+	console.log(a, b.length)
+	let q = [a,...b] //["sita","gita", "vani", "rani"]
+	console.log(q.length)
+}
+
+friends("sita", "gita", "vani", "rani")
+
+
+
+
+//spread operator is used by three dots
+
+
+
+
+
+
+
+
+
+function fun12 (a,b,...c)
+{
+    let d= [...c,6]
+    console.log(a+b,c,d.length)
+}
+fun12(1, 2, 3, 4, 5)
+// how to add two arrays
+function addarrays (a1, a2)
+{
+    let c = [...a1, ...a2];
+    console.log(c)
+}
+addarrays(["5","6"],["7","8"])
+
+function addNumbers (...a)
+{
+    console.log(a)
+  return a[0] + a[1] + a[2];
+}
+
+const numbers = ["r","a","m"];
+console.log(addNumbers(...numbers)); 
+
+function takeOranges (a,b,...c)
+{
+	console.log(c)
+	;["o3", "o4", "o5", "o6"]
+	let k = [c, 2] //[["o3","o4","o5","o6"],2]
+	let p = [...c, 2] //["o3","o4","o5","o6",2]
+	console.log(k,p)
+}
+takeOranges("o1","o2","o3","o4","o5","o6")
+
+function newFun() {
+	console.log("hii")
+}
+console.log(newFun)
+
+var h = function ()
+{
+  console.log("hii")  
+} 
+console.log(h)
+
+
+//callbacks
+function easy (s)
+{
+    s()
+    console.log("Js is easy")
+}
+function simple ()
+{
+    console.log("Js is simple")
+}
+easy(simple)
+
+
+function one ()
+{
+    console.log("one")
+}
+function two() {
+	console.log("two")
+}
+function both(a,b) {
+    console.log(a, b);
+    a()
+    b()
+}
+both(one,two)

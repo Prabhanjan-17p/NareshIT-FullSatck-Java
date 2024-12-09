@@ -59,16 +59,68 @@
 #include <stdio.h>
 
 int main() {
-    int n = 3; // Size of the matrix (3x3)
-    int num = 7; // Starting number
+    // int n = 3; // Size of the matrix (3x3)
+    // int num = 7; // Starting number
 
-    for (int i = 0; i < n; i++) {
-        for (int j = 0; j < n; j++) {
-            printf("%d\t", num);
-            num = (num == 10) ? 1 : num + 1; // Reset to 1 after 10, otherwise increment
-        }
-        printf("\n"); // Newline after each row
+    // for (int i = 0; i < n; i++) {
+    //     for (int j = 0; j < n; j++) {
+    //         printf("%d\t", num);
+    //         num = (num == 10) ? 1 : num + 1; // Reset to 1 after 10, otherwise increment
+    //     }
+    //     printf("\n"); // Newline after each row
+    // }
+
+
+
+
+
+
+    // int n;
+    // int arr[n];
+    // printf("Enter the size of the array: ");
+    // scanf("%d", &n);
+    // printf("Enter %d elements: ", n);
+    // for (int i = 0; i < n; i++)
+    // {
+    //     printf("Enter element %d: ", i );
+    //     scanf("%d", &arr[i]);
+    // }
+    // printf("\n My array Values: ");
+    // for (int i = 0; i < n; i++)
+    // {
+    //    printf("%d ", arr[i]);
+    // }
+
+
+
+    int arr[] = {20,18,58,27,3,4};
+    int n = 6;
+
+    printf("Unsorted array: ");
+    for (int i = 0; i < n; i++)
+    {
+        printf("%d ", arr[i]);
+    } //20,18,58,27,3,4
+    
+    for (int i = 0; i < n; i++) //1
+    {
+        //18,20,3,4,27,58
+        for (int j = 0; j < n - 1; j++) //5
+        {
+            if (arr[j]  > arr[j + 1])
+            {
+                int temp = arr[j];
+                arr[j] = arr[j + 1];
+                arr[j + 1] = temp;
+            }
+        } //i=1 => 18,20,3,4,27,58
     }
+    printf("\nSorted array in ascending order is: ");
+    for (int k = 0; k < n; k++)
+    {
+        printf("%d ", arr[k]);
+    }
+  
 
     return 0;
 }

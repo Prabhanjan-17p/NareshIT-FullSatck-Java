@@ -17,6 +17,12 @@ display()
 
 functions are called " first class citizens" in JS
 
+function sayHello(){
+    console.log("hello")
+}
+sayHello()
+
+
 -- function can accept values through parameters and functions may return values.
 
 function mnemonicGenerator (fn, mn, ln)
@@ -36,3 +42,53 @@ var fullName = mnemonicGenerator2("david john Henry")
 console.log(fullName)
 
 function can also contain default values in case user doesnot pass argument in function call
+
+function sum(a,b=5){
+   console.log(a+b);
+}
+sum(5,6);
+sum(7)
+
+
+function can return the values
+function add(a,b){
+    return a+b;
+}
+var z=add(5,3)
+console.log(z)
+
+Rest and Spread Operators:
+Rest operator is used to wrap up the rest of the elements into one single array.
+  -- Rest operator uses three dots 
+  -- Rest operator must be last in the parameter's list
+Spread operator is used to unwrap the array elements 
+  -- Spread operator uses three dots
+  -- Spread operator can be anywhere
+usually, Rest operator takes the value and Spread operator splits the value
+function addNumbers(x, y, z) {
+  return x + y + z;
+}
+
+const numbers = [1, 2, 3];
+console.log(addNumbers(...numbers)); // Output: 6
+
+// functions can be expressed as function expression. it means 
+we can assign a function as a variable
+
+function newFun(){
+    console.log("hii")
+}
+console.log(newFun)
+const newFun2 = function(){
+    console.log("hii")
+}
+console.log(newFun2)
+
+// convert following function into function expression
+function sum(a,b){
+    console.log(a+b)
+}
+
+
+//callbacks
+functions are treated as variables so we can pass functions as a parameter to another functions. The functions which are passed as a parameter to another function is called callback function

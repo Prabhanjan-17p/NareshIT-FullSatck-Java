@@ -1,0 +1,49 @@
+Control statements or Decision Making statements are used to constrol user flow based on a decision. The popular Decision making statements are if and switch
+1. if: if statement is used to manage the flow of program based on a condition
+we have different variantions of if such as 
+   -- simple if:
+   if(condition){
+    //statement
+   }
+   // Write a function that prints/alerts success when username passed is javascript
+//input: fun("javascript")
+//success
+function display1 (str)
+{
+    if (str === "javascript")
+    {
+        console.log("success")
+    }
+}
+display1("javascript")
+
+ -- if--else
+if(condition)
+ //statements
+ else 
+ //statements
+
+
+
+
+ --if-else-if : it is used to check multiple conditions
+ if(condition)
+ //statements
+ else if(another condition)
+ //statements
+ else 
+ //statements
+But multiple ifs make the code lengths, To solve this probelm , we used
+switch-case
+
+switch: switch is an alternative to if-else-if ladder. it solves the probelm by writing each condition as a case
+switch(expression/statement){
+    case val1:
+    case val2:
+    case val3:
+    ...
+    default:
+}
+default will be triggered when none of the above cases are matched.Try to keep default at last
+If 'break' keyword is not mentioned in switch , it falls to the next case called "fall-through error"
+break is used the end the execution to the nearest block

@@ -181,3 +181,89 @@ function both(a,b) {
     b()
 }
 both(one,two)
+
+
+
+
+// Write a function that accepts  a string("Full Name") and returns first and last name
+function fullNa(a) {
+    var name = a.split(" ")[0];
+    var name1 = a.split(" ")[1];
+
+    console.log("First Name"+name);
+    console.log("Last Name"+name1);
+
+    return a.split(" ")
+}
+//Convert to function Arguments
+var splits = function(a){
+    console.log("Splits")
+    return a.split(" ")
+}
+console.log(fullNa("Kanha Amanta"))
+
+function evOd(numbers) {
+    if(numbers % 2 == 0){
+        console.log("Even Number")
+    } else{
+        console.log("Odd Number")
+    }
+}
+evOd(12)
+function chAA(numbers) {
+    if(numbers.split(" ")[1] == "patel"){
+        console.log("True")
+    } else{
+        console.log("false")
+    }
+}
+chAA("kanha Amanta")
+function chAA1(numbers) {
+    //Sum of numbers
+    var a = numbers % 10;
+    var b = (numbers / 10).toFixed();
+    var sum = a +  +b; 
+    console.log("Sum of numbers is "+ sum);
+    console.log("Mul of numbers is "+a*b);
+
+    if(sum > a*b){
+        console.log("Sum is greater than multiple")
+    }
+    else{
+        console.log("Mul is not greater than Sum")
+    }
+    
+}
+chAA1(62)
+
+
+function SwitchColor(num) {
+    switch (num) {
+        case 1:
+            console.log("Violet");
+            break;
+        case 2:
+            console.log("Indigo")
+            break;
+        case 3:
+            console.log("Blue")
+            break;
+        case 4:
+            console.log("Green")
+            break;
+        case 5:
+            console.log("Yellow")
+            break;
+        case 6:
+            console.log("Orange")
+            break;
+        case 7:
+            console.log("Red")
+            break;
+    
+        default:
+            console.log("Invalid Number(Make Sure Your Number Should be Lies on 1-7)")
+            break;
+    }
+}
+SwitchColor(0)

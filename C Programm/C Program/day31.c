@@ -137,5 +137,52 @@ int main()
 
 
 
+    //5-
+     int num_employees, scores[50];
+    float average = 0.0;
+    int count_above_avg = 0;
+
+    // Input the number of employees
+    printf("Enter the number of employees: ");
+    scanf("%d", &num_employees);
+
+    // Validate the number of employees
+    if (num_employees <= 0 || num_employees > 50) {
+        printf("Error: Number of employees must be between 1 and 50.\n");
+        return 1;
+    }
+
+    // Input the performance scores
+    printf("Enter the performance scores: ");
+    for (int i = 0; i < num_employees; i++) {
+        scanf("%d", &scores[i]);
+        
+        // Validate the score range
+        if (scores[i] < 0 || scores[i] > 100) {
+            printf("Error: Performance scores must be between 0 and 100.\n");
+            return 1;
+        }
+        average += scores[i];
+    }
+
+    // Calculate the average performance score
+    average /= num_employees;
+
+    // Find employees with above-average scores
+    printf("Average performance score: %.2f\n", average);
+    printf("Scores of employees above average: ");
+    for (int i = 0; i < num_employees; i++) {
+        if (scores[i] > average) {
+            printf("%d ", scores[i]);
+            count_above_avg++;
+        }
+    }
+
+    // Display the number of employees scoring above average
+    printf("\nNumber of employees scoring above average: %d\n", count_above_avg);
+
+
+
+
     return 0;
 }

@@ -65,3 +65,85 @@ for (const ee of newww) {
     // console.log(ee)
 }
 console.log(arr3.join(' '))
+
+
+// function gg(num) {
+//     console.log(num*num)
+// }
+// //for Each
+// var rer = [1,2,3,4,5]
+// rer.forEach(gg)
+
+// // Take an array and convert to cube of the number  using " For each " Loop
+// let yy = [1,2,3,4,5]
+// function cube(num) {
+//     console.log(num*num*num)//
+//     console.log(num**num) // ** -- Power Function
+// }
+// yy.forEach(cube)
+
+// Enhanced ForEach
+let yy = [1,2,3,4,5]
+yy.forEach(function (nn){
+    console.log(nn**nn)
+})
+
+
+//write a forEach function to print first character of given array 
+// var name12 = ["kanha","atul","rati","badata"]
+// var tn=[]
+// name12.forEach(function (n1){
+//     console.log(n1.charAt(0))
+//     tn.push(n1.charAt(0))
+// })
+// console.log(tn)
+
+
+
+// forEach - it does not return anything it's work like void function
+var name12 = [5,4,3,2,1]
+var tn = name12.map(function (n1){
+    return n1*n1
+})
+console.log(tn) // it return "Undefine"
+
+
+// map - is used to return something but same as forEach and map will return all the value
+var name12 = [5,4,3,2,1]
+var tn = name12.map(function (n1){
+    return n1*n1
+})
+console.log(tn)
+// var name12 = [5,4,3,2,1]
+// var tn = name12.map(function (n1){
+//     if (n1 % 2 == 0) {
+//         return n1*n1
+//     }
+// })
+// console.log(tn) //[undefined, 16, undefined, 4, undefined]
+
+
+//Filter - It return those value you want but it same work as "map"
+var name123 = [5,4,3,2,1]
+var tn1 = name123.filter(function (n1){
+    if (n1 % 2 == 0) {
+        return n1*n1
+    }
+})
+console.log(tn1) //[4, 2]
+
+
+//Some - It return true or false if your value is not equal to array of values
+var vv = ["kanha amanya","jsbdgt hari","dsgcs gfsw"]
+var tn12 = name123.some(function (n1){
+    return n1.endsWith("amanya")
+})
+console.log(tn12) 
+
+
+//Every - It return true or false if your value is not equal to array of values
+var vv = ["kanha amanya","jsbdgt hari","dsgcs gfsw"]
+var tn12 = name123.every(function (n1){
+    return n1.endsWith("amanya")
+})
+console.log(tn12) 

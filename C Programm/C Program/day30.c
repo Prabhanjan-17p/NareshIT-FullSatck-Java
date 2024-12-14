@@ -17,6 +17,21 @@ int main()
     //      }
     //  }
     //  printf("\nSecond largest element is: %d\n", arr[n-2]);
+    // or
+    //  Find the second largest element
+    // int largest = arr[n - 1];
+    // int secondLargest = -1; // Initialize to an invalid value
+    // for (int i = n - 2; i >= 0; i--) {
+    //     if (arr[i] < largest) {
+    //         secondLargest = arr[i];
+    //         break;
+    //     }
+    // }
+    // if (secondLargest != -1) {
+    //     printf("\nSecond largest element is: %d\n", secondLargest);
+    // } else {
+    //     printf("\nNo second largest element found (all elements are equal).\n");
+    // }
 
     // 2-Insert a element at the specified position
     //  int arr[] = {10, 20, 30, 40, 50};

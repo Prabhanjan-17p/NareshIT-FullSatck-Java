@@ -1,0 +1,41 @@
+Loops are used to iterate a certain statements. They iterate on a certain condition and until the condition fails.
+Loops are basically two types
+i. entry control loops:They check the condition first and runs the flow only if it is true
+eg: while,for
+ii. exit control loops: They check the condition at the exit time, so in the worst conditions it gains a free iteration
+eg: do-while
+
+i. while: while is a entry control loop used to iterate ceratin statements
+syntax:
+   initialization;
+   while(condition){
+    statements;
+    updation
+   }
+
+ii. do-while: do while is used as an exit control loop to iterate certain statements
+syntax:
+   initialization;
+   do{
+    statements;
+    updation
+   }while(condition);
+
+iii. for: for is used to iterate certain statements and for displays initialization, condition and updation in single statement
+
+for(initialization;condition;updation){
+    //statements
+}
+
+for..of :
+for..of is used to iterate through the array ans brings the element each iteration
+
+for(var i of arr){
+   console.log(i) // i is a element of the array
+}
+
+for..in:
+for..in is used to iterate through the array ans brings the index each iteration
+for(var i in arr){
+   console.log(i) //i is the index of the element in array
+}

@@ -1,0 +1,75 @@
+var a=prompt("enter a")
+alert(a)
+Array: Array of collection of elements.
+eg: var arr=[2,5,6,7,3]
+Array is denoted with square brackets and each element inside the array have an unique address called index
+var x = [1, 2, 4, 5, 7, 8]
+console.log(x[0])
+console.log(x[25])
+console.log(x[-20]);
+//write a for loop using for ..of  to print array elements
+console.table(x)
+for (var z in x)
+{
+    console.log(z)
+}
+
+
+for Each:
+----------
+In Javascript, arrays are treated as objects and have some default methods to iterate its values. forEach is used to iterate all values of the array and pass some function to each and every element of the array
+
+syntax:
+ArrayName.forEach(callfn)
+  (or)
+ArrayName.forEach(function(arrayElemenet,index){
+   //logic
+})
+var arr=[5,4,3,2,1]
+arr.forEach(function(x,y){
+console.log(x+" "+y)
+})
+
+forEach function cannot return the values, to solve this we have a method map
+
+map: map is used to iteration each and every element of the array. it passes callback function to each and every element of the array but it can return results
+
+syntax:
+ArrayName.map(callfn)
+  (or)
+ArrayName.map(function(arrayElemenet,index){
+   //logic
+})
+
+map will return all the values
+
+filter: filter is used to iterate each and every element of the array . it passes callback function to each and every element of the array, it can return but it returns only values which satisfies the condition
+syntax:
+ArrayName.map(callfn)
+  (or)
+ArrayName.map(function(arrayElemenet,index){
+   //logic
+})
+
+some: some method will be true if the given condition returns true for atleast one of the element in the given array
+syntax:
+ArrayName.some(callfn)
+  (or)
+ArrayName.some(function(arrayElemenet,index){
+   //logic
+})
+
+every: some method will be true if the given condition returns true for all  of the elements in the given array
+syntax:
+ArrayName.some(callfn)
+  (or)
+ArrayName.some(function(arrayElemenet,index){
+   //logic
+})
+
+
+
+
+
+every
+find

@@ -61,15 +61,21 @@ ArrayName.some(function(arrayElemenet,index){
 
 every: some method will be true if the given condition returns true for all  of the elements in the given array
 syntax:
-ArrayName.some(callfn)
+ArrayName.every(callfn)
   (or)
-ArrayName.some(function(arrayElemenet,index){
+ArrayName.every(function(arrayElemenet,index){
    //logic
 })
 
+find: find method will iterate the complete array and check callback logic until it is true. whenever logic is true , find will return the element.In case of findIndex, it returns index
 
+syntax: 
+ArrayName.find(callfn)
+  (or)
+ArrayName.find(function(arrayElemenet,index){
+   //logic
+})
 
+reduce: reduce method will iterate the complete array and it accepts two arguments(first one is previous values and second one is current value). it returns previous value after accumulation logic
 
-
-every
-find
+syntax: Array.reduce(function(prevValue,currValue){//statements})

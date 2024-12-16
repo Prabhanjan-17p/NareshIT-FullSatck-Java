@@ -2,3 +2,9 @@ var variable
 introduction(internal,external)
 devloper tools(console)
 Primitive Data Types(number,string,boolean,undefined,null) 
+operators
+control statements
+loops
+functions
+arrays
+objects

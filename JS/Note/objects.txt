@@ -1,0 +1,24 @@
+Objects:Object is a collect of key-value pairs where each key is a string abd values can be any data types. keys are connected to values
+object creation: 
+  1. object literal:
+  var obj={
+    name:"raj",
+    age:28
+  }
+We can access object project properties by
+    --- dot notation: objectname.propertyName
+    --- index signature: objectname['propertyName']
+  2. using constructor function: constructor functions are the functions that returns an object
+
+  function Person(a,b,c){
+   this.name= a;
+   this.age= b;
+   this.job=c;
+  }
+  var obj=new Person("sudeep",55,"Developer");
+    var obj2=new Person("raj",25,"panipuri")
+console.log(obj.name)
+  // 'this' is a keyword that points to current calling object
+
+  3. object.create method: This way of creating object is used when we have to create one based based on another object
+  

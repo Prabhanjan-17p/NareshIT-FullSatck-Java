@@ -34,19 +34,19 @@ int main()
     // }
 
     // 2-Insert a element at the specified position
-    //  int arr[] = {10, 20, 30, 40, 50};
-    //  int n = 5;
-    //  int element = 25, position = 2;
-    //  for (int i = n; i >= position; i--)
-    //  {
-    //      arr[i] = arr[i-1]; //=> 5-50,4-40,3-30,2-' '
-    //  }
-    //  arr[position] = element;//=> 5-50,4-40,3-30,2-25,
-    //  printf("\nArray after inserting element at position %d: ", position);
-    //  for (int i = 0; i <= n; i++)
-    //  {
-    //      printf("%d ", arr[i]);
-    //  }
+    // int arr[] = {10, 20, 30, 40, 50};
+    // int n = 5;
+    // int element = 25, position = 2;
+    // for (int i = n; i >= position; i--)
+    // {
+    //     arr[i] = arr[i - 1]; //=> 5-50,4-40,3-30,2-' '
+    // }
+    // arr[position] = element; //=> 5-50,4-40,3-30,2-25,
+    // printf("\nArray after inserting element at position %d: ", position);
+    // for (int i = 0; i <= n; i++)
+    // {
+    //     printf("%d ", arr[i]);
+    // }
 
     // 3- Delete a element in array
     // int arr[] = {10, 20, 30, 40, 50, 30, 20};

@@ -67,37 +67,37 @@ int main()
     3-You are given a large integer represented as an integer array digits, where each digits[i] represents the i-th digit of the integer. The digits are ordered from most significant to least significant (left to right). The large integer does not contain any leading zeros.
     Write a program to increment the large integer by one and return the resulting array of digits ?
     */
-    // int arr[] = {1, 2, 3};
-    // int n = 3;
-    // int carry = 1;
-    // for (int i = n - 1; i >= 0; i--)
-    // {
-    //     int sum = arr[i] + carry;
-    //     arr[i] = sum % 10;
-    //     carry = sum / 10;
-    // }
-    // if (carry) // in case of carry =1
-    // {
-    //     printf("[ %d", carry);
-    //     for (int i = 0; i < n; i++)
-    //     {
-    //         printf(", %d", arr[i]);
-    //     }
-    //     printf(" ]\n");
-    // }
-    // else // in case of carry = 0
-    // {
-    //     printf("[ ");
-    //     for (int i = 0; i < n; i++)
-    //     {
-    //         printf("%d", arr[i]);
-    //         if (i != n - 1)
-    //         {
-    //             printf(", ");
-    //         }
-    //     }
-    //     printf(" ]\n");
-    // }
+    int arr[] = {1, 2, 3};
+    int n = 3;
+    int carry = 1;
+    for (int i = n - 1; i >= 0; i--)
+    {
+        int sum = arr[i] + carry;
+        arr[i] = sum % 10;
+        carry = sum / 10;
+    }
+    if (carry) // in case of carry =1
+    {
+        printf("[ %d", carry);
+        for (int i = 0; i < n; i++)
+        {
+            printf(", %d", arr[i]);
+        }
+        printf(" ]\n");
+    }
+    else // in case of carry = 0
+    {
+        printf("[ ");
+        for (int i = 0; i < n; i++)
+        {
+            printf("%d", arr[i]);
+            if (i != n - 1)
+            {
+                printf(", ");
+            }
+        }
+        printf(" ]\n");
+    }
 
     // 4-Write a program in C to count the frequency of each element in an array ?
     // int arr[] = {1, 2, 3, 2, 1, 4, 5, 3, 2};

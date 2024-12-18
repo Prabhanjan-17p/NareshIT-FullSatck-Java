@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Toggle Button</title>
+    <style>
+        /* body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #000; /* Black background to match the design */
+            /* margin: 0; */
+      
+
+        .toggleBtn {
+            position: relative;
+            width: 50px;
+            height: 25px;
+        }
+
+        .toggleBtn input {
+            display: none;
+        }
+
+        /* Outer slider background */
+        .slider {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #1e1e28; /* Dark grey color */
+            border-radius: 25px; /* Rounded background */
+            transition: 0.3s;
+        }
+
+        /* Circle inside the slider */
+        .slider::before {
+            content: "";
+            position: absolute;
+            height: 20px;
+            width: 20px;
+            border-radius: 50%;
+            background-color: #00C6E3; /* Cyan color */
+            top: 50%;
+            left: 4px;
+            transform: translateY(-50%);
+            transition: 0.3s;
+        }
+
+        /* Checked state for the toggle button */
+        input:checked + .slider {
+            background-color: #1a1a22; /* Slightly different dark grey */
+        }
+
+        input:checked + .slider::before {
+            transform: translate(23px, -50%); /* Move circle to the right */
+        }
+    </style>
+</head>
+<body>
+    <div class="toggleBtn">
+        <input type="checkbox" id="toggle">
+        <label for="toggle" class="slider"></label>
+    </div>
+</body>
+</html>

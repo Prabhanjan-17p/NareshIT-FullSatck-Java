@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM Project - 2</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body >
+    <nav class="nvaa">
+        <div class="navBox allCenter">
+            <div class="toggleBtn">
+                <input type="checkbox" id="toggle" onclick="tog()">
+                <label for="toggle" class="slider"></label>
+            </div>
+        </div>
+    </nav>
+    <main class="allCenter">
+        <div class="main allCenter">
+            <div class="box allCenter">
+                <div class="inBox1">
+                    <label for="">Enter Your Name</label>
+                    <input id="intext" type="text">
+                    <hr class="hrr" id="hr11" >
+                </div>
+                <div class="inBox1">
+                    <label for="">Enter Your Age</label>
+                    <input type="text" id="inp2">
+                    <hr class="hrr" id="hr22">
+                </div>
+                <div class="inBox1">
+                    <label for="">Enter Job Title</label>
+                    <input type="text" id="inp3">
+                    <hr class="hrr" id="hr33">
+                </div>
+                <div class="inBox1">
+                    <button  onclick="SubBTN()">Submit</button>
+                    <button  onclick="ResBTN()">Reset</button>
+                </div>
+            </div>
+            <div class="box"  id="leftBox">
+                <div class="outBox1">
+                    <h2 id="h211">Name -</h2>
+                    <p id="pc1"></p>
+                </div>
+                <div class="outBox1">
+                    <h2 id="h212">Age -</h2>
+                    <p id="pc2"></p>
+                </div>
+                <div class="outBox1">
+                    <h2 id="h213">Job Title -</h2>
+                    <p id="pc3"></p>
+                </div>
+                <div class="outBox1">
+                    <button onclick="chColor()">Change Color</button>
+                    <button onclick="reColor()">Reset Color</button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="./script.js"></script>
+</body>
+</html>

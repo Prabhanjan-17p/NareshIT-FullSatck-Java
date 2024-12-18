@@ -1,0 +1,43 @@
+Document Object Model:
+'document' is an object created by the browser default and it contains replica of elements as a tree structure
+document object can be selecte,manipulate the web pages
+
+There three phases of DOM:
+phase I: DOM Selection:
+  There are 5 basic ways to select an element from HTML/DOM.
+i. document.getElementsByTagName('tag'):
+it selects all the elements of specific tag from DOM tree and return an array of elements(HTML Collection)
+eg: var x= document.getElementsByTagName('h1');
+console.log(x)
+
+ii. document.getElementsByClassName('className'):
+it selects all the elements of specific className from DOM tree and return an array of elements with specific class name.
+eg: var x= document.getElementsByClassName('myClass');
+console.log(x)
+
+iii. document.getElementById('idname'):
+it selects an element of specific id and returns it
+eg: var x= document.getElementById('idName');
+console.log(x)
+
+iv. document.querySelector('query'):
+it selects an element of specific query but it returns only the first element
+eg: var y=document.querySelector('#para');
+console.log(y)
+
+v.document.querySelectorAll('query'):
+it selects an element of specific query but it returns all the elements that matched the query
+eg: var y=document.querySelectorAll('.para');
+console.log(y)
+
+
+
+Phase II: DOM Manipulation:
+We can manipulate any DOM elements using few methods such as
+  i. textContent: it brings the text inside the selected element.
+  ii. innerText : it brings the text inside the selected element but it also considers CSS
+  In case of visibility hidden in CSS, element will not displayed
+  iii. innerHTML : it brings the HTML code of the selected element but it might cause vulnerbilities such as XSS(cross site scripting)
+  iv. style : it brings the CSS of the selected element
+  v. classList: it is used to add/remove/toggle  class names
+  vi. value : we can take input value from html element using value

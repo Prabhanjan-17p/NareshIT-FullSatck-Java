@@ -1,0 +1,159 @@
+@import url('https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Noto+Sans:ital,wght@0,100..900;1,100..900&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Sour+Gummy:ital,wght@0,100..900;1,100..900&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Kanit", serif;
+}
+
+main {
+    height: 100vh;
+    width: 100vw;
+    overflow-x: hidden;
+    background: url(./grain.png), linear-gradient(135deg, rgba(252, 210, 205, 1) 15%, rgba(189, 183, 213, 1) 65%);
+}
+
+.inputBox {
+    position: relative;
+    width: 250px;
+}
+
+.inputBox input {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid rgba(225, 225, 225, 0.853);
+    border-radius: 5px;
+    outline: none;
+    transition: 0.5s;
+    background: #1d2b3a;
+    color: rgba(225, 225, 225, 0.853);
+}
+
+.inputBox span {
+    position: absolute;
+    left: 0;
+    padding: 10px;
+    pointer-events: none;
+    font-size: 16px;
+    text-transform: uppercase;
+    transition: 0.5s;
+    color: rgba(225, 225, 225, 0.853);
+}
+
+.inputBox input:valid~span,
+.inputBox input:focus~span {
+    color: aqua;
+    transform: translateX(10px) translateY(-7px);
+    font-size: 0.65em;
+    padding: 0 10px;
+    background: #1d2b3a;
+    border-left: 1px solid aqua;
+    border-right: 1px solid aqua;
+    letter-spacing: 0.2em;
+}
+
+.inputBox input:valid,
+.inputBox input:focus {
+    border-color: aqua;
+}
+
+/* box */
+.upperBox {
+    height: 120px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.mainBox {
+    margin-top: 22px;
+    height: 80px;
+    width: 70%;
+    background-color: #1d2b3a;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 22px;
+    border-radius: 12px;
+    box-shadow: 4px 4px 12px black;
+}
+
+.mainBox button {
+    height: 40px;
+    width: 100px;
+    background-color: rgb(0, 140, 255);
+    border: 1px solid black;
+    border-radius: 4px;
+    transition: all 0.4s ease;
+    font-size: 16px;
+    color: rgba(225, 225, 225, 0.853);
+    text-transform: uppercase;
+}
+
+.mainBox button:hover {
+    cursor: pointer;
+    background-color: rgba(0, 0, 255, 0.7);
+}
+
+/* book */
+.booksContainer {
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 40px;
+    padding: 43px;
+    gap: 12px;
+    justify-content: center;
+}
+
+.bookBox {
+    height: 40vh;
+    width: 15vw;
+    border: 1px solid black;
+    border-radius: 4px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 22px;
+    padding: 12px;
+    position: relative;
+    background-color: white;
+
+}
+
+.bookBox img {
+    height: 20vh;
+    width: 100%;
+    object-fit: cover;
+}
+
+.delete {
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 30px;
+    width: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-left: 1px solid black;
+    border-bottom: 1px solid black;
+    border-bottom-left-radius: 12px;
+}
+
+.delete:hover {
+    cursor: pointer;
+    background-color: rgba(255, 0, 0, 0.7);
+    border-color: rgba(255, 0, 0, 1);
+    transition: all 0.4s ease;
+}
+
+.delete img {
+    height: 70%;
+    width: 70%;
+    object-fit: contain;
+}

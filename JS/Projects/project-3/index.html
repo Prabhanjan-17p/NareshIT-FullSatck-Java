@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project - 3</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <main>
+        <div class="upperBox">
+            <div class="mainBox">
+                <div class="inputBox">
+                    <input id="bookTitle" type="text" required="required">
+                    <span>Book Name</span>
+                </div>
+                <div class="inputBox">
+                    <input id="imgUrl" type="text" required="required">
+                    <span>img url</span>
+                </div>
+                <div class="inputBox">
+                    <input id="author" type="text" required="required">
+                    <span>author name</span>
+                </div>
+    
+                <button onclick="bookSub()">Submit</button>
+            </div>
+        </div>
+        <div class="booksContainer">
+            <!-- dynamically generated books will be added here -->
+        </div>
+    </main>
+
+    <script src="./script.js"></script>
+</body>
+
+</html>

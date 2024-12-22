@@ -1,0 +1,318 @@
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Ysabeau+SC:wght@1..1000&display=swap');
+
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+
+}
+
+body {
+    height: 100vh;
+    width: 100vw;
+    background-color: rgb(3, 3, 22);
+}
+
+.main {
+    height: 100%;
+    width: 100%;
+}
+
+.imgBack img {
+    width: 100%;
+    height: 40%;
+}
+
+.imgBack {
+    width: 100%;
+    height: 100%;
+    background-color: hsl(235, 21%, 11%);
+}
+
+.boxMain {
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-top: -270px;
+}
+
+.contBox2 {
+    height: 15vh;
+    width: 32vw;
+    margin-top: 60px;
+    margin-left: 35vw;
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+}
+
+.logo {
+    width: 100%;
+    height: 10%;
+    display: flex;
+    margin-bottom: 12px;
+}
+
+.textLogo h1 {
+    /* font-family: "Roboto", serif; */
+    
+  font-family: "Ysabeau SC", serif;
+    color: white;
+}
+
+.textLogo {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    gap: 18px;
+}
+
+.moonLogo {
+    height: 30px;
+    width: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* background-color: #755bea; */
+}
+.moonLogo:hover{
+    cursor: pointer;
+}
+
+.moonLogo img {
+    height: 20px;
+    width: 20px;
+}
+
+.inputText {
+    width: 100%;
+    height: 69%;
+    background-color: hsl(235, 24%, 19%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    border-radius: 5px;
+}
+
+.adjustIn {
+    margin-top: 3px;
+}
+
+.adjustIn hr {
+    width: 260px;
+    margin-top: 3px;
+}
+
+.adjustIn input {
+    width: 90%;
+    height: 100%;
+    padding: 0 8px;
+    border: none;
+    outline: none;
+    color: white;
+    background-color: hsl(235, 24%, 19%);
+    border-bottom: 1px white;
+  font-family: "Ysabeau SC", serif;
+  font-size: 17px;
+}
+
+.inputText button {
+    width: 20%;
+    height: 60%;
+    border-top-left-radius: 22px;
+    border-top-right-radius: 22px;
+    border-bottom-right-radius: 22px;
+    background: linear-gradient(90deg,#755bea,#55e7fc);
+    border: none;
+    color: white;
+    font-size: 14px;
+    font-weight: bold;
+    transition: all 5s ease;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+}
+.inputText button:hover{
+    background: linear-gradient(90deg,#55e7fc,#755bea);
+    cursor: pointer;
+}
+
+
+
+#right {
+    /* width: 20px;
+    height: 20px; */
+    cursor: pointer;
+    background-color: lightgray;
+    /* Default background color */
+    display: inline-block;
+    border-radius: 50%;
+    /* Circle shape */
+}
+
+#right.completed {
+    background-color: green;
+    /* Optional: change color for completed */
+}
+
+.contBox3 {
+    height: auto;
+    max-height: 41vh;
+    width: 32vw;
+    background-color: hsl(235, 24%, 19%);
+    margin-top: 25px;
+    margin-left: 35vw;
+    border-radius: 5px;
+    padding-left: 20px;
+    padding-right: 12px;
+    /* display: none; */
+}
+
+.listTodosCls {
+    width: 100%;
+    height: 85%;
+    max-height: 40vh;
+    overflow-x: hidden;
+    overflow-y: scroll;
+    /* display: none; */
+}
+
+.con1 {
+    width: 100%;
+    height: 55px;
+    border-bottom: 1px solid white;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding: 0 12px;
+}
+
+.con1 div {
+    height: 30px;
+    width: 30px;
+    background: transparent;
+    border-radius: 50%;
+    border: 2px solid white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.con1 div:hover{
+    cursor: pointer;
+}
+
+.con1 label {
+    width: 330px;
+    color: rgba(255, 255, 255, 0.874);
+  font-family: "Ysabeau SC", serif;
+    /* font-family: "Kanit", serif; */
+    /* text-decoration: line-through;
+    opacity: 0.5; */
+}
+
+.con1 img:hover{
+    cursor: pointer;
+}
+.con1 img {
+    width: 25px;
+    height: 25px;
+}
+
+::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+    /* see how much you want the thumb to cover the track */
+
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    background: hsl(235, 24%, 19%);
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: hsl(235, 24%, 19%);
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: hsl(235, 24%, 19%);
+    ;
+}
+
+.footer {
+    width: 100%;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 15px;
+    background-color: hsl(235, 24%, 19%);
+    /* background-color: hsl(235, 74%, 35%); */
+    /* margin-left: -15px; */
+    padding: 0 12px;
+    border-bottom-right-radius: 12px;
+    border-bottom-left-radius: 12px;
+}
+
+.allCont p {
+    font-family: "Roboto", serif;
+    color: rgba(81, 81, 81, 0.929);
+
+    font-size: 13px;
+}
+#p1{
+    color: blue;
+}
+
+.countTodos {
+    display: flex;
+    gap: 6px;
+}
+
+.countTodos span {
+    font-family: "Roboto", serif;
+    color: white;
+
+    font-size: 13px;
+}
+
+.countTodos p {
+    font-family: "Roboto", serif;
+    color: rgba(81, 81, 81, 0.929);
+    font-size: 13px;
+
+}
+
+.allCont {
+    display: flex;
+    gap: 18px;
+}
+
+.clearTodos button:hover{
+    cursor: pointer;
+    color: blue;
+}
+.clearTodos button {
+    transition: all .5s ease-in-out;
+    background: transparent;
+    color: rgba(81, 81, 81, 0.929);
+    border: none;
+    font-size: 13px;
+}
+.moon{
+    height: 100px;
+    width: 100px;
+    background-color: #755bea;
+}
+.im4{
+    display: none;
+}
+.im1{
+    display: none;
+}

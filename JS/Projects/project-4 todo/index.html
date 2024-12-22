@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Todo List</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="shortcut icon" href="./img/icons8-test-64.png" type="image/x-icon">
+</head>
+
+<body>
+    <div class="main" >
+        <div class="imgBack" id="mm">
+            <img id="img1" class="im1" src="./img/bg-desktop-light.jpg" alt="">
+            <img id="img2" class="im2"  src="./img/bg-desktop-dark.jpg" alt="">
+            <div class="boxMain">
+                <div class="contBox2">
+                    <div class="logo">
+                        <div class="textLogo">
+                            <h1>T</h1>
+                            <h1>O</h1>
+                            <h1>D</h1>
+                            <h1>O</h1>
+                        </div>
+                        <div class="moonLogo" >
+                            <img id="img3" class="im3" src="./img/icon-moon.svg" alt="" onclick="changeToSun()">
+                            <img id="img4" class="im4" src="./img/icon-sun.svg" alt="" onclick="changeToMoon()">
+                        </div>
+                    </div>
+                    <div class="inputText" id="rr">
+                        <div class="adjustIn">
+                            <input type="text" id="textInpu" placeholder="Create a new todo...">
+                            <hr>
+                        </div>
+                        <button id="addBtn" onclick="add()">Add</button>
+                    </div>
+                </div>
+                <div class="contBox3">
+                    <div id="listTodos" class="listTodosCls">
+                        <!-- Todo items will be dynamically added here -->
+                        <!-- <div class="con1" id="tasks" >
+                            <div id="right" onclick="toggleTaskStatus()"></div>
+                            <label id="lbl" for="check1">Task For Apply</label>
+                            <img src="./img/icons8-cross-100 (1).png" alt="" onclick="deleteCard(this)">
+                        </div> -->
+
+
+                    </div>
+                    <div class="footer">
+                        <div class="countTodos">
+                            <span id="countTodos">0</span>
+                            <p>item(s) left</p>
+                        </div>
+                        <div class="allCont">
+                            <p id="p1">All</p>
+                            <p id="p2">Active</p>
+                            <p id="p3">completed</p>
+                        </div>
+                        <div class="clearTodos" >
+                            <button id="clearBtn" onclick="clearAllTasks()">Clear completed</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="./script.js"></script>
+</body>
+
+</html>

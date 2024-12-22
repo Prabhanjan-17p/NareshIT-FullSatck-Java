@@ -34,6 +34,12 @@ function checkEvenOdd() {
 }
 
 function colorChe(){
-    var cl = document.querySelectorAll('.box')
-    document.body.classList.toggle('blly')
+    // var cl = document.querySelectorAll('.box')
+    // document.body.classList.toggle('blly')
+    btnCount.style.display = 'none';
+}
+
+var btnCount = document.getElementById('myDiv')
+function counter() {
+    btnCount.style.display = 'block';
 }

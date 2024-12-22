@@ -41,38 +41,7 @@ int main()
     // printf("\n");
 
     // 2-Write a C program to rearrange the elements of a given array by moving all zeros to the front while maintaining the relative order of non-zero elements.
-    //  int arr[100];
-    //  int n;
-    //  printf("Enter the number of elements in the array: ");
-    //  scanf("%d", &n);
-    //  if (n <= 0) {
-    //      printf("Invalid input! Array size must be greater than zero.\n");
-    //      return 1;
-    //  }
-    //  printf("Enter the elements of the array: ");
-    //  for (int i = 0; i < n; i++) {
-    //      scanf("%d", &arr[i]);
-    //  }
-    //  int result[n];
-    //  int index = n - 1;
-    //  for (int i = n - 1; i >= 0; i--) {
-    //      if (arr[i] != 0) {
-    //          result[index--] = arr[i];
-    //      }
-    //  }
-    //  while (index >= 0) {
-    //      result[index--] = 0;
-    //  }
-    //  printf("Rearranged array: [");
-    //  for (int i = 0; i < n; i++) {
-    //      printf("%d", result[i]);
-    //      if (i < n - 1) {
-    //          printf(", ");
-    //      }
-    //  }
-    //  printf("]\n");
-
-    // 3-Write a C program to print the element(s) that occur the maximum number of times in a given array.
+    // int arr[100];
     // int n;
     // printf("Enter the number of elements in the array: ");
     // scanf("%d", &n);
@@ -81,36 +50,74 @@ int main()
     //     printf("Invalid input! Array size must be greater than zero.\n");
     //     return 1;
     // }
-    // int arr[n];
-    // printf("Enter the elements of the array:\n");
+    // printf("Enter the elements of the array: ");
     // for (int i = 0; i < n; i++)
     // {
     //     scanf("%d", &arr[i]);
     // }
-    // if (n == 0)
+    // int result[n];
+    // int index = n - 1;
+    // for (int i = n - 1; i >= 0; i--)
     // {
-    //     printf("No elements in the array.\n");
-    //     return;
+    //     if (arr[i] != 0)
+    //     {
+    //         result[index--] = arr[i];
+    //     }
     // }
-    // int frequency[1000] = {0}; // Frequency array to count occurrences
-    // int maxFrequency = 0;
-    // // Calculate frequency of each element
+    // while (index >= 0)
+    // {
+    //     result[index--] = 0;
+    // }
+    // printf("Rearranged array: [");
     // for (int i = 0; i < n; i++)
     // {
-    //     frequency[arr[i]]++;
-    //     if (frequency[arr[i]] > maxFrequency)
+    //     printf("%d", result[i]);
+    //     if (i < n - 1)
     //     {
-    //         maxFrequency = frequency[arr[i]];
+    //         printf(", ");
     //     }
     // }
-    // printf("Element(s) with maximum occurrences:\n");
-    // for (int i = 0; i < 1000; i++)
-    // {
-    //     if (frequency[i] == maxFrequency)
-    //     {
-    //         printf("Element %d occurred %d times.\n", i, maxFrequency);
-    //     }
-    // }
+    // printf("]\n");
+
+    // 3-Write a C program to print the element(s) that occur the maximum number of times in a given array.
+    int n;
+    printf("Enter the number of elements in the array: ");
+    scanf("%d", &n);
+    if (n <= 0)
+    {
+        printf("Invalid input! Array size must be greater than zero.\n");
+        return 1;
+    }
+    int arr[n];
+    printf("Enter the elements of the array:\n");
+    for (int i = 0; i < n; i++)
+    {
+        scanf("%d", &arr[i]);
+    }
+    if (n == 0)
+    {
+        printf("No elements in the array.\n");
+        return;
+    }
+    int frequency[1000] = {0}; // Frequency array to count occurrences
+    int maxFrequency = 0;
+    // Calculate frequency of each element
+    for (int i = 0; i < n; i++)
+    {
+        frequency[arr[i]]++;
+        if (frequency[arr[i]] > maxFrequency)
+        {
+            maxFrequency = frequency[arr[i]];
+        }
+    }
+    printf("Element(s) with maximum occurrences:\n");
+    for (int i = 0; i < 1000; i++)
+    {
+        if (frequency[i] == maxFrequency)
+        {
+            printf("Element %d occurred %d times.\n", i, maxFrequency);
+        }
+    }
 
     /*
     4--
@@ -132,9 +139,9 @@ int main()
         printf("Invalid matrix size.\n");
         return 1;
     }
-    int matrix[100][100];           
-    int magicSum = 0;               
-    int diag1Sum = 0, diag2Sum = 0; 
+    int matrix[100][100];
+    int magicSum = 0;
+    int diag1Sum = 0, diag2Sum = 0;
     int sumRow, sumCol;
     printf("Enter the elements of the %d x %d matrix:\n", n, n);
     for (int i = 0; i < n; i++)

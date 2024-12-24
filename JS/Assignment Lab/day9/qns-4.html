@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Form Submission Alert</title>
+</head>
+<body>
+  <h1>Sample Form</h1>
+  <form id="userForm">
+    <label for="username">Username:</label>
+    <input type="text" id="username" placeholder="Enter your username"><br><br>
+    
+    <label for="email">Email:</label>
+    <input type="email" id="email" placeholder="Enter your email"><br><br>
+    
+    <button type="submit" id="submitButton">Submit</button>
+  </form>
+
+  <script>
+    // Function to alert the user on form submission
+    function alertUser(event) {
+      event.preventDefault(); // Prevent the form from submitting (optional)
+      alert("Form submitted");
+    }
+
+    // Add the submit event listener to the form
+    const form = document.getElementById('userForm');
+    form.addEventListener('submit', alertUser);
+  </script>
+</body>
+</html>

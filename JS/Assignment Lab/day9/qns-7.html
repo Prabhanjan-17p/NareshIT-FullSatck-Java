@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Copy Event Example</title>
+</head>
+<body>
+  <h1>Copy Text Example</h1>
+  <p>Select and copy any text from this paragraph or elsewhere to see the copied text in the console.</p>
+  <textarea id="textArea" rows="5" cols="40" placeholder="Type and copy text from here..."></textarea>
+
+  <script>
+    // Function to handle the copy event and log the copied text
+    function printCopiedEvent(event) {
+      const copiedText = event.clipboardData.getData('text');
+      console.log(`Copied text: ${copiedText}`);
+    }
+
+    // Add the copy event listener to the document
+    document.addEventListener('copy', function(event) {
+      event.preventDefault(); // Prevent the default copy behavior
+      const selectedText = window.getSelection().toString();
+      event.clipboardData.setData('text', selectedText); // Manually set copied data
+      printCopiedEvent(event); // Call the function to log the copied text
+    });
+  </script>
+</body>
+</html>

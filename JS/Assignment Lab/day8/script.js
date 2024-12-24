@@ -110,3 +110,28 @@
 // console.log(arr);
 
 //9- Remove null and undefined values from the array
+function removeNullAndUndefined(arr) {
+    return arr.filter(item => item !== null && item !== undefined);
+}
+const arrayWithNulls = [1, null, 2, undefined, 3, null, 4, undefined, 5];
+const cleanedArray = removeNullAndUndefined(arrayWithNulls);
+console.log('Original Array:', arrayWithNulls);
+console.log('Cleaned Array:', cleanedArray);
+
+//10 -
+function calculateAverage(arr) {
+    const sum = arr.reduce((acc, num) => acc + num, 0);
+    const average = sum / arr.length;
+    return average;
+}
+const nums = [10, 20, 30, 40, 50];
+const average = calculateAverage(nums);
+console.log('Average:', average);
+
+//11- 
+function flattenArray(arr) {
+    return arr.flat(Infinity); // Use flat() with Infinity to fully flatten the array
+}
+const nestedArray = [1, [2, [3, [4, 5]]]];
+const flattenedArray = flattenArray(nestedArray);
+console.log('Flattened Array:', flattenedArray);

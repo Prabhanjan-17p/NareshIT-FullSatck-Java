@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Textarea Mouseup Event</title>
+</head>
+<body>
+  <h1>Select Text Example</h1>
+  <textarea id="textArea" rows="5" cols="40" placeholder="Select some text from here..."></textarea>
+
+  <script>
+    // Function to get and print the selected text
+    function getSelectedText() {
+      const textArea = document.getElementById('textArea');
+      const selectedText = textArea.value.substring(textArea.selectionStart, textArea.selectionEnd);
+      if (selectedText) {
+        console.log(`Selected text: ${selectedText}`);
+      }
+    }
+
+    // Add the mouseup event listener to the textarea
+    const textAreaElement = document.getElementById('textArea');
+    textAreaElement.addEventListener('mouseup', getSelectedText);
+  </script>
+</body>
+</html>

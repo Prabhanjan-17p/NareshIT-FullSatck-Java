@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Student Info Form</title>
+</head>
+<body>
+  <h1>Student Information</h1>
+  <form id="studentForm">
+    <label for="name">Name:</label>
+    <input type="text" id="name" placeholder="Enter your name"><br><br>
+    
+    <label for="age">Age:</label>
+    <input type="number" id="age" placeholder="Enter your age"><br><br>
+    
+    <label for="course">Course:</label>
+    <input type="text" id="course" placeholder="Enter your course"><br><br>
+    
+    <label for="institute">Institute Name:</label>
+    <input type="text" id="institute" placeholder="Enter your institute name"><br><br>
+    
+    <button type="button" id="submitButton">Submit</button>
+  </form>
+
+  <script>
+    // Function to handle the click event
+    function getUserData() {
+      // Retrieve values from input fields
+      const name = document.getElementById('name').value;
+      const age = document.getElementById('age').value;
+      const course = document.getElementById('course').value;
+      const institute = document.getElementById('institute').value;
+
+      // Log the student information to the console
+      console.log("Student Information:");
+      console.log(`Name: ${name}`);
+      console.log(`Age: ${age}`);
+      console.log(`Course: ${course}`);
+      console.log(`Institute: ${institute}`);
+    }
+
+    // Add the click event listener to the button
+    const button = document.getElementById('submitButton');
+    button.addEventListener('click', getUserData);
+  </script>
+</body>
+</html>

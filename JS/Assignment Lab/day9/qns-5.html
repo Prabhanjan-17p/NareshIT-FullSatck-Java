@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Print Textbox Value</title>
+</head>
+<body>
+  <h1>Enter Text</h1>
+  <input type="text" id="textInput" placeholder="Type something here...">
+
+  <script>
+    // Function to print the value of the textbox
+    function printValue(event) {
+      console.log(`Current value: ${event.target.value}`);
+    }
+
+    // Add the input event listener to the textbox
+    const textBox = document.getElementById('textInput');
+    textBox.addEventListener('input', printValue);
+  </script>
+</body>
+</html>

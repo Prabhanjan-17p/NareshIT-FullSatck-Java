@@ -1,0 +1,598 @@
+
+[PATTERNS & ARRAYS]
+-------------------
+
+SET-A
+------
+
+|------------|
+| Program-1  |
+|------------|
+
+[Pattern]
+---------
+
+Write C program to print given pattern.
+---------------------------------------
+
+|-------------------|
+| 1   6   11   16   |
+| 2   7   12   17   |
+| 3   8   13   18   |
+| 4   9   14   19   |
+| 5   10  15   20   |
+|-------------------|
+
+Test-Case-1 :-
+--------------
+Input: Rows = 3, Columns = 4 (if customizable dimensions are supported)
+
+Output :-
+----------
+|-----------------|
+| 1   4   7   10  |
+| 2   5   8   11  |
+| 3   6   9   12  |
+|-----------------|
+
+Test-Case-2 :-
+--------------
+
+Input: Rows = 5, Columns = 2 (if customizable dimensions are supported)
+
+Output:
+--------
+|---------|
+| 1   6   |
+| 2   7   |
+| 3   8   |
+| 4   9   |
+| 5   10  |
+|---------|
+
+Test-Case-3 :-
+---------------
+Input: Rows = 2, Columns = 3 (if dimensions are customizable)
+
+Output :-
+----------
+|-------------|
+| 1   3   5   |
+| 2   4   6   |
+|-------------|
+
+Invalid Test Cases :-
+---------------------
+Test-Case-5 :-
+---------------
+Input: Rows = -3, Columns = 4
+Output: Invalid input. Rows and columns must be positive integers.
+
+Test-Case-6 :-
+Input: Rows = 0, Columns = 5
+Output: Invalid input. Rows and columns must be positive integers.
+
+|------------|
+| Program-2  |
+|------------|
+
+[Arrays]
+
+Write a program in C to copy the elements of one array into another array?
+---------------------------------------------------------------------------
+
+Test-Case-1 :-
+---------------
+Input :-
+--------
+Array size: 5  
+Element at index 0: 1  
+Element at index 1: 2  
+Element at index 2: 3  
+Element at index 3: 4  
+Element at index 4: 5  
+
+Output :-
+---------
+The elements stored in the first array are: 1 2 3 4 5  
+The elements copied into the second array are: 1 2 3 4 5  
+
+Test-Case-2 :-
+---------------
+Input :-
+---------
+Array size: 1  
+Element at index 0: 100  
+
+Output :-
+----------
+The elements stored in the first array are: 100  
+The elements copied into the second array are: 100  
+
+Test-Case-3 :-
+---------------
+Input :-
+--------
+Array size: 4  
+Element at index 0: -5  
+Element at index 1: 0  
+Element at index 2: 15  
+Element at index 3: 20  
+
+Output :-
+----------
+The elements stored in the first array are: -5 0 15 20  
+The elements copied into the second array are: -5 0 15 20  
+
+Test-Case-4 :-
+--------------
+Input :-
+---------
+Array size: -3  
+
+Output :-
+----------
+Invalid input. Array size must be a positive integer.  
+
+Test-Case-5 :-
+---------------
+Input :-
+---------
+Array size: 0  
+
+Output :-
+---------
+Invalid input. Array size must be greater than zero.  
+
+|------------|
+| Program-3  |
+|------------|
+
+[Arrays]
+
+Write a C program that finds and prints all pairs of numbers from a given array whose sum equals a specified target value ?
+----------------------------------------------------------------------------------------------------------------------------
+
+-> The program should iterate through the array, compare every pair of numbers, and print each pair that meets the condition.
+
+Test-Case-1 :-
+--------------
+Input :-
+---------
+Array: {1, 5, 7, -1, 5}  
+Target Sum: 6  
+
+Output :-
+----------
+Pair found: (1, 5)  
+Pair found: (7, -1)  
+Pair found: (1, 5)  
+
+Test-Case-2 :-
+--------------
+Input :-
+--------
+Array: {0, -1, 2, -3, 1}  
+Target Sum: -2  
+
+Output :-
+----------
+Pair found: (0, -2)  
+Pair found: (-1, -1)  
+Pair found: (-3, 1)  
+
+Invalid Test Cases :-
+---------------------
+
+Test-Case-3 :-
+---------------
+Input :-
+---------
+Array: {}-> empty array with no elements  
+Target Sum: 10  
+Output :-
+---------
+Invalid input. Array must contain at least two elements.  
+
+Test-Case-4 :-
+---------------
+Input :-
+---------
+Array: {-5, -3, 0, 2, 4}  
+Target Sum: 6  
+
+Output :-
+----------
+No pairs found with the given target sum.  
+SET-B
+------
+
+|------------|
+| Program-1  |
+|------------|
+
+[Pattern]
+---------
+
+Write C program to print given pattern.
+----------------------------------------
+
+|-------------|
+| A  B  C  D  |
+| B  C  D  E  |
+| C  D  E  F  |
+| D  E  F  G  |
+|-------------|
+
+Test-Case-1 :-
+---------------
+Input: Rows = 3, Columns = 4 (if customizable dimensions are supported)
+
+Output :-
+---------
+
+|-------------|
+| A  B  C  D  |
+| B  C  D  E  |
+| C  D  E  F  |
+|-------------|
+
+Test-Case-2 :-
+---------------
+Input: Start character = 'a' (if lowercase option is supported)
+
+Output :-
+----------
+|-------------|
+| a  b  c  d  |
+| b  c  d  e  |
+| c  d  e  f  |
+| d  e  f  g  |
+|-------------|
+
+Test-Case-3 :-
+---------------
+
+Input: Rows = 2, Columns = 3 (if dimensions are customizable)
+
+Output :-
+---------
+
+|----------|
+| A  B  C  |
+| B  C  D  |
+|----------|
+
+Invalid Test Cases :-
+
+Test-Case-4 :-
+---------------
+
+Input: Rows = -3, Columns = 4
+Output: Invalid input. Rows and columns must be positive integers.
+
+Test-Case-5 :-
+---------------
+
+Input: Rows = 3, Columns = 0
+Output: Invalid input. Rows and columns must be positive integers.
+
+|------------|
+| Program-2  |
+|------------|
+
+[Arrays]
+
+Write a C program that performs the following tasks :-
+-------------------------------------------------------
+
+-> Reads an integer N from the user to define the size of a dynamically allocated array.
+-> Prompts the user to input N integer values into the array.
+-> Calculates and prints the sum of all elements in the array.
+
+Test-Case-1 :-
+--------------
+Input :-
+--------
+Enter the size of the array: 6  
+Enter 6 elements into the array:  
+8  2  3  4  5  6  
+
+Output :-
+---------
+The sum of all elements in the array is: 28  
+
+Test-Case-2 :-
+--------------
+Input :-
+--------
+Enter the size of the array: 5  
+Enter 5 elements into the array:  
+-2  -4  -6  -8  -10  
+
+Output :-
+----------
+The sum of all elements in the array is: -30  
+
+Invalid Test Cases :-
+----------------------
+Test-Case-3 :-
+--------------
+Input :-
+---------
+Enter the size of the array: 0  
+
+Output :-
+----------
+Invalid input. Array size must be greater than 0.  
+
+Test-Case-4 :-
+--------------
+Input :-
+---------
+Enter the size of the array: -5  
+Output :-
+---------
+Invalid input. Array size must be a positive integer.  
+
+|------------|
+| Program-3  |
+|------------|
+
+[Arrays]
+---------
+Write a C program to sort a given array in ascending order ?
+------------------------------------------------------------
+
+-> The program should use the bubble sort algorithm to compare adjacent elements and swap them if they are in the wrong order.
+-> After sorting, the program should print both the original array and the sorted array.
+
+Valid Test Cases :-
+--------------------
+Test-Case-1 :-
+--------------
+Input :-
+--------
+Array: {64, 25, 12, 22, 11}  
+
+Output :-
+---------
+Original array: 64 25 12 22 11  
+Sorted array in ascending order: 11 12 22 25 64  
+
+Test-Case-2 :-
+---------------
+Input :-
+--------
+Array: {10, -1, 4, 7, 3, -5}  
+
+Output :-
+----------
+Original array: 10 -1 4 7 3 -5  
+Sorted array in ascending order: -5 -1 3 4 7 10  
+
+Invalid Test Cases :-
+----------------------
+
+Test-Case-3 :-
+---------------
+Input :-
+--------
+Array: {}  
+
+Output :-
+---------
+Invalid input. Array cannot be empty.  
+
+Test-Case-4 :-
+----------------
+Input :-
+--------
+Array size: -5  
+Array: {1, 2, 3, 4, 5}  
+
+Output :-
+----------
+Invalid input. Array size must be a positive integer.  
+
+
+SET-C
+------
+
+|------------|
+| Program-1  |
+|------------|
+
+[Pattern]
+---------
+
+Write C program to print given pattern.
+----------------------------------------
+
+|-------------|
+| A  E  I  M  |
+| B  F  J  N  |
+| C  G  K  O  |
+| D  H  L  P  |
+|-------------|
+
+Test-Case-1 :-
+--------------
+Input: Rows = 2, Columns = 2 (if configurable dimensions are supported)
+
+Output :-
+----------
+|-------|
+| A  C  |
+| B  D  |
+|-------|
+
+Test-Case-2 :-
+--------------
+Input: Start character = 'a' (if lowercase option is supported)
+
+Output :-
+---------
+|-------------|
+| a  e  i  m  |
+| b  f  j  n  |
+| c  g  k  o  |
+| d  h  l  p  |
+|-------------|
+
+Test-Case-3 :-
+--------------
+
+Input: Rows = -4, Columns = 4 (if dimensions are customizable)
+Output: Invalid input. Rows and columns must be positive integers.
+
+Test-Case-4 :-
+---------------
+Input: Rows = 4, Columns = 0 (if dimensions are customizable)
+Output: Invalid input. Rows and columns must be positive integers.
+
+|------------|
+| Program-2  |
+|------------|
+
+[Arrays]
+---------
+Write a C program that performs the following tasks :-
+-------------------------------------------------------
+
+-> Dynamically allocate memory for an array to store 10 integer values.
+-> Use a for loop to prompt the user to input 10 integer values and store them in the array.
+-> Use separate for loops to print all the elements located at even indices and odd indices of the array.
+
+Valid Test Cases :-
+--------------------
+Test-Case-1 :-
+--------------
+Input :-
+--------
+Enter 10 integer elements:  
+12 23 34 45 56 67 78 89 90 11  
+
+Output :-
+----------
+-> Elements at even indices are :-  
+Element at index 0: 12  
+Element at index 2: 34  
+Element at index 4: 56  
+Element at index 6: 78  
+Element at index 8: 90  
+
+-> Elements at odd indices are :-  
+Element at index 1: 23  
+Element at index 3: 45  
+Element at index 5: 67  
+Element at index 7: 89  
+Element at index 9: 11  
+
+Test-Case-2 :-
+--------------
+Input :-
+--------
+Enter 10 integer elements:  
+1 2 3 4 5 6 7 8 9 10  
+
+Output :-
+----------
+-> Elements at even indices are :-  
+Element at index 0: 1  
+Element at index 2: 3  
+Element at index 4: 5  
+Element at index 6: 7  
+Element at index 8: 9  
+
+-> Elements at odd indices are :-  
+Element at index 1: 2  
+Element at index 3: 4  
+Element at index 5: 6  
+Element at index 7: 8  
+Element at index 9: 10  
+
+Test-Case-3 :-
+--------------
+Input :-
+---------
+Enter 10 integer elements:  
+-10 -20 -30 -40 -50 -60 -70 -80 -90 -100  
+
+Output :-
+----------
+-> Elements at even indices are :-  
+Element at index 0: -10  
+Element at index 2: -30  
+Element at index 4: -50  
+Element at index 6: -70  
+Element at index 8: -90  
+
+-> Elements at odd indices are :-  
+Element at index 1: -20  
+Element at index 3: -40  
+Element at index 5: -60  
+Element at index 7: -80  
+Element at index 9: -100  
+
+Invalid Test Cases :-
+---------------------
+
+Test-Case-4 :-
+---------------
+Input :-
+---------
+Array size: -10  
+
+Output :-
+----------
+Invalid input. Array size must be a positive integer.  
+
+|------------|
+| Program-3  |
+|------------|
+
+Write a C program to search for a given element in an array and print its indices. The program should prompt the user to input the element they want to search for ?
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+-> If the element is found in the array, the program should print the indices of the element.
+-> If the element is not found, the program should display a message indicating that the element is not present in the array.
+
+Valid Test Cases :-
+--------------------
+Test-Case-1 :-
+--------------
+Input :-
+--------
+Array: {3, 8, 4, 1, 9, 5, 9, 8, 9}  
+Element to search: 7  
+
+Output :-
+----------
+Element 7 not found in the array.  
+
+Test-Case-2 :-
+--------------
+Input :-
+--------
+Array: {3, 8, 4, 1, 9, 5, 9, 8, 9}  
+Element to search: 9  
+
+Output :-
+----------
+Element 9 found at index 4, index 6, and index 8.  
+
+Invalid Test Cases :-
+----------------------
+Test-Case-3 :-
+---------------
+Input :-
+--------
+Array: {3, 8, 4, 1, 9, 5, 9, 8, 9, 10, 11}  
+Element to search: 10  
+
+Output :-
+---------
+Invalid input. Array size exceeds the limit.  
+
+

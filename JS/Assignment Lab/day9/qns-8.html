@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Modify Copy Event</title>
+</head>
+<body>
+  <h1>Modify Copied Text Example</h1>
+  <p>Select and copy any text to see the modified text logged in the console.</p>
+  <textarea id="textArea" rows="5" cols="40" placeholder="Type and try copying this text..."></textarea>
+
+  <script>
+    // Function to modify and print the copied text
+    function modifyCopiedText(event) {
+      const modifiedText = "text cannot be copied";
+      event.clipboardData.setData('text', modifiedText); // Modify the clipboard data
+      console.log(`Copied text was modified to: ${modifiedText}`);
+    //   event.preventDefault(); // Prevent default copy behavior
+    }
+
+    // Add the copy event listener to the document
+    document.addEventListener('copy', modifyCopiedText);
+  </script>
+</body>
+</html>

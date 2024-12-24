@@ -1,0 +1,662 @@
+Arrays
+-------
+
+SET-A
+------
+
+|--------------|
+| Program-1 :- | [ok]
+|--------------|
+
+[Title:- Print Odd Numbers up to N]
+-----------------------------------
+Write a C program that takes an integer input N from the user and prints all odd numbers up to N using a while (true) loop. Ensure the program terminates if the user enters a negative value for N.
+
+Test Cases :-
+-------------
+
+Test-Case-1 :-
+--------------
+Input :- N = 10
+--------
+Output :- 1 3 5 7 9
+---------
+Explanation :- Prints all odd numbers from 1 to 10.
+--------------
+
+Test-Case-2 :-
+--------------
+Input :- N = -1
+--------
+Output :- Invalid input. Program terminated.
+---------
+Explanation :- Negative value entered; program exits.
+--------------
+
+Test-Case-3 :-
+--------------
+Input: N = 15
+Output: 1 3 5 7 9 11 13 15
+Explanation: Prints all odd numbers from 1 to 15.
+
+|--------------|
+| Program-2 :- | [ok]
+|--------------|
+
+[Title:- Find the Number Occurring Odd Number of Times]
+-------------------------------------------------------
+Write a C program to find the number(s) occurring an odd number of times in a given array.
+
+Sample Input :-
+----------------
+The given array is: 8 3 8 5 4 3 4 3 5 1
+
+Sample Output :-
+-----------------
+The elements occurring odd number of times are: 3 1
+
+Test Cases :-
+--------------
+Test Case-1 :- Valid
+---------------
+Input :- {8, 3, 8, 5, 4, 3, 4, 3, 5, 1}
+---------
+Output :- 3, 1 (elements occurring odd times)
+---------
+
+Test Case-2 :- Valid
+--------------
+Input :- {10, 20, 10, 20, 10}
+--------
+Output :- 10
+---------
+
+Test Case-3 :- Invalid
+--------------
+Input :- {} -> if size of the array is 0
+--------
+Output :- No elements in the array.
+---------
+
+|--------------|
+| Program-3 :- | [ok]
+|--------------|
+
+Write a program in C to accept two matrices and check whether they are equal.
+
+Sample Input :-
+---------------
+Input Rows and Columns of the 1st matrix: 2 2  
+Input Rows and Columns of the 2nd matrix: 2 2  
+
+Input elements in the first matrix:  
+Element - [0][0]: 1  
+Element - [0][1]: 2  
+Element - [1][0]: 3  
+Element - [1][1]: 4  
+
+Input elements in the second matrix:  
+Element - [0][0]: 1  
+Element - [0][1]: 2  
+Element - [1][0]: 3  
+Element - [1][1]: 4  
+
+Sample Output :-
+-----------------
+The first matrix is:  
+
+1 2  
+3 4  
+
+The second matrix is:  
+
+1 2  
+3 4  
+
+Two matrices are equal.
+
+Test Cases :-
+-------------
+Valid Test Cases :-
+--------------------
+Test Case-1 :- [Identical Matrices (2x2)]
+---------------
+Input :-
+---------
+Input Rows and Columns of the 1st matrix: 2 2  
+Input Rows and Columns of the 2nd matrix: 2 2  
+
+Input elements in the first matrix :-
+  
+Element - [0][0]: 5  
+Element - [0][1]: 6  
+Element - [1][0]: 7  
+Element - [1][1]: 8  
+
+Input elements in the second matrix :-  
+
+Element - [0][0]: 5  
+Element - [0][1]: 6  
+Element - [1][0]: 7  
+Element - [1][1]: 8  
+
+Expected Output :-
+------------------
+The first matrix is:  
+5 6  
+7 8  
+
+The second matrix is:  
+5 6  
+7 8  
+
+Two matrices are equal.
+
+Test Case 2 :- [Non-Identical Matrices (2x2)]
+--------------
+Input :-
+--------
+Input Rows and Columns of the 1st matrix: 2 2  
+Input Rows and Columns of the 2nd matrix: 2 2  
+
+Input elements in the first matrix:  
+
+Element - [0][0]: 1  
+Element - [0][1]: 2  
+Element - [1][0]: 3  
+Element - [1][1]: 4  
+
+Input elements in the second matrix:  
+
+Element - [0][0]: 5  
+Element - [0][1]: 6  
+Element - [1][0]: 7  
+Element - [1][1]: 8  
+
+Expected Output :-
+-------------------
+The first matrix is:  
+1 2  
+3 4  
+
+The second matrix is:  
+5 6  
+7 8  
+
+Two matrices are not equal.
+
+Invalid Test Cases :-
+---------------------
+Test Case-3 :- [Different Dimensions]
+--------------
+Input :-
+---------
+Input Rows and Columns of the 1st matrix: 2 3  
+Input Rows and Columns of the 2nd matrix: 3 2  
+
+Expected Output :-
+------------------
+Matrices with different dimensions cannot be compared. Please ensure both matrices have the same dimensions.
+
+Test Case-3 :- [Negative Dimensions]
+--------------
+Input :-
+--------
+Input Rows and Columns of the 1st matrix: -2 -2  
+Input Rows and Columns of the 2nd matrix: 2 2  
+
+Expected Output :-
+------------------
+Invalid matrix dimensions. Please enter positive integers for rows and columns.
+
+|--------------|
+| Program-4 :- | [ok]
+|--------------|
+
+[Title:- Remove Unique Elements]
+---------------------------------
+Write a Java program to remove all unique elements from an array and return a new array containing only the duplicate elements.
+
+The program should take an array of integers as input, process it to remove the unique elements, and return a new array with only the elements that occur more than once.
+
+Example :-
+----------
+Input: arr = {1, 2, 3, 1, 1, 1, 2, 4, 5}
+Output: [1, 2, 1, 1, 1, 2]
+
+Test-Cases :-
+-------------
+Test-Case-1 :-
+--------------
+Input :- arr = {1, 2, 3, 1, 1, 1, 2, 4, 5}
+--------
+Output :- [1, 2, 1, 1, 1, 2]
+---------
+Explanation: Only the duplicate elements 1 and 2 are retained in the output array.
+
+Test-Case-2 :-
+--------------
+Input :- arr = {5, 6, 7, 8, 9}
+--------
+Output :- []
+---------
+Explanation :- All elements are unique, so the output is an empty array.
+--------------
+
+Test-Case-3 :-
+--------------
+Input :- arr = {1, 1, 1, 1, 1}
+--------
+Output :- [1, 1, 1, 1, 1]
+----------
+Explanation :- All elements are duplicates, so the output is the same as the input.
+--------------
+
+Test-Case-4 :-
+--------------
+Input :- arr = {} -> if size of the array is 0
+--------
+Output :- []
+----------
+Explanation :- The input is an empty array, so the output is also an empty array. Would you like me to provide the Java code implementation for this question?
+--------------
+
+SET-B
+------
+
+|--------------|
+| Program-1 :- | [ok]
+|--------------|
+
+[Title:- Print Even Numbers up to N]
+-------------------------------------
+Write a C program that takes an integer input N from the user and prints all even numbers up to N using a while (true) loop. The program should validate the input and terminate if the user enters zero or a negative value.
+
+Test Cases :-
+-------------
+
+Test-Case-1 :-
+--------------
+Input: N = 8
+Output: 2 4 6 8
+Explanation: Prints all even numbers from 2 to 8.
+
+Test-Case-2 :-
+---------------
+Input: N = 0
+Output: Invalid input. Program terminated.
+Explanation: Input is zero; program exits.
+
+Test-Case-3 :-
+--------------
+Input: N = -5
+Output: Invalid input. Program terminated.
+Explanation: Negative value entered; program exits.
+
+|--------------|
+| Program-2 :- | [ok]
+|--------------|
+
+[Title:- Rearrange Array Elements (Move Zeros to Front)]
+--------------------------------------------------------
+Write a C program to rearrange the elements of a given array by moving all zeros to the front while maintaining the relative order of non-zero elements.
+
+Example :-
+----------
+Input :-
+--------
+[1, 0, 2, 0, 4, 5, 0, 3, 0]
+
+Output :-
+---------
+[0, 0, 0, 0, 1, 2, 4, 5, 3]
+
+Test Cases :-
+--------------
+Test Case-1 :- Valid
+--------------
+Input: {1, 0, 2, 0, 4, 5, 0, 3, 0}
+Output: {0, 0, 0, 0, 1, 2, 4, 5, 3}
+
+Test Case-2 :- Valid
+--------------
+Input: {0, 0, 0, 1, 2, 3}
+Output: {0, 0, 0, 1, 2, 3}
+
+Test Case-3 :- Invalid
+--------------
+Input: {} -> if size of the array is 0
+Output: No elements in the array.
+
+|--------------|
+| Program-3 :- | [ok]
+|--------------|
+
+[Title:- Print All Leaders in the Array]
+----------------------------------------
+Write a C program to print all the leaders in an array?
+--------------------------------------------------------
+Note: An element is a leader if it is greater than all the elements to its right.
+
+Example :-
+----------
+Input :-
+--------
+{10, 9, 14, 23, 15, 0, 9}
+
+Output :-
+---------
+Leader elements are: 23, 15, 9
+
+Test Cases :-
+--------------
+Test-Case-1 :- (Valid)
+---------------
+Input :- {16, 17, 4, 3, 5, 2}
+---------
+
+Expected Output :-
+-------------------
+Leader elements are: 17, 5, 2
+
+Test-Case-2 :- (Valid)
+--------------
+Input :- {1, 2, 3, 4, 0}
+
+Expected Output :-
+-------------------
+Leader elements are: 4, 0
+
+Test-Case-3 :- (Invalid)
+--------------
+Input: {} -> if size of the array is 0
+
+Expected Output :-
+-------------------
+Invalid input. The array cannot be empty.
+
+|--------------|
+| Program-4 :- |
+|--------------|
+
+[Title:- Print Common Elements of Two Arrays]
+---------------------------------------------
+Write a C program to print the common elements of two arrays ?
+----------------------------------------------------------------
+Example :-
+-----------
+Input :-
+--------
+arr1 = {1, 2, 3, 4, 5}  
+arr2 = {5, 7, 8, 1, 1, 2, 10}
+
+Output :-
+---------
+Common elements are: 1 2 5
+
+Test Cases :
+------------
+
+Test-Case-1 :- (Valid)
+--------------
+Input :-
+---------
+arr1 = {3, 4, 5, 6}  
+arr2 = {7, 5, 3, 1}
+
+Expected Output :-
+------------------
+Common elements are: 3 5
+
+Test-Case-2 :- (Valid)
+--------------
+Input :-
+--------
+arr1 = {10, 20, 30}  
+arr2 = {15, 25, 10}
+
+Expected Output :-
+------------------
+Common elements are: 10
+
+Test-Case-3 :- (Invalid)
+--------------
+Input :-
+--------
+arr1 = {}  -> if size of the array is 0
+arr2 = {1, 2, 3}
+
+Expected Output :-
+-------------------
+Invalid input. Both arrays should have elements.
+
+SET-C
+-----
+
+|--------------|
+| Program-1 :- | [ok]
+|--------------|
+
+[Title:- Print Prime Numbers up to N]
+-------------------------------------
+Write a C program that takes an integer input N from the user and prints all prime numbers up to N using a while (true) loop. If the user enters a non-positive value, the program should terminate.
+
+Test Cases :-
+-------------
+
+Test-Case-1 :-
+--------------
+Input: N = 10
+Output: 2 3 5 7
+Explanation: Prints all prime numbers from 2 to 10.
+
+Test-Case-2 :-
+--------------
+Input: N = 1
+Output: No prime numbers.
+Explanation: There are no prime numbers less than or equal to 1.
+
+Test-Case-3 :-
+--------------
+Input: N = -3
+Output: Invalid input. Program terminated.
+Explanation: Negative value entered; program exits.
+
+|--------------|
+| Program-2 :- | [ok]
+|--------------|
+
+Write a program in C to find the sum of the rows and columns of a square matrix ?
+---------------------------------------------------------------------------------
+Sample Input :-
+---------------
+-> Input the size of the square matrix :- 2  
+-> Input elements in the 2x2 matrix :-
+  
+Element - [0][0]: 5  
+Element - [0][1]: 6  
+Element - [1][0]: 7  
+Element - [1][1]: 8
+
+Sample Output :-
+----------------
+-> The matrix is:  
+__    __
+|  5 6 | 
+|_ 7 8_|  
+
+The sum of rows and columns of the matrix is :-
+-----------------------------------------------  
+__     __
+|  5  6 |-> 11 
+|_ 7  8_|-> 15
+   |  |
+  \|/\|/
+  12 14
+  
+Test Cases :-
+-------------
+
+-> Valid Test Cases :-
+----------------------
+Test Case-1 :- [Minimum Size Matrix]
+--------------
+Input :-
+--------
+-> Input the size of the square matrix :- 1  
+-> Input elements in the 1x1 matrix :-  
+
+Element - [0][0]: 10  
+
+Expected Output :-
+-------------------
+The matrix is:  
+
+10  
+
+The sum of rows and columns of the matrix is:  
+
+10  10  
+
+Test Case 2 :- [Typical Square Matrix (3x3)]
+--------------
+Input :-
+--------
+-> Input the size of the square matrix :- 3  
+-> Input elements in the 3x3 matrix :-
+  
+Element - [0][0]: 1  
+Element - [0][1]: 2  
+Element - [0][2]: 3  
+Element - [1][0]: 4  
+Element - [1][1]: 5  
+Element - [1][2]: 6  
+Element - [2][0]: 7  
+Element - [2][1]: 8  
+Element - [2][2]: 9  
+
+Expected Output :-
+-------------------
+The matrix is :-  
+----------------
+1  2  3  
+4  5  6  
+7  8  9  
+
+The sum of rows and columns of the matrix is :-
+-----------------------------------------------  
+ 1   2   3 ->  6  
+ 4   5   6 ->  15  
+ 7   8   9 ->  24  
+ |   |   |  
+\|/ \|/ \|/ 
+12  15  18  
+
+Invalid Test Cases :-
+----------------------
+Test Case 3 :- [Negative Matrix Size]
+--------------
+Input :-
+--------
+-> Input the size of the square matrix: -3  
+
+Expected Output :-
+------------------
+Invalid matrix size. Please enter a positive integer.
+
+|--------------|
+| Program-3 :- | [ok]
+|--------------|
+
+[Title:- Print Pairs of Numbers]
+--------------------------------
+Write a C program that takes an array of integers as input and prints pairs of numbers such that the first number in the pair starts from the beginning of the array and the second number starts from the end of the array.
+
+Example :-
+----------
+Input :-
+--------
+arr = {1, 2, 3, 4, 5, 6}
+
+Output :-
+---------
+(1, 6)  
+(2, 5)  
+(3, 4)
+
+Test-Cases :-
+--------------
+
+Test-Case-1 :- (Valid)
+--------------
+Input: {7, 8, 9, 10, 11, 12}
+
+Expected-Output :-
+------------------
+(7, 12)  
+(8, 11)  
+(9, 10)
+
+Test-Case-2 :- (Valid)
+--------------
+Input: {1, 2, 3, 4}
+
+Expected-Output :-
+------------------
+(1, 4)  
+(2, 3)
+
+Test-Case-3 :- (Invalid)
+--------------
+Input :-  {} -> if size of the array is 0
+---------
+Expected-Output :-
+------------------
+Invalid input. The array cannot be empty.
+
+|--------------|
+| Program-4 :- | [ok]
+|--------------|
+
+[Title:- Find the Max Occurring Elements]
+------------------------------------------
+Write a C program to print the element(s) that occur the maximum number of times in a given array.
+
+Example-1 :-
+------------
+Input :-
+--------
+{1, 2, 3, 1, 1, 1, 2, 2, 3, 1, 4, 1}
+
+Output :-
+---------
+Max element of array is 1, occurred 6 times.
+
+Example-2 :-
+------------
+Input :-
+---------
+{1, 2, 1, 3, 2, 3, 4, 5}
+
+Output :-
+---------
+Max element of array is 1, occurred 2 times.
+Max element of array is 2, occurred 2 times.
+Max element of array is 3, occurred 2 times.
+
+Test Cases :-
+--------------
+Test Case-1 :- Valid
+---------------
+Input: {1, 2, 3, 1, 1, 1, 2, 2, 3, 1, 4, 1}
+Output: Max element is 1, occurred 6 times.
+
+Test Case-2 :- Valid
+---------------
+Input: {1, 2, 1, 3, 2, 3, 4, 5}
+Output: 1, 2, 3 (all occurred 2 times each).
+
+Test Case-3 :- Invalid
+---------------
+Input: {} -> if size of the array is 0
+Output: No elements in the array.

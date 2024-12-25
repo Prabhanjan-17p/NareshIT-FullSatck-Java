@@ -1,0 +1,16 @@
+Events : Events are used to perform certain tasks/actions when certain user interaction happen
+In JS , we can trigger/invoke events in two ways
+  i. event handlers
+ ii. event listeners
+Event Handler: An Event Handler  handles the event and invokes/trigger a function once user activated it. Event Handlers are declared in HTML
+Event Lisners: An Event Listner listnes for a certain to happen and once it happen, it triggers a function. Event handlers are declared in JS
+
+Types of events:
+   i. mouse events: These events triggered by mouse actions
+   Eg: onclick,ondblclick,mouseover,mouseup,mousedown,mousewheel etc..,
+   ii. keyboard events: These events are triggered by keyboard actions
+   Eg: keyup,keydown
+   iii. form events: These events are triggered by form or input actions
+   Eg: onsubmit(),onchange,oninput,onselect etc,,
+   iv. window events: These events are triggered by document
+   Eg: scroll,abort,DOMContentloaded

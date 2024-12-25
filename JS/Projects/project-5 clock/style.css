@@ -1,4 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Ysabeau+SC:wght@1..1000&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap');
+
+@font-face {
+    font-family: sevenSegment;
+    src: url('./font/Seven\ Segment.ttf');
+}
 
 * {
     margin: 0;
@@ -13,7 +19,7 @@ body {
     /* font-family: Arial, sans-serif; */
     background-color: #f9f7f4;
     background-position: 100% 0;
-    background-position-x: 120%;
+    background-position-x: 100%;
     background-position-y: 0px;
     background-repeat: no-repeat;
     background-size: 50%;
@@ -38,6 +44,16 @@ nav {
     width: 100%;
     /* background-color: aliceblue; */
     gap: 52px;
+}
+
+.Home{
+    height: 50vh;
+    width: 50VW;
+    background-color: aqua;
+    position: absolute;
+    /* top: 0; */
+    margin-top: -60px;
+    margin-left: 44px;
 }
 
 .img img {
@@ -73,6 +89,10 @@ nav {
     align-items: center;
     justify-content: center;
     gap: 12px;
+    /* position: relative;
+    z-index: 9999; */
+
+    display: none;
 }
 
 .aja:hover .hover {
@@ -94,7 +114,8 @@ nav {
     cursor: pointer;
     position: absolute;
     z-index: 99;
-
+    font-family: "Roboto Mono", serif;
+    font-weight: 500;
 }
 
 .hover {
@@ -103,7 +124,7 @@ nav {
     width: 10px;
     position: relative;
     z-index: 1;
-    transition: all 1s ease-in-out;
+    transition: all 0.8s ease-in-out;
     border-radius: 5px;
     margin-top: -12px;
     margin-left: -12px;
@@ -129,7 +150,10 @@ nav {
     display: flex;
     align-items: center;
     justify-content: center;
+    position: absolute;
 
+
+    display: none;
 }
 
 .box1 {
@@ -169,10 +193,111 @@ nav {
 }
 
 .box3 button {
+    cursor: pointer;
     height: 40px;
     width: 90px;
     border-radius: 5px;
     background: rgb(224, 199, 49);
     background: linear-gradient(90deg, rgba(224, 199, 49, 1) 0%, rgba(241, 224, 224, 1) 50%, rgba(255, 255, 255, 1) 100%);
     border: 1px solid black;
+}
+
+.box2 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 22px;
+}
+
+.box2 p {
+    font-family: sevenSegment;
+    /* font-family: clockicons, sans-serif; */
+    font-size: 100px;
+    font-weight: 500;
+}
+
+/* Pop */
+.popCustm {
+    height: 65vh;
+    width: 660px;
+    background-color: #f9f7f4;
+    position: relative;
+    /* left: 420px; */
+    /* top: -120px; */
+    left: -620px;
+    z-index: 999;
+    transition: all 1s ease-in-out;
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+}
+
+/* input pop */
+.inputBox {
+    position: relative;
+    width: 250px;
+}
+
+.inputBox input {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid rgba(225, 225, 225, 0.853);
+    border-radius: 5px;
+    outline: none;
+    transition: 0.5s;
+    background: #1d2b3a;
+    color: rgba(225, 225, 225, 0.853);
+}
+
+.inputBox span {
+    position: absolute;
+    left: 0;
+    padding: 10px;
+    pointer-events: none;
+    font-size: 16px;
+    text-transform: uppercase;
+    transition: 0.5s;
+    color: rgba(225, 225, 225, 0.853);
+    letter-spacing: 4px;
+    /* background: yellow; */
+}
+
+.inputBox input:valid~span,
+.inputBox input:focus~span {
+    color: black;
+    transform: translateX(10px) translateY(-7px);
+    font-size: 0.65em;
+    padding: 0 10px;
+    background: #1d2b3a;
+    border-left: 1px solid yellow;
+    border-right: 1px solid yellow;
+    letter-spacing: 0.2em;
+    background-color: yellow;
+}
+
+.inputBox input:valid,
+.inputBox input:focus {
+    border-color: yellow;
+}
+
+.heacdOp h1 {
+    font-family: "Roboto Mono", serif;
+}
+
+.addTime {
+    height: 40px;
+    width: 100px;
+}
+
+.addTime div {
+    font-family: "Roboto Mono", serif;
+    height: 40px;
+    width: 100px;
+    border: 1px solid;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    border-radius: 5px;
 }

@@ -1,0 +1,17 @@
+AJAX(Asynchronous Javascript):
+ JS is synchronous and single threaded lanaguage. Asynchronous js means it takes some time to run
+ To understand AJAX, we can web API's such as Timers
+
+ Timers:
+ There are two timers available.
+ i. setTimeout:
+    setTimeout will accept two arguments (callback function and time in ms) and it will run callback function after specified time
+   eg: setTimeout(callbackfn,time in ms)
+ii. setInterval:
+   setInterval will accept two arguments (callback function and time in ms) and it will run callback function for every specified time
+   eg: setInterval(callbackfn,time in ms)
+
+
+
+
+ ii.setInterval

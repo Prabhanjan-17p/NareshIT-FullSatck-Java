@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Timer</title>
+    <title>Time Metrics</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -13,33 +13,43 @@
                 <img src="./img/logo1.png" alt="">
             </div>
             <div class="navCon">
-                <h3>Home</h3>
-                <h3>About</h3>
-                <h3>Timer</h3>
+                <h3 id="colorCstm1">Home</h3>
+                <h3 id="colorCstm2">About</h3>
+                <h3 id="colorCstm3">Timer</h3>
+                <h3 id="colorCstm4">Custom Time</h3>
             </div>
         </div>
     </nav>
+
+    
+
+
+
     <div class="op">
         <div class="aja">
             <div class="hover"></div>
-            <button class="btn">5 Min</button>
+            <button class="btn" onclick="start5()">5 Min</button>
         </div>
         <div class="aja">
             <div class="hover"></div>
-            <button>5 Min</button>
+            <button onclick="start10()">10 Min</button>
         </div>
         <div class="aja">
             <div class="hover"></div>
-            <button>5 Min</button>
+            <button onclick="start30()">30 Min</button>
         </div>
         <div class="aja">
             <div class="hover"></div>
-            <button>5 Min</button>
+            <button id="custm" onclick="openCstm()">Custom</button>
         </div>
     </div>
     <div class="mainCont">
         <div class="box1">
-            <div class="box2"></div>
+            <div class="box2">
+                <p id="min">00</p>
+                <p>:</p>
+                <p id="sec">00</p>
+            </div>
             <div class="box3">
                 <button>Pause</button>
                 <button>Start</button>
@@ -47,5 +57,25 @@
             </div>
         </div>
     </div>
+
+    <div class="popCustm">
+        <div class="heacdOp">
+            <h1>Set a Custom Countdown Timer</h1>
+        </div>
+        <div class="inputOp">
+            <div class="mainBox">
+                <div class="inputBox">
+                    <input id="cstmMin" type="number" required="required">
+                    <span>minutes</span>
+                </div>
+            </div>
+        </div>
+        <div class="addTime" id="qwe">
+            <div class="btnOp" onclick="addTime2()">Add Time</div>
+            <!-- <button id="addTime" onclick="addTime()">Add Time</button> -->
+        </div>
+    </div>
+
+    <script src="./script.js"></script>
 </body>
 </html>

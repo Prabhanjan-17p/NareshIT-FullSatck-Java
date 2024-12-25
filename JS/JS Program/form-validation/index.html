@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>form</title>
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.11.3/font/bootstrap-icons.min.css" integrity="sha512-dPXYcDub/aeb08c63jRq/k6GaKccl256JQy/AnOq7CAnEZ9FzSL9wSbcZkMp4R26vBsMLFYH4kQ67/bbV8XaCQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+    <h1>Registration Form</h1>
+    <form id="form">
+        <div class="input">
+            <label for="name">Enter name:</label><br>
+            <input type="text" id="name" placeholder="Eg:Prasad">
+        </div>
+        <div class="input">
+            <label for="email">Enter email:</label><br>
+            <input type="email" id="email" placeholder="Eg:abc@gmail.com">
+            <p id="emailError"></p>
+        </div>
+        <div class="input">
+            <label for="pwd">Enter Password:</label><br>
+           <div class="pwdInput">
+             <input type="password" name="password" id="pwd">
+            <i class="bi bi-eye"></i>
+           </div>
+        </div>
+        <div class="input">
+              <label for="pwd2">Confirm Password:</label><br>
+            <div class="pwdInput">
+                <input type="password" name="password2" id="pwd2">
+                <button type="button" onclick="revealPassword()"><i class="bi bi-eye"></i></button>
+            </div>
+        </div>
+       <div class="buttons">
+         <button type="submit">submit</button>
+        <button type="reset">Reset</button>
+       </div>
+    </form>
+    <script src="./script.js"></script>
+</body>
+</html>

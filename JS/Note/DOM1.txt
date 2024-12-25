@@ -43,3 +43,11 @@ We can manipulate any DOM elements using few methods such as
   vi. value : we can take input value from html element using value
 
 Phase III:DOM Creation:
+  DOM creation means adding/removing any node to the DOM tree
+  we can achieve it by following methods
+  document.createElement() - createElement is used to create a specific tag node
+  appendChild() -- appendChild is used to append a specific node as a child to any element
+  append() -- append is used to append one or more nodes as a child to any element
+  remove() -- used to remove any existing node
+
+  

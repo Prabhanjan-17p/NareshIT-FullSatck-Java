@@ -19,12 +19,14 @@ body {
     /* font-family: Arial, sans-serif; */
     background-color: #f9f7f4;
     background-position: 100% 0;
-    background-position-x: 100%;
-    background-position-y: 0px;
+    background-position-x: 98%; /* 120 */
+    background-position-y: 0px;  /* 0 */
     background-repeat: no-repeat;
     background-size: 50%;
     padding-top: 13rem;
-    background-size: auto 80%;
+    background-size: auto 100%;  /* 80 */
+    transition: all 1s ease-in-out;
+    overflow: hidden;
 }
 
 nav {
@@ -45,16 +47,52 @@ nav {
     /* background-color: aliceblue; */
     gap: 52px;
 }
-
+/* Home */
 .Home{
     height: 50vh;
     width: 50VW;
-    background-color: aqua;
+    /* background-color: aqua; */
     position: absolute;
     /* top: 0; */
-    margin-top: -60px;
-    margin-left: 44px;
+    /* margin-top: -60px; */
+    left: 114px;
+    display: flex;
+    flex-direction: column;
+    gap: 42px;
+    font-family: "Roboto Mono", serif;
+    transition: all 1s ease-in-out;
+    position: relative;
+    /* z-index: 9999; */
 }
+.headHome h1{
+    font-size: 35px;
+}
+.paraHome p{
+    font-size: 12px;
+    width: 32vw;
+    margin-top: -23px;
+}
+.btnGo button{
+    height: 50px;
+    width: 170px;
+    /* border-radius: 5px; */
+    border-top-right-radius: 40px;
+    border-bottom-right-radius: 40px;
+    cursor: pointer;
+    transition: all 0.5s ease;
+    background-color: #f8f441;
+    border: none;
+    font-size: 15px;
+}
+.btnGo button:hover{
+    background-color: #f8f5418b;
+}
+
+
+
+
+
+
 
 .img img {
     height: 160px;
@@ -80,6 +118,13 @@ nav {
     gap: 32px;
 }
 
+
+#allConHere{
+    /* margin-top: -65vh; */
+    margin-top: 65vh;
+    transition: all 1s ease-in-out;
+}
+
 .op {
     height: 120px;
     width: 100vw;
@@ -92,7 +137,10 @@ nav {
     /* position: relative;
     z-index: 9999; */
 
-    display: none;
+    /* display: none; */
+    /* position: relative;
+    left: -1000px; */
+    /* margin-left: -1100px; */
 }
 
 .aja:hover .hover {
@@ -152,8 +200,11 @@ nav {
     justify-content: center;
     position: absolute;
 
+    /* position: relative;
+    left: -1100px; */
 
-    display: none;
+    /* display: none; */
+    /* margin-left: -1100px; */
 }
 
 .box1 {

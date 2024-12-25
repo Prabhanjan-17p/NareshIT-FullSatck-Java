@@ -154,3 +154,36 @@ function addTime2() {
         intervalId = setInterval(countdown, 1000);
     }
 }
+
+//go time
+const home = document.getElementById("home");
+const mainCC = document.getElementById("allConHere");
+function goTime(){
+    home.style.left = '-900px'
+    document.body.style.backgroundPositionX = '110%'
+    document.body.style.backgroundSize = 'auto 80%'
+
+    mainCC.style.marginTop = '-65vh';
+    colorCstm3.style.color ='black'
+    colorCstm1.style.color ='#686663'
+}
+
+
+colorCstm1.addEventListener("click",() =>{
+    home.style.left = '114px'
+    document.body.style.backgroundPositionX = '98%'
+    document.body.style.backgroundSize = 'auto 100%'
+
+    mainCC.style.marginTop = '65vh';
+    colorCstm3.style.color ='#686663'
+    colorCstm1.style.color ='black'
+})
+colorCstm3.addEventListener("click",() =>{
+    home.style.left = '-900px'
+    document.body.style.backgroundPositionX = '110%'
+    document.body.style.backgroundSize = 'auto 80%'
+
+    mainCC.style.marginTop = '-65vh';
+    colorCstm3.style.color ='black'
+    colorCstm1.style.color ='#686663'
+});

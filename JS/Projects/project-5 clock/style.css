@@ -16,7 +16,6 @@ body {
     background: url("./img/backIMG.png");
     height: 100vh;
     width: 100vw;
-    /* font-family: Arial, sans-serif; */
     background-color: #f9f7f4;
     background-position: 100% 0;
     background-position-x: 98%; /* 120 */
@@ -32,7 +31,6 @@ body {
 nav {
     height: 70px;
     width: 70vw;
-    /* background-color: rgb(33, 70, 102); */
     position: absolute;
     top: 0;
     padding-left: 42px;
@@ -44,17 +42,13 @@ nav {
     align-items: center;
     height: 100%;
     width: 100%;
-    /* background-color: aliceblue; */
     gap: 52px;
 }
 /* Home */
 .Home{
     height: 50vh;
     width: 50VW;
-    /* background-color: aqua; */
     position: absolute;
-    /* top: 0; */
-    /* margin-top: -60px; */
     left: 114px;
     display: flex;
     flex-direction: column;
@@ -62,7 +56,6 @@ nav {
     font-family: "Roboto Mono", serif;
     transition: all 1s ease-in-out;
     position: relative;
-    /* z-index: 9999; */
 }
 .headHome h1{
     font-size: 35px;
@@ -75,7 +68,6 @@ nav {
 .btnGo button{
     height: 50px;
     width: 170px;
-    /* border-radius: 5px; */
     border-top-right-radius: 40px;
     border-bottom-right-radius: 40px;
     cursor: pointer;
@@ -87,11 +79,6 @@ nav {
 .btnGo button:hover{
     background-color: #f8f5418b;
 }
-
-
-
-
-
 
 
 .img img {
@@ -120,7 +107,6 @@ nav {
 
 
 #allConHere{
-    /* margin-top: -65vh; */
     margin-top: 65vh;
     transition: all 1s ease-in-out;
 }
@@ -128,19 +114,11 @@ nav {
 .op {
     height: 120px;
     width: 100vw;
-    /* background-color: aquamarine; */
     margin-top: -100px;
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 12px;
-    /* position: relative;
-    z-index: 9999; */
-
-    /* display: none; */
-    /* position: relative;
-    left: -1000px; */
-    /* margin-left: -1100px; */
 }
 
 .aja:hover .hover {
@@ -150,12 +128,10 @@ nav {
 }
 
 .aja button {
-    /* padding: 15px 30px; */
     height: 50px;
     width: 100px;
     font-size: 16px;
     border: 2px solid black;
-    /* background-color: #008CBA; */
     background: transparent;
     color: black;
     border-radius: 5px;
@@ -176,35 +152,22 @@ nav {
     border-radius: 5px;
     margin-top: -12px;
     margin-left: -12px;
-    /* border-radius: 50%; */
-    /* position: fixed; */
 }
 
 .aja {
     height: 50px;
     width: 100px;
-    /* background-color: blue; */
     display: flex;
-    /* align-items: center; */
-    /* justify-content: center; */
     overflow: hidden;
-
 }
 
 .mainCont {
     height: 65vh;
     width: 100vw;
-    /* background-color: red; */
     display: flex;
     align-items: center;
     justify-content: center;
     position: absolute;
-
-    /* position: relative;
-    left: -1100px; */
-
-    /* display: none; */
-    /* margin-left: -1100px; */
 }
 
 .box1 {
@@ -222,10 +185,8 @@ nav {
 .box2 {
     height: 25vh;
     width: 560px;
-    /* background-color: rebeccapurple; */
     background: rgb(255, 255, 255);
     background: linear-gradient(90deg, rgba(255, 255, 255, 1) 0%, rgba(241, 224, 224, 1) 50%, rgba(224, 199, 49, 1) 100%);
-    /* margin-left: -10px; */
     border-radius: 8px;
     box-shadow: 1px 1px 10px #7d7c7a, -1px -1px 10px #7d7c7a;
     position: relative;
@@ -236,7 +197,6 @@ nav {
     height: 18vh;
     width: 100%;
     background-color: white;
-    /* margin-left: -50px; */
     display: flex;
     align-items: center;
     justify-content: center;
@@ -262,7 +222,6 @@ nav {
 
 .box2 p {
     font-family: sevenSegment;
-    /* font-family: clockicons, sans-serif; */
     font-size: 100px;
     font-weight: 500;
 }
@@ -273,8 +232,6 @@ nav {
     width: 660px;
     background-color: #f9f7f4;
     position: relative;
-    /* left: 420px; */
-    /* top: -120px; */
     left: -620px;
     z-index: 999;
     transition: all 1s ease-in-out;
@@ -311,7 +268,6 @@ nav {
     transition: 0.5s;
     color: rgba(225, 225, 225, 0.853);
     letter-spacing: 4px;
-    /* background: yellow; */
 }
 
 .inputBox input:valid~span,

@@ -1,0 +1,12 @@
+Every Asynchronous actually returns promise.
+A Promise is an object to describe an eventual completion of asynchronous operation.
+
+Before Promises, we used to use "callbacks" for asynchronous js, it leads to a probelm "callback hell"
+
+To avoid callback hell, will use promises one by one called promise chaining
+
+syntax: new Promise(function(resolve,reject){
+    //promise logic
+})
+
+we can use in real time for API's

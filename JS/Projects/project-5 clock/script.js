@@ -1,30 +1,3 @@
-// const min = document.getElementById('min');
-// const sec = document.getElementById('sec');
-// let secCount = 60;
-// let minCount = 5;
-
-// function countdown() {
-//     secCount--;
-//     if(secCount <=0){
-//         secCount = 59;
-//         minCount--;
-//     }
-//     min.textContent = minCount;     
-//     sec.textContent = secCount;
-//     console.log(secCount);
-// }
-// function stopTime(){
-//     clearInterval(countdown);
-//     console.log("Time's up!");
-//     min.textContent = "00";
-//     sec.textContent = "00";
-// }
-// setInterval(countdown, 1000)
-// setTimeout(stopTime,5000);
-
-
-
-
 const min = document.getElementById('min');
 const sec = document.getElementById('sec');
 let secCount;

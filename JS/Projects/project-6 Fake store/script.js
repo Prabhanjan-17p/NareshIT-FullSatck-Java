@@ -24,19 +24,21 @@ function displayData(product) {
         // pDiv.append(pImg,pTitle,pPrice,pButton);
         // mainDiv.appendChild(pDiv);
         
+        // const pro = document.createElement('div');
+        // pro.classList.add('product');
         var pro = `<div class="product">
                 <div class="img">
                     <img src="${p.image}" alt="${p.title}">
                 </div>
                 <div class="prc">
-                    <p>"Price: ₹"+ ${p.price}</p>
-                    <button>Add to Cart</button>
+                    <p>Price: ₹${p.price}</p>
+                    <img src="./img/icons8-love-100.png" alt="">
                 </div>
                 <div class="head">
-                    <h2>${p.title}</h2>
+                    <h2 class="h2">${p.title}</h2>
                 </div>
             </div>`
-            mainDiv.append(pro);
+            mainDiv.innerHTML += pro;
         
     });
 }

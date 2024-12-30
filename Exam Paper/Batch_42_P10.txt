@@ -1,0 +1,828 @@
+BATCH_42_&_29_C_LANGUAGE_TEST
+-----------------------------
+
+SET-A
+------
+
+|--------------|
+| Program-1 :- | [ok]
+|--------------|
+
+[PATTERNS]
+
+Write C program to print given pattern.
+---------------------------------------
+
+|---------------------|
+| 1                   |
+| 1   2               |
+| 3   4   5           |
+| 6   7   8   9       |
+| 10  11  12  13  14  | 
+|---------------------|
+
+Test-Case-1 :-
+--------------
+Input :-
+---------
+Number of rows = 5
+
+Expected Output :-
+------------------
+
+1    
+1   2    
+3   4   5    
+6   7   8   9    
+10  11  12  13  14    
+
+Test-Case-2 :-
+--------------
+Input :-
+---------
+Number of rows = 3
+
+Expected Output :-
+------------------
+
+1    
+1   2    
+3   4   5    
+
+Test-Case-3 :-
+--------------
+Input :-
+--------
+Number of rows = 0 (Boundary Case)
+
+Expected Output :-
+------------------
+No output (empty pattern)
+
+Test-Case-4 :- (Invalid)
+--------------
+Input :-
+--------
+Number of rows = -3 (Invalid Input)
+
+Expected Output :-
+------------------
+Error message: "Invalid input! Number of rows must be positive."
+
+|--------------|
+| Program-2 :- | [ok]
+|--------------|
+
+[ARRAYS]
+
+[Title: "Program to Add Two Square Matrices in C"]
+---------------------------------------------------
+Write a C program to perform the addition of two square matrices of the same size.
+The program should first prompt the user to input the size of the matrix, then ask for the elements of both matrices.
+After entering the matrices, the program should display the two matrices and their sum.
+
+Sample Input :-
+---------------
+-> Input the size of the square matrix: 2
+
+Input elements in the first matrix :-
+-------------------------------------
+element - [0],[0]: 1
+element - [0],[1]: 2
+element - [1],[0]: 3
+element - [1],[1]: 4
+
+Input elements in the second matrix :-
+---------------------------------------
+element - [0],[0]: 5
+element - [0],[1]: 6
+element - [1],[0]: 7
+element - [1],[1]: 8
+
+Sample Output :-
+-----------------
+-> The First matrix is :-
+--------------------------
+
+1 2
+3 4
+
+-> The Second matrix is :
+--------------------------
+
+5 6
+7 8
+
+-> The Addition of the two matrices is :-
+------------------------------------------
+
+6 8
+10 12
+
+|--------------|
+| Program-3 :- | [ok]
+|--------------|
+
+[STRINGS]
+
+[Title:- Find the Sum of Numbers in a Given String]
+----------------------------------------------------
+
+Write a C program to compute the sum of all numerical values present in a given string?
+----------------------------------------------------------------------------------------
+
+Sample-Input :-
+----------------
+Enter a String: TS12ab345
+
+Sample-Output :-
+-----------------
+Sum Of the numbers is: 15
+
+Test-Cases :-
+-------------
+
+Test-Case-1 :-
+--------------
+Input :- TS12ab345
+--------
+
+Output :- Sum Of the numbers is: 15
+---------
+
+Test-Case-2 :-
+---------------
+Input :- a0b1c2
+--------
+
+Output :- Sum Of the numbers is: 3
+---------
+
+Test-Case-3 :-
+--------------
+Input :- abcd
+--------
+
+Output :- Sum Of the numbers is: 0
+---------
+
+Test-Case-4 :- (Invalid):
+--------------
+Input :- "" (Empty string)
+--------
+
+Output :- Sum Of the numbers is: 0
+---------
+
+|--------------|
+| Program-4 :- | [ok]
+|--------------|
+
+[Title:- Find the Biggest number among three numbers-FUNCTIONS]
+---------------------------------------------------------------
+
+Write a C program to find the biggest number among three numbers using a function. Do not use any loops or if-else statements in the program.
+
+-> Create a function biggestOfThree(int a, int b, int c) that takes three integers as input and returns the largest number among them. Use the ternary operator (? :) to determine the largest number.
+-> In the main function, read three numbers from the user, call the function, and display the biggest number.
+
+Test Cases :-
+--------------
+Valid Test Cases
+-----------------
+Test Case-1 :-
+--------------
+Input :-
+--------
+Enter the first number: 30
+Enter the second number: 20
+Enter the third number: 40
+
+Expected Output :-
+-------------------
+The Biggest number is: 40
+
+Test Case-2 :-
+---------------
+Input :-
+--------
+Enter the first number: -5
+Enter the second number: 0
+Enter the third number: -10
+
+Expected Output :-
+------------------
+The Biggest number is: 0
+
+Test Case-3 :-
+--------------
+Input :-
+--------
+Enter the first number: 30
+Enter the second number: 20.5
+Enter the third number: 40
+
+Expected Output :-
+-------------------
+The program should terminate or prompt the user for correct input, as 20.5 is not a valid integer.
+
+SET-B
+------
+
+|--------------|
+| Program-1 :- |
+|--------------|
+
+[PATTERNS]
+
+Write C program to print given pattern.
+----------------------------------------
+
+|-------------------|
+| 0                 |
+| 0  1              |
+| 0  1  1           |
+| 0  1  1  2        |
+| 0  1  1  2  3     |
+| 0  1  1  2  3  5  |
+|-------------------|
+
+
+|--------------|
+| Program-2 :- | [ok]
+|--------------|
+
+[Title:- Sum of rows and columns in the 2-d array-ARRAYS]
+----------------------------------------------------------
+
+Write a program in C to find the sum of the rows and columns of a square matrix ?
+---------------------------------------------------------------------------------
+Sample Input :-
+---------------
+-> Input the size of the square matrix :- 2  
+-> Input elements in the 2x2 matrix :-
+  
+Element - [0][0]: 5  
+Element - [0][1]: 6  
+Element - [1][0]: 7  
+Element - [1][1]: 8
+
+Sample Output :-
+----------------
+-> The matrix is:  
+__    __
+|  5 6 | 
+|_ 7 8_|  
+
+The sum of rows and columns of the matrix is :-
+-----------------------------------------------  
+__     __
+|  5  6 |-> 11 
+|_ 7  8_|-> 15
+   |  |
+  \|/\|/
+  12 14
+  
+Test Cases :-
+-------------
+
+-> Valid Test Cases :-
+----------------------
+Test Case-1 :- [Minimum Size Matrix]
+--------------
+Input :-
+--------
+-> Input the size of the square matrix :- 1  
+-> Input elements in the 1x1 matrix :-  
+
+Element - [0][0]: 10  
+
+Expected Output :-
+-------------------
+The matrix is:  
+
+10  
+
+The sum of rows and columns of the matrix is:  
+
+10  10  
+
+Test Case 2 :- [Typical Square Matrix (3x3)]
+--------------
+Input :-
+--------
+-> Input the size of the square matrix :- 3  
+-> Input elements in the 3x3 matrix :-
+  
+Element - [0][0]: 1  
+Element - [0][1]: 2  
+Element - [0][2]: 3  
+Element - [1][0]: 4  
+Element - [1][1]: 5  
+Element - [1][2]: 6  
+Element - [2][0]: 7  
+Element - [2][1]: 8  
+Element - [2][2]: 9  
+
+Expected Output :-
+-------------------
+The matrix is :-  
+----------------
+1  2  3  
+4  5  6  
+7  8  9  
+
+The sum of rows and columns of the matrix is :-
+-----------------------------------------------  
+ 1   2   3 ->  6  
+ 4   5   6 ->  15  
+ 7   8   9 ->  24  
+ |   |   |  
+\|/ \|/ \|/ 
+12  15  18  
+
+Invalid Test Cases :-
+----------------------
+Test Case 3 :- [Negative Matrix Size]
+--------------
+Input :-
+--------
+-> Input the size of the square matrix: -3  
+
+Expected Output :-
+------------------
+Invalid matrix size. Please enter a positive integer.
+
+|--------------|
+| Program-3 :- | [OK]
+|--------------|
+
+[STRINGS]
+
+[Title:- Character Frequency in a String]
+-----------------------------------------
+
+Write a C program to calculate and display the frequency of each character present in a given string ?
+-------------------------------------------------------------------------------------------------------
+Sample-Input :-
+---------------
+String: "Hello Everyone"
+
+Sample-Output :-
+----------------
+The frequency of H is 1
+The frequency of e is 3
+The frequency of l is 2
+The frequency of o is 2
+The frequency of   is 1  (This counts the space character)
+The frequency of E is 1
+The frequency of v is 1
+The frequency of r is 1
+The frequency of y is 1
+The frequency of n is 1
+
+Test-Cases :-
+-------------
+Test-Case-1 :- (Valid Case - Mixed Characters):
+--------------
+Input :-
+--------
+String: "Hello World"
+
+Expected-Output :-
+------------------
+The frequency of H is 1
+The frequency of e is 1
+The frequency of l is 3
+The frequency of o is 2
+The frequency of   is 1
+The frequency of W is 1
+The frequency of r is 1
+The frequency of d is 1
+
+Test-Case-2 :- (Valid Case - Single Character Repeated):
+--------------
+Input :-
+---------
+String: "aaaaa"
+
+Expected-Output :-
+------------------
+The frequency of a is 5
+
+Test-Case-3 :- (Edge Case - Empty String):
+---------------
+Input :-
+--------
+String: ""
+
+Expected-Output :
+------------------
+No characters to count.
+
+Test-Case-4 :- (Valid Case - Special Characters):
+--------------
+Input :-
+---------
+String: "@@!!##$$"
+
+Expected-Output :-
+-------------------
+The frequency of @ is 2
+The frequency of ! is 2
+The frequency of # is 2
+The frequency of $ is 2
+
+Test-Case-5 :- (Valid Case - Case Sensitivity):
+--------------
+Input :-
+--------
+String: "AaAaBbBb"
+
+Expected Output :-
+-------------------
+The frequency of A is 2
+The frequency of a is 2
+The frequency of B is 2
+The frequency of b is 2
+
+|--------------|
+| Program-4 :- | [ok]
+|--------------|
+
+[Tile :- Reverse a Number ARRAYS-WITH-FUNCTIONS ]
+-------------------------------------------------
+Program to reverse a number using function
+-------------------------------------------
+Function Signature :-
+----------------------
+-> Return Type: int (Returns the reversed number)
+-> Function Name: reverseNumber()
+-> Arguments: int num
+
+Test Cases :-
+-------------
+Test Case	Input	Expected Output	Result
+----------------------------------------------
+Test-Case-1	123	321		Valid
+Test-Case-2	0	0		Valid
+Test-Case-3	-456	-654		Valid
+Test-Case-4	100	1		Valid
+Test-Case-5	8901	1098		Valid
+
+SET-C
+------
+
+|--------------|
+| Program-1 :- | [ok]
+|--------------|
+
+[PATTERNS]
+
+Write a C program to print the given pattern. The pattern consists of rows, where each row contains a sequence of odd numbers, starting from 1. 
+
+                 1    
+             3   5    
+         7   9   11   
+     13  15  17  19   
+ 21  23  25  27  29   
+
+Test Cases :-
+--------------
+Test-Cases-1 :-
+---------------
+Input :- n = 5
+--------
+
+Output :-
+----------
+  
+            1    
+   	  3 5    
+  	7 9 11   
+   13 15 17 19   
+21 23 25 27 29   
+
+Test-Cases-2 :-
+---------------
+Input: n = 3
+
+Output :-
+----------
+   
+       1    
+     3 5    
+   7 9 11   
+
+Test-Cases-3 :-
+---------------
+Input :- n = 0
+--------
+
+Output :-
+----------
+(No output, as there are no rows to print)
+
+Test-Cases-4 :-
+---------------
+Input :- n = -3
+--------
+
+Expected Output :-
+------------------
+(Error message: "Invalid input! Number of rows must be non-negative.")
+
+|--------------|
+| Program-2 :- | [ok]
+|--------------|
+
+[Title:- Identical-Arrays-ARRAYS]
+
+Write a program in C to accept two matrices and check whether they are equal.
+
+Sample Input :-
+----------------
+Input Rows and Columns of the 1st matrix: 2 2  
+Input Rows and Columns of the 2nd matrix: 2 2  
+
+Input elements in the first matrix:  
+Element - [0][0]: 1  
+Element - [0][1]: 2  
+Element - [1][0]: 3  
+Element - [1][1]: 4  
+
+Input elements in the second matrix:  
+Element - [0][0]: 1  
+Element - [0][1]: 2  
+Element - [1][0]: 3  
+Element - [1][1]: 4  
+
+Sample Output :-
+-----------------
+The first matrix is:  
+
+1 2  
+3 4  
+
+The second matrix is:  
+
+1 2  
+3 4  
+
+Two matrices are equal.
+
+Test Cases :-
+-------------
+Valid Test Cases :-
+--------------------
+Test Case-1 :- [Identical Matrices (2x2)]
+---------------
+Input :-
+---------
+Input Rows and Columns of the 1st matrix: 2 2  
+Input Rows and Columns of the 2nd matrix: 2 2  
+
+Input elements in the first matrix :-
+  
+Element - [0][0]: 5  
+Element - [0][1]: 6  
+Element - [1][0]: 7  
+Element - [1][1]: 8  
+
+Input elements in the second matrix :-  
+
+Element - [0][0]: 5  
+Element - [0][1]: 6  
+Element - [1][0]: 7  
+Element - [1][1]: 8  
+
+Expected Output :-
+------------------
+The first matrix is:  
+5 6  
+7 8  
+
+The second matrix is:  
+5 6  
+7 8  
+
+Two matrices are equal.
+
+Test Case 2 :- [Non-Identical Matrices (2x2)]
+--------------
+Input :-
+--------
+Input Rows and Columns of the 1st matrix: 2 2  
+Input Rows and Columns of the 2nd matrix: 2 2  
+
+Input elements in the first matrix:  
+
+Element - [0][0]: 1  
+Element - [0][1]: 2  
+Element - [1][0]: 3  
+Element - [1][1]: 4  
+
+Input elements in the second matrix:  
+
+Element - [0][0]: 5  
+Element - [0][1]: 6  
+Element - [1][0]: 7  
+Element - [1][1]: 8  
+
+Expected Output :-
+-------------------
+The first matrix is:  
+1 2  
+3 4  
+
+The second matrix is:  
+5 6  
+7 8  
+
+Two matrices are not equal.
+
+Invalid Test Cases :-
+---------------------
+Test Case-3 :- [Different Dimensions]
+--------------
+Input :-
+---------
+Input Rows and Columns of the 1st matrix: 2 3  
+Input Rows and Columns of the 2nd matrix: 3 2  
+
+Expected Output :-
+------------------
+Matrices with different dimensions cannot be compared. Please ensure both matrices have the same dimensions.
+
+Test Case-3 :- [Negative Dimensions]
+--------------
+Input :-
+--------
+Input Rows and Columns of the 1st matrix: -2 -2  
+Input Rows and Columns of the 2nd matrix: 2 2  
+
+Expected Output :-
+------------------
+Invalid matrix dimensions. Please enter positive integers for rows and columns.
+
+|--------------|
+| Program-3 :- | [ok]
+|--------------|
+
+[STRINGS]
+
+[Title:- Check If Two Strings Are Anagrams with Test Cases]
+-----------------------------------------------------------
+
+Write a C program to check whether two given strings are anagrams of each other ?
+---------------------------------------------------------------------------------
+Explanation :-
+--------------
+Two strings are anagrams if they contain the same characters in the same frequency, but in a different order. For example:
+
+-> "listen" and "silent" are anagrams.
+-> "Jack" and "Jake" are not anagrams.
+
+Sample Inputs and Outputs :-
+----------------------------
+Sample-Input-1 :-
+-----------------
+String 1: listen  
+String 2: silent  
+
+Sample-Output :-
+----------------
+These are anagram strings.
+
+Sample-Input-2 :-
+-----------------
+String 1: Jack  
+String 2: Jake  
+
+Sample-Output :-
+-----------------
+These are not anagram strings.
+
+Test-Cases :-
+--------------
+Test-Case-1 :- (Valid Case - Anagrams):
+--------------
+Input :-
+--------
+String 1: listen  
+String 2: silent  
+
+Expected-Output :-
+-------------------
+These are anagram strings.
+
+Test-Case-2 :- (Valid Case - Not Anagrams):
+---------------
+Input :-
+--------
+String 1: Jack  
+String 2: Jake  
+
+Expected-Output :-
+------------------
+These are not anagram strings.
+Test-Case-3 :- (Valid Case - Different Lengths):
+--------------
+Input :-
+--------
+String 1: hello  
+String 2: hell  
+
+Expected-Output :-
+-------------------
+These are not anagram strings. (Different lengths.)
+
+Test-Case-4 :- (Valid Case - Case Sensitivity):
+--------------
+Input :-
+---------
+String 1: Listen  
+String 2: Silent  
+
+Expected-Output :-
+------------------
+These are not anagram strings. (Case-sensitive comparison.)
+
+Test-Case-5 :- (Invalid Case - Special Characters):
+--------------
+Input :-
+--------
+String 1: !@#$  
+String 2: #@!$  
+
+Expected-Output :-
+------------------
+These are anagram strings.
+
+Test-Case-6 :- (Invalid Case - Numbers in Strings):
+--------------
+Input :-
+--------
+String 1: 12345  
+String 2: 54321  
+
+Expected-Output :-
+-------------------
+These are anagram strings.
+
+|--------------|
+| Program-4 :- | [ok]
+|--------------|
+
+[Title:- Sum of the natural numbers-FUNCTIONS]
+----------------------------------------------
+
+Write a C program to calculate and print the sum of the first N natural numbers using a function.
+
+-> Create a function sumOfNaturalNumbers(int n) that takes an integer n as input and returns the sum of the first n natural numbers.
+-> Use this function in the main function to display the result.
+
+Test Cases :-
+------------
+
+Valid Test Cases :-
+------------------
+Test Case-1 :-
+-------------
+Input :-  n = 10
+--------
+
+Expected Output :-   The sum of the first  10  natural numbers is: 55
+-----------------
+
+Test Case-2 :-
+-------------
+Input :- n = 5
+--------
+
+Expected Output :- The sum of the first 5 natural numbers is: 15
+-----------------
+
+Test Case-3 :-
+-------------
+Input :- n = 1
+--------
+
+Expected Output :- The sum of the first 1 natural number is: 1
+-----------------
+
+Test Case-4 :-
+-------------
+Input :-  n = -10
+--------
+
+Expected Output :- Invalid input! Please enter a positive integer.
+-----------------
+
+Test Case-5 :-
+-------------
+Input :- n = 0
+--------
+
+Expected Output :- Invalid input! Please enter a positive integer.
+-----------------

@@ -1,0 +1,71 @@
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f9f9f9;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+}
+
+.file-upload-simulator {
+  text-align: center;
+  background-color: white;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+  margin-bottom: 20px;
+}
+
+.progress-bar {
+  width: 100%;
+  background-color: #ddd;
+  border-radius: 5px;
+  height: 20px;
+  margin-bottom: 10px;
+  overflow: hidden;
+}
+
+.progress {
+  width: 0%;
+  height: 100%;
+  background-color: #4caf50;
+  transition: width 0.5s ease;
+}
+
+button {
+  padding: 10px 20px;
+  font-size: 16px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  margin: 5px;
+}
+
+button#startButton {
+  background-color: #007bff;
+  color: white;
+}
+
+button#startButton:hover {
+  background-color: #0056b3;
+}
+
+button#cancelButton {
+  background-color: #ff3333;
+  color: white;
+}
+
+button#cancelButton:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+#progressText {
+  font-size: 16px;
+  margin-top: 10px;
+  color: #333;
+}

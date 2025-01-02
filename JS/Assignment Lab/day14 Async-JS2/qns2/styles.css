@@ -1,0 +1,67 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f9f9f9;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+.quiz-app {
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    width: 300px;
+}
+
+h2 {
+    margin-bottom: 20px;
+}
+
+p {
+    font-size: 18px;
+    margin: 10px 0;
+}
+
+.options {
+    display: flex;
+    flex-direction: column;
+    margin: 20px 0;
+}
+
+button {
+    padding: 10px 15px;
+    font-size: 16px;
+    margin: 5px 0;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button.option {
+    background-color: #007bff;
+    color: white;
+}
+
+button.option:hover {
+    background-color: #0056b3;
+}
+
+button#cancelButton {
+    background-color: #ff3333;
+    color: white;
+}
+
+button#cancelButton:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
+
+#feedback {
+    font-size: 16px;
+    color: #333;
+    margin-top: 10px;
+}

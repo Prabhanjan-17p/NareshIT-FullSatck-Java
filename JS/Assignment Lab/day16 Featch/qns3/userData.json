@@ -1,0 +1,37 @@
+[
+  {
+    "id": 1,
+    "username": "admin",
+    "email": "admin@example.com",
+    "phone": "123-456-7890",
+    "address": "123 Admin St, Admin City"
+  },
+  {
+    "id": 2,
+    "username": "john_doe",
+    "email": "john_doe@example.com",
+    "phone": "234-567-8901",
+    "address": "456 John St, Doe City"
+  },
+  {
+    "id": 3,
+    "username": "jane_smith",
+    "email": "jane_smith@example.com",
+    "phone": "345-678-9012",
+    "address": "789 Jane St, Smith City"
+  },
+  {
+    "id": 4,
+    "username": "mike_lee",
+    "email": "mike_lee@example.com",
+    "phone": "456-789-0123",
+    "address": "101 Mike Ave, Lee City"
+  },
+  {
+    "id": 5,
+    "username": "susan_kim",
+    "email": "susan_kim@example.com",
+    "phone": "567-890-1234",
+    "address": "202 Susan Rd, Kim City"
+  }
+]

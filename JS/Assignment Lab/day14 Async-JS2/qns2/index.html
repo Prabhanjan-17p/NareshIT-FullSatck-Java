@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Quiz with Delayed Feedback</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+  <div class="quiz-app">
+    <h2>Quiz App</h2>
+    <p id="question">What is the capital of France?</p>
+    <div class="options">
+      <button class="option" data-answer="correct">Paris</button>
+      <button class="option" data-answer="incorrect">London</button>
+      <button class="option" data-answer="incorrect">Rome</button>
+      <button class="option" data-answer="incorrect">Berlin</button>
+    </div>
+    <p id="feedback"></p>
+    <button id="cancelButton" disabled>Cancel Feedback</button>
+  </div>
+  <script src="script.js"></script>
+</body>
+
+</html>

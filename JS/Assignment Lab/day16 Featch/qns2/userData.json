@@ -1,0 +1,18 @@
+[
+    {
+      "id": 1,
+      "username": "admin",
+      "address": "123 Admin St, Admin City, Admin Country"
+    },
+    {
+      "id": 2,
+      "username": "john_doe",
+      "address": "456 John St, Doe City, Doe Country"
+    },
+    {
+      "id": 3,
+      "username": "jane_smith",
+      "address": "789 Jane St, Smith City, Smith Country"
+    }
+  ]
+  

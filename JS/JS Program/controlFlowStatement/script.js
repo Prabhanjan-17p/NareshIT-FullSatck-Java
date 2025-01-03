@@ -29,14 +29,27 @@ console.log(evenOdd(25))
 
 function sumOrProduct (num)
 {
-    var ld = num % 10;
-    var fd = (num / 10).toFixed();
-    console.log(+fd+ld,+fd*ld)
+    //product of the sum
+    while (num !=0 ){
+        var ld = num % 10;
+        var fd = (num / 10).toFixed();
+        console.log(+fd+ld,+fd*ld)
+    }
+
+    //reverse
+    var fd =0
+    while (num !=0 ){
+        var ld = num % 10;
+        var fd = fd*10 + ld;
+        num = fd / 10;
+    }
+    
 
 }
-sumOrProduct(23)
-// write a function to check whether given number is positive or negitive
+sumOrProduct(2233)
 
+
+// write a function to check whether given number is positive or negitive
 function posOrNeg (num)
 {
     if (num > 0)
@@ -46,7 +59,7 @@ function posOrNeg (num)
     else
         console.log("equals to Zero")
 }
-posOrNeg(0)
+posOrNeg(0) // function call 
 
 //WAF to which prints the color based on number ranging from  VIBGYOR
 function colorPrint (num)
@@ -78,3 +91,26 @@ function colorPrint (num)
 		}
 }
 colorPrint(2)
+
+
+
+//Addition of 2  number 
+let sum =0
+let x=12,xx= 12
+function summ(x1,x2){
+    sum = x1 + x2
+    return sum;
+}
+console.log(summ(12,12)) // function with return value
+
+function summ(x1,x2){
+    sum = x1 + x2
+    console.log("Sum = "+sum) 
+}
+summ(12,12) // function with not return value
+
+
+function asd() {
+    x1=12,x2=23
+    sum = x1 + x2
+}

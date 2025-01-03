@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>forms</title>
+</head>
+<body>
+    <form action="main.c">
+     <input type="text"   placeholder="Enter name" value="prasad" required><br><br>
+     <input type="number" name="" id="" placeholder="Enter age" min="18" max="50" required> <br><br>
+     <input type="password" placeholder="Enter password" pattern="[A-Za-z]{3}"  minlength="6" maxlength="12" required>
+    <!-- radio buttons -->
+     <p>Please choose gender:</p>
+     <input type="radio" name="gender" id="m">
+     <label for="m">Male</label>
+     <input type="radio" name="gender" id="f">
+     <label for="f">Female</label>
+     <!-- create a radio button to choose branch in intermediate-->
+      <!-- checkboxes - usually used for multiple options-->
+       <p>Please choose the languages known</p>
+      <div>
+         <input type="checkbox" name="lang" id="en">
+       <label for="en">English</label>
+        <input type="checkbox" name="lang" id="hi">
+       <label for="hi">Hindi</label>
+        <input type="checkbox" name="lang" id="te">
+       <label for="te">Telugu</label>
+        <input type="checkbox" name="lang" id="mt">
+       <label for="mt">Marathi</label>
+        <input type="checkbox" name="lang" id="kr">
+       <label for="kr">Korean</label>
+      </div>
+      <!-- create a checkbox list to select hobbies -->
+       <!-- drop downs -->
+        <p>select branch</p>
+        <select name="branch" id="" >
+            <optgroup label="ENGG">
+               <option value="EEE">EEE</option>
+            <option value="cse">CSE</option>
+            <option value="ece">ECE</option>
+            <option value="aiml">AIML</option>
+            <option value="mech">Mech</option>
+            </optgroup>
+            <optgroup label="Degree">
+             <option value="bsc">BSC</option>
+              <option value="">BCA</option>
+              <option value="">BCOM</option>
+            </optgroup>
+            <optgroup label="MASTERS">
+             <option value="">MCA</option>
+             <option value="">MBA</option>
+            </optgroup>
+           
+        </select>
+        <button type="submit">submit</button>
+        <!-- write a drop down to choose vehicle for test drive -->
+    </form>
+</body>
+</html>

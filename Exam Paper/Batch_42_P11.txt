@@ -1,0 +1,144 @@
+										SET-A
+									----------------------
+
+Note : 	All questions Compulsory
+	Question 1 and 2 ( 5 marks each)
+	Question 3 and 4 ( 10 marks each) 
+--------------------------------------------
+
+
+
+Que 1 : Write a 'JavaScript' program to sort the numbers array using selection sort technique.
+-------
+
+Sample input :	[45, 3, 25, 78, 12]
+
+Sample Output : 
+
+	Array before sorting : [45, 3, 25, 78, 12]
+        Array after sorting  : [3, 12, 25, 45, 78]
+
+
+======================================================================================================== 
+
+Que 2 : Write a 'JavaScript' program to Separate Strings and Numbers and print array.
+    
+
+	Sample Input: 
+      		["apple", 5, "banana", 10, 15, "grape"]
+             
+
+	Sample Output:
+		String array : ["apple", "banana", "grape"]
+		Numbers array : [5, 10, 15]
+======================================================================================================== 
+
+Que 3 : 
+---------
+(USING WHILE LOOP) Write JavaScript program to check given number is automorphic number or not 
+
+Automorphic number :
+An automorphic number is a number whose square ends in the
+same digits as the number itself.
+
+Note : take a textbox for input and button for executing a function onclick of the button one function will be executed that function will find whether the number is automorphic or not.
+
+For example:
+5,6,25 are automorphic numbers.
+5*5=25 // last digit is 5
+6*6=36 // last digit is 6
+25*25=625 // last digit is 25
+
+Sample input  : 7
+Sample output : 7 is not automorphic number.
+
+Sample input  : 625
+Sample output : 625 is automorphic number.
+
+======================================================================================================== 
+
+Que 4 :
+=======
+
+Write a JavaScript program to print all Nth digit prime numbers :
+	
+	Description :
+		if user enter 2 as a input the program should print all 2 digit prime numbers.
+
+	Sample Input : 
+		Enter a Number : 1 
+	Sample Output : All 1 digits prime numbers are : 2 3 5 7
+
+	Sample Input :
+		Enter a Number : 2
+	Sample Output : All 2 digits prime numbers are : 11 13 17 19 23 29 31 37 41 43 47 53 59 61 67 71 73 79 83 89 97
+
+
+
+										SET-B
+									----------------------
+
+Note : 	All questions Compulsory
+	Question 1 and 2 ( 5 marks each)
+	Question 3 and 4 ( 10 marks each) 
+--------------------------------------------
+
+
+
+Que 1 : Write a 'JavaScript' program to Filter Even and Odd Numbers from array in separate arrays.
+
+Sample Input :
+	 [12, 25, 47, 18, 30, 55];
+
+Sample output :
+	Even Array : [12, 18, 30]
+	Odd Array :  [25, 47, 55]
+
+
+======================================================================================================== 
+
+Que 2 : write a 'JavaScript' program to print Sum of All elements.
+
+Sample Input :
+	 [10, 20, 30, 40, 50];
+
+Sample output:
+	Sum of Array element is : 150
+
+======================================================================================================== 
+
+Que 3 : 
+---------
+Write a JavaScript program that finds and prints all pairs of numbers from a given array whose sum is equal to a specified target value. 
+The program should iterate through the array, compare every pair of numbers, and print each pair that meets the condition.
+
+Example:
+Sample input:
+	Array: {1, 5, 7, -1, 5}
+	Target Sum: 6
+
+Sample output:
+	Pair found: (1, 5)
+	Pair found: (7, -1)
+	Pair found: (1, 5)
+
+
+======================================================================================================== 
+
+Que 4 :
+=======
+	Write a JavaScript program to print all Nth digit Armstrong numbers :
+	
+	Definition :
+		Armstrong numbers are special numbers that are equal to the sum of their digits raised to the power of the number of digits. 
+	
+	Description :
+		if user enter 3 as a input the program should print all 3 digit Armstrong numbers.
+
+	Sample Input : 
+		Enter a Number : 1
+	Sample Output : All 1 digits Armstrong numbers are : 1 2 3 4 5 6 7 8 9
+
+	Sample Input :
+		Enter a Number : 3
+	Sample Output : All 3 digits Armstrong numbers are : 153 370 371 407

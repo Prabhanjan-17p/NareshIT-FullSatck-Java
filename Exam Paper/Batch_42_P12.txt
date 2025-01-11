@@ -1,0 +1,141 @@
+										SET-A
+									----------------------
+
+Note : 	All questions Compulsory
+	15 marks each
+	
+--------------------------------------------
+
+
+
+Que 1 :
+-------
+
+	Simple Quiz Application
+
+	A basic quiz program where users select answers and get feedback on whether they are correct.
+
+You are building a simple quiz application where:
+
+	-> The application will display one question at a time.
+	-> The question will have multiple answer options.
+
+	-> Each option will be represented by a button.
+	-> Users can click on a button to select their answer.
+
+After clicking an answer, the application will display:
+	-> "Correct!" if the answer is correct, styled in green text.
+	-> "Wrong!" if the answer is incorrect, styled in red text.
+
+The user must see instant feedback after selecting an answer.
+
+Expected Output
+	-> A question with four answer buttons is displayed.
+	-> When a user clicks a button:
+	-> Feedback ("Correct!" or "Wrong!") is displayed immediately below the question.
+	-> The feedback is styled with appropriate colors (green or red).
+
+=============================================================================================================================
+
+Que 2 :
+-------
+
+Color Changer
+
+Description: Create a page where users can change the background color by clicking buttons.
+
+Requirements:
+
+A set of buttons, each with a different color.
+
+When a button is clicked, the background color of the page should change to that color.
+
+
+=================================================================================================================================
+
+
+
+
+										SET-B
+									----------------------
+
+Note : 	All questions Compulsory
+	
+	15 marks each
+--------------------------------------------
+
+Que 1 :
+--------
+
+Image Gallery
+
+Description: Create an image gallery where clicking on a thumbnail displays the full-sized image.
+
+Requirements:
+
+A row of thumbnail images.
+
+A larger display area for the full-sized image.
+
+Clicking a thumbnail should display the corresponding full-sized image in the display area.
+
+=======================================================================================================
+
+Que 2 :
+--------
+
+Live Character Counter
+
+Build a Character Counter where:
+
+	-> Users type into a textarea.
+	-> The app displays the number of characters typed and the maximum allowed.
+	-> Highlight the text area when the character count is near the limit.
+
+-> Using input events to detect changes in real-time.
+-> Dynamically updating DOM elements.
+-> Adding conditional styles for warnings.
+
+
+
+										SET-C
+									----------------------
+
+Note : 	All questions Compulsory
+	15 marks each
+	
+--------------------------------------------
+
+
+
+Que 1 :
+--------
+Countdown Timer
+Description: Build a countdown timer that counts down from a specified time.
+
+Requirements:
+
+An input field to set the countdown time.
+
+A start button to begin the countdown.
+
+A display area to show the remaining time in minutes and seconds.
+
+An alert when the countdown reaches zero.
+
+=====================================================================================================
+
+Que 2 :
+--------
+
+	Change Body Color with Random Colors on Button Click
+
+You are creating a webpage where users can click a button to change the background color of the entire page to a random color. This can be useful for creating interactive and visually appealing web applications.
+
+Steps:
+
+	-> Create an HTML file with a button.
+
+	-> Add a JavaScript function that generates a random color.
+
+	-> Attach an event listener to the button to change the background color when clicked.

@@ -1,0 +1,24 @@
+First Connect to the main system 
+    - SQL > Enter username = system/(password)
+        or
+    - SQL > Enter username = system
+            Enter password = (password)
+
+========================================================
+Create a new user
+1- First Connect to main system
+    - SQL > Enter username = system/(password);
+2- Create user (username) identified by (password)
+    - SQL > Create user MYDB identified by MYDB;
+
+
+==========================================================
+Connect to new user
+(if you direct Connect to a new user , it will gives you error => (First you have set the permission))
+1- First Connect to main system
+    - SQL > Enter username = system/(password);
+2- Grant DBA to (UserName)
+    - SQL > Grant DBA to MYDB;
+3- Connect to new User
+    - SQL > conn
+            Enter user-name: MYDB/MYDB

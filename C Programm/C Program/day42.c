@@ -24,6 +24,9 @@ int main(){
     }else{
         printf("The number is not mAgic number");
     }
+
+
+    //2-
     
  
     return 0;

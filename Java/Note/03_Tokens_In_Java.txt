@@ -1,0 +1,146 @@
+28-01-2025
+----------
+Tokens in java :
+----------------
+Token is the smallest unit of the program which is identified by the compiler.
+
+Without token we can't complete statement or expression in java.
+
+Token is divided into 5 types in java
+
+  1) Keyword
+  2) Identifier
+  3) Literal
+  4) Punctuators (Seperators)  
+  5) Operator
+  
+Keyword
+--------
+A keyword is a predefined word whose meaning is already defined by the compiler.
+
+In java all the keywords must be in lowercase only.
+
+A keyword we can't use as a name of the variable, name of the class or name of the method.  
+
+true, false and null look like keywords but actually they are literals.
+
+As of now, we have 67+ keywords in java.
+---------------------------------------------------------------------
+Identifiers :
+--------------
+A name in java program by default considered as identifiers.
+
+Assigned to variable, method, classes to uniquely identify them.
+
+We can't use keyword as an identifier. 
+
+Ex:-
+
+class Fan 
+{
+   int coil  ;
+   
+   void switchOn()  
+   {
+   }
+}
+
+Here Fan(Name of the class), coil (Name of the variable) and switchOn(Name of the Method) are identifiers.
+
+Rules for defining an identifier :
+------------------------------------
+1) Can consist of uppercase(A-Z), lowercase(a-z),  digits(0-9), $ sign, and underscore (_)
+2) Begins with letter, $, and _
+3) It is case sensitive
+4) Cannot be a keyword
+5) No limitation of length 
+
+--------------------------------------------------------------------
+Literals :
+----------
+Any constant which we are assiging to variable is called Literal.
+
+In java we have 5 types of Literals :
+
+1) Integral Literal
+2) Floating Point Literal
+3) Boolean Literal
+4) Character Literal
+5) String Literal
+
+Note : null is also a literal
+
+Integral Literal :
+-------------------
+If a numeric literal does not contain any decimal or fraction then it is called Integral Literal.
+
+Example : 90, 23, 67, 1234
+
+In Integral literal we have total 4 data types :
+
+ a) byte (8 bits)
+ b) short (16 bits)
+ c) int (32 bits)
+ d) long (64 bits)
+
+An integral literal we can represent in four different forms :
+    a) Decimal Literal (Base is 10)
+    b) Octal Literal (Base is 8)
+    c) Hexadecimal Literal (Base is 16 [0-9 and a - f])
+    d) Binary Literal (Base 2) [Available from JDK 1.7v]
+    
+Decimal Literal :
+-----------------
+By default our numeric literals are decimal literal. Here base is 10 so, It accepts 10 digits i.e. from 0-9.
+
+Example : 
+int x = 20;
+int y = 123;
+int z = 234;
+
+Octal Literal :
+---------------
+If any Integer literal starts with 0 (Zero) then it will become octal literal. Here base is 8 so it will accept 8 digits i.e 0 to 7.
+
+Example :
+
+int a = 018; //Invalid becuase it contains digit 8 which is out of range
+int b = 0777; //Valid
+int c = 0123; //Valid
+
+Hexadecimal Literal :
+---------------------
+If any integric literal starts with 0X or 0x (Zero capital X Or 0 small x) then it is hexadecimal literal. Here base is 16 so it will accept 16 digits i.e 0 to 9 and A to F OR [a to f]
+
+Example :
+
+int x = 0X12; //Valid
+int y = 0xadd; //Valid
+int z = 0Xface; //valid
+int a = 0Xage; //Inavlid because character 'g' out of range
+
+Binary Literal :
+---------------
+If a numeric literal starts with 0B (Zero capital B) or 0b (Zero small b) then it will become Binary literal. Binary literal is available from JDK 1.7v.
+Here base is 2 so it will accept 2 digits i.e 0 and 1.
+
+Example :
+----------
+int x = 0B101; //valid
+int y = 0b111; //Valid
+int z = 0B112; //Invalid [2 is out of range]
+
+The deafult type is decimal literal so to generate the output for any different literal JVM converts into decimal literal.   		       
+------------------------------------------------------------------
+//Program on Octal Literal
+		       
+public class Test 
+{
+	public static void main(String[] args) 
+	{
+		int x = 015;
+		System.out.println(x); //13
+	}
+}
+
+  

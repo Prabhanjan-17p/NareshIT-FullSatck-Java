@@ -1,0 +1,12 @@
+ Q1) Write a program to perform addition,subtraction, multiplication and 
+    division between two numbers using 3rd variable.
+
+Q2) Write a program to perform addition using command line Argument.
+
+Q3) Write a program to find out the area of circle by taking the value
+    from Command line arguments
+
+Q4) Write a program to swap to numbers without using 3rd variable using 
+    command line argument.
+ 
+Q5) Write a Java program to calculate the factorial of a number where number must be taken from command line argument.

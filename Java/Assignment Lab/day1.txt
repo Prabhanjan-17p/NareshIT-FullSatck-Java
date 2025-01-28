@@ -10,3 +10,80 @@ Q4) Write a program to swap to numbers without using 3rd variable using
     command line argument.
  
 Q5) Write a Java program to calculate the factorial of a number where number must be taken from command line argument.
+
+===================================================================================================================================
+package com.nareshIT.day1;
+
+import java.util.Scanner;
+
+public class AllQuestion {
+	public static void main(String[] args) {
+		//1--------------------------------------------------------------------------------------------
+//		Scanner sc = new Scanner(System.in);
+//		System.out.println("Enter 2 value ");
+//		int num1 = sc.nextInt();
+//		int num2 = sc.nextInt();
+//		int result; 
+//        result = num1 + num2;
+//        System.out.println("Addition: " + result);
+//        result = num1 - num2;
+//        System.out.println("Subtraction: " + result);
+//        result = num1 * num2;
+//        System.out.println("Multiplication: " + result);
+//        result = num1 / num2;
+//        System.out.println("Division: " + result);
+		
+		//2---------------------------------------------------------------------------------------------
+//		if (args.length < 2) {
+//			System.out.println("Enter 2 number ");
+//			return;
+//		}
+//		int num1 = Integer.parseInt(args[0]);
+//		int num2 = Integer.parseInt(args[1]);
+//		int sum = num1 + num2;
+//        System.out.println("Addition: " + sum);
+		
+		
+		//3--------------------------------------------------------------------------------------------
+//		  if (args.length < 1) {
+//	            System.out.println("Enter the radius of a circle ");
+//	            return;
+//	        }
+//	        
+//	        double radius = Double.parseDouble(args[0]);
+//	        double area = 22/7* radius * radius;
+//	        
+//	        System.out.println("Area of the circle: " + area);
+		
+		
+		//4---------------------------------------------------------------------------------------------
+//		  if (args.length < 2) {
+//	            System.out.println("Enter 2 value to swap");
+//	            return;
+//	        }
+//	        int num1 = Integer.parseInt(args[0]);
+//	        int num2 = Integer.parseInt(args[1]);
+//	        System.out.println("Before Swap: num1 = " + num1 + ", num2 = " + num2);
+//	        num1 = num1 + num2;
+//	        num2 = num1 - num2;
+//	        num1 = num1 - num2;
+//	        System.out.println("After Swap: num1 = " + num1 + ", num2 = " + num2);
+		
+		
+		
+		//5--------------------------------------------------------------------------------------------
+		 if (args.length < 1) {
+	            System.out.println("Enter a number to find his factorial");
+	            return;
+	        }
+	        int num = Integer.parseInt(args[0]);
+	        int factorial = 1;
+	        for (int i = 1; i <= num; i++) {
+	            factorial *= i;
+	        }
+	        System.out.println("Factorial of " + num + " is: " + factorial);
+	        
+	        
+		
+	}
+}

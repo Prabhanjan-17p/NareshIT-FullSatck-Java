@@ -130,8 +130,10 @@ int x = 0B101; //valid
 int y = 0b111; //Valid
 int z = 0B112; //Invalid [2 is out of range]
 
-The deafult type is decimal literal so to generate the output for any different literal JVM converts into decimal literal.   		       
-------------------------------------------------------------------
+The deafult type is decimal literal so to generate the output for any different literal JVM converts into decimal literal.   
+---------------------------------------------------------------
+29-01-2025
+-----------
 //Program on Octal Literal
 		       
 public class Test 
@@ -142,3 +144,92 @@ public class Test
 		System.out.println(x); //13
 	}
 }
+----------------------------------------------------------------
+public class Test2 
+{
+	public static void main(String[] args) 
+	{
+		int x = 0Xadd;
+		System.out.println(x);
+	}
+}
+----------------------------------------------------------------
+public class Test3 
+{
+	public static void main(String[] args) 
+	{
+		int x = 0b101;
+		System.out.println(x);
+	}
+}
+---------------------------------------------------------------
+By default every integral literal is of type int only. byte and short are below than int so we can assign integral literal(Which is by default int type) to byte and short but the values must be within the range. [for Byte -128 to 127 and for short -32768 to 32767]
+
+Actually whenever we are assigning integral literal to byte and short data type then compiler internally converts into corresponding type.
+
+
+byte b = (byte) 12; [Compiler is converting int to byte]
+short s = (short) 12; [Compiler is converting int to short]
+
+In order to represent long value explicitly we should use either L OR l (Capital L OR Small l) as a suffix to integral literal.
+
+According to IT industry, we should use L bacause l looks like digit 1.
+----------------------------------------------------------------
+/* By default every integral literal is of type int only*/
+public class Test4
+{
+public static void main(String[] args)
+	{
+                byte b = 128; //error
+		System.out.println(b);
+		
+		short s = 32768; //error
+		System.out.println(s);
+    }
+}
+----------------------------------------------------------------
+//Assigning smaller data type value to bigger data type
+public class Test5
+{
+public static void main(String[] args)
+	{
+   	    byte b = 125;  
+		short s = b;  //Automatic type casting OR Widening 
+		System.out.println(s);
+		
+		short x = 345;
+		int y = x;  //Automatic type casting OR Widening 
+		System.out.println(y);
+	}
+}
+---------------------------------------------------------------
+//Converting bigger type to smaller type
+public class Test6
+{
+public static void main(String[] args)
+	{
+	    short s = 127;
+		byte b = (byte) s;
+		System.out.println(b);	//127
+	}
+}
+--------------------------------------------------------------
+public class Test7
+ {
+ public static void main(String[] args)
+ {
+		byte x = (byte) 1L;    
+		System.out.println("x value  = "+x);
+
+		long l = 29L;
+		System.out.println("l value  = "+l);
+
+        int y = (int) 18L; 
+		System.out.println("y value  = "+y);
+ 
+  }
+ }   
+---------------------------------------------------------------- 
+Is Java  pure object oriented or not ?
+
+

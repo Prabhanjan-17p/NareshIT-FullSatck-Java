@@ -1,0 +1,80 @@
+
+--------------------------------------------------QNS 1---------------------------------------------------------------
+package com.nareshIT.day2;
+
+public class AvgOfThreeNumber {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		if (args.length < 3) {
+			System.out.println("Enter Three number to find the avg of these number ");
+			return;
+		}
+		int n1 = Integer.parseInt(args[0]);
+		int n2 = Integer.parseInt(args[1]);
+		int n3 = Integer.parseInt(args[2]);
+		int avg = (n1+n2+n3)/3;
+		System.out.println("Avg is "+avg);
+	}
+
+}
+
+
+
+-------------------------------------------------------QNS 2----------------------------------------------------------
+package com.nareshIT.day2;
+
+import java.util.Iterator;
+
+public class MultiplicationTable {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		if (args.length < 1) {
+			System.out.println("Enter one number to find multiplication ");
+			return;
+		}
+		int n1 = Integer.parseInt(args[0]);
+		for (int i = 1; i <= 10; i++) {
+			System.out.println(n1*i);
+		}
+	}
+
+}
+
+
+----------------------------------------------------QNS 3-------------------------------------------------------------
+package com.nareshIT.day2;
+
+public class PrimeOrNot {
+	public static void main(String[] args) {
+		 if (args.length < 1) {
+	            System.out.println("Enter a number to check if it is prime or not.");
+	            return;
+	        }
+
+	        int n1 = Integer.parseInt(args[0]);
+
+	        if (n1 <= 1) {
+	            System.out.println("Error: Enter a positive integer greater than 1.");
+	            return;
+	        }
+
+	        boolean isPrime = true;
+
+	        for (int i = 2; i <= n1 / 2; i++) {  
+	            if (n1 % i == 0) {
+	                isPrime = false;
+	                break;
+	            }
+	        }
+
+	        if (isPrime) {
+	            System.out.println(n1 + " is a Prime Number.");
+	        } else {
+	            System.out.println(n1 + " is Not a Prime Number.");
+	        }
+		
+	}
+}
+

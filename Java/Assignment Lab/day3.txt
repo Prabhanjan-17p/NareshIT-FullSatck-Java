@@ -1,0 +1,142 @@
+Program 01:
+-----------
+Write a  program in Java that will generate and print the bill at Dominos for four chicken rolls (@ Rs 60 per chicken rolls) and three vegetable puffs (@ Rs 25 per vegetable puffs). There is a special discount of Rs 50 on the final bill amount. Calculate and print final bill as well as all item bill.
+package com.nareshIT.day3;
+
+import java.util.Scanner;
+
+public class BillProgram {
+
+	public static void main(String[] args) {
+		int CountChickenRolls =0;
+		int CountVegetablePuffs =0;
+      	Scanner sc = new Scanner(System.in);
+      	System.out.println("Enter the  number Chicken Rolls");
+  		CountChickenRolls = sc.nextInt();
+  		System.out.println("Enter the  number Vegetable Puffs");
+  		CountVegetablePuffs = sc.nextInt();
+  		int totChicken = CountChickenRolls*60;
+  		int totVeget = CountVegetablePuffs*25;
+  		int totBill = (totVeget+totChicken)-50;
+  		System.out.println("Final bill = "+totBill);
+
+	}
+
+}
+
+
+Program 02:
+-----------
+Write a Java program to check if a given number is a palindrome. A number is a palindrome if it remains the same when its digits are reversed.
+package com.nareshIT.day3;
+
+public class palindromeNumber {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		if(args.length == 0) {
+			System.out.println("Enter a number to check the number is is palindrom or not ");
+			return;
+		}
+	     int num = Integer.parseInt(args[0]);
+       int temp = num;
+       int rev = 0;
+       while (temp != 0){
+           int last = temp%10;
+           rev = last+rev*10;
+           temp = temp /10;
+       }
+       if (num == rev){
+           System.out.println(num + " Is palindrome");
+       }else {
+           System.out.println(num + " Is not palindrome");
+       }
+	}
+
+}
+
+
+Program 03:
+----------
+Write a program in Java to display the following pattern on the screen without using loop.
+@@@@@@@@
+@      @
+@      @
+@      @
+@      @
+@      @
+@@@@@@@@
+package com.nareshIT.day3;
+
+public class partern {
+
+	public static void main(String[] args) {
+		  	System.out.println("@@@@@@@@@");
+	        System.out.println("@       @");
+	        System.out.println("@       @");
+	        System.out.println("@       @");
+	        System.out.println("@       @");
+	        System.out.println("@       @");
+	        System.out.println("@@@@@@@@@");
+	}
+
+}
+
+
+Program 04:
+-----------
+Write a program to input the basic salary of a person. He gets 15% of the basic as HRA, 15% of the basic as Conveyance allowance and 10% of the basic as Entertainment allowance. The total salary is calculated by adding Basic + HRA + Conveyance + Entertainment Allowance. Calculate and print the total salary of person.
+Take the Basic Salary from Command Line Argument
+
+package com.nareshIT.day3;
+
+public class salaryProgram {
+
+	public static void main(String[] args) {
+		
+		 if (args.length == 0) {
+	            System.out.println("Enter a basic salary as a command line argument.");
+	            return;
+	        }
+		 int sal  = Integer.parseInt(args[0]);
+		 float HRA = (sal)*0.15f;
+		 float ConveyanceAllowance = (sal)*0.15f;
+		 float EntertainmentAllowance = (sal)*0.10f;
+		 float tot = HRA+ConveyanceAllowance+EntertainmentAllowance;
+		 System.out.println("Total salary = "+ tot);
+	}
+
+}
+
+
+Program 05 :
+-------------
+Write a program in java to Fahrenheit to Celsius Program
+Formula is :-  celsius=((fahrenheit-32)*5)/9;
+package com.nareshIT.day3;
+
+public class Fahrenheit_to_Celsius {
+
+	public static void main(String[] args) {
+
+        if(args.length == 0) {
+            System.out.print("Enter temperature in Fahrenheit: ");
+            return;
+        }
+        double fahrenheit = Integer.parseInt(args[0]);
+
+        // Convert Fahrenheit to Celsius
+        double celsius = ((fahrenheit - 32) * 5) / 9;
+
+        // Display the result
+        System.out.println("Temperature in Celsius: " + celsius);
+
+
+	}
+
+}
+
+
+
+
+==================================================================================================================================

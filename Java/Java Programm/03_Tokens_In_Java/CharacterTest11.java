@@ -222,9 +222,9 @@ class Test13
 {
    public static void main(String[] args) 
    {
-		double x = 0129.89;  
+		// double x = 0129.89;  
 
-		double y = 0167;
+		// double y = 0167;
 
 		// double z = 0178; //error
 
@@ -236,7 +236,7 @@ class Test444
 {
    public static void main(String[] args) 
    {
-	   double x = 0X29;  
+	//    double x = 0X29;  
 
 	//    double y = 0X91.5; //error
 	   
@@ -262,11 +262,11 @@ class Test444
    {
 	//    double a = 0791; //Error
 
-	   double b = 0791.0; 
+	//    double b = 0791.0; 
 
-	   double c = 0777;  
+	//    double c = 0777;  
 
-	   double d = 0Xdead; 
+	//    double d = 0Xdead; 
 	   
 	//    double e = 0Xdead.0; //Error
    }
@@ -276,10 +276,10 @@ class Test444
 {
    public static void main(String[] args) 
    {
-	  double a = 1.5e3;  
+	//   double a = 1.5e3;  
 	//   float b = 1.5e3;  //E 
-	  float c = 1.5e3F; 	   
-	  double d = 10; 	   
+	//   float c = 1.5e3F; 	   
+	//   double d = 10; 	   
 	//   int e = 10.0;  //E
 	//   long f = 10D; //E
 	//   int g = 10F; //E  

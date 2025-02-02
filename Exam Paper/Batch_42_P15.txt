@@ -1,0 +1,139 @@
+                                  SQL EXAM
+                                =============
+
+1a.Create a STUDENT table with the following columns.(2m)
+
+--->SNO
+--->SNAME
+--->GENDER
+--->DOB
+
+b)insert 2 records into STUDENT table (2m)
+
+c)Write a query to display the student table (1m)
+
+d).Write a query to add 2 columns(address,age)to the STUDENT table? (1m)
+
+e).Write a query to increase the datatype size of sname? (1m)
+
+f).Write a query to drop any two columns? (1m)
+
+g).Write a query to drop student table? (1m)
+
+h).Write a query to get it back student table? (1m)
+
+----------------------------------------------------------------------------------------------------------------------------------------------------
+
+2.Write a query to display the employee records whose 
+  salary is 3000 from emp table? (1m)
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------
+
+3.Write a query to display the employees whose clerks are belongs 
+  to 20th department from emp table? (2m)
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------
+
+4.Write a query to display the employees whose ename contain 
+  either 'AM' or 'AR' strings from emp table by using
+  like operator? (2m)
+
+----------------------------------------------------------------------------------------------------------------------------------------------------
+
+5.Write a query to display the employees who are belongs to
+  20,30,50,70,90 departments from emp table? (2m)
+
+----------------------------------------------------------------------------------------------------------------------------------------------------
+
+6.Write a query to display the employees who are getting salary 
+  between 2000 to 5000 from emp table? (2m) 
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------            
+
+7.Write a query to display laptop detailes whose cname is
+  HP and price is more than 50000? (2m)
+
+SQL>SELECT * FROM LAPTOPS;
+
+     SNO       CNAME              PRICE          MFD
+  --------- ----------        ----------      ---------
+       1       HP                68000        24-DEC-23
+       2      DELL               50000        12-AUG-24
+       3     LENOVO              40000        12-JAN-23
+       4       HP                44000        08-APR-22
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------
+
+8.Write a query to display the employee records whose name 2nd
+  character is 'L' from emp table? (2m)
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------
+
+9.Write a query to display the employees who are getting more than
+   30000 annsal from emp table? (2m)
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------
+
+10.Write a query to display the employees who are joining in the year
+   82 from emp table using like operator? (2m)
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------
+
+11.Calculate TA,HRA,TAX and NETSAL from emp table based on
+  following condintions? (4m)
+
+10% on sal=>TA
+20% on sal=>HRA
+5% on sal=>TAx
+NETSAL =SAL+TA+HRA-TAX
+
+[TA--->Total Allowance  HRA--->House Rent Allowances   NETSAL--->Take-home Salary]
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------
+
+12.Write a query To display employee who are working as a 
+   MANAGER,CLERK and 
+   earning salary between 1500 and 3000 and
+   joined in 1981 year and 
+   not working in deptno 10 or 20 from emp table? (4m)
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------
+
+13.Update the employee commission with in emp table by using nvl2() 
+   based on following conditions? (3m)
+
+1.if comm-->null then update comm-->500
+
+2.if comm-->not null then update comm-->comm+500
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------
+
+14.Write a query to display ename, sal, comm, sal+comm of the 
+    employee SMITH from emp table? (2m)
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------
+
+15.Set job as MANAGER & increase 2000 rupees to the employees whose
+   name is starting with 'A' and ending with 'S' from emp table? (3m)
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------
+
+16.Increase 20% on sal,15% on comm to the employees who are getting
+   commission from emp table? (2m)
+
+----------------------------------------------------------------------------------------------------------------------------------------------------
+
+17.Increase 10% on salary to all managers from emp table?(2m)
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------
+
+18.Write a query to delete the employee records whose 
+   experiance is more than 42 years? (3m)
+
+----------------------------------------------------------------*****END*****---------------------------------------------------------------------------------
+
+
+
+
+
+

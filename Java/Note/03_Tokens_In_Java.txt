@@ -230,6 +230,593 @@ public class Test7
   }
  }   
 ---------------------------------------------------------------- 
-Is Java  pure object oriented or not ?
+30-01-2025
+-----------
+Is java pure Object Oriented language or not ?
+-----------------------------------------------
+No, Java is not a pure object oriented langauge because it is accepting primary data type, Actually any language which accepts primary data type is not a pure object oriented language.
+
+Only Objects are moving in the network but not the primary data type so java has introduced Wrapper class concept to convert the primary data types into corresponding wrapper object.
+
+Primary Data type           Wrapper Object
+	byte		:	Byte
+	short		:	Short
+	int		:	Integer
+	long		:	Long
+	float		:	Float
+	double		:	Double
+	char		:	Character
+	boolean		:	Boolean
 
 
+Note : Apart from these 8 data types, Everything is an object in java so, if we remove all these 8 primitive data types then java will become pure OOP language.
+----------------------------------------------------------------
+//Wrapper claases
+public class Test8 
+{
+	public static void main(String[] args) 
+	{
+		Integer x = 24;  
+		Integer y = 24;
+		Integer z = x + y;
+		System.out.println("The sum is :"+z);	
+		
+		Boolean b = true;
+		System.out.println(b);
+
+		Double d = 90.90;
+		System.out.println(d);
+
+		Character c = 'A';
+		System.out.println(c);
+	}
+}
+
+Note : From JAVA 1.5 version we have two conecpt :
+
+AutoBoxing : Converting Primitive to Wrapper Object (int to Integer)
+UnBoxing : Converting Wrapper object back to primitive (Integer to int )
+----------------------------------------------------------------
+How to find out the minimum value, maximum value as well as size of different data types :
+
+The Warpper classes like Byte, Short, Integer and Long has provided predefined static and final variables to represent minimum value, maximum value as well as size of the respective data type.
+
+Example : 
+
+If we want to get the minimum value, maximum value as well as size of byte data type then Byte class (Wrapper class) has provided the following final and static variables
+
+Byte.MIN_VALUE   : -128
+
+Byte.MAX_VALUE   :  127
+
+Byte.SIZE        :  8 (bits format)
+---------------------------------------------------------------
+ //Program to find out the range and size of Integeral Data type
+public class Test
+{
+	public static void main(String[] args) 
+	{
+		System.out.println("\n Byte range:");
+		System.out.println(" min: " + Byte.MIN_VALUE);
+		System.out.println(" max: " + Byte.MAX_VALUE);
+		System.out.println(" size :"+Byte.SIZE);
+ 
+		System.out.println("\n Short range:");
+		System.out.println(" min: " + Short.MIN_VALUE);
+		System.out.println(" max: " + Short.MAX_VALUE);
+		System.out.println(" size :"+Short.SIZE);
+
+		System.out.println("\n Integer range:");
+		System.out.println(" min: " + Integer.MIN_VALUE);
+		System.out.println(" max: " + Integer.MAX_VALUE);
+		System.out.println(" size :"+Integer.SIZE);
+
+		System.out.println("\n Long range:");
+		System.out.println(" min: " + Long.MIN_VALUE);
+		System.out.println(" max: " + Long.MAX_VALUE);
+		System.out.println(" size :"+Long.SIZE);
+		
+	}
+}
+----------------------------------------------------------------
+Writing _ symbol in Integral Literal :
+---------------------------------------
+Java software people has provided to write _ symbol facility while writing the big integral literal numbers so the readability of the number will enhance.
+
+Example : 98_7854_3986
+
+We can't start or end an integral literal with _ we will get compilation error.
+
+//We can provide _ in integral literal [JDK 1.7]
+public class Test10 
+{
+	public static void main(String[] args) 
+	{
+	    long mobile = 98_1234_5678L;
+		System.out.println("Mobile Number is :"+mobile);
+	}
+}
+---------------------------------------------------------------
+public class Test11 
+{
+	public static void main(String[] args) 
+	{
+		final int x = 127;    
+		byte b = x;		
+		System.out.println(b);
+	}
+}
+
+Note : Program will compile and run.
+---------------------------------------------------------------
+
+Integer class has provided the following static methods to convert decimal to octal, hexadecimal and binary.
+
+1) public static String toBinaryString(int x) : Will convert the decimal into binary in String format.
+
+2) public static String toOctalString(int x) : Will convert the decimal into octal in String format.
+
+3) public static String toHexString(int x) : Will convert the decimal into hexadecimal in String format.
+
+Note : All the above static methods are available in Integer class.
+
+class Test 
+{	
+	public static void main(String[] args) 
+        {        
+	  int x = 15;
+	  //Decimal to octal
+	  System.out.println(Integer.toOctalString(x));
+	  
+	  int y = 2781;
+	  //decimal to hexadecimal
+	  System.out.println(Integer.toHexString(y));
+	   
+	  int z = 5;
+	  //decimal to Binary
+	  System.out.println(Integer.toBinaryString(z)); 
+	  	   
+	}
+}
+--------------------------------------------------------------
+var keyword in java :
+---------------------
+Java has provided var keyword from java 10V. By using var keyword we can directly assign any type of value to that particular variable.
+
+Using var keyword, Initialization is compulsory in the same line (Compiler will get the information of variable type based on the value)
+
+var keyword is allowed only for local variable.
+
+//var keyword [Introduced from java 10]
+public class Test13 
+{
+	public static void main(String[] args) 
+	{
+		var x = 100; //Initialization is compulsory here only
+		
+		//x = "NIT";  //Invalid
+		
+		x = 900;
+		
+		System.out.println(x);
+			
+	}
+}
+---------------------------------------------------------------
+31-01-2025
+----------
+Floating Point Literal :
+------------------------
+If any numeric literal contains decimal or fraction then it is called Floating Point Literal.
+Example :  45.9, 7.8, 4.5    
+
+In floating point literal we have 2 data types :
+1) float (32 bits)
+2) double (64 bits)
+
+
+By default every floating point literal is of type double only so, the following statement will generate compilation error
+
+    float f = 1.2; //Error
+    
+    In order to represent double value as a float value we can 
+    write the following statements :
+           float f1 = (float) 12.90;
+	   float f2 = 12.66F;
+	   float f3 = 56.89f;
+
+
+As we know by default every floating point literal is of type double only but still compiler has provided two flavors to 
+represent the double value explicitly.
+      
+        double d1 = 10d;
+	double d2 = 18D;
+	
+	
+Floating point literal we can represent in exponent form also.
+              double d1 = 15e2; [15 X 10 to the power of 2]
+	      double d2 = 15e-2;
+
+
+* Any integral literal (byte, short, int and long) we can assign to floating point literal (float and double) but a floating point literal we can't assign to integral literal. 
+
+
+* While working with integral literal, we can represent an integral literal in four different forms i.e decimal, octal, 
+binary and hexadecimal but floating point literal we can represent in only one form i.e decimal.
+  
+              double d1 = 0.129; //Valid
+	      
+
+ //Programs :
+ ------------
+ public class Test 
+{
+	public static void main(String[] args) 
+	{
+		float f = 0.0; //error
+		System.out.println(f);				
+	}
+}
+-------------------------------------------------------
+public class Test1 
+{
+	public static void main(String[] args) 
+	{		
+		float b = 15.29F;
+		float c = 15.25f;
+		float d = (float) 15.30;
+
+		System.out.println(b + " : "+c+ " : "+d);
+       
+	}
+}
+--------------------------------------------------------------
+public class Test2 
+{
+	public static void main(String[] args) 
+	{
+		double d = 15.15;
+		double e = 15d;
+		double f = 90D;
+		
+		System.out.println(d+" , "+e+" , "+f);
+	}
+}
+----------------------------------------------------------------
+public class Test3 
+{
+	public static void main(String[] args) 
+	{
+		 double x = 0129.89;  
+
+		 double y = 0167;
+
+		 double z = 0178; //error
+
+		System.out.println(x+","+y+","+z);
+	}
+}
+----------------------------------------------------------------
+class Test4 
+{
+	public static void main(String[] args) 
+	{
+		double x = 0X29;  
+
+		double y = 0X91.5; //error
+		
+		System.out.println(x+","+y);
+	}
+}
+---------------------------------------------------------------
+public class Test5 
+{
+	public static void main(String[] args) 
+	{
+		double d1 = 15e-3;
+		System.out.println("d1 value is :"+d1);		
+
+		double d2 = 15e3;
+		System.out.println("d2 value is :"+d2);		
+	}
+}
+----------------------------------------------------------------
+public class Test6 
+{
+	public static void main(String[] args) 
+	{
+		double a = 0791; //Error
+
+		double b = 0791.0; 
+
+		double c = 0777;  
+
+		double d = 0Xdead; 
+		
+		double e = 0Xdead.0; //Error
+	}
+}
+---------------------------------------------------------------
+public class Test7 
+{
+	public static void main(String[] args) 
+	{
+	   double a = 1.5e3;  
+	   float b = 1.5e3;  //E 
+	   float c = 1.5e3F; 	   
+	   double d = 10; 	   
+	   int e = 10.0;  //E
+	   long f = 10D; //E
+	   int g = 10F; //E  
+	   long l = 12.78F; //E
+	}
+}
+----------------------------------------------------------------
+//Range and size of floating point literal 
+public class Test8 
+{
+	public static void main(String[] args)    
+	{
+		System.out.println("\n Float range:");
+		System.out.println(" min: " + Float.MIN_VALUE);
+		System.out.println(" max: " + Float.MAX_VALUE); 
+		System.out.println(" size :"+Float.SIZE);
+
+		System.out.println("\n Double range:");
+		System.out.println(" min: " + Double.MIN_VALUE);
+		System.out.println(" max: " + Double.MAX_VALUE);
+		System.out.println(" size :"+Double.SIZE);
+	}
+} 
+---------------------------------------------------------------
+boolean literal :
+-----------------
+It is used to represent two states i.e. either true or false.
+ 
+In boolean literal, we have only one data type i.e boolean data type which accepts 1 bit of memory OR depends upon JVM 
+implementation.
+
+           boolean isValid = true;
+	   boolean isEmpty = false;
+
+Unlike C and C++, We can't assign 0 and 1 to boolean data type because in java 0 and 1 both are representing numeric type (int type)
+
+          boolean x = 0; //[Valid in C and C++ but Invalid in java]
+          boolean y = 1; //[Valid in C and C++ but Invalid in java]
+  
+We can't assign String type to boolean where String contains true or false internally.
+
+               boolean x = "true";  //Invalid
+	       
+Programs :
+-----------
+public class Test1
+{
+    public static void main(String[] args)
+    {
+        boolean isValid = true;   
+        boolean isEmpty = false;
+		
+        System.out.println(isValid);
+        System.out.println(isEmpty);
+     }
+}
+
+
+public class Test2
+{
+    public static void main(String[] args)
+    {
+	boolean c = 0; //error
+        boolean d = 1; //error
+        System.out.println(c);
+        System.out.println(d);       
+    }
+}
+
+public class Test3 
+{
+	public static void main(String[] args) 
+	{
+		boolean x = "true";  //error
+		boolean y = "false";  //error
+		System.out.println(x);
+                System.out.println(y); 
+	}
+}
+----------------------------------------------------------------
+01-02-2025
+------------
+Character Literal :
+-------------------
+It is also known as char literal.
+
+In Character literal we have only one data type i.e char data type
+which accepts 16 bits of memory.
+
+We can represent character literal in the following ways :
+
+ a) Single character enclosed with single quotes.
+    Example :  char ch = 'A'; 
+    
+ b) We can assign char literal to integral literal data types to know the ASCII value of that particular character literal.    
+    Example : int x = 'A';
+    
+ c) In older langugaes like c and c++, which supports ASCII value    format and the range is 0 - 255, on the other hand java 
+    supports UNICODE (ASCII + NON ASCII) value format where the
+    range is 0 - 65535.
+    
+              char ch = 65535; //Valid
+    
+  d) We can represent char literal in 4 digit hexadecimal format
+     to support UNICODE value format.
+     
+     The format is  '\udddd'
+     
+     Here u represents it is UNICODE and d represents the digit
+     which is in hexadecimal format.
+     
+     Here the range is :  '\u0000' to '\uffff'
+    
+   e) All the escape sequences we can represent as Character literal.
+             char ch = '\n';
+    
+Programs :
+----------
+public class Test1 
+{
+	public static void main(String[] args) 
+	{
+		char ch1 = 'a';
+		System.out.println("ch1 value is :"+ch1);      
+		
+	}
+}
+-------------------------------------------------------------  
+public class Test2 
+{
+	public static void main(String[] args) 
+	{
+		int ch = 'A';
+		System.out.println("ch value is :"+ch);
+		
+		char ch1 = 'A';
+		System.out.println("ch1 value is :"+ch1);
+	}
+}
+----------------------------------------------------------------
+//The UNICODE value for ? character is 63 
+public class Test3 
+{
+	public static void main(String[] args) 
+	{
+		char ch1 = 63;  
+		System.out.println("ch1 value is :"+ch1); //?
+		
+		char ch2 = 64;  
+		System.out.println("ch2 value is :"+ch2); //@
+
+		char ch3 = 65; 
+		System.out.println("ch3 value is :"+ch3); //A
+	}
+}
+----------------------------------------------------------------
+public class Test4 
+{
+	public static void main(String[] args) 
+	{
+		char ch1 = 65000;  
+        System.out.println("ch1 value is :"+ch1); 
+
+		char ch2 = 0Xadd;  		
+		System.out.println("ch2 value is :"+ch2); 
+		
+		
+	}
+}
+
+Note : Here we will get the output as ? symbol which represents unknown type character because the language translator is not available in the current system.
+----------------------------------------------------------------
+//Addition of two character in the form of Integer
+public class Test5
+{
+public static void main(String txt[])
+  {
+	int x = 'A'; 
+    int y = 'B';
+    
+	System.out.println(x + y); //131	
+	System.out.println('A'+'B');//131 
+	System.out.println("A"+"B");//AB
+   } 
+} 
+-----------------------------------------------------------------
+//Range of UNICODE Value (65535) OR '\uffff'
+class Test6 
+{
+	public static void main(String[] args) 
+	{
+		char ch1 = 65535; 
+		System.out.println("ch value is :"+ch1);
+
+		char ch2 = 65536; //error
+		System.out.println("ch value is :"+ch2);
+	}
+}
+----------------------------------------------------------------
+//WAP in java to describe unicode representation of char in hexadecimal format
+public class Test7 
+{
+	public static void main(String[] args) 
+	{
+		int ch1 = '\u0000'; 
+		System.out.println(ch1);
+
+		int ch2 = '\uffff';   
+		System.out.println(ch2);
+
+		char ch3 = '\u0041'; 
+                System.out.println(ch3); //A  
+
+		char ch4 = '\u0061';
+		System.out.println(ch4); //a
+	}
+}
+-----------------------------------------------------------------
+class Test8 
+{
+	public static void main(String[] args) 
+	{
+		char c1 = 'A';
+		char c2 = 65;
+		char c3 = '\u0041';
+
+		System.out.println("c1 = "+c1+", c2 ="+c2+", c3 ="+c3);
+	}
+}
+-----------------------------------------------------------------
+class Test9 
+{
+	public static void main(String[] args) 
+	{
+		int x = 'A';
+		int y = '\u0041';
+		System.out.println("x = "+x+" y ="+y);
+	}
+}
+----------------------------------------------------------------
+//Every escape sequence is char literal
+class Test10 
+{
+	public static void main(String [] args) 
+	{
+		char ch ='\n';
+		System.out.println("Hello");
+		System.out.println(ch);
+		
+	}
+}
+-------------------------------------------------------------------
+public class Test11  
+{
+	public static void main(String[] args) 
+	{
+		System.out.println("Min Value :"+(int)Character.MIN_VALUE);
+		System.out.println("Max Value :"+(int)Character.MAX_VALUE);
+		
+		int min = '\u0000';
+		int max = '\uffff';
+       
+		System.out.println("Min Value :"+min);
+		System.out.println("Max Value :"+max);
+		
+		
+	}
+}
+------------------------------------------------------------------
+String Literal :
+----------------
+
+
+
+ 

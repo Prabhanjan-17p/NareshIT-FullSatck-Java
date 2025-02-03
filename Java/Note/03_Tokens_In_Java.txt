@@ -292,7 +292,7 @@ Byte.MAX_VALUE   :  127
 Byte.SIZE        :  8 (bits format)
 ---------------------------------------------------------------
  //Program to find out the range and size of Integeral Data type
-public class Test
+public class Test9 
 {
 	public static void main(String[] args) 
 	{
@@ -743,7 +743,7 @@ class Test6
 		System.out.println("ch value is :"+ch2);
 	}
 }
-----------------------------------------------------------------
+--------------------------------------------------------------
 //WAP in java to describe unicode representation of char in hexadecimal format
 public class Test7 
 {
@@ -813,10 +813,211 @@ public class Test11
 		
 	}
 }
-------------------------------------------------------------------
+---------------------------------------------------------------
+03-02-2025
+-----------
 String Literal :
+-----------------
+String is a predefined class available in java.lang Package.
+
+String is a collection of alpha-nemeric character which is enclosed by double quotes. These characters can be alphabets, numbers, symbol or any special character.
+
+In java we can create String object by using following 3 ways :
+
+ 1) By using String Literal 
+    String str1 = "india";    
+    
+2) By using new keyword 
+   String str2 = new String("Hyderabad");
+     
+3) By using Character array [Old Technique]
+   char ch[] = {'R', 'A', 'J'};
+
+Programs :
+----------
+//Three Ways to create the String Object
+public class StringTest1 
+{
+	public static void main(String[] args) 
+	{
+		String s1 = "Hello World";       //Literal
+		System.out.println(s1);
+
+		String s2 = new String("Ravi"); //Using new Keyword
+		System.out.println(s2);
+
+		char s3[] = {'H','E','L','L','O'}; //Character Array 
+		System.out.println(s3);
+
+	}
+}
+--------------------------------------------------------------
+//String is collection of alpha-numeric character
+public class StringTest2 
+{
+	public static void main(String[] args) 
+	{
+		String x="B-61 Hyderabad";
+		System.out.println(x);
+		
+		String y = "123";  
+		System.out.println(y);
+
+		String z = "67.90";       
+		System.out.println(z);
+
+		String p = "A";        
+		System.out.println(p);
+	}
+}
+--------------------------------------------------------------
+//IQ
+public class StringTest3
+{
+	public static void main(String []args)
+	{		
+		String s = 15+29+"Ravi"+40+40; 
+		System.out.println(s);	
+		
+	}
+}
+--------------------------------------------------------------
+4) Punctuators :
 ----------------
+It is  also called separators.
+
+It is used to inform the compiler how things are grouped in the code.
+
+()  {}   []   ;   ,   .   @   ů (var args)  
+
+--------------------------------------------------------------
+What is a local variable ?
+---------------------------
+If a variable is declared inside the body of method OR block OR Constructor then it is called Local /Automatic/ Stack/
+temporary variable.
+
+Example :
+---------
+public void accept()
+{
+   int x = 100;  //x is a local variable
+}
+
+A local variable must be initialized by the developer before 
+use because local variable does not have any default value.
+
+We can't apply any kind of modifier on local variable except final.
+
+public void accept()
+{
+   final int x = 100;  //final is a valid modifier
+}
+
+As far as it's scope is concerned, It must be used within the same method body only that menas we can't use local variable outside of the method body/block/constructor.
+
+All local variables are the part of the method body, all the methods are executed in a special memory in java called Stack Memory so local variables are the part of Stack memory.
+
+A local variable must be pre-declared and initialized before use.
+
+public void m1()
+{
+  System.out.println(x); //error
+  int x = 100;
+}
+--------------------------------------------------------------
+Why we can't use local variables outside of the method OR body OR Constructor ?
+
+In java, Every methods are executed in a special memory called
+Stack Memory.
+
+Stack Memory works on LIFO (Last In First Out) basis.
+
+In java, Whenever we call a method then a separate Stack Frame will be created for each and every method.[03-FEB]
+
+Once the method execution is over then the corresponding method Stack frame will also be deleted from Stack Area, that is the reason we can't use local variable outside of the method. 
+
+Each stack frame contains 3 parts :
+   1) Local Variable Array
+   2) Frame Data
+   3) Operand Stack
+
+Progarm :
+---------
+public class LocalVariableScope 
+{
+	public static void main(String[] args) 
+	{
+		System.out.println("Main method Started!!!");
+		m1();
+		System.out.println("Main method ended!!!");
+	}
+	
+	public static void m1()
+	{
+		System.out.println("M1 method Started!!!");
+		m2();
+		System.out.println("M1 method ended!!!");
+	}
+	
+	public static void m2()
+	{
+		System.out.println("Inside the m2 method body!!!");
+		int x = 100;
+		System.out.println(x);
+	}	
+	
+}
+---------------------------------------------------------------
+Limitation of Commnd line Argument ?
+-------------------------------------
+As we know by using Command Line Argument, we can pass some value at runtime, These values are stroed in String array variable and then only the exceution of the program will be started.
+In Command line Argumenet we can't ask to enter the value from our end user as shown in the Program.
+
+package com.ravi.command_line_argument;
+
+//Program to read gender [M/F] from the user
+
+public class ReadCharacter 
+{
+	public static void main(String[] args) 
+	{
+		System.out.println("Please Enter your Geneder [M/F]");
+		char gender = args[0].charAt(0);
+		System.out.println("Your Gender is :"+gender);
+		
+	}
+
+}
+
+Note : In the above program, after providing the gender value, It is asking for Gender which is not a recommended way.
+
+Note : charAt(int indexPosition) is a predefined non static method of String class, which is used to retrieve a character
+from the given String.
+
+//Program on charAt(int indexPosition) method :
+----------------------------------------------
+public char charAt(int indexPosition) 
+
+public class ReadCharacter 
+{
+	public static void main(String[] args) 
+	{
+		String str = "India";
+		 char ch = str.charAt(0);			   
+		System.out.println("0th index character is :"+ch); //I
+	}
+}
+
+How to read the data from the End user with user friendly mesasage :
+
+There are so many ways we can read the data from client which are as follows :
+
+1) DataInputStream class (java.io)
+2) BufferedReader class (java.io)
+3) System.in.read()  (java.lang)
+4) Console (java.io)
+5) Scanner class (java.util)
 
 
-
- 
+Scanner class :
+----------------

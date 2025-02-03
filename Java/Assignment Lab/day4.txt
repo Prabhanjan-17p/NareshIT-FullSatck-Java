@@ -1,18 +1,131 @@
 Program-1
 -----------
 A shopkeeper buys a TV set for Rs. 32,500 and sells it at a profit of 27%. Apart from this a VAT of 12.7% and Service Charge is 3.87% is charged. Display total selling price, profit along with vat and service charge.
+package com.nareshIT.day4;
+
+public class TVSellingPrice {
+    public static void main(String[] args) {
+
+        double costPrice = 32500;      
+        double profitPercentage = 27; 
+        double vatPercentage = 12.7;   
+        double serviceChargePercentage = 3.87; 
+
+        double profitAmount = (costPrice * profitPercentage) / 100;
+
+        double sellingPrice = costPrice + profitAmount;
+
+        double vatAmount = (sellingPrice * vatPercentage) / 100;
+
+        double serviceChargeAmount = (sellingPrice * serviceChargePercentage) / 100;
+
+        double totalSellingPrice = sellingPrice + vatAmount + serviceChargeAmount;
+
+        
+        System.out.println("Cost Price of TV: Rs. " + costPrice);
+        System.out.println("Profit Amount (27%): Rs. " + profitAmount);
+        System.out.println("Selling Price before VAT & Service Charge: Rs. " + sellingPrice);
+        System.out.println("VAT Amount (12.7%): Rs. " + vatAmount);
+        System.out.println("Service Charge Amount (3.87%): Rs. " + serviceChargeAmount);
+        System.out.println("Total Selling Price (Final Price): Rs. " + totalSellingPrice);
+    }
+}
+
 
 Program-2
 ----------
 Rohan purchased an old cycle for Rs. 1200 and spend Rs. 250 on repairs, Rs. 350 in coloring and added new accessories worth Rs. 500. Rohan wants to make a profit of Rs. 1500 on selling the cycle. Find the selling price of the cycle. Write a java program to store all values and calculate and display the selling price.
+package com.nareshIT.day4;
+
+public class CycleSellingPrice {
+    public static void main(String[] args) {
+        // Given values
+        double purchasePrice = 1200;    
+        double repairCost = 250;       
+        double coloringCost = 350;      
+        double accessoriesCost = 500;   
+        double desiredProfit = 1500;    
+
+        
+        double totalCostPrice = purchasePrice + repairCost + coloringCost + accessoriesCost;
+
+        
+        double sellingPrice = totalCostPrice + desiredProfit;
+
+        
+        System.out.println("Purchase Price: Rs. " + purchasePrice);
+        System.out.println("Repair Cost: Rs. " + repairCost);
+        System.out.println("Coloring Cost: Rs. " + coloringCost);
+        System.out.println("Accessories Cost: Rs. " + accessoriesCost);
+        System.out.println("Total Cost Price: Rs. " + totalCostPrice);
+        System.out.println("Desired Profit: Rs. " + desiredProfit);
+        System.out.println("Selling Price of the Cycle: Rs. " + sellingPrice);
+    }
+}
+
 
 Program-3
 ----------
 Write a program to enter Principal, Rate and Time. Calculate and display Simple Interest and Amount.
+package com.nareshIT.day4;
+
+public class SimpleInterestCalculator {
+    public static void main(String[] args) {
+    	if (args.length < 3) {
+			System.out.println("Enter Principal Amount (Rs.): ,Rate of Interest (%): ,Time (in years): ");
+			return;
+    	}
+    	
+    	double PM = Integer.parseInt(args[0]);
+    	double Rate = Integer.parseInt(args[0]);
+    	double time = Integer.parseInt(args[0]);
+
+        double simpleInterest = (PM * Rate * time) / 100;
+
+        double totalAmount = PM + simpleInterest;
+
+        System.out.println("\n====== Interest Calculation Result ======");
+        System.out.println("Principal Amount: Rs. " + PM);
+        System.out.println("Rate of Interest: " + Rate + "%");
+        System.out.println("Time: " + time + " years");
+        System.out.println("Simple Interest: Rs. " + simpleInterest);
+        System.out.println("Total Amount (Principal + Interest): Rs. " + totalAmount);
+
+        
+    }
+}
+
+
 
 Program-4
 ----------
 Write a program in java to input number of days. Find and display number of years, months and days.
+package com.nareshIT.day4;
+
+public class DaysToYearsMonthsDays {
+    public static void main(String[] args) {
+        if (args.length == 0) {
+            System.out.println(" provide the number of days :");
+            return;
+        }
+
+      
+            int totalDays = Integer.parseInt(args[0]);
+
+            int years = totalDays / 365;
+            int remainingDaysAfterYear = totalDays % 365;
+
+            int months = remainingDaysAfterYear / 30;
+            int remainingDays = remainingDaysAfterYear % 30;
+
+            System.out.println("Total Days: " + totalDays);
+            System.out.println("Equivalent to: " + years + " years, " + months + 
+            		" months, and " + remainingDays + " days.");
+       
+    }
+}
+
+
 
 Program-5
 -----------
@@ -24,3 +137,36 @@ A whole-seller gives incentives in the form of discounts on the net bill. Write 
 	>=10000					15
 
 Display Discount %, Discount Amount and Amount Payable
+
+package com.nareshIT.day4;
+
+public class DiscountCalculator {
+    public static void main(String[] args) {
+        if (args.length == 0) {
+            System.out.println("Enter a bill :");
+            return;
+        }
+
+        
+            double netBill = Double.parseDouble(args[0]);
+            double discountPercentage;
+
+            if (netBill < 5000) {
+                discountPercentage = 5;
+            } else if (netBill >= 5000 && netBill < 10000) {
+                discountPercentage = 10;
+            } else {
+                discountPercentage = 15;
+            }
+
+            double discountAmount = (netBill * discountPercentage) / 100;
+
+            double amountPayable = netBill - discountAmount;
+
+            System.out.println("Net Bill Amount: Rs. " + netBill);
+            System.out.println("Discount Percentage: " + discountPercentage + "%");
+            System.out.println("Discount Amount: Rs. " + discountAmount);
+            System.out.println("Final Payable Amount: Rs. " + amountPayable);
+        
+    }
+}

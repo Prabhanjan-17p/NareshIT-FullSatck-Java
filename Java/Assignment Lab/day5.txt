@@ -1,0 +1,197 @@
+Que-1)
+____________________-
+What is the output of the following Java Code?
+
+int a=9;
+float b = a/2;
+System.out.println(b);
+
+a 4.0
+b 4.5
+c 5.0
+d None of the above
+_____________________________________________________________________
+Que-2
+____________________
+What is the output of the below Java code snippet?
+
+char ch = 'A';//ASCII 65 
+int a = ch + 1; // 65+1= 66 
+ch = (char)a; //66 -> 'B' 
+System.out.println(ch); //==>B
+
+a 66
+b A
+c B
+d 65
+_________________________________________________________________________
+QUE-3)
+___________________
+What is the output of the below Java code snippet?
+
+float a = 8.2/2;   //---> float a = (float) 8.2/2; 
+System.out.println(a);
+
+a.
+4.1
+b.
+8.1
+c.
+4
+d.
+Compiler error
+__________________________________________________________________________
+Que-4)
+__________________
+What is the output of the Java code snippet?
+
+int a = 260; // 32 bits (int )
+byte b= (byte)a; // 8 bit (256) (260 - 256 = 4)
+System.out.println(b);
+
+a.
+0
+b.
+4
+c.
+255
+d.
+260
+__________________________________________________________________________
+Que-5)
+__________________
+What is the output of the Java code snippet?
+
+short a = (short)65540; // total value store (65535 + 1(adding of zero) = 65536) then 65540-65536 = 4
+System.out.println(a);
+
+a.
+0
+b.
+4
+c.
+65536
+d.
+65540
+__________________________________________________________________________
+Que-6)
+__________________
+public class MyFirstJavaProgram {
+ public static void main(String []args) {
+ int a = 300;
+ long b = a;
+ System.out.println(b); // 300
+ }
+}
+__________________________________________________________________________
+Que-7)
+________________
+public class WideningExample {
+ public static void main(String args[]){
+ char ch = 'C'; //67
+ int i = ch;  // i = 67
+ System.out.println(i); // 67
+ }
+}
+__________________________________________________________________________
+Que-8)
+________________
+public class Sample {
+ public static void main(String[] args)
+ {
+ System.out.print("Y"+"O"); // YO
+ System.out.print('L'); // L
+ System.out.print('O'); // 0 (ANS = YOLO)
+ }
+}
+__________________________________________________________________________
+Que-9)
+________________
+public class Sample2 {
+ public static void main(String[] args)
+ {
+ System.out.print("Y"+"O");// YO 
+ System.out.print('L' + 'O'); //  (YO155)
+ }
+}
+_________________________________________________________________________
+Que-10)
+________________
+class Sample3{
+ public static void main(String[] args)
+ {
+ int i = 100; //100
+ long l = i; // 100
+ float f = l; // 100.0
+ System.out.println("Int value " + i);
+ System.out.println("Long value " + l);
+ System.out.println("Float value " + f);
+ }
+}
+________________________________________________________________________
+Que-11)
+_______________
+public class Sample4{
+public static void main(String[] argv)
+{
+char ch = 'c'; // 100
+int num = 88;
+ch = num; // we need to convert as char type (ch = (char) num ;)
+}
+}
+________________________________________________________________________
+Que-12)
+_______________
+class Sample5{
+public static void main(String args[])
+{
+byte b = 42;  
+char c = 'a';
+short s = 1024;
+int i = 50000;
+float f = 5.67f;
+double d = .1234;
+double result = (f * b) + (i / c) - (d * s); 
+System.out.println("result = " + result);  // (5.67 * 42) + (50000 / 97) - ( .1234 * 1024) = 626 .77
+}
+}
+________________________________________________________________________
+Programming Questions
+________________________________________________________________________
+QUE-1)
+-----------
+Write a java program to covert string to double using parseDouble() and multiply two Floating -point Numbers and display the result by taking input from the command line argument?
+//		String s = "a";
+//		double d = Double.parseDouble(s);
+//		System.out.println(d);
+		if (args.length >= 2) {
+			return;
+		}
+		float x = Float.parseFloat(args[0]);
+		float x1 = Float.parseFloat(args[1]);
+		float res = x* x1;
+		System.out.println(res);
+-----------------------------------------------------------------------
+Que-2)
+-----------
+Write a java program to find the ASCII value of a character
+For Example
+Output sholud be in below formart
+The ASCII value of a is :97
+
+	if (args.length == 0) {
+			return;
+		}
+		int a = Integer.parseInt(args[0]);
+		char ch = (char) a;
+		System.out.println(ch);
+----------------------------------------------------------------------
+Que-3)
+-----------
+Write a java program to find the profit and loss by following the formula
+Profit and loss Formulas – 
+Profit = SP – CP
+Loss = CP – SP
+Profit percentage = (Profit /Cost Price) x 100
+Loss percentage = (Loss / Cost price) x 100
+

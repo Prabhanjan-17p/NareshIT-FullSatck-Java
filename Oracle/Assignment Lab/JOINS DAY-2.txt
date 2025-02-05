@@ -1,0 +1,296 @@
+                                JOINS
+                             ==========
+
+left outer join:-This join returns all rows from left side table
+================  and matching rows from right side table.and also
+                  this join returns null values in place of non
+                  matching rows in another table.
+
+execution:-
+==========
+left outer join=====>inner join+left side table remaing
+                                records(here left side table
+                                         is main table)
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Right outer join:-This join returns all rows from right side table
+================  and matching rows from left side table and also
+                  returns null values in place of non matching
+                  rows in another table.
+
+
+execution:-
+==========
+Right outer join=====>inner join+right side table remaing
+                                records(here right side table
+                                         is main table)
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+SQL> SELECT * FROM EMPLOYEES;
+
+       EMPID     NAME         DEPTNO
+     -------  ----------      --------
+         1      KIRAN           10
+         2     GOWTHAM          20
+         3      SURYA
+         4      RAJU            20
+
+
+SQL> SELECT * FROM DEPARTMENTS;
+
+      DEPTNO      DNAME
+     -------    ----------
+        10         HR
+        20         IT
+        40      FINANCE
+
+1.Write a query to display employee details along with department details
+   also display the employees to whoom deptno is not assign?
+
+Non-ANSI Format
+SQL> SELECT * FROM EMPLOYEES E LEFT OUTER JOIN DEPARTMENTS D ON E.DEPTNO = D.DEPTNO;
+
+ANSI Format
+SQL> SELECT * FROM EMPLOYEES E , DEPARTMENTS D WHERE E.DEPTNO = D.DEPTNO(+);
+
+
+2.Write a query to display departments and their employees,including departments
+  without any employees?
+
+Non-ANSI Format
+SQL> SELECT D.DEPTNO,D.DNAME,E.EMPID, E.NAME FROM DEPARTMENTS D LEFT OUTER JOIN EMPLOYEES E ON D.DEPTNO = E.DEPTNO;
+
+ANSI Format
+SQL> SELECT D.DEPTNO,D.DNAME,E.EMPID, E.NAME FROM DEPARTMENTS D , EMPLOYEES E WHERE D.DEPTNO = E.DEPTNO(+);
+
+
+3.Write a query to display all employeenames,all departmentnames
+   from emp,dept tables by using full outer join?
+
+Non-ANSI Format
+SQL> SELECT D.DNAME , E.ENAME FROM EMP E LEFT OUTER JOIN DEPT D ON E.DEPTNO = D.DEPTNO
+  2  UNION
+  3  SELECT D.DNAME , E.ENAME FROM DEPT D LEFT OUTER JOIN EMP E ON D.DEPTNO = E.DEPTNO;
+
+ANSI Format
+SQL> SELECT D.DNAME , E.ENAME FROM EMP E , DEPT D WHERE E.DEPTNO = D.DEPTNO(+)
+  2  UNION
+  3  SELECT D.DNAME , E.ENAME FROM DEPT D , EMP E WHERE D.DEPTNO = E.DEPTNO(+);
+
+
+
+Non-ANSI Format
+
+
+ANSI Format
+4.consider the following two tables perform inner join ,left outer 
+  join ,right outer join,full outer join and check the outputs.
+
+SQL>select * from test7;
+
+       SNO
+   ----------
+        10
+        20
+        30
+
+SQL>select * from test8;
+
+       SNO
+   ----------
+        10
+        20
+        40
+INNER JOIN
+-------------------------------------------------
+SELECT T7.SNO AS TEST7_SNO, T8.SNO AS TEST8_SNO
+FROM TEST7 T7
+INNER JOIN TEST8 T8 ON T7.SNO = T8.SNO;
+
+LEFT OUTER JOIN
+-------------------------------------------------
+SELECT T7.SNO AS TEST7_SNO, T8.SNO AS TEST8_SNO
+FROM TEST7 T7
+LEFT OUTER JOIN TEST8 T8 ON T7.SNO = T8.SNO;
+
+RIGHT OUTER JOIN
+-----------------------------------------------
+SELECT T7.SNO AS TEST7_SNO, T8.SNO AS TEST8_SNO
+FROM TEST7 T7
+RIGHT OUTER JOIN TEST8 T8 ON T7.SNO = T8.SNO;
+
+FULL OUTER JOIN
+--------------------------------------------------
+SELECT T7.SNO AS TEST7_SNO, T8.SNO AS TEST8_SNO
+FROM TEST7 T7
+FULL OUTER JOIN TEST8 T8 ON T7.SNO = T8.SNO;
+
+
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+5.Write a query to fetch all employee records from the employee details
+  table who have a salary record in the employee salary table
+
+EMPLOYEE DETAILS TABLE:-
+======================
+
+empid     name         dob          state
+-------  ------      -------       -------
+  1      JOHN       23-apr-95       NY
+  2      SMITH      15-aug-90       CA
+  3      ROHAN      27-apr-96       TX
+  4      JOHNSON    12-feb-75       CA
+  5      BROWN      05-nov-00       AL
+  6      JILL       15-jun-99       CA
+  7      JAMES      12-sep-83       WA
+  8      JACK       25-sep-82       CA
+
+EMPLOYEE SALARY TABLE:-
+======================
+
+  ID          SALARY
+------      ----------
+   1           15000
+   2           20000
+   3           25000
+   4           18000
+   5           35000
+   6           40000
+   7           45000
+
+SQL> SELECT ED.empid, ED.name, ED.dob, ED.state, ES.salary
+     FROM EMPLOYEE_DETAILS ED INNER JOIN EMPLOYEE_SALARY ES ON ED.empid = ES.ID;
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+6.Describe in these two tables what is o/p of inner join,left outer
+ join ,right outer join,full outer join
+
+NOTE:- guess with out executing queries what is output in all cases
+
+SQL> select * from test10;
+
+       SNO
+   ----------
+         1
+         1
+
+SQL> select * from test20;
+
+       SNO
+   ----------
+         1
+         1
+         1
+INNER JOIN
+-------------
+SQL> SELECT * FROM  TEST3 T3 INNER JOIN TEST4 T4 ON T3.DEPTNO = T4.DEPTNO;
+
+LEFT OUTER JOIN
+----------------
+SQL> SELECT * FROM  TEST3 T3 LEFT OUTER JOIN TEST4 T4 ON T3.DEPTNO = T4.DEPTNO;
+
+RIGHT OUTER JOIN
+-----------------
+SQL> SELECT * FROM  TEST3 T3 RIGHT OUTER JOIN TEST4 T4 ON T3.DEPTNO = T4.DEPTNO;
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------                                                                                       
+                                  JOINS MCQ'S
+                               =================
+
+1.The ---- clause must contain a join condition for 
+   joining two tables.
+
+A.FROM               B.WHERE
+C.BOTH A & B         D.NONE OF THE ABOVE
+
+ANS:- WHERE
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+2.Which type of join includes records from the right table that have no matching 
+  key in the left table in the result set?
+
+A. Left outer join
+B. Right outer join
+C. Full outer join
+D. Half outer join
+
+ANS:- Right outer join
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+3.which one is the correct syntax for joins?
+
+A.select * from t1,t2 where t1.column1=t2.column2
+B.select t1.c1,t2.c2 from table1 t1,table2 t2 where t1.c1=t2.c2
+C.select t1.c1,t2.c2 from t1,t2 where c1.t1=c2.t2
+D.none of the above
+
+ANS:- B
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+4.The same table appears twice in FROM clause then that type
+   of join is called as
+
+A.simple join                 B.non equi join
+C.equi join                   D.self join
+
+ANS:- D.self join
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+5.By using which type of join we are getting unmatched rows
+   of both the tables in the from clause
+
+A.self join              B.full outer join
+C.right outer join       D.left outer join
+
+ANS:- B.full outer join
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+6.WHICH OF THE FOLLOWING JOIN RETURNS ALL THE RECORDS FROM LEFT TABLE AND
+  MATCHING RECORDS FROM RIGHT TABLE
+
+PICK ONE OR MORE OPTIONS
+
+A.LEFT JOIN                   B.LEFT INNER JOIN
+C.LEFT RIGHT JOIN             D.LEFT OUTER JOIN
+
+ANS - D.LEFT OUTER JOIN ,A.LEFT JOIN
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+7.CONSIDER FOLLOWING TABLES
+
+                   TABLE S1
+     |----------------|--------------------------|
+     | COLUMN         |      DESCRIPTION         |
+     |--------------- |--------------------------|
+     |  ID            |      UNIQUE IDENTIFIER   |
+     |----------------|--------------------------|
+     | NAME           |       STUDENT NAME       |
+     |----------------|--------------------------|
+ 
+
+
+                    TABLE S2
+     |----------------|--------------------------|
+     | COLUMN         |      DESCRIPTION         |
+     |--------------- |--------------------------|
+     |  ID            |      UNIQUE IDENTIFIER   |
+     |----------------|--------------------------|
+     | NAME           |       STUDENT NAME       |
+     |----------------|--------------------------|
+               
+      
+
+WHICH OF THE FOLLOWING SQL QUERIES WILL RESULT IN STUDENTS NAMES COMMON TO BOTH
+TABLES HAVING THE SAME ID SORTED ALPHABITICALLY?MULTIPLE STUDENTS CAN HAVE SAME 
+NAME BUT THEIR IDS WILL BE UNIQUE
+
+A.SELECT S1.NAME FROM S1 INNER JOIN S2 ON S1.ID=S2.ID ORDER BY S1.NAME
+B.SELECT NAME FROM S1 OUTER JOIN S2 ON S1.SID=S2.ID ORDER BY ID
+C.SELECT S1.SNAME FROM S1 LEFT JOIN S2 ON S1.ID=S2.ID ORDER BY NAME
+D.SELECT NAME FROM S2 LEFT JOIN ON S1.ID=S2.ID
+
+ANS:-A.SELECT S1.NAME FROM S1 INNER JOIN S2 ON S1.ID=S2.ID ORDER BY S1.NAME

@@ -888,7 +888,7 @@ It is  also called separators.
 
 It is used to inform the compiler how things are grouped in the code.
 
-()  {}   []   ;   ,   .   @   ů (var args)  
+()  {}   []   ;   ,   .   @    (var args)  
 
 --------------------------------------------------------------
 What is a local variable ?
@@ -1018,6 +1018,232 @@ There are so many ways we can read the data from client which are as follows :
 4) Console (java.io)
 5) Scanner class (java.util)
 
-
+04-02-2025
+-----------
 Scanner class :
-----------------
+---------------
+In order to read the data from client with user-friendly input 
+message, Java software people has provided a predefined class called Scanner available in java.util package from JDK 1.5V.
+
+static variables of System class :
+-----------------------------------
+System class has provided 3 static variables which as as follows :
+
+1) System.out : Used to print normal message on the Screen.
+
+2) System.err : Used to print error message on the screen.
+
+3) System.in : Used to take the input from the source.
+
+How to create an Object for Scanner class :
+--------------------------------------------
+Scanner sc = new Scanner(System.in);
+
+Non static Methods of Scanner class :
+--------------------------------------
+The following are the non static method of Scanner class :
+
+1) public String next() : Used to read a single word.
+
+2) public String nextLine() : Used to read a multiple words or
+                              complete line.
+			      
+3) public byte nextByte() : Used to read byte value.
+
+4) public short nextShort() : Used to read short value.
+
+5) public int nextInt() : Used to read int value.
+
+6) public long nextLong() : Used to read long value.
+
+7) public float nextFloat() : Used to read float value.
+
+8) public double nexDouble() : Used to read double value.
+
+9) public boolean nextBoolean() : Used to read boolean value.
+
+10) public char next().charAt(0) : Used to read a single character
+
+//How to read name from the user using Scanner class :
+
+import java.util.*;
+
+public class ReadName 
+{
+	public static void main(String[] args) 
+	{
+		Scanner sc = new Scanner(System.in);
+		System.out.print("Enter your Name :");
+		
+		String name =  sc.nextLine();
+		System.out.println("Your Name is :"+name);
+	}
+}
+------------------------------------------------------------------
+//WAP to read your age from the Scanner class :
+
+package com.ravi.scanner;
+
+import java.util.Scanner;
+
+public class ReadAge {
+
+	public static void main(String[] args) 
+	{
+		Scanner sc = new Scanner(System.in);
+		System.out.print("Enter your Age :");
+		
+		int age =  sc.nextInt();
+               System.out.println("Your Age is :"+age);
+        
+               sc.close();
+	}
+
+}
+------------------------------------------------------------------
+//WAP to read a character from the user using Scanner class :
+
+package com.ravi.scanner;
+
+public class ReadCharacter 
+{
+	public static void main(String[] args)
+	{
+		java.util.Scanner sc = new java.util.Scanner(System.in);
+		System.out.print("Enter your Gender [M/F] :");
+		
+		char gender = sc.next().charAt(0);
+		System.out.println("Your Gender is :"+gender);
+		sc.close();	
+
+	}
+
+}
+-----------------------------------------------------------------
+WAP to read student data from the Scanner class :
+
+package com.ravi.scanner;
+
+import java.util.Scanner;
+
+public class StudentData {
+
+	public static void main(String[] args) 
+	{
+		Scanner sc = new Scanner(System.in);		
+		
+		System.out.print("Enter Student Id :");		
+		int id = sc.nextInt();	
+		
+		System.out.print("Enter Student Name :");
+		String name = sc.nextLine(); //Buffer Problem
+		name = sc.nextLine();
+		
+		System.out.println("Student Id is :"+id);
+		System.out.println("Student name is :"+name);
+		
+		sc.close();
+
+	}
+
+}
+
+Note : Here we have a buffer problem so, we need to write nextLine() method one more time to accept the user input.
+
+Note : java.lang is a default package so we need not to import but if we use the classes from another package then we should use 
+import statement after package statement in java.
+==================================================================
+
+5) Operators      
+------------
+It is a symbol which describes that how a calculation will be performed on operands.
+
+Types Of Operators :
+------------------------
+1) Arithmetic Operator (Binary Operator) 
+
+2) Unary Operators     
+
+3) Assignment Operator
+
+4) Relational Operator  (>, >=, <, <=, !=, ==)
+
+5) Logical Operators (&&  ||  !)   
+
+6) Boolean Operators (&  |)
+
+7) Bitwise Operators (^  ~)
+
+8) Ternary Operator
+
+*9) Member Operator( Dot . Operator)
+
+*10) new Operator
+
+*11) instanceof Operator [It is also relational operator]
+-----------------------------------------------------------------
+Basic Concepts of Operators :
+-----------------------------
+public class Test 
+{
+	public static void main(String[] args) 
+	{
+        int x = 15;
+		int y = x++;
+		System.out.println(x + " : "+ y);
+	}
+}
+----------------------------------------------------------------
+class Test 
+{
+	public static void main(String[] args) 
+	{
+        int x = 15;
+		int y = --x;
+		System.out.println(x + " : "+ y);
+	}
+}
+---------------------------------------------------------------
+class Test 
+{
+	public static void main(String[] args) 
+	{
+                 int x = 20;
+		int y = ++20; //error
+		System.out.println(x + " : "+ y);
+	}
+}
+---------------------------------------------------------------
+class Test 
+{
+	public static void main(String[] args) 
+	{
+        int x = 20;
+		int y = ++(++x);
+		System.out.println(x + " : "+ y);
+	}
+}
+----------------------------------------------------------------
+class Test 
+{
+	public static void main(String[] args) 
+	{
+            char ch = 'A';
+	    ch++;
+	    System.out.println(ch);
+	}
+}
+----------------------------------------------------------------
+class Test 
+{
+	public static void main(String[] args) 
+	{
+            double d1 = 12.89;
+	    d1++;
+	    System.out.println(d1);
+	}
+}
+
+Note : Increment and decrement operator we can apply on any data type execpt boolean.
+------------------------------------------------------------------
+

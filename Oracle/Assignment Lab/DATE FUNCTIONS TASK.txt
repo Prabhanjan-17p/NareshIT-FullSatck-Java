@@ -1,0 +1,143 @@
+                          DATE FUNCTIONS TASK
+                         =====================
+
+
+1.Write a query to display the employees who are 
+     joining in the year '81' from emp table
+               using to_char()?
+
+------ SELECT * FROM EMP WHERE TO_CHAR(HIREDATE,'YY')='81';
+
+2.Write a query to display employeenames and 4 digit year from emp table by
+  using to_char()?
+
+------ SELECT ENAME,TO_CHAR(HIREDATE,'YYYY') AS NEW_DATE FROM EMP;
+
+3.Write a query to display the employees who are joining
+      in the month December from emp table by
+               using to_char()?
+
+------- SELECT * FROM EMP WHERE TO_CHAR(HIREDATE,'MON')='DEC';
+
+4.Write a query to display the employee records who are joined
+  in 1980,1982,1984
+
+------- SELECT * FROM EMP WHERE TO_CHAR(HIREDATE,'YYYY') IN ('1980','1982','1984');
+
+5.Write a query to display the employees who are joining in
+  jan,march,dec months?
+
+------- SELECT * FROM EMP WHERE TO_CHAR(HIREDATE,'MON') IN ('JAN','MAR','DEC');
+
+6.Write a query to display the employees who are joining in 1981
+    december?
+
+------- SELECT * FROM EMP WHERE TO_CHAR(HIREDATE,'MON-YYYY')='DEC-1981';
+
+7.Write a query to display the employees who are joining in
+   1st and 4th quarter?
+
+-------  SELECT * FROM EMP WHERE TO_CHAR(HIREDATE,'Q') IN (1,4);
+
+8.Write a query to display the employees who are joining in 1981 
+   1st quarter?
+
+------- SELECT * FROM EMP WHERE TO_CHAR(HIREDATE,'Q-YYYY')='1-1981';
+
+9.Write a query to display employee names,day of join(which day they are join)
+
+------- SELECT ENAME,TO_CHAR(HIREDATE,'DAY') AS THIS_DAY FROM EMP;
+
+
+10.Write a query to display the employees who are joining 
+    on sunday from emp table?
+
+------- SELECT * FROM EMP WHERE TO_CHAR(HIREDATE,'DY')='SUN';
+------- SELECT * FROM EMP WHERE TO_CHAR(HIREDATE,'FMDAY')='SUNDAY';
+
+
+11.Write a query to display the employees who are joining
+     before 15th of every month from emp table 
+                using to_char()?
+
+-------- SELECT * FROM EMP WHERE TO_CHAR(HIREDATE,'DD')<15 ;
+
+12.Write a query to display the employee records who are joined in 
+   leap year?
+
+-------
+
+SQL> select ename,hiredate
+     from emp
+     where mod(to_char(hiredate,'yyyy'),4)=0;
+
+---------  SELECT ENAME,HIREDATE FROM EMP WHERE MOD(TO_CHAR(HIREDATE,'YYYY'),4)=0;
+
+ENAME      HIREDATE
+---------- ---------
+SMITH      17-DEC-80
+
+
+
+
+
+13.Write a query to convert given date string into client
+    requirement format by using to_char() 
+
+Given date is -> '15-JUN-05'
+display format is-> '15/JUNE/05'
+
+-------- SELECT TO_CHAR(TO_DATE('15-JUN-05'),'FMDD/MONTH/YY') FROM DUAL;
+
+
+14.write a query which is used to add 5 days to the given date
+  '18-apr-08'
+
+-------- SELECT TO_DATE('18-APR-08')+5 FROM DUAL;
+-------- SELECT TO_CHAR(TO_DATE('18-APR-08')+5) FROM DUAL;
+
+
+15.write a query which is used to add 5 days to the given date
+  '10-04-08'
+
+------- SELECT TO_DATE('10-04-08')+5 FROM DUAL;
+
+16.Write a query to display the YEAR from '15-aug-2024' ?
+
+-------- SELECT TO_CHAR(TO_DATE('15-aug-2024', 'DD-Mon-YYYY'), 'YYYY') AS THIS_YEAR FROM dual;
+
+
+17.Find which day india got independence by using to_char()?
+
+----- SELECT TO_CHAR(TO_DATE('15-aug-1947', 'DD-Mon-YYYY'), 'Day') AS DAY_OF_INDEPENDENCE FROM dual;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

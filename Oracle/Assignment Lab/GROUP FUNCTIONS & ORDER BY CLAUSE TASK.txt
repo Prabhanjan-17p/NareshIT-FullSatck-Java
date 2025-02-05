@@ -1,0 +1,140 @@
+                        GROUP FUNCTIONS Task
+                     =========================
+
+1.find sum of salaries of all employees from emp table?
+
+------- select sum(sal) from emp;
+
+2.find sum of salaries of all managers from emp table?
+
+------- select sum(sal) from emp where job='MANAGER';
+
+3.find  sum of salaries of  deptno 10,30 from table?
+
+------- SELECT SUM(SAL) FROM EMP WHERE DEPTNO IN (10,30);
+
+4.find average salaries of all employees from emp table?
+
+-------- SELECT ROUND(AVG(SAL),2) FROM EMP;
+
+5.find average salaries of all clerks from emp table?
+
+------- SELECT ROUND(AVG(SAL),2) FROM EMP WHERE JOB='CLERK';
+
+6.find the minimum salary in the table? 
+
+-------- SELECT MIN(SAL) FROM EMP;
+
+7.find the maximum salary in emp table?
+
+------ SELECT MAX(SAL) FROM EMP;
+
+8.find the no of employees in emp table?
+
+------- SELECT COUNT(*)ENAME FROM EMP;
+
+9.find the no of managers in emp table?
+
+-------- SELECT COUNT(*) FROM EMP WHERE JOB='MANAGER';
+
+10.find no of employees in 10,30 departments from emp table?
+
+------- SELECT COUNT(*) FROM EMP WHERE DEPTNO IN (10,30);
+
+12.Write a query to find the no of employees in 4th quarter?
+
+------- SELECT COUNT(*) FROM EMP WHERE TO_CHAR(HIREDATE,'Q')=4;
+
+Count(column name):- It counts number of not null values within
+==================      a column. 
+
+13.find how many employees are getting commission?
+
+-------- SELECT COUNT(*) FROM EMP WHERE COMM IS NOT NULL;
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+                      ORDER BY CLAUSE
+                    ==================
+
+
+
+1.Display the all employee records and arrange them in desending order
+   according to salary
+
+------- SELECT * FROM EMP ORDER BY SAL DESC;
+
+2.display the all employee records and arrange them according to
+   seniority
+
+-------- SELECT * FROM EMP ORDER BY HIREDATE;
+
+3.display the employee records and display salaries in ascending order
+   according to deptno
+
+SQL>select ename,deptno,sal
+    from emp
+    order by deptno,sal desc;
+
+ENAME        DEPTNO     SAL 
+_________ _________ _______ 
+KING             10    5000 
+CLARK            10    2450 
+MILLER           10    1300 
+SCOTT            20    3000 
+FORD             20    3000 
+JONES            20    2975 
+ADAMS            20    1100 
+SMITH            20     800 
+BLAKE            30    2850 
+ALLEN            30    1600 
+TURNER           30    1500 
+MARTIN           30    1250 
+WARD             30    1250 
+JAMES            30     950 
+
+4. check the following order by clause outputs
+1)SQL>select ename,comm 
+         from emp
+         order by comm desc;
+ENAME        COMM 
+_________ _______ 
+SMITH             
+CLARK             
+FORD              
+JAMES             
+JONES             
+BLAKE             
+MILLER            
+SCOTT             
+KING              
+TURNER            
+ADAMS             
+MARTIN       1400 
+WARD          500 
+ALLEN         300 
+
+
+--------- SELECT ENAME,COMM FROM EMP ORDER BY COMM DESC NULLS LAST;
+
+2)SQL>select ename,comm
+     from emp
+     order by comm desc nulls last;
+
+ENAME        COMM 
+_________ _______ 
+MARTIN       1400 
+WARD          500 
+ALLEN         300 
+MILLER            
+SCOTT             
+KING              
+TURNER            
+ADAMS             
+JAMES             
+FORD              
+BLAKE             
+JONES             
+SMITH             
+CLARK            
+
+

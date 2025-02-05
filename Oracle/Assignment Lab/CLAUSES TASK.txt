@@ -1,0 +1,190 @@
+                                                              CLAUSES TASK
+                                                           =================
+
+
+
+1.Write a query to display no of persons in each state 
+        from following PERSON table
+-->simply i want state wise count
+
+                                 group by
+EG:    Detailed data-------------------------------------->Summarized data
+
+
+        pid        pname        state                     state      count(*)      
+     ---------    -------      --------                  -------    ---------         
+         1         SUBBARAO      AP                         AP          4       
+         2         KIRAN         TS                         TS          2             
+         3         RAJU          TS                         MP          1           
+         4         ADITYA        MP                         MH          1              
+         5         GOWTHAM       AP                                     
+         6         VISWAJITH     MH 
+         7         SURYA         AP
+         8         SAI TEJA      AP
+
+
+ SELECT STATE,COUNT(*)FROM PERSON GROUP BY STATE ;
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+2.Find state wise,gender wise count(population)
+  from the following PERSONS table?
+
+       PID      PNAME         GENDER        STATE
+      ------   ---------     --------      --------
+         1     SUBBARAO         M             AP
+         2      KAVYA           F             TS
+         3      KIRAN           M             TS
+         4     GOWTHAM          M             AP
+         5     KERTHI           F             AP
+         6     SURYA            M             AP
+         7    ANUSHKA           F             AP
+         8      RAJU            M             TS
+
+ SELECT STATE,GENDER,COUNT(*) AS POPULATION FROM PERSONS GROUP BY STATE,GENDER;
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+3.Write a query to display number of employees in each department 
+   from emp table using group by?
+
+ SELECT DEPTNO,COUNT(*) AS NO_OF_EMPLOYEES FROM EMP GROUP BY DEPTNO;
+
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+4.Write a query to display number of employees in each job from emp
+   table using group by?
+
+ SELECT JOB,COUNT(*) AS NO_OF_EMPLOYEES FROM EMP GROUP BY JOB;
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+5.Write a query to display deptno, minimum and maximum salary from 
+   emp using group by?
+
+ SELECT DEPTNO,MIN(SAL),MAX(SAL) FROM EMP GROUP BY DEPTNO;
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+6.Write a query to display those departments having more than 3
+  employees from emp table?
+
+ SELECT DEPTNO,COUNT(*) FROM EMP GROUP BY DEPTNO HAVING COUNT(*)>3;
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+7. Write a query to display those departments sum(sal) more than 9000
+   from emp table by using group by clause?
+
+ SELECT DEPTNO,SUM(SAL),COUNT(*) FROM EMP GROUP BY DEPTNO HAVING SUM(SAL)>9000;
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+8.Write a query to display duplicate records from the
+  following TEST table ?
+
+SQL>select * from test;
+
+         deptno
+      ----------
+           10
+           10
+           10
+           20
+           20
+           20
+           30
+           30
+           40
+           50
+
+SELECT COUNT(DISTINCT DEPTNO) FROM TEST;
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+8.Write a query to display year, no of employees per year 
+  in which more than one employee was hired from 
+            emp table using group by?
+
+SELECT TO_CHAR(HIREDATE,'YYYY'),COUNT(*) AS NO_OF_EMPLOYEES FROM EMP GROUP BY TO_CHAR(HIREDATE,'YYYY') HAVING COUNT(*)>1 ;
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+9.How many employees are joined in january or september month by
+  using group by?
+
+SELECT TO_CHAR(HIREDATE,'MON'),COUNT(*) AS NO_OF_EMP FROM EMP GROUP BY TO_CHAR(HIREDATE,'M
+ON') HAVING TO_CHAR(HIREDATE,'MON') IN ('JAN','SEP'); 
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+10.Display the sum of salaries of 10th and 30th department by using
+  group by?
+
+SELECT DEPTNO,SUM(SAL) FROM EMP GROUP BY DEPTNO HAVING DEPTNO IN (10,30);
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+11.Write a query to display no of employees joined in each QUARTER 
+   from emp table using group by?
+
+SELECT TO_CHAR(HIREDATE,'Q'),COUNT(*) AS NO_OF_EMPLOYEES FROM EMP GROUP BY TO_CHAR(HIREDAT
+E,'Q');
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+12.Write a query to display those departments sum(Sal) having more 
+  than 3 employees from emp table by using group by clause?
+
+Note:-in all realtional databases we can also use invisible group 
+===== functions with in having clause.whenever we are implimenting
+      group function reports by using group by clause then 
+      database internally having all other group functions.
+
+SQL>select deptno,sum(sal)
+    from emp
+    group by deptno
+    having count(*)>3;
+            |---> we can also use invisible group functions in having clause.
+
+
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+13.Find year wise sales from the following ORDERS table
+
+SQL>select to_char(orderdate,'yyyy'),sum(orderamt)
+    from orders
+    group by to_char(orderdate,'yyyy');
+
+
+B.Find quarter wise sales from the following ORDERS table
+
+SQL>select to_char(orderdate,'q'),sum(orderamt)
+    from orders
+    group by to_char(orderdate,'q');
+
+orderid     ordername           orderdate            ORDERAMT
+-------    ----------         ------------          ---------
+  1	    SURYA	       12-DEC-24	       1300
+  2	   GOWTHAM	       17-JUN-22	       1800
+  3	    RAJU	       16-JAN-22	       800
+  4	   GOWTHAM	       23-DEC-23	       1000
+  5	   SURYA	       08-MAR-24	       1200
+  6	   KIRAN	       02-NOV-23	       600
+  7	   RAJU	               04-FEB-24               900
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+

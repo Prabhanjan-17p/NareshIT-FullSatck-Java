@@ -1,0 +1,82 @@
+                                    JOINS
+                                 ==========
+
+
+
+1.Write a query to display the employee names and their 
+  department names from emp,dept tables.
+
+SQL> SELECT ENAME,DNAME FROM EMP E JOIN DEPT D ON E.DEPTNO = D.DEPTNO ;
+
+2.Write a query to display the employees details and department details 
+  who are working in the location CHICAGO from emp,dept tables?
+
+SQL> SELECT * FROM EMP E JOIN DEPT D ON E.DEPTNO = D.DEPTNO AND D.LOC = 'CHICAGO';
+
+
+Note: If we want to filter the data after joining condition then we 
+===== must use and operator in 8i joins.where as in 9i joins we are
+      using either AND operator or WHERE clause also.
+
+
+
+3.Write a query to display no of employees in each location from 
+  emp,dept tables by using equi join?
+  
+3-SQL> SELECT LOC , COUNT(*) AS NOE FROM EMP E JOIN DEPT D ON E.DEPTNO = D.DEPTNO GROUP BY LOC;
+
+
+
+4.Write a query to display dname,sum(sal) from emp,dept
+   tables by using equi join?
+
+SQL> SELECT DNAME,SUM(E.SAL) AS TOTAL_SALARY FROM EMP E JOIN DEPT D ON E.DEPTNO = D.DEPTNO GROUP BY DNAME;    
+
+
+5.Write a query to display blake employee record along with dept details
+   from emp,dept tables?
+
+SQL> SELECT * FROM EMP E JOIN DEPT D ON E.DEPTNO = D.DEPTNO WHERE E.ENAME = 'BLAKE';
+
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+6.Check the following non equi join output
+SQL>select * from test3;
+ 
+      deptno
+     ---------
+        10
+        20
+
+SQL>select * from test4;
+       
+       deptno
+     ---------
+         10
+         20
+         30
+
+SQL>select * from 
+    test3 , test4
+    where test3.deptno>test4.deptno;
+
+
+
+NOTE:-in oracle when ever one table columns lies between another table
+=====  two columns then also we are retriving data from those tables
+      by using non equi join.
+
+EG:-
+===
+SQL>select * from emp;
+SQL>select * from salgrade;
+
+SQL>select ename,sal,losal,hisal 
+    from emp inneSr join salgrade
+    on sal between losal and hisal;
+              (OR)
+SQL>select ename,sal,losal,hisal
+    from emp inner join salgrade
+    on sal>=losal and sal<=hisal;
+
+6-SQL> SELECT * FROM TEST3,TEST4 WHERE TEST3.DEPTNO = TEST4.DEPTNO;

@@ -1,0 +1,193 @@
+                          OPERATORS TASK
+                        =================
+ 
+
+4.like operator:-like operator is used to retrive data based on 
+===============   specified pattern in where clause.
+
+.like operator performance is very high compare to oracle predefined 
+  searching functions.
+
+.In all  relational databases along with like operator oracle provided 2 special
+  wild card charcters.These are having special meaning.
+
+1)% -> string or group of characters matching(replaces 0 or 
+       any no of characters)
+2)_ -> single character matching purpose(replaces 1 char)
+
+
+1.Write a query to display the employees whose ename start with M 
+  from emp table using like operator?
+
+       -------  select * from emp where ename like 'M%';
+
+2.Write a query to display the employees whose ename end with S from 
+  emp table using like operator?
+      -------- select * from emp where ename like 'S%';
+
+3.Write a query to display the employees whose name contain either
+  'AM' or 'AR' strings from emp table by using like operator
+
+---------- select * from emp where ename like '%AM%' or ename like '%AR%';
+
+
+4.Write a query to display the employee records whose name 2nd
+ character is A?
+
+-----------  select * from emp where ename like'_A%';
+
+5.Write a query to display the employee records whose name 3rd 
+  character is M?
+
+----------- select * from emp where ename like'__M%';
+
+6.Write a query to display the employee records whose name has 4
+  letters?
+
+----------- elect * from emp where ename like'____';
+
+7.Write a query to display the employees who are getting 3 digit
+  salary?
+
+----------  select * from emp where sal like'___'; 
+
+8.Write a query to display the employees who are joining in the year
+  81 from emp table using like operator?
+
+---------- elect * from emp where hiredate like'%81';
+
+9.Write a query to display the employees who are joining in the 
+  month December from the emp table using like operator.
+
+---------- select * from emp where hiredate like '___12___';  or '%DEC%';
+
+10.Write a query to display the employees who are joining in 
+  JAN or DEC month?
+ 
+---------- select * from emp where hiredate like '___01___' or hiredate like  '___12___';
+
+11.Write a query to display the employee records whose name started
+   and ended with S?
+
+---------- select * from emp where ename like 'S%' or ename like '%S';
+
+12.Write a query to display the employee records whose name 
+   starting with VOWEL?
+
+---------- select * from emp where ename like 'A%' or ename like 'E%' or ename like'I%' or ename like 'O%' or ename like 'U%';
+
+13.Write a query to display the employees whose ename start 
+   with S_ from emp table using
+   like operator?
+
+----------- 
+
+Note:-insert the records with ename as S_ubbu
+
+ANS:-
+====
+SQL> select * from emp where ename like 'S\_%' escape '\';
+
+
+-----------------------------------------------------------------------------------------------------
+1)Arthematic operators
+----------------------
+.Airthemetic operators are used in number,date datatype columns.
+
+.Aithmetic operators are used in select clause.Rarely we are
+ using in where clause.
+
+1.Write a query to display ename,sal,annsal from emp table?
+
+--------- select ename, sal, sal*12 AS ANNUAL_SALARY from emp;
+
+2.Calculate the experience of the all employees from emp table?
+
+--------- select ename,job,to_char(sysdate,'yyyy')-to_char(hiredate,'yyyy') as experiance from emp;
+
+calculation of experience of emp means :so many date functions are there
+one date function is suitable for calculating exp i.e sysdate
+
+sysdate:it returns current date of the system in oracle date 
+=======    format.in oracle by default date formatt
+                        is DD-MON-YY
+
+3.Calculate TA,HRA,TAX and NETSAL from emp table based on
+  following condintions?
+
+10% on sal=>TA
+20% on sal=>HRA
+5% on sal=>TAxNETSAL =SAL+TA+HRA-TAX
+
+[TA--->Total Allowance  HRA--->House Rent Allowances   NETSAL--->Take-home Salary]
+
+Gross Salary includes all earnings (before deductions).
+
+Net Salary is the actual salary received after all deductions.
+
+---------- SELECT 
+         ename, 
+         sal AS Gross_Salary,                       -- Gross Salary before deductions
+         sal * 0.10 AS TA,                          -- Total Allowance (10% of salary)
+         sal * 0.20 AS HRA,                         -- House Rent Allowance (20% of salary)
+         sal * 0.05 AS TAX,                         -- Tax deduction (5% of salary)
+         sal + (sal * 0.10) + (sal * 0.20) - (sal * 0.05) AS NETSAL  -- Take-home salary
+     FROM 
+         emp;
+
+-------- select ename, sal as Gross_salary , sal * 0.10 as TA, sal * 0.20 as HRA, sal * 0.05 as TAX , sal+ sal * 0.10 + sal * 0.20 - sal * 0.05 as netsalary from emp;
+
+4.Write a query to display the all employee salaries after 
+  adding 1200 rupees?
+
+--------------   select ename,sal+1200 as sal from emp;
+
+5.create the student1 table and insert the records as below(this table u already 
+                                                             created.)
+
+   sno      sname      sub1         sub2        sub3 
+  -----    -------    ------       ------      ------  
+    1      gowtham      72          18          24
+    2       kiran       60          50          45
+    3       raju        12          30          25
+    4       subbu       80          88          74
+
+Q)Calculate the total marks of students?
+
+--------- select sname,sub1+sub2+sub3 as marks from student1;
+
+Q)Calculate the average marks?
+
+--------- select sname,round((sub1+sub2+sub3)/3,2) as avg from student1;
+
+------------------------------------------------------------------------------------
+mixed query
+-----------
+1.Write a query To display employee who are working as a 
+  MANAGER,CLERK and 
+  earning salary between 1500 and 3000 and
+  joined in 1981 year and 
+  not working in deptno 10 or 20
+
+-------- select * from emp where job in ('MANAGER','CLERK') AND SAL BETWEEN 1500 AND 3000 AND HIREDATE LIKE '%81' AND DEPTNO NOT IN
+ (10,20);
+-----------------------------------------------------------------------------------
+                              NVL & NVL2 FUNCTIONS
+                            ======================= 
+ 
+1.Write a query to display ename, sal, comm, sal+comm of the 
+    employees from emp table?
+
+-------- select ename,sal, comm, sal + comm from emp;
+
+2.Update the employee commission with in emp table by using nvl2() 
+  based on following conditions?
+
+1.if comm-->null then update
+     comm-->500
+
+2.if comm-->not null then update
+     comm-->comm+500
+
+---------- update emp set comm = nvl2(comm,comm+500,500);
+

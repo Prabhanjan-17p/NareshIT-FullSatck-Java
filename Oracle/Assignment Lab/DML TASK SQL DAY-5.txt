@@ -1,0 +1,145 @@
+                            DML TASK
+                        ===============
+
+NOTE:-Before we are performing all these update and delete operations.
+====      better to create one more copy of emp table as follows
+
+create table emp1
+as
+select * from emp;
+
+Update:-it is used to change data in a table or modify the table data.
+=======
+
+syntax:-update tablename set columnname=newvalue
+=======        where columnname=oldname;
+
+FOR EX ::--SQL> UPDATE EMP SET JOB='HDR' WHERE JOB ='HR' ;
+
+1.Set sal as 3500 to an employee whose empno is 7934 
+  from emp table?
+
+ANS : UPDATE EMP SET SAL = 3500 WHERE EMPNO = 7934 ;
+
+2.Set job as manager&increase 2000 rupees to employees whose
+  employee no is 7369 from emp table?
+
+ANS :SQL> UPDATE EMP SET SAL = SAL+2000 ,JOB='MANAGER' WHERE EMPNO = 7369;
+
+3.increase 20% on salary to all managers from emp table?
+
+ANS : SQL> UPDATE EMP SET SAL =SAL*0.02 WHERE JOB='MANAGER';
+
+4.increase 1000 rupees to all employees from emp table?
+
+ANS : SQL> UPDATE EMP SET SAL =SAL+1000 ;
+
+5.increase 20% on sal,15% on comm to the employees who are getting
+ commission from emp table?
+
+ANS : SQL> UPDATE EMP2 SET SAL = SAL*0.20 , COMM = COMM*0.015 WHERE COMM IS NOT NULL AND COMM > 0 ;
+
+
+
+6.Set comm has 700 to the employees who are not getting 
+  commission from emp table?
+
+
+ ANS : SQL> UPDATE EMP2 SET COMM =700 WHERE COMM IS NULL ;
+
+7.Set comm has null whose empno are 7521,7698,7900 from 
+  emp table?
+
+ANS : UPDATE EMP2 SET COMM = NULL WHERE EMPNO=7521 OR EMPNO=7698 OR EMPNO=7900 ;
+
+UPDATE EMP2 SET COMM =NULL WHERE EMPNO IN(7521,7698,7900);
+
+8.Transfer all 10th department employees into 20th department
+  from emp table?
+
+ANS:-
+====
+SQL>UPDATE EMP SET DEPTNO=20 WHERE DEPTNO=10;
+
+
+9.increase 10% on sal who joined in 1982 from emp table?
+
+ANS :
+
+10.increase 20% on sal who are having more than 41 
+   years of experiance from emp table?
+
+ANS :SQL> UPDATE EMP2 SET SAL=SAL*0.20 WHERE (SYSDATE-HIREDATE)> 41 ;
+
+11.increase 15% on sal to the employees who are getting more than 
+   30000 annual salary from emp table?
+ANS :  SQL> SELECT ENAME ,SAL FROM EMP2 WHERE SAL *12 > 800 ;
+
+ UPdate EMP2 SET SAL =SAL*0.15 WHERE SAL*12> 800 ;
+
+12.increase 20% on sal whose name is starting with 'A'
+   and ending with 'S'?
+
+ANS : UPDATE EMP2 SET SAL = SAL*0.20 WHERE ENAME LIKE 'A%S';
+
+13.delete an employee record whose empno is 7900 from emp table?
+
+ANS : DELETE EMP WHERE EMPNO=7900 ;
+
+
+14.Write a query to delete the employee records whose 
+   experiance is more than 42 years?
+
+ANS :SQL> SELECT ENAME ,SYSDATE-HIREDATE AS EXPERI_YEAR FROM EMP2 WHERE (SYSDATE - HIREDATE)> 41 ;
+
+ 
+
+15.delete all managers records from emp table?
+
+ANS : DELETE EMP2 WHERE JOB = 'MANAGER';
+
+
+16.delete all 10 and 30 department records from emp table?
+ANS : SQL> DELETE EMP2 WHERE DEPTNO IN (10,30);
+
+17.delete emp table all records.and get back the all records by using
+   rollback ?
+
+-----------------------------------------------------------------------------------
+ *
+***Difference between delete and truncate:-(V.I.M.P)
+ * ======================================
+
+===================================================================================
+               TRUNCATE           |               DELETE
+===================================================================================
+1.it is a ddl command             |1.it is a dml command
+                                  |
+2.structure is remains same       |2.structure is remains same
+  data is deleted perminantly.    |  data is deleted temporarly
+                                  |  and storing in a buffer.
+                                  |
+2.if we are using rollback        |3.by using rollback command
+  command also we can not get     |  we can get it back the data.
+  it back the data.               |      
+                                  |
+3.it is auto commit command.      |3.it is not auto commit command.
+                                  |
+4.where clause can not be used    |4.where clause can be used here.
+  here.                           |
+                                  |
+5.we can delete all the records   |5.using it we can delete single or
+  only.we can not delete single   |  specific group of records or all 
+  or specific group of records.   |  records.
+                                  |
+6.it is faster                    |6.it is slower
+                                  |
+7.delete block by block           | 7.delete row by row
+                                  |
+                                  |
+=======================*****========================================================
+                             
+                                  
+
+
+

@@ -1,0 +1,292 @@
+Que-1) Write a java program to calculate the curved surface area of a cube?
+ Formula-6*side Square.
+ package com.nareshIT.day6;
+
+public class AreaOfCube {
+
+	public static void main(String[] args) {
+		
+		if(args.length == 0) {
+			return;
+		}
+		int side = Integer.parseInt(args[0]);
+		
+		int res = 6* side;
+		
+		System.out.println("Area of a cube = "+res);
+
+	}
+
+}
+
+
+Que-2) write a java program to calculate the total surface area of a cylinder? 
+ Formula- 2 pi square r * 2 pi r h (take the pi as 3.14).
+ package com.nareshIT.day6;
+
+public class AreaOfCylinder {
+
+	public static void main(String[] args) {
+		if(args.length <= 1) {
+			return;
+		}
+		int radius = Integer.parseInt(args[0]);
+		int heigth = Integer.parseInt(args[1]);
+		
+		double res = 2*3.14*radius*heigth+2*3.14*(radius*radius);
+		
+		System.out.println("Surface of a cylinder = "+res);
+
+	}
+
+}
+
+
+Que-3) write a Java program to calculate compound interest for 3 years? 
+ Formula- amount=principle*((1+rate/100)*(1+rate/100)*(1+rate/100));
+ package com.nareshIT.day6;
+
+public class CompoundInterest {
+
+	public static void main(String[] args) {
+		//amount=principle*((1+rate/100)*(1+rate/100)*(1+rate/100));
+		if (args.length >= 1) {
+			return ;
+		}
+		int principle = Integer.parseInt(args[0]);
+		int rate = Integer.parseInt(args[1]);
+		int amount = principle*((1+rate/100)*(1+rate/100)*(1+rate/100));
+		System.out.println("The total amount is = "+amount);
+	}
+
+}
+
+
+Que-4) write Java Program Convert Fahrenheit To Celsius | Vice Versa
+ Formula-
+ Celsius=(Fahrenheit-32)*5/9;
+ Fahrenheit=((9*Celsius)/5)+32;
+ Note [ Write two seprate program for converting celsius into 
+Fahrenheit
+ and Fahrenheit into celsius ]
+
+ package com.nareshIT.day6;
+
+public class Convert_Fahrenheit_To_Celsius {
+
+//	public static void main(String[] args) {
+//		if (args.length == 0) {
+//			return;
+//		}
+//		int Fahrenheit = Integer.parseInt(args[0]);
+//		
+//		int cal =(Fahrenheit-32)*5/9;
+//		
+//		System.out.println("After convert : "+cal);
+//	}
+	
+	public static void main(String[] args) {
+		if (args.length == 0) {
+			return;
+		}
+		int Celsius = Integer.parseInt(args[0]);
+	
+		int far =((9*Celsius)/5)+32;
+	
+		System.out.println("After convert : "+far);
+	}
+
+}
+
+
+
+Que-5) 
+--------------------------------------------------------------
+public class Literals_Integers 
+ {
+ public static void main (String args[])
+ {
+ int decimal_int=1234;
+ int octal_int=077;
+ int hexadec_int=0x1ff2;
+ int binary_int=0b1010101;
+ System.out.println("This is a Decimal Literal: "+decimal_int);
+ System.out.println("This is an Octal Literal: "+octal_int);
+ System.out.println("This is a Hexa Decimal Literal: "+hexadec_int);
+ System.out.println("This is a Binary Literal: "+binary_int);
+ }
+ }
+[What will be the output of the above program]
+_________________________________________________________________________
+Que-6) 
+--------------------------------------------------------------
+public class Literals_Float
+{
+ public static void main (String args[])
+ {
+ float val_float=1.7732f;
+ double val_double=1.7732d;
+ float val_exponent=123E4f;
+ System.out.println("This is a Floating Point Literal"+val_float);
+ System.out.println("This is a Decimal Literal"+val_double);
+ System.out.println("This is an Exponential 
+Literal"+val_exponent);
+ }
+} 
+[What will be the output of the above program]
+_________________________________________________________________________
+_________________________________________________________________________
+_
+Que-7)
+---------------------------------------------------------------
+public class AutomaticTypeConversion
+{
+ public static void main (String args[])
+ {
+ int intVariable = 100;
+ long longVariable = intVariable;
+ float floatVariable = longVariable;
+ System.out.println ("Integer Value is : " + intVariable);
+ System.out.println ("Float Value is : " + floatVariable);
+ System.out.println ("Long Value is : " + longVariable);
+ }
+}
+[What will be the output of the above program]
+_________________________________________________________________________
+__
+Que-8)
+---------------------------------------------------------------
+public class ExplicitTypeCasting
+{
+ public static void main (String[]args)
+ {
+ double doubleVariable = 100.04;
+ long longVariable = (long) doubleVariable;
+ int intVariable = (int) longVariable;
+ System.out.println ("Double Value is : " + doubleVariable);
+ System.out.println ("Long Value is : " + longVariable);
+ System.out.println ("Integer Value is : " + intVariable);
+ }
+}
+[What will be the output of the above program]
+________________________________________________________________________
+Que-9)
+----------------------------------------------------------------
+class Sample
+{
+ public static void main(String[] args) 
+ {
+ int a=10;
+ float b=4.5f;
+ double c=5.2;
+ long d=(long)-8.98;
+System.out.println(a);
+System.out.println(b); 
+System.out.println(c); 
+System.out.println(d);
+}
+}
+[What will be the output of the above program]
+_________________________________________________________________________
+____
+Que-10)
+---------------------------------------------------------------
+public class Sample {
+public static void main(String[] args) {
+int a=10;
+float b=4.5f;
+double c=5.2;
+long d=378293L;
+ long e=(long)-8.98;
+System.out.println(a);
+System.out.println(b); 
+System.out.println(c); 
+System.out.println(d);
+ System.out.println(e);
+Sample.main("java");
+}
+}
+
+----------------------------------------------------------------------------------------------------------------------------------
+package com.nareshIT.day6;
+
+public class AllShortQNS {
+
+	public static void main(String[] args) {
+		
+		/*
+		 //qns-1
+		 int decimal_int=1234;
+		 int octal_int=077;
+		 int hexadec_int=0x1ff2;
+		 int binary_int=0b1010101;
+		 System.out.println("This is a Decimal Literal: "+decimal_int); //1234
+		 System.out.println("This is an Octal Literal: "+octal_int); //63
+		 System.out.println("This is a Hexa Decimal Literal: "+hexadec_int); //8178
+		 System.out.println("This is a Binary Literal: "+binary_int); //85
+*/
+		
+		/*
+		 * qns -2
+	
+		 float val_float=1.7732f;
+		 double val_double=1.7732d;
+		 float val_exponent=123E4f; // 1230000.0
+		 System.out.println("This is a Floating Point Literal "+val_float); // 1.7732
+		 System.out.println("This is a Decimal Literal "+val_double); //1.7732
+		 System.out.println("This is an Exponential Literal "+val_exponent); //1230000.0
+		 	 */
+		
+		/*
+		 * qns-3
+		 int intVariable = 100;
+		 long longVariable = intVariable;
+		 float floatVariable = longVariable;
+		 System.out.println ("Integer Value is : " + intVariable); // 100
+		 System.out.println ("Float Value is : " + floatVariable); // 100.0
+		 System.out.println ("Long Value is : " + longVariable); // 100
+		 */
+		
+		/*
+		 * qns-4
+		 double doubleVariable = 100.04;
+		 long longVariable = (long) doubleVariable;
+		 int intVariable = (int) longVariable;
+		 System.out.println ("Double Value is : " + doubleVariable); // 100.04
+		 System.out.println ("Long Value is : " + longVariable); // 100
+		 System.out.println ("Integer Value is : " + intVariable); // 100
+		 */
+		
+		/*
+		 * qns - 5
+		 int a=10;
+		 float b=4.5f;
+		 double c=5.2;
+		 long d=(long)-8.98;
+		 System.out.println(a); // 10
+		 System.out.println(b);  // 4.5
+		 System.out.println(c);  // 5.2
+		 System.out.println(d);  // -8
+		 */
+		
+		/*
+		 * qns - 6
+		int a=10;
+		float b=4.5f;
+		double c=5.2;
+		long d=378293L;
+		long e=(long)-8.98;
+		System.out.println(a); // 10
+		System.out.println(b); //4.5
+		System.out.println(c); // 5.2
+		System.out.println(d); //378293 
+		System.out.println(e); // -8
+//		AllShortQNS.main("java");
+		 */
+
+
+
+
+	}
+
+}

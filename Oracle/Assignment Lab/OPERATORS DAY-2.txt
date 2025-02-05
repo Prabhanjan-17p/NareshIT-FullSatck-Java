@@ -1,0 +1,128 @@
+                               SPECIAL OPERATORS
+                             ====================
+
+1)In operator 
+-------------
+
+1.In:- It is used to pick the values one by one
+=====        from list of values. 
+                  (or) 
+it is used to compare column value with list of values.
+ 
+
+   we can also use in operator in place of OR operator.
+when we are retriving multiple values from the same column
+in this case In operator performance is very high compared 
+to OR operator.
+ 
+.it avoids writing multi equality condition using OR operator.
+
+
+1.Write a query to display the employees whose are belongs to
+  20,30,50,70,90 from emp table by using in operator.
+
+          select * from emp where empno in (7902,7788,7900);
+
+2.Write a query to display the employee records whose names
+  are SMITH,JONES,KING from emp table?
+          Select * from amp where ename in ('SMITH','JONES','KING');
+          
+
+3.Write a query to display the employee records whose empnos
+  are 7902,7788,7900 from emp table?
+          select * from emp where empno in (7902,7788,7900);
+
+4.Write a query to display the employee records whose sal 
+  is 1250,3000,5000 from emp table?
+          select * from emp where sal in (1250,3000,5000);
+
+5.Write a query to display the employee records except 
+  MANAGERS and CLERKS from emp table?
+          Select * from where emp not in ('MANAGER','CLERKS');
+
+6.Write a query to display the employees who are belongs to other
+  than 10,20 from emp table?
+         Select * from emp deptno not in (10,20);
+
+7.SQL>select * from emp where deptno not in(10,20,null);
+
+o/p:no rows selected
+
+
+why not in operator does not work with null?
+============================================
+.not in operator internally uses iogical AND.
+
+Note:- Whenever we are using IN operator then internally database 
+====   servers uses logical OR.whenever we are using NOT IN operator
+       then database server internally useslogical AND that's why 
+       NOT IN does not work with null values. 
+
+-------------------------------------------------------------------------------------
+2)Between And operator
+------------------------
+2)Between:-This operator is used to retrive range of values from a
+========== table column.This operator is also call as Between….. And
+           operator.
+
+.it is used to compare column values with range of values.
+
+.in oracle Between operator work with number,date data type columns.
+ 
+
+
+1.Write a query to display the employees who are getting salary 
+         between 2000 to 5000 from emp table 
+              by using Between operator? 
+        select * from emp where sal between 2000 and 5000;
+
+2.Write a query to display the employees who are getting salary 
+        not between 2000 - 5000 from emp table
+              by using Between operator?
+        select * from emp where sal not between 2000 and 5000;
+ 
+3.Write a query to display the employee records who joined 
+  in 1982 from emp table?
+        select * from emp where hiredate between '01-JAN-1982' and '31-DEC-1982';
+
+4.Write a query to display the employee records except joined 
+  in 1981 from emp table?
+       select * from emp where hiredate not  between '01-JAN-1981' and '31-DEC-1981';
+
+5 What is the o/p of the following
+  select ename,sal from emp where sal Between 5000 and 2000; 
+  A.displays between 2000 & 5000 salaries
+  B.Error
+  C.No rows selected         -------> because it use first greater than(no) and then less than
+  D.None
+-----------------------------------------------------------------------------------------------------
+
+3)is null and is not null
+  -----------------------
+   These two operators used in where clause only.These two 
+operators are used to test weather a column having null 
+values or not.
+
+.for null comparision we must use is null operator.dont use = operator.
+
+
+1.Write a query to display the employees who are not getting 
+  commission from emp table? 
+        select * from emp where comm is null;
+
+2.Write a query to display the employees who are getting commission
+   from emp table? 
+         select * from emp where comm is not  null;
+
+3.Write a query to display the employee record who are not having 
+  the manager from emp table?
+         select * from emp where job not in('MANAGER');
+
+SQL>SELECT * FROM EMP
+    WHERE MGR IS NULL;
+
+       EMPNO ENAME    JOB             MGR HIREDATE        SAL    COMM    DEPTNO 
+________ ________ ____________ ______ ___________ _______ _______ _________ 
+    7839 KING     PRESIDENT           17-11-81       5000                10
+
+-----------------------------------------------------------------------------------

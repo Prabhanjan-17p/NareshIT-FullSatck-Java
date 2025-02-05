@@ -1,0 +1,66 @@
+
+                               Date Functions Task
+                            ========================
+
+1.Write a query to display current system date?
+
+--------- SELECT (sysdate) from dual;
+
+2.Display the current system date and time?
+
+---------- SELECT (SYSTIMESTAMP) FROM DUAL;
+
+3.Find the last date from sysdate?
+
+------- SELECT SYSDATE - 1 AS last_date FROM dual;
+
+4.Find the last date from given date 16-APR-2024?
+
+------- SELECT TO_DATE('16-APR-2024')-1 AS LAST_DATE FROM DUAL;
+
+
+5.Find next month first date?
+
+----- SELECT TRUNC(ADD_MONTHS(SYSDATE, 1), 'MM') AS next_month_first_date FROM dual;
+
+
+6.Find current month 1st date?
+
+------ SELECT TRUNC(SYSDATE, 'MM') AS current_month_first_date FROM dual
+
+
+7.Find next friday date?
+
+------ SELECT NEXT_DAY(SYSDATE, 'FRIDAY') AS next_friday FROM dual;
+
+
+8.Find next month first sunday date?
+
+---- SELECT NEXT_DAY(TRUNC(ADD_MONTHS(SYSDATE, 1), 'MM') - 1, 'SUNDAY') AS first_sunday_next_month FROM dual;
+
+
+9.Find the experience of all employees from emp table by using 
+   months_between()?
+
+
+10.Calulate age( in the form of years and months) of kiran. if dob of
+   kiran is 31-DEC-1997?
+
+
+
+
+11.display the employee records who are joined today?
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Q)Write the query to  display the emp_first_name and emp_last_name as emp_fullname and year of birth
+  and sort them based on their desending age
+
+emp_id        emp_first_name        emp_last_name     birth date
+------      -----------------     --------------      ------------
+  1            john                  doe               23-apr-1985
+  2            jill                  davis             15-jun-1999
+  3            jack                  Johnson           25-oct-1992
+  4            james                 Wilson            12-sep-1983
+
+

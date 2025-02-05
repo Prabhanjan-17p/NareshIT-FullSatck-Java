@@ -1,0 +1,170 @@
+
+                           OPerators Task
+                        ===================
+
+2)Relational operators
+----------------------
+.Relational operators are also called as comparison operators.
+
+.Relational operators are used in where clause only.
+
+.Every relational operator used to compare with 1 value.
+
+.Oracle sql having following relational operators.
+ =,<,<=,>,>=,<> or !=
+
+
+.Where clause is used to filtering the rows or resticting the 
+ records purpose we are using.
+
+1.Write a query to display the employee records whose 
+  salary is 3000?
+
+2.Write a query to display all managers from emp table?
+
+Note:-Oracle is not a case sensitive language.But string comparision 
+====      is case sensitive.
+
+
+3.Write a query to display the employees who are getting more
+  than 2000 salary from emp table?
+
+4.Write a query to display the employees whose sal is 
+  3000 or more?
+
+5.Wrirte a query to display the employees who are belongs 
+  to 10th department from emp table?
+
+6.Write a query to display the  employee records whose 
+  name is SMITH?
+
+7.Write a query to display the employees except job 
+  as MANAGER from emp table?
+
+Note: Calender order is Ascending order
+====  1-JAN-2024   min date
+      2-JAN-2024
+      . 
+      .
+      31-dec-2024  max date 
+  
+8.Write a query to display the employee records who joined 
+  on 17th DECEMBER 1980 from emp table?
+
+9.Write a query to display the employee record who joined
+  after 1981 from emp table?
+
+10.Write a query to display the employee record who joined 
+   before 1981 from emp table?
+
+11.Write a query to display the employee record who joined after
+   november 1981 from emp table?
+
+12.Write a query to display the employees who are getting
+   more than 30000 annsal from emp table?
+
+Note:Generally in all relational databases we are not allowed to use
+     column aliasname in where clause.
+
+column aliasname:Is used to change column heading in final output.
+.to give column aliasname we use "AS" keyword.using "AS" keyword is 
+ optional.
+.to give column aliasname as multiple words use " ".
+.eg "ann sal"
+
+------------------------------------------------------------------------------------------------------
+Logical operators
+-----------------
+.In all relational databases if you want to define more than one 
+   condition in where clause
+then we must use either AND or by using OR operators.
+
+AND:-AND operator displays the record if both first condition & 
+====  second contion are true.
+
+OR:-OR operator is used to displays a record if either first 
+===   condition or second condition is true.
+
+
+
+eg:-Online shopping(searching for the products)
+
+--->Create a table laptops with sno,cname,price and mfd
+
+     SNO       CNAME              PRICE          MFD
+  --------- ----------        ----------      ---------
+       1       HP                68000        24-DEC-23
+       2      DELL               50000        12-AUG-24
+       3     LENOVO              40000        12-JAN-23
+       4       HP                44000        08-APR-22
+
+1.Write a query to display laptop detailes whose cname is HP and
+  price is more than 50000?
+
+--->Create a student1 table and insert the records as below.
+
+   sno      sname      sub1         sub2        sub3 
+  -----    -------    ------       ------      ------  
+    1      gowtham      72          18          24
+    2       kiran       60          50          45
+    3       raju        12          30          25
+    4       subbu       80          88          74
+
+
+2.By using above student table display the passed student records?
+
+---> total marks  :100
+---> pass mark is :35
+---> pass means student got 35 marks in all 3 subjects.
+---> fail means student got below 35 marks in any subject.
+
+ select * from student1 where sub1>=35 and sub2>=35 and sub3>=35;
+
+3.By using above student table display the failed student records?
+
+  select * from student1 where sub1<35 and sub2<35 and sub3<35;
+
+4.Write a query to display the employees whose clerks are getting
+   more than 1000 salary from emp table?
+  
+    select * from emp where job='CLERK' and sal>1000;
+
+5.Write a query to display the employees whose clerks are belongs 
+  to 20th department?
+
+    select * from emp where job='CLERK' and deptno=20;
+
+Note:- In databases if we want to retrive multiple values within a 
+====     single column then we must use OR operator. 
+
+
+6.Write a query to display the all managers and clerks
+  from emp table?
+        
+        select * from emp where job in ('CLERK','MANAGER');
+
+7.Write a query to display the employees whose are belongs to 
+  20,30,50,70,90 departments from emp table?
+        
+        select * from emp where deptno in(20,30,50,70,90);
+
+8.Write a query to display the employee records whose empnos
+  are 7902,7788,7900 from emp table?
+
+        select * from emp where mgr in (7902,7788,7900);
+ 
+
+9.Write a query to display the emp record whose sal 
+   between 2450 and 3000 from emp table?
+            |
+ range of values are there go with AND
+   
+        select * from emp where sal between 2450 and 3000;
+
+
+10.Write a query to display the emp records whose joined in
+  1981 from emp table?
+ 
+    select * from emp where hiredate between '01-JAN-1981' and '31-DEC-1981';
+
+

@@ -1,0 +1,149 @@
+                           Functions Task
+                         =================
+
+
+1)Write a query to display emp table enames to uppercase?
+
+------- select upper(ENAME) from emp;
+
+2)Write a query to display emp table enames to lowercase?
+
+------- select lower(ENAME) from emp;
+
+3)Modify all emp table enames to initcap case perminently?
+
+-------- UPDATE EMP SET ENAME=INITCAP(ENAME);
+   
+4)create table with fname,lastname insert the records as follows
+
+FNAME      LNAME     
+---------- ---------- 
+gowtham    raj        
+naga       raj        
+subba      rao        
+kavya      sri
+
+->add a new column NAME by using alter with add
+      
+
+SQL>alter table students add name varchar2(10);
+
+SQL>select * from students;
+
+FNAME      LNAME        NAME
+---------- -----     ---------
+gowtham    raj       
+naga       raj        
+subba      rao        
+kavya      sri        
+
+--->set the output for the NAME column as follows
+
+     NAME
+  -----------
+  Gowtham Raj
+  Naga Raju
+  Subba Rao
+  Kavya Sri
+
+----- UPDATE PEOPLE SET NAME = CONCAT (FNAME,LNAME);
+------ UPDATE PEOPLE SET NAME=FNAME||' '||LNAME; --- TO GIVE SPACE
+
+Hint:-our requirement is combine FNAME and LNAME means use 
+====   concatination operator.and their starting letter
+       of name column  is capital letter for that one use initcap
+       store it in a NAME column by using single update command.
+
+5)Write a query to display the emp records whose names
+  having 4 characters?
+
+------- SELECT * FROM EMP WHERE ENAME LIKE '____';
+
+6)display the emp records whose names are having more than 5
+  charcters?
+
+------- SELECT * FROM EMP WHERE ENAME LIKE '_____%';
+
+7)what the o/p of the following
+SQL>select length('AB CD') from dual
+
+A)4
+B)5 ------
+C)6
+D)none of the above
+ 
+
+8)check the following substr() query output
+
+SQL>select substr('ABCDEFGH',2,3) from dual; ----- BCD
+
+
+SQL> select substr('ABCDEFGH',-2,3) from dual; ----- GH
+
+
+SQL>select substr('GOWTHAM RAJ',1,7) from dual; ---- GOWTHAM 
+
+
+SQL)select substr('GOWTHAM RAJ',9) from dual; ----- RAJ
+
+         
+SQL)select substr('GOWTHAM RAJ',4,4) from dual; ---- THAM
+
+
+
+SQL)select substr('GOWTHAM RAJ',-1) from dual; ----- J
+
+
+
+SQL)select substr('GOWTHAM RAJ',-3,4) from dual; --- RAJ
+
+
+
+
+9)create the table person as below
+    pname                 dob           password
+  ---------           ----------       ----------
+  kiran kumar        30-june-96
+ 
+genarate the password as kira96 by using substr()
+
+
+------UPDATE PERSON SET PASSWORD=SUBSTR(PNAME,1,4)|| SUBSTR(DOB,9,2);
+
+10) write a query to display the employees whose ename second 
+    letter would be LA from emp table using 
+    substring function?
+
+------ SELECT * FROM EMP WHERE SUBSTR(ENAME,2,2)='LA';
+
+11)write a query to display employee records whose name started
+   with M by using substring function?
+
+------ SELECT * FROM EMP WHERE SUBSTR(ENAME,1,1)='M';
+
+
+12) write a query to display employee records whose
+    names are started with vowel by using 
+    substring function?
+
+------ SELECT * FROM EMP WHERE SUBSTR(ENAME,1,1) IN ('A','E','I','O','U');
+
+
+13)write a query to display employee records whose name
+   started and end with same letter by using 
+   substring function?
+
+------- SELECT * FROM EMP WHERE SUBSTR(ENAME,1,1)='A' AND  SUBSTR(ENAME,-1,1)='A';
+
+
+14)write a query to display employee records whose name
+   started and end with vowel letter by using
+   substring function?
+
+-------- SELECT * FROM EMP WHERE SUBSTR(ENAME,1,1) IN ('A','E','I','O','U') AND SUBSTR(ENAME,-1,1) IN ('A','E','I','O','U');
+
+
+
+
+
+

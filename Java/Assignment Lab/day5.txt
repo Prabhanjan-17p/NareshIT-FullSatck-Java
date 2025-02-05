@@ -161,16 +161,16 @@ ________________________________________________________________________
 QUE-1)
 -----------
 Write a java program to covert string to double using parseDouble() and multiply two Floating -point Numbers and display the result by taking input from the command line argument?
-//		String s = "a";
-//		double d = Double.parseDouble(s);
-//		System.out.println(d);
-		if (args.length >= 2) {
-			return;
-		}
-		float x = Float.parseFloat(args[0]);
-		float x1 = Float.parseFloat(args[1]);
-		float res = x* x1;
-		System.out.println(res);
+		 if (args.length != 2) {
+	            return;
+	        }
+	            double num1 = Double.parseDouble(args[0]);
+	            double num2 = Double.parseDouble(args[1]);
+
+	            double result = num1 * num2;
+
+	            System.out.println("Multiplication Result: " + result);
+		
 -----------------------------------------------------------------------
 Que-2)
 -----------
@@ -194,4 +194,25 @@ Profit = SP – CP
 Loss = CP – SP
 Profit percentage = (Profit /Cost Price) x 100
 Loss percentage = (Loss / Cost price) x 100
+if (args.length != 2) {
+            return;
+        }
+
+        double costPrice = Double.parseDouble(args[0]);
+        double sellingPrice = Double.parseDouble(args[1]);
+
+
+        if (sellingPrice > costPrice) {
+            double profit = sellingPrice - costPrice;
+            double profitPercentage = (profit / costPrice) * 100;
+            System.out.println("Profit: " + profit);
+            System.out.println("Profit Percentage: " + profitPercentage + "%");
+        } else if (costPrice > sellingPrice) {
+            double loss = costPrice - sellingPrice;
+            double lossPercentage = (loss / costPrice) * 100;
+            System.out.println("Loss: " + loss);
+            System.out.println("Loss Percentage: " + lossPercentage + "%");
+        } else {
+            System.out.println("No Profit, No Loss.");
+        }
 

@@ -1245,5 +1245,323 @@ class Test
 }
 
 Note : Increment and decrement operator we can apply on any data type execpt boolean.
+-------------------------------------------------------------
+05-02-2025
+----------
+public class Test 
+{
+	public static void main(String[] args) 
+	{
+           while(false)
+	   {
+		  System.out.println("Inside the loop body");
+	   }
+	   
+	   System.out.println("Outside the loop body");
+	}
+}
+
+Note : In the above program, We will get compilation error because the body of while loop is un-rechable.
+--------------------------------------------------------------
+public class Test 
+{
+	public static void main(String[] args) 
+	{
+		boolean b = false;
+		
+       while(b)
+	   {
+		  System.out.println("Inside the loop body");
+	   }
+	   
+	   System.out.println("Outside the loop body");
+	}
+}
+
+Note : Here code will compile and execute.
+-------------------------------------------------------------
+public class Test 
+{
+	public static void main(String[] args) 
+	{
+		final int x = 10;
+		final int y = 20;
+        while(x > y)
+		{
+			System.out.println("x is Greater than y");
+		}
+		System.out.println("Hello World");
+	}
+}
+
+Note : Unrechable statement.
+-------------------------------------------------------------
+public class Test 
+{
+	public static void main(String[] args) 
+	{
+		for(int i=1; i<=10; i++)
+		{
+		  if(i=5)
+			 break;
+		  System.out.println(i);		   
+		}
+	}
+}
+
+Note : error, if condition requires booelan expression.
+-------------------------------------------------------------
+public class Test 
+{
+	public static void main(String[] args) 
+	{
+		
+		do
+		{	
+			int i=1; //Block level variable
+			System.out.println("i value is :"+i);
+			i++;
+		}
+		while (i<=10);
+	}
+}
+--------------------------------------------------------------
+Expression Conversion :
+-----------------------
+While working with Arithmetic Operator (+, -, *, /) and Unary minus operator (-), the minimum data type is required to hold the expression result would be int data type that means we need 32 bits of data to hold the result otherwise we will get 
+compilation error.
+
+public class Test 
+{
+	public static void main(String[] args) 
+	{
+		short s = 1;
+		short t = 1;
+		short u =  s + t;  //error
+		System.out.println(u);
+		
+	}
+}
+-------------------------------------------------------------
+public class Test 
+{
+	public static void main(String[] args) 
+	{
+		byte b1 = 1;
+		byte b2 = 2;
+		byte res = b1*b2; //error
+		System.out.println(res);
+		
+	}
+}
+-------------------------------------------------------------
+Unary Minus Operator :
+-----------------------
+public class Test 
+{
+	public static void main(String[] args) 
+	{
+		int b = 1;
+		System.out.println(-b); //-1
+		
+	}
+}
+--------------------------------------------------------------
+public class Test 
+{
+	public static void main(String[] args) 
+	{
+		byte b1 = 1;
+		byte b2 = -b1; //error
+		System.out.println(b2);
+		
+	}
+}
+------------------------------------------------------------
+public class Test 
+{
+	public static void main(String[] args) 
+	{
+		byte b1 = 1;
+		byte b2 = --b1; 
+		System.out.println(b2);
+		
+	}
+}
+------------------------------------------------------------
+public class Test 
+{
+	public static void main(String[] args) 
+	{
+		byte b = 5;
+		b += 6;   //b = b + 6;
+		System.out.println(b);
+		
+	}
+}
+
+Here we are using short hand operator so it will generate the output.
+--------------------------------------------------------------
+Program On Boolean Operator :
+-----------------------------
+//Program on Boolean AND operator(&)
+
+public class Test 
+{
+	public static void main(String[] args) 
+	{		  
+		int z = 5;
+		if(++z > 6 & ++z> 6)
+		{
+			System.out.println("Inside If");
+			z++;			
+		}
+		System.out.println(z);
+		
+	}
+}
+-------------------------------------------------------------
+public class Test 
+{
+	public static void main(String[] args) 
+	{		  
+		  int z = 5;
+		  if(++z > 5 || ++z > 6)   //Logical OR
+		  {
+			  z++;
+		  }
+		  System.out.println(z); //7
+
+         System.out.println("................");
+
+		  z = 5;
+		  if(++z > 5 | ++z > 6)   //Boolean OR
+		  {
+			  z++;
+		  }
+		  System.out.println(z); //8 
+		 
+
+
+		
+	}
+}
+-------------------------------------------------------------
+Working with Bitwise AND(&), Bitwise OR(|) and Bitwise X-OR (^) :
+
+public class Test 
+{
+	public static void main(String[] args) 
+	{		  
+		  System.out.println(false ^ true); //true	
+	}
+}
+Here we will get the output based on the input i.e Same input output will be zero.
 ------------------------------------------------------------------
+public class Test 
+{
+	public static void main(String[] args) 
+	{		  
+		System.out.println(5 & 6); 
+		System.out.println(5 | 6); 
+		System.out.println(5 ^ 6); 
+	}
+}
+------------------------------------------------------------------
+Bitwise Complement Operator :
+-----------------------------
+It will not work with boolean.
+
+public class Test 
+{
+	public static void main(String[] args) 
+	{		  
+		System.out.println(~ true); 
+	}
+		
+}
+-----------------------------------------------------------------
+public class Test 
+{
+	public static void main(String[] args) 
+	{		  
+		System.out.println(~4); //-5
+		System.out.println(~-5);//4
+	}
+		
+}
+------------------------------------------------------------------
+Member Operator :
+-----------------
+Dot operator is known as Member access operator.
+It is used to access the member of the class.
+
+class Welcome
+{
+	static int x = 100; //static field
+	public static void access() //static method
+	{
+		System.out.println("Access static Method");
+	}
+}
+public class Test 
+{
+	public static void main(String[] args) 
+	{		  
+		Welcome.access(); 
+		System.out.println(Welcome.x);
+	}
+		
+}
+Note : Welcome class contains static variable and static method so, we can directly call static veraible and static method with the help of class name using dot operator.
+------------------------------------------------------------------
+new Keyword :
+--------------
+It is a keyword as well as operator in java.
+It is used to provide default value for non static data member.
+It is also useful to create the object with the help of Constructor.
+
+class Welcome
+{
+	int x; //non static field
+	
+	public void access() //non static method
+	{
+		System.out.println("Non static method");
+	}
+} 
+
+public class Test 
+{
+	public static void main(String [] args)
+	{
+		Welcome w = new Welcome();	
+		System.out.println(w.x);
+		w.access();
+		
+	}		
+}
+
+Note : Welcome class contains non static variable and non static metohd so, Object is required.
+-------------------------------------------------------------------
+Limitation of if else :
+-----------------------
+The major drawback with if condition is, it checks the condition again and again so It increases the burdon over CPU so we introduced switch-case statement to reduce the overhead of the CPU.
+
+Switch case statement in java :
+-------------------------------
+It is a selective statement so, we can select one statement among the available statements.
+
+break is optional but if we use break then the control will move from out of the switch body.
+
+We can write default so if any statement is not matching then default will be executed.
+
+In switch case we can't pass long, float and double and boolean value.
+
+[long we can pass in switch case from java 14v]
+
+We can pass String from JDK 1.7v and we can also pass enum from JDK 1.5v.   
+
+
+
 

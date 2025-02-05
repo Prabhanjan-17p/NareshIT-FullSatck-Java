@@ -184,24 +184,18 @@ if the given value is positive, return the next multiple of the given number. Ex
 package com.nareshIT.day7;
 
 public class NextMultipleOF100 {
+    public static void main(String[] args) {
+        int num = 123;
 
-	public static void main(String[] args) {
-		
-		int num = 1923;
-		int mainNum = num;
-		int res = 0;
-		while(num != 0) {
-			int last = num % 10 ;
-			res = res*10+last;
-			num = num/10;
-		}
-		
-		int nextMul = ((res%10) * 100 ) + 100;
-
-		System.out.println("The "+mainNum+" next multiple of 100 is "+ nextMul);
-	}
-
+        if (num <= 0) {
+            System.out.println("-1"); 
+        } else {
+            int nextMul = ((num / 100) + 1) * 100;
+            System.out.println("The next multiple of 100 for " + num + " is " + nextMul);
+        }
+    }
 }
+
 
 
 Que-3)

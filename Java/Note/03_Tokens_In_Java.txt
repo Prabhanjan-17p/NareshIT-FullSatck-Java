@@ -1556,12 +1556,429 @@ break is optional but if we use break then the control will move from out of the
 
 We can write default so if any statement is not matching then default will be executed.
 
-In switch case we can't pass long, float and double and boolean value.
+In switch case we can't pass long, float, double and boolean value.
 
 [long we can pass in switch case from java 14v]
 
-We can pass String from JDK 1.7v and we can also pass enum from JDK 1.5v.   
+We can pass String from JDK 1.7v and we can also pass enum from JDK 1.5v.  
+-------------------------------------------------------------------
+06-02-2025
+----------
+//Programs on Switch case 
+
+import java.util.*;
+public class SwitchDemo 
+{
+	public static void main(String[] args) 
+	{	
+		Scanner sc = new Scanner(System.in);
+        System.out.print("Please choose any color name :"); 	
+		char colour = sc.next().toLowerCase().charAt(0);
+
+		switch(colour)      
+		{
+		case 'r' : System.out.println("Red") ; break;
+		case 'g' : System.out.println("Green");break;
+		case 'b' : System.out.println("Blue"); break;
+		case 'w' : System.out.println("White"); break;
+		default : System.out.println("No colour");
+		}
+		System.out.println("Completed") ;
+	}
+}
+----------------------------------------------------------------
+import java.util.Scanner;
+public class SwitchDemo1
+{
+public static void main(String args[]) 
+  {	
+		System.out.println("\t\t**Main Menu**\n");	
+		System.out.println("\t\t**100 Police**\n");
+		System.out.println("\t\t**101 Fire**\n");
+		System.out.println("\t\t**102 Ambulance**\n");
+		System.out.println("\t\t**139 Railway**\n");
+		System.out.println("\t\t**181 Women's Helpline**\n");		
+
+		System.out.print("Enter your choice :");
+		Scanner sc = new Scanner(System.in);
+		int choice = sc.nextInt();	
+		
+		switch(choice)
+		{
+		case 100:
+		System.out.println("Police Services");
+		break;
+		case 101:
+		System.out.println("Fire Services");
+		break;
+		case 102:
+		System.out.println("Ambulance Services");
+		break;
+		case 139:
+		System.out.println("Railway Enquiry");
+		break;
+		case 181:
+		System.out.println("Women's Helpline ");
+		break;
+		default:
+		System.out.println("Your choice is wrong");		
+		} 
+    }
+}
+----------------------------------------------------------------
+import java.util.*;
+public class SwitchDemo2 
+{
+	public static void main(String[] args) 
+	{
+		Scanner sc = new Scanner(System.in);
+		System.out.print("Enter the name of the season :");
+		String season = sc.next().toUpperCase();
+
+		switch(season)  //String allowed from 1.7 [It is constant]
+		{
+			case "SUMMER" :
+				 System.out.println("It is summer Season!!");
+			 break;
+
+			 case "RAINY" :
+				 System.out.println("It is Rainy Season!!");
+			 break;
+		}
+	}
+}
+----------------------------------------------------------------
+public class Test 
+{	
+	public static void main(String[] args) 
+	{	
+        long l = 12;
+		
+		switch(l) //We can't pass long, float,double and
+		{                                      boolean
+			case 12 :
+				 System.out.println("It is case 12");
+			break;
+		}
+		
+		
+	}
+
+}
+----------------------------------------------------------------
+public class Test 
+{	
+	public static void main(String[] args) 
+	{	
+        int x = 12;
+		int y = 12;
+		
+		switch(x)
+		{
+			case y : //error it is not a constatnt
+				 System.out.println("It is case 12");
+			break;
+		}
+		
+		
+	}
+
+}
+----------------------------------------------------------------
+public class Test 
+{	
+	public static void main(String[] args) 
+	{	
+        int x = 12;
+		final int y = 12;
+		
+		switch(x)
+		{
+			case y :
+				 System.out.println("It is case 12");
+			break;
+		}
+		
+		
+	}
+
+}
+----------------------------------------------------------------
+public class Test 
+{	
+	public static void main(String[] args) 
+	{	
+       byte x = 12;
+		
+		switch(x)
+		{
+			case 127 :
+				 System.out.println("It is case 127");
+			break;
+			
+			case 128 :
+				 System.out.println("It is case 128");
+			break;
+		}
+		
+		
+	}
+
+}
+----------------------------------------------------------------
+public class Test 
+{	
+	public static void main(String[] args) 
+	{	
+       short x = 12;
+		
+		switch(x)
+		{
+			case 32767 :
+				 System.out.println("It is case 32767");
+			break;
+			
+			case 32768 : //error
+				 System.out.println("It is case 32768");
+			break;
+		}
+		
+		
+	}
+
+}
+----------------------------------------------------------------
+Loops in java :
+---------------
+A loop is nothing but repeatation of statements based on the 
+specified condition.
+
+In java we have 4 types of loops :
+----------------------------------
+1) do-while loop
+2) while loop
+3) for loop
+4) for each loop
 
 
+Program on do while loop :
+--------------------------
+public class DoWhileDemo 
+{	
+	public static void main(String[] args) 
+	{	
+	   int x = 1;
+       do
+       {		   
+		   System.out.println(x);
+		   x++;
+       }
+       while (x<=10);		
+		
+	}
 
+}
+---------------------------------------------------------------
+Program on while loop :
+-----------------------
+public class WhileDemo 
+{	
+	public static void main(String[] args) 
+	{	
+		int x = 1;
+		
+	   while(x>=-10)
+		{
+		   System.out.println(x);
+		   x--;
+		}
+		
+	}
+
+}
+----------------------------------------------------------------
+for loop :
+----------
+public class Test 
+{	
+	public static void main(String[] args) 
+	{	
+	  for(int i=0; i<=10; i++)
+	  {
+		 System.out.println(i);  
+	  }		
+	}
+
+}
+===============================================================
+for-each loop in java :
+-----------------------
+It is also known as enhanced for loop available from JDK 1.5V.
+
+Internally compiler will generate ordinary for loop for this
+for each loop.
+
+It is mainly used to retrieve the values from the collection one by one.
+
+Actually It will iterate the elements from the Collection but element type must be Iterable type (java.lang.Iterable)
+----------------------------------------------------------------
+package com.ravi.for_each_loop;
+
+public class ForEachDemo1 {
+
+	public static void main(String[] args) 
+	{
+		int []numbers = {10,20,30,40,50,60};
+		
+		for(int number : numbers)
+		{
+			System.out.println(number);
+		}
+
+	}
+
+}
+
+----------------------------------------------------------------
+How to sort Array data :
+--------------------------
+In java.util pacakge, there is a predefined class called Arrays which has various static methods to sort the array in ascending or alphabetical order.
+
+Example :
+           Arrays.sort(int []arr);  //For sorting int array
+	   Arrays.sort(Object []arr) //For sorting String array
+
+
+package com.ravi.for_each_loop;
+
+import java.util.Arrays;
+
+public class ForEachDemo2 // 
+{
+	public static void main(String[] args) 
+	{
+       int []numbers = {89, 67, 45, 12, 9};
+       
+       Arrays.sort(numbers);     
+       
+       for(int number : numbers)
+       {
+    	   System.out.println(number);
+       }
+
+	}
+
+}
+--------------------------------------------------------------
+package com.ravi.for_each_loop;
+
+import java.util.Arrays;
+
+public class FoEachDemo3 {
+
+	public static void main(String[] args) 
+	{
+		String []fruits = {"Orange", "Grapes", "Apple", "Mango"};
+		
+		Arrays.sort(fruits);
+		
+		for(String fruit : fruits)
+		{
+			System.out.println(fruit);
+		}
+
+	}
+
+}
+----------------------------------------------------------------
+//How to take the value from the Command line Argument and sort the String data using Arrays.sort() method
+
+package com.ravi.for_each_loop;
+
+import java.util.Arrays;
+
+public class ForEachDemo4 {
+
+	public static void main(String[] args) 
+	{
+		Arrays.sort(args);
+		
+		for(String arg : args)
+		{
+			System.out.println(arg);
+		}
+
+	}
+
+}
+----------------------------------------------------------------
+Creating arrays in different way and retrieving using forEach loop.
+
+package com.ravi.for_each_loop;
+
+public class ForEachDemo5 {
+
+	public static void main(String[] args) 
+	{
+		//Example 1 :
+		int []arr1 = new int[3];
+		arr1[0] = 10;
+		arr1[1] = 20;
+		arr1[2] = 30;
+		
+		for(int x : arr1)
+		{
+			System.out.println(x);
+		}
+		
+		System.out.println(".............");
+		
+		//Example 2
+		int []arr2 = new int[] {100,200,300};
+		
+		for(int y : arr2)
+		{
+			System.out.println(y);
+		}
+		System.out.println(".............");
+		
+		//Example 3
+		
+		int arr3  [] = {1000,2000, 3000};
+		
+		for(int z : arr3)
+		{
+			System.out.println(z);
+		}	
+
+	}
+
+}
+---------------------------------------------------------------
+In java, Can we hold hetrogeneous types of data using array ?
+-------------------------------------------------------------
+Yes, by using Object array we can hold hetrogeneous type of data but we can't peform sorting operation using Arrays.sort(), It will generate 
+java.lang.ClassCastException
+
+package com.ravi.for_each_loop;
+
+public class ForEachDemo6 
+{
+	public static void main(String[] args) 
+	{
+		Object []arr = {12, 23.90, 'A', true, "NIT", new String("A")};
+		
+		// Arrays.sort(arr);  java.lang.ClassCastException
+		
+		for(Object obj : arr)
+		{
+			System.out.println(obj);
+		}
+
+	}
+
+}
+---------------------------------------------------------------
+What is BLC and ELC class in java ?
+------------------------------------
 

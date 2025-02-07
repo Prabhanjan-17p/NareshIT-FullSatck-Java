@@ -1979,6 +1979,233 @@ public class ForEachDemo6
 
 }
 ---------------------------------------------------------------
+07-02-2025
+-----------
 What is BLC and ELC class in java ?
 ------------------------------------
+BLC :
+-----
+It stands for Business Logic class. A developer should write  the logic inside the BLC class. BLC class will never contain 
+main method.
 
+Example :
+----------
+public class Calculate
+{
+}
+
+ELC :
+-----
+It stands for Executable logic class. It contains main method.
+The execution of the program will always start from ELC class 
+only.
+
+Example :
+---------
+public class ELC
+{
+  public static void main(String [] args)
+  {
+  
+  
+  }
+}
+----------------------------------------------------------------
+In java, Is it possible to write multiple classes in single .java file ?
+
+Yes, We can write multiple classes but in a single .java file,
+we should have only one public class and that class must be file
+name (FileName.java).
+
+Example :
+
+ELC.java
+---------
+
+class A  //A class must be non public
+{	
+}
+
+class B //B class must be non public
+{	
+}
+
+public class ELC 
+{
+	public static void main(String[] args)
+	{		
+	}
+}
+
+Note : Here file name is ELC.java so, We can declare only ELC class with public access modifier.
+---------------------------------------------------------------
+//Writing the java program with static and non static methods 
+using BLC and ELC approach
+
+package com.ravi.blc_elc;
+
+//BLC class
+class Calculate
+{
+	//static method
+    public static double getSquare(double num)
+    {
+    	return num*num;
+    }
+    
+    //non static method
+    public double getCube(double num)
+    {
+    	return num*num*num;
+    }  
+    
+}
+
+
+//ELC class
+public class ELC 
+{
+	public static void main(String[] args)
+	{	
+		//Calling the static method
+		double square = Calculate.getSquare(5);
+		System.out.println("Squre of 5 is :"+square);
+		
+		//Calling non static method
+		Calculate calc = new Calculate();
+		double cube = calc.getCube(3);
+		System.out.println("Cube of 3 is :"+cube);
+		
+		
+	}
+}
+
+----------------------------------------------------------------
+Why we should use BLC and ELC approach to write java program ?
+---------------------------------------------------------------
+If we write logic and execution, everything in a single class then it is not a recommended way because in this approach,
+THE REUSABILITY OF BLC CLASS IS NOT POSSIBLE.
+
+In order to reuse our BLC classes from same package or even from different packages we should use BLC and ELC approach as shown in the Program.
+
+com.ravi.m1 
+-----------
+In this package we have 3 public classes :
+
+Square.java
+------------
+package com.ravi.m1;
+
+//BLC (public)
+public class Square
+{
+	public static void getSquare(int x)
+	{
+		System.out.println("Square of "+x+" is :"+(x*x));
+	}
+}
+
+Rectangle.java
+---------------
+package com.ravi.m1;
+
+//BLC (public BLC class)
+public class Rectangle
+{
+  public static void getRectangle(int length, int breadth)
+  {
+	  System.out.println("Area of rectangle is :"+(length* breadth));
+  }
+}
+
+ELC.java
+---------
+package com.ravi.m1;
+
+public class ELC {
+
+	public static void main(String[] args)
+	{
+		Square.getSquare(10);
+		Rectangle.getRectangle(5, 4);
+
+	}
+
+}
+
+We have another package com.ravi.m2 which contains a public class Main.java
+
+Main.java
+----------
+package com.ravi.m2;
+
+import com.ravi.m1.Rectangle;
+import com.ravi.m1.Square;
+
+public class Main {
+
+	public static void main(String[] args)
+	{
+		Rectangle.getRectangle(9, 9);
+		Square.getSquare(5);
+
+	}
+
+}
+
+
+Note : In the above program, We are importing the Rectangle and Square class for execution.
+---------------------------------------------------------------
+How to reuse a class in java ?
+-------------------------------
+The slogan of java is "WORA" write once run anywhere.
+
+A public class created in one package can be reuse from different packages also by using import statement.
+
+In a single .java file, we can declare only one public class that must be our .java file and that class can be reusable to all the packages.
+
+*In a single java file, we can write only one public class and multiple non-public classes but it is not a recommended approach because the non public class we can use within the same package only.
+
+So the conclusion is, we should declare every java class in a separate file to enhance the reusability of the BLC classes.
+[Note we have 10 classes -> 10 java files]
+
+How many .class file will be created in the above approach :
+------------------------------------------------------------
+For a public class in a single file, Only 1 .class file will be created.
+
+For a public class in a single file which contains n number of non public classes then compiler will generate n number of .class file as shown in the program
+
+class Alpha
+{
+}
+
+class Beta
+{
+}
+
+class Gamma
+{
+}
+
+public class Test 
+{
+	public static void main(String[] args) 
+	{
+		System.out.println("Hello World!");
+	}
+}
+
+Here total 4 .class files will be created
+1) Alpha.class
+2) Beta.class
+3) Gamma.class
+4) Test.class
+================================================================
+Working with Static Method with different return type :
+-------------------------------------------------------
+
+
+
+
+
+  

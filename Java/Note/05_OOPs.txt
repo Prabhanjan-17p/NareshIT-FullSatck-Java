@@ -1,0 +1,44 @@
+Object Oriented Programming (OOPs)
+-----------------------------------
+Object Oriented Progamming means working with real life Objects so first of all we need to know that "What is an Object ?"
+
+What is an Object ?
+--------------------
+An object is a physical entity which exist in the read world.
+Example : Car, Mouse, Remote, Laptop and so on
+
+An Object is having 3 characteristics :
+
+1) Identification of the Object [Name of the Object]
+2) State of an Object [Data OR Properties of an Object]
+3) Functionality of the Object [What an object can perform]
+
+An Object Oriented programming is a technique through which we can develop and design the programs using CLASS and OBJECT.
+
+Writing Programs on real life Objects is known as Object Oriented Progamming.
+
+In OOPs we concentrate on Objects rather than function(Method).
+
+Advantages of OOPs :
+-------------------
+There are 3 advantages :
+
+1) Modularity (Dividing the bigger task into number of smaller task)
+2) Reusability (We can reuse the BLC classes [WORA])
+3) Flexibility (Easy to maintain [Interface])
+
+Features Of OOPs :
+------------------
+There are six features :
+
+1) Class
+2) Object
+3) Abstraction
+4) Encapsulation
+5) Inheritance
+6) Polymorphism
+
+What is a class :
+-------------------
+
+

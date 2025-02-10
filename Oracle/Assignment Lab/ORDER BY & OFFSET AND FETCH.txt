@@ -1,0 +1,78 @@
+                       ORDER BY & OFFSET AND FETCH
+                    =================================
+
+Order by:-order by clause is used to sorting data either assending 
+========  order or desending order.
+     
+order by clause having two keywords.
+1)asc
+2)desc
+syntax:-
+=======
+    select * from tablename
+    order by columnname[asc/desc];
+
+1.Display the all employee records and arrange them in desending order
+   according to salary
+
+
+2.display the all employee records and arrange them according to
+   seniority
+
+
+3.display the employee records and display salaries in ascending order
+   according to deptno
+
+SQL>select ename,deptno,sal
+    from emp
+    order by deptno,sal desc;
+
+
+4.check the following order by clause outputs
+1)SQL>select ename,comm 
+         from emp
+         order by comm desc;
+
+2)SQL>select ename,comm
+     from emp
+     order by comm desc nulls last;
+
+------------------------------------------------------------------------------------
+Offset:-
+========
+• introduced in ORACLE 12C.
+• it is used to specify no of rows to be skipped.
+
+syntax:-
+=======
+OFFSET <number> ROW/ROWS
+
+FETCH:-
+======
+• introduced in ORACLE 12C.
+• it is used to specify no of rows to be fetched.
+• it is used to display top n rows
+
+syntax:-
+=======
+FETCH <FIRST/NEXT> <number> ROW/ROWS ONLY
+
+
+1.Display first 5 rows only from emp table?
+
+2.Display all emp records except first 5 rows?
+
+3.Display 6th row to 10th row?
+
+4.Display top 3 salaried emp records?
+
+5.Display the most seniour employee record by using
+  fetch first clause?
+NOTE:-By default calender order is asending order
+
+6.Write a query to display 2nd maximum salary by using
+   offset and fetch clauses?
+
+7.display job column from emp table by using distinct
+   clause?
+   

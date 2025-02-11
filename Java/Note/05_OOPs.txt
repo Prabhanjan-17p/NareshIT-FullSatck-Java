@@ -38,7 +38,120 @@ There are six features :
 5) Inheritance
 6) Polymorphism
 
+11-02-2025
+-----------
 What is a class :
 -------------------
+A class is a model/bluprint/template/prototype for creating the Object. Object creation is possible by using class template.
+
+A class is a logical entity which does not take any space.
+
+A class is user-defined data type which contains fields and methods.
+
+Example :
+---------
+public class Demo
+{
+   Fields 
+     + 
+   Methods
+}
+
+*A class is a component which is used to defined Object properties and Object behavior.
+ 
+ public class Student
+ {
+    Fields [Student Properties]    
+      +      
+    Methdos [Student Behavior]
+ }
+ 
+---------------------------------------------------------------------
+WAP to provide student properties and student behavior by using OOP.
+(Diagram is available)
+
+Student.java
+--------------
+package com.ravi.oop;
+
+//BLC
+public class Student 
+{
+	int rollNumber;         //Non static variable
+	String studentName;     //Non static variable
+	String studentAddress;  //Non static variable
+	
+	public void talk()
+	{
+		System.out.println("My name is :"+studentName);
+		System.out.println("Roll number is :"+rollNumber);		
+		System.out.println("Address is :"+studentAddress);
+	}
+
+	public void writeExam()
+	{
+		System.out.println("Hello Everyone !!!, My name is :"+studentName+ " every saturday we have weekly test");
+	}
+	
+	
+}
+
+StudentDemo.java
+-----------------
+package com.ravi.oop;
+
+//ELC
+public class StudentDemo 
+{
+	public static void main(String[] args) 
+	{
+		Student  raj = new Student();
+		//Initializing the properties through reference variable
+        raj.rollNumber = 111;
+        raj.studentName = "Raj";
+        raj.studentAddress ="Ameerpet";
+        
+        //calling the behavior
+        raj.talk();
+        raj.writeExam();
+        
+        System.out.println("-------------------");
+        
+        Student priya = new Student();
+        //Initializing the properties through reference variable
+        priya.rollNumber = 222;
+        priya.studentName = "Priya";
+        priya.studentAddress = "S R Nagar";
+        
+        //calling the Behavior
+        priya.talk();
+        priya.writeExam();
+        
+	}
+
+}
+
+Steps to develop OOP :
+----------------------
+1) Create BLC and ELC class.
+2) Create an Objec for BLC class, inside the ELC class in the main 
+   method.
+3) Think about Object properties and behavior and write inside the 
+   BLC class.
+4) In the ELC class, With the help of Object reference initialize
+   all the Object properties.
+5) By using Object reference call the methods.
+-------------------------------------------------------------------
+   
+   
+   
+   
+   
+   
+
+
+
+-------------------------------------------------------------------
+
 
 

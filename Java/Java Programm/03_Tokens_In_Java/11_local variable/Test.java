@@ -6,6 +6,7 @@ public class Test {
      */
     public void accept() {
         int x = 100; // x is a local variable
+        System.out.println("local variable use in x = "+x);
     }
 
     /*
@@ -14,6 +15,7 @@ public class Test {
      */
     public void accept1() {
         final int x = 100; // final is a valid modifier
+        System.out.println("Final use in x = "+x);
     }
 
     /*

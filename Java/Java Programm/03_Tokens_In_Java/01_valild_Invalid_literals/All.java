@@ -22,6 +22,7 @@ public class All {
         int y2 = 0b111; // Valid
         // int z2 = 0B112; //Invalid [2 is out of range]
 
+        System.out.println(x+","+y+","+z+","+b+","+c+","+x1+","+y1+","+z1+","+x2+","+y2);
         
     }
 }

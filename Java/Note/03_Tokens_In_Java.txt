@@ -1252,7 +1252,7 @@ public class Test
 {
 	public static void main(String[] args) 
 	{
-           while(false)
+           while(false) //unreachable statement
 	   {
 		  System.out.println("Inside the loop body");
 	   }
@@ -1269,7 +1269,7 @@ public class Test
 	{
 		boolean b = false;
 		
-       while(b)
+       while(b) 
 	   {
 		  System.out.println("Inside the loop body");
 	   }

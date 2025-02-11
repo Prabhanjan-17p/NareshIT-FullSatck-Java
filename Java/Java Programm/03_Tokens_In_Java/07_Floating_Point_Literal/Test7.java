@@ -10,5 +10,8 @@ public class Test7
 	//    long f = 10D; //E
 	//    int g = 10F; //E  
 	//    long l = 12.78F; //E
+
+
+	System.out.println(a+","+c+","+d);
 	}
 }

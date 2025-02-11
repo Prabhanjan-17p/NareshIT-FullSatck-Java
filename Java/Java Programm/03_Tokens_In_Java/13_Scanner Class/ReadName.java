@@ -12,5 +12,7 @@ public class ReadName
 		
 		String name =  sc.nextLine();
 		System.out.println("Your Name is :"+name);
+
+		sc.close();
 	}
 }

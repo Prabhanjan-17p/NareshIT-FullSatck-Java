@@ -11,5 +11,7 @@ public class Test6
 		double d = 0Xdead; 
 		
 		// double e = 0Xdead.0; //Error
+
+		System.out.println(b+","+c+","+d);
 	}
 }

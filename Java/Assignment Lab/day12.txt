@@ -1,0 +1,119 @@
+Read the class notes and develop the programs.
+Program 01:
+-----------
+Write a Program on OOPs to define Product class properties and behaviour.
+
+properties :
+productId : int
+productName : String
+productPrice : double
+
+Initialize these properties with the help of Methods using Scanner class not by using Object reference.
+
+behavior:
+setProductData() : public void
+getProductInfo() : public void
+
+ANS -
+ELC-----------------
+package com.nareshIT.day12;
+
+public class ProductDemo {
+
+	public static void main(String[] args) {
+		Product p = new Product();
+		p.setProductDetails();
+		p.getProductDetails();
+	}
+
+}
+BLC------------------
+package com.nareshIT.day12;
+
+import java.util.Scanner;
+
+public class Product {
+	int productId;
+	String productName ;
+	double productPrice;
+	
+	
+	public void setProductDetails() {
+		Scanner sc = new Scanner (System.in);
+		System.out.println("Enter the product  id : ");
+		productId = sc.nextInt();
+		System.out.println("Enter the product name : ");
+		productName = sc.nextLine();
+		productName = sc.nextLine(); // due 1st int come 
+		System.out.println("Enter the product price : ");
+		productPrice = sc.nextDouble();
+	}
+	
+	
+	public void getProductDetails() {
+		System.out.println("Emp number is : "+productId);
+		System.out.println("Emp Name is: "+productName);
+		System.out.println("Emp salary is: "+productPrice);
+	}
+}
+
+
+Program 02:
+-----------
+Write a Program on OOPs to define Employee class properties and behaviour.
+
+properties :
+employeeId : int
+employeeName : String
+employeeSalary : double
+
+Initialize these properties with the help of Methods using Scanner class not by using Object reference.
+
+behavior:
+setEmployeeData() : public void
+getEmployeeData() : public void
+
+
+Note : Create two more programs based on your imagination   
+ELC--------------
+package com.nareshIT.day12;
+
+public class EmpDemo {
+
+	public static void main(String[] args) {
+		Emp e = new Emp();
+		e.setEmpDetails();
+		e.getEmpDetails();
+	}
+
+}
+BLC-----------------------
+package com.nareshIT.day12;
+
+import java.util.Scanner;
+
+public class Emp {
+	
+	int empNumber;
+	String empName ;
+	double empSalary;
+	
+	public void setEmpDetails() {
+		Scanner sc = new Scanner (System.in);
+		System.out.println("Enter the Emp number : ");
+		empNumber = sc.nextInt();
+		System.out.println("Enter the Emp Name : ");
+		empName = sc.nextLine();
+		empName = sc.nextLine(); // due 1st int come 
+		System.out.println("Enter the Emp salary : ");
+		empSalary = sc.nextDouble();
+	}
+	
+	
+	public void getEmpDetails() {
+		System.out.println("Emp number is : "+empNumber);
+		System.out.println("Emp Name is: "+empName);
+		System.out.println("Emp salary is: "+empSalary);
+	}
+
+}

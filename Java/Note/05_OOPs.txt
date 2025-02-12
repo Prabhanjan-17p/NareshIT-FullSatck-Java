@@ -141,17 +141,177 @@ Steps to develop OOP :
 4) In the ELC class, With the help of Object reference initialize
    all the Object properties.
 5) By using Object reference call the methods.
--------------------------------------------------------------------
-   
-   
-   
-   
-   
-   
+-----------------------------------------------------------------
+12-02-2025
+----------
+Instance Variable OR Non static Field :
+---------------------------------------
+Instance variable we can declare at class level.
 
+If a non static variable is declared inside the class but outside of the method then it is called Instance Variable OR Non static field.
 
+Example :
+---------
+public class Student
+{
+  int rollNumber;  //Instance Variable OR Non static field
+  
+  public void m1()
+  {
+  }
+}
 
--------------------------------------------------------------------
+An instance variable is automatically created and initialized with default value at the time of Object creation. [We can't even think about instance variable without object creation]
 
+public class Test 
+{
+	int x = 200; //Instance Variable OR Non static filed
+	
+	public static void main(String[] args) 
+	{
+		System.out.println(x);	//error
+	}
+}
+
+An instance variable is used to represent the properties of an object hence without object instance variable will not exist.
+
+As far as it's scope is concerned, An instance variable can be accessible anywhere within the class as well as outside of the class also using valid access modifier.
+
+Whenever we create an object, a separate copy of all the instance variables will be created.
+----------------------------------------------------------------
+Initializing the Object properties using Method without parameter (Using Scanner class) :
+----------------------------------
+package com.ravi.method_initialization;
+
+import java.util.Scanner;
+
+public class Employee 
+{
+   int employeeNumber;  //0
+   String employeeName; //null
+   double employeeSalary; //0.0
+   
+   public void setEmployeeData()
+   {
+	   Scanner sc = new Scanner(System.in);
+	   System.out.print("Enter employee Number :");
+	   employeeNumber = sc.nextInt();
+	   System.out.print("Enter employee Name :");
+	   employeeName = sc.nextLine();
+	   employeeName = sc.nextLine();
+	   System.out.print("Enter employee Salary :");
+	   employeeSalary = sc.nextDouble();	  
+   }
+   
+   public void getEmployeeData()
+   {
+	   System.out.println("Employee Number is :"+employeeNumber);
+	   System.out.println("Employee Name is :"+employeeName);
+	   System.out.println("Employee Salary is :"+employeeSalary);
+   }  
+   
+}
+
+package com.ravi.method_initialization;
+
+public class EmployeeDemo 
+{
+	public static void main(String[] args) 
+	{
+		Employee scott = new Employee();
+		scott.setEmployeeData();
+		scott.getEmployeeData();
+		
+		System.out.println(".............");
+		
+		Employee smith = new Employee();
+		smith.setEmployeeData();
+		smith.getEmployeeData();		
+		
+	}
+
+}
+----------------------------------------------------------------
+What is parameter variable ?:
+-----------------------------
+If a variable is declared inside a method as a parameter (not inside a method body) then it is parameter variable.
+
+It used to recieve the values from the outer world so the end user will provide the values and these values are recieved by 
+parameter variable in the program.
+
+Initializing the object properties using parameter variable :
+-------------------------------------------------------------
+package com.ravi.initialization_through_parameter;
+
+public class Customer 
+{
+    int customerId;
+    String customerName;
+    
+    public void setCustomerData(int id, String name)
+    {
+    	customerId = id;
+    	customerName = name;
+    }
+    
+    public void getCustomerData()
+    {
+    	System.out.println("Customer Id is :"+customerId);
+    	System.out.println("Customer Name is :"+customerName);
+    } 
+    
+}
+
+package com.ravi.initialization_through_parameter;
+
+public class CustomerDemo 
+{
+	public static void main(String[] args) 
+	{
+		Customer martin = new Customer();
+		martin.setCustomerData(111, "Mr Martin");
+		martin.getCustomerData();
+		
+		System.out.println("..............");
+		
+		Customer alen = new Customer();
+		alen.setCustomerData(222, "Mr. Alen");
+		alen.getCustomerData();		
+		
+	}
+
+}
+
+Note : Upto here, We know total 3 ways to initialize the object
+properties (instance variable) which are as follows :
+  
+   1) Using Object reference(raj.rollNumber = 122)
+   2) Using Method without parameter (Scanner class)
+   3) Using Method with Parameter (Park Story)
+----------------------------------------------------------------
+What is a constructor [Constructor Introduction]
+-----------------------------------------------
+If the name of the class and name of the method both are exactly same and it should not contain any return type then it is called constructor. 
+
+Example :
+
+Case 1:
+-------
+public class Demo
+{
+   public void Demo() //Method
+   {
+   }
+}   
+
+Case 2:
+-------
+public class Demo
+{
+   public  Demo() //Constructor
+   {
+   }
+}   
+-----------------------------------------------------------------
 
 

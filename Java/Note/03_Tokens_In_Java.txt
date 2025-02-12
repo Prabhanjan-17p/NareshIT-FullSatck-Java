@@ -241,7 +241,7 @@ Only Objects are moving in the network but not the primary data type so java has
 Primary Data type           Wrapper Object
 	byte		:	Byte
 	short		:	Short
-	int		:	Integer
+	int			:	Integer
 	long		:	Long
 	float		:	Float
 	double		:	Double
@@ -421,7 +421,7 @@ By default every floating point literal is of type double only so, the following
     
     In order to represent double value as a float value we can 
     write the following statements :
-           float f1 = (float) 12.90;
+       float f1 = (float) 12.90;
 	   float f2 = 12.66F;
 	   float f3 = 56.89f;
 
@@ -429,12 +429,12 @@ By default every floating point literal is of type double only so, the following
 As we know by default every floating point literal is of type double only but still compiler has provided two flavors to 
 represent the double value explicitly.
       
-        double d1 = 10d;
+    double d1 = 10d;
 	double d2 = 18D;
 	
 	
 Floating point literal we can represent in exponent form also.
-              double d1 = 15e2; [15 X 10 to the power of 2]
+          double d1 = 15e2; [15 X 10 to the power of 2]
 	      double d2 = 15e-2;
 
 
@@ -576,7 +576,7 @@ It is used to represent two states i.e. either true or false.
 In boolean literal, we have only one data type i.e boolean data type which accepts 1 bit of memory OR depends upon JVM 
 implementation.
 
-           boolean isValid = true;
+       boolean isValid = true;
 	   boolean isEmpty = false;
 
 Unlike C and C++, We can't assign 0 and 1 to boolean data type because in java 0 and 1 both are representing numeric type (int type)

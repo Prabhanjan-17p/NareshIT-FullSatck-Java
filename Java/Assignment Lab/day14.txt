@@ -1,0 +1,264 @@
+Program 01 :
+------------
+Create a BLC(Business Logic Class) called Bowler. Add below details to the class. 
+
+1. Instance variables:
+ name: String
+ wickets: int
+ matches: int,
+ balls_bowled: int,
+ runs_conceded: int. 
+
+2. Method - bowlerDetails() : public void
+
+Create a method name called bowlerDetails() that accepts name, wickets, matches, balls_bowled and runs_conceded.
+
+Method name: bowlerDetails 
+
+Return type: void
+
+
+3. Create below public methods,
+ Method name: computeBowlingAverage
+ Return type: void
+
+ This method should print the bowling average of the bowler by dividing runs_conceded with wickets.(runs_conceded / wickets)
+
+ Input:
+ name = "Sachin",
+ wickets = 10,
+ matches = 5,
+ balls_bowled = 750,
+ runs_conceded 463.
+
+ Output:
+ Name: Sachin
+ bowling_avg=46.3
+ Note: a. If any values are negative print 'Error'.
+
+ b. If runs_conceded or balls_bowled are greater than 0 when matches are 0, print 'Error'.
+
+ Method name: computeStrikeRate
+ Return type: void
+
+This method should print the Strike Rate of the bowler by dividing runs_conceded with balls_bowled.( runs_conceded / balls_bowled)
+
+ Input:
+ name = "Sachin",
+ wickets = 10,
+ matches = 5,
+ balls_bowled = 750,
+ runs_conceded 463.
+
+ Output:
+ Name: Sachin
+ Strike_rate=0.61733335
+ Note: a. If any values are negative print 'Error'.
+
+ b. If runs_conceded or balls_bowled are greater than 0 when matches are 0 print 'Error'.
+
+ Method name: showStatistics
+ Return type: void
+
+ This method should print the details of the batter.
+ Input:
+ name = "Sachin",
+ wickets = 10,
+ matches = 5,
+ balls_bowled = 750,
+ runs_conceded 463.
+
+ Output:
+ Name=Sachin
+ wickets=10
+ matches=5
+
+ balls_bowled=750
+ runs_conceded=463
+
+ Note: a. If any values are negative print 'Error'.
+
+ b. If runs_conceded or balls_bowled are greater than 0 when matches are 0 print 'Error'.
+
+ An ELC(Executable Logic Class) Test that contains main method. Use this class to test your code.
+-----------------------------------------------------------------------
+BLC
+-----------
+package com.nareshIT.day14;
+
+public class Bowler {
+	  String name;
+	  int wickets;
+	  int matches;
+	  int balls_bowled;
+	  int runs_conceded;
+	  
+	  public void bowlerDetails(String n,int w, int m,
+			  int bb ,int rc) {
+		if (w <= -1 || m <= -1 ||  bb <= -1 || rc <= -1) {
+			System.out.println("Error");
+			return ;
+		}
+		
+		name = n;
+		wickets = w;
+		matches = m;
+		balls_bowled = bb;
+		runs_conceded = rc ;
+		
+		if ((matches == 0) && (runs_conceded >= 0 || balls_bowled >= 0)) {
+			System.out.println("Error");
+			return ;
+		}
+		showDet();
+		calAvg(runs_conceded,wickets);
+		calStrik(runs_conceded , balls_bowled);
+	}
+
+	private void showDet() {
+		System.out.println("Name : "+name);
+		System.out.println("wickets : "+wickets);
+		System.out.println("matches : "+matches);
+		System.out.println("balls_bowled : "+balls_bowled);
+		System.out.println("runs_conceded : "+runs_conceded);
+	}
+
+	private void calStrik(int rc ,int bb) {
+//		System.out.println("Name : "+name);
+		double st = (double)rc/ bb;
+		System.out.println("Strike_rate : "+st);
+	}
+
+	private void calAvg(int run, int wit) {
+//		System.out.println("Name : "+name);
+		double avg = (double) run/wit;
+		System.out.println("Bolwing avg  : "+avg);
+	}
+}
+
+ELC
+-----------
+package com.nareshIT.day14;
+
+public class BowlerDemo {
+
+	public static void main(String[] args) {
+		Bowler b = new Bowler();
+		b.bowlerDetails("kanha", 110, 15, 7150, 4163);
+	}
+
+}
+
+
+Program 02 :
+------------
+Class Batter is given to you. Add below details to the class
+
+ 1. Instance variables:
+ name: String,
+ runs: int,
+ matches: int,
+ batting_avg: float.
+
+2.  Method batterDetails() : public void
+
+Create a method name called batterDetails() that accepts name, runs, matches.
+
+Method name: batterDetails
+Return type: void
+
+ 3. Create below public methods,
+ Method name: computeBattingAverage
+ Return type: void
+
+ This method should print the batting average of the batter by dividing run with matches.(run / matches.)
+
+ Input: 
+
+ Name: "Sachin"
+ Runs: 18000
+ Matches: 463
+
+
+
+ Output:
+ Name: Sachin
+ Batting_Avg: 38.87689
+
+ Note: a. If runs or matches values are negative print 'Error'.
+
+ b. If runs are greater than 0 when matches are 0 print 'Error'.
+
+ Method name: getStatistics
+ Return type: void
+ This method should print the details of the batter.
+
+ Input: 
+Name: "Sachin"
+Runs: 18000
+Matches: 463
+
+ Output:
+ Name: Sachin
+ Runs: 18000
+ Matches: 463
+
+
+ Note: a. If runs or matches values are negative print 'Error'.
+ b. If runs are greater than 0 when matches are 0 print 'Error'.
+
+ Given an ELC(Executable Logic class) class for Testing that contains main method. Use this class to test your code.
+BLC
+------------
+package com.nareshIT.day14;
+
+public class Batter {
+	 String name;
+	 int runs ;
+	 int matches;
+	 float batting_avg;
+	 
+	 public void batterDetails(String n,int r ,int m) {
+	   if (r <= -1 || m <= -1 ) {
+				System.out.println("Error");
+				return ;
+		}
+		if ((m == 0) && (r >= 0)) {
+			System.out.println("Error");
+			return ;
+		}
+		name =n;
+		runs = r;
+		matches = m;
+		
+		calBA(runs , matches);
+		getBatterDetails();
+	}
+
+	private void calBA(int runs2, int matches2) {
+		batting_avg = (float) runs2/matches2;
+	}
+	
+	public void getBatterDetails() {
+		System.out.println("Name : "+name );
+		System.out.println("runs : "+runs );
+		System.out.println("matches : "+matches );
+		System.out.println("batting_avg : "+batting_avg );
+	}
+
+}
+
+ELC
+--------------
+package com.nareshIT.day14;
+
+public class BatterDemo {
+
+	public static void main(String[] args) {
+		Batter b = new Batter();
+		b.batterDetails("kanha", -18000, 463);
+//		b.getBatterDetails();
+
+	}
+
+}

@@ -60,4 +60,4 @@ Follow my journey, updates, and project highlights:
 
 Let’s embark on this transformative journey together! By the end of this course, you’ll be ready to **design, develop, and deploy full-stack applications** with confidence.  
 
-**Let’s build the web of tomorrow, today!** 🌟  
+**Let’s build the web of tomorrow, today!** 🌟 

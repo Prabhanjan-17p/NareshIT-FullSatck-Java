@@ -49,7 +49,7 @@ By the end of this program, you’ll not only have the **knowledge** but also a 
 
 ---
 
-## 📢 Stay Connected  
+## 📢 Stay Connected.
 
 Follow my journey, updates, and project highlights:  
 - 🌐 [**LinkedIn**](https://www.linkedin.com/in/pravanjan-17p/)  

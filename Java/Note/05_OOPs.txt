@@ -313,5 +313,171 @@ public class Demo
    }
 }   
 -----------------------------------------------------------------
+13-02-2025
+-----------
+
+Default constructor added by compiler :
+---------------------------------------
+In java, Whenever we write a class and If we don't write any kind of constructor then automatically compiler will add one 
+default no argument constructor in the class at the time of compilation.
+
+Demo.java
+-----------
+public class Demo
+{
+   //Programmer has not provided any constructor
+}
+
+javac Demo.java (Compilation)
+[After compilation Demo.class file will be generated]
+
+Demo.class
+----------
+public class Demo
+{
+  public Demo() //Default No Argument Constructor [Added by 
+  {                                             java compiler]
+  }
+}
+
+*Every java class must have at-least one constructor either 
+ explicitly written by user OR implicitly added by java compiler.
+
+The access modifier of default no argument constructor [added by java compiler] will depend upon class access modifier that means, If the class is public then default no argument constructor will also be public otherwise not.
+
+Example :
+---------
+public class Test
+{
+}
+
+javac Test.java [java compiler will compile and add default 
+                 constructor]
+
+javap Test.class [To see the Constructor added by java compiler]
+-----------------------------------------------------------------
+
+Why compiler is adding default constructor to our class :
+---------------------------------------------------------
+We have 2 reasons that why compiler is adding default constructor :
+
+1) Without default constructor, Object creation is not possible in java by using new keyword, if the class does not contain user-defined constructor.
+
+2) As we know only class level variables are having default values so, new keyword will initialize all the non static variable with the support of java compiler with default values as shown below.
+  
+ Data type - Default value
+   byte  - 0
+   short - 0
+   int   - 0
+   long  - 0
+   float - 0.0
+   double - 0.0
+   char - (space) '\u0000'  
+   boolean - false
+   String - null
+   Object - null (For any class i.e reference variable the default value is null)
+
+Program that describes new keyword is repsonsible to allocate 
+the default values for non static variables :
+
+Student.java
+-------------
+package com.ravi.oop;
+
+public class Student 
+{
+   int roll;
+   String name;
+         
+   public void show()
+   {
+	   System.out.println(roll);  //0
+	   System.out.println(name);  //null
+   }
+}
+StudentDemo.java
+-----------------
+package com.ravi.oop;
+
+public class StudentDemo 
+{
+	public static void main(String[] args) 
+	{
+		Student raj = new Student();
+		raj.show();
+		
+
+	}
+
+}
+
+Here we will get output as default values i.e 0 , null 
+---------------------------------------------------------------
+How to initialize the object properties with parameter variable as per our requirement :
+
+Based on the requirement we can initailize the instance variable with parameter variable as shown in the program below :
+
+package com.ravi.oop;
+
+public class Employee 
+{
+   int employeeId;
+   String employeeName;
+   double employeeSalary; 
+   char employeeGrade;
+   
+   public void setEmployeeData(int id, String name, double salary)
+   {
+	   employeeId = id;
+	   employeeName = name;
+	   employeeSalary = salary;
+   }
+   
+   public void calculateEmployeeGrade()
+   {
+	   if(employeeSalary >=100000)
+	   {
+		   employeeGrade = 'A';
+	   }
+	   else if(employeeSalary >=75000)
+	   {
+		   employeeGrade = 'B';
+	   }
+	   else if(employeeSalary >=50000)
+	   {
+		   employeeGrade = 'C';
+	   } 
+	   else
+	   {
+		   employeeGrade = 'D';
+	   }
+	   
+   }
+   
+   
+   
+   public String getEmployeeData()
+   {
+	   return "[Id is :"+employeeId+", Name is :"+employeeName+", Salary is "+employeeSalary+", Grade is :"+employeeGrade+"]";
+   } 
+   
+}
+package com.ravi.oop;
+
+public class EmployeeDemo {
+
+	public static void main(String[] args) 
+	{
+		Employee scott = new Employee();
+		scott.setEmployeeData(101, "Scott", 120000);
+		scott.calculateEmployeeGrade();
+		System.out.println(scott.getEmployeeData());
+
+	}
+
+}
+---------------------------------------------------------------
+
+
 
 

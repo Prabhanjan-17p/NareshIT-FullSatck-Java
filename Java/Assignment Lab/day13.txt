@@ -1,0 +1,182 @@
+Program 01 :
+------------
+A BLC (Business Logic Class) called Student is given to you.
+Instance Variables: 
+studentId :int
+studentName : String
+marks: int
+grade: char
+
+method : calculateGrade():public:void
+
+Create a method public void setStudentData() with the parameters: studentId, studentName, marks.
+
+Note that grade is not set through method because it is a calculated value.
+
+Methods :
+displayDetails(): This method should return a String with  the details of the student in the following format:
+Student [name=John Smith, studentId=123, marks=95, grade=A] 
+
+calculateGrade(): This is a public method that calculates the grade based on the marks that is set. 
+If marks is above 90, grade is set to A. 
+If marks is between 81 and 90, grade is set to B, 
+if marks is between 71 and 80, grade is set to C, 
+if marks is between 61 and 70, grade is set to D, 
+if marks is less than 61, grade is set to E.
+Use this method when you need to set or reset grade.
+
+An ELC(Executable Logic class) Tester with main method is given to you to test your code.
+
+ANS-
+ELC
+---------------
+package com.nereshIT.day13;
+
+import java.util.Scanner;
+
+public class StudentDemo {
+
+	public static void main(String[] args) {
+		
+		Student sc = new Student();
+		sc.setDetails();
+		System.out.println(sc.getDetails());
+	}
+
+}
+BLC
+----------------------
+package com.nereshIT.day13;
+
+import java.util.Scanner;
+
+public class Student {
+	
+	int rollNumber;
+	String name;
+	int mark;
+	char gr ;
+	
+	public void setDetails() {
+		Scanner sc = new Scanner(System.in);
+		System.out.println("Enter your roll number: ");
+		rollNumber = sc.nextInt();
+		System.out.println("Enter your name: ");
+		name = sc.nextLine();
+		name = sc.nextLine();
+		System.out.println("Enter your mark: ");
+		mark = sc.nextInt();
+		gr = calGread(mark);
+	}
+	
+	public char calGread(int num) {
+		if (num > 90) {
+			return 'A';
+		}
+		else if (num > 80 ) {
+			return 'B';
+		}
+		else if (num > 70 ) {
+			return 'C';
+		}
+		else if (num > 60 ) {
+			return 'D';
+		}
+		else {
+			return 'E';
+		}
+	}
+	
+	public String getDetails() {
+		return "[ Student roll number is "+ rollNumber + ", name is "+name+
+				",  mark is "+mark +", grade is "+ gr +"]";
+	}
+}
+
+
+Program 02 :
+------------
+Create a BLC class Employee class with properties 
+
+String firstName
+String lastName
+int employeeId
+double salary
+int noOfProject
+
+
+Create a setEmployeeData() method with 5 parameters to initialize all the instance variables.
+
+Implement calculateSalary() method that will add extra ammount in salary based on NoOfProject by using following criteria.
+
+NoOfProject is more than 5 and less that 10 then add 5000.
+NoOfProject is more than 10 and less that 20 then add 10000.
+NoOfProject is more than 20 then add 15000. 	
+
+ Take a method called displayDetails() to display the salary.
+
+ Take an ELC class Tester to test your logic.
+
+ELC
+----------------
+package com.nereshIT.day13;
+
+public class EmpDemo {
+
+	public static void main(String[] args) {
+		Emp e = new Emp();
+		e.setEmpDetails();
+		e.displayDetails();
+	}
+
+}
+
+
+BLC
+-----------------
+package com.nereshIT.day13;
+
+import java.util.Scanner;
+
+public class Emp {
+	String firstName;
+	String lastName;
+	int employeeId;
+	double salary;
+	int noOfProject;
+	int ext;
+	
+	public void setEmpDetails() {
+		Scanner sc = new Scanner(System.in);
+		System.out.println("Enter first name: ");
+		firstName = sc.next();
+		System.out.println("Enter last name: ");
+		lastName = sc.next();
+		System.out.println("Enter emp id: ");
+		employeeId = sc.nextInt();
+		System.out.println("Enter salary: ");
+		salary = sc.nextDouble();
+		System.out.println("Enter no Of Project: ");
+		noOfProject = sc.nextInt();
+		ext = calExtraSal(noOfProject);
+		salary = salary+ext;
+	}
+	
+	public int calExtraSal(int nop) {
+		if (nop > 5 && nop < 10) {
+			return 5000;
+		}
+		else if(nop > 10 && nop < 20) {
+			return 10000;
+		}
+		else if (nop > 20) {
+			return 15000;
+		}
+		return 0;
+	}
+	
+	public void displayDetails() {
+		System.out.println("Emp first name "+firstName + " last name: "+ lastName+" emp id "+employeeId
+				+" no of project "+noOfProject+" salary is :"+salary);
+	}
+}

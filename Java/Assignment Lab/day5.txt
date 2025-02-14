@@ -6,7 +6,7 @@ int a=9;
 float b = a/2;
 System.out.println(b);
 
-a 4.0
+a 4.0 // correct
 b 4.5
 c 5.0
 d None of the above
@@ -39,7 +39,7 @@ b.
 c.
 4
 d.
-Compiler error
+Compiler error // correct
 __________________________________________________________________________
 Que-4)
 __________________
@@ -68,7 +68,7 @@ System.out.println(a);
 a.
 0
 b.
-4
+4 // correct
 c.
 65536
 d.

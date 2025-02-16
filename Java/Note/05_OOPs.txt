@@ -546,11 +546,11 @@ When we should declare a variable as an instance and we should decalre as static
 Instance Variable :
 -------------------
 If the value of the variable is different with respect to object 
-then we should declare the variable as an instance variable.
+then we should declare the variable as an instance variable.(Means separate object for separate value)
 
 Static Variable :
 -----------------
-If the value of the variable will be common with respect to all the objects then we should use static variable.
+If the value of the variable will be common with respect to all the objects then we should use static variable.(means all the object for same value)
 
 Example 1:
 ----------
@@ -630,7 +630,7 @@ public class VariableDeclaration {
 ================================================================
 What is variable shadow ?
 -------------------------
-If class level variables and method level variables are having exactly same name then method level variable will hide class level variable inside the method body OR constructor OR block, This concept is known as Variable Shadow.
+If class level variables and method level variables are having exactly same name then method level variable will hide class level variable inside the method body OR c`1onstructor OR block, This concept is known as Variable Shadow.
 
 package com.ravi.role_of_instance_variable;
 

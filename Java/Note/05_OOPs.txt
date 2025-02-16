@@ -477,7 +477,272 @@ public class EmployeeDemo {
 
 }
 ---------------------------------------------------------------
+14-02-2025
+-----------
+Role of instance variable OR Non static field (Object Properties)
+while creating an object.
+
+In java, Whenever we create an object, a separate copy of all the instance variables will be created with each and every object.
 
 
+package com.ravi.role_of_instance_variable;
 
+public class Test
+{
+   int x = 100;
+   
+   public static void main(String [] args)
+   {
+       Test t1 = new Test();
+       Test t2 = new Test();
+       
+       ++t1.x;   --t2.x;       
+       
+       System.out.println(t1.x); //101       
+       System.out.println(t2.x); //99 
+   }
+}
+----------------------------------------------------------------
+What is the role of class variable OR static field in Object creation ?
+
+What is a static field ?
+------------------------
+It is a variable which we should declare at class level.
+
+If we declare a variable inside a class with static modifier then it is called static field OR Class Variable.
+
+In order to access the static field, Object is not required, We can access the static field with the help of class name.
+
+A static field is automatically created and initialized with default value at THE TIME LOADING THE .CLASS FILE INTO JVM MEMORY.
+
+Whenever we create an object in java then a single copy of static field will be created and the same single copy will be sharable by all the objects.
+
+* It is sharable by all the objects hence if we modify the value
+  by any of the Object reference then it will be mofifiable for
+  all the objects.
+
+package com.ravi.role_of_static_field;
+
+public class Demo 
+{
+	static int x = 100;
+
+	public static void main(String[] args)
+	{
+		Demo d1 = new Demo();
+		Demo d2 = new Demo();
+		
+		++d1.x;   ++d2.x;
+		
+		System.out.println(d1.x); //102
+		System.out.println(d2.x); //102
+	}
+}
+
+Note : The main purpose of static field to save the memory.
+----------------------------------------------------------------
+When we should declare a variable as an instance and we should decalre as static variable ?
+
+Instance Variable :
+-------------------
+If the value of the variable is different with respect to object 
+then we should declare the variable as an instance variable.
+
+Static Variable :
+-----------------
+If the value of the variable will be common with respect to all the objects then we should use static variable.
+
+Example 1:
+----------
+public class Student
+{
+  int roll;
+  String name;
+  String address;
+  static String collegeName = "NIT";
+  static String courseName = "Java";
+}  
+
+Example 2:
+-----------
+public class Customer
+{
+   int accountNumber;
+   String customerName;
+   String customerAddress;
+   long mobileNumber;
+   String emailId;
+   static String ifscCode = "SBIHYD00123";
+   static String branchLocation ="S.R Nagar";
+}
+----------------------------------------------------------------
+//Programs :
+------------
+2 files :
+------------
+Student.java
+-------------
+package com.ravi.role_of_instance_variable;
+
+public class Student
+{
+	  int rollNumber;
+	  String studentName;
+	  String studentAddress;
+	  static String collegeName = "NIT";
+	  static String courseName = "Java";
+	  
+	  public void setStudentData(int roll, String name, String address)
+	  {
+		 rollNumber = roll;
+		 studentName = name;
+		 studentAddress = address;
+	  } 
+	  
+	  public void showStudentData()
+	  {
+		  System.out.println("Roll Number is :"+rollNumber);
+		  System.out.println("Name is :"+studentName);
+		  System.out.println("Address is :"+studentAddress);
+		  System.out.println("College Name is :"+collegeName);
+		  System.out.println("Course is :"+courseName);		  
+	  }  
+}
+
+package com.ravi.role_of_instance_variable;
+
+public class VariableDeclaration {
+
+	public static void main(String[] args) 
+	{
+		Student raj = new Student();
+		raj.setStudentData(101, "Raj", "Ameerpet");
+		raj.showStudentData();
+		
+		System.out.println("...............");
+		Student priya = new Student();
+		priya.setStudentData(102, "Priya", "S.R Nagar");
+		priya.showStudentData();
+
+	}
+
+}
+================================================================
+What is variable shadow ?
+-------------------------
+If class level variables and method level variables are having exactly same name then method level variable will hide class level variable inside the method body OR constructor OR block, This concept is known as Variable Shadow.
+
+package com.ravi.role_of_instance_variable;
+
+class Customer
+{
+	int customerId = 111;
+	String customerName = "Scott";
+	double customerBill = 12000;
+	
+	public void show(double customerBill)
+	{
+		int customerId = 222;
+		String customerName = "Alen";
+		
+		System.out.println(customerId); //222
+		System.out.println(customerName); //Alen	
+		System.out.println(customerBill); //18000	
+		
+	}
+	
+}
+
+public class VariableShadow {
+
+	public static void main(String[] args) 
+	{
+		Customer cust = new Customer();
+		cust.show(18000);
+
+	}
+
+}
+----------------------------------------------------------------
+this keyword in java :
+----------------------
+Whenever instance variable name and parameter variable name both are same then at the time of instance variable initialization our runtime environment will provide more priority to parameter variable/local variable, parameter variables are hiding the instance variables (Due to variable shadow)
+
+To avoid the above said problen, Java software people introduced "this" keyword.
+
+this keyword always refers to the current object and instance variables are the part of the object so by using this keyword we can represent instance variable.
+
+We cannot use this (non static member) keyword from static area (Static context)[static method, static block and static nested ineer class]
+
+2 files :
+----------
+Manager.java
+-------------
+package com.ravi.this_keyword;
+
+public class Manager 
+{
+   int managerId;
+   String managerName;
+   
+   public void setManagerData(int managerId, String managerName)
+   {
+	  this.managerId = managerId;
+	  this.managerName = managerName;
+	   
+   } 
+	
+   public void getManagerData()
+   {
+	 System.out.println("Manager Id is :"+managerId);  
+	 System.out.println("Manager Name is :"+managerName);  
+   }   
+	
+}
+
+ManagerDemo.java
+-----------------
+package com.ravi.this_keyword;
+
+public class ManagerDemo {
+
+	public static void main(String[] args)
+	{
+		Manager alen = new Manager();
+		alen.setManagerData(111, "Alen");
+        alen.getManagerData();
+	}
+
+}
+----------------------------------------------------------------
+Program on Local search algorithm :[Diagram 15-FEB]
+
+package com.ravi.this_keyword;
+
+class Test
+{
+	static int a = 100;  //static Field 
+	int b = 200; //Non static Field
+	
+	public void accept(int c)   //Parameter Variable
+	{
+		int d = 400;  //Local Variable
+		System.out.println("Static Field :"+Test.a);
+		System.out.println("Non Static Field :"+this.b);
+		System.out.println("Parameter Variable :"+c);
+		System.out.println("Local Variable :"+d);
+	}
+}
+public class LocalSearchAlgorithm 
+{
+	public static void main(String[] args) 
+	{
+		Test t1 = new Test();
+		t1.accept(300);
+	}
+
+}
+================================================================
+Data Hiding :
+------------
 

@@ -1,0 +1,163 @@
+------------------------------------------ 1 character Conversion(vowel - consonant - Unicode)-------------------------------------
+import java.util.*;
+
+public class ConsonantOrVowelMain{
+
+    public static void main(String [] args){
+        String name ;
+        Scanner sc = new Scanner(System.in);
+        name = sc.next().charAt(0);
+        char ch ='f';
+        if(name == 'a' || name == 'e' || name == 'i' || name == 'o' || name== 'u' ||name == 'A' || name == 'E' || name == 'I' || name == 'O' || name== 'U')
+        {
+            ch = 't';
+        }
+
+    switch(ch){
+        case t:
+         System.out.println(name+" is a vowel.");
+         System.out.println("Unicode value: "+((int)name));
+         case f:
+         System.out.println(name+" is a consonant.");
+         System.out.println("Unicode value: "+((int)name));
+         default :
+          System.out.println("Not a Character");
+         
+    }
+    }
+}
+--------------------------------------------- 2 Employee Salary increment-------------------------------------------------------
+import java.util.*;
+
+
+
+public class EmployeeELC{
+
+    public static void main(String [] args){
+        Scanner sc = new Scanner(System.in);
+        int id = sc.nextInt();
+        String name = sc.next();
+        name = sc.next();
+        int sal = sc.nextInt();
+        Employee e = new Employee();
+        e.setEmployeeDetails(id,name,sal);
+        e.getEmployeeDetails();
+    }
+}
+
+class Employee{
+    int employeeNumber;
+    String employeeName ;
+    double employeeSalary ;
+    double salIncre ;
+    double updateSal;
+
+    public void setEmployeeDetails(int no , String n , double sa)
+    {
+        employeeNumber = no;
+        employeeName = n;
+        employeeSalary = sa;
+        calculateSalaryIncrement();
+    }
+
+    public void calculateSalaryIncrement(){
+        if(employeeSalary <  50000){
+            salIncre = employeeSalary*0.10;
+        }
+        else if(employeeSalary <  50000 && employeeSalary >  80000){
+            salIncre = employeeSalary*0.07;
+        }
+        else if(employeeSalary >  80000){
+            salIncre = employeeSalary*0.05;
+        }
+        else{
+            salIncre =0.0;
+        }
+        updateSal = employeeSalary+salIncre;
+    }
+
+    public void getEmployeeDetails(){
+        System.out.println("Employee Number: "+employeeNumber);
+        System.out.println("Employee Name: "+employeeName);
+        System.out.println("Employee Salary: "+employeeSalary);
+        System.out.println("Salary increment amount: "+salIncre);
+        System.out.println("Updated salary: "+updateSal);
+    }
+}
+
+---------------------------------------- 3 Bank Qns--------------------------------------------------------------------------
+import java.util.*;
+
+
+
+public class BankELC{
+
+    public static void main(String [] args){
+
+    }
+}
+
+class Cust{
+
+static String bankName;
+String bankCustomerName;
+static String bankAddress;
+static Stirng bankIFSCCode;
+static int customerAccountNumber;
+int currentBalance;
+
+    public voidstatic(String BN , String CN , String BA,String IFC,int CAN,int curBal)
+    {
+        bankName = BN;
+        bankCustomerName = CN;
+        bankAddress = BA;
+        bankIFSCCode = IFC;
+        customerAccountNumber = CAN;
+        currentBalance = curBal;
+    }
+
+    public void withdraw(){
+  
+        if(currentBalance < 1000){
+        Scanner sc = new Scanner(System.in);
+        System.out.println("How much money withdraw ");
+        int tempAMT = sc.nextInt();
+        if(currentBalance < tempAMT){
+             System.out.println("InsufficientBalance");
+        }
+        else{
+            currentBalance -= tempAMT;
+             System.out.println("Transaction Successful.");
+              System.out.println("Available Balance : "+currentBalance);
+        }
+    
+        }
+        else{
+            System.out.println("InsufficientBalance");
+
+        }
+    }
+
+    public void depositBal(){
+        Scanner sc = new Scanner(System.in);
+        System.out.println("How much money deposit ");
+        int tempAMT = sc.nextInt();
+        currentBalance = currentBalance+tempAMT;
+        System.out.println("Deposited Successfully .");
+        System.out.println("Available Balance : "+currentBalance);
+
+    }
+
+    public void getCurrentBal(){
+        System.out.println("current Balance : "+currentBalance);
+    }
+  
+    public void showDetails(){
+    System.out.println("Bank Name : "+bankName);
+    System.out.println("Bank Cutomer Name : "+bankCustomerName);
+    System.out.println("BAnk Address : "+bankAddress);
+    System.out.println("BAnk IFCCode: "+bankIFSCCode);
+    System.out.println("Customer Acccount Number : "+customerAccountNumber);
+       System.out.println("Customer Acccount Balance : "+currentBalance);
+    }
+}

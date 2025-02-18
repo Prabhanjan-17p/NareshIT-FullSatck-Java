@@ -546,11 +546,11 @@ When we should declare a variable as an instance and we should decalre as static
 Instance Variable :
 -------------------
 If the value of the variable is different with respect to object 
-then we should declare the variable as an instance variable.(Means separate object for separate value)
+then we should declare the variable as an instance variable.
 
 Static Variable :
 -----------------
-If the value of the variable will be common with respect to all the objects then we should use static variable.(means all the object for same value)
+If the value of the variable will be common with respect to all the objects then we should use static variable.
 
 Example 1:
 ----------
@@ -630,7 +630,7 @@ public class VariableDeclaration {
 ================================================================
 What is variable shadow ?
 -------------------------
-If class level variables and method level variables are having exactly same name then method level variable will hide class level variable inside the method body OR c`1onstructor OR block, This concept is known as Variable Shadow.
+If class level variables and method level variables are having exactly same name then method level variable will hide class level variable inside the method body OR constructor OR block, This concept is known as Variable Shadow.
 
 package com.ravi.role_of_instance_variable;
 
@@ -743,6 +743,149 @@ public class LocalSearchAlgorithm
 
 }
 ================================================================
-Data Hiding :
-------------
+17-02-2025
+-----------
+**What is Data Hiding ?
+----------------------
+Data hiding is nothing but declaring our data members with private access modifier so our data will not be accessible from outer world that means no one can access our data directly from  outside of the class.
+
+*We should provide the accessibility of our data through methods so we can perform VALIDATION ON DATA which are coming from outer world.
+
+
+package com.ravi.data_hiding;
+
+public class Customer 
+{
+   private double balance = 10000;  //Data Hiding
+   
+   public void deposit(double amount)
+   {
+	   //Data Validation
+	   if(amount <=0)
+	   {
+		   System.err.println("Amount can't deposited");
+		   System.exit(0);
+	   }
+	   else
+	   {
+		   this.balance = this.balance + amount;
+		   System.out.println("Balance After Deposit is :"+this.balance);
+	   }
+   }
+   
+   public void withdraw(double amount)
+   {
+	   if(amount > this.balance)
+	   {
+		   System.err.println("Withdraw is not possible, Low Balance");
+	   }
+	   else
+	   {
+		   this.balance = this.balance - amount;
+		   System.out.println("Balance After Withdraw is :"+this.balance);
+	   }
+	   
+   } 
+   
+}
+
+package com.ravi.data_hiding;
+
+public class DataHidingDemo {
+
+	public static void main(String[] args) 
+	{
+		Customer scott = new Customer();
+		scott.deposit(1000);
+		scott.withdraw(5000);
+	}
+
+}
+-----------------------------------------------------------------
+How to print Object properties (Non static field) by using toString() method :
+
+In java, There is a class called Object class available in java.lang pacakage. This class is by default the super class for all the classes in java.
+
+Any predefined OR user-defined class in java, can use the method of Object class directly because Object is the super class.
+
+In Object there is a predefined non static method called toString(), Any java class can override this toString() methdo to perform some common operation.
+
+              public String toString();
+
+* If we want to print our object properties i.e instance variables in String format then we can override toString() method in the respective class.
+
+* This toString() method is available in Object class and we can generate using Eclipse IDE in our program 
+
+Right click on the Program -> source -> generate toString()
+
+How to call toString() method :
+--------------------------------
+If we pass our object reference to the System.out.println() statement then automatically it will call toString() method of the corresponding class.
+
+Example :
+---------
+Manager raj = new Manager();
+System.out.println(raj); //It will call toString() method of 
+                           Manager class
+
+
+Player virat = new Player();
+System.out.println(virat); //It will call toString() method of 
+                           Player class
+
+
+Programs :
+----------
+package com.ravi.to_string;
+
+public class Player {
+	private int playerId;
+	private String playerName;
+	private double basePrice;
+
+	public void setPlayerData(int playerId, String playerName, double basePrice) {
+		this.playerId = playerId;
+		this.playerName = playerName;
+		this.basePrice = basePrice;
+	}
+
+	@Override
+	public String toString() {
+		return "Player [playerId=" + playerId + ", playerName=" + playerName + ", basePrice=" + basePrice + "]";
+	}
+
+}
+
+package com.ravi.to_string;
+
+public class PlayerDemo {
+
+	public static void main(String[] args)
+	{
+		Player virat = new Player();
+		virat.setPlayerData(18, "Virat Kohli", 2000000);
+		System.out.println(virat);
+		
+		System.out.println("...................");
+		Player rohit = new Player();
+		rohit.setPlayerData(45, "Rohit Sharma", 3999990);
+		System.out.println(rohit);
+		
+	}
+
+}
+---------------------------------------------------------------
+Constructor :
+-------------
+What is the advantage of writing constructor in our class ?
+------------------------------------------------------------
+If we don't write a constructor in our program then variable initialization and variable re-initialization both are done in two different lines.
+
+If we write constructor in our program then variable initialization and variable re-initialization both are done in the same line i.e at the time of Object creation. [17-FEB]
+
+With Constructor approach, we need not to depend on method to re-initialize our instance variable with user value.
+
+
+
+
 

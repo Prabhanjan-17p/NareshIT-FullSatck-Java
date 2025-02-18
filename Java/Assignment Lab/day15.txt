@@ -1,0 +1,194 @@
+Program-1
+Define a method which returns the sum of digits of the given two digit number.
+Write the method with the following specifications: 
+Name of the BLC class:TwoDigitsSum
+Name of method: getSumOfDigits()
+Access Modifier : public, static
+Arguments: one argument of type integer
+Return type: an integer value
+For example,
+If the given value is 34, return 7
+
+Create an ELC class Main to test the application
+
+BLC------------------------------
+package com.nareshIT.day15;
+
+public class TwoDigitsSum {
+	
+	
+	public static int getSumOfDigits(int num){
+		int last=0;
+		if (num >= 10 && num <= 99) {
+			last = num%10;
+			num /= 10;
+		}else {
+			System.err.println("Invalid Number");
+			System.exit(0);
+
+		}
+		
+		
+		return last+num;
+	}
+}
+
+ELC--------------------------------------
+package com.nareshIT.day15;
+
+public class TwoDigitsSumDemo {
+
+	public static void main(String[] args) {
+		TwoDigitsSum t = new TwoDigitsSum();
+		int sum = t.getSumOfDigits(349);
+		System.out.println(sum);
+	}
+
+}
+
+
+------------------------------------------------------------------------
+Program-2 
+Define a method which returns the difference of digits of the given two digit number.
+Write the method with the following specifications: 
+Name of the BLC class:TwoDigitsDifference
+Name of method: getDiffOfDigits()
+Access Modifier : public, static
+Arguments: one argument of type integer
+Return type: an integer value
+For example,
+If the given value is 83, 8 - 3 return 5.  If x = 38, 3 - 8 return -5.
+
+Create an ELC class Main to test the application
+
+ELC---------------------------
+package com.nareshIT.day15;
+
+public class TwoDigitsDifferenceDemo {
+
+	public static void main(String[] args) {
+		int diff = TwoDigitsDifference.getDiffOfDigits(38);
+		System.out.println(diff);
+	}
+
+}
+
+BLC---------------------------
+package com.nareshIT.day15;
+
+public class TwoDigitsDifference {
+	public static int getDiffOfDigits(int num){
+		int last=0;
+		if (num >= 10 && num <= 99) {
+			last = num%10;
+			num /= 10;
+		}else {
+			System.err.println("Invalid Number");
+			System.exit(0);
+		}
+		
+		return num-last;
+	}
+}
+
+------------------------------------------------------------------------
+Program-3
+Define a method which returns the next multiple of 100 for the given number.
+Write the method with the following specifications: 
+Name of the BLC class:NextMultipleOfHundred
+Name of method: getNextMultipleOfHundred()
+Access Modifier : public, static
+Arguments: one argument of type integer
+Return type: an integer value
+For example,
+If the given value is 123, return 200.
+
+Create an ELC class Main to test the application
+
+ECL-----------------------
+package com.nareshIT.day15;
+
+import java.util.Scanner;
+
+public class NextMultipleOfHundredDemo {
+
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		System.out.println("Enter a number to find the next multiple");
+		int tem= sc.nextInt();
+		int num = NextMultipleOfHundred.getNextMultipleOfHundred(tem);
+		System.out.println(num);
+	}
+
+}
+
+BLC---------------------
+package com.nareshIT.day15;
+
+public class NextMultipleOfHundred {
+	public static int getNextMultipleOfHundred(int num){
+		int last=((num/100)+1)*100;
+		
+		return last;
+	}
+}
+
+------------------------------------------------------------------------
+
+Program-4
+Define a method which returns the sum of three rounded numbers. If the right most digit of the number is less than 5, then round off its value to the previous multiple of 10 otherwise if the right most digit of the number is greater or equal to 5, and then round off to the next multiple of 10. 
+Write the method with the following specifications: 
+Name of the BLC class:RoundedSum
+Name of method: sumOfRoundedValues() 
+Access Modifier : public, static
+Arguments: three argument of type integer
+Return type: an integer value 
+For example
+If a = 23, b = 34, c = 66
+   20 + 30 + 70 = 120
+Note:Don't use any control statements and looping statements
+
+Create an ELC class Main to test the application
+
+BLC-----------------------
+package com.nareshIT.day15;
+
+public class RoundedSum {
+	public static int  sumOfRoundedValues(int num1,int num2,int num3) {
+		// 1st Style
+		int lastN1,lastN2,lastN3;
+        lastN1 = num1%10;
+        lastN2 = num2%10;
+        lastN3 = num3%10;
+
+        int nextMul1 = ((num1/10)+1)*10;
+        int nextPev1 = ((num1/10))*10;
+        int nextMul2 = ((num2/10)+1)*10;
+        int nextPev2 = ((num2/10))*10;
+        int nextMul3 = ((num3/10)+1)*10;
+        int nextPev3 = ((num3/10))*10;
+
+		// 2nd Style
+		int r1 = ((num1/10) + (num1 % 10 /5)) * 10; 
+		int r2 = ((num2/10) + (num2 % 10 /5)) * 10; 
+		int r3 = ((num3/10) + (num3 % 10 /5)) * 10; 
+
+        return ((lastN1 >= 5)?nextMul1:nextPev1)+
+                ((lastN2 >= 5)?nextMul2:nextPev2)+
+                ((lastN3 >= 5)?nextMul3:nextPev3);
+	}
+}
+
+ECL--------------------------
+package com.nareshIT.day15;
+
+public class RoundedSumDemo {
+
+	public static void main(String[] args) {
+		int sum = RoundedSum.sumOfRoundedValues(23, 34, 66);
+		System.out.println(sum);
+	}
+
+}
+
+------------------------------------------------------------------------

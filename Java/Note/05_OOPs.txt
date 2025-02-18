@@ -742,7 +742,7 @@ public class LocalSearchAlgorithm
 	}
 
 }
-================================================================
+===============================================================
 17-02-2025
 -----------
 **What is Data Hiding ?
@@ -885,7 +885,335 @@ If we write constructor in our program then variable initialization and variable
 
 With Constructor approach, we need not to depend on method to re-initialize our instance variable with user value.
 
+18-02-2025
+-----------
+Constructor Defination :
+------------------------
+It is used to construct the object that is the reason it is known as Constructor.
 
+If the name of the class and name of the method both are exactly same and it does not contain any return type then it is called Constructor.
+
+Example :
+---------
+public class Student
+{
+   public Student()  //Constructor
+   {
+   }
+
+   public void Student() //Method
+   {
+   }
+}
+
+Program :
+---------
+package com.ravi.constructor;
+public class Student 
+{
+  public void Student()
+  {
+	  System.out.println("It is a method");
+  }
+}
+
+
+package com.ravi.constructor;
+
+public class ConstructorDemo {
+
+	public static void main(String[] args) 
+	{
+		System.out.println("Main");
+		
+		Student s1 = new Student();
+		s1.Student(); //Calling the Method
+	}
+
+}
+
+The main purpose of constructor to initialize the instance variable i.e to initialize the Object properties.
+
+A constructor never contain any return type including void also.
+
+Every class in java must have at-least one constructor, either
+explicitly written by developer OR implicitly added by java compiler.
+
+Whenever we create an object in java by using new keyword, at-least one constructor must be invoked.
+
+A constructor is automatically called and executed at the time of creating the Object. [We need not to call manually like method]
+
+A default constructor will be added by compiler in the class, in case user has not provided any type of constructor in the class.
+
+The access modifier of default constructor will depend upon the class access modifier.
+
+A Constructor is called only once per object that means if we create multiple objects then multiple time constructor will be invoked.
+
+Types of Constructor :
+-----------------------
+In java we have total 3 types of Constructor :
+
+1) Default No Argument Constructor [Added by java Compiler]
+
+2) No Argument OR Non parameterized OR Zero Argument 
+   constructor [Written by user without parameter]
+   
+3) Parameterized Constructor.   
+   
+
+Default Constructor :
+---------------------
+Whenever we write a class and if we don't write any type of constructor then automatically a default no argument constructor will be added by java compiler.
+
+The main purpose of this default no argument constructor to accept default values with the help of new keyword and java compiler.
+
+Example :
+---------
+Example.java 
+--------------
+public class Example 
+{
+
+}
+
+javac Example.java
+-------------------
+public class Example
+{
+   public Example() //Default No Argument Constructor 
+   {
+   }
+}
+---------------------------------------------------------------
+No Argument Constructor :
+-------------------------
+If a user is writing constructor in the class without any parameter then it is called No Argument Constructor.
+
+Employee.java
+--------------
+public class Employee
+{
+  public Employee() //No Argument Constructor
+  {
+  }
+}
+  
+In this approach, all the objects will be initialized with same value (as shown in the program) so, it is not a recommended way because every object must have unique values.  
+  
+package com.ravi.no_args_constr;
+
+public class Person {
+	private int personId;
+	private String personName;
+	private int personAge;
+
+	public Person() // No Argument Constructor
+	{
+		this.personId = 101;
+		this.personName = "Scott";
+		this.personAge = 24;
+	}
+
+	@Override
+	public String toString() {
+		return "Person [personId=" + personId + ", personName=" + personName + ", personAge=" + personAge + "]";
+	}
+
+}
+
+
+package com.ravi.no_args_constr;
+
+public class PersonDemo {
+
+	public static void main(String[] args) 
+	{
+		Person scott = new Person();
+		System.out.println(scott);
+		
+		System.out.println("..........");
+		
+		Person smith = new Person();
+		System.out.println(smith);
+		
+	}
+
+}
+
+Note : Here both the objects will be initialized with same value so better to use Parameterized Constructor.
+
+Parameterized Constructor :
+----------------------------
+If we pass one or more argument to the constructor then it is called parameterized constructor.
+
+The main purpose of paramterized constructor to initialize the instance variable of the class with different values.
+
+Example :
+----------
+public class Customer
+{
+   private int customerId;
+   private String customerName;
+   
+   public Customer(int customerId, String customerName)
+   {
+      this.customerId = customerId;
+      this.customerName = customerName;
+   }
+}
+
+//Program on Parameterized Constructor :
+-----------------------------------------
+Dog.java
+---------
+package com.ravi.parameterized_constructor;
+
+public class Dog 
+{
+	private String dogName;
+	private int dogAge;
+	private double dogHeight;
+	private String dogColor;
+	
+		
+	public Dog(String dogName, int dogAge, double dogHeight, String dogColor) 
+	{
+		super();
+		this.dogName = dogName;
+		this.dogAge = dogAge;
+		this.dogHeight = dogHeight;
+		this.dogColor = dogColor;
+	}
+
+	@Override
+	public String toString() 
+	{
+		return "Dog [dogName=" + dogName + ", dogAge=" + dogAge + ", dogHeight=" + dogHeight + ", dogColor=" + dogColor
+				+ "]";
+	}
+
+}
+
+
+ParameterizedConstructor.java
+------------------------------
+package com.ravi.parameterized_constructor;
+
+public class ParameterizedConstructor {
+
+	public static void main(String[] args) 
+	{
+		Dog tommy = new Dog("Tommy", 3, 2.3, "Grey");
+		System.out.println(tommy);
+
+		System.out.println("...............");
+		Dog tiger = new Dog("Tiger", 5, 4.4, "Black");
+		System.out.println(tiger);
+	}
+
+}
+--------------------------------------------------------------
+Upto here, by using following ways we can initialize the Object Properties :
+-----------------------------------------------------------------
+1) By using Object reference
+2) By using Method without parameter
+3) By using Method With Parameter
+4) At the time of variable declaration
+5) Using No Argument Constructor
+6) Using parameterized Constructor
+---------------------------------------------------------------
+IQ :
+----
+return keyword added by java compiler :
+---------------------------------------
+Whenever we write a method with void keyword OR we are writing constructor then at the last statement of method as constructor, automatically compiler will add one return statement so the control will return back to the caller method.
+
+Demo.java
+-----------
+public class Demo 
+{
+	public void m1()
+	{
+		
+	}
+}
+
+javac Demo.java
+---------------
+Demo.class
+-----------
+
+public class Demo 
+{
+	public void m1()
+	{
+	
+		return;
+	}
+}
+
+The following command is used to verify the return statement provided by java compiler.
+
+javac Demo.java
+
+javap -c Demo.class
+
+Constructor with return statement :
+-----------------------------------
+package com.ravi.no_args_constr;
+
+class Student
+{
+	public Student()
+	{
+		System.out.println("Student Constructor");
+		return;
+	}
+	
+	public int m1()
+	{
+		System.out.println("It is a method");
+		return 10;
+	}
+		
+}
+
+
+public class ConstructorWithReturn {
+
+	public static void main(String[] args) 
+	{
+		Student s1 = new Student();
+        System.out.println(s1.m1());
+	}
+
+}
+--------------------------------------------------------------
+How to modify the existing Object data ?
+-----------------------------------------
+In order to modify the existing Object data, we should use setter concept, On the other hand to read the private variable value from BLC class to any other class we should use getter concept.
+
+How to write setter and getter for instance variable ?
+------------------------------------------------------
+public class Employee
+{
+  private double salary;   //[Data hiding]
+   
+  public Employee(double salary)
+  {
+    this.salary = salary;
+  }
+ 
+  public void setSalary(double salary)  //setter                     {
+    this.salary = salary;
+  }
+   
+  public double getSalary() //getter
+  {                                                   
+     return this.salary;
+  }
+}
+--------------------------------------------------------------
 
 
 

@@ -1,0 +1,251 @@
+1) Which of the following is/are true about constructors in Java?
+a.Constructor name should be same as class name.
+b.If you don't define a constructor for a class, a default parameter less constructor is automatically created by the compiler. 
+c.The default constructor calls super() and initializes all instance variables to default value like 0, null.
+d.If we want to call parent class constructor, it must be called in first line of constructor.
+A. 1,2 and 3   B.2   C. 1   D. 1,2,3 and 4
+
+
+2) Which of the following modifier is not applicable for constructors? 
+	A. private   	B. protected  	C. public 	D. final
+
+
+3) The return type of a constructor is ?
+	A. void	
+	B. There is no return type 
+	C. a class object in which it is defined		
+	D. None of these
+
+4) public class Test 
+   {    }   
+   What  is the prototype of the default constructor ?
+	A. public Test(void)	
+	B. Test() 	
+	C. Test(void)	
+	D. public Test()
+
+5) Can we define method with same name of class name?
+	A. Yes 	B. No
+	
+6) What happens if we add return type to constructor ?
+	A. Compile time error 		
+	B. Run Time Error
+	C. JVM treats that as method	            
+	D. None of these
+	
+7) Can we declare constructor as private ?
+	A. Yes		B. No
+
+8) What is the default accessibility modifier of a default constructor?
+	A. private	
+	B. protected
+	C. default	
+	D. same as class accessibility modifier
+
+9)  Can we define a constructor using all four access modifiers:          public, protected, default and private?
+	A. Yes      	B.No
+
+10) Choose correct option for the following code
+public class ConstructorTest {
+	public int a = 10;
+	public String ConstructorTest(int a) {
+		this.a = a;
+	}
+}
+A.	Run time error
+B.	No error
+C.	Compile time error
+D.	10
+
+11.	Choose correct option for the following code
+public class ConstructorTest {
+	public int a = 10;
+	public ConstructorTest() {
+	}
+	public ConstructorTest(int a) {
+		this.a = a;
+		System.out.println(a);
+	}
+	
+	public static void main(String[] args) {
+		ConstructorTest test = new ConstructorTest();
+	}
+}
+A.	Run time error
+B.	Run successfully
+C.	Compile time error
+D.	10
+
+12.	What is the output of the following code
+public class ConstructorTest {
+	public int a = 100;
+	public ConstructorTest() {
+		System.out.println(a);
+	}
+	
+	public static void main(String[] args) {
+		ConstructorTest test = new ConstructorTest();
+	}
+}
+A.	Runtime error
+B.	Compile time error
+C.	100
+D.	No Output
+
+
+13.	Choose correct option for the following code
+public class ConstructorTest {
+	int a;
+	public ConstructorTest(int a) {
+		this.a =a;
+	}
+	
+	public static void main(String[] args) {
+		ConstructorTest nit = new ConstructorTest(10);
+		nit.a;
+	}
+}
+A.	Runtime error
+B.	Compile time error
+C.	No Output
+D.	10
+
+14)What is the output of the below program?
+
+public class T 
+{
+  int pCode= 99;
+}
+public class Main 
+{
+   public static void main(String args[]) 
+   {
+      T t1 = new T();
+      System.out.println(t1.pCode);
+   }
+}
+
+15) What is the output of the below program?
+public class T {
+  int x = 23;
+  T() {
+    x = 45;
+  }
+}
+public class Main {
+   public static void main(String args[]) {
+      T t1 = new T();
+      System.out.println(t1.x);
+   }
+}
+
+16) What is the output of the below program? 
+ class Complex {
+    private  double re,  im;
+    public Complex(double re, double im) {
+        this.re = re;
+        this.im = im;
+    }
+    Complex(Complex c) {
+      System.out.println("Copy constructor called");
+      re = c.re;
+      im = c.im;
+    }            
+    public String toString() {
+        return "(" + re + " + " + im + ")";
+    }            
+}
+class Main {
+    public static void main(String[] args) {
+        Complex c1 = new Complex(10, 15);
+        Complex c2 = new Complex(c1);    
+        Complex c3 = c1;  
+        System.out.println(c2);
+    }
+}
+
+17) What is the output of the below program? 
+public class Test7 {
+	private Test7 (int x) {   //line 1
+		System.out.print(x);
+	}	
+	private static Test7() {    //line 2
+		System.out.print(25);
+	}
+	public static void main(String[] args){
+		Test7 t = new Test7(35);
+	}
+}
+
+18) What is the output of the below program? 
+public class Test9 {
+	private Test9 (int x) {   //line 1
+		System.out.print(x);
+	}	
+	private final Test7() {    //line 2
+		System.out.print(25);
+	}
+	public static void main(String[] args){
+		Test7 t = new Test7(35);
+	}
+}
+
+19) What is the output of the below program? 
+public class Test9 {
+	private Test9 (int x) {   //line 1
+		System.out.print(x);
+	}	
+	private static Test7() {    //line 2
+		System.out.print(25);
+	}
+	public static void main(String[] args){
+		Test7 t = new Test7(35);
+	}
+}
+
+20) What is the output of the below program? 
+class Product {
+	int x;
+	int y;
+	public Product(int x,int y) {
+		this.x = x;
+		this.y = y;
+	}
+	public void call() {
+		System.out.println("call method called");
+	}
+}
+public class Test14 {
+	public static void main (String[] args) {
+		Product p = new Product();
+		p.call();
+	}
+}
+
+
+21) What is the output of the below program? 
+class Employee{
+ 	private String name;
+ 	public Employee(String name) {
+  		this.name=name;  
+ 	}
+}
+public class Test16 {
+ 	public static void main(String[] Java) {
+  		Employee e = new Employee("JavaDeveloper");
+  		System.out.println("Emp Name : "+e.name);
+ 	}
+}
+
+22) What is the output of the below program? 
+class Person{
+ 	Person(){
+  		System.out.println("Hello constructor!");
+  		return;
+ 	}
+}
+public class Test17 {
+ 	public static void main(String[] var) {
+  		Person p = new Person();
+ 	}
+}

@@ -1036,6 +1036,7 @@ public class PersonDemo {
 		Person smith = new Person();
 		System.out.println(smith);
 		
+
 	}
 
 }
@@ -1120,7 +1121,7 @@ Upto here, by using following ways we can initialize the Object Properties :
 3) By using Method With Parameter
 4) At the time of variable declaration
 5) Using No Argument Constructor
-6) Using parameterized Constructor
+6) Using parameterized Constructor [Best Approach]
 ---------------------------------------------------------------
 IQ :
 ----
@@ -1214,6 +1215,169 @@ public class Employee
   }
 }
 --------------------------------------------------------------
+
+FINAL CONCLUSION :
+-------------------
+Parameterized Constructor : To initialize the Object properties with user values.
+
+Setter : To modify the existing object data.[Only one data at a time] OR Writing/Overriding Operation
+
+Getter : To read/retrieve private data value outside of BLC class. [Reading Operation]
+
+toString() : To print Object properties (Instance Variable)
+
+-------------------------------------------------------------
+*** What is Encapsulation 
+--------------------------
+[Accessing our private data with public methods like setter and getter]
+--------------------------------
+Binding the private data with its associated method in a single unit is called Encapsulation.
+
+Encapsulation ensures that our private data (Object Properties) must be accessible via public methods like setter and getter.
+
+It provides security because our data is private (Data Hiding) and it is only accessible via public methods WITH PROPER DATA VALIDATION.
+
+In java, class is the example of encapsulation.
+
+
+How to achieve encapsulation in a class :
+------------------------------------------
+In order to achieve encapsulation we should follow the following two 
+techniques :
+
+1) Declare all the data members with private access modifiers (Data Hiding OR Data Security)
+
+2) Write public methods to perform read(getter) and write(setter) operation on these private data like setter and getter.
+
+Note : If we decalre all our data with private access modifier then it is called TIGHTLY ENCAPSULATED CLASS. On the other hand if we declare our data other then private access modifier then it is called Loosely Encapsulated class.
+
+Program on Encapsulation :
+---------------------------
+package com.ravi.encapsulation;
+
+public class Employee 
+{
+	private int employeeId;
+	private String employeeName;
+	private double employeeSalary;
+
+	public Employee(int employeeId, String employeeName, double employeeSalary) 
+	{
+		super();
+		this.employeeId = employeeId;
+		this.employeeName = employeeName;
+		this.employeeSalary = employeeSalary;
+	}
+
+	@Override
+	public String toString() 
+	{
+		return "Employee [employeeId=" + employeeId + ", employeeName=" +  employeeName + ", employeeSalary="
+				+ employeeSalary + "]";
+	}
+
+	public int getEmployeeId() 
+	{
+		return this.employeeId;
+	}
+
+	public void setEmployeeId(int employeeId) 
+	{
+		this.employeeId = employeeId;
+	}
+
+	public String getEmployeeName() 
+	{
+		return this.employeeName;
+	}
+
+	public void setEmployeeName(String employeeName) 
+	{
+		this.employeeName = employeeName;
+	}
+
+	public double getEmployeeSalary() 
+	{
+		return this.employeeSalary;
+	}
+
+	public void setEmployeeSalary(double employeeSalary)
+	{
+		this.employeeSalary = employeeSalary;
+	}
+	
+}
+
+package com.ravi.encapsulation;
+
+import java.util.Scanner;
+
+public class EncapsulationDemo {
+
+	public static void main(String[] args) 
+	{
+		Scanner sc = new Scanner(System.in);
+		System.out.print("Enter Employee Id :");
+		int id = sc.nextInt();
+		System.out.print("Enter Employee Name :");
+		String name = sc.nextLine();
+		name = sc.nextLine();
+		System.out.print("Enter Employee Salary :");
+		double salary  = sc.nextDouble();
+		
+		Employee scott = new Employee(id, name, salary);
+		System.out.println("Original Data :"+scott);
+		
+		System.out.print("Enter the updated Salary :");
+		double increment = sc.nextDouble();
+		
+		if(increment <= 0)
+		{
+			System.err.println("Increment amount must be positive");
+		}
+		else
+		{		
+		scott.setEmployeeSalary(scott.getEmployeeSalary() + increment);
+		System.out.println("After Salary Increment :"+scott);
+		}
+		
+		/*Based on the Salary print whether the Employee is Developer, Designer
+		  OR Tester
+		   Salary >= 50000  -> Developer
+		   Salary >= 35000  -> Designer
+		   else Tester		
+		*/
+		
+		double employeeSalary = scott.getEmployeeSalary();
+		
+		if(employeeSalary >=50000)
+		{
+			System.out.println(scott.getEmployeeName()+" is a Developer");
+		}
+		else if(employeeSalary >=35000)
+		{
+			System.out.println(scott.getEmployeeName()+" is a Designer");
+		}
+		else
+		{
+			System.out.println(scott.getEmployeeName()+" is a Tester");
+		}		
+		sc.close();		
+	}
+
+}
+--------------------------------------------------------------
+Method return type as a class :
+-------------------------------
+While declaring a method in java, return type is compulsory.
+As a method return type we have following options
+
+1) void as a retutn type of the Method
+
+2) Any primitive data type as a return type of the method.
+
+3) Any class name/interface / enum / record we can take as a return type of the method.
+
 
 
 

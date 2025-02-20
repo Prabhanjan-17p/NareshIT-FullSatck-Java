@@ -1,0 +1,290 @@
+Question : 1
+---------------
+Create a Student class with the following attributes:
+
+name (String): The name of the student.
+age (int): The age of the student.
+grade (String): The grade of the student.
+
+In addition to these attributes, implement the following:
+
+Static Method: Create a static method called createStudent() in the Student class. This method should:
+
+Prompt the user to enter values for name, age, and grade.
+Initialize a new Student object with the provided values.
+Return the created Student object.
+
+Implement a toString() to the Student class, which prints the student's details in the format: "Name: <name>, Age: <age>, Grade: <grade>".
+
+Create a ELC class TestStudent
+Main Method: In the main method, write code to:
+
+Ask the user for the number of Student objects they want to create.
+Use a loop to call the createStudent() method the specified number of times, 
+After creating all Student objects, use a loop to display the details of each student using the toString method.
+
+
+
+//ELC Class---------------------------------------
+import java.util.Scanner;
+
+public class TestTwo {
+    public static void main(String[] args) {
+        System.out.println("How many times you have to print");
+        EmployeeTwo obj=EmployeeTwo.createStudent();
+        System.out.println(obj);
+    }
+}
+
+
+//BLC Class---------------------------------------
+class  EmployeeTwo{
+    private String name ;
+    private int age ;
+    private String gender;
+
+    EmployeeTwo(String name , int age , String gender){
+        this.name = name;
+        this.age = age;
+        this.gender = gender;
+    }
+
+    @Override
+    public String toString() {
+        return "EmployeeTwo{" +
+                "name='" + name + '\'' +
+                ", age=" + age +
+                ", gender='" + gender + '\'' +
+                '}';
+    }
+
+    public  static  EmployeeTwo createStudent(){
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Enter the student name : ");
+        String name = sc.nextLine();
+        System.out.println("Enter the student age : ");
+        int age = sc.nextInt();
+        System.out.println("Enter the student gender : ");
+        String gen = sc.nextLine();
+        gen = sc.nextLine();
+
+        EmployeeTwo ee = new EmployeeTwo(name,age,gen);
+//        EmployeeTwo ee = new EmployeeTwo("name",22,"gen");
+        return  ee;
+    }
+}
+
+
+
+Question : 2
+---------------
+Create an Employee class with the following attributes:
+
+id (int): The unique identifier for each employee.
+name (String): The name of the employee.
+salary (double): The base salary of the employee.
+department (String): The department to which the employee belongs.
+In addition to these attributes, implement the following:
+
+Static Method for Employee Creation: Add a static method named createEmployee() in the Employee class. This method should:
+
+Prompt the user to enter values for id, name, salary, and department.
+Initialize a new Employee object with the provided values.
+Return the created Employee object.
+Business Logic Method: Add a method calculateAnnualSalary() that:
+
+Calculates and returns the annual salary of the employee based on their salary (monthly salary).
+Adds a bonus based on the department:
+Sales: 10% bonus of annual salary.
+Engineering: 15% bonus of annual salary.
+HR: 8% bonus of annual salary.
+Other: 5% bonus of annual salary.
+Implement toString method  to return the employee's details in this format: "ID: <id>, Name: <name>, Department: <department>, Monthly Salary: <salary>, Annual Salary (with Bonus): <calculated_annual_salary>".
+
+Create a ELC class TestEmployee:
+Main Method:
+
+Ask the user how many Employee objects they want to create.
+Use a loop to call createEmployee() to create the specified number of employees, 
+After all employees are created, use another loop to display each employee's details, including the calculated annual salary with bonus.
+
+package Constructor;
+
+import java.util.Scanner;
+
+public class EmployeeOne {
+    public static void main(String[] args) {
+        Emp p = Emp.createEmployee();
+        System.out.println(p);
+    }
+}
+
+class  Emp{
+    private  int id;
+    private String name;
+    private double salary;
+    private String dept;
+    private  double annulSal;
+
+    Emp(int id,String name,double salary,String dept){
+        this.id = id;
+        this.name = name;
+        this.dept = dept;
+        this.salary = salary;
+        calculateAnnualSalary();
+    }
+
+ private void calculateAnnualSalary() {
+        double tempSal = this.salary*12;
+        if (this.dept == "Sales") {
+            tempSal *= 0.10;
+            this.annulSal= (tempSal);
+        } else if (this.dept == "Engineering") {
+            tempSal *= 0.15;
+            this.annulSal = (tempSal);
+        } else if (this.dept == "HR") {
+            tempSal *= 0.08;
+            this.annulSal = (tempSal);
+        }else {
+            tempSal *= 0.05;
+            this.annulSal = (tempSal);
+        }
+    }
+
+    @Override
+    public String toString() {
+        return "Emp{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", salary=" + salary +
+                ", dept='" + dept + '\'' +
+                ", annulSal=" + annulSal +
+                '}';
+    }
+
+    public static Emp createEmployee(){
+        Scanner sc = new Scanner(System.in);
+        System.out.printf("Enter your ID: ");
+        int id = sc.nextInt();
+        System.out.printf("Enter your name: ");
+        String name = sc.nextLine();
+        name = sc.nextLine();
+        System.out.printf("Enter your salary: ");
+        double sal = sc.nextDouble();
+        System.out.printf("Enter your department: ");
+        String dept = sc.nextLine();
+        dept = sc.nextLine();
+
+
+        Emp ee = new Emp(id,name,sal,dept);
+        return ee;
+    }
+}
+
+
+
+Question : 3
+---------------
+Create a Product class with the following attributes:
+
+productId (int): The unique identifier for each product.
+productName (String): The name of the product.
+price (double): The price of a single unit of the product.
+quantity (int): The quantity of the product.
+In addition to these attributes, implement the following:
+
+Static Factory Method: Implement a static factory method named createProduct(int productId, String productName, double price, int quantity) in the Product class. This method should:
+
+Take productId, productName, price, and quantity as parameters.
+Initialize and return a new Product object using these parameters.
+Business Logic Method: Add a method named calculateTotalAmount() that:
+
+Calculates the total amount for the product (price * quantity).
+Applies a discount based on the total amount:
+Total > 1000: 10% discount.
+Total > 500: 5% discount.
+Total <= 500: No discount.
+Returns the total amount after applying the discount.
+Implement toString method that returns  the product’s details in this format: "Product ID: <productId>, Name: <productName>, Price: <price>, Quantity: <quantity>, Total Amount (after discount): <total_amount>".
+
+
+Create a ELC class TestProduct:
+Main Method:
+
+Ask the user how many Product objects they want to create.
+Use a loop to call createProduct() with parameters provided by the user to create each product.
+
+After all products are created, use another loop to display each product’s details, including the total amount after discount.
+
+
+
+package Constructor;
+
+import java.util.Scanner;
+
+public class Product {
+    public static void main(String[] args) {
+        Pro p = Pro.calculateTotalAmount();
+        System.out.println(p);
+    }
+}
+
+
+class  Pro{
+        private  int productId;
+        private String productName;
+        private double price;
+        private  double quantity;
+        private  double totPrice;
+
+
+    public Pro(int productId, String productName, double price, double quantity) {
+        this.productId = productId;
+        this.productName = productName;
+        this.price = price;
+        this.quantity = quantity;
+        this.totPrice = this.price*this.quantity;
+        calTotAmt();
+    }
+
+    private void calTotAmt() {
+        double tot = this.price*this.quantity;
+        if (this.totPrice  > 1000){
+            tot *= 0.10;
+            this.totPrice -= tot;
+        } else if (this.totPrice  > 500) {
+            tot *= 0.05;
+            this.totPrice -= tot;
+        }else if (this.totPrice <= 500) {
+            tot *= 0.0;
+            this.totPrice -= tot;
+        }
+    }
+
+    @Override
+    public String toString() {
+        return "Pro{" +
+                "productId=" + productId +
+                ", productName='" + productName + '\'' +
+                ", price=" + price +
+                ", quantity=" + quantity +
+                ", totPrice After Discount=" + totPrice +
+                '}';
+    }
+
+    public  static  Pro calculateTotalAmount(){
+        Scanner sc = new Scanner(System.in);
+        System.out.printf("Enter your ID ");
+        int PID = sc.nextInt();
+        System.out.printf("Enter your P name ");
+        String Pname = sc.nextLine();
+        Pname = sc.nextLine();
+        System.out.printf("Enter your price ");
+        int price = sc.nextInt();
+        System.out.printf("Enter your qnt ");
+        int qnt = sc.nextInt();
+
+        Pro p = new Pro(PID ,Pname,price,qnt);
+        return  p;
+    }
+}

@@ -9,6 +9,7 @@ class Student {
 	public Student() { // it is a Constructor
 		System.out.println("I am in Constructor");
 	}
+
 }
 
 public class ConstructorDemo {

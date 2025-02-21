@@ -1468,7 +1468,7 @@ public class Test
 	}
 }
 ------------------------------------------------------------------
-Bitwise Complement Operator :
+Bitwise Complement Operator :  
 -----------------------------
 It will not work with boolean.
 
@@ -1833,7 +1833,7 @@ public class ForEachDemo1 {
 		for(int number : numbers)
 		{
 			System.out.println(number);
-		}
+		}			
 
 	}
 

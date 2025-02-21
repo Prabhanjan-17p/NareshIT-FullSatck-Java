@@ -1378,6 +1378,457 @@ As a method return type we have following options
 
 3) Any class name/interface / enum / record we can take as a return type of the method.
 
+Program on Method return type as a class :
+-------------------------------------------
+package com.ravi.method_return_type;
 
+public class Demo
+{
+	public Demo(int x)
+	{
+		
+	}
+	
+		
+    public Demo m1()
+    {
+    	//return null;
+    	
+    	//return new Demo(10);
+    	
+    	Demo d1 = new Demo(100);
+    	return d1;    	
+    }
+}
+
+Note : In the above program, in order to return the value we depend upon current class constructor.
+
+--------------------------------------------------------------
+What is a Factory Method ?
+--------------------------
+If a method return type is class that means that method will return current object then that type of method is known as Factory Method.
+
+Example :
+
+public class Sample
+{   
+    public Sample getSampleObject()
+    {
+    
+       return new Sample(); //to return this value we depend
+    }                          on Sample class default constr
+ }
+--------------------------------------------------------------
+//Program on Static Factory Method :
+-------------------------------------
+2 files :
+---------
+Book.java
+----------
+package com.ravi.static_factory_method;
+
+public class Book 
+{
+	private String author;
+	private String title;
+	private double price;
+
+	public Book(String author, String title, double price)
+	{
+		this.author = author;
+		this.title = title;
+		this.price = price;
+	}
+	
+	public String toString() 
+	{
+		return "Book [author=" + author + ", title=" + title + ", price=" + price + "]";
+	}
+
+
+	//Static Factory Method
+	public static Book getBookObject()
+	{
+		Book b1 = new Book("James", "Java", 1200);
+		return b1;
+	}
+	
+}
+
+BookDemo.java
+--------------
+package com.ravi.static_factory_method;
+
+public class BookDemo {
+
+	public static void main(String[] args) 
+	{
+	   Book book =	Book.getBookObject();
+       System.out.println(book);
+	}
+
+}
+
+Note : In the above program, getBookObject() method returns the Book object but as we know a method is mainly used for
+reusability purpose but here we are receiving only object
+
+The following program explains, how to get multiple object from the static factory method.
+
+2 files : 
+
+Customer.java
+--------------
+package com.ravi.static_factory_method;
+
+import java.util.Scanner;
+
+public class Customer 
+{
+	private int customerId;
+	private String customerName;
+	private double customerBill;
+
+	public Customer(int customerId, String customerName, double customerBill) {
+		super();
+		this.customerId = customerId;
+		this.customerName = customerName;
+		this.customerBill = customerBill;
+	}
+
+	@Override
+	public String toString() 
+	{
+		return "Customer [customerId=" + customerId + ", customerName=" + customerName + ", customerBill="
+				+ customerBill + "]";
+	}
+
+	public static Customer getCustomerObject()
+	{
+		Scanner sc = new Scanner(System.in);
+		System.out.print("Enter Customer Id :");
+		int id = sc.nextInt();
+		
+		System.out.print("Enter Customer Name :");
+		String name = sc.nextLine();
+		name = sc.nextLine();
+		
+		System.out.print("Enter Customer Bill :");
+		double bill = sc.nextDouble();
+		
+		Customer c1 = new Customer(id, name, bill);
+		return c1;		
+	}
+	
+	
+	
+}
+
+CustomerDemo.java
+------------------
+package com.ravi.static_factory_method;
+
+import java.util.Scanner;
+
+public class CustomerDemo {
+
+	public static void main(String[] args)
+	{
+	   Scanner sc = new Scanner(System.in);
+	   System.out.println("How many objects you want to create :");
+	   int noOfObj = sc.nextInt();
+	   
+	   for(int i=1; i<=noOfObj; i++)
+	   {
+		     Customer customer = Customer.getCustomerObject();
+		     System.out.println(customer);
+	   }
+	   
+	   sc.close();
+	      
+	}
+
+}
+--------------------------------------------------------------
+What is Shallow and Deep copy in java :
+----------------------------------------
+Shallow Copy :
+--------------
+In Shallow copy, Only one Object will be created but the same object will be refered by multiple reference variables.
+
+If we modify the object properties by any of the reference variable then original object will be modified as shown in the program :
+
+2 files :
+---------
+package com.nit.shallow_copy;
+
+public class Product {
+	private int productId;
+	private String productName;
+	private double productPrice;
+
+	public Product(int productId, String productName, double productPrice) 
+	{
+		super();
+		this.productId = productId;
+		this.productName = productName;
+		this.productPrice = productPrice;
+	}
+
+	@Override
+	public String toString() {
+		return "Product [productId=" + productId + ", productName=" + productName + ", productPrice=" + productPrice
+				+ "]";
+	}
+
+	public int getProductId() {
+		return productId;
+	}
+
+	public void setProductId(int productId) {
+		this.productId = productId;
+	}
+
+	public String getProductName() {
+		return productName;
+	}
+
+	public void setProductName(String productName) {
+		this.productName = productName;
+	}
+
+	public double getProductPrice() {
+		return productPrice;
+	}
+
+	public void setProductPrice(double productPrice) {
+		this.productPrice = productPrice;
+	}
+	
+}
+
+package com.nit.shallow_copy;
+
+public class ProductDemo {
+
+	public static void main(String[] args) 
+	{
+		Product p1 = new Product(111, "M Series", 22000);
+		System.out.println(p1);
+		
+		Product p2 = p1;		
+		System.out.println(p2);
+		
+		System.out.println("..................");
+		p2.setProductId(222);
+		p2.setProductName("X Series");
+		p2.setProductPrice(25000);		
+		
+		System.out.println("After Modification");
+		System.out.println(p1);
+		System.out.println(p2);
+		
+	}
+}
+
+Note : Here in shallow copy by using p2 reference variable we are modifying the content of object by using setter method, p1 and p2 both are pointing to the same object so original object will modify (20-FEB-25)
+--------------------------------------------------------------
+Deep copy :
+-----------
+In deep copy we will create more than one object.
+
+Here 2nd object will copy the content of first object.
+
+Since, Objects are created in two different memory location so, if we modify the content of one object then another object content will remain unchangd.
+
+2 files :
+----------
+package com.ravi.deep_copy;
+
+public class Laptop
+{
+	private String laptopBrand;
+	private double laptopPrice;
+
+	public Laptop(String laptopBrand, double laptopPrice) {
+		super();
+		this.laptopBrand = laptopBrand;
+		this.laptopPrice = laptopPrice;
+	}	
+	
+	public Laptop()
+	{		
+	}
+	
+
+	@Override
+	public String toString() {
+		return "Laptop [laptopBrand=" + laptopBrand + ", laptopPrice=" + laptopPrice + "]";
+	}
+
+	public String getLaptopBrand() {
+		return laptopBrand;
+	}
+
+	public void setLaptopBrand(String laptopBrand) {
+		this.laptopBrand = laptopBrand;
+	}
+
+	public double getLaptopPrice() {
+		return laptopPrice;
+	}
+
+	public void setLaptopPrice(double laptopPrice) {
+		this.laptopPrice = laptopPrice;
+	}
+
+}
+
+package com.ravi.deep_copy;
+
+public class DeepCopy
+{
+   public static void main(String[] args) 
+   {
+	   Laptop obj1 = new Laptop("HP", 90000);
+	   Laptop obj2 = new Laptop();
+	   
+	   obj2.setLaptopBrand(obj1.getLaptopBrand());
+	   obj2.setLaptopPrice(obj1.getLaptopPrice());
+	   
+	   System.out.println(obj1);
+	   System.out.println(obj2);
+	   
+	   System.out.println("====================");
+	   
+	   //Modifying Object1 data
+	   obj1.setLaptopBrand("Apple");
+	   obj1.setLaptopPrice(150000);
+
+	   System.out.println(obj1);
+	   System.out.println(obj2); 
+	   
+	   
+   }
+}
+
+Note : Here when we modify the object 1 data (Apple, 1500000)
+the 2nd object data will remain unchanged because two different Objects are created in two different memory location.
+------------------------------------------------------------
+***Pass by Value :
+-----------------
+Java does not support pointers so java only works with pass by value.
+
+Pass by value means we are sending the copy of orginal data to the method.
+--------------------------------------------------------------
+package com.ravi.pass_by_value;
+
+public class PassByValueDemo1 {
+
+	public static void main(String[] args) 
+	{
+		int x = 100;
+		m1(x);
+		System.out.println("x value is :"+x);
+	}
+	
+	public static void m1(int val)
+	{
+		val = 200;		
+	}
+
+}
+
+Output is : 100
+--------------------------------------------------------------
+package com.ravi.pass_by_value;
+
+public class PassByValueDemo2
+{
+	public static void main(String[] args) 
+	{		
+        int x = 100;
+        int y = accept(x);
+        System.out.println(x +" : "+y);
+	}
+	public static int accept(int val)
+	{
+		val = 500;
+		return val;
+	}
+	
+}
+-------------------------------------------------------------
+package com.ravi.pass_by_value;
+
+class Product
+{
+	private double price = 12000;
+
+	public double getPrice() 
+	{
+		return price;
+	}
+
+	public void setPrice(double price) 
+	{
+		this.price = price;
+	}
+}
+
+public class PassByValueDemo3 {
+
+	public static void main(String[] args) 
+	{
+		Product p1 = new Product();
+		System.out.println(p1.getPrice()); //12000		
+		accept(p1);		
+		System.out.println("After Method calling :");
+		System.out.println(p1.getPrice());//18000		
+	}
+
+	public static void accept(Product prod)
+	{
+		prod.setPrice(18000);
+	}	
+}
+-------------------------------------------------------------
+package com.ravi.pass_by_value;
+
+class Customer 
+{
+	private double customerBill = 12000;
+
+	public double getCustomerBill() 
+	{
+		return customerBill;
+	}
+
+	public void setCustomerBill(double customerBill)
+	{
+		this.customerBill = customerBill;
+	}
+}
+
+public class PassByValueDemo4 
+{
+	public static void main(String[] args)
+	{
+		Customer c1 = new Customer(); 
+		System.out.println(c1.getCustomerBill()); //12000
+		
+		accept(c1);
+		System.out.println("After Method Calling :");
+		System.out.println(c1.getCustomerBill()); //12000		
+	}
+	
+	public static void accept(Customer cust)  //cust = c1
+	{
+		cust = new Customer();
+		cust.setCustomerBill(25000);
+	}
+}
+
+Output is 12000 and 12000
+=============================================================
 
 

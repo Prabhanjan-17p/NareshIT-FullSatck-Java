@@ -1,0 +1,116 @@
+
+Question Description	Attempted Answer	Result	Status
+-What will be the output of the following code? class Example { private Example() { System.out.println("Private Constructor"); } public static void main(String[] args) { Example obj = new Example(); } }	
+
+-What is the result of the following code snippet? class Test { static int x = 10; public void changeValue() { x += 5; } public static void main(String[] args) { Test obj = new Test(); obj.changeValue(); System.out.println(x); } }	
+
+-What is the result of the following code snippet? public class Test { public static String multiply(int a, int b) { return a * b; } public static void main(String[] args) { System.out.println(multiply(5, 3)); } }	
+
+-What is the extension of java code files?
+
+-What will be the output: class Logic { int x; Logic() { int x=10; } public void Logic() { x = 100; } public static void main(String[] args) { Logic obj = new Logic(); int x =20; System.out.println(obj.x); } }
+
+-Which of the following is true about the new keyword?
+
+-What is a constructor in Java?
+
+-What happens if no constructor is defined in a Java class?
+
+-Which of the following is true about local variables?
+
+-What is the meaning of the return data type void?
+
+-Which of the following modifier is not applicable for constructors?
+
+-What is the widest valid returnType for methodA in line 3? public class ReturnIt { returnType methodA(byte x, double y) /* Line 3 */ { return (long)x / y * 2; } }
+
+-What is the result of the following code snippet?
+ public class Test { public static void main(String[] args) { int result = multiply(5, 4); System.out.println(result); } public static int multiply(int a, int b) { return a * b; } }	
+ 
+-What will be the output of the following code? class Car { Car(String model) { System.out.println("Car Model: " + model); } public static void main(String[] args) { Car obj = new Car("Tesla"); } }	
+
+-What will be the output of the program? class Main { public static void main(String args[]) { int t; System.out.println(t); } }	
+
+-Which of the following is/are true about constructors in Java? 
+a.Constructor name should be same as class name. b.If you don't define a constructor for a class, a default parameter less constructor is automatically created by the compiler. c.The default constructor calls super() and initializes all instance variables to default value like 0, null. d.If we want to call parent class constructor, it must be called in first line of constructor.
+
+-Where are instance variables stored in memory?	
+
+-What will be printed when the following program is run? public class ParameterPass { public static void main(String[] args) { int i = 0; addTwo(i++); System.out.println(i); } static void addTwo(int i) { i += 2; } } Select the one correct answer.
+
+- Q11. What will the output: class Logic { private int x=1; private Logic() { System.out.print("Constructor Called"); x = 100; } public static void main(String[] args) { Logic obj = new Logic(); System.out.println("Value of x = " + obj.x); } }
+
+What is the range of short data type in Java?
+
+Answer
+============
+Compilation error (Private constructor prevents object creation)
+15
+Compilation error (return type should be String, but int is returned)
+.java
+0
+Used to create new objects dynamically
+A constructor is a special method used to initialize objects
+A default constructor is automatically created
+Local variables must be initialized before use
+void means the method does not return any value
+static, final, synchronized, abstract
+double
+20
+Car Model: Tesla
+Compilation error (variable t not initialized)
+All are true
+Heap memory
+0
+Compilation error (Private constructor prevents object creation)
+-32,768 to 32,767
+
+
+
+
+
+================================================================================
+QNS-1
+--------------
+package BLCELC;
+
+public class LibrarySystemELC {
+    public static void main(String[] args) {
+        Book book = new Book("Java Programming", "John Doe", 500.0, true);
+        System.out.println("Before Update: Title: " + book.title + ", Author: " + book.author + ", Price: " + book.price + ", Available: " + book.available);
+        
+        LibraryService service = new LibraryService();
+        service.updateBookDetails(book, 450.0, false);
+        
+        System.out.println("After Update: Title: " + book.title + ", Author: " + book.author + ", Price: " + book.price + ", Available: " + book.available);
+    }
+}
+
+
+class Book {
+    String title;
+    String author;
+    double price;
+    boolean available;
+
+    Book(String title, String author, double price, boolean available) {
+        this.title = title;
+        this.author = author;
+        this.price = price;
+        this.available = available;
+    }
+}
+
+class LibraryService {
+    Book updateBookDetails   (Book book, double newPrice, boolean newAvailability) {
+        book.price = newPrice;
+        book.available = newAvailability;
+        return book;
+    }
+}
+
+
+
+
+QNS-2
+-------------

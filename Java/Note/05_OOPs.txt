@@ -1830,5 +1830,115 @@ public class PassByValueDemo4
 
 Output is 12000 and 12000
 =============================================================
+22-02-2025
+----------
+In java we have immutable objects are also available.
+
+Immutable objects means it will not modify (Un-modifiable) so we if try modify the objects then modification will not effect on 
+the existing object it will create another object in another memory location.
+
+In Java, String class and all the Wrapper classes are immutable so un-modifiable.
+
+package com.ravi.unmodifiable;
+
+public class ImmutableDemo1 {
+
+	public static void main(String[] args) 
+	{
+		String str = new String("Hello");
+		System.out.println("Before Method call :"+str);
+        accept(str);
+        System.out.println("After Method call :"+str);
+	}
+	
+	public static void accept(String s1)
+	{
+		s1 = "Hello World";
+	}
+
+}
+
+Here : str is pointing to "Hello" object but Strins are immutable so original object will not be modified hence we will get the output as Hello Hello.
+-----------------------------------------------------------------
+package com.ravi.unmodifiable;
+
+public class ImmutableDemo2 {
+
+	public static void main(String[] args) 
+	{
+		Integer i = new Integer(100);
+		System.out.println("Before Method Call :"+i);
+		accept(i);
+		System.out.println("After Method Call :"+i);
+
+	}
+
+	public static void accept(Integer val)
+	{
+		val = 500;
+	}
+
+}
+
+
+Output : 100  100
+----------------------------------------------------------------
+HEAP Memory Management by using Garbage Collector :
+--------------------------------------------------
+Whenever we create an object in java then with the help of new keyword memory is allocated for the Object (Non static members)
+in the HEAP area. [Diagram 22-FEB-25]
+
+In older languages like C++, Memory allocation and memory de-allocation is the responsibility of programmer
+
+If C++ programmer forgot to delete the memory then there is a chance of getting OutOfMemoryError.
+
+In Java, A programmer is only responsible to allocate the memory in the HEAP area, Memory de-allocation is automatically done by 
+a component of JVM called Garbege Collector.
+
+What is Garbage Collector in java [Deleting the unused objects]
+----------------------------------------------------------------
+It is a autometic memory management in java. It is used to delete un-used objects from the HEAP memory.
+
+Garbage Collector is a daemon thread, It will scan the HEAP area, 
+identify which objects are eligible for Garbage Collector (Object which does not contain any references) then delete those objects from the HEAP memory so we can create another object inside the HEAP memory.
+
+Garbage Collector internally uses an algorithm called Mark and Sweep algorithm to delete the objects from the HEAP memory.
+
+JVM will give the instruction to Garbage Collector to visit the heap memory if the heap memory is 60-70% filled up. A developer can also call Garbage Collector explicitly by using the following static method of System class
+
+System.gc(); //Calling the Garbage Collector explicitly
+
+How many ways we can make an object eligible for Garbage Collector :
+---------------------------------------------------------------
+There are 3 ways we can make an object eligible for GC.
+
+1) Assigning null literal to existing reference variable :
+   Employee e1 = new Employee(111,"Ravi");
+            e1 = null;
+
+2) Creating an Object inside a method :
+
+   public void createObject()
+   {
+      Employee e2 = new Employee();
+   }
+Here we are creating Employee object inside the method so, once the method execution is over then e2 will be deleted from the Stack Frame and the employee object will become eligible for GC.
+
+3) Assigning new Object to the old existing reference variable:
+   
+   Employee e3 = new Employee();
+   e3 = new Employee();
+
+Earlier e3 variable was poting to Employee object after that a new Employee Object is created which is pointing to another Object in new memory location so the first object is eligible for GC.
+=================================================================
+
+Memory in java :
+------------------
+In java, whenever we create an object then Object and its content (properties and behavior) are stroed in a special memory called HEAP Memory. Garbage collector visits heap memory only.
+
+All the local variables and parameters variables are executed in Stack Frame and available in Stack Memory.
+-----------------------------------------------------------------
+HEAP and STACK Digram :
+------------------------
 
 

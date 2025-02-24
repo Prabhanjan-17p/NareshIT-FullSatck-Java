@@ -1937,8 +1937,115 @@ Memory in java :
 In java, whenever we create an object then Object and its content (properties and behavior) are stroed in a special memory called HEAP Memory. Garbage collector visits heap memory only.
 
 All the local variables and parameters variables are executed in Stack Frame and available in Stack Memory.
------------------------------------------------------------------
+----------------------------------------------------------------
+24-02-2025
+-----------
 HEAP and STACK Digram :
 ------------------------
+
+Program 01:
+-----------
+HEAP and STACK Diagram for CustomerDemo.java 
+class Customer
+{
+	private String name; 
+	private int id; 
+
+	public Customer(String name , int id) 
+	{
+		super();
+		this.name=name;
+		this.id=id;
+	}
+
+	public void setId(int id)  
+	{
+		this.id=id;
+	}
+
+	public int getId() 
+	{
+		return this.id;
+	}
+}
+
+public class CustomerDemo
+{
+	public static void main(String[] args) 
+	{
+		int val = 100;
+
+		Customer c = new Customer("Ravi",2);
+
+        m1(c);     
+		
+		//GC
+		
+		System.out.println(c.getId());
+	}
+
+	public static void m1(Customer cust) 
+	{
+		cust.setId(5);   
+
+	    cust = new Customer("Rahul",7);
+
+		cust.setId(9);
+		System.out.println(cust.getId());
+	}
+}  
+    
+//9 5
+-----------------------------------------------------------------
+HEAP and STACK Diagram for Employee.java
+-----------------------------------------
+public class Employee
+{
+	int id = 100;
+	
+	public static void main(String[] args) 
+	{
+		int val = 200;
+
+		Employee e1 = new Employee();     
+
+		e1.id = val;
+
+		update(e1);	  
+		
+		System.out.println(e1.id);
+
+        Employee e2 = new Employee(); 
+
+		e2.id = 900;
+        
+		switchEmployees(e2,e1); //3000x, 1000x
+
+		  //GC [2 Objects, 2000x and 4000x are eligible]
+
+			System.out.println(e1.id);
+		    System.out.println(e2.id);
+	    } 
+		
+	 public static void update(Employee e)  
+	 {
+        e.id = 500;
+		e = new Employee();
+		e.id = 400;
+		System.out.println(e.id);
+	 }
+
+	 public static void switchEmployees(Employee e1, Employee e2)
+	  {
+		 int temp = e1.id; 
+		 e1.id = e2.id; //500
+		 e2 = new Employee();
+		 e2.id = temp;
+	  }
+   }
+
+//Output 400 500 500 500
+
+
 
 

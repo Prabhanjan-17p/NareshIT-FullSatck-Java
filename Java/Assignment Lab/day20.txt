@@ -1,0 +1,283 @@
+1.What is the output of following code?
+
+public class Test6 
+{
+	 public static void main(String[] args) 
+	 {
+		         int number = 1;
+		         String letters = "abc"; 
+		         number = number(number); // calling the number() method and return 2 and stored into number
+		         letters(letters);  // calling letters() method  and executed and assign letters = abcd
+		         System.out.println(number + letters);    // number+string = string // 2 + "abcd" = 2abcd 
+		      }
+		      public static int number(int number) 
+		      {
+		        number++;
+		        return number;
+		     }
+		    public static String letters(String letters)//abc 
+		    {
+		        letters += "d"; // abc+d = abcd
+		        return letters;
+		     }
+}
+
+
+ANS ----- 2abcd
+
+2. What is the output of following code?
+
+public class Test4 
+{
+  public static void main(String[] args) 
+  {
+	  int original1 = 1;
+	   int original2 = 2;
+	   swap(original1, original2); // 1 2
+	   System.out.println(original1);   //1
+	   System.out.println(original2);   //2
+	
+  }
+  
+  //calling the method but not affect the original data
+  public static void swap(int a, int b) {
+	   int temp = a; // 1
+	   a = b; // 2
+	   b = temp; // 1
+	 }
+}
+
+ANS -- 1 2
+
+3. What is the output of following code?
+class Laptop
+{
+void access()
+{
+System.out.println("Copy java soft copies... ");
+}
+}
+class Faculty
+{
+static Laptop password = new Laptop();
+}
+class Student
+{
+public static void main(String[] args)
+{
+Faculty.password.access();
+}
+}
+
+ANS -- Copy java soft copies... 
+
+4. Write a java program how many objects can be created for a class?
+class Example
+{
+int x=10;
+int y=20;
+public static void main(String[] args)
+{
+Example e1=new Example();
+Example e2=new Example();
+System.out.println(e1.x+" ..."+e1.y);
+System.out.println(e2.x+" ..."+e2.y);
+}
+}
+
+5. Write a java program creating multiple objects and modifying their
+values?
+class Example
+{
+int a=10;
+int b=20;
+public static void main(String[] args)
+{
+Example e1=new Example();
+Example e2=new Example();
+System.out.println(e1.a+". .."+e1.b);
+System.out.println(e2.a+". .."+e2.b);
+e1.a=50;
+e2.b=60;
+System.out.println(e2.a+". .."+e2.b);
+System.out.println(e2.a+". .."+e2.b);
+}
+}
+
+ANS --  10.........10
+        20.........20
+        50.........10
+        20.........60
+
+
+
+6. Write a java program to show overriding toString() method to print object data?
+
+class Example
+{
+int eid;
+String ename;
+String company;
+public String toString(){
+return
+"eid:"+eid+"\n"+"ename:"+ename+"\n"+"company:"+company+"\n";
+}
+public static void main(String[] args)
+{
+Example e1=new Example();
+e1.eid=7279;
+e1.ename="Ganesh";
+e1.company="Naresh IT";
+System.out.println(e1);
+e1=new Example();
+System.out.println(e1);
+}
+}
+
+ANS -- 
+eid:7279
+ename:Ganesh
+company:Naresh IT
+
+eid:0
+ename:null
+company:null
+
+
+wwwbbbbwww
+
+
+7. Write a java program shows creating class with static and non-static variables and their modifications?
+class Example
+{
+static int a=10;
+static int b=20;
+int x=30;
+int y=40;
+public static void main(String[] args)
+{
+Example e1=new Example();
+Example e2=new Example();
+Example e3=null;
+e1.a=50;
+e1.b=60;
+e1.x=70;
+e1.y=80;
+}
+}
+
+8. Find the Output
+    public class Test1 {
+
+	public static void main(String[] args) 
+	{
+		 int num = 4;
+		 modifyNumber(num);
+		 System.out.println(num);   
+
+	}
+	public static void modifyNumber(int num)
+	{
+		num = 8;		
+	}
+}
+
+ANS -- 4
+
+
+9. Find the output
+public class Test 
+{
+	public static void main(String[] args) 
+	{
+		 String name = "NIT";
+		 modifyName(name);
+		 System.out.println(name);
+	}
+	
+	public static void modifyName(String name)
+	{
+		name = "Hyd";
+		
+	}
+	
+}
+
+ANS -- NIT
+
+
+10. Find the output
+class Customer
+{
+	private double bill = 1200;
+
+	public void setBill(double bill) 
+	{
+		this.bill = bill;
+	}
+	
+	public double getBill()
+	{
+		return this.bill;
+	}
+	
+}
+
+
+public class PassByValueTest 
+{
+	public static void main(String[] args) 
+	{
+	  Customer c1 = new Customer();	
+	  
+	  updateCustomerBill(c1);
+	  System.out.println(c1.getBill());
+	}
+	
+	public static void updateCustomerBill(Customer cust)
+	{
+		cust.setBill(1800);
+	}
+}
+
+ANS -- 1800.0x
+
+11. Find the output.
+class Customer
+{
+	private double bill = 1200;
+
+	public void setBill(double bill) 
+	{
+		this.bill = bill;
+	}
+	
+	public double getBill()
+	{
+		return this.bill;
+	}
+	
+}
+
+
+public class PassByValueTest 
+{
+	public static void main(String[] args) 
+	{
+	  Customer c1 = new Customer();	
+	  
+	  updateCustomerBill(c1);
+	  System.out.println(c1.getBill());
+	}
+	
+	public static void updateCustomerBill(Customer cust)
+	{
+		cust = new Customer(); //Another Object
+		cust.setBill(1800);
+	}
+	
+}
+
+ANS -- 1200.0
+
+-----------------------------------------------------------------

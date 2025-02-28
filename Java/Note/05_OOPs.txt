@@ -2581,8 +2581,8 @@ public class Foo
   }
 	
 }
-=================================================================== Instance Block OR Instance Initializer OR Non static block :
--------------------------------------------------------------
+============================================================Instance Block OR Instance Initializer OR Non static block :
+------------------------------------------------------------
 An instance block is a very special block in java which is automatically executed at the time of creating the Object.
 
 Example :
@@ -2710,9 +2710,405 @@ public class NSBDemo4 {
 
 }
 
+If our class contains multiple non static blocks then it will be executed according to the order.[Top to bottom]
 
 
+class Test
+{
+	int x;
+	
+	public Test()
+	{
+		System.out.println("x value is :"+x);
+	}
+	
+	{
+		x = 100;
+	}
+	
+	{
+		x = 200;
+	}
+	
+	{
+		x = 300;
+	}
+	
+	
+}
 
+public class NSBDemo5 
+{
+	public static void main(String[] args) 
+	{
+		Test t1 = new Test();
+	}
+}
+
+If a user explicitly writes any non static block inside the constructor body then it will be executed as it is, Here compiler will not perform any action.
+
+package com.ravi.instance_initializer;
+
+class Foo
+{
+	public Foo()
+	{
+		System.out.println("No Argument Constructor..");
+		
+		{
+			System.out.println("Non static block..");		
+		}		
+	}	
+}
+
+public class NSBDemo6 
+{
+	public static void main(String[] args) 
+	{
+		new Foo();
+
+	}
+
+}
+
+We cannot write return statement inside a non static block because all the initializers must be executed normally.
+
+class Sample
+{
+	{
+		System.out.println("NSB");
+		return; //error
+	}
+	
+}
+public class NSBDemo7 
+{
+	public static void main(String[] args) 
+	{
+		new Sample();
+	}
+		
+}
+============================================================
+Non static variable initialization order :
+-------------------------------------------
+The order of non static variable initialization :
+
+1) Default value by using new keyword [init method is working internally]
+
+package com.ravi.initialization_order;
+
+class Demo
+{		
+	
+	int x = 100 ; 
+	
+}
+public class NSVInitializationOrder 
+{
+	public static void main(String[] args) 
+	{
+		Demo d1 = new Demo();
+		
+		System.out.println(d1.x);
+
+	}
+
+}
+
+2) Variable initialization at the time of NSV declaration OR
+   Variable initialization inside non static block [Both are having equal priority, variable will initialized based on the order {top to bottom}] 
+   [Remaining part : Illegal Forward reference, JVM Architecture]
+
+Case 1:
+-------
+package com.ravi.initialization_order;
+
+class Demo
+{		
+	
+	int x = 100 ; 
+	
+	{
+		x = 200;
+	}
+	
+}
+public class NSVInitializationOrder 
+{
+	public static void main(String[] args) 
+	{
+		Demo d1 = new Demo();
+		
+		System.out.println(d1.x);
+
+	}
+
+}
+
+
+Case 2:
+--------
+package com.ravi.initialization_order;
+
+class Demo
+{
+	{
+		x = 200;
+	}
+	
+	int x = 100 ; 
+}
+public class NSVInitializationOrder 
+{
+	public static void main(String[] args) 
+	{
+		Demo d1 = new Demo();
+		
+		System.out.println(d1.x);
+	}
+
+}
+
+
+3) We can initialize the NSV in the Constructor body.
+
+package com.ravi.initialization_order;
+
+class Demo
+{
+	int x = 100 ;        // Demo d1 = new Demo();
+	
+	{
+		x = 200;
+	}
+	
+	public Demo()
+	{
+		super();
+		x = 300;
+	}	
+}
+public class NSVInitializationOrder 
+{
+	public static void main(String[] args) 
+	{
+		Demo d1 = new Demo();
+		
+		System.out.println(d1.x);
+	}
+
+}
+
+
+5) We can initialize through Methods but it is not a recommended way because Object creation is already completed.
+
+package com.ravi.initialization_order;
+
+class Demo
+{
+	int x = 100 ;        // Demo d1 = new Demo();
+	
+	{
+		x = 200;
+	}
+	
+	public Demo()
+	{
+		super();
+		x = 300;
+	}	
+	
+	public void setData()
+	{
+		x = 400;
+	}
+	
+}
+public class NSVInitializationOrder 
+{
+	public static void main(String[] args) 
+	{
+		Demo d1 = new Demo();
+		d1.setData();
+		System.out.println(d1.x);
+	}
+
+}
+============================================================
+What is a blank final field in java ?
+--------------------------------------
+A final field must be initialized by user only once.
+
+If a final non static variable is not initialized at the time of declaration then it is called Blank final field.
+
+Example :
+-----------
+class Student
+{
+   final int x;  //Blank final field
+}
+
+A blank final field cannot be initialized inside the default constructor.
+
+class Test
+{
+	final int x; //Blank final field  [error]
+}
+class BlankFinalFieldDemo1 
+{
+	public static void main(String[] args) 
+	{
+		Test t1 = new Test();
+		System.out.println(t1.x);
+	}
+}
+
+A blank final field cannot be initialized inside the method
+body.
+
+class Test
+{
+	final int x; 
+	
+	public void set()
+	{
+		x = 100;
+	}
+	
+	
+}
+class BlankFinalFieldDemo1 
+{
+	public static void main(String[] args) 
+	{
+		Test t1 = new Test();
+		t1.set();
+		System.out.println(t1.x);
+	}
+}
+
+
+A blank field must be initialized by the developer expilicitly in the following two places only [Till the Object creation]
+
+a) Inside a non static Block OR
+b) Inside the constructor body
+
+Note : A blank final field must be initialized by the 
+developer till Object creation.
+
+class Test
+{
+	final int x;
+	/*
+	{
+		x = 200;
+	}
+	*/
+	public Test()
+	{
+		x = 300;
+	}
+	
+}
+class BlankFinalFieldDemo1 
+{
+	public static void main(String[] args) 
+	{
+		Test t1 = new Test();
+		System.out.println(t1.x);
+	}
+}
+
+
+A blank final field also have default value that means all the class level variables are having default value even the variable is declared as final.
+
+class Test
+{
+	final int x;
+	
+	{
+		print();
+		x = 100;
+	}
+	
+	public void print()
+	{
+		System.out.println("Default value :"+x);
+	}
+	
+}
+class BlankFinalFieldDemo1 
+{
+	public static void main(String[] args) 
+	{
+		Test t1 = new Test();
+		System.out.println("User Value is :"+t1.x);
+	}
+}
+
+A blank final filed must be initialized in all the constructors available in the class.
+
+class Student
+{
+  final String name;
+  
+  public Student()
+  {
+	  name = "Scott";
+  }
+   
+  public Student(String name)
+  {
+	 this.name = name;
+  }   
+}
+
+class BlankFinalFieldDemo1 
+{
+	public static void main(String[] args) 
+	{
+		Student s1 = new Student();
+		System.out.println(s1.name);
+		
+		Student s2 = new Student("Smith");
+		System.out.println(s2.name);
+	}
+}
+------------------------------------------------------------
+class Student
+{
+  final String name;
+  
+	{
+		name = "James";
+	}
+  
+  public Student()
+  {
+	  
+  }
+   
+  public Student(String name)
+  {
+	 
+  }   
+}
+
+class BlankFinalFieldDemo1 
+{
+	public static void main(String[] args) 
+	{
+		Student s1 = new Student();
+		System.out.println(s1.name);
+		
+		Student s2 = new Student("Smith");
+		System.out.println(s2.name);
+	}
+}
+============================================================
+Relationship between the classes :
+-----------------------------------
 
 
 

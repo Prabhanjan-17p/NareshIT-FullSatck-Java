@@ -1,0 +1,236 @@
+Question - 1
+--------------
+ Design sports Model system
+
+Create  a class name Sports (BLC Class)
+
+
+Atributes :
+
+name 			Return Type
+-------			--------------
+sportName          :String 
+
+teamSize		   :int 
+
+sportType          :String 
+
+Acess modifier  :private (for all varriable)
+
+Take a no parameterized constructor and initialize all the default values to varriables.
+
+Take one more constructor with two parameteres sportName and teamSize
+and intialize with user values and write the validation logic
+
+Take another constructor with 3 parameters and intialize all the values and check the validation.
+
+Methods  :
+
+Method Name       : displayInfo
+Return Type 	  : void
+Acess Modifier    : public 
+
+and in this method to print all the details of the class.
+
+
+Take a Main Class(ELC Class)wich having main method and instatiate the object and execute the method.
+
+Test Cases:
+-------------
+
+for teamSize. If teamSize is less than or equal to zero, it sets teamSize to 0 and prints an error message.
+
+Test Case 1: Valid sport with name and team size
+Sport Name: Football
+Team Size: 11
+Sport Type: Unknown
+
+Expected Output :
+---------------------
+(print the details)
+
+Test Case 2: Invalid sport with negative team size
+Error: Team size must be positive.
+Sport Name: Volleyball
+Team Size: -1
+Sport Type: Unknown
+
+Expected Output :
+---------------------
+Error: Team size must be positive.
+
+
+Question -2
+---------------
+TimeFormatter (Class as a return type and Class as an argument)
+
+A class called  Time is given to you. The task is to create and return a new time object in terms of hours,minutes and seconds by adding two Time objects.
+
+Define the following for the class.
+
+Attributes :
+
+name 
+-------
+hh,mm,ss as private  :-for all (int) is data type and (private) is acessmodifier
+
+Constructor :
+
+	default : Create a no-parameterize constructor. Initialize all attributes to 0.
+
+	paramterized : Create a public parameterized constructor for hours,minutes and seconds in the same sequence.
+
+Methods :
+
+	Name of the method : show 
+
+	Return Type 	: void
+
+	Modifier	: public
+
+	Task : It must display the time in hours:minutes:seconds format. 
+
+       Name Of the method : add  
+
+	Return Type 	: Time
+
+	Modifiers:	: public,static
+
+	Arguments	: 2Time arguments.
+
+	Task		: Add the time
+
+
+Take a ELC Class TimeTester class having main method instatiate the object and check the taste cases.
+
+
+Example : 
+
+  Sample Input :
+
+	time 1 : 2:30:40
+
+	time 2 : 4:40:21 
+
+Expected	output :
+
+Result : 7:11:1
+
+
+Question - 3 [Copy Constructor]
+--------------
+Take a class Student(BLC Class)
+
+Attributes:
+ 
+names		dataType
+---------		-----------
+studentId         : int
+studentName       : String
+studentAge        : int
+
+Access Modifier :private for all varriables
+
+take one no-parameterize constructor and initialize with default value.
+
+Take one parameterize constructor to initialize all the attributes.
+
+devlop getter and setter method to acess the private properties
+
+
+
+Methods:
+
+
+Name Of the method 	: showDetails()  
+
+	Return Type 		: void
+
+	Modifiers:		: public
+
+
+Take one more (BLC Class) Player .
+
+Attributes:
+
+names		dataType
+---------		-----------
+playerId 		 int
+playerName    String
+playerAge        int
+
+Access Modifier :private for all varriables
+
+
+create a Copy constructor that takes a Student object and initializes the Player object's attributes using the Student object's attributes.
+
+Methods :
+
+Name Of the method 	: showDetails()  
+
+	Return Type 		: void
+
+	Modifiers:		: public
+
+
+Name Of the method 	: updateName(String newName)
+
+    Return Type 		: void
+
+	Modifiers:		: public
+
+Public method to update the player's name.
+
+
+Name Of the method 	: isEligible()  
+
+    Return Type 		: void
+
+	Modifiers:		: boolean
+
+method that returns a boolean indicating if the player is eligible (e.g., age must be at least 18).
+
+
+Take one Main class(ELC Class) which is having main method  and instantiate the both class object and check all the terms and conditions.
+
+
+Test cases :
+--------------
+case-1
+--------
+Sample Input :
+id=-3(Negative ID)
+
+Expected Output:
+Error: Student ID cannot be negative.
+
+case-2
+--------
+Sample Input :
+ name =""(Empty Name)
+
+Expected output :
+Error: Student name cannot be empty.
+
+
+case-3
+--------
+ Normal Scenario with Eligibility Check
+
+SAmple Input :
+ Student ID: 2, Name: Jane Smith, Age: 17
+Player Details: Player ID: 2, Name: Jane Smith, Age: 17
+Is Player Eligible? false
+
+Expected Output :
+(print all the details )
+Batch_42_43_Assignment.txt
+Constructor Overloading
+Ravishankar Singh
+•
+11:04 AM
+100 points
+
+Batch_42_43_Assignment.txt
+Text
+Class comments

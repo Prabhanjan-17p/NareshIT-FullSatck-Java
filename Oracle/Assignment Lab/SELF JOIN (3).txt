@@ -1,0 +1,86 @@
+                          SELF JOIN
+                        =============
+
+
+Self join:-joining a table to itself is called self join.here 
+=========  joining joining conditional columns must belongs to
+           same data type.
+
+Method1:-compare one table one column any value with all other values
+========  in same table.
+
+Method2:-compare two different column values in a same table(these
+========  columns belong to same data type).
+
+
+Whenever we are using self joins then we must create table aliasnames in from clause.these aliasnames must be different names.These aliasnames internally 
+behave like exact tables when query execution time.
+
+-----------------------------------------------------------------------------------
+1. Write a query to display the employees who are getting same salary
+    as SCOTT salary from emp table using self join?
+
+NOTE:-when we are comparing one column any value with all
+====   other values in same column by using self join then
+       we must display data from second alias table only.
+
+
+2.Write a query to display the employee names and their manager names
+  from emp table by using self join
+
+
+3.Write a query to display the employee records who are reporting
+   to BLAKE as a manager by using self join?
+
+
+
+4.Write a query to display the employees who are getting more salary 
+   than their manager salary from emp table using self join?
+
+
+5.Write a query to display BLAKE'S manager name from emp table by
+  using self join?
+
+
+6.Write a query to display the employees who are joining
+         before their managers from emp table
+                by using self join?
+
+
+7.Write a query to display those doctors which are working
+  in same hospital with different specality from the below
+  table?
+
+note:-Here h1 or h2 any table we can use in select why because of
+=====  condition is not there direct comparing.
+
+SQL>select * from hospital;
+
+         ID      NAME    HOSPITALNAME     SPECALITY
+      ------ ----------  -------------    ----------
+         1     SMITH        APPOLO        PHYSICIAN
+         2     ALLEN        APPOLO        HOMEOPATHY
+         3     WARD         KIMS          PHYSICIAN
+         4     JONES        PRIME         PHYSICIAN 
+
+
+-----------------------------------------------------------------------------------
+
+8.WRITE A QUERY TO FETCH STUDENT_NAME AND COURSE_NAME,ORDER BY STUDENT ID.DISPLAY ONLY FIRST 20 RECORDS FROM THE FOLLOWING TABLES?(HCL INTERVIEW QUESTION LATEST)
+
+            STUDENT TABLE
+   |-----------------|-------------------|
+   |  STUDENT_ID     |    STUDENT_NAME   |
+   |-----------------|-------------------|
+
+
+            FEE TABLE
+   |-----------------|-------------------|
+   |    STUDENT_ID   |     COURSE_FEE    |
+   |-----------------|-------------------|
+
+
+              COURSE TABLE
+   |-----------------|-------------------|
+   |    COURSE_FEE   |     COURSE_NAME   |
+   |-----------------|-------------------|

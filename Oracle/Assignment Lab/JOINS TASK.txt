@@ -1,0 +1,186 @@
+                               JOINS
+                             ---------
+
+
+JOIN SUBSTRACTION:-in all relational database joins eliminating 
+=================   matching rows is also called as join substaction.
+                   this join substaction is used in left,right,full
+                   outer joins.
+
+3)left outer join substaction
+=============================
+Syntax:-
+=======
+select *
+from tableA left join tableB
+on tableA.key=tableB.key
+where tableB.key is null;
+
+ex:-
+==
+
+SQL>select * from test7;
+
+       SNO
+   ----------
+        10
+        20
+        30
+
+
+SQL>select * from test8;
+
+       SNO
+   ----------
+        10
+        20
+        40
+
+ 
+
+left outer join substraction:-substraction means eliminating matching
+============================   rows.
+
+SQL>select * from test7  left join test8
+    on test7.sno=test8.sno
+    where test8.sno is null;
+
+      SNO        SNO
+   ---------- ----------
+        30
+
+
+
+-----------------------------------------------------------------------------------
+
+
+1.Write a query to display the customers and order details.and find the 
+  customers who have place an order
+ 
+CUSTOMERS
+
+CUSTOMERID       CUSTOMERNAME
+----------      --------------
+    1              GOWTHAM
+    2               KIRAN
+    3               RAJU
+
+ORDERS
+
+ORDERID       CUSTOMERID        ORDERDATE
+--------     ------------      -----------
+  101             1             12-JAN-24
+  102             2             16-JAN-24     
+
+
+2.Write a query to display the customer details and order details 
+  including customers without orders
+
+-----------------------------------------------------------------------------------
+
+3.Write a query to find the patients who have booked an appoinment 
+  but haven't visited yet.
+
+
+PATIENTS
+
+PATIENTID          PATIENTNAME            CONTACTNUMBER
+---------        ---------------         ---------------
+   1                 ANUSHKA               9876543210
+   2                 SURYA                 9876500000
+   3                 GOWTHAM               9876511111
+
+
+
+APPOINTMENTS
+
+APPOINTMENTID      PATIENTID         APPOINTMENTDATE        STATUS
+-------------     -----------       -----------------     -----------
+   401                 1               24-DEC-24          CHECKED-IN
+   402                 2               28-DEC-24          SHEDULED
+
+
+
+
+4.Write a query to display the patient details and appoinment details 
+  including patients with out appoinments.
+
+-----------------------------------------------------------------------------------
+
+
+5.Write a query to display customer details and order details
+  and find the orders that haven't been shipped yet
+
+
+CUSTOMERS2 
+
+CUSTOMERID       CUSTOMERNAME         LOCATION
+----------      --------------       ----------
+    1              SURYA               NEW YORK
+    2              ANUSHKA             CHICAGO
+    3              KIRAN               DALLAS
+
+
+ORDERS2
+
+ORDERID      CUSTOMERID       ORDERDATE         STATUS
+-------     ------------     -----------       --------
+  501           1             13-APR-24         SHIPPED
+  502           2             18-APR-24         PENDING
+  503           3             26-APR-24         PENDING
+
+-----------------------------------------------------------------------------------
+
+
+
+6.Write a query to display employee details who have not assined 
+  any project 
+
+EMPLOYEES1
+
+EMPID      ENAME 
+-----    ---------    
+  1        SURYA
+  2        GOWTHAM
+  3        ANUSHKA
+
+PROJECTS
+
+PROJECTID         EMPID
+---------       --------
+  101              1
+  102              2
+
+7.Write a query to display the employee details and project details  
+  for employees assined to a project
+
+-----------------------------------------------------------------------------------
+
+
+8.Write a query to display the employee details who have not been 
+  assined any department
+
+ 
+
+SQL> SELECT * FROM EMPLOYEES;
+
+       EMPID     NAME         DEPTNO
+     -------  ----------      --------
+         1      KIRAN           10
+         2     GOWTHAM          20
+         3      SURYA
+         4      RAJU            20
+
+
+SQL> SELECT * FROM DEPARTMENTS;
+
+      DEPTNO      DNAME
+     -------    ----------
+        10         HR
+        20         IT
+        40      FINANCE
+ 
+
+
+
+                    

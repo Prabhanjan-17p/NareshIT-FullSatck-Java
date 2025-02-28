@@ -1,0 +1,47 @@
+                     MULTIPLE ROW SUB QUERYS
+                   ==========================
+
+1.Write a query to display employee details who are getting 
+      maximum sal in each department from emp table.
+      
+SQL> SELECT * FROM EMP WHERE SAL IN (SELECT MAX(SAL) FROM EMP GROUP BY DEPTNO);
+
+
+2.Write a query to display the employees who are working in sales
+   or research department from emp,dept?
+
+SQL> SELECT * FROM EMP E JOIN DEPT D ON E.DEPTNO = D.DEPTNO WHERE D.DNAME IN (SELECT DNAME FROM DEPT WHERE DNAME IN('RESEARCH','SALES'));
+
+
+3.Write a query to display the male employees who are getting more salary than the all the salaries of female employees?
+
+SQL> select * from employee;
+
+       EMPNO      ENAME       GENDER         SAL
+      -------  ----------    --------     --------
+         1      Bhargavi        f           4000
+         2      subbarao        m           5000
+         3      Radhika         f           3000
+         4      gowtham         m           2000
+         5      kavya           f           2000
+
+SQL> SELECT * FROM EMPLOYEE WHERE GANDER='M' AND SAL >ALL (SELECT SAL FROM EMPLOYEE WHERE GANDER='F');
+
+4.Write a query to display the employee records whose job title is same as SMITH,BLAKE?
+
+SQL> SELECT * FROM EMP WHERE JOB IN(SELECT JOB FROM EMP WHERE ENAME IN('SMITH','BLAKE'));
+
+5.Write a query to display the employee records who are earning more than all managers?
+
+NOTE:-if sal> all list of values then condition is true
+
+SQL> SELECT * FROM EMP WHERE SAL >ALL(SELECT SAL FROM EMP WHERE JOB='MANAGER');
+
+6.Write a query to display the employee records  who are earning  more than any of the managers?
+
+NOTE:-if sal>any one of the list of values.
+
+SQL> SELECT * FROM EMP WHERE SAL >ANY(SELECT SAL FROM EMP WHERE JOB='MANAGER');
+-----------------------------------------------------------------------------------
+
+

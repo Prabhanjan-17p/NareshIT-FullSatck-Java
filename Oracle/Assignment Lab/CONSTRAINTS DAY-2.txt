@@ -1,0 +1,166 @@
+                                  CONSTRAINTS
+                               =================
+
+1.What is constraint ? What are different types of constraints? Read each
+  constraint definition ? 
+
+2.What are the differences b/w primary key and foreign key ?
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+1.Establish the relation b/w course and student table by using
+  Primary key, Foreign key
+
+--->after creating the table insert the records and observe
+    the outputs.
+
+COURSE                         STUDENT
+=======                        ========
+PK                            PK                FK
+CID    CNAME                  SID     SNAME     CID
+
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+2.Establish the relation b/w DOCTORS and PATIENTS table by using
+  Primary key, Foreign key
+
+
+DOCTORS                                       PATIENTS
+=======                                      ==========
+    PK                                           PK                  FK
+ DOCTORID     NAME    SPECIALTY                PATIENTID    NAME    DOCTORID 
+
+ 
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+3.Create mas table,child table and establish relation b/w tables.
+
+--->after creating the tables insert the records.delete the mas table
+    records and observe the outputs in child table.
+
+mas
+---
+sno ---->primary key 
+
+child
+----
+sno ---->foreign key along with on delete cascade 
+                         
+
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Default -in all relational databases if we want to provide
+=======  default values into a table column then we are using
+         default clause.
+
+.it is used to apply default value to table column.
+.if we pass the value, it takes that value. if we don't pass the value
+ it takes default value.
+
+
+syntax:-
+======
+columnname datatype(size) default default value
+
+SQL>create table test4(name varchar2(10), sal number(10) default 3000);
+
+SQL>insert into test4(name)values('GOWTHAM');
+
+SQL>insert into test4 values('KIRAN',5000);
+
+SQL>select * from test4;
+   
+    NAME        SAL
+  -------    ---------
+  GOWTHAM      3000
+  KIRAN        5000
+
+
+
+4.Create a student10 table with 4 columns and apply following constraints.
+
+--->after creating the table insert the records and observe
+    the outputs.
+
+SID           PK
+SNAME         NOTNULL
+INAME         default ---->NARESHIT
+CITY          default ---->AMMERPET 
+fee           default ---->30000
+
+
+5.Create the emp4 table with following columns. and you only 
+   think which constraint is suitable at table creation 
+   it self and use all constraints(SQL SERVER MOCK INTERVIEW QUESTION)
+
+NOTE:-for this question just create the table with constraints
+       is enough.
+
+EMPNO     ENAME     SAL     MGRNO     AGE     ADDRESS    PHONO
+
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+                                 MCQ'S
+                              ===========
+1.When table is dropped then the status of constraints 
+  on that table is
+
+A. Constraints are in invalid state
+B. Constraints also dropped
+C. No effect on constraints
+D .None
+
+
+
+
+2.Primary key means the following combinations
+
+A. NOT NULL,CHECK 
+
+B. UNIQUE,REFEERENTIAL
+
+C. UNIQUE,NOT NULL     
+ 
+D. CHECK,FOREIGN key
+
+
+
+
+
+3.What is TRUE about DEFAULT constraint?
+A. The value will be first be checked for certain conditions before
+  inserting it into the column when a default constraint applies
+  to a column in the table.
+B.in the event of default constraint being applied to a table's
+  columns without a user specifying the value to be inserted when
+  that constraint was applied ,the default value that was specified
+  when the constraint was applied will be put into that column
+C. An index can be created on the table using the default constraint
+D. None of the above
+
+4.When constraints are disabled then these are in which state
+
+A. Constraints are dropped
+
+B. Exist in the metadata but not working
+
+C. Constraints are not disabled
+
+D.1 and 3 
+
+
+
+5.is it foreign key accepts duplicate values
+
+A. yes           B.no            C. may be         D. none
+
+6.can we drop parent table if any child records are found
+
+A. Yes 
+      
+B.NO
+
+C.MAY BE 
+      
+D.NONE
+
+

@@ -1,0 +1,312 @@
+                              JOINS 
+                           ==========
+1.A new table is created in an oracle database using the  ----- TABLE statement
+
+A.CREATE
+
+B.UPDATE
+
+C.ALTER
+
+D.NEW
+
+ANS:-
+
+-----------------------------------------------------------------------------------
+
+2.Which of the following are the types of outer joins?
+
+A. Left Outer Join
+
+B. Right Outer Join
+
+C. Full Outer Join
+
+D. All of the above
+
+ANS:-
+
+-----------------------------------------------------------------------------------
+
+3. Most common type of join is ------
+
+A. Inner
+
+B. Outer
+
+C. Anti
+
+D. Equi
+
+ANS:-
+
+-----------------------------------------------------------------------------------
+
+4. Which of the following is not the type of join ?
+
+A. Cross Join
+
+B. Anti Join
+
+C. Semi Join
+
+D. None
+
+ANS:-
+
+-----------------------------------------------------------------------------------
+
+
+5. What is another name for cross join ?
+
+A. Left Join
+
+B. Right Join
+
+C. Full join
+
+D. Cartesian Products
+
+ANS:-
+
+-----------------------------------------------------------------------------------
+
+
+6. How many types of joins
+
+A. 5
+
+B. 6
+
+C. 7
+
+D. 8
+
+ANS:-
+
+----------------------------------------------------------------------------------
+
+7. How many types of Outer joins are there
+
+A. 1
+
+B. 3
+
+C. 2
+
+D. 4
+
+ANS:- 
+
+-----------------------------------------------------------------------------------
+
+
+8. An Equi join refers to equality by using comparison operator
+   in the -----clause
+
+A. FROM
+
+B. HAVING
+
+C. WHERE
+
+D. NONE
+
+ANS:-
+
+-----------------------------------------------------------------------------------
+
+
+9.Oracle joins ------ data from multiple tables into one
+
+A. Retrieve
+
+B. Combine
+
+C. Both A and B
+
+D. None of the above
+
+ANS:-
+
+-----------------------------------------------------------------------------------
+
+10. What is the another name for Inner Join ? 
+
+A. Simple Join
+
+B. Natural Join
+
+C. Both A and B
+
+D. None of the above
+
+ANS:- 
+
+-----------------------------------------------------------------------------------
+
+
+
+11. Each row in a table is simply combined with every other row in the table
+    when a ----- join  is
+
+A. Equi 
+
+B. Inner
+
+C. Self
+
+D. Outer
+
+ANS:-
+
+-----------------------------------------------------------------------------------
+
+
+12.The ------ clause must contain a join condition for joining two tables
+
+A. From
+
+B. Where
+
+C. Both A and B
+
+D. None of the above
+
+-----------------------------------------------------------------------------------
+
+13.The program compares two columns from different tables and combines pairs
+   of rows containing the same row from both tables. Provided that 
+   the ------ condition holds.
+
+A. Join
+
+B. Minus
+
+C. Non-Join
+
+D. Addition
+
+ANS:- 
+
+-----------------------------------------------------------------------------------
+
+14. ------ Outer Join returns all rows from the left (first) table that are
+    specified by the ON condition. and all rows from table that are met
+    by the join condition
+
+A. Left
+
+B. Right
+
+C. Middle
+
+D. None
+
+ANS:-
+
+----------------------------------------------------------------------------------
+
+
+15. Which of the following is/are the type(s) of joins ?
+
+A. Inner
+
+B. Outer
+
+C. Equi
+
+D. All of the above
+
+ANS:-
+
+----------------------------------------------------------------------------------
+
+
+16.Tables are joined with themselves (------ relationship) in self joins
+
+A. Unary
+
+B. Binary
+
+C. Ternary
+
+D. None
+
+ANS:-
+
+-----------------------------------------------------------------------------------
+
+
+17.Outer joins return all rows from ------ tables
+
+A. First
+
+B. Second
+
+C. Both
+
+D. None
+
+ANS:-
+
+-----------------------------------------------------------------------------------
+
+
+18. All ------ from multiple tables matching the join condition are returned
+    by the inner join
+
+A. Rows
+
+B. Columns
+
+C. Fields
+
+D. None
+
+
+ANS:-
+
+-----------------------------------------------------------------------------------
+
+19. When you join two or more tables, views, or materialized views , you
+    combine ------ from both tables ,views or materialized views
+
+A. Rows
+
+B. Columns
+
+C. Both A and B
+
+D. None of the above
+
+ANS:-
+
+-----------------------------------------------------------------------------------
+
+
+20. ------ joins return the values of matching columns across associated
+    tables
+
+A. Outer
+
+B. Inner
+
+C. Equi
+
+D. None
+
+ANS:-
+
+----------------------------------------------------------------------------------
+  
+
+
+
+
+
+
+
+
+ 
+

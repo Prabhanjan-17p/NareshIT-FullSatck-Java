@@ -1,0 +1,635 @@
+                                MCQ'S
+                              ========
+
+1. Which of the following is an Oracle database object that is used to 
+   store data in a structured manner?
+
+a) Trigger
+
+b) View
+
+c) Table
+
+d) Index
+
+Answer: 
+
+-----------------------------------------------------------------------------------
+
+
+2. Which of the following SQL commands is used to retrieve data 
+   from a table in Oracle?
+
+a) INSERT
+
+b) DELETE
+
+c) SELECT
+
+d) UPDATE
+
+Answer: 
+
+
+-----------------------------------------------------------------------------------
+
+3. Which of the following is true about a “primary key” in Oracle?
+
+a) It can have duplicate values.
+
+b) It can be NULL.
+
+c) It uniquely identifies each record in a table.
+
+d) It is optional for a table.
+
+
+Answer:
+
+-----------------------------------------------------------------------------------
+
+4. Which of the following Oracle data types can store variable-length 
+   character strings?
+
+a) CHAR
+
+b) VARCHAR2
+
+c) NUMBER
+
+d) DATE
+
+Answer:
+
+-----------------------------------------------------------------------------------
+
+5. In Oracle, which of the following is the correct order of execution 
+   for the SQL query clauses?
+
+a) SELECT, FROM, WHERE, GROUP BY, HAVING, ORDER BY
+
+b) FROM, WHERE, SELECT, GROUP BY, HAVING, ORDER BY
+
+c) WHERE, GROUP BY, HAVING, SELECT, ORDER BY
+
+d) FROM, SELECT, WHERE, GROUP BY, HAVING, ORDER BY
+
+Answer:
+
+-----------------------------------------------------------------------------------
+
+6.  Which type of join will return rows from both tables when there is no match, 
+    and will display NULLs for non-matching rows?
+
+a) Inner Join
+
+b) Left Outer Join
+
+c) Right Outer Join
+
+d) Full Outer Join
+
+Answer:
+
+
+-----------------------------------------------------------------------------------
+
+7. Which of the following is used to prevent the deletion of records in Oracle?
+
+a) UNIQUE constraint
+
+b) FOREIGN KEY constraint
+
+c) CHECK constraint
+
+d) ON DELETE CASCADE constraint
+
+Answer: 
+
+-----------------------------------------------------------------------------------
+
+
+8. What is the purpose of the Oracle "ROLLBACK" statement?
+
+a) To save changes made in the transaction
+
+b) To undo changes made in the transaction
+
+c) To commit the current transaction
+
+d) To restart the transaction from the beginning
+
+Answer: 
+
+-----------------------------------------------------------------------------------
+
+9. Which of the following is used to perform a case-insensitive comparison of strings in Oracle SQL?
+
+a) LIKE
+
+b) IN
+
+c) UPPER()
+
+d) BINARY()
+
+Answer: 
+
+-----------------------------------------------------------------------------------
+
+10. Which of the following is true about the "DELETE" statement in Oracle?
+
+a) It removes all rows in a table and frees the space for reuse.
+
+b) It removes rows but does not free space.
+
+c) It cannot be rolled back.
+
+d) It removes the table definition as well.
+
+Answer: 
+
+-----------------------------------------------------------------------------------
+
+11. Which Oracle function can be used to find the length of a string?
+
+a) LENGTH
+
+b) SIZE
+
+c) LEN
+
+d) CHAR_LENGTH
+
+Answer: 
+
+-----------------------------------------------------------------------------------
+
+12. What is the maximum size of a VARCHAR2 column in Oracle?
+
+a) 1000 bytes
+
+b) 4000 bytes
+
+c) 32767 bytes
+
+d) 10000 characters
+
+Answer:
+
+-----------------------------------------------------------------------------------
+
+13. Which of the following Oracle commands is used to add a new column to an 
+    existing table?
+
+a) ALTER TABLE ADD COLUMN
+
+b) MODIFY TABLE ADD COLUMN
+
+c) ALTER TABLE ADD
+
+d) ALTER COLUMN ADD
+
+Answer: 
+
+-----------------------------------------------------------------------------------
+
+14. In Oracle, the "TO_DATE" function is used to:
+
+a) Convert a string into a date
+
+b) Convert a date into a string
+
+c) Add a time duration to a date
+
+d) Subtract a date from another date
+
+Answer:
+
+-----------------------------------------------------------------------------------
+
+15. Which of the following is NOT an Oracle built-in function?
+
+a) COUNT()
+
+b) MAX()
+
+c) AVERAGE()
+
+d) MIN()
+
+Answer:
+
+-----------------------------------------------------------------------------------
+
+16. Which of the following is used to enforce data integrity in Oracle?
+
+a) Index
+
+b) Constraint
+
+c) Trigger
+
+d) Procedure
+
+Answer: 
+
+-----------------------------------------------------------------------------------
+
+17. Which of the following is true regarding the "TRUNCATE" statement in Oracle?
+
+a) It removes rows from a table but does not free the space used by the rows.
+
+b) It removes all rows from a table and frees the space.
+
+c) It can be rolled back.
+
+d) It removes the structure of the table along with the data.
+
+Answer: 
+
+-----------------------------------------------------------------------------------
+
+18. Which of the following clauses is used to sort the result of a query 
+    in Oracle?
+
+a) ORDER BY
+
+b) GROUP BY
+
+c) SORT BY
+
+d) SELECT BY
+
+Answer: 
+
+-----------------------------------------------------------------------------------
+
+19. Which Oracle function can be used to return the current date and time?
+
+a) SYSDATE
+
+b) CURRENT_DATE
+
+c) NOW()
+
+d) DATE()
+
+Answer:
+
+-----------------------------------------------------------------------------------
+
+20. Which of the following is the default schema for a user in Oracle?
+
+a) SYSTEM
+
+b) SYS
+
+c) USER
+
+d) PUBLIC
+
+Answer:
+
+-----------------------------------------------------------------------------------
+
+21. What is the primary difference between INNER JOIN and LEFT OUTER JOIN
+    in Oracle SQL?
+
+a) INNER JOIN returns matching rows from both tables, while LEFT OUTER JOIN returns
+   all rows from the left table and matching rows from the right table.
+
+b) LEFT OUTER JOIN returns matching rows from both tables, while INNER JOIN returns
+   all rows from the left table.
+
+c) Both INNER JOIN and LEFT OUTER JOIN return matching rows from both tables.
+
+d) LEFT OUTER JOIN returns all rows from the right table.
+
+Answer: 
+
+-----------------------------------------------------------------------------------
+22. Which of the following is used to give temporary privileges to a user in
+    Oracle?
+
+a) GRANT
+
+b) REVOKE
+
+c) TEMPORARY
+
+d) CREATE
+
+Answer:
+
+-----------------------------------------------------------------------------------
+
+23. Which of the following Oracle commands is used to remove a table from the
+    database?
+
+a) REMOVE TABLE
+
+b) DROP TABLE
+
+c) DELETE TABLE
+
+d) TRUNCATE TABLE
+
+Answer: 
+
+-----------------------------------------------------------------------------------
+
+24. In Oracle, which type of join includes rows where no matching rows 
+    are found in the other table?
+
+a) Left Outer Join
+
+b) Right Outer Join
+
+c) Full Outer Join
+
+d) Inner Join
+
+Answer:
+
+-----------------------------------------------------------------------------------
+
+25. Which of the following SQL functions in Oracle returns the number of rows
+   in a table?
+
+a) COUNT()
+
+b) TOTAL()
+
+c) NUM()
+
+d) ROWCOUNT()
+
+Answer:
+
+-----------------------------------------------------------------------------------
+
+26. Which of the following SQL statements is used to add a new row to an 
+    existing table in Oracle?
+
+a) INSERT INTO
+
+b) ADD INTO
+
+c) PUT INTO
+
+d) UPDATE INTO
+
+Answer:
+
+-----------------------------------------------------------------------------------
+
+27. In Oracle, what does the GRANT command do?
+
+a) Revokes access rights
+
+b) Assigns access rights to users
+
+c) Creates new users
+
+d) Creates new tables
+
+Answer: 
+
+-----------------------------------------------------------------------------------
+
+28. Which Oracle statement is used to update an existing record in a table?
+
+a) MODIFY
+
+b) CHANGE
+
+c) UPDATE
+
+d) SET
+
+Answer: 
+
+-----------------------------------------------------------------------------------
+
+29. Which of the following is the correct Oracle data type for storing a
+    floating-point number?
+
+a) NUMBER
+
+b) DECIMAL
+
+c) FLOAT
+
+d) REAL
+
+Answer: 
+
+-----------------------------------------------------------------------------------
+30. Which of the following is a type of subquery in Oracle?
+
+a) Scalar subquery
+
+b) Correlated subquery
+
+c) Nested subquery
+
+d) All of the above
+
+Answer: 
+
+-----------------------------------------------------------------------------------
+
+31. Which of the following clauses is used in Oracle SQL to filter grouped rows?
+
+a) HAVING
+
+b) WHERE
+
+c) GROUP BY
+
+d) ORDER BY
+
+Answer: 
+
+-----------------------------------------------------------------------------------
+
+
+32. Which of the following SQL statements will retrieve the highest salary
+    from the employees table in Oracle?
+
+a) SELECT MAX(salary) FROM employees;
+
+b) SELECT TOP 1 salary FROM employees ORDER BY salary DESC;
+
+c) SELECT salary FROM employees WHERE salary = MAX(salary);
+
+d) SELECT FIRST(salary) FROM employees;
+
+Answer:
+
+-----------------------------------------------------------------------------------
+
+33. What happens when a COMMIT statement is executed in Oracle?
+
+a) It saves all the changes made during the transaction.
+
+b) It discards all the changes made during the transaction.
+
+c) It pauses the transaction.
+
+d) It logs the transaction for future recovery.
+
+Answer: 
+
+-----------------------------------------------------------------------------------
+
+34. Which of the following is a correct example of a GROUP BY clause in Oracle?
+
+a) SELECT department, COUNT() FROM employees GROUP BY department;
+
+b) SELECT COUNT() GROUP BY department FROM employees;
+
+c) SELECT department, COUNT() WHERE department GROUP BY employees;
+
+d) SELECT department FROM employees GROUP BY COUNT();
+
+Answer:
+
+-----------------------------------------------------------------------------------
+
+35. Which of the following joins returns all rows from the left table and 
+    the matched rows from the right table?
+
+a) Right Outer Join
+
+b) Left Outer Join
+
+c) Inner Join
+
+d) Full Outer Join
+
+Answer: 
+
+-----------------------------------------------------------------------------------
+
+36. In an INNER JOIN, if there is no matching row in the other table, 
+    what is returned?
+
+a) A NULL value for the unmatched row
+
+b) Only the matched rows are returned
+
+c) An error occurs
+
+d) Both matched and unmatched rows are returned
+
+Answer:
+
+-----------------------------------------------------------------------------------
+
+37. Which of the following joins returns rows where there is a match
+    in both tables?
+
+a) Full Outer Join
+
+b) Left Outer Join
+
+c) Right Outer Join
+
+d) Inner Join
+
+Answer:
+
+-----------------------------------------------------------------------------------
+
+38. Which of the following is true about a LEFT OUTER JOIN in Oracle?
+
+a) It only returns rows that exist in the right table.
+
+b) It returns all rows from the right table and matching rows from the left table.
+
+c) It returns all rows from the left table and matching rows from the right table.
+
+d) It only returns rows with matching values in both tables.
+
+Answer:
+
+----------------------------------------------------------------------------------
+
+39. What type of join should be used to combine rows from two tables based on a
+    related column, where only the matching rows should be returned?
+
+a) Cross Join
+
+b) Inner Join
+
+c) Left Join
+
+d) Right Join
+
+Answer: 
+
+-----------------------------------------------------------------------------------
+
+40. Which of the following is true for a CROSS JOIN?
+
+a) It returns the Cartesian product of two tables.
+
+b) It returns only the matching rows from both tables.
+
+c) It returns all rows from the first table and matching rows from the second.
+
+d) It is the same as a LEFT OUTER JOIN.
+
+Answer:
+
+-----------------------------------------------------------------------------------
+
+41. What happens when you perform a CROSS JOIN in SQL?
+
+a) The result is a Cartesian product of the two tables, i.e.,
+   each row of the first table is combined with every
+   row of the second table.
+
+b) The rows from the first table are returned only if there is a match in the second table.
+
+c) The result includes only the rows that have common values in both tables.
+
+d) The result will only show matching rows from both tables.
+
+Answer: 
+
+-----------------------------------------------------------------------------------
+
+42. Which of the following join types is used to get a combination of all rows
+    from the right table and the matched rows from the left table, including 
+    unmatched rows from the right table?
+
+a) Full Outer Join
+
+b) Left Outer Join
+
+c) Right Outer Join
+
+d) Cross Join
+
+Answer:
+
+-----------------------------------------------------------------------------------
+
+43. Which of the following would be a correct syntax for an INNER JOIN in Oracle?
+
+a) SELECT * FROM table1 LEFT JOIN table2 ON table1.id = table2.id;
+
+b) SELECT * FROM table1 RIGHT JOIN table2 ON table1.id = table2.id;
+
+c) SELECT * FROM table1 INNER JOIN table2 ON table1.id = table2.id;
+
+d) SELECT * FROM table1 CROSS JOIN table2;
+
+Answer:
+
+-----------------------------------------------------------------------------------
+
+

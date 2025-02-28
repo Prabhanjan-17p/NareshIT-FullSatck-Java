@@ -1,0 +1,131 @@
+                         INLINE VIEW & ANALYTICAL FUNCTIONS
+                      =========================================
+
+
+1. Inline view:- Oracle 7.2 introduced Inline views.in place of tablename
+                 we are writing subquery is called inline view.
+
+
+Syntax:-
+=======
+ select * from (subquery);
+
+
+
+1.Write a query to display the employees who are getting more
+  than 30000 annsal from emp table?
+
+
+Note:-in where clause we are not allowed to use column aliasname.
+=====   then those type of queries we are putting in inline view.
+      then internally column aliasname behaves like a exact table
+      column 
+
+
+               -----------------------------
+select * from( |  ename  |  sal |  annsal  |)where annsal>300000;
+               -----------------------------
+               |         |      |          |
+               -----------------------------
+
+
+-----------------------------------------------------------------------------------
+
+Analytical functions
+====================
+Oracle having following analytical functions. These are
+
+   1.row_number()
+
+   2.rank()
+ *
+***3.dense_rank()
+ *
+
+
+syntax:-
+=======
+Analytical functionname()over
+    (partition by columnname
+     order by columnname[asc/desc])
+
+   
+eg:-
+=====
+ROW_NUMBER():-
+=============
+
+        DEPTNO       ENAME        SAL         R
+       --------     --------    -------     -----
+          20         SCOTT        2000        1
+          20         FORD         2000        2
+          20         JONES        3000        3
+          20         ALLEN        4000        4
+          20         SMITH        5000        5
+          20         MILLER       5000        6
+          20         MARTIN       5000        7
+          20         ADAMS        6000        8
+
+
+
+RANK():-
+========
+
+       DEPTNO       ENAME        SAL         R
+       --------     --------    -------     -----
+          20         SCOTT        2000        1
+          20         FORD         2000        1
+          20         JONES        3000        3
+          20         ALLEN        4000        4
+          20         SMITH        5000        5
+          20         MILLER       5000        5
+          20         MARTIN       5000        5
+          20         ADAMS        6000        8
+
+
+DENSE_RANK():-
+=============
+ 
+         DEPTNO       ENAME        SAL         R
+       --------     --------    -------     -----
+          20         SCOTT        2000        1
+          20         FORD         2000        1
+          20         JONES        3000        2
+          20         ALLEN        4000        3
+          20         SMITH        5000        4
+          20         MILLER       5000        4
+          20         MARTIN       5000        4
+          20         ADAMS        6000        5
+
+
+-----------------------------------------------------------------------------------
+ *
+***Write a query to display 2nd highest salary employee 
+ *  from emp table by using analytical function
+
+SQL> select * from(select ename,sal,dense_rank()over(order by sal desc)r from emp)
+      where r=2;
+
+
+ENAME             SAL          R
+---------- ---------- ----------
+SCOTT            3000          2
+FORD             3000          2
+
+
+    
+ *
+*2*.Write a query to display 3rd highest salary employee in each 
+ *   department from emp table by using analytical function
+
+
+3.Write a query to display 5th highest salary employee from emp 
+  table by using analytical function?
+
+
+4.Write a query to display nth highest salary employee in each department
+  from emp table by using analytical function?
+
+
+
+-----------------------------------------------------------------------------------

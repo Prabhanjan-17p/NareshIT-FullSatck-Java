@@ -1,0 +1,57 @@
+                                 SUB QUERYS 
+                              ===============
+
+   
+
+1.Write a query to display senior most employee details
+   from emp table?
+
+2.Write a query to display the employees who are working in
+   SMITH department number from emp table?
+
+3.Write a query to display the employees who are getting
+      more sal than the highest paid employee in 20th
+           department from emp table?
+
+4.Write a query to display the employees who are getting
+      more sal than the lowest paid employee in 10th
+           department from emp table?
+
+5.Write a query to display second maximum salary or second
+        highest salary from emp table?
+
+6.Write a query to display second highest sal employee 
+            details from emp table?
+
+7.Write a query to display the employees who are getting 
+       more salary than the avg(sal)from emp?
+
+
+8.Write a query to display the employee records who are 
+        earning more salary than the BLAKE salary?
+
+
+9.Write a query to display the employee records whose job 
+            title is same as ALLEN?
+
+
+10.find the employee name who is earning max salary from emp table?
+
+
+11.Write a query to display the employees who are working in sales 
+   department from emp, dept tables.
+
+
+
+12.Display the employee records who are senior to blake?
+
+
+13.Write a query to display the employees who are getting more
+  salary than the Allen salary and job same as Jones job?
+
+
+14.Write a query to display the employees who are working
+     under Blake as a Manager from emp table by using
+                 empno,mgr columns?
+
+15.Write a query to display longest ename from emp table?

@@ -2045,6 +2045,675 @@ public class Employee
    }
 
 //Output 400 500 500 500
+--------------------------------------------------------------
+25-02-2025
+-----------
+HEAP and STACK Diagram for Sample.java
+---------------------------------------
+public class Sample
+{	
+	private Integer i1 = 900;
+
+	public static void main(String[] args) 
+	{
+		Sample s1 = new Sample();    
+		                              
+		Sample s2 = new Sample();       
+
+	    Sample s3 = modify(s2); 
+
+		s1 = null;
+
+         //GC [4 objects, 1000x, 2000x, 5000x and 6000x are eligible]
+		 
+		System.out.println(s2.i1);		
+	}
+    public static Sample modify(Sample s)
+	{
+		s.i1=9;
+		s = new Sample();
+		s.i1= 20;  
+        System.out.println(s.i1);
+		s=null;
+		return s;
+	}
+}
+
+//20 9
+----------------------------------------------------------------
+HEAP and STACK Diagram for Test.java
+-------------------------------------
+public class Test 
+{
+	Test t;
+	int val;
+
+	public Test(int val)  
+	{
+		this.val = val;
+	}
+
+	public Test(int val, Test t)
+	{
+		this.val = val;
+		this.t = t;
+	}
+
+	public static void main(String[] args) 
+	{
+		Test t1 = new Test(100);
+		
+		Test t2 = new Test(200,t1);
+
+		Test t3 = new Test(300,t1);
+
+		Test t4 = new Test(400,t2);
+
+		t2.t = t3; 
+		t3.t = t4; 
+		t1.t = t2.t; 
+		t2.t = t4.t; 
+
+	System.out.println(t1.t.val);
+	System.out.println(t2.t.val);
+	System.out.println(t3.t.val);
+	System.out.println(t4.t.val);
+	}
+	
+}  
+----------------------------------------------------------------
+HEAP and STACK Digarm for Demo.java
+-------------------------------------
+class Demo
+{
+int x;  
+int y;  
+
+void m1(Demo d)  
+{
+x=x+1;
+y=y+2;
+
+d.x=d.x+3;
+d.y=d.y+4;
+}
+public static void main(String[] args)
+{
+Demo d1=new Demo(); 
+Demo d2=new Demo();  
+
+d1.m1(d2);
+
+System.out.println(d1.x+"... "+d1.y); 
+System.out.println(d2.x+"... "+d2.y); 
+
+d2.m1(d1);
+System.out.println(d1.x+"... "+d1.y);
+System.out.println(d2.x+"... "+d2.y);
+
+d1.m1(d1);
+System.out.println(d1.x+"... "+d1.y);
+System.out.println(d2.x+"... "+d2.y);
+
+d2.m1(d2);
+System.out.println(d1.x+"... "+d1.y);
+System.out.println(d2.x+"... "+d2.y);
+ }
+}
+================================================================
+Passing an Object reference to the Constructor :(Copy Constructor)
+------------
+In java, We can pass an object reference to the Constructor. The main purpose of passing an object reference to the constructor to copy the content of one object to another object.
+
+Example :
+----------
+class Employee
+{
+}
+class Manager
+{
+  public Manager(Employee emp)
+  {
+  }
+}
+ 
+//Program that describes how to copy the content of one object from another object
+
+3 files :
+-----------
+Employee.java
+--------------
+package com.ravi.passing_object_ref;
+
+public class Employee 
+{
+	private int employeeId;
+	private String employeeName;
+
+	public Employee(int employeeId, String employeeName) 
+	{
+		super();
+		this.employeeId = employeeId;
+		this.employeeName = employeeName;
+	}
+
+	public int getEmployeeId() {
+		return employeeId;
+	}
+
+	public String getEmployeeName() {
+		return employeeName;
+	}
+}
+
+Manager.java
+-------------
+package com.ravi.passing_object_ref;
+
+public class Manager 
+{
+	private int managerId;
+	private String managerName;
+
+	public Manager(Employee emp) 
+	{
+		this.managerId = emp.getEmployeeId();
+		this.managerName = emp.getEmployeeName();
+	}
+
+	@Override
+	public String toString() {
+		return "Manager [managerId=" + managerId + ", managerName=" + managerName + "]";
+	}
+
+}
+
+CopyConstructor.java
+---------------------
+package com.ravi.passing_object_ref;
+
+public class CopyConstructor 
+{
+	public static void main(String[] args) 
+	{
+		Employee e1 = new Employee(111, "Scott");
+		
+		Manager m1 = new Manager(e1);
+                System.out.println(m1);
+	}
+
+}
+
+Note : In the above program we have copied the data of Employee object to initialize the Manager Object.
+----------------------------------------------------------------
+The following program explains how to copy the same object data to another object of same type.
+ 
+2 files :
+----------
+package com.ravi.passing_object_ref;
+
+public class Product 
+{
+	private int productId;
+	private String productName;
+
+	public Product(int productId, String productName) 
+	{
+		super();
+		this.productId = productId;
+		this.productName = productName;
+	}
+
+	public Product(Product prod) //prod = p1
+	{
+		this.productId = prod.productId;
+		this.productName = prod.productName;
+	}
+
+	@Override
+	public String toString() {
+		return "Product [productId=" + productId + ", productName=" + productName + "]";
+	}	
+}
+
+package com.ravi.passing_object_ref;
+
+public class CopyConstructorDemo {
+
+	public static void main(String[] args) 
+	{
+		Product p1 = new Product(111, "Laptop");		
+		Product p2 = new Product(p1);
+		
+		System.out.println(p1);
+		System.out.println(p2);
+
+	}
+
+}
+================================================================
+26-02-2025
+-----------
+Scenario Based Programs :
+--------------------------
+Lab Program :(Method return type as a class + Passing Object ref)
+----------------------------------------------------------------
+A BLC class called Customer is given to you. 
+
+The task is to find the applicable Credit card Type and create CardType object based on the Credit Points of a customer.
+
+Define the following for the class.
+
+Attributes : 
+	customerName : String,private
+	creditPoints: int, private
+
+Constructor :
+	parameterizedConstructor: for both cusotmerName & creditPoints in that order.
+
+Methods :
+	Name of the method : getCreditPoints
+	Return Type : int
+	Modifier   : public 
+	Task : This method must return creditPoints
+	
+	Name of the method : toString, Override it, 
+	Return type : String 
+	Task :  return only customerName from this.
+
+Create another class called CardType. Define the following for the class
+
+Attributes :
+	customer : Customer, private
+	cardType : String, private
+Constructor :
+	parameterizedConstructor: for customer and cardType attributes in that order
+
+Methods :
+	Name of the method : toString  Override this.  
+	Return type : String
+	Modifier : public
+	Task :  Return the string in the following format.
+		The Customer 'Rajeev' Is Eligible For 'Gold' Card.
+
+
+Create One more class by name CardsOnOffer and define the following for the class.
+
+Method : 
+	Name Of the method : getOfferedCard 
+	Return type : CardType
+	Modifiers: public,static
+	Arguments: Customer object
+
+	Task : 	Create and return a CardType object after logically finding cardType from creditPoints as per the below rules.
+		creditPoints	    cardType
+		100  - 500	-   Silver
+		501  - 1000	-   Gold
+		1000 >		-   Platinum
+		< 100		-   EMI
+		
+Create  an ELC class which contains Main method to test the working of the above application.
+
+4 files :
+----------
+Customer.java
+----------------
+package com.ravi.scenario;
+
+public class Customer 
+{
+	private String customerName;
+	private int creditPoints;
+
+	public Customer(String customerName, int creditPoints) 
+	{
+		super();
+		this.customerName = customerName;
+		this.creditPoints = creditPoints;
+	}
+	
+	
+	public int getCreditPoints()
+	{
+		return this.creditPoints;
+    }
+
+
+	@Override
+	public String toString()
+	{
+		return this.customerName;
+	}
+	
+
+}
+
+CardType.java
+--------------
+package com.ravi.scenario;
+
+public class CardType 
+{
+	private Customer customer;
+	private String cardType;
+
+	public CardType(Customer customer, String cardType) 
+	{
+		super();
+		this.customer = customer;
+		this.cardType = cardType;
+	}
+
+	@Override
+	public String toString() 
+	{
+				
+		return "The Customer '"+ this.customer+"' Is Eligible For '"+this.cardType+"' Card";
+	}
+
+	
+}
+
+CardsOnOffer.java
+--------------------
+package com.ravi.scenario;
+
+public class CardsOnOffer 
+{
+  public static CardType getOfferedCard(Customer cust) //cust = c1
+  {
+	  int creditPoint = cust.getCreditPoints();
+	  
+	  if(creditPoint >=100 && creditPoint <=500)
+	  {
+		  return new CardType(cust, "Silver");
+	  }
+	  else if(creditPoint >500 && creditPoint <=1000)
+	  {
+		  return new CardType(cust, "Gold");
+	  }
+	  else if(creditPoint > 1000)
+	  {
+		  return new CardType(cust, "Platinum");
+	  }
+	  else
+	  {
+		  return new CardType(cust, "EMI");
+	  }
+	 
+  }
+}
+
+CreditCardType.java
+--------------------
+package com.ravi.scenario;
+
+import java.util.Scanner;
+
+public class CreditCardType 
+{
+	public static void main(String[] args) 
+	{
+		Scanner sc = new Scanner(System.in);
+		System.out.print("Enter Customer Name :");
+		String name = sc.nextLine();
+		System.out.print("Enter Customer Credit Point :");
+		int creditPoint = sc.nextInt();
+		
+		Customer c1 = new Customer(name, creditPoint);
+		
+		CardType offeredCard = CardsOnOffer.getOfferedCard(c1);
+		System.out.println(offeredCard);
+		
+		sc.close();
+	}
+
+}
+==============================================================
+Constructor Overloading :
+-------------------------
+We can write multiple constructors in a single class but arguments must be different.
+
+Example :
+-----------
+public class Calculate
+{
+    public Calculate(int x, int y)
+    {
+    }
+
+    public Calculate(int x, int y, int z)  //Constructor Overloading
+    {
+    }
+}
+
+In order to call all the constructors in the same class, we need not to create multiple objects, with single object we can call all the constructors with the help of this() [this of].
+
+**THE FIRST LINE OF ANY CONSTRUCTOR IS RESERVED EITHER FOR this() OR
+super() [this of OR super of] that means the first line of any constructor is used to call another constructor either from same class (this()) OR from super class (super()).
+
+this() [this of] must be the first line of any constructor, we can't write in the 2nd line.
+
+this() we can use only for constructor calling but not method calling.
+
+Calculate.java
+---------------
+package com.ravi.constructor_overloading;
+
+public class Calculate 
+{
+  public Calculate(int x) //2
+  {
+	  this("Data", "Base");
+	  System.out.println("Square of "+x+" is :"+(x*x));
+  }
+  
+  public Calculate(int x, int y)  //1
+  {	  
+	  this(5);
+	  System.out.println("Sum of "+x+" and "+y+" is :"+(x+y));	  
+  } 
+  
+  public Calculate(String x, String y) //3
+  {
+	  System.out.println("String after concatenation :"+(x+y));
+  } 
+  
+}
+
+ConstructorOverloading.java
+---------------------------
+package com.ravi.constructor_overloading;
+
+public class ConstructorOverloading {
+
+	public static void main(String[] args) 
+	{
+		new Calculate(10,20); //Anonymous OR Nameless object
+
+	}
+
+}
+-------------------------------------------------------------
+27-02-2025
+----------
+Modifiers on Constructor :
+---------------------------
+Constructor can accept all types of access modifiers which are apllicable for accessibility level like private, default, protected and public.
+
+Example :
+----------
+public class Test   //Valid    private  protected  public  
+{                   //Invalid  static final abstract synchronized
+   public Test()
+   {
+	   
+   }	
+}  
+
+
+Note : We can't apply static, final, abstract and synchronized modifier on constructor.
+--------------------------------------------------------------------
+IQ :
+----
+Why we should declare a constructor with private Access modifier ?
+
+We can declare a constructor with private access modifier due to the following two reasons :
+
+1) If we want to declare only static variables and static methods inside a class then we should decalre constructor with private access modifier [Object is not required]
+
+Example : java.util.Arrays and java.lang.Math class has private constructor because It contains only static methods and will not allow anyone to create the object.
+
+2) If we want to develop singleton class, for singleton class we should create only one object by the class itself then we should declare the constructor with private access modifier.       
+
+package com.ravi.constructor;
+
+public class Foo 
+{
+  private Foo() //Private Constructor
+  {
+	  System.out.println("It is a private Constructor");
+  }
+  
+  public static void main(String [] args)
+  {
+	  new Foo(); 	  
+  }
+	
+}
+=================================================================== Instance Block OR Instance Initializer OR Non static block :
+-------------------------------------------------------------
+An instance block is a very special block in java which is automatically executed at the time of creating the Object.
+
+Example :
+----------
+{
+   System.out.println("It is a Non static block");
+}
+
+Every time we will create an Object then instance block will be executed.
+
+NSBDemo1.java
+--------------
+package com.ravi.non_static_block;
+
+class Test
+{
+	{
+		System.out.println("NSB");
+	}
+}
+
+public class NSBDemo1 
+{
+	public static void main(String[] args) 
+	{
+		new Test();
+		new Test();
+
+	}
+
+}
+
+A non static block is executed before the Constructor body execution.
+
+The first line of any constructor is reserved for this() OR super(). If a contsructor contains super() as a first line of constructor then that constructor 2nd line is reserved for Non static block.
+
+NSBDemo2.java
+--------------
+package com.ravi.non_static_block;
+
+class Demo
+{
+	public Demo()
+	{
+		System.out.println("No Argument constructor");
+	}
+
+	{
+		System.out.println("Non static Block");
+	}	
+}
+
+public class NSBDemo2 
+{
+	public static void main(String[] args) 
+	{
+		new Demo();  new Demo();
+	}
+
+}
+
+NSBDemo3.java
+---------------
+package com.ravi.non_static_block;
+
+class Sample
+{
+	public Sample()
+	{
+		super();
+		//2nd line is reserved for NSB
+		System.out.println("No Argument Constructor");
+	}
+	
+	public Sample(int x, int y)
+	{
+	  this();
+	  System.out.println("Parameterized Constructor and Sum is :"+(x+y));	  	
+	}
+	
+	{
+		System.out.println("Non static Block");
+	}
+	
+	
+}
+
+public class NSBDemo3 {
+
+	public static void main(String[] args) 
+	{
+		new Sample(10,20);
+	}
+
+}
+
+The main purpose of non static block to initialize the non static data member of the class that is the reason It is also known as Instance Initializer, It is also used to provide some common message OR common logic execution for all the Objects.
+
+package com.ravi.non_static_block;
+
+class Foo
+{
+	private int x;
+		
+	public Foo()
+	{
+		System.out.println("x value is :"+x);
+	}
+	
+	{
+		x = 100;
+		System.out.println("Object creation is in progress....");
+	}	
+}
+
+public class NSBDemo4 {
+
+	public static void main(String[] args) 
+	{
+		new Foo();
+		System.out.println(".........");
+		new Foo();
+
+	}
+
+}
+
+
+
+
+
 
 
 

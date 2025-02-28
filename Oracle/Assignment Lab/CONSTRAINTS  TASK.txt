@@ -1,0 +1,94 @@
+                           CONSTRAINTS
+                         ---------------
+
+-----------------------------------------------------------------------------------
+1.Create a student table with constraints based on following
+  conditions.
+
+---->after creating the table insert the records and observe
+     the outputs.
+
+SID     Don't accept nulls and duplicates
+
+SNAME   Don't accept nulls
+
+M1      Marks between 0 to 100
+
+-----------------------------------------------------------------------------------
+2.Create a employee table with constraints based on following
+  conditions.
+
+---->after creating the table insert the records and observe
+     the outputs.
+
+USERID     don't accept nulls and duplicates
+
+USERNAME   don't accept nulls and duplicates
+
+PWD         Password minimum 8 characters
+
+-----------------------------------------------------------------------------------
+3.Create the emp3 table with constraints based on following
+  conditions.
+
+--->after creating the table insert the records and observe
+    the outputs.
+
+EMPNO      don't accept nulls and duplicates 
+
+ENAME      don't accept nulls
+
+GENDER     Must be M or F
+
+SAL        Minimum 5000 (means 5000 or above it will accept)
+
+
+----------------------------------------------------------------------------------
+    
+
+4.Create the BANK table with constraints based on following
+  conditions.
+
+--->after creating the table insert the records and observe
+    the outputs.
+
+ACCNO       Should not be duplicate & null
+
+ACCTYPE     Must be 'S' OR 'C'
+
+BAL         Must be min 1000
+
+-----------------------------------------------------------------------------------
+5.Create table PROJECT table with constraints based on following
+  conditions.
+
+--->after creating the table insert the records and observe
+    the outputs.
+
+Projec_tid      should not accept nulls & duplicates
+
+Project_name     don't accept nulls
+
+Price            minimum 20000
+
+-----------------------------------------------------------------------------------
+6.Create the vehicle table with constraints based on following
+  conditions.
+
+--->after creating the table insert the records and observe
+    the outputs.
+
+
+vehicle_id         don't accept nulls and duplicates 
+
+owner_name         don't accept null values
+
+license_plate      should not be duplicate
+
+ vehicle_type       vehicle type should be either bike or car              
+
+-----------------------------------------------------------------------------------
+
+      
+
+     

@@ -1,38 +1,211 @@
 Q1)
 
-The payroll system of an organization involves calculating the gross salary of each type of
-employee and the tax applicable to each.
-Create the following entity classes as described below.
+The payroll system of an organization involves calculating the gross salary of each type of employee and the tax applicable to each. Create the following entity classes as described below.
+
 Class Employee
 Fields: id: int, name : String, basicSalary : double, HRAPer : double, DAPer : double
 Public Method: calculateGrossSalary() - returns a double
 Calculate the gross salary as : basicSalary +HRAPer +DAPer
+
 Class Manager
 Fields: id: int, name : String, basicSalary : double, HRAPer : double,DAPer : double,
 projectAllowance: double
 Public Method: calculateGrossSalary() - returns a double
 Calculate the gross salary as : basicSalary +HRAPer +DAPer + projectAllowance
+
 Class Trainer
 Fields: id: int, name : String, basicSalary : double, HRAPer : double,DAPer : double,
 batchCount: int, perkPerBatch: double
 Public Method: calculateGrossSalary() - returns a double
 Calculate the gross salary as : basicSalary +HRAPer +DAPer +(batchCount * perkPerBatch)
+
 Class Sourcing
 Fields: id: int, name : String, basicSalary : double, HRAPer : double,DAPer : double,
 enrollmentTarget: int, enrollmentReached: int, perkPerEnrollment: double
 Public Method: calculateGrossSalary() - returns a double
-Calculate the gross salary as: basicSalary +HRAPer
-+DAPer
-+((enrollmentReached/enrollmentTarget)*100)*perkPerEnrollment))
+Calculate the gross salary as: ((basicSalary +HRAPer+DAPer+((enrollmentReached/enrollmentTarget)*100)*perkPerEnrollment))
+
 Class TaxUtil
 Fields: None
 Public
 Methods:
-calculateTax(Employee) - returns a
-doublecalculateTax(Manager) - returns
-a double calculateTax(Trainer) - returns
-a double calculateTax(Sourcing) -
-returns a double
-Tax Calculation Logic: If gross salary is greater than 30000 tax is 20% else, tax is
-5%Note : Attributes/Fields must be non-Private for the above classes.
+calculateTax(Employee) - returns a double
+calculateTax(Manager) - returns a double 
+calculateTax(Trainer) - returns a double 
+calculateTax(Sourcing) - returns a double
+
+Tax Calculation Logic: If gross salary is greater than 30000 tax is 20% else, tax is 5%
+Note : Attributes/Fields must be non-Private for the above classes.
 A class Test is given to you with the main Method. Use this class to test your solution.
+
+
+
+solution
+-------------
+6 Files 
+=========
+Employee.java
+--------------
+package com.nareshIT.day24;
+
+public class Employee {
+	int id;
+	String name ; 
+	double basicSalary;
+	double HRAPer ;
+	double DAPer;
+	
+	
+	
+	public Employee(int id, String name, double basicSalary, double hRAPer, double dAPer) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.basicSalary = basicSalary;
+		HRAPer = hRAPer;
+		DAPer = dAPer;
+	}
+
+
+
+	public double calculateGrossSalary() {
+		return  basicSalary +HRAPer +DAPer;
+	}
+}
+
+Manager.java
+--------------
+package com.nareshIT.day24;
+
+public class Manager {
+	int id;
+	String name ; 
+	double basicSalary;
+	double HRAPer ;
+	double DAPer;
+	double projectAllowance;
+	
+	public Manager(int id, String name, double basicSalary, double hRAPer, double dAPer, double projectAllowance) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.basicSalary = basicSalary;
+		HRAPer = hRAPer;
+		DAPer = dAPer;
+		this.projectAllowance = projectAllowance;
+	}
+
+
+	public double calculateGrossSalary() {
+		return basicSalary +HRAPer +DAPer + projectAllowance;
+	}
+}
+
+Trainer.java
+--------------
+package com.nareshIT.day24;
+
+public class Trainer {
+	int id;
+	String name ; 
+	double basicSalary;
+	double HRAPer ;
+	double DAPer;
+	int batchCount;
+	double perkPerBatch;
+	
+	public Trainer(int id, String name, double basicSalary, double hRAPer, double dAPer, int batchCount,
+			double perkPerBatch) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.basicSalary = basicSalary;
+		HRAPer = hRAPer;
+		DAPer = dAPer;
+		this.batchCount = batchCount;
+		this.perkPerBatch = perkPerBatch;
+	}
+
+	public double calculateGrossSalary() {
+		return  basicSalary +HRAPer +DAPer +(batchCount * perkPerBatch);
+	}
+}
+
+Sourcing.java
+--------------
+package com.nareshIT.day24;
+
+public class Sourcing {
+	int id;
+	String name ; 
+	double basicSalary;
+	double HRAPer ;
+	double DAPer;
+	int enrollmentTarget;
+	int enrollmentReached;
+	double perkPerEnrollment;
+	
+	public Sourcing(int id, String name, double basicSalary, double hRAPer, double dAPer, int enrollmentTarget,
+			int enrollmentReached, double perkPerEnrollment) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.basicSalary = basicSalary;
+		HRAPer = hRAPer;
+		DAPer = dAPer;
+		this.enrollmentTarget = enrollmentTarget;
+		this.enrollmentReached = enrollmentReached;
+		this.perkPerEnrollment = perkPerEnrollment;
+	}
+
+
+	public double calculateGrossSalary() {
+		return  ((basicSalary+HRAPer+DAPer+((enrollmentReached/enrollmentTarget)*100)*
+				perkPerEnrollment));
+	}
+}
+
+TaxUtil.java
+--------------
+package com.nareshIT.day24;
+
+public class TaxUtil {
+	
+	public static double calculateTax(Employee e) {
+        double grossSalary = e.calculateGrossSalary();
+        return (grossSalary > 30000) ? grossSalary * 0.20 : grossSalary * 0.05;
+    }
+	public static double calculateTax(Manager e) {
+        double grossSalary = e.calculateGrossSalary();
+        return (grossSalary > 30000) ? grossSalary * 0.20 : grossSalary * 0.05;
+    }
+	public static double calculateTax(Trainer t) {
+        double grossSalary = t.calculateGrossSalary();
+        return (grossSalary > 30000) ? grossSalary * 0.20 : grossSalary * 0.05;
+    }
+	public static double calculateTax(Sourcing s) {
+        double grossSalary = s.calculateGrossSalary();
+        return (grossSalary > 30000) ? grossSalary * 0.20 : grossSalary * 0.05;
+    }
+	
+}
+
+TaskDemo.java
+--------------
+package com.nareshIT.day24;
+
+public class TaskDemo {
+	public static void main(String[] args) {
+		TaxUtil t = new TaxUtil();
+	    Employee emp = new Employee(1, "Alice", 25000, 5000, 2000);
+	    double totPayEMP = t.calculateTax(emp);
+	    Manager mgr = new Manager(2, "Bob", 40000, 8000, 3000, 5000);
+	    double totPayMGR =t.calculateTax(mgr);
+	    Trainer trn = new Trainer(3, "Charlie", 30000, 7000, 3000, 5, 2000);
+	    double totPayTRN =t.calculateTax(trn);
+	    Sourcing src = new Sourcing(4, "David", 35000, 6000, 2500, 50, 40, 500);
+	    double totPaySRC =t.calculateTax(src);
+	    
+	    System.out.println(totPayEMP+":"+totPayMGR+":"+totPayTRN+":"+totPaySRC);
+	}
+}

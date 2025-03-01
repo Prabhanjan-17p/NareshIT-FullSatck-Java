@@ -221,4 +221,31 @@ SQL> SELECT * FROM BRANCH;
 // 5 - FOREIGN KEY
 ======================
 // 5.1- Column Level
-    --> Create Table 
+    --> Create Table
+SQL> CREATE TABLE COLLEGE(C_CODE NUMBER(4) PRIMARY KEY, COLLEGE_NAME VARCHAR2(10));d.
+
+SQL> INSERT INTO COLLEGE VALUES (1021,'CBIT');
+SQL> INSERT INTO COLLEGE VALUES (1022,'VBIT');
+
+SQL> CREATE TABLE STUDENT1(SID NUMBER(3),SNAME VARCHAR2(10),C_CODE NUMBER(4) REFERENCES COLLEGE(C_CODE));
+
+Testing
+----------
+SQL> INSERT INTO STUDENT1 VALUES (101,'SMITH',1021);       // Allowed
+SQL> INSERT INTO STUDENT1 VALUES (102,'ALLEN',1021);       // Allowed
+SQL> INSERT INTO STUDENT1 VALUES (103,'WARD',1022);        // Allowed
+SQL> INSERT INTO STUDENT1 VALUES (104,'JONES',NULL);       // Allowed
+SQL> INSERT INTO STUDENT1 VALUES (103,'WARD',1023);        // NOT-Allowed(What ever value in PRIMARY key that will be add here)
+
+SQL> UPDATE STUDENT1 SET C_CODE = 1023 WHERE C_CODE IS NULL;  // NOT-Allowed(What ever value in PRIMARY key that will be add here)
+SQL> UPDATE STUDENT1 SET C_CODE = 1021 WHERE C_CODE IS NULL;       // Allowed
+SQL> UPDATE STUDENT1 SET C_CODE = 1022 WHERE C_CODE IS NULL;       // Allowed
+
+SQL> SELECT * FROM STUDENT1;
+
+       SID SNAME          C_CODE
+---------- ---------- ----------
+       101 SMITH            1021
+       102 ALLEN            1021
+       103 WARD             1022
+       104 JONES            1021 

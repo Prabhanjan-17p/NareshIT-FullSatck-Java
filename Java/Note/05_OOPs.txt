@@ -2162,7 +2162,7 @@ System.out.println(d2.x+"... "+d2.y);
 }
 ================================================================
 Passing an Object reference to the Constructor :(Copy Constructor)
-------------
+------------------------------------------------------------------
 In java, We can pass an object reference to the Constructor. The main purpose of passing an object reference to the constructor to copy the content of one object to another object.
 
 Example :
@@ -2581,7 +2581,8 @@ public class Foo
   }
 	
 }
-============================================================Instance Block OR Instance Initializer OR Non static block :
+============================================================
+Instance Block OR Instance Initializer OR Non static block :
 ------------------------------------------------------------
 An instance block is a very special block in java which is automatically executed at the time of creating the Object.
 

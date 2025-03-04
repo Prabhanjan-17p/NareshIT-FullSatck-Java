@@ -1,8 +1,8 @@
 // Java File
-public class Demo
-{
+// public class Demo
+// {
    //Programmer has not provided any constructor
-}
+// }
 
 
 

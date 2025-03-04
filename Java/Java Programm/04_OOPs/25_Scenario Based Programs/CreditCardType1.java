@@ -63,7 +63,7 @@ Create  an ELC class which contains Main method to test the working of the above
 
 import java.util.Scanner;
 
-public class CreditCardType 
+public class CreditCardType1 
 {
 	public static void main(String[] args) 
 	{

@@ -1,0 +1,659 @@
+01-03-2025
+-----------
+Relationship between the classes :
+----------------------------------
+In java, In between the classes we have 2 types of relation :
+
+1) IS-A Relation
+2) HAS-A Relation
+
+We can achieve IS-A relation by using Inheritance Concept.
+We can achieve HAS-A relation by using Association Concept.
+
+IS-A Relation Example :
+------------------------
+public class Vehicle
+{
+}
+public class Car extends Vehicle  //[Car IS-A Vehicle]
+{
+}
+public class Toyota extends Car  //[Toyota IS-A Car]
+{
+}
+
+HAS-A Relation Example :
+-------------------------
+public class Address
+{
+}
+
+public class Student
+{
+   private Address address; //HAS-A Relation [Student has 
+}                                              Address]
+
+--------------------------------------------------------------
+Inheritance (IS-A Relation) :
+------------------------------
+Deriving a new class(Developer2) from the existing class (Developer1) in such a way that the new class (Developer2) will acquire all the properties and features (except private properties) from existing class (Developer1).
+
+The main purpose of inheritance to provide "Code Reusability".
+
+In java, We provide inheritance by using extends keyword.
+
+By using inheritance, The relationship between the classes would be parent and child, According to Java, Parent class is called super class and child class is called sub class.
+
+In inheritance, sub class need not to start the process from 
+begning onwards because sub class has already all the features and properties are available.
+
+It provides "tightly couple" relation that menas, if we modify anything in the super class then it will automatically reflect to all the sub classes.
+
+It provides hierarchical classification of classes, In this hierarchy, If we move towards upward direction then more generalized properties will occur but if we move towards downward direction then more specialied properties will 
+occur.
+
+Types of Inheritance in java :
+-------------------------------
+We have 5 types of Inheritance in java :
+
+1) Single Level Inheritance 
+2) Multilevel Inheritance
+3) Hierarchical Inheritance
+4) Multiple Inheritance [Not supported by using class]
+5) Hybrid Inheritance.
+
+Note : a) Inheritance follows top to bottom approach.
+       b) In inheritance, It is always better to create the 
+          Object for more specialized class (child class) 
+	   
+//Program on Single Level Inheritance :
+----------------------------------------
+package com.ravi.inheritance;
+
+public class Parent
+{
+  public void house()
+  {
+	  System.out.println("3 BHK HOUSE");
+  }
+}
+
+
+package com.ravi.inheritance;
+
+public class Child extends Parent 
+{
+  public void car()
+  {
+	  System.out.println("BMW Car");
+  }
+}
+
+
+
+package com.ravi.inheritance;
+
+public class SingleLevelDemo {
+
+	public static void main(String[] args)
+	{
+		Child c1 = new Child();
+		c1.house();
+		c1.car();
+	}
+
+}
+-------------------------------------------------------------
+//Program on Single Level Inheritance :
+----------------------------------------
+package com.ravi.inheritance;
+
+class Super
+{
+	private int x, y;
+    
+	public void setData(int x, int y)
+	{
+		this.x = x;
+		this.y = y;
+	}
+
+	public int getX() 
+	{
+		return x;
+	}
+	
+	public int getY() 
+	{
+		return y;
+	}
+
+	
+}
+class Sub extends Super
+{
+	public void showData()
+	{
+		System.out.println("x value is :"+getX());
+		System.out.println("y value is :"+getY());
+	}
+}
+public class SingleLevelExample {
+
+	public static void main(String[] args) 
+	{
+       Sub s1 = new Sub();
+       s1.setData(100, 200);
+       s1.showData();
+	}
+
+}
+-------------------------------------------------------------
+03-03-2025
+----------
+How to initialize the super class properties (super class instance variable) through sub class object :
+
+super keyword is used to access the member or to access the memory of super class.
+
+In order to initialize the super class properties we should use super keyword in the sub class as a first line of constructor.
+
+super keyword always referes to its immediate super class.
+
+Just like this keyword, super keyword (non static member) also we can't use inside static context.
+
+super keyword we can use 3 ways in java :
+------------------------------------------
+1) To access super class variable (Variable Hiding)
+2) To access super class method (Method Overriding)
+3) To access super class constructor. (Constructor Chaining)
+
+
+1) To access the super class variable (Variable Hiding) :
+---------------------------------------------------------
+Whenever super class variable name and sub class variable name both are same then it is called variable Hiding, Here sub class variable hides super class variable.
+
+In order to access super class variable i.e super class memory, we should use super keyword as shown in the program.[03-MARCH]
+
+VariableHidingDemo1.java
+------------------------
+package com.ravi.variable_hiding;
+
+class Father
+{
+	protected double balance = 50000;
+}
+
+class Son extends Father
+{
+	protected double balance = 20000;  //Variable Hiding
+	
+	public void printBalance()
+	{
+		System.out.println("Son balance is :"+this.balance);
+		System.out.println("Father balance is :"+super.balance);
+	}	
+}
+public class VariableHidingDemo1 
+{
+	public static void main(String[] args) 
+	{
+		Son raj = new Son();
+		raj.printBalance();
+	}
+
+}
+================================================================
+Method Hiding = It is only possible with static method.
+Method Overriding = It is only possible with non-static method.
+
+2) To call the method super class (Method Overriding)
+------------------------------------------------------
+If the super class non static method name and sub class non static method name both are same (Method Overriding) and if we create an object for sub class then sub class method will be 
+executed (bottom to top), if we want to call super class method from sub class method body then we we should use super keyword as shown in the program.
+
+package com.ravi.inheritance_demo;
+
+class Alpha
+{
+	@Override
+	public String toString() 
+	{
+		return "Alpha []";
+	}	
+}
+
+class Beta extends Alpha
+{
+	@Override
+	public String toString() 
+	{
+		return "Beta []";
+	}	
+}
+
+class Gamma extends Beta
+{
+	@Override
+	public String toString() 
+	{
+		return "Gamma []";
+	}	
+}
+
+public class MethodOverridingDemo1 {
+
+	public static void main(String[] args) 
+	{
+		Gamma g = new Gamma();
+		System.out.println(g);
+	}
+
+}
+---------------------------------------------------------------
+package com.ravi.inheritance_demo;
+
+class Base
+{
+	public void show()
+	{
+		System.out.println("Base class show method");
+	}
+}
+class Derived extends Base
+{
+	public void show()
+	{
+		System.out.println("Derived class show method");
+		super.show();
+	}
+}
+
+public class MethodOverridingDemo2 {
+
+	public static void main(String[] args) 
+	{
+		Derived d = new Derived();
+		d.show();
+	}
+
+}
+================================================================
+3) To call super class Constructor (Constructor Chaining)
+---------------------------------------------------------
+Whenever we write a class in java and we don't write any kind of constructor to the class then the java compiler will automatically add one default constructor to the class.
+
+THE FIRST LINE OF ANY CONSTRUCTOR IS RESERVERD EITHER FOR super() or this() keyword that means first line of any constructor is used to call another constructor of either same class OR super class.
+
+In the first line of any constructor if we don't specify either super() or this() then the compiler will automatically add super() to the first line of constructor.
+
+Now the purpose of this super() [added by java compiler], to call the default constructor or No-Argument constructor of the super class.
+
+In order to call the constructor of super class as well as same class, we have total 4 cases.
+---------------------------------------------------------------
+04-03-2025
+----------
+Case 1:
+-------
+super() : Automatically added by compiler to maintain the 
+          hierarchy in the first line of the Constructor. It
+	  is used to call default OR no argument constructor 
+	  of super class.
+
+package com.ravi.constructor_chaining;
+
+class Alpha
+{
+	public Alpha()
+	{
+		super(); //No Argument OR Default constructor of super class
+		System.out.println("Alpha class Constructor");
+	}
+}
+class Beta extends Alpha
+{
+	public Beta()
+	{
+		super();//No Argument OR Default constructor of super class		  
+		System.out.println("Beta class Constructor");		
+	}
+}
+
+public class ConstructorChainingDemo1 
+{
+	public static void main(String[] args) 
+	{
+		new Beta();
+	}
+
+}
+---------------------------------------------------------------
+Case 2 :
+---------
+super("Scott");  : User has to write explicitly to the first line 
+                   of the Constructor. It is used to call 
+		   Parameterized Constructor (Pramaterized constructor of super class which accepts a String value as a parameter) of super class.
+
+package com.ravi.constructor_chaining;
+
+class Super
+{
+	public Super(String name)
+	{
+		super();
+		System.out.println("My name is :"+name);
+	}
+}
+class Sub extends Super
+{
+	public Sub()
+	{
+		super("Scott");
+		System.out.println("No Argument constructor of sub class");
+	}
+}
+
+public class ConstructorChainingDemo2 {
+
+	public static void main(String[] args) 
+	{
+		new Sub();
+
+	}
+
+}
+-----------------------------------------------------------------
+IQ :
+---
+class A
+{
+	public A()
+	{
+		System.out.println("A");
+	}
+}
+class B extends A
+{	
+}
+
+class C extends B
+{
+	public C()
+	{
+		System.out.println("C");
+	}
+}
+public class Test   
+{                   
+   public static void main(String [] args)
+   {
+       new C();	   
+   }	
+}  
+
+Output is : AC
+So it is clear that, compiler adds default constructor in B class as well as in the first line compiler is adding super().
+------------------------------------------------------------------
+Case 3 :
+---------
+this()  : Written by user in the first line of constructor. It is 
+          used to call no argument constructor of current class
+	  OR Same class.
+
+package com.ravi.constructor_chaining;
+
+class Base
+{
+	public Base()
+	{
+		System.out.println("No Arg. constructor of super class ");
+	}
+	public Base(int x)
+	{
+		this();
+		System.out.println("Parameterized constructor of super class :"+x);
+	}
+}
+
+class Derived extends Base
+{
+	public Derived()
+	{
+		super(15);
+		System.out.println("No Arg. constructor of Sub class ");
+	}
+}
+
+public class ConstructorChaningDemo3 
+{
+	public static void main(String[] args)
+	{
+		new Derived();
+
+	}
+
+}
+------------------------------------------------------------------
+Case 4 :
+--------
+this("Smith");  : It is explicitly written by user in the first
+                  line of the constructor. It is used to call 
+		  parameterized constructor of current class.
+
+package com.ravi.constructor_chaining;
+
+class Parent
+{
+	public Parent()
+	{
+		this("Smith");
+		System.out.println("No Argument Constructor of Parent class");
+	}
+	
+	public Parent(String name)
+	{
+		System.out.println("Parameterized Constructor :"+name);
+	}
+}
+class Child extends Parent
+{
+	public Child()
+	{
+		System.out.println("No Argument Constructor of Child class");
+	}
+}
+
+public class ConstructorChainingDemo4 
+{
+	public static void main(String[] args) 
+	{
+		new Child();
+	}
+
+}
+==================================================================
+WAP to show hierarchical Inheritance :
+---------------------------------------
+package com.ravi.hierarchical;
+
+class Shape
+{
+	protected int x;
+	
+	public Shape(int x)
+	{
+		this.x = x; 
+		System.out.println("x value is :"+x);
+	}	
+}
+class Square extends Shape
+{	
+	public Square(int side)
+	{
+		super(side);
+	}
+	
+	public void getAreaOfSquare()
+	{
+		double area = x * x;
+		System.out.println("Area of Square is :"+area);
+	}
+	
+}
+
+class Rectangle extends Shape
+{
+	protected int breadth;
+	
+	public Rectangle(int length, int breadth)
+	{
+		super(length);
+		this.breadth = breadth;
+	}
+	
+	public void getAreaOfRectangle()
+	{
+		double area = x * breadth;
+		System.out.println("Area of Rectangle is :"+area);
+	}	
+	
+}
+public class HierarchicalDemo1 
+{
+	public static void main(String[] args) 
+	{
+		Square ss = new Square(10);
+		ss.getAreaOfSquare();
+		
+		Rectangle rr = new Rectangle(8, 9);
+		rr.getAreaOfRectangle();
+		
+	}
+
+}
+------------------------------------------------------------------
+Program on Hierarchical Inheritance :
+--------------------------------------
+package com.ravi.hierarchical;
+
+class Employee
+{
+	protected double salary;
+
+	public Employee(double salary) 
+	{
+		super();
+		this.salary = salary;
+	}	
+}
+
+class Developer extends Employee
+{
+	public Developer(double salary) 
+	{
+		super(salary);		
+	}
+
+	@Override
+	public String toString() 
+	{
+		return "Developer [salary=" + salary + "]";
+	}
+	
+}
+
+class Designer extends Employee
+{
+	public Designer(double salary) 
+	{
+		super(salary);		
+	}
+
+	@Override
+	public String toString() 
+	{
+		return "Designer [salary=" + salary + "]";
+	}	
+}
+public class HierarchicalDemo2 {
+
+	public static void main(String[] args) 
+	{
+		Developer d1 = new Developer(60000);
+		System.out.println(d1);
+		
+		Designer d2 = new Designer(35000);
+		System.out.println(d2);
+
+	}
+
+}
+------------------------------------------------------------------
+//Program on Single Level Inheritance :
+----------------------------------------
+package com.ravi.single_level;
+
+class Emp
+{
+	protected int employeeId;
+	protected String employeeName;
+	protected double employeeSalary;
+	
+	public Emp(int employeeId, String employeeName, double employeeSalary) 
+	{
+		super();
+		this.employeeId = employeeId;
+		this.employeeName = employeeName;
+		this.employeeSalary = employeeSalary;
+	}	
+}
+class Pemp extends Emp
+{
+	protected String department;
+	protected String designation;
+	
+	public Pemp(int employeeId, String employeeName, double employeeSalary, String department, String designation) 
+	{
+		super(employeeId, employeeName, employeeSalary);
+		this.department = department;
+		this.designation = designation;
+	}
+
+	@Override
+	public String toString() {
+		return "Pemp [employeeId=" + employeeId + ", employeeName=" + employeeName + ", employeeSalary="
+				+ employeeSalary + ", department=" + department + ", designation=" + designation + "]";
+	}	
+}
+
+public class SingleLevelDemo1 {
+
+	public static void main(String[] args) 
+	{
+		Pemp p = new Pemp(1, "Scott", 90000, "IT", "Programmer");
+		System.out.println(p);
+
+	}
+
+}
+------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

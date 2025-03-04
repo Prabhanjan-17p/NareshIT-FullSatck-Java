@@ -1,0 +1,121 @@
+                                     Analytical functions
+                                     ====================
+
+Oracle having following analytical functions. These are
+
+   1.row_number()
+
+   2.rank()
+ *
+***3.dense_rank()
+ *
+
+
+syntax:-
+=======
+Analytical functionname()over
+    (partition by columnname
+     order by columnname[asc/desc])
+
+   
+---------------------------------------------------------------------------------------------------------------
+ *
+***Write a query to display 2nd highest salary employee 
+ *  from emp table by using analytical function
+
+SQL> select * from(select ename,sal,dense_rank()over(order by sal desc)r from emp)
+      where r=2;
+
+
+ENAME             SAL          R
+---------- ---------- ----------
+SCOTT            3000          2
+FORD             3000          2
+
+
+    
+ *
+*2*.Write a query to display 3rd highest salary employee in each 
+ *   department from emp table by using analytical function
+
+
+3.Write a query to display 5th highest salary employee from emp 
+  table by using analytical function?
+
+
+4.Write a query to display nth highest salary employee in each department
+  from emp table by using analytical function?
+
+5.execute the queries by using row_num() and rank() and observe the outputs.
+
+
+
+---------------------------------------------------------------------------------------------------------------
+
+                                ROWID
+                              ========
+
+ *
+***Delete duplicate rows from a table
+ * =================================
+
+ *
+*Q*Write a query to delete duplicate rows from following table
+ *
+SQL>create table test(deptno number(10));
+SQL>insert into test values(.......);
+SQL>select * from test;
+          
+          deptno
+      ----------
+           10
+           10
+           10
+           20
+           20
+           20
+           30
+           30
+           40
+           50
+
+---------------------------------------------------------------------------------------------------------------
+
+                               ROWNUM
+                             ==========
+
+1.Write a query to display first row from emp table using rownum?
+
+
+
+NOTE:-Generally, rownum doesn't work with more than 1 +ve integer, 
+=====  i.e.,it works with <, <= operators.
+
+
+ *
+***Write a query to display last 2 rows from emp table by using
+ *     rownum aliasname?
+ 
+
+ *
+***Note:-in oracle we are creating rownum alliasnames in inline views 
+ * ====  then that aliasname work with all sql operators.
+
+3.Write a query to display second record from emp table using  
+   rownum aliasname?
+
+4.Write a query to display rows between 4 to 8 from emp
+  table by using rownum aliasname?
+
+5.Write a query to display 2,3,5,6,9th records from emp
+  table by using rownum aliasname?
+
+6.Write a query to display even no of records from emp 
+  table by using rownum aliasname?
+
+
+7.Write a quey to display first row,last row from emp table by
+  using rownum aliasname?
+
+8.Write a query to skip 3 rows and then display remaing all rows from
+  emp table by using rownum aliasname?

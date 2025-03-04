@@ -23,8 +23,7 @@ Analytical functionname()over
 ***Write a query to display 2nd highest salary employee 
  *  from emp table by using analytical function
 
-SQL> select * from(select ename,sal,dense_rank()over(order by sal desc)r from emp)
-      where r=2;
+SQL> select * from(select ename,sal,dense_rank()over(order by sal desc)r from emp) where r=2;
 
 
 ENAME             SAL          R
@@ -32,21 +31,27 @@ ENAME             SAL          R
 SCOTT            3000          2
 FORD             3000          2
 
-
     
  *
-*2*.Write a query to display 3rd highest salary employee in each 
- *   department from emp table by using analytical function
+*2*.Write a query to display 3rd highest salary employee in each department from emp table by using analytical function
 
+SQL> select * from(select ename,sal,dense_rank()over(order by sal desc)r from emp) where r=3; 
 
-3.Write a query to display 5th highest salary employee from emp 
-  table by using analytical function?
+3.Write a query to display 5th highest salary employee from emp table by using analytical function?
 
+SQL> select * from(select ename,sal,dense_rank()over(order by sal desc)r from emp) where r=5; 
 
-4.Write a query to display nth highest salary employee in each department
-  from emp table by using analytical function?
+4.Write a query to display nth highest salary employee in each department from emp table by using analytical function?
+
+SQL> SELECT DEPTNO, ENAME, SAL FROM (SELECT DEPTNO, ENAME, SAL, DENSE_RANK() OVER(PARTITION BY DEPTNO ORDER BY SAL DESC) AS r FROM EMP ) WHERE r = 3;
 
 5.execute the queries by using row_num() and rank() and observe the outputs.
+
+row_num-----
+SELECT DEPTNO, ENAME, SAL FROM ( SELECT DEPTNO, ENAME, SAL,ROW_NUMBER() OVER(PARTITION BY DEPTNO ORDER BY SAL DESC) AS r FROM EMP) WHERE r = 3;
+
+rank---
+SELECT DEPTNO, ENAME, SAL FROM (SELECT DEPTNO, ENAME, SAL, RANK() OVER(PARTITION BY DEPTNO ORDER BY SAL DESC) AS r FROM EMP) WHERE r = 3;
 
 
 
@@ -79,6 +84,8 @@ SQL>select * from test;
            40
            50
 
+SQL> DELETE FROM TEST6 WHERE ROWID NOT IN(SELECT MAX(ROWID) FROM TEST6 GROUP BY NO);
+
 ---------------------------------------------------------------------------------------------------------------
 
                                ROWNUM
@@ -86,36 +93,44 @@ SQL>select * from test;
 
 1.Write a query to display first row from emp table using rownum?
 
-
-
 NOTE:-Generally, rownum doesn't work with more than 1 +ve integer, 
 =====  i.e.,it works with <, <= operators.
 
+SQL> SELECT EMP.*,ROWNUM FROM EMP WHERE ROWNUM = 1;
+SQL> SELECT EMP.*,ROWNUM FROM EMP WHERE ROWNUM < 2;
+SQL> SELECT EMP.*,ROWNUM FROM EMP WHERE ROWNUM <= 1;
 
  *
-***Write a query to display last 2 rows from emp table by using
- *     rownum aliasname?
+***Write a query to display last 2 rows from emp table by using rownum aliasname?
  
-
  *
 ***Note:-in oracle we are creating rownum alliasnames in inline views 
  * ====  then that aliasname work with all sql operators.
 
-3.Write a query to display second record from emp table using  
-   rownum aliasname?
+SQL> SELECT * FROM ( SELECT ENAME, ROWNUM AS R FROM (SELECT ENAME FROM EMP ORDER BY EMPNO DESC) ) WHERE R <= 2;
+OR
+SQL>  SELECT * FROM (SELECT EMP.*,ROWNUM AS R FROM EMP) WHERE R IN((SELECT COUNT(*)-1 FROM EMP),(SELECT COUNT(*) FROM EMP));
 
-4.Write a query to display rows between 4 to 8 from emp
-  table by using rownum aliasname?
+3.Write a query to display second record from emp table using rownum aliasname?
 
-5.Write a query to display 2,3,5,6,9th records from emp
-  table by using rownum aliasname?
+SQL> SELECT * FROM (SELECT EMP.*,ROWNUM AS R FROM EMP) WHERE R = 2;
 
-6.Write a query to display even no of records from emp 
-  table by using rownum aliasname?
+4.Write a query to display rows between 4 to 8 from emp table by using rownum aliasname?
 
+SQL> SELECT * FROM (SELECT EMP.*,ROWNUM AS R FROM EMP) WHERE R IN(4,5,6,7,8);
 
-7.Write a quey to display first row,last row from emp table by
-  using rownum aliasname?
+5.Write a query to display 2,3,5,6,9th records from emp table by using rownum aliasname?
 
-8.Write a query to skip 3 rows and then display remaing all rows from
-  emp table by using rownum aliasname?
+SQL>  SELECT * FROM (SELECT EMP.*,ROWNUM AS R FROM EMP) WHERE R IN(2,3,5,6,9);
+
+6.Write a query to display even no of records from emp table by using rownum aliasname?
+
+SQL>  SELECT * FROM (SELECT EMP.*,ROWNUM AS R FROM EMP) WHERE MOD(R,2) =0;
+
+7.Write a quey to display first row,last row from emp table by using rownum aliasname?
+
+SQL>  SELECT * FROM (SELECT EMP.*,ROWNUM AS R FROM EMP) WHERE R IN(1,(SELECT COUNT(*) FROM EMP));
+
+8.Write a query to skip 3 rows and then display remaing all rows from emp table by using rownum aliasname?
+
+SQL> SELECT * FROM (SELECT EMP.*,ROWNUM AS R FROM EMP) WHERE R > 3;

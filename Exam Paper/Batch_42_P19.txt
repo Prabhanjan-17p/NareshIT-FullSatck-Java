@@ -1,0 +1,83 @@
+1. What is a constructor in Java?
+   a) A special method used to initialize objects
+
+2. Can a constructor be declared as final?
+   a) No
+
+3. Will the following class compile?
+class Overloaded{ Overloaded(){ System.out.println("Constructor is initialised"); } protected Overloaded(){ System.out.println("Constructor is initialised"); } }
+   No
+
+4. What happens if we add a return type to a constructor?
+   a) Yes Running
+
+5. Can a constructor be declared as private?
+   a) Yes
+
+6. What is the output of the following program?
+   class Product { public int num; public void call(Product ref) { ref.num++; } } public class Test13 { public static void main (String[] args) { Product p = new Product(); p.num = 1;      	p.call(p); System.out.println(p.num); } }
+   a) 2
+
+7. Find the output of the following program:
+	public class TestingConstructor { void TestingConstructor() { System.out.println("Amsterdam"); } TestingConstructor() { System.out.println("Antarctica"); } public static void main(String[] args) { TestingConstructor tc = new TestingConstructor(); } }
+   d) Antarctica
+
+8. What is the output of the following code?
+class Test { Test() { this(10); System.out.println("Default constructor"); } Test(int x) { System.out.println("Parameterized constructor: " + x); } } public class Main { public static void main(String[] args) { Test t = new Test(); } }
+   a) Parameterized constructor: 10
+      Default constructor
+
+9. What happens if a class does not have a constructor?
+   a) The Java compiler provides a default constructor
+
+10. Can a constructor be overloaded?
+    a) Yes
+
+11. Which keyword is used to call one constructor from another constructor in the same class?
+    a) this()
+
+12. Choose the correct option for the following code:
+ public class ConstructorTest { public int a = 10; public String ConstructorTest(int a) { this.a = a; } public static void main(String []args) { ConstructorTest t1 = new Constructor(); t1.ConstructorTest(); } }
+    c) Compile-time error
+
+13. Which of the following is true about the new keyword?
+    c) It can be used to invoke constructors
+
+14. What is the output of the following program?
+ class T { int x = 23; T() { x = 45; } } public class Main { public static void main(String args[]) { T t1 = new T(); System.out.println(t1.x); } }
+    b) 45
+
+15. What is the output of the following program?
+class Product { int x; int y; public Product(int x,int y) { this.x = x; this.y = y; } public void call() { System.out.println(“call method called”); } } public class Test14 { public static void main (String[] args) { Product p = new Product(); p.call(); } }
+    c) Compile-time error
+
+16. Which of the following is true about constructors?
+    a) They have the same name as the class
+
+17. What is the output of the following code?
+class Test { Test() { System.out.println("Default constructor"); } Test(int x) { this(); System.out.println("Parameterized constructor: " + x); } } public class Main { public static void main(String[] args) { Test t = new Test(10); } }
+    a) Default constructor
+       Parameterized constructor: 10
+
+18. What will be the output of the following code?
+class Logic { int x; Logic() { int x=10; } public void Logic() { x = 100; } public static void main(String[] args) { Logic obj = new Logic(); int x =20; System.out.println(obj.x); } }
+    d) 0
+
+19. What is the output of the following program?
+class Employee { String name; public Employee(String name) { this.name=name; } } public class Test16 { public static void main(String[] Java) { Employee e = new Employee("JavaDeveloper"); System.out.println(“Emp Name : “+e.name); } }
+    a) Emp Name : JavaDeveloper
+
+20. Can we define a method with the same name as the class name?
+    Yes you can create a method 
+
+
+QNS-1
+Constructor
+
+
+QNS-2
+Constructor
+
+
+QNS-3
+E-Wallet Application (Paytm/PhonePe) Scenario: Design an e-wallet application to manage user transactions. Class Name: Wallet Attributes: walletId (int) - Unique identifier for the wallet. userName (String) - Name of the wallet owner. balance (double) - Current balance in the wallet (default: 0). isKYCVerified (boolean) - Indicates whether the user has completed KYC verification. Constructors: Parameterized Constructor: Initialize walletId, userName, and isKYCVerified. Set balance to 0 by default. Methods: addFunds(double amount) - Add the specified amount to the wallet balance. makePayment(double amount) - Deduct the specified amount from the wallet balance if sufficient funds are available. Otherwise, display an error message. displayWalletDetails() - Display all wallet details. Target: Create a wallet object using the constructor, perform operations like adding funds and making payments, and display wallet details after each operation. Enter Wallet ID: 101 Enter User Name: Rajesh Is KYC Verified (true/false): true Choose an operation: 1. Add Funds 2. Make Payment 3. Display Wallet Details 4. Exit Enter your choice: 1 Enter amount to add: ₹5000 ₹5000 added successfully! Choose an operation: 3 Wallet ID: 101 User Name: Rajesh Balance: ₹5000.0 KYC Verified: Yes -----------------------------

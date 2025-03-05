@@ -1,0 +1,238 @@
+                                 CORELATED SUBQUERYS
+                                =====================                   
+
+-----------------------------------------------------------------------------------
+
+ *
+*1*Write a query to display 2nd highest salary employee from emp table by using corelated subquery ?
+
+SQL> SELECT * FROM EMP E1 WHERE 1=(SELECT COUNT(DISTINCT SAL) FROM EMP E2 WHERE E2.SAL > E1.SAL);
+
+-----------------------------------------------------------------------------------
+
+ *
+*2* Write a query to display nth highest salary employee from emp table by using corelated subquery ?
+
+SQL> SELECT * FROM EMP E1 WHERE 0=(SELECT COUNT(DISTINCT SAL) FROM EMP E2 WHERE E2.SAL > E1.SAL);
+
+-----------------------------------------------------------------------------------
+
+
+3.Write a query to display the employees who are getting more sal than the average salary of their jobs from the following emp table by using corelated subquery ?
+
+     EMPNO        ENAME         SAL          JOB
+    -------     ---------     -------      ------- 
+       1          smith         5000         sw 
+       2          allen         1000        clerk
+       3          ward          1000         sw
+       4          martin        4000        clerk
+
+SQL> SELECT * FROM TEST7 T1 WHERE SAL > (SELECT AVG(SAL) FROM TEST7 T2 WHERE T2.JOB=T1.JOB);
+
+-----------------------------------------------------------------------------------
+
+ 
+4.Write a query to display those departments from dept table having employees in emp table by using corelated subquery exists operator ?
+
+SQL> SELECT * FROM DEPT D WHERE EXISTS(SELECT * FROM EMP E WHERE E.DEPTNO=D.DEPNO);
+-----------------------------------------------------------------------------------
+
+
+5.Write a query to display those departments from dept table having employees in emp table by using non corelated subquery in operator ?
+
+SQL> SELECT DNAME FROM DEPT D WHERE DNAME IN(SELECT DNAME FROM EMP E JOIN DEPT D ON E.DEPTNO = D.DEPTNO);
+
+-----------------------------------------------------------------------------------
+
+6.Write a query to display the employees who are getting same salary as SCOTT salary from emp table by using corelated subquery exists operator ?
+
+SQL> SELECT * FROM EMP E WHERE EXISTS(SELECT SAL FROM EMP E1 WHERE  E1.SAL = E.SAL AND E1.ENAME = 'SCOTT');
+-----------------------------------------------------------------------------------
+
+7.Write a query to display those department from dept does not have employees in emp table by using corelated subquery ?
+
+
+-----------------------------------------------------------------------------------
+
+8.Write a query to display those department from dept does not have employees in emp table by using  non corelated subquery ?
+
+
+
+-----------------------------------------------------------------------------------
+
+ *
+*** How to Copying table and copying records
+ * =========================================
+
+.copying a table means, creating new table from existing table
+
+.for copying table we use create command
+
+.new table will created with select query result.
+ 
+NOTE:- In al relational databases whenever we are copying a
+=====  table from another table all constraints are never
+       copied except not null constraint.
+
+Eg:-
+===
+SQL> create table dept1
+     as
+     select * from dept;
+
+9.Create new table with name emp6 from existing table emp ?
+
+-----------------------------------------------------------------------------------
+ *
+***How to copying table structure
+ *
+syntax:-
+=======
+create table newtablename
+  as
+select stmt
+from oldtablename
+where false condition;
+
+.eg of false condition
+----> 1=2
+---->'A'='B'
+
+10.Create a table with the name emp7 from existing table emp without
+    rows(copying table structure)
+
+-----------------------------------------------------------------------------------
+
+Q.write a query to display 2nd highest salary employee from the 
+  following table by using corelated subquery?
+
+
+SQL>create table test(ename varchar2(10),sal number(10));
+SQL>insert into test values(......);
+SQL>select * from test;
+
+
+      ENAME          SAL
+    --------      ----------
+      abc            100
+      xyz            150
+      gowtham        200-----------
+      pqr            300           |------->counting 200 1 time is SOLUTION
+      zzz            200-----------                      |
+                                                         |
+                                                 distinct clause
+                                                         |
+                                                         |
+                                                 duplicate data is
+                                                    eliminating
+                                                       
+
+
+
+SQL>select * from test e1                          
+    where 2=(select count(*) from test e2
+    where e2.sal>=e1.sal);
+
+no rows selected
+
+   whenever resource table having duplicate data and also when we are
+try to retrive data based on duplicate values by using above quey 
+then database server does not return any rows.to overcome this problem
+then we must use distinct clause with in count() function.
+
+solution:-
+========
+SQL>select * from test e1                          
+    where 2=(select count(distinct(sal)) from test e2
+    where e2.sal>=e1.sal);
+
+     ENAME          SAL
+   ---------     ---------
+     gowtham       200
+     zzz           200
+  
+EXECUTION PROCESS:-
+================== 
+Phase1:-
+======
+step1:-Get a candidate row(first row)------>(abc 100)
+
+step2:-select count(distinct(sal)) from test e2
+       where e2.sal>=100;
+ 
+             4
+
+step3:-select * from test e1
+       where 2=4;(false)
+
+when condition is false then that candidate row does not return into
+result.
+
+Phase2:-
+========
+step1:-Get a candidate row(xyz,150)
+======
+
+step2:-select count(distinct(sal)) from test e2
+======  where e2.sal>=150;
+
+             3
+
+step3:-select * from test e1
+======  where 2=3;(false)
+
+when condition is false then that candidate row does not return into
+result.
+
+Phase3:-
+======
+step1:-Get a candidate row(gowtham 200)
+
+step2:-select count(distinct(sal)) from test e2
+======  where e2.sal>=200;
+
+             2
+
+step3:-select * from test e1
+======  where 2=2;(true)
+
+gowtham 200
+
+when condition is true then that record return into result.
+
+
+
+Phase4:-
+======
+step1:-Get a candidate row(first row)------>(pqr 300)
+
+step2:-select count(distinct(sal)) from test e2
+       where e2.sal>=300;
+ 
+             1
+
+step3:-select * from test e1
+       where 2=1;(false)
+
+when condition is false then that candidate row does not return into
+result.
+
+Phase5:-
+======
+step1:-Get a candidate row(zzz 200)
+
+step2:-select count(distinct(sal)) from test e2
+======  where e2.sal>=200;
+
+             2
+
+step3:-select * from test e1
+======  where 2=2;(true)
+
+when condition is true then that record return into result.
+
+zzz 200
+
+-----------------------------------------------------------------------------------
+
+

@@ -52,9 +52,9 @@ Example :
 ---------
 public class Demo
 {
-   Fields 
+    Fields 
      + 
-   Methods
+    Methods
 }
 
 *A class is a component which is used to defined Object properties and Object behavior.

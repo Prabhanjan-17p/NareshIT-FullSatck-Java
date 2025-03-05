@@ -1,0 +1,505 @@
+1. What is the output of following code?
+class Test {
+    Test(){
+        System.out.println("Constructor"); // 3
+    }
+
+{
+System.out.println("Non-static block"); // 2
+}
+
+}
+public class Main{
+    public static void main(String[] args) {
+        System.out.println("main method"); // 1
+        new Test();
+    }
+}
+
+ANS - 
+main method
+Non-static block
+Constructor
+
+2. what is the output of following code?
+class Test 
+{    
+    //Non static block it executed before constructor used
+    { 
+    System.out.println("Non-static Block"); 
+    }
+    Test() 
+    { 
+    System.out.println("Constructor");
+    }
+    
+    public static void main(String[] args) 
+    {
+        Test obj1 = new Test();
+        Test obj2 = new Test();
+    }
+}
+
+ANS -
+Non-static Block
+Constructor
+Non-static Block
+Constructor
+
+
+3.What is true about a non-static block?
+A) It executes before the static block
+B) It executes after the constructor
+C) It executes before the constructor
+D) It cannot contain instance variables
+
+Answer: C) It executes before the constructor
+
+
+4. What is the output of following code?
+
+class Test 
+{
+	int x = 10;
+	    
+	{ x += 5; } // X = X+5 = 10+5 = 15
+	    
+    { x += 10; } // X = X+10 = 15+10 = 25
+	    
+	public static void main(String[] args) {
+	    Test obj1 = new Test();
+	    System.out.println(obj1.x);
+	}
+}
+
+ANS - 25
+
+5. What is the output of following code?
+class Test 
+{
+	Test() {
+        System.out.println("Constructor Called");
+    }
+    
+    public static void main(String[] args) 
+    {
+        Test obj1;
+        System.out.println("Main Method");
+    }
+}
+
+ANS - Main Method
+
+6.Can a non-static block initialize instance variables?
+A) No, only constructors can initialize instance variables.
+B) Yes, but only static variables.
+C) Yes, it can initialize instance variables before the constructor executes.
+D) Only final instance variables.
+
+ANS - C) Yes, it can initialize instance variables before the constructor executes.
+
+7. What is the output of following code?
+class Test
+{
+    int a ;
+    public static void main(String args[ ]){
+        new Test();
+    }
+    {
+        System.out.println(this.a); // 0
+        this.a = 100 ; //a = 100
+    }
+
+    Test(){
+        System.out.println(this.a); // 100
+    }
+}
+
+ANS - 0 100
+
+8. What is the output of following code?
+class Test
+{
+    Test( ){
+        System.out.println("Object address inside constructor : "+this);
+    }
+
+    public static void main(String args[ ]){
+        Test obj = new Test();
+        System.out.println("Object address inside main : "+obj);
+    }
+}
+
+ANS - 
+Object address inside constructor : (some object reference)
+Object address inside main :  (some object reference)
+
+9. What is the output of following code?
+class Employee
+{
+    int eno ; // 0
+    String ename ; // null
+    float esal ; // 0.0f
+    public static void main(String[] args)
+    {
+        Employee e = new Employee();
+        System.out.println("Eno : "+e.eno);
+        System.out.println("Ename : "+e.ename);
+        System.out.println("Esal : "+e.esal);
+    }
+}
+
+ANS - 
+Eno : 0
+Ename : null
+Esal : 0.0
+
+
+10.What is the output of following code?
+class Test 
+{
+    final int a; // final key used like constant (that so why it gives error)
+
+    public static void main(String[] args) 
+    {
+        Test obj=new Test();
+        System.out.println(obj.a);
+    }
+}
+
+ANS - Compile time error
+
+11. What is the output of following code?
+class Test 
+{
+    int a;
+    {
+        System.out.println(a);
+        Test obj = new Test();
+    }
+    public static void main(String[] args)
+    {
+        System.out.println(obj.a); // error because before initialize it declare (obj)
+        Test obj=new Test();
+    }
+}
+
+ANS - Compile Time Error
+
+12. What is the output of following code?
+class Laptop
+{
+    void access(){
+        System.out.println("Copy java soft copies... ");
+    }
+}
+
+class Faculty{
+        static Laptop password = new Laptop();
+}
+
+public class Student{
+        public static void main(String[] args){
+        Faculty.password.access();
+    }
+}
+
+ANS - Copy java soft copies... 
+
+13. Write a java program how many objects can be created for a class?
+class Example
+{
+    int x=10;
+    int y=20;
+    public static void main(String[] args)
+    {
+    Example e1=new Example();
+    Example e2=new Example();
+    System.out.println(e1.x+" ..."+e1.y);
+    System.out.println(e2.x+" ..."+e2.y);
+    }
+}
+
+ANS - 
+10 ... 20
+10 ... 20
+
+14. Write a java program creating multiple objects and modifying their
+values?
+class Example
+{
+    int a=10;
+    int b=20;
+    public static void main(String[] args)
+    {
+        Example e1=new Example(); // a = 10 , b = 20
+        Example e2=new Example(); // a = 10 , b = 20
+        System.out.println(e1.a+". .."+e1.b); // 10 ... 20
+        System.out.println(e2.a+". .."+e2.b); // 10 ... 20
+        e1.a=50; // e1 ==> a = 50 , b= 20
+        e2.b=60; // e2 ==> b = 60 , a= 10
+        System.out.println(e2.a+". .."+e2.b); // 10 ... 60
+        System.out.println(e2.a+". .."+e2.b); // 10 ... 60
+    }
+}
+
+ANS -
+10 ... 20
+10 ... 20
+10 ... 60
+10 ... 60
+
+15. Write a java program to show overriding toString() method to print
+object data?
+
+class Example
+{
+    int eid; // 0 , 7279
+    String ename; // null ,Ganesh
+    String company; // null ,Naresh IT
+
+    public String toString(){
+        return "eid:"+eid+"\n"+"ename:"+ename+"\n"+"company:"+company+"\n";
+    }
+    public static void main(String[] args)
+    {
+        Example e1=new Example();
+        e1.eid=7279;
+        e1.ename="Ganesh";
+        e1.company="Naresh IT";
+        System.out.println(e1);
+    }
+}
+
+ANS -
+eid: 7279
+ename: Ganesh
+company: Naresh IT
+
+
+16. Write a java program shows creating class with static and non-static
+variables and their modifications?
+class Example12
+{
+    static int a = 10;
+    int b = 20;
+    public static void main(String[] args)
+    {
+    System.out.println(a); 
+    System.out.println(b);
+    }
+}
+
+ANS - Compile Time Error
+
+17. Write a java program can we create object without having non-static
+variable in the class?
+class Test
+{
+    void m1(){
+        System.out.println("m1() method");
+    }
+    public static void main(String[] args)
+    {
+        Test t=new Test();
+        System.out.println("main method");
+        t.m1();
+    }
+}
+"
+ANS - 
+main method
+m1() method
+
+18. Find the output of the Program.
+
+class Demo
+{
+    Demo() 
+    { 
+    this(10); 
+    System.out.println("No Argument Constructor");
+    }
+    Demo(int x) 
+    { 
+     System.out.println("Parameterized Constructor: " + x); 
+    }    
+    public static void main(String[] args) 
+    {
+        Demo obj = new Demo();
+    }
+}
+
+ANS -
+Parameterized Constructor: 10
+No Argument Constructor
+
+19. Find the Output and Check How many times NSB will be executed. 
+
+class Foo
+{
+	public Foo(int x, int y)
+	{
+		this(2.4, 5.7);
+		System.out.println("Integer parameter constructor");
+	}
+	public Foo(double x, double y)
+	{
+		System.out.println("Double parameter constructor");
+	}
+	
+	{
+		System.out.println("Non static block"); // only one time execute
+	}
+	
+}
+
+public class InstanceBlockDemo4 {
+
+	public static void main(String[] args) 
+	{
+		Foo f1 = new Foo(100,200);
+	}
+}
+
+ANS -
+Non static block
+Double parameter constructor
+Integer parameter constructor
+
+
+20. Find the Output of the Program.
+
+class NIT
+{
+	public NIT()
+	{
+		System.out.println("Constructor");
+		
+		{
+		  System.out.println("Non static block");	
+		}
+	}
+}
+public class InstanceBlockDemo6 
+{
+
+	public static void main(String[] args)
+	{
+		new NIT();
+
+	}
+
+}
+
+21 Find the Output :
+
+class Test
+{
+  private int x = 99 ;   
+ 
+  {
+	  x = 15; 
+  }
+  
+  public Test()
+  {
+	  super();
+	  x = 56; // due to last initialize
+  }
+  
+  public int getX()
+  {
+	  return this.x;
+  }
+}
+
+public class Order 
+{
+	public static void main(String[] args) 
+	{
+		Test t1 = new Test();	
+		
+		System.out.println(t1.getX());  // 56
+	}
+
+}
+
+ANS - 56
+
+22. Find the Output
+class Test
+{
+	final int x;  // when you declare a final block you must have initialize
+	
+	public void setData()
+	{
+		x = 200;
+		System.out.println(x);
+	}
+}
+public class Test13
+{
+	public static void main(String[] args) 
+	{
+		Test t1 = new Test();
+		t1.setData();
+	}
+}
+
+ANS - Compile Time Error
+
+23. Find the Output
+class Demo
+{
+	final int x; // it will not give error because of (Non-static Block)
+	
+	{
+		print();
+		x = 222;
+	}
+	public void print()
+	{
+		System.out.println("Default Value :"+x); //0
+	}
+	
+}
+public class Test12 
+{
+	public static void main(String[] args) 
+	{
+		Demo d1 = new Demo();
+		System.out.println("User value :"+d1.x); // 222
+	}
+}
+
+ANS -
+Default Value : 0
+User value : 222
+
+
+24. Find the Output
+class Foo
+{
+	final int x;
+	 
+	{
+		x = 123;
+	}
+	 
+	 
+	public Foo()
+	{
+	   x = 300;	// Here error  at this point because of x 2 time initialize
+	}
+}
+public class Test14
+{
+	public static void main(String[] args) 
+	{
+		Foo f1 = new Foo();
+		System.out.println(f1.x);
+	}
+}
+
+ANS - Compile Time Error

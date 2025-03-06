@@ -470,7 +470,7 @@ public class ConstructorChainingDemo4
 	}
 
 }
-==================================================================
+=================================================================
 WAP to show hierarchical Inheritance :
 ---------------------------------------
 package com.ravi.hierarchical;
@@ -530,7 +530,7 @@ public class HierarchicalDemo1
 	}
 
 }
-------------------------------------------------------------------
+-----------------------------------------------------------------
 Program on Hierarchical Inheritance :
 --------------------------------------
 package com.ravi.hierarchical;
@@ -545,7 +545,6 @@ class Employee
 		this.salary = salary;
 	}	
 }
-
 class Developer extends Employee
 {
 	public Developer(double salary) 
@@ -587,7 +586,7 @@ public class HierarchicalDemo2 {
 	}
 
 }
-------------------------------------------------------------------
+-----------------------------------------------------------------
 //Program on Single Level Inheritance :
 ----------------------------------------
 package com.ravi.single_level;
@@ -635,25 +634,439 @@ public class SingleLevelDemo1 {
 	}
 
 }
+-----------------------------------------------------------------
+05-03-2025
+----------
+//Program on Multilevel Inheritance :
+-------------------------------------
+package com.ravi.multilevel_inheritance;
+
+class Student
+{
+	protected int id;
+	protected String name;
+	protected String address;
+	
+	public Student(int id, String name, String address) 
+	{
+		super();
+		this.id = id;
+		this.name = name;
+		this.address = address;
+	}
+
+	
+	
+	
+}
+
+class Science extends Student
+{
+	protected int phyMarks;
+	protected int cheMarks;
+	
+	public Science(int id, String name, String address, int phyMarks, int cheMarks) 
+	{
+		super(id, name, address);
+		this.phyMarks = phyMarks;
+		this.cheMarks = cheMarks;
+	}
+
+	
+	
+	
+}
+class PCM extends Science
+{
+	protected int mathMarks;
+
+	public PCM(int id, String name, String address, int phyMarks, int cheMarks, int mathMarks) {
+		super(id, name, address, phyMarks, cheMarks);
+		this.mathMarks = mathMarks;
+	}
+
+	@Override
+	public String toString()
+	{
+		return "PCM [id=" + id + ", name=" + name + ", address=" + address + ", phyMarks=" + phyMarks + ", cheMarks="
+				+ cheMarks + ", mathMarks=" + mathMarks + "]";
+	}	
+	
+	public void totalMarks()
+	{
+		int total = this.phyMarks + this.cheMarks + this.mathMarks;
+		System.out.println("Total Marks is :"+total);
+	}	
+}
+
+public class MultiLevelInheritance 
+{
+	public static void main(String[] args) 
+	{
+		PCM p = new PCM(111, "Scott", "Ameerpet", 90, 80, 92);
+		System.out.println(p);
+		p.totalMarks();
+	}
+
+}
+=================================================================
+The following program describes that method execution is always 
+from bottom to top only.
+
+
+package com.ravi.multilevel_inheritance;
+
+class Vehicle
+{
+	protected String name;
+
+	public Vehicle(String name) 
+	{
+		this.name = name;
+	}
+	
+	public void run()
+	{
+		System.out.println(name+" Vehicle is Running");
+	}	
+}
+
+class Car extends Vehicle
+{
+	public Car(String name) 
+	{
+		super(name);		
+	}
+	
+	public void run()
+	{
+		System.out.println(name+" Car is Running");
+	}	
+	
+}
+public class VehicleDemo 
+{
+	public static void main(String[] args) 
+	{
+		Car car = new Car("Naxon");
+		car.run();		
+
+	}
+
+}
+
+Note : Naxon Car is running.
+===============================================================
+ **Why java does not support multiple Inheritance ?
+--------------------------------------------------
+Multiple Inheritance is a situation where a sub class wants to inherit the properties two or more than two super classes.
+
+In every constructor we have super() or this(). When compiler will add super() to the first line of the constructor then we have an ambiguity issue that super() will call which super class constructor as shown in the diagram [05-03]
+
+It is also known as Diamond Problem in java so the final conclusion is we can't achieve multiple inheritance using classes but same we can achieve by using interface [interface does not contain any constructor]
+----------------------------------------------------------------
+HOW MANY WAYS WE CAN INITIALIZE THE OBJECT PROPERTIES ?
+-------------------------------------------------------
+The following are the ways to initialize the object properties 
+---------------------------------------------------------------
+1) At the time of declaration :
+
+   Example :
+   
+  public class Test
+   {
+      int x = 10;
+      int y = 20;
+   }
+
+   Test t1 = new Test();   [x = 10  y = 20]
+   Test t2 = new Test();   [x = 10  y = 20]
+
+Here the drawback is all objects will be initialized with same value.
+---------------------------------------------------------------
+2) By using Object Reference :
+
+   public class Test
+   {
+      int x,y;
+   }
+   
+   Test t1 = new Test();   t1.x=10;   t1.y=20;
+   Test t2 = new Test();   t2.x=30;   t2.y=40;
+
+   Here we are getting different values with respect to object but here the program becomes more complex.
+---------------------------------------------------------------
+3) By using methods :
+
+   A) First Approach (Method without Parameter)
+   ----------------------------------------------
+   public class Test
+   {
+      int x,y;
+
+      public void setData()  
+      {                         
+         x = 100;  y = 200;
+      }
+   }
+
+    Test t1 = new Test();  t1.setData();  [x = 100   y = 200]
+    Test t2 = new Test();  t2.setData();  [x = 100   y = 200]
+    
+    Here also, all the objects will be iniatilized with same 
+    value.
+
+    B) Second Approach (Method with Parameter)
+    -------------------------------------------
+     public class Test
+     {
+      int x,y;   
+
+      public void setData(int x, int y)  
+      {                        
+         this.x = x;
+	 this.y = y;
+      }
+   }
+   
+    Test t1 = new Test();  t1.setData(12,78);  [x = 12  y = 78]
+    Test t2 = new Test();  t2.setData(15,29);  [x = 15  y = 29]
+
+    Here the Drawback is initialization and re-initialization both are done in two different lines so Constructor introduced.
+----------------------------------------------------------------------
+4) By using Constructor 
+
+   A) First Approach (No Argument Constructor)
+   --------------------------------------------
+   public class Test
+   {
+      int x,y;
+
+      public Test()  //All the objects will be initialized with
+      {                                             same value
+         x = 0;  y = 0;
+      }     
+           
+   }
+
+    Test t1 = new Test();    [x = 0   y = 0]
+    Test t2 = new Test();    [x = 0   y = 0]
+    
+
+    B) Second Approach (Parameterized Constructor)
+    -----------------------------------------------
+     public class Test
+     {
+      int x,y;      
+
+      public Test(int x, int y)  
+      {                        
+         this.x = x;
+	 this.y = y;
+      }
+   }
+
+    Test t1 = new Test(12,78);    [x = 12   y = 78]
+    Test t2 = new Test(15,29);    [x = 15   y = 29]
+
+    This is the best way to initialize our instance variable because variable initialization and variable re-initialization both will be done in the same line as well as all the objects will be initialized with different values. 
+
+    C) Third Approach (Copy Constructor)
+    --------------------------------------
+
+       public class Manager
+       {
+          private int managerId;
+	  private String managerName;
+          
+	  public Manager(Employee emp)
+	  {
+	    this.managerId = emp.getEmployeeId();
+	    this.managerName = emp.getEmployeeName();
+          }
+       }
+
+Here with the help of Object reference (Employee class) we are 
+initializing the properties of Manager class. (Copy Constructor)
+
+        d) By using instance block (Instance Initializer)
+	-------------------------------------------------
+	
+	public class Test
+	{
+	   int x,y;
+
+           public Test()
+	   {
+	      System.out.println(x); //100
+	      System.out.println(y); //200
+	   }
+
+           //Instance block
+	   {
+	       x = 100; 
+	       y = 200;
+	   }
+	}
+
 ------------------------------------------------------------------
+5) By using super keyword :
+
+   class Super
+   {
+     int x,y;
+
+     public Super(int x , int y)
+     {
+        this.x = x;
+	this.y = y;
+     }
+   }
+   class Sub extends Super
+   {
+      Sub()
+      {
+         super(100,200); //Initializing the properties of super class
+      }
+   }
+
+   new Sub();
+===============================================================
+Assignment :
+------------
+//Program on Hybrid Inheritance 
+
+class Vehicle
+{
+}
+class Car extends Vehicle
+{}
+   Maruti  and Ford
+   
+===============================================================
+Access modifiers in java :
+---------------------------
+In order to define the accessibility level of the class as well as member of the class we have 4 access modifiers :
+
+1) private (Within the same class)
+2) default (Within the same package/folder)
+3) protected (Within the same package OR even from another 
+              package by using Inheritance)
+4) public (No Restriction)
+--------------------------------------------------------------
+private :
+---------
+It is the most restrictive access modifier because the member declared as private can't be accessible from outside of the class.
+In Java we can't declare an outer class as a private or protected. Generally we should declare the data member(variables) as private [data hiding].
+
+In java outer class can be declared as public, abstract, final, sealed and non-sealed only.
+
+default :-
+----------
+It is an access modifier which is less restrictive than private. It is such kind of access modifier whose physical existance is not avaialble that means when we don't specify any kind of access modifier before the class name, variable name or method name then by default it would be default.
+
+As far as its accessibility is concerned, default members are accessible within the same folder(package) only. It is also known as private-package modifier.
+
+06-03-2025
+----------
+protected :
+------------
+It is an access modifier which is less restrictive than default because the member declared as protected can be accessible from the outside of the package (folder) too but by using inheritance concept.
+
+Program
+--------
+
+Access.java [Available in com.ravi.m1 package]
+
+package com.ravi.m1;
+
+public class Access 
+{
+   protected int x = 500;
+}
 
 
+ELC.java[This program is available in another package com.ravi.m2]
+
+package com.ravi.m2;
+
+import com.ravi.m1.Access;
+
+public class ELC extends Access
+{
+	public static void main(String[] args) 
+	{
+		ELC e = new ELC();
+		System.out.println(e.x);
+
+	}
+
+}
+------------------------------------------------------------------
+public :
+-------
+It is an access modifier which does not contain any kind of restriction that is the reason the member declared as public can be accessible from everywhere without any restriction.
+
+According to Object Oriented rule we should declare the classes and methods as public where as variables must be declared as private or protected according to the requirement.
+
+Note : If a method is used for internal purpose only (like validation) then we can declare that method as private method.It is called Helper method.
+
+==================================================================
+JVM Architecture with class loader sub system :
+-----------------------------------------------
+The entire JVM Architecture is divided into 3 sections :
+
+1) Class Loader sub system
+2) Runtime Data areas (Memory Areas)
+3) Execution Engine
+
+Class Loader Sub System :
+-------------------------
+The main purpose of Class Loader sub system to load the required .class file into JVM Memory from different memory loactions.
+
+In order to load the .class file into JVM Memory, It uses an algorithm called "Delegation Hierarchy Algoroithm".
+
+Internally, Class Loader sub system performs the following Task
+
+      1) LOADING
+      2) LINKING
+      3) INITIALIZATION
 
 
+LOADING :
+---------
+In order to load the required .class file, JVM makes a request to class loader sub system. The class loader sub system follows delegation hierarchy algorithm to load the required .class files from different areas.
 
+To load the required .class from different area, we have 3 different kinds of class loaders.
 
+1) Bootstrap/Primordial class Loader 
 
+2) Platform/Extension class Loader
 
+3) Application/System class Loader
 
+Bootstrap/Primordial class Loader :-
+------------------------------------
+It is responsible for loading all the predefined .class files that means all API(Application Programming Interface) level predefined classes are loaded by Bootstrap class loader.
 
+It has the highest priority becuase Bootstrap class loader is the super class for Platform class loader.
 
+It loads the classes from the following path 
+C -> Program files -> Java -> JDK -> lib -> jrt-fs.jar 
 
+Platform/Extension class loader :
+----------------------------------
+It is responsible to load the required .class file which is given by some 3rd party in the form of jar file.
 
+It is the sub class of Bootstrap class loader and super class of Application class loader so it has more priority than Application class loader.
 
+It loads the required .class file from the following path.
+C -> Program files -> Java -> JDK -> lib -> ext -> ThirdParty.jar 
 
+Command to create the jar file :
+jar cf FileName.jar FileName.class         [*.class]
 
-
-
+[If we want to compile more than one java file at a time then the command is :  javac *.java]
 
 
 

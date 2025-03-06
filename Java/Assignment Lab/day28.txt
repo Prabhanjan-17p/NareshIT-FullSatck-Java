@@ -41,6 +41,51 @@ public void bark() : Method to print that "Dog is barking"
 
 Create an ELC class MultilevelInheritance which contains main method, Create the Object for more specialized class and call the behavior.
 
+
+ANS -
+package com.nareshIT.day28;
+
+public class Animal {
+	public void eat() { 
+		System.out.println( "Animal is eating");
+	}
+}
+
+
+package com.nareshIT.day28;
+
+public class Mammal extends Animal {
+	
+	public void eat() { 
+		System.out.println("Mammal is walking");
+	}
+
+}
+
+
+package com.nareshIT.day28;
+
+public class Dog extends Mammal{
+	
+	public void eat() { 
+		System.out.println("Dog is barking");
+	}
+}
+
+
+package com.nareshIT.day28;
+
+public class MultilevelInheritance {
+
+	public static void main(String[] args) {
+		Dog g = new Dog();
+		g.eat();
+	}
+
+}
+
+
+
 =========================================================================
 Q2) Student Fee Management System
 
@@ -154,3 +199,115 @@ sample output :
                  
                  Hosteller[HostelFee=8000.0,name=Virat Kohli,studentId=3,examFee=25000.0]
                  All Fees are clear
+
+
+ANS-
+package com.nareshIT.day28;
+
+public class Tester {
+
+	public static void main(String[] args) {
+		Hosteller h = new Hosteller(1, "kanha", 5000, 5000);
+		System.out.println(h.displayDetails());
+		h.payAmount(1000);
+	
+		System.out.println("");
+
+		DayScholar d = new DayScholar(2, "Hero", 5000, 1000);
+		System.out.println(d.displayDetails());
+		d.payAmount(6000);
+		
+	}
+
+}
+
+
+package com.nareshIT.day28;
+
+public class Student {
+	int studentId ;
+	String name ;
+	double examFee;
+	
+	public Student(int studentId, String name, double examFee) {
+		super();
+	    if (examFee <= 0) {
+	            System.out.println("Error Invalid Input");
+	            System.exit(0);
+	    }
+		this.studentId = studentId;
+		this.name = name;
+		this.examFee = examFee;
+	}
+	public String displayDetails() {
+		return "Student [studentId=" + studentId + ", name=" + name + ", examFee=" + examFee + "]";
+	}
+	public double payFee() { 
+		return examFee;
+	}
+}
+
+
+package com.nareshIT.day28;
+
+public class DayScholar extends Student {
+	double transportFee;
+
+	public DayScholar(int studentId, String name, double examFee, double transportFee) {
+		super(studentId, name, examFee);
+		this.transportFee = transportFee;
+	}
+
+	public String displayDetails() {
+		return "DayScholar [studentId=" + studentId + ", name=" + name + ", examFee=" + examFee + ", transportFee="
+				+ transportFee + "]";
+	}
+	
+	public void payAmount(double amt) {
+		double examFee = payFee();
+		double totFee = examFee+transportFee;
+		if (totFee == amt) {
+			System.out.println("All payment clear...");
+		}else {
+			if (totFee < amt) {
+				System.out.println("You pay more than the university fee, yet you receive less."+(amt-totFee));
+			}else {
+				System.out.println("Your remaining payment is "+(totFee - amt));
+			}
+		}
+	}
+	
+}
+
+
+package com.nareshIT.day28;
+
+public class Hosteller extends Student {
+	double hostelFee ;
+
+	public Hosteller(int studentId, String name, double examFee, double hostelFee) {
+		super(studentId, name, examFee);
+		this.hostelFee = hostelFee;
+	}
+
+	public String displayDetails() {
+		return "Hosteller [studentId=" + studentId + ", name=" + name + ", examFee=" + examFee + ", hostelFee="
+				+ hostelFee + "]";
+	}
+	
+	public void payAmount(double amt) {
+		double examFee = payFee();
+		double totFee = examFee+hostelFee;
+		if (totFee == amt) {
+			System.out.println("All payment clear...");
+		}else {
+			if (totFee < amt) {
+				System.out.println("You pay more than the university fee, yet you receive less."+(amt-totFee));
+			}else {
+				System.out.println("Your remaining payment is "+(totFee - amt));
+			}
+		}
+	}
+	
+	
+}

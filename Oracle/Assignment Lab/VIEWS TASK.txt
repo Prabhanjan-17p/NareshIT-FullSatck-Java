@@ -1,0 +1,65 @@
+                                  VIEWS
+                                =========
+
+1.What is view? View store data or not? How can you give the guarantee view does not store the data?
+ANS-
+  - A view is a virtual table based on a SQL query that does not store data but retrieves it dynamically from base tables
+  - view does not store data it only stores the SQL query definition.
+  - Changes in the base table are immediately reflected in the view, proving it does not store data.
+
+2.Create a view from emp table with following columns
+  empno,ename,sal,deptno
+  After creating the view insert the records
+  into view?
+
+  SQL> CREATE VIEW V1 AS SELECT empno,ename,sal,deptno FROM EMP;
+  SQL> INSERT INTO V1 VALUES(1212,'ASDD',2345,10);  
+
+3.After creating the view v1 on empno,ename,sal,deptno.give the access on view v1 to other user?
+
+SQL> GRANT SELECT, INSERT, UPDATE, DELETE ON V1 TO (USER_NAME);
+SQL> SELECT * FROM OWNER_NAME.V1;
+
+3.Create view from emp table and store only department 10th details?
+
+SQL> CREATE VIEW V2 AS SELECT * FROM EMP WHERE DEPTNO = 10;
+
+4.What is comlex view ? Create a complex view from the following two tables ?Can you perform DML operations through complex view to base table possible or not possible? 
+
+SQL>create table test1(name varchar2(10));
+SQL>create table test2(sub varchar2(10));
+
+ANS-
+- Is created using multiple tables (joins, unions, subqueries).
+- On complex view we cannot perform DML operations. 
+SQL> CREATE VIEW V3 AS SELECT T1.NAME , T2.SUB FROM TEST8 T1 CROSS JOIN TEST9 T2;
+SQL> SELECT * FROM V3;
+
+5.What is Materialized view? MVIEWS stores data or not?What is the Purpose of MVIEWS?
+
+6.What are the differences b/w View and Materialized VIEW?
+
+ *
+***Differnce b/w view & materialized view(V.V.I.M.P)
+ * ======================================
+
+          View                              Materialized view
+-----------------------------------------------------------------------------------
+1.view does not stores any data     |1.M.views stores data
+                                    |
+2.security purpose                  |2.improves performance(for joins,aggrigate
+                                    |  functions)purpose.
+                                    |
+3.when we are dropping a base table |3.when we are dropping a base table  
+  then view can not be accessable.  |  also. M.view can be accessable. 
+                                    |
+4.we can perform dml operations on  |4.we can not perform dml operations on
+  views                             |  M.views
+
+
+
+7.What are the uses of the views?
+- The main purpose of views is security and data hiding.
+- it is a virtual object / subset of a base table(i.e main table). 
+- it does not store data but it can access data from a base table. 
+- whenever we perform DML operations on a view internally those operations are executed on a base table and refelected in view      table to user.

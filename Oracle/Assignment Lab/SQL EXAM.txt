@@ -1,0 +1,205 @@
+                               SQL EXAM
+                              ==========
+
+1.Write a query to display 2nd highest salary employee from emp table
+  by using analytical function dense_rank() or corelated subquery ?(5marks)
+
+
+
+2.Write a query to delete duplicate rows from the following TEST table ?(3marks)
+ 
+
+SQL>select * from TEST;
+          
+         deptno
+       ---------
+           10
+           10
+           10
+           20
+           20
+           20
+           30
+           30
+           40
+           50
+
+
+
+3.Write a query to display state wise,gender wise no of persons
+  from the following PERSONS table?(3marks)
+
+       PID      PNAME         GENDER        STATE
+      ------   ---------     --------      --------
+         1     SUBBARAO         M             AP
+         2      KAVYA           F             TS
+         3      KIRAN           M             TS
+         4     GOWTHAM          M             AP
+         5     KERTHI           F             AP
+         6     SURYA            M             AP
+         7    ANUSHKA           F             AP
+         8      RAJU            M             TS
+
+4.Write query to display states having more than 3 persons from the above
+  PERSONS table?(3marks)
+
+
+5.Write a query to display duplicate records from the above TEST table ?(3marks)
+
+
+6.Write a query to display year, no of employees per year 
+  in which more than one employee was hired from 
+            emp table using group by?(3marks)
+
+7.Write a query to display the employee names and their manager names
+          from emp table by using self join ?(5marks)
+
+8.Write a query to display employee details along with department details
+   also display the employees to whoom deptno is not assign?(3marks)
+
+SQL> SELECT * FROM EMPLOYEES;
+
+       EMPID     NAME         DEPTNO
+     -------  ----------      --------
+         1      KIRAN           10
+         2     GOWTHAM          20
+         3      SURYA
+         4      RAJU            20
+
+
+SQL> SELECT * FROM DEPARTMENTS;
+
+      DEPTNO      DNAME
+     -------    ----------
+        10         HR
+        20         IT
+        40      FINANCE
+
+9.Write a query to fetch all employee records from the employee details
+  table who have a salary record in the employee salary table(5marks)
+
+EMPLOYEE_DETAILS TABLE:-
+======================
+
+empid     name         dob         state
+-------  ------      -------      -------
+  1      JOHN       23-apr-95       NY
+  2      SMITH      15-aug-90       CA
+  3      ROHAN      27-apr-96       TX
+  4      JOHNSON    12-feb-75       CA
+  5      BROWN      05-nov-00       AL
+  6      JILL       15-jun-99       CA
+  7      JAMES      12-sep-83       WA
+  8      JACK       25-sep-82       CA
+
+EMPLOYEE_SALARY TABLE:-
+======================
+
+  ID          SALARY
+------      ----------
+   1           15000
+   2           20000
+   3           25000
+   4           18000
+   5           35000
+   6           40000
+   7           45000
+
+
+10.Write a query to display the customers and order details, and find the 
+  customers who have place an order(3marks)
+ 
+CUSTOMERS
+
+CUSTOMERID       CUSTOMERNAME
+----------      --------------
+    1              GOWTHAM
+    2               KIRAN
+    3               RAJU
+
+ORDERS
+
+ORDERID       CUSTOMERID        ORDERDATE
+--------     ------------      -----------
+  101             1             12-JAN-24
+  102             2             16-JAN-24     
+
+
+11.Write a query to find the patients who have booked an appointment 
+   but haven't visited yet.(3marks)
+
+
+PATIENTS
+
+PATIENTID          PATIENTNAME            CONTACTNUMBER
+---------        ---------------         ---------------
+   1                 ANUSHKA               9876543210
+   2                 SURYA                 9876500000
+   3                 GOWTHAM               9876511111
+
+
+
+APPOINTMENTS
+
+APPOINTMENTID      PATIENTID         APPOINTMENTDATE        STATUS
+-------------     -----------       -----------------     -----------
+   401                 1               24-DEC-24          CHECKED-IN
+   402                 2               28-DEC-24          SCHEDULED
+
+
+12.Write a query to display rows between 4 to 8 from emp
+  table by using rownum aliasname?(2marks)
+
+13.Write a query to display even no of records from emp 
+  table by using rownum aliasname?(2marks)
+
+14.Write a query to display the employees who are getting
+      more sal than the highest paid employee in 20th
+           department from emp table?(1marks)
+
+15.Write a query to display the employees who are working in
+       SMITH department number from emp table?(1mark)
+
+16.Write a query to display the employee records who are 
+     earning more salary than the BLAKE's salary?(1mark)
+
+17.Establish the relationship between the COURSE and STUDENT tables 
+  by using Primary Key and Foreign Key(2marks)
+
+COURSE Table:
+============
+CID	CNAME
+
+STUDENT Table:
+=============
+SID	SNAME	CID
+
+18.create the emp10 table with constraints based on following
+  conditions.(2marks)
+
+EMPNO      don't accept nulls and duplicates 
+
+ENAME      don't accept nulls
+
+GENDER     Must be M or F
+
+COMPANY    NARESH IT
+
+SAL        Minimum 8000
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

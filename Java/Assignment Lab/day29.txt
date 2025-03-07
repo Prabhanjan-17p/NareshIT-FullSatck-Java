@@ -1,0 +1,100 @@
+                                        Inheritance Lab Exercise
+==================================================================================================================
+__________________________________________________________________________________________________________________
+Create a Program to Develop Hierarchical Inheritance for Employee Management System.
+Here Employee is super class and it has two sub classes PermanentEmployee and ContractEmployee.
+We need to display the details of PermanentEmployee including provident fund and net Salary.
+We need to display the details of ContractEmployee including contract duration.
+
+Coding Requirements :
+-------------------------------
+Create a BLC class called Employee.
+
+Attributes/ Properties [protected]
+employeeId - int
+employeeName - String
+
+employeeSalary - double
+
+Create a Parameterized constructor to initialize all fields.
+Create another BLC class PermanentEmployee which extends from Employee
+
+Attributes/ Properties [protected]
+providentfund - double
+
+Create a parameterized constructor to initialize super class properties only
+[Note : providentfund property will not initialize through constructor]
+
+Initialize providentfund manually, It must be 12% of the salary.
+
+Genarate toString() method to print all the properties of super class as well as sub
+class.
+[See the test cases for more details]
+
+Method :
+--------
+Method Name : netSalary()
+Modifier : public
+Argument : No argument
+return type : void
+
+This method should print netSalary i.e salary + providentfund
+
+Create another BLC class ContractEmployee which extends from Employee
+
+Attributes/ Properties [protected]
+
+contractDuration - int
+
+Create a parameterized constructor to initialized all fields (super class and sub class)
+
+Genarate toString() method to print all the properties of super class as well as sub
+class.
+[See the test cases for more details]
+
+Create an ELC class EmployeeSystem which contains main method.
+
+Create both sub class objects and print the result.
+
+Test Cases for Output :
+------------------------
+Test Case 1 :
+-------------
+Enter permanent employee Id :101
+Enter permanent employee Name :Scott
+Enter permanent employee Salary :100000
+PermanentEmployee [empoyeeId=101, employeeName=Scott,
+employeeSalary=100000.0, providentfund=12000.0]
+Net Salary is :112000.0
+========================================
+Enter contract employee Id :102
+
+Enter contract employee Name :Smith
+Enter contract employee Salary :80000
+Enter contract duration in year :5
+ContractEmployee [empoyeeId=102, employeeName=Smith,
+employeeSalary=80000.0, contractDuration=5 years]
+
+Test Cases for Input Validation :
+---------------------------------
+Test Cases 1:
+-------------
+Enter permanent employee Id :-90
+Enter permanent employee Name :Scott
+Enter permanent employee Salary :12000
+Invalid Employee Id
+
+Test Cases 2:
+-------------
+Enter permanent employee Id :101
+Enter permanent employee Name :
+Enter permanent employee Salary :6543
+Employee Name can't be null
+
+Test Cases 3 :
+---------------
+Enter permanent employee Id :120
+Enter permanent employee Name :Alen
+
+Enter permanent employee Salary :-78908
+Salary can't be 0 or negative

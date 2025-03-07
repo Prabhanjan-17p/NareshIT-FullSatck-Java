@@ -1067,6 +1067,343 @@ Command to create the jar file :
 jar cf FileName.jar FileName.class         [*.class]
 
 [If we want to compile more than one java file at a time then the command is :  javac *.java]
+---------------------------------------------------------------------
+07-03-2025
+-----------
+
+Application/System class loader :
+---------------------------------------
+It is responsible to load all userdefined .class file into JVM memory.
+
+It has the lowest priority because it is the sub class Platform class loader.
+
+It loads the .class file from class path level or environment 
+variable.
+
+Note : If all the class loaders are failed to load the .class file 
+       into JVM memory then JVM will generate an exception i.e
+       java.lang.ClassNotFoundException.
+---------------------------------------------------------------------
+How Delegation Hierarchy algorithm works :-
+---------------------------------------------------
+Whenever JVM makes a request to class loader sub system to load the required .class file into JVM memory, first of all, class loader sub system makes a request to Application class loader, Application class loader will delegate(by pass) the request to the platform class loader, platform class loader will also delegate the request to Bootstrap class loader.
+
+Bootstrap class loader will load the .class file from lib folder(jrt-fs.jar) and then by pass the request back to platform class loader, platform class loader will load the .class file from ext folder(*.jar) and by pass the request back to Application class loader, It will load the .class file from environment variable into JVM memory. 
+
+Note : java.lang.Object is the first class to be loaded into JVM Memory.
+--------------------------------------------------------------------
+What is Method Chaning in java ?
+--------------------------------
+It is a technique through which we call multiple methods in a single statement.
+
+In this method chaining, always for calling next method we depend upon last method return type.
+
+The final return type of the method depends upon last method call as shown in the program.
+
+MethodChainingDemo1.java
+-------------------------
+package com.ravi.method_chaining_demo1;
+
+public class MethodChainingDemo1 {
+
+	public static void main(String[] args) 
+	{
+		String str = "india";
+		char ch = str.toUpperCase().concat(" is great").charAt(0);
+        System.out.println(ch);
+	}
+
+}
+
+MethodChaingDemo2.java
+-----------------------
+package com.ravi.method_chaining_demo1;
+
+public class MethodChaingDemo2 {
+
+	public static void main(String[] args) 
+	{
+		String str = "Hyderabad";
+		int length = str.concat(" is an IT city").toUpperCase().length();
+		System.out.println("Length is :"+length);
+	}
+
+}
+
+Role of java.lang.Class class in class loading :
+----------------------------------------------------
+Role of java.lang.Class class in class loading :
+----------------------------------------------------
+There is a predefined class called Class available in java.lang pacakge.
+
+In JVM memory whenever we load a class then it is loaded in special memory area called Method Area and retutn type is java.lang.Class class object.
+
+   java.lang.Class cls = AnyClass.class
+   
+ java.lang.Class class contains a predefined non static method  called getName() through which we can get the fully qualified name [Package Name + class Name]
+ 
+ public String getName() : Provide fully qualified name of the class. 
+
+package com.ravi.method_chaining_demo1;
+
+class A{}
+
+class B{}
+
+class Customer{}
+
+class Sample{}
+
+
+public class MethodAreaDemo {
+
+	public static void main(String[] args) 
+	{
+       Class c1 = A.class;
+       System.out.println(c1.getName());
+       
+       c1 = B.class;
+       System.out.println(c1.getName());
+       
+       c1 = Customer.class;
+       System.out.println(c1.getName());
+       
+       c1 = Sample.class;
+       System.out.println(c1.getName());
+	}
+
+}
+---------------------------------------------------------------------
+//WAP that describes Application class loader is responsible to load our user-defined .class
+
+java.lang.Class class has provided a predefined non static method 
+called getClassLoader(), the return type of this method is ClassLoader class.
+
+    public ClassLoader getClassLoader();
+
+package com.ravi.loading;
+
+public class Test {
+
+	public static void main(String[] args) 
+	{
+	 	
+	 System.out.println("Test.class file is loaded by :"+Test.class.getClassLoader());
+		
+	          //OR
+	 
+	 Class cls = Test.class;
+	 System.out.println("Class Loader name is :"+cls.getClassLoader());
+	}
+
+}
+---------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   
+   
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

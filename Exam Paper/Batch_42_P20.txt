@@ -1,0 +1,72 @@
+what is the output of this program class A{ public int i; private int j; } class B extends A{ public void display(){ super.j=super.i+1; System.out.println(super.i+" "+super.j); } } public class inheritance{ public static void main(String args[]){ B obj=new B(); obj.i=1; obj.j=2; obj.display(); } }	d) compilation Error		Attempted
+
+What is the output of the below program? class Temp { Temp(double d) { System.out.println(d*0+4); } } public class Test11 extends Temp { public static void main(String[] args) { Temp t = new Temp(4); } }	b) 4		Attempted
+
+What is the primary purpose of inheritance in Java?	b) To reuse code and create a hierarchy of classes.		Attempted
+
+What will be the output of the following Java program? class A { public int i; public void display() { System.out.println(i); } } class B extends A { public int j; public void display() { System.out.println(j); } } public class InheritanceDemo { public static void main(String args[]) { B obj = new B(); obj.i=1; obj.j=2; obj.display(); } }	c) 2		Attempted
+
+What is the output of the below program? public class Test21 { Test21() { System.out.println("No param constructor"); } Test21(int m,int n){ System.out.println("param constructor m*n is : "+m*n); } public void m1() { this(); System.out.println("Test21 : m1() method"); } public static void main(String[] args) { Test21 t1 = new Test21(); t1.m1(); } }	b) No param constructor No param constructor Test21 : m1() method		Attempted
+
+What is a correlated subquery?	a) A subquery that is executed once and its result is used in the main query.		Attempted
+
+What will be the output of the following Java program? private class A { public static void main(String [] args) { System.out.println("2"+2); } }	a) 22		Attempted
+
+What is the output of following code? public class Test { public int a; { Test obj = new Test(); System.out.println(a); } public static void main(String[] args) { Test obj=new Test(); System.out.println(obj); } }	a) StackOverflowError		Attempted
+
+in java, can subclass access default members(fields/methods) of its superclass?	d) Yes, regardless of the package		Attempted
+
+Which keyword is used to inherit a class in Java?	b) extends		Attempted
+
+What will be the output of the following Java program? class A { public int i; } class B extends A { public int j; public void display() { super.i = j + 1; System.out.println(j + " " + i); } } public class inheritance { public static void main(String args[]) { B obj = new B(); obj.i=1; obj.j=2; obj.display(); } }	c) 2 3		Attempted
+
+Which method is used to call the constructor of a superclass from a subclass?	a) super()		Attempted
+
+Which of the following is true about subqueries?	d) Subqueries are not supported in SQL.		Attempted
+
+What is the purpose of using a subquery in the WHERE clause?	b) To filter data based on conditions that involve another query.		Attempted
+
+What is the output of this java program. public class Some { int a; int b; Some() { System.out.println(a+b); { System.out.println(a+b); } { a=10; b=20; } } public static void main(String[] args) { Some obj=new Some(); obj.m2(); System.out.println(obj.m2()); } public int m2(){ return this.a+this.b; } }	a) 0 30 30		Attempted
+
+what is the output of below program class A { String s = "Class A"; } class B extends A { String s = "Class B"; { System.out.println(super.s); } } class C extends B { String s = "Class C"; { System.out.println(super.s); } } public class Test { public static void main(String[] args) { C c = new C(); System.out.println(c.s); } }	a) Class A Class B Class C		Attempted
+
+What is the output of this java program. public class Some { int a; int b; { { a=30; } System.out.println(a+b); { System.out.println(a+b); } { b=20; } } public static void main(String[] args) { Some obj=new Some(); obj.m2(); System.out.println(obj.m2()); } public int m2(){ return this.a+this.b; } }	a) 30 30 50		Attempted
+
+What is the relationship between a subclass and its superclass?	d) The subclass contains the superclass.		Attempted
+
+What is the purpose of the final keyword when applied to a class?	b) To prevent the class from being inherited.		Attempted
+
+What is the output of the below program? class T { int x = 23; T() { x = 45; } } class Main { public static void main(String args[]) { T t1 = new T(); System.out.println(t1.x); } }	d)45		Attempted
+
+What is the relationship between the Person and Employee classe? public class Person { private String name; public Person(String name) { this.name = name; } public String getName() { return name; } } public class Employee extends Person { private double salary; public Employee(String name, double salary) { super(name); this.salary = salary; } public double getSalary() { return salary; } } public class TestEmployee { public static void main(String[] args) { Employee emp = new Employee("John", 50000.0); System.out.println("Employee Name: " + emp.getName()); System.out.println("Employee Salary: " + emp.getSalary()); } }	c) Inheritance		Attempted
+
+What happens if a subclass does not explicitly call the superclass constructor?	b) The superclass default constructor is called implicitly.		Attempted
+
+What is the advantage of IS-A relationship?	c) Multiple inheritance		Attempted
+
+What will be the output of the following Java program? class A { int i; int j; A() { i = 1; j = 2; } } class Output { public static void main(String args[]) { A obj1 = new A(); A obj2 = new A(); System.out.print(obj1==obj2); } }	a) false		Attempted
+
+What is a subquery in SQL?	b) A query nested inside another query.		Attempted
+
+Which of the following is a type of subquery?	c) Both A and B.		Attempted
+
+What is the purpose of using the IN operator with a subquery?	b) To filter data based on a list of values returned by the subquery.		Attempted
+
+What is the output of below program class A { { System.out.print(1 + " "); } } class B extends A { { System.out.print(2 + " "); } } class C extends B { { System.out.print(3 + " "); } } public class Test { public static void main(String[] args) { C c = new C(); } }	c) 1 2 3		Attempted
+
+What is the output of the below program? class Print { Print() { System.out.println("Print() zero param constructor"); } Print(int m) { System.out.println("Print(int) param constructor"); } } public class Test20 extends Print{ Test20() { System.out.println("Test20() zero param constructor"); } Test20(int x) { super(x); System.out.println("Test20(int) int param constructor"); } public static void main(String[] args) { Test20 t1 = new Test20(); Test20 t2 = new Test20(50); } }	a) Print() zero param constructor Test20() zero param constructor Print(int) param constructor Test20(int) int param constructor		Attempted
+
+Which of the following is an example of HAS-A relationship?
+
+
+
+
+CODING QNS
+------------
+Q1) VehicleTest
+------------
+Demonstrating Inheritance to Simplify and Extend Class Functionality and This motto emphasizes the key educational goal of the program: to show how inheritance can be used to simplify code by reusing existing class functionality and extending it with new features specific to derived classes. Define the base class Vehicle ------------------------------- Attributes: [protected] make: String model: String year: int Constructor: Vehicle(String make, String model, int year): Constructor to initialize the attributes. Methods: void displayDetails(): Method to display the details of the vehicle. Define the subclass Car Inherits from Vehicle --------------------------------------------- Attributes: [protected] numberOfDoors: int Constructor: Car(String make, String model, int year, int numberOfDoors): Constructor to initialize the attributes. Methods: void displayDetails(): Method to display the details of the car, overriding the method from Vehicle. Define the subclass Bike Inherits from Vehicle ---------------------------------------------- Attributes: [protected] type: String Constructor: Bike(String make, String model, int year, String type): Constructor to initialize the attributes. Methods: void displayDetails(): Method to display the details of the bike, overriding the method from Vehicle. Create VehicleTest class ----------------- -> create main method -> in main method create Car object and Bike object. -> Print the details of Car class and Bike class by calling displayDetails() methods of both class. Condition : ----------- if any numeric value is zero or negative then print "Error Invalid Input". TEST CASE 1 : ------------- sample input : When your reading values for Vehicle class OR Car class OR Bike class then make sure if any numeric value is <=0 then print "Error Invalid Input". sample output : Error Invalid Input TEST CASE 2 : ------------- sample input : Car car = new Car("Audi", "Q8", 2021, 4); System.out.println("Car Details:"); car.displayDetails(); Bike bike = new Bike("Yamaha", "MT-07", 2020, "Sports"); System.out.println("\nBike Details:"); bike.displayDetails(); sample output : Car Details: Make: Audi Model: Q8 Year: 2021 Number of Doors: 4 Bike Details: Make: Yamaha Model: MT-07 Year: 2020 Type: Sports Note:- Based on Given Scenario Try to Write the classes public class VehicleTest { public static void main(String[] args) { } } class Vehicle { } class Car { } class Bike { }
+
+Q2) CalculateStudentPercentage
+-----------------------------
+Create a simple Java program using inheritance to manage student data. We have a base class Student, and two subclasses: ScienceStudent and ArtsStudent. Each subclass should calculate the percentage of marks based on its own set of subjects. The percentage calculation will be done using an overridden method. Define the base class Student ------------------------------ Attributes: protected String name and protected int rollNumber. Costructor: A constructor to initialize these attributes Methods: 1) public void displayDetails() a method to display student details. 2) public double calculatePercentage() a method wich will calculate and return percentage. Define class SceinceStudent extends from Student class --------------------------------------------------------------- Attributes: private int physicsMarks, private int chemistryMarks, private int mathMarks Costructor: A constructor to initialize current class attributes and super class attributes. Methods: Override displayDetails() a method to display parent class details as well current class details. Override calculatePercentage() a method wich will calculate and return percentage. Define class class ArtsStudent extends from Student class --------------------------------------------------------- Attributes: private int historyMarks, private int geographyMarks, private int englishMarks Costructor: A constructor to initialize current class attributes and super class attributes. Methods: Override displayDetails() a method to display parent class details as well current class details. Override calculatePercentage() a method wich will calculate and return percentage. Create Test class ----------------- -> create main method -> in main method create ScienceStudent object and ArtsStudent object. -> print the details of both class by calling displayDetails() method. -> print the percentage of ScienceStudent & ArtsStudent by calling calculatePercentage() methods. Condition : ----------- if any numeric value is zero or negative then print "Error Invalid Input". TEST CASE 1 : ------------- sample input : When your reading values for Student Class OR ScienceStudent class OR ArtsStudent class then make sure if any numeric value is <=0 then print "Error Invalid Input". sample output : Error Invalid Input TEST CASE 2 : ------------- sample input : ScienceStudent scienceStudent = new ScienceStudent("Anjali", 101, 85, 90, 80); ArtsStudent artsStudent = new ArtsStudent("Aryan", 102, 75, 80, 85); sample output : Science Student Details: Name: Anjali Roll Number: 101 Physics Marks: 85 Chemistry Marks: 90 Math Marks: 80 Percentage: 85.0% Arts Student Details: Name: Bob Roll Number: 102 History Marks: 75 Geography Marks: 80 English Marks: 85 Percentage: 80.0% ---------------------------------- Note:- Based on given Scenario try to Write the classes public class CalculateStudentPercentage { public static void main(String[] args) { } } class Student { } class ScienceStudent { } class ArtsStudent { }

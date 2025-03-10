@@ -1,0 +1,15 @@
+
+Example :
+---------
+   
+public class Test
+ {
+    int x = 10;
+    int y = 20;
+ }
+
+ Test t1 = new Test();   [x = 10  y = 20]
+ Test t2 = new Test();   [x = 10  y = 20]
+
+
+ //Note - Here the drawback is all objects will be initialized with same value.

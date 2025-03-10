@@ -1132,8 +1132,6 @@ public class MethodChaingDemo2 {
 
 Role of java.lang.Class class in class loading :
 ----------------------------------------------------
-Role of java.lang.Class class in class loading :
-----------------------------------------------------
 There is a predefined class called Class available in java.lang pacakge.
 
 In JVM memory whenever we load a class then it is loaded in special memory area called Method Area and retutn type is java.lang.Class class object.
@@ -1197,213 +1195,379 @@ public class Test {
 	}
 
 }
----------------------------------------------------------------------
+------------------------------------------------------------
+08-03-2025
+----------
+WAP to show the Platform class loader is super class of 
+Application class loader.
 
+class Hello
+{
+}
+public class Test 
+{
+	public static void main(String[] args) 
+	{
+		System.out.println("Super class of Application class loader is " + Hello.class.getClassLoader().getParent());		
+	}
+}
 
+getClassLoader() is a predefined non static method of java.lang.Class class and the return type of this method is java.lang.ClassLoader
 
+ public ClassLoader getClassLoader()
+------------------------------------------------------------
+ClassLoader which is an abstract class has provided a predefined non static methdo called getParent(), the return type of this methdo is ClassLoader.
 
+public ClassLoader getParent() :
+---------------------------------
+It will provide the name of the super class and will ClassLoader object.
 
 
+class Hello
+{
+}
+public class Test 
+{
+	public static void main(String[] args) 
+	{
+		System.out.println("Super class of Platform class loader is " + Hello.class.getClassLoader().getParent().getParent()); //null		
+	}
+}
 
+Note :- Here we will get the output  as null because it is built in class loader for JVM which is used for internal purpose (loading only predefined .class file) so implementation is not provided hence we are getting null.
+-----------------------------------------------------------
+Linking :
+---------
+In linking phase we have 3 modules :
 
+a) Verify  b) Prepare   c) Resolve
 
+Verify :-
+-------
+It ensures the correctness of the .class files, If any suspicious activity is there in the .class file then It will stop the execution immediately by throwing a runtime error i.e java.lang.VerifyError.
 
+There is something called ByteCodeVerifier(Component of JVM), responsible to verify the loaded .class file i.e byte code. Due to this verify module JAVA is highly secure language. 
 
+java.lang.VerifyError is the sub class of java.lang.linkageError.
 
+prepare : 
+---------
+[Static variable memory allocation + static variable initialization with default value even the variable is final]
 
+It will allocate the memory for all the static data members, here all the static data member will get the default values so if we have static int x = 100; then for variable x  memory will be allocated (4 bytes) and now it will be initialized with default value i.e 0, even the variable is final.
 
+static Test t = new Test();
 
+Here, t is a static reference variable so for t variable (reference variable) memory will be allocated as per JVM implementation i.e for 32 bit JVM (4 bytes of Memory) and for 64 bit (8 bytes of memory) and initialized with null.
+------------------------------------------------------------
+Memory allocation and initialzation with default value for NSV :
+----------------------------------------------------------------
+For NSV memory allocation and initialization with default value will be done at the time of Object creation by using new keyword with the help of Java Compiler.
 
+Memory allocation and initialzation with default value for SV :
+----------------------------------------------------------------
+For SV memory allocation and initialization with default value will be done at the time of CLASS LOADING in the prepare phase.
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-   
-   
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+Resolve :
+---------
+All the symbolic references (#7) will be converted into direct references OR actual reference.
+
+javap -verbose  FileName.class
+
+Note :- By using above command we can read the internal details of .class file.
+---------------------------------------------------------------
+10-03-2025
+----------
+Initialization :
+-----------------
+Here class initialization will takes place. All the static data member will get their actual/original value and we can also use static block for static data member initialization.
+
+Here, In this class initialization phase static variable and static block is having same priority so it will executed according to the order.(Top to bottom)
+
+Static Block OR Static Initializer :
+-------------------------------------
+It is a special block in java which is automatically executed at the time of loading the .class file.
+
+Example :
+
+static
+{
+
+}
+
+Static blocks are executed only once because in java we can load the .class files only once.
+
+If we have more than one static block in a class then it will be executed according to the order [Top to bottom]
+
+The main purpose of static block to initialize the static data member of the class so it is also known as static initializer.
+
+In java, a class is not loaded automatically, it is loaded based on the user request so static block will not be executed everytime, It depends upon whether class is loaded or not. 
+
+static blocks are executed before the main or any static method.
+
+A static blank final field must be initialized inside the static block only.
+
+static final int A;   //static blank final field
+
+static
+{
+   A = 100;
+}
+
+A static blank final field also have default value.
+
+We can't write any kind of return statement inside static block.
+
+If we don't declare static variable before static block body execution then we can perform write operation(Initialization is possible due to prepare phase) but read operation is not possible directly otherwise we will get an error Illegal forward reference, It is possible with class name bacause now compiler knows that variable is coming from class area OR Method area.
+
+Example :
+
+static 
+{
+   x = 100; //Valid
+   System.out.println(x); //Invalid
+   System.out.println(ClassName.x); //valid
+}
+static int x;
+
+If we directly perform direct read and write operation inside a static method then it is valid.
+
+public static void m1()
+{
+   y = 200; //Valid
+   System.out.println(y); //Valid
+}
+
+static int y;
+--------------------------------------------------------------
+//static block
+class Foo
+{		
+	Foo()
+	{
+		System.out.println("No Argument constructor..");
+	}
+
+	{
+		System.out.println("Non static Block..");
+	}
+
+	static
+	{
+		System.out.println("Static block...");
+	}
+	
+}
+public class StaticBlockDemo 
+{	
+	public static void main(String [] args) 
+	{		
+		System.out.println("Main Method Executed ");	
+			
+	}	
+}
+
+Note : Here Foo.class file is not loaded hence static block will not be executed.
+--------------------------------------------------------------
+class Test
+{
+	static int x;
+
+	static
+	{
+		x = 100;
+		System.out.println("x value is :"+x);
+	}
+	
+	static
+	{
+		x = 200;
+		System.out.println("x value is :"+x);
+	}
+
+	static 
+	{
+		x = 300;
+		System.out.println("x value is :"+x);
+	}	
+}
+public class StaticBlockDemo1   
+{
+	public static void main(String[] args) 
+	{
+		System.out.println("Main Method");
+		System.out.println(Test.x);
+	}
+}
+Note : If a class contains more than 1 static block then it will be executed from top to bottom.
+------------------------------------------------------------
+class Foo
+{	
+	static int x;
+
+    static
+	{		
+		System.out.println("x value is :"+x);
+	}	
+}
+
+public class StaticBlockDemo2 
+{
+	public static void main(String[] args) 
+	{
+		 new Foo();
+	}
+}
+
+Note : static variables are also having default value.
+------------------------------------------------------------
+class Demo
+{	
+	final static int a ;	//Blank static final field
+
+	static
+	{	
+		m1(); 
+		a = 100;	
+		System.out.println("User Value :"+a);
+	}
+	
+	public static void m1()
+	{
+		System.out.println("Default Value :"+a);
+	}
+	
+	
+}	
+public class  StaticBlockDemo3
+{
+	public static void main(String[] args) 
+		{		
+	         System.out.println("a value is :"+Demo.a);		
+	    }
+}
+
+Note : A statitc blank final field also have default value.
+-------------------------------------------------------------
+class  A        
+{
+	static 
+	{
+		System.out.println("A");
+	}
+	 
+	{
+		System.out.println("B");
+	}
+
+	A() 
+	{	
+		super();
+		System.out.println("C");
+	}
+}
+class B extends A
+{
+	static 
+	{
+		System.out.println("D");
+	}
+	 
+	{
+		System.out.println("E");
+	}
+
+	B() 
+	{
+		super();
+		System.out.println("F");
+	}
+
+}
+public class StaticBlockDemo4 
+{
+	public static void main(String[] args) 
+	{
+		new B();  //class loading + Object Creation
+	}
+}
+
+Note : Always Parent class will be loaded first before Child. 
+--------------------------------------------------------------
+//illegal forward reference
+
+class Demo 
+{	
+    static
+	{   
+		i = 100;		
+	}
+
+    static int i;
+}
+
+public class StaticBlockDemo5
+{
+    public static void main(String[] args) 
+	{
+        System.out.println(Demo.i);
+	}
+}
+------------------------------------------------------------
+class Demo 
+{
+    static 
+	{   
+		i = 100;
+		//System.out.println(i); //Illegal forward reference
+		System.out.println(Demo.i);
+    }
+
+    static int i;
+}
+
+public class StaticBlockDemo6
+{
+
+    public static void main(String[] args) 
+	{
+		System.out.println(Demo.i);
+	}
+}
+-------------------------------------------------------------
+class StaticBlockDemo7 
+{
+	static 
+	{
+      System.out.println("Static Block");
+	  return; 
+	}
+
+	public static void main(String[] args) 
+	{
+		System.out.println("Main Method");
+	}
+}
+-------------------------------------------------------------
+public class StaticBlockDemo8 
+{
+    final static int x; //Blank static final field
+
+    static
+	{		
+		m1();		
+		x = 15;		
+	}
+
+    public static void m1()
+	{
+		System.out.println("Default value of x is :"+x);
+	}
+
+	public static void main(String[] args) 
+	{
+		System.out.println("After initialization :"+StaticBlockDemo8.x);
+	}
+}
+--------------------------------------------------------------
 

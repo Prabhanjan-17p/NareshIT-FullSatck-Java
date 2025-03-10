@@ -1,0 +1,9 @@
+public class Test
+{
+   int x,y;
+}
+
+Test t1 = new Test();   t1.x=10;   t1.y=20;
+Test t2 = new Test();   t2.x=30;   t2.y=40;
+
+//Note - Here we are getting different values with respect to object but here the program becomes more complex.

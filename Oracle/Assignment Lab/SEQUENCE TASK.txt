@@ -1,0 +1,92 @@
+                                SEQUENCE
+                              ===========
+
+1.What is Sequence ? What is main purpose of Sequence?
+  - it is a database object which is used to generate sequence numbers on a specific column in the table automatically. 
+  - it will provide "auto incremental value" facility on a table. 
+
+2.Create a sequence ?Sequence stat with 5 and generate values upto 10
+
+SQL> CREATE SEQUENCE SQ1
+2  START WITH 5
+3  MINVALUE 1
+4  INCREMENT BY 1
+5  MAXVALUE 10;
+SQL> CREATE TABLE TEST10 (SLNO NUMBER(2),NAME VARCHAR2(10));
+SQL> INSERT INTO TEST10 VALUES(SQ1.NEXTVAL,'&NAME');
+
+3.Genarate the primary key values for the following column sno by using sequence.
+
+SQL>create table test(sno number(10) primary key,name varchar2(10));
+
+---->create a sequence first 
+---->create the table test table as shown in above
+---->insert into test(sno,name)values(s1.nextval,'&name');
+---->only we are proving the values to name column.by using
+     sequence pseudo column nextval we are generating values 
+     automatically to sno column.
+
+
+---->after inserting the records add Rollno column
+
+SNO      NAME       ROLLNO
+---     ------     --------
+1        GOWTHAM     
+2        SUBBARAO    
+3        RAJU        
+4        KIRAN  
+
+---->create one more sequence s2 and stating value is 73     
+
+---->by using one update command with sequence pseudo 
+     column(nextval)
+     genarate the output as follows
+
+SNO      NAME       ROLLNO
+---     ------     --------
+1        GOWTHAM     73
+2        SUBBARAO    74
+3        RAJU        75
+4        KIRAN       76
+
+SQL> CREATE SEQUENCE s1 START WITH 1 INCREMENT BY 1;
+
+SQL> CREATE TABLE TEST11 (sno NUMBER(10) PRIMARY KEY,name VARCHAR2(10));
+
+SQL> INSERT INTO test11 (sno, name) VALUES (s1.NEXTVAL, 'GOWTHAM');
+SQL> INSERT INTO test11 (sno, name) VALUES (s1.NEXTVAL, 'SUBBARAO');
+SQL> INSERT INTO test11 (sno, name) VALUES (s1.NEXTVAL, 'RAJU');
+SQL> INSERT INTO test11 (sno, name) VALUES (s1.NEXTVAL, 'KIRAN');
+
+SQL> ALTER TABLE test11 ADD rollno NUMBER(10);
+
+SQL> CREATE SEQUENCE s2 START WITH 73 INCREMENT BY 1;
+
+SQL> UPDATE test11 SET rollno = s2.NEXTVAL;
+
+
+4.NOTE:-Oracle 12c onwards we can also use sequence pseudo columns
+        with in default clause
+
+syntax:-
+=======
+columnname number(size) default sequencename.nextval primary key
+
+--->Create a sequence first and sequence start with 1001
+--->Create table test1 with ACCNO column by using above syntax
+    and NAME,BAL columns
+--->Insert the values only NAME,BAL columns by using 
+    skipping columns method
+--->And observe the output and beauty of sequence
+
+NOTE:-This kind of EXAMPLE is very usefull in Advance Java JDBC
+         
+5.What is cache?what is default size of cache?
+ANS- when we created a sequence object with "cache" then the set of sequence 
+  numbers are saved in database and also the copy of data keep in cache memory. 
+  so that each and every user request is going to cache instead of database and  
+  fetching data from cache to client application.so that it reduce the burdon on  
+  database and improve the performance of database.
+ANS- The default size of cache is 2kb;
+
+         

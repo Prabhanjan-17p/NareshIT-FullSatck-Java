@@ -1297,7 +1297,7 @@ static
 
 Static blocks are executed only once because in java we can load the .class files only once.
 
-If we have more than one static block in a class then it will be executed according to the order [Top to bottom]
+If we have more than one static blocks in a class then it will be executed according to the order [Top to bottom]
 
 The main purpose of static block to initialize the static data member of the class so it is also known as static initializer.
 
@@ -1570,4 +1570,314 @@ public class StaticBlockDemo8
 	}
 }
 --------------------------------------------------------------
+11-03-2025
+----------
+class Test
+{	    
+	public static final Test t1 = new Test(); 	//t1 = null
+	
+	static
+	{
+	   System.out.println("static block");
+	}
+
+	{
+	   System.out.println("Non static block");
+	}
+
+	Test()
+	{
+		System.out.println("No Argument Constructor");
+	}
+	
+	
+}
+
+public class StaticBlockDemo9 
+{
+	public static void main(String[] args) 
+	{
+		new Test();  //2 steps (class loading + Object creation)
+	}
+}
+--------------------------------------------------------------
+class Sample
+{	
+	static 
+	{
+		System.out.println("Static Block");
+		x = m1();	
+		System.out.println("x from static block :"+Sample.x);
+	}
+	
+	public static int m1()
+	{
+	   System.out.println("Static Method");
+	   return 100;	
+	}
+		
+	static int x; 
+}
+
+
+public class StaticBlockDemo10 
+{
+	public static void main(String[] args) 
+	{
+		System.out.println("x from main method :"+Sample.x);
+	}
+}
+--------------------------------------------------------------
+class Demo
+{
+	public static void print()
+	{
+		x = 120;
+		System.out.println("x value is :"+x);
+	}
+	
+	static int x;
+}
+
+public class StaticBlockDemo11 
+{
+	public static void main(String[] args) 
+	{
+		System.out.println(Demo.x);
+		Demo.print();
+	}
+}
+==============================================================
+Compile time constant :
+-----------------------
+A compile time constant is a constant that is evaluated and replaced with its value at compile time rather than runtime.
+
+It must be declared with static and final modifier as well as initialized with constant expression. (Must not be initialized by static method call)
+
+At compile, time constant value will be converted by compiler at the time of compilation itself so, at runtime JVM can see the constant value but not the class name so class will not be loaded as shown in the program.
+
+Example :  public static final int A = 100; //Valid
+           [Class will not be loaded]
+       
+           public static final int A = m1(); //valid [Here class will be loaded by JVM]
+--------------------------------------------------------------
+class Test
+{
+	public static final int MAX_VALUE = 120;
+	
+	static
+	{
+		System.out.println("Static Block");
+	}
+}
+
+
+public class CompileTimeConstantDemo1 
+{
+	public static void main(String[] args) 
+	{
+		System.out.println(Test.MAX_VALUE);
+	}
+}
+
+Note : class is not loaded hence static block will not be executed.
+       
+ class Demo
+{
+	public static final int MIN_VALUE = m1();
+	
+	public static int m1()
+	{
+		return 1;
+	}
+	
+	static
+	{
+		System.out.println("Static Block");
+	}	
+}
+
+public class CompileTimeConstantDemo2 
+{
+	public static void main(String[] args) 
+	{
+		System.out.println(Demo.MIN_VALUE);
+	}
+}
+--------------------------------------------------------------
+Foo.java
+---------
+public class  Foo
+{
+	public static final int MAX_PRIORITY = 72;
+}
+
+
+CompileTimeConstantDemo3.java
+-------------------------------
+//ELC
+public class CompileTimeConstantDemo3 
+{
+	public static void main(String[] args) 
+	{
+		System.out.println(Foo.MAX_PRIORITY);
+	}
+}
+
+Note : If we compile and execute both programs we will get 72 value, now change the 72 to 95, Re- compile only Foo.java so a new .class file will be created which will hold 95 value. Now without re-compilation of CompileTimeConstantDemo3.java if we execute CompileTimeConstantDemo3.java then we wil get 72 so it takes the value at compile time.
+==============================================================
+Can we write a java program without main method ?
+--------------------------------------------------
+It looks like we can write a java program by using static block (without main method) but this facility was available till JDK 1.6.
+
+class WithoutMain
+{
+       static
+	{
+	System.out.println("Hello world");
+	System.exit(0);
+	}
+}
+
+From JDK 1.7V onwands we can't write a java program without main method because at the time of class loading JVM will verify the presence of main method.
+--------------------------------------------------------------
+
+Variable Memory Allocation, Initialization and life cycle :
+-----------------------------------------------------------
+1) static field OR Class variable : 
+-----------------------------------
+Memory allocation done at prepare phase of class loading and initialized with default value even variable is final.
+
+It will be initialized with Original value (If provided by user at the time of declaration) at class initialization phase.
+
+When JVM will shutdown then during the shutdown phase class will be un-loaded from JVM memory so static data members are destroyed. They have long life.
+
+2) Non static field OR Instance variable 
+-----------------------------------------
+Memory allocation done at the time of object creation using new keyword (Instantiation) and initialized as a part of Constructor with default values even the variable is final. [Object class-> at the time of declaration -> instance block -> constructor]
+
+When object is eligible for GC then object is destroyed and all the non static data memebers are also destroyed with corresponding object. It has less life in comparison to static data members becuase they belongs to object.
+
+3) Local Variable 
+------------------
+Memory allocation done at stack area (Stack Frame) and developer is responsible to initialize the variable before use. Once metod execution is over, It will be deleted from stack Frame henec it has shortest life.
+
+4) Parameter variable 
+----------------------
+Memory allocation done at stack area (Stack Frame)  and end user is responsible to pass the value at runtime. Once metod execution is over, It will be deleted from stack Frame henec it has shortest life.
+
+Note : We can done validation only one parameter variables.
+
+=============================================================
+How many ways we can load the .class file into JVM memory :
+-----------------------------------------------------------
+There are so many ways to load the .class file into JVM memory but the following are the common examples :
+
+1) By using java command
+
+   public class Test
+   {
+   }
+
+   javac Test.java
+   java Test 
+
+   Here we are making a request to JVM to load Test.class file into JVM memory
+
+
+2) By using Constructor (new keyword at the time of creating object).
+
+3) By accessing static data member of the class.
+
+4) By using inheritance 
+
+5) By using Reflection API
+--------------------------------------------------------------
+ //Program that describes we can load a .class file by using new keyword (Object creation) OR by accessing static data member of the class.      
+       
+  class Demo
+{
+	static int x = 10;
+	static
+	{
+		System.out.println("Static Block of Demo class Executed!!! :"+x);
+	}
+}
+public class ClassLoading 
+{
+	public static void main(String[] args) 
+	{		
+		System.out.println("Main Method");
+		//new Demo();
+	    System.out.println("Hello "+Demo.x);	
+	}
+	
+}
+--------------------------------------------------------------
+//Program that describes whenever we try to load sub class, first of all super class will be loaded. [before parent, child can't exist]
+
+class Alpha
+{
+	static
+	{
+		System.out.println("Static Block of super class Alpha!!");
+	}
+}
+class Beta extends Alpha 
+{
+	static
+	{
+		System.out.println("Static Block of Sub class Beta!!");
+	}
+}
+class InheritanceLoading 
+{
+	public static void main(String[] args) 
+	{
+		 new Beta();
+	}
+}
+--------------------------------------------------------------
+package iq;
+class Alpha
+{
+	int x = 100;	
+}
+class Beta extends Alpha
+{
+	int x = 200; //Variable Hiding
+	
+	public static void access()
+	{
+	   Beta b1 = new Beta();
+	   System.out.println("x value is :"+b1.x);
+	   
+	   Alpha a1 = b1;
+	   System.out.println("x value is :"+a1.x);
+	   
+	   
+	}
+}
+public class Main 
+{
+	public static void main(String[] args) 
+	{
+		Beta.access();
+        }
+
+}
+-------------------------------------------------------------
+Loading the .class file by using Reflection API :
+-------------------------------------------------
+
+
+
+     
+       
+       
+
+
+
+
+
 

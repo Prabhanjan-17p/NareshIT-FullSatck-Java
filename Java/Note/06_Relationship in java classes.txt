@@ -1659,7 +1659,8 @@ At compile, time constant value will be converted by compiler at the time of com
 Example :  public static final int A = 100; //Valid
            [Class will not be loaded]
        
-           public static final int A = m1(); //valid [Here class will be loaded by JVM]
+           public static final int A = m1(); //valid [Here
+	   class will be loaded by JVM]
 --------------------------------------------------------------
 class Test
 {
@@ -1680,7 +1681,8 @@ public class CompileTimeConstantDemo1
 	}
 }
 
-Note : class is not loaded hence static block will not be executed.
+Note : class is not loaded hence static block will not be 
+       executed.
        
  class Demo
 {
@@ -1867,15 +1869,145 @@ public class Main
 
 }
 -------------------------------------------------------------
+12-03-2025
+-----------
 Loading the .class file by using Reflection API :
 -------------------------------------------------
+java.lang.Class class has provided a predefined static factory method called forName(String className), It is mainly used to load the given .class file at runtime, The return type of this method is java.lang.Class
+
+public static java.lang.Class forName(String className) throws 
+ClassNotFoundException
+
+Note : This method throws a checked execption i.e ClassNotFoundException 
+
+class Foo
+{
+	static
+	{
+		System.out.println("Static Block!!!!");
+	}
+}
+public class ClassLoading 
+{
+	public static void main(String[] args) throws Exception
+	{
+		Class.forName("Foo");
+	}
+}
+
+Note : Here Foo class will be loaded as a result static block will be executed.
+--------------------------------------------------------------
+package com.ravi.class_loading;
+
+class Test  
+{
+	 static
+	 {
+		 System.out.println("Static Block");
+	 }
+}
+public class ClassLoading 
+{
+	public static void main(String[] args) throws Exception
+	{
+		Class.forName("com.ravi.class_loading.Test"); //FQN(Fully Qualified Name)
+	}
+}
+
+Note : While working with Eclipse IDE FQN (Full Qualified Name) is required.
+-------------------------------------------------------------
+*** What is the difference between java.lang.ClassNotFoundException 
+and java.lang.NoClassDefFoundError 
 
 
+java.lang.ClassNotFoundException :-
+-----------------------------------------
+It occurs when we try to load the required .class file at RUNTIME by using Class.forName(String className) statement or loadClass() static of ClassLoader class and if the required .class file is not available at runtime then we will get an exception i.e java.lang.ClassNotFoundException
 
-     
-       
-       
+Note :- It does not have any concern at compilation time, at run time, JVM will simply verify whether the required .class file is available or not available.
 
+
+class Test
+{
+	static
+	{
+		System.out.println("Static Block");
+	}
+}
+
+public class ClassNotFoundExceptionDemo 
+{
+	public static void main(String[] args) throws Exception
+	{
+		Class.forName("Sample");
+	}
+}
+
+Note : We will get java.lang.ClassNotFoundException because at runtime JVM will try to load Sample.class file but Sample.class file is not available at runtime.
+-------------------------------------------------------------
+java.lang.NoClassDefFoundError :
+--------------------------------
+It occurs when the class was present at the time of COMPILATION but at runtime the required .class file is not available(manualy deleted by user ) Or it is not available in the current directory (Misplaced) then we will get a runtime error i.e java.lang.NoClassDefFoundError.
+
+class Student
+{
+	public void greet()
+	{
+		System.out.println("Hello Everyone!!!");
+	}
+}
+
+public class NoClassDefFoundErrorDemo 
+{
+	public static void main(String[] args) 
+	{
+		Student s1 = new Student();
+		s1.greet();
+	}
+}
+
+Note : After compilation, delete Student.class file from the current folder and exceute the program.
+=============================================================
+** A static method does not act on instance variable directly why?
+
+ All the static members (static variable, static block, static method, static nested inner class) are loaded/executed at the time of loading the .class file into JVM Memory.
+
+At class loading phase object is not created because object is created in the 2nd phase i.e Runtime data area so at the TIME OF EXECUTION OF STATIC METHOD AT CLASS LOADING PAHSE, NON STATIC VARIABLE WILL NOT BE AVAILABLE BY DEFAULT henec we can't access non static variable from static context[static block, static method and static nested inner class] without creating the object.
+
+public class Test 
+{
+	int x = 100;
+	
+	public static void main(String[] args) 
+	{
+		System.out.println("x value is :"+x); //error
+	}
+}
+-------------------------------------------------------------
+Runtime Data areas :
+---------------------
+Once a class is loaded into JVM memory then it contains verious types of variable (SV, NSV), methods and blocks.
+
+Based on the type of variable, methods and blocks, It is divided into different memory section i.e different memory 
+areas which are as follows :
+
+1) Method Area
+2) HEAP Area
+3) Stack Area
+4) PC Register
+5) Native Method Stack
+
+1) Method Area :
+----------------
+All the static members are available inside Method Area/Class Area.
+
+Whenever we load .class into JVM memory then class is loaded inside Method area and return java.lang.Class class Object.
+
+Any .class file is loaded into Method Area so, We can get complete information of loaded .class file from the Method area like name of the class, name of package, name of all the static and non static variables, methods and so on.
+
+We have only one Method Area per JVM that means for a single JVM we have only Method area.
+
+WAP to show that we can get complate class information from Method Area.
 
 
 

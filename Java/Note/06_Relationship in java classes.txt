@@ -2009,6 +2009,256 @@ We have only one Method Area per JVM that means for a single JVM we have only Me
 
 WAP to show that we can get complate class information from Method Area.
 
+Methods of java.lang.Class class :
+-----------------------------------
+getDeclaredMethods() is a predefined non static method available in java.lang.Class class , the return type of this method is Method array where Method is a predefined class available in java.lang.reflect sub package.
+
+public Method[]  getDeclaredMethods()
+
+getDeclaredFields() is a predefined non static method available in java.lang.Class class , the return type of this method is Field array where Field is a predefined class available in java.lang.reflect sub package.
+
+public Field[]  getDeclaredFields()
+
+Field and Method both the classes are providing getName() method to get the name of the field and Method.
+
+//WAP to get the information of any class by using command line argument 
+
+package com.ravi.class_loading;
+
+import java.lang.reflect.Field;
+import java.lang.reflect.Method;
+
+public class ClassDescription 
+{
+	public static void main(String[] args) throws Exception
+	{
+		Class cls = Class.forName(args[0]);
+		
+		System.out.println("Class Name is :"+cls.getName());
+		
+		System.out.println("Package Name is :"+cls.getPackageName());
+		
+		System.out.println("All the fields declared in the class :");
+		
+		Field  []fields = cls.getDeclaredFields();
+		
+		int count = 0;
+		
+		for(Field field : fields)
+		{
+			System.out.println(field.getName());
+			count++;
+		}
+		
+		System.out.println("Total Number of Fields are :"+count);
+		
+		System.out.println("All the methods declared in the class :");
+		
+	    Method methods[] = cls.getDeclaredMethods();
+	    
+	    count = 0;
+	    for(Method method : methods)
+	    {
+	    	System.out.println(method.getName());
+	    	count++;
+	    }
+		
+	    System.out.println("Total Number of methods are :"+count);
+		
+		
+	}
+
+}
+-------------------------------------------------------------
+HEAP AREA :
+-----------
+All the Objects and its member (NSV + NSM) are available in HEAP memory. The Objects which are stored in the HEAP Memory
+are eligible for GC when object does not contain any references.
+
+We have only one HEAP Area per JVM.
+
+STACK AREA :
+------------
+All the methods are executed in Stack Area.
+All the local and parameter variables are stored in Stack Area.
+Every time we call a method in java then a separate Stack Frame will be created and each stack frame contains 3 parts :
+ a) Local Variable Array
+ b) Frame Data
+ c) Operand Stack
+
+We have multiple Stack Area per JVM.
+
+PC Register :
+-------------
+It stands for Program Counter Register.
+In java environment, we can craete multiple threads.
+In order to hold the currently executing instruction of each thread we have a separate PC register. [13-MAR]
+
+
+Native Method Stack :
+----------------------
+Native method means, the java methods which are written by using native languages like C and C++. In order to write native method we need native method library support.
+
+Native method stack will hold the native method information in a separate stack.
+---------------------------------------------------------------------
+Execution Engine : [Interpreter + JIT Compiler]
+
+Interpreter 
+------------
+In java, JVM contains an interpreter which executes the program line by line. Interpreter is slow in nature because at the time of execution if we make a mistake at line number 9 then it will throw the execption at line number 9 and after solving the execption again it will start the execution from line number 1 so it is slow in execution that is the reason to boost up the execution java software people has provided JIT compiler.
+
+JIT Compiler :
+--------------
+It stands for just in time compiler. The main purpose of JIT compiler to boost up the execution so the execution of the program will be completed as soon as possible.
+
+JIT compiler holds the repeated instruction like method signature, variables, native method code and make it available to JVM at the time of execution so the overall execution becomes very fast.
+
+==============================================================
+HAS-A Relation in java :
+-------------------------
+HAS-A Relation :
+----------------
+class Order
+{
+  private int orderId;
+  private String itemName;
+  private double itemPrice;
+}
+
+class Customer
+{
+  private int customerId;
+  private String customerName;
+  private String customerAddress;
+  private Order order; //HAS-A relation
+}
+
+If we use a class as a property to another class then it is called HAS-A Relation.
+
+The limitation of IS-A relation is, it is tightly coupled relation i.e IS-A type relation so if we modify the content of super class then it will automatically, It will reflect to all the sub classes.
+
+While working with HAS-A relation we can access the property of another class so HAS-A relation provides accessibility 
+feature.
+
+HAS-A relation we can achieve by using Association concept.
+
+Association is divided into two types :
+
+   1) Composition (Strong Reference)
+   2) Aggregation (Weak Reference)
+
+Association :
+---------------
+Association is a connection between two separate classes that can be built up through their Objects. 
+
+The association builds a relationship between the classes and describes how much a class knows about another class. 
+
+This relationship can be unidirectional or bi-directional. In Java, the association can have one-to-one, one-to-many, many-to-one and many-to-many relationships.
+
+Example:-
+One to One: A person can have only one PAN card
+One to many: A Bank can have many Employees
+Many to one:  Many employees can work in single department 
+Many to Many: A Bank can have multiple customers and a customer can have multiple bank accounts.
+-------------------------------------------------------------
+3 files :
+----------
+package com.ravi.association;
+
+public class Student 
+{
+	private int roll;
+	private String name;
+	private int marks;
+
+	public Student(int roll, String name, int marks) 
+	{
+		super();
+		this.roll = roll;
+		this.name = name;
+		this.marks = marks;
+	}
+
+	@Override
+	public String toString() 
+	{
+		return "Student [roll=" + roll + ", name=" + name + ", marks=" + marks + "]";
+	}
+
+	public int getRoll() 
+	{
+		return roll;
+	}
+
+	public void setRoll(int roll) 
+	{
+		this.roll = roll;
+	}
+
+	public String getName() 
+	{
+		return name;
+	}
+
+	public void setName(String name) 
+	{
+		this.name = name;
+	}
+
+	public int getMarks() 
+	{
+		return marks;
+	}
+
+	public void setMarks(int marks) 
+	{
+		this.marks = marks;
+	}
+
+}
+
+package com.ravi.association;
+
+import java.util.Scanner;
+
+public class Trainer 
+{
+	public static void viewStudentProfile(Student obj)
+	{
+		Scanner sc = new Scanner(System.in);
+		System.out.print("Enter the Student Roll :");
+		int roll = sc.nextInt();
+		
+		if(roll == obj.getRoll())
+		{
+			System.out.println(obj);
+		}
+		else
+		{
+			System.err.println("Sorry!!! Student data is not available...");
+		}
+		
+	}
+	
+	
+}
+
+
+package com.ravi.association;
+
+public class AssociationDemo 
+{
+	public static void main(String[] args) 
+	{
+		Student s1 = new Student(101, "Scott", 90);	
+		Trainer.viewStudentProfile(s1);
+	}
+}
+
+
+
+
+
 
 
 

@@ -1,0 +1,315 @@
+16-03-2025
+----------
+***Polymorphism :
+-----------------
+Poly means "many" and morphism means "forms".
+
+It is a Greek word whose meaning is "same object having different behavior".
+
+In our real life a person or a human being can perform so many task, in the same way in our programming languages a method or a constructor can perform so many task.
+
+Example:-
+
+void add(int a, int b)
+
+void add(int a, int b, int c)
+
+void add(float a, float b)
+
+void add(int a, float b)
+
+Types of Polymorphism :
+-----------------------
+Polymorphism can be divided into two types :
+
+1) Static polymorphism OR Compile time polymorphism OR Early binding
+
+2) Dynamic Polymorphism OR Runtime polymorphism OR Late binding
+
+1) Static Polymorphism :
+------------------------
+The polymorphism which exist at the time of compilation is called Static OR compile time polymorphism.
+
+In static polymorphism, compiler has very good idea that which method is invoked depending upon METHOD PARAMETER.
+
+Here the binding of the method is done at compilation time so, it is known as early binding.
+
+We can achieve static polymorphism by using Method Overloading concept.
+
+Example of static polymorphism : Method Overloading.
+
+
+2) Dynamic Polymorphism 
+-----------------------
+The polymorphism which exist at runtime is called Dynamic polymorphim Or Runtime Polymorphism.
+
+*Here compiler does not have any idea about method calling, at runtime JVM will decide which method will be invoked depending upon CLASS TYPE OBJECT.
+
+Here method binding is done at runtime so, it is also called Late Binding.
+
+We can achieve dynamic polymorphism by using Method Overriding.
+
+Example of Dynamic Polymorphism : Method Overriding
+
+----------------------------------------------------------------
+Method Overloading :
+-------------------
+Writing two or more methods in the super and sub class in such a way that method name must be same but argument must be different.
+
+Method Overloading allows us to write same method name which is differ in :
+   1) Number of parameters of same type
+   2) Data type of parameters
+   3) Order OR Sequance of Data type (int-long and long-int)
+ 
+Method Overloading is possible in the same class as well as super and sub class.
+
+While working with Method Overloading, We can change the return type of the method.
+
+If I change only the return type but method parameters are same then It is not a valid method Overloading.
+---------------------------------------------------------------
+//Programs on MethodOverloading 
+
+package com.ravi.static_polymorphism;
+
+class Add
+{
+	public void sum(int x, int y)
+	{
+		System.out.println("Sum of two integer is :"+(x+y));
+	}
+	
+	public void sum(int x, int y, int z)
+	{
+		System.out.println("Sum of three integer is :"+(x+y+z));
+	}
+	
+	public void sum(double x, double y)
+	{
+		System.out.println("Sum of two double is :"+(x+y));
+	}
+}
+
+
+public class MethodOverloadingDemo1 
+{
+	public static void main(String[] args) 
+	{
+		Add add = new Add();
+		add.sum(2.3, 4.5);
+		add.sum(12, 12);
+		add.sum(10, 20, 30);	
+		
+	}
+
+}
+
+//Program on Constructor Overloading :
+---------------------------------------
+package com.ravi.static_polymorphism;
+
+class Addition
+{
+	public Addition(int x, int y)
+	{
+		System.out.println("Sum of two integer is :"+(x+y));
+	}
+	public Addition(String x, String y)
+	{
+		this(10,20);
+		System.out.println("Concatenation of two String is  :"+(x+y));
+	}
+	public Addition(double x, double y)
+	{
+		this("Data","base");
+		System.out.println("Sum of two Double is :"+(x+y));
+	}
+	
+	
+	{
+		System.out.println("NSB");
+	}
+}
+
+public class ConstructorOverloadingDemo1 {
+
+	public static void main(String[] args) 
+	{
+		Addition a1 = new Addition(12.5, 23.8);
+	}
+}
+
+WAP to show method overloading by changing the return type :
+-------------------------------------------------------------
+package com.ravi.static_polymorphism;
+
+class Sum
+{
+	public int add(int x, int y)
+	{
+		return (x+y);
+	}
+	public double add(double x, double y)
+	{
+		return (x+y);
+	}
+	
+	public String add(String x, String y)
+	{
+		return (x+y);
+	}
+}
+
+public class MethodOverloadingDemo3 
+{
+	public static void main(String[] args) 
+	{
+		Sum s1 = new Sum();
+	    System.out.println(s1.add("Data", "base"));
+	    System.out.println(s1.add(12.90, 45.89));
+	    System.out.println(s1.add(10, 20));
+	    
+
+	}
+
+}
+--------------------------------------------------------------
+
+Var-Args in Java :
+--------------------
+It was introduced from JDK 1.5 onwards.
+
+It stands for variable argument. It is an array variable which can hold 0 to n number of parameters of same type or different type by using Object class.
+
+It is represented by exactly 3 dots (...) so it can accept any number of argument (0 to nth) that means now we need not to define method body again and again, if there is change in method parameter value.
+
+var-args must be only one and last argument.
+
+Var Args must be used as a method OR Constructor parameter only.
+
+-------------------------------------------------------------
+WAP that show var args can accept 0 to n number of parameters.
+
+package com.ravi.var_args;
+
+class Test
+{
+   public void input(int... x)
+   {
+	   System.out.println("Var Args Executed");
+   }
+}
+public class VarArgsDemo1
+{  
+   public static void main(String ...args)
+   {
+	   Test t1 = new Test();
+       t1.input();  
+       t1.input(5);  
+       t1.input(10,20);  
+       t1.input(10,20,30);
+   }
+}
+--------------------------------------------------------------
+WAP to show var args is an array variable
+
+package com.ravi.var_args;
+
+class Accept
+{
+	public void sumOfParameter(int ...values)
+	{
+		int sum = 0;
+		
+		for(int value : values)
+		{
+			sum = sum + value;
+		}
+		System.out.println("Sum of Parametes :"+sum);
+		
+	}
+}
+
+public class VarArgsDemo2 
+{
+	public static void main(String[] args) 
+	{
+		Accept a = new Accept();
+		a.sumOfParameter(100,200,300,400,500);
+		a.sumOfParameter(10,20,30);
+		a.sumOfParameter();
+
+	}
+
+}
+--------------------------------------------------------------
+WAP to show var args can accept hetrogeneous types of element
+
+package com.ravi.var_args;
+
+class Hetro
+{
+	public void acceptHetro(Object ...obj)
+	{
+		for(Object x : obj)
+		{
+			System.out.println(x);
+		}
+	}
+}
+public class VarArgsDemo3 
+{
+	public static void main(String[] args) 
+	{
+		Hetro h = new Hetro();
+		h.acceptHetro(12,23.90,'A',"NIT", false, new String("NIT"));
+
+	}
+
+}
+--------------------------------------------------------------
+WAP to show var args must be only one and last argument.
+
+package com.ravi.var_args;
+
+class Demo
+{
+	/*
+	 * All commented statements are invalid
+	 * 
+	public void accept(int ...x, int ...y) 
+    {
+	}	
+	
+	public void accept(int ...x, int y) //Invalid
+	{
+	}   
+	
+	public void accept(int ...x, double ...y) //Invalid
+	{
+	}
+	 */
+	
+	public void accept(int x, int ...y)
+	{
+		System.out.println("x value is :"+x);
+		
+		for(int a : y)
+		{
+			System.out.println(a);
+		}		
+	}
+}
+public class VarArgsDemo4 
+{
+	public static void main(String[] args) 
+	{
+		Demo d1 = new Demo();
+		d1.accept(100, 10,20,30,40,50);
+
+	}
+
+}
+==============================================================
+Wrapper classes in java :
+-------------------------
+

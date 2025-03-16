@@ -1,0 +1,234 @@
+Assignment (14-MAR-25)
+
+Q1. What does HAS-A relationship in Java signify?
+A) Inheritance
+B) Encapsulation
+C) Composition or Aggregation
+D) Polymorphism
+
+Answer: C) Composition or Aggregation
+
+Q2. Which of the following statements about HAS-A relationship is correct?
+A) It is implemented using inheritance (extends keyword).
+B) It is implemented using object references.
+C) It is only possible with primitive data types.
+D) It requires overriding methods from the parent class.
+
+Answer: B) It is implemented using object references.
+
+Q3. How can we establish a HAS-A relationship in Java?
+A) Using implements keyword
+B) Using extends keyword
+C) By creating an object of one class inside another class
+D) By using super keyword
+
+Answer: C) By creating an object of one class inside another class
+
+
+Q4. How can we establish a HAS-A relationship in Java?
+A) Using implements keyword
+B) Using extends keyword
+C) By creating an object of one class inside another class
+D) By using super keyword
+
+Answer: C) By creating an object of one class inside another class
+
+Q5. What is the difference between composition and aggregation in HAS-A relationship?
+A) Composition has a weaker association than aggregation.
+B) Aggregation represents a strong dependency, while composition does not.
+C) Composition means the contained object cannot exist independently, while aggregation allows independent existence.
+D) Both are the same concept with no difference.
+
+Answer: C) Composition means the contained object cannot exist independently, while aggregation allows independent existence.
+
+Q6.  
+
+class Engine
+{
+    void start()
+    {
+        System.out.println("Engine started");
+    }
+}
+
+class Car
+{
+   Engine engine = new Engine();
+   
+    void startCar()
+    {
+        engine.start();
+        System.out.println("Car started");
+    }
+}
+public class Test
+{
+    public static void main(String[] args)
+    {
+        Car car = new Car();
+        car.startCar();
+    }
+}
+
+What type of HAS-A relationship does the Car class have with Engine?
+
+A) Aggregation
+B) Composition
+C) Inheritance
+D) Polymorphism
+
+Answer: B) Composition (since Engine is tightly coupled with Car and cannot exist independently)
+
+
+Q7. Which of the following is an example of aggregation?
+A) A Person class containing an Address object where Address can exist independently.
+B) A Car class containing an Engine object where Engine cannot exist without Car.
+C) A Dog class extending an Animal class.
+D) A Bank class inheriting from a FinancialInstitution class.
+
+Answer: A) A Person class containing an Address object where Address can exist independently.
+
+
+Q8. Which of the following is a key benefit of using HAS-A relationship over IS-A relationship?
+
+A) It promotes code reusability without tight coupling.
+B) It forces subclasses to override all parent methods.
+C) It makes method overriding easier.
+D) It restricts the ability to create new classes.
+
+Answer: A) It promotes code reusability without tight coupling.
+
+
+Q9. Find the output of the following code.
+
+class Engine
+{
+    void start()
+    {
+        System.out.println("Engine started.");
+    }
+}
+
+class Car
+{
+    private Engine engine;
+   
+    Car()
+    {
+        engine = new Engine(); // Engine is created inside Car
+    }
+
+    void startCar()
+    {
+        engine.start();
+        System.out.println("Car started.");
+    }
+}
+
+public class CompositionExample
+{
+    public static void main(String[] args)
+    {
+        Car car = new Car();
+        car.startCar();
+    }
+}
+
+Output - 
+Engine started.
+Car started.
+
+Q10) Find the output of the following
+
+class Address
+{
+    String city, state;
+
+    Address(String city, String state)
+    {
+        this.city = city;
+        this.state = state;
+    }
+
+    void displayAddress()
+    {
+        System.out.println(city + ", " + state);
+    }
+}
+
+class Student
+{
+    String name;
+    Address address;
+
+    Student(String name, Address address)
+    {
+        this.name = name;
+        this.address = address;
+    }
+
+    void displayStudent()
+    {
+        System.out.println("Student: " + name);
+        System.out.print("Address: ");
+        address.displayAddress();
+    }
+}
+
+public class AggregationExample
+{
+    public static void main(String[] args)
+    {
+        Address addr = new Address("New York", "USA");
+        Student student = new Student("John Doe", addr);
+        student.displayStudent();
+    }
+}
+
+Output -
+Student: John Doe
+Address: New York, USA
+
+=============================================================
+Program: 1
+-----------
+Create a class Address (Business Logic Class)
+Instance Variables:
+   private String cityName;
+   private String districtName;
+   private String stateName;
+Create a parameterized constructor initialize the instance variable of the class.
+
+Override toString() from Object class to print Address class properties.
+
+Create a class Employee (Business Logic Class)
+Instance Variables:
+   private int empId;
+   private String empName;
+   private Address address; //HAS-A relation
+Create a parameterized constructor initialize the instance variable of the class.
+
+Override toString() from Object class to print Employee class properties.
+
+Create a class Main (Executable Logic Class) which contains main method to print Employee class properties using toString() method.
+
+Program: 2
+-----------
+Create a class Order (Business Logic Class)
+Instance Variables:
+   private int orderId;
+   private String itemName;
+   private double itemPrice;
+Create a parameterized constructor initialize the instance variable of the class.
+Override toString() from Object class to print Order class properties.
+
+Create a class Customer (Business Logic Class)
+Instance Variables:
+   private int customerId;
+   private String customerName;
+   private String customerAddress;
+   private Order order; //HAS-A relation
+Create a parameterized constructor initialize the instance variable of the class.
+Override toString() from Object class to print Customer class properties.
+
+Create a class Zomato (Executable Logic Class) which contains main method to print Customer class properties using toString() method.

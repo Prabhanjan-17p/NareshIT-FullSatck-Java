@@ -2254,12 +2254,202 @@ public class AssociationDemo
 		Trainer.viewStudentProfile(s1);
 	}
 }
+-------------------------------------------------------------
+15-03-2025
+-----------
+Composition (Strong reference) :
+--------------------------------
+Composition in Java is a way to design classes such that one class contains an object of another class. It is a way of establishing a "HAS-A" relationship between classes.
+
+Composition represents a strong relationship between the containing class and the contained class.If the containing object (Car object) is destroyed, all the contained objects (Engine object) are also destroyed.
+
+A car has an engine. Composition makes strong relationship between the objects. It means that if we destroy the owner object, its members  will be also destroyed with it. For example, if the Car is destroyed the engine will also be destroyed as well.
+
+Program Guidelines :
+--------------------
+1) One object can't exist without another object
+2) We will not create two separate objects, during the creation of Car object, Engine object should be automatically created.
+3) We can declare blank final field.
+
+3 files :
+----------
+Engine.java(C)
+--------------
+package com.ravi.composition;
+
+public class Engine 
+{
+   private String engineType;
+   private int horsePower;
+   
+	public Engine(String engineType, int horsePower) 
+	{
+		super();
+		this.engineType = engineType;
+		this.horsePower = horsePower;
+	}
+
+	@Override
+	public String toString() 
+	{
+		return "Engine [engineType=" + engineType + ", horsePower=" + horsePower + "]";
+	}      
+}
+
+Car.java
+---------
+package com.ravi.composition;
+
+public class Car
+{
+	private String carName;
+	private int carModel;
+	private final Engine engine; // HAS-A relation [Blank final Field]
+
+	public Car(String carName, int carModel) 
+	{
+		super();
+		this.carName = carName;
+		this.carModel = carModel;
+		this.engine = new Engine("Battery", 1200);  //Composition	
+	}
+
+	@Override
+	public String toString() 
+	{
+		return "Car [carName=" + carName + ", carModel=" + carModel + ", engine=" + engine + "]";
+	}
+
+}
+
+CompositionDemo.java
+---------------------
+package com.ravi.composition;
+
+public class CompositionDemo {
+
+	public static void main(String[] args) 
+	{
+		Car naxon = new Car("Tata Naxon", 2025);
+		System.out.println(naxon);
+	}
+}
+-------------------------------------------------------------
+Aggregation (Weak Referance) :
+------------------------------
+Aggregation in Java is another form of association between classes that represents a "HAS-A" relationship, but with a weaker bond compared to composition. 
+
+In aggregation, one class contains an object of another class, but the contained object can exist independently of the container. If the container object is destroyed, the contained object can still exist.
+
+3 files :
+----------
+College.java
+-------------
+package com.ravi.aggregation;
+
+public class College 
+{
+	private String collegeName;
+	private String collegeLocation;
+
+	public College(String collegeName, String collegeLocation)
+	{
+		super();
+		this.collegeName = collegeName;
+		this.collegeLocation = collegeLocation;
+	}
+
+	@Override
+	public String toString() 
+	{
+		return "College [collegeName=" + collegeName + ", collegeLocation=" + collegeLocation + "]";
+	}	
+
+}
+
+Student.java
+------------
+package com.ravi.aggregation;
+
+public class Student 
+{
+	private int studentId;
+	private String studentName;
+	private String studentAddress;
+	private College college; // HAS-A Relation
+
+	public Student(int studentId, String studentName, String studentAddress, College college) 
+	{
+		super();
+		this.studentId = studentId;
+		this.studentName = studentName;
+		this.studentAddress = studentAddress;
+		this.college = college;
+	}
+
+	@Override
+	public String toString() {
+		return "Student [studentId=" + studentId + ", studentName=" + studentName + ", studentAddress=" + studentAddress
+				+ ", college=" + college + "]";
+	}
+
+}
 
 
+AggregationDemo.java
+--------------------
+package com.ravi.aggregation;
+
+public class AggregationDemo 
+{
+	public static void main(String[] args) 
+	{
+		College clg = new College("VIT", "Vellore");
+		
+		//clg = new College("NIT", "Hyd");
+		
+		Student s1 = new Student(1, "Scott", "S R Nagar", clg);
+		System.out.println(s1);
+		
+		Student s2 = new Student(2, "Smith", "Ameerpet", clg);
+		System.out.println(s2);
+		
+		Student s3 = new Student(3, "Alen", "Panjagutta", clg);
+		System.out.println(s3);
+
+	}
+
+}
+--------------------------------------------------------------
+Description of System.out.println() :
+-------------------------------------
+public class System
+{
+   public final static java.io.PrintStream out = null;  //HAS-A Relation
+}
 
 
+System.out.println();
 
+Internally System.out.println() creates HAS-A relation because System class contains a predefined class called java.io.PrintStream as shown in the above example.
 
+The following program describes that how System.out.println() works internally :
 
+package com.ravi.has_a_reln;
 
+class Test
+{
+	static String out = "Hyderabad";  //HAS-A Relation
+}
 
+public class HasARelationDemo 
+{
+
+	public static void main(String[] args)
+	{
+          int length = Test.out.length();		
+          System.out.println(length);
+	}
+
+}
+=============================================================

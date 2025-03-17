@@ -1,0 +1,139 @@
+                                  PL/SQL
+                              ============
+
+
+
+1.Write a PL/SQL program to print a message 'WELCOME TO PL/SQL CLASSES FOR MY DEAR WONDERFULL BATACH39' on screen?
+
+NOTE:-To avoid of displaying old and new parametes setverify off as following
+
+SQL>set verify off;
+SQL> SET SERVEROUTPUT ON;
+SQL> BEGIN
+  2  DBMS_OUTPUT.PUT_LINE('WELCOME TO PL/SQL CLASSES FOR MY DEAR WONDERFULL BATACH39');
+  3  END;
+  4  /
+
+
+-----------------------------------------------------------------------------------
+
+2.Write a PL/SQL program to add 2 numbers.and two numbers are enter from runtime ?
+
+SQL> DECLARE
+  2  X NUMBER(2);
+  3  Y NUMBER(2);
+  4  BEGIN
+  5  X := &X;
+  6  Y := &Y;
+  7  DBMS_OUTPUT.PUT_LINE('ADD OF 2 NUMBER IS : '|| (X+Y));
+  8  END;
+  9  /
+Enter value for x: 12
+Enter value for y: 12
+ADD OF 2 NUMBER IS : 24
+
+-----------------------------------------------------------------------------------
+
+3.Write a PL/SQL program for user entered empno then display name of the employee and his salary from emp table?
+
+SQL>    DECLARE
+  2     v_EMPNO NUMBER(5);
+  3     v_EMPNNAME VARCHAR2(10);
+  4     v_SAL NUMBER(10);
+  5     BEGIN
+  6     v_EMPNO := &v_EMPNO;
+  7     SELECT ENAME,SAL INTO v_EMPNNAME,v_SAL FROM EMP WHERE EMPNO = v_EMPNO;
+  8     DBMS_OUTPUT.PUT_LINE(v_EMPNNAME||','||v_SAL);
+  9     END;
+ 10     /
+
+Enter value for v_empno: 7788
+SCOTT,3000
+
+SQL> /
+Enter value for v_empno: 7369
+SMITH,800
+
+-----------------------------------------------------------------------------------
+
+4.Write a PL/SQL program which is used to retrive maximum salary from emp table and store it into PL/SQL variable and display maximum salary?
+
+ SQL> DECLARE
+ 2  v_EMPNNAME VARCHAR2(10);
+ 3  v_SAL NUMBER(10);
+ 4  BEGIN
+ 5  SELECT ENAME,SAL INTO v_EMPNNAME,v_SAL FROM EMP WHERE SAL =  (SELECT MAX(SAL) FROM EMP);
+ 6  DBMS_OUTPUT.PUT_LINE('MAX SAL EMPLOYEE IS :');
+ 7  DBMS_OUTPUT.PUT_LINE(v_EMPNNAME||','||v_SAL);
+ 8  END;
+ 9   /
+MAX SAL EMPLOYEE IS :
+KING,5000
+
+-----------------------------------------------------------------------------------
+
+5.Write a PL/SQL program to find maximum number from 2 numbers and store it into another variable?
+
+note:- in pl/sql expressions we are not allowed to use group functions,decode conversion functions.but we are allowed to use number functions,character functions,date functions in pl/sql expressions
+      
+       SQL> DECLARE
+       2    num1 NUMBER := 25;
+       3    num2 NUMBER := 40;
+       4    max_num NUMBER;
+       5    BEGIN
+       6    IF num1 > num2 THEN
+       7        max_num := num1;
+       8    ELSE
+       9        max_num := num2;
+      10    END IF;
+      11    DBMS_OUTPUT.PUT_LINE('The maximum number is: ' || max_num);
+      12    END;
+      13    /
+     The maximum number is: 40
+
+-----------------------------------------------------------------------------------
+
+6.Write a PL/SQL program for user entered empno then display all details of employee from emp table by using row level attributes?
+
+SQL>  DECLARE
+  2   v_EMPNO NUMBER(5);
+  3   i EMP%ROWTYPE;
+  4   BEGIN
+  5   v_EMPNO := &v_EMPNO;
+  6   SELECT * INTO i FROM EMP WHERE EMPNO = v_EMPNO;
+  7   DBMS_OUTPUT.PUT_LINE(i.EMPNO||','||i.ENAME||','||i.JOB||','||i.MGR||','||i.HIREDATE||','||i.SAL||','||i.COMM||','||i.DEPTNO);
+  8   END;
+  9    /
+Enter value for v_empno: 7788
+7788,SCOTT,ANALYST,7566,09-DEC-82,3000,,20
+
+-----------------------------------------------------------------------------------
+
+7.Write a PL/SQL program to calculate the experience of the given employee
+
+enter empno:7902
+experience is:43years
+
+SQL>  DECLARE
+  2       v_EMPNO NUMBER(5);
+  3       v_CURRENTTEAR NUMBER(5):= 2024;
+  4       v_HIREYEAR NUMBER(4);
+  5       -- v_SYSYEAR NUMBER(4);
+  6       BEGIN
+  7       v_EMPNO := &v_EMPNO;
+  8       SELECT TO_NUMBER(TO_CHAR(HIREDATE, 'YYYY')) INTO v_HIREYEAR FROM EMP WHERE EMPNO = v_EMPNO;
+  9       -- v_SYSYEAR := TO_NUMBER(TO_CHAR(SYSDATE, 'YYYY'));
+ 10       DBMS_OUTPUT.PUT_LINE('TOTAL YEAR OF EXPRENCE IS :'||(v_CURRENTTEAR-v_HIREYEAR));
+ 11       -- DBMS_OUTPUT.PUT_LINE('TOTAL YEAR OF EXPRENCE IS :'||(v_SYSYEAR-v_HIREYEAR));
+ 12       END;
+ 13        /
+Enter value for v_empno: 7902
+TOTAL YEAR OF EXPRENCE IS :43
+
+SQL> /
+Enter value for v_empno: 7788
+TOTAL YEAR OF EXPRENCE IS :42
+
+-----------------------------------------------------------------------------------
+
+

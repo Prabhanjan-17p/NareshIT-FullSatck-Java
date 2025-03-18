@@ -1,0 +1,172 @@
+                                  PL/SQL
+                                =========
+
+1.Write a PL/SQL program eligible for voting system 
+
+if age is>=18 then display a msg :u r eligible for voting
+if age is<18 then display a msg  :u not eligible for voting or better luck next time
+
+
+SQL> SET SERVEROUTPUT ON;
+SQL> SET VERIFY OFF;
+SQL> DECLARE
+  2  v_AGE NUMBER(2);
+  3  BEGIN
+  4  v_AGE := &v_AGE;
+  5  IF v_AGE >= 18 THEN
+  6  DBMS_OUTPUT.PUT_LINE('You are eligible for voting');
+  7  ELSE
+  8  DBMS_OUTPUT.PUT_LINE('You not eligible for voting or better luck next time');
+  9  END IF;
+ 10  END;
+ 11  /
+
+Enter value for v_age: 19
+You are eligible for voting
+
+
+-----------------------------------------------------------------------------------
+
+
+2.Write a PL/SQL program from dept table by using conditional statements 
+
+if deptno=10 then display a msg ---->ten
+if deptno=20 then display a msg ---->twenty
+if deptno=30 then display a msg ---->thirty
+if deptno=40 then display a msg ---->others 
+
+SQL> DECLARE
+  2  v_DEPTNO NUMBER(2);
+  3  BEGIN
+  4  v_DEPTNO := &v_DEPTNO;
+  5  IF v_DEPTNO = 10 THEN
+  6  DBMS_OUTPUT.PUT_LINE('ten');
+  7  ELSIF  v_DEPTNO = 20 THEN
+  8  DBMS_OUTPUT.PUT_LINE('twenty');
+  9  ELSIF  v_DEPTNO = 30 THEN
+ 10  DBMS_OUTPUT.PUT_LINE('thirty');
+ 11  ELSIF  v_DEPTNO = 40 THEN
+ 12  DBMS_OUTPUT.PUT_LINE('others');
+ 13  ELSE
+ 14  DBMS_OUTPUT.PUT_LINE('10 TO 40 DEPT NO ONLY...');
+ 15  END IF;
+ 16  END;
+ 17  /
+
+Enter value for v_deptno: 10
+ten
+
+SQL> /
+Enter value for v_deptno: 20
+twenty
+
+SQL> /
+Enter value for v_deptno: 30
+thirty
+
+SQL> /
+Enter value for v_deptno: 40
+others
+
+SQL> /
+Enter value for v_deptno: 55
+10 TO 40 DEPT NO ONLY...
+
+
+----------------------------------------------------------------------------------
+
+3.Write a PL/SQL program to print 2024 calendar?
+
+01-JAN-24
+02-JAN-24
+.........
+.........
+31-DEC-24
+
+SQL> DECLARE
+  2  v_DATE DATE := TO_DATE('01-JAN-2024', 'DD-MON-YYYY');
+  3  BEGIN
+  4  WHILE v_DATE <= TO_DATE('31-DEC-2024', 'DD-MON-YYYY')
+  5  LOOP
+  6  DBMS_OUTPUT.PUT_LINE(TO_CHAR(v_DATE,'DD-MON-YYYY'));
+  7  v_DATE := v_DATE+1;
+  8  END LOOP;
+  9  END;
+ 10  /
+
+ 
+01-JAN-24
+02-JAN-24
+.........
+.........
+31-DEC-24
+-----------------------------------------------------------------------------------
+
+4.Write a PL/SQL program to print 1..10 numbers by using for loop
+
+SQL> BEGIN
+  2  FOR i IN 1..10
+  3  LOOP
+  4  DBMS_OUTPUT.PUT_LINE(i);
+  5  END LOOP;
+  6  END;
+  7  /
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+
+-----------------------------------------------------------------------------------
+
+5.Write a PL/SQL program to print 10..1 numbers reverse by using for loop
+
+SQL> BEGIN
+  2  FOR i IN 1..10
+  3  LOOP
+  4  DBMS_OUTPUT.PUT_LINE(11-i);
+  5  END LOOP;
+  6  END;
+  7  /
+10
+9
+8
+7
+6
+5
+4
+3
+2
+1
+
+
+-----------------------------------------------------------------------------------
+6.Write a PL/SQL program to increase salary of the given empno with given amount.after increasing the sal display the salary of the employee?
+
+enter empno:7499
+enter amount:2000
+salary increased(msg i want to display)
+sal is:3600
+
+
+SQL>  DECLARE
+  2      v_EMPNO NUMBER(4);
+  3      v_AMT NUMBER(4);
+  4      v_EMPAMT NUMBER(4);
+  5      BEGIN
+  6      v_EMPNO := &v_EMPNO;
+  7      v_AMT := &v_AMT;
+  8      SELECT SAL INTO v_EMPAMT FROM EMP WHERE EMPNO = v_EMPNO;
+  9      DBMS_OUTPUT.PUT_LINE('salary increased');
+ 10      DBMS_OUTPUT.PUT_LINE('sal is: '||(v_AMT+v_EMPAMT));
+ 11      END ;
+ 12  /
+Enter value for v_empno: 7499
+Enter value for v_amt: 2000
+salary increased
+sal is: 3600

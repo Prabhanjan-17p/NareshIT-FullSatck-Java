@@ -310,6 +310,168 @@ public class VarArgsDemo4
 
 }
 ==============================================================
+17-03-2025
+-----------
 Wrapper classes in java :
 -------------------------
+
+Wrapper classes in java :
+-------------------------
+We have 8 primitive data types in java i.e byte, short, int, long and so on.
+
+Except these 8 primitive data types, everything in java is an object.
+
+If we remove these 8 primitive data types then only java can become pure object oriented language.
+
+On these primitive data types, we can't assign null or we can't invoke a method.
+
+These primitive data types are unable to move in the network, only objects are moving in the network.
+
+We can't perform serialization and object cloning on primitive data types.It is only possible with objects.
+
+To avoid the above said problems, From JDK 1.5v, java software people has provided the following two concepts :
+
+a) Autoboxing [Converting primitive to Wrapper Object]
+b) Unboxing [Converting Wrapper object back to primitive]
+
+Autoboxing 
+--------------
+When we convert the primitive data types into corresponding wrapper object then it is called Autoboxing as shown below.
+
+Primitive type		Wrapper Object
+----------------        ------------------
+byte			-	Byte
+short			-	Short
+int			-	Integer
+long			-	Long
+float			-	Float
+double			-	Double
+char			-	Chracter
+boolean			-	Boolean 
+
+From JDK 1.5V onwards we can directly assign primitive data type variable value into corresponsing Wrapper object.
+
+Here Internally compiler will convert the primitive into Wrapper Object by using valueOf() static method.
+
+Note : ALL THE WRAPPER CLASSES ARE IMMUTABLE(UN-CHANGED) AS WELL AS equals(Object obj) and hashCode() methods are overridden in all the Wrapper classes.
+
+WAP to show that Wrapper classes are immutable :
+-------------------------------------------------
+package com.ravi.autoboxing;
+
+class Product
+{
+	private double price = 18000;
+
+	public double getPrice() 
+	{
+		return price;
+	}
+
+	public void setPrice(double price)
+	{
+		this.price = price;
+	}	
+}
+public class ImmutableDemo1 
+{
+	public static void main(String[] args)
+	{
+		Product p1 = new Product();
+		System.out.println(p1.getPrice());
+		accept(p1);
+		System.out.println(p1.getPrice());
+	}
+	
+	public static void accept(Product prod)
+	{
+		prod.setPrice(22000);
+	}
+
+}
+
+
+Note : The above program is a demo example.
+
+--------------------------------------------------------------
+package com.ravi.autoboxing;
+
+
+
+public class ImmutableDemo2 
+{
+	public static void main(String[] args)
+	{
+		Integer i = new Integer(100);
+		System.out.println(i);
+        accept(i);
+        System.out.println(i);
+	}
+	
+	public static void accept(Integer x)
+	{
+		x = 120;
+	}
+
+}
+
+Note : Here we will get the output 100 and 100 because Integer is a Wrapper class and all the Wrapper classes are immutable class.
+--------------------------------------------------------------
+ALL THE WRAPPER CLASSES AND STRING CLASS ARE IMMUTABLE SO UN-MODIFIABLE.
+
+package com.ravi.autoboxing;
+
+public class ImmutableDemo3 
+{
+	public static void main(String[] args) 
+	{
+	     String s1 = new String("india");	
+	     System.out.println(s1);
+	     accept(s1);
+	     System.out.println(s1);
+	}
+	
+	public static void accept(String str)
+	{
+		str.toUpperCase();
+	}
+
+}
+
+Note : String is also immutable.
+--------------------------------------------------------------
+Overloaded valueOf() method :
+-----------------------------
+We have 3 overloaded valueOf() method :
+----------------------------------------
+1) public static Integer valueOf(int x) : It will convert the given int value into Integer Object.
+
+2) public static Integer valueOf(String str) : It will convert
+   the given String into Integer Object.
+   [valueOf() method will convert the String into Wrapper object where as parseInt() method will convet the String into primitive type]
+
+3) public static Integer valueOf(String str, int radix/base) :
+   It will convert the given String number into Integer object 
+   by using the specified radix or base.
+
+ Note :- We can pass base OR radix upto 36
+i.e A to Z (26) + 0 to 9 (10) -> [26 + 10 = 36], It can be 
+calculated by using Character.MAX_RADIX.
+
+Output will be generated on the basis of radix
+
+System.out.println(Character.MAX_RADIX); //36
+MAX_RADIX is a final and static variable of Character class.
+
+
+
+
+
+
+
+
+
+
+
+
 

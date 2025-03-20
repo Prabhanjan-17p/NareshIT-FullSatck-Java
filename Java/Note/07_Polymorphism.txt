@@ -339,10 +339,10 @@ Autoboxing
 When we convert the primitive data types into corresponding wrapper object then it is called Autoboxing as shown below.
 
 Primitive type		Wrapper Object
-----------------        ------------------
+----------------   ------------------
 byte			-	Byte
 short			-	Short
-int			-	Integer
+int			    -	Integer
 long			-	Long
 float			-	Float
 double			-	Double
@@ -446,8 +446,7 @@ We have 3 overloaded valueOf() method :
 ----------------------------------------
 1) public static Integer valueOf(int x) : It will convert the given int value into Integer Object.
 
-2) public static Integer valueOf(String str) : It will convert
-   the given String into Integer Object.
+2) public static Integer valueOf(String str) : It will convert the given String into Integer Object.
    [valueOf() method will convert the String into Wrapper object where as parseInt() method will convet the String into primitive type]
 
 3) public static Integer valueOf(String str, int radix/base) :

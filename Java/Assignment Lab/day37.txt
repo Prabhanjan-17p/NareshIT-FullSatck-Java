@@ -1,0 +1,171 @@
+Question - 1
+--------------
+Write a Java program that defines a MathOperations class with method overloading to perform arithmetic operations. Implement the following methods:
+
+Take a class Calculator(BLC Class)
+
+take 4 public Method :
+add(int num1, int num2): Returns the sum of two integers.
+
+add(double num1, double num2): Returns the sum of two doubles.
+
+multiply(int num1, int num2): Returns the product of two integers.
+
+multiply(double num1, double num2): Returns the product of two doubles.
+
+Take an (ELC Class)In the main method, create an instance of MathOperations and demonstrate the use of each method by performing calculations with different types of arguments (integers and doubles).
+
+Test Cases-1 :    
+------------------
+Add two doubles
+Sample Input: 10.5, 20.3
+
+Expected Output:
+
+Sum of 10.5 and 20.3 (double): 30.8
+
+
+Test Cases -2 :
+------------------
+Multiply two integers
+
+Sample Input: 10, 20
+
+Expected Output:
+Product of 10 and 20 (int): 200
+
+Test Case-3 :
+----------------
+Add with negative integers
+
+Sample Input: -10, 20
+
+Expected Output:
+
+Sum of -10 and 20 (int): 10
+
+
+---------------
+Question - 2: 
+---------------
+
+Write a Java program that defines a ShapeCalculator class with method overloading to calculate the area of geometric shapes. Implement the following methods:
+
+
+ShapeCalculator - Method overloading
+
+
+take 4 public Method :
+
+calculateArea(int sideLength): Returns the area of a square (side * side).
+
+calculateArea(int length, int width): Returns the area of a rectangle (length * width).
+
+calculateArea(double radius): Returns the area of a circle (PI * radius^2).
+
+Take an Elc class Main  it having main method and execute the methods.
+
+Test Cases -1 :
+-------------------
+Valid Case: Calculate area of a circle
+
+Sample Input: radius = 7.0
+
+Expected Output:
+
+Area of circle with radius 7.0: 153.93804
+
+
+Test Cases -2 :
+-------------------
+
+Invalid Case: Negative side length for square
+
+Sample Input: sideLength = -5
+Expected Output:
+
+Error: Side length must be non-negative.
+
+
+Test Cases -3 :
+-------------------
+Invalid Case: Negative length or width for rectangle
+
+Sample Input: length = -5, width = 10
+
+Expected Output:
+
+Error: Length and width must be non-negative.
+
+
+Question -3
+-------------
+
+Create a class Employee (BLC Class)
+
+Attributes:
+
+names              datatype
+--------    	   -----------
+hoursWorked        :double
+hourlyRate         :double
+annualSalary	   :double
+salesAmount        :double
+commissionRate     :int 
+
+Acess modifier :private for all varriables
+
+Implement three constructors:
+
+One for an hourly employee that accepts hoursWorked and hourlyRate.
+
+One for a salaried employee that accepts annualSalary.
+
+One for a commission employee that accepts salesAmount and commissionRate.
+
+Methods :
+------------
+method name 	:calculateSalary()
+Return type 	:double
+Acess Modifier	:public
+
+ ->for calculating the salary of an hourly employee.
+
+method name 	:calculateSalary(double annualSalary)
+Return type 	:double
+Acess Modifier	:public
+
+-> for calculating the salary of a salaried employee.
+
+method name 	:calculateSalary(double salesAmount, double commissionRate)
+Return type 	:double
+Acess Modifier	:public
+
+->for calculating the commission of a commission-based employee.
+
+Create a Tester Class(ELC Class) Create instances of each type of employee.
+Calculate and display the salary for each employee type using the appropriate method.
+
+
+Test Cases :
+--------------
+Case 1:
+--------
+Hourly Employee
+
+Input: hoursWorked = 160, hourlyRate = 15
+
+Expected Output: Monthly salary of hourly employee: 2400.0
+
+ Case 2:
+----------
+ Salaried Employee
+Input : annualSalary = 60000
+
+Expected Output : Monthly salary of salaried employee: 5000.0
+
+ Case 3:
+---------
+Commission Employee
+Input: salesAmount = 50000, commissionRate = 10
+Expected Output: Commission of employee: 5000.0

@@ -1,0 +1,611 @@
+Create a Employee Salary calculation Application project by using Method Overriding Concept to display different kinds of salary for PartTimeEmployee and FullTimeEmployee. Validate all the inputs properly and generate error message, if any input is not appropriate. 
+
+Create a BLC class called Employee
+Fields :
+ id  int  protected
+ name String protected
+	
+Use a parameterized constructor to initialize all the fields, 
+
+ Methods :
+ 
+ 1) Method Name 	: calculateSalary()
+    Argument   		: No Argument
+    Return Type 	: double
+    Access modifier	: public
+    In this method return 0.0 for generic salary
+
+ Create another BLC class FullTimeEmployee which is sub class of Employee.
+
+  
+  Field :
+  protected double salary;
+  
+  Take a parameterized constructor to initialize super class and sub class properties.
+  Validate all the inputs properly and generate error message, if any input is not appropriate. 
+  [See the Test cases for Input Validation]
+
+ Method :
+  
+ 1) Method Name 	: calculateSalary()
+    Argument   		: No Argument
+    Return Type 	: double
+    Access modifier	: public
+    
+    In this overridden method return the salary of employee as a non static variable
+
+    
+Create another BLC class PartTimeEmployee which is sub class of Employee
+  
+  Field :
+  protected double hourlyRate;
+  protected int hoursWorked; 
+  
+  Take a parameterized constructor to initialize super class and sub class properties.
+  Validate all the inputs properly and generate error message, if any input is not appropriate. 
+  [See the Test cases for Input Validation]
+  
+ Method :
+  
+ 1) Method Name 	: calculateSalary()
+    Argument   		: No Argument
+    Return Type 	: double
+    Access modifier	: public
+    In this overridden method return the salary of employee as based on number of hours, he has
+    worked in the Organization.
+        
+    Create an ELC class EmployeeSalary with main method to test this application.
+    
+Test Cases for Output :
+------------------------
+Test Case 1 :
+-------------
+		***Salary Calculation Menu***		
+		 1) FullTime Employees 
+		 2) PartTime Employees  
+Please select the Employee type
+1
+Enter Fulltime Employee Id :101
+Enter Fulltime Employee Name :Scott
+Enter the Salary :90000
+Scott Salary is :90000.0
+
+Test Case 2 :
+-------------
+		***Salary Calculation Menu***		
+		 1) FullTime Employees 
+		 2) PartTime Employees  
+Please select the Employee type
+2
+Enter PartTime Employee Id :102
+Enter PartTime Employee Name :Alen
+Enter your hourly rate:1000
+Enter your total works hour in the month :90
+Alen Salary is :90000.0
+
+Test Cases for Input Validation :
+ ---------------------------------
+Test Cases 1:
+-------------
+		***Salary Calculation Menu***		
+		 1) FullTime Employees 
+		 2) PartTime Employees  
+Please select the Employee type
+1
+Enter Fulltime Employee Id :101
+Enter Fulltime Employee Name :Scott
+Enter the Salary :-9000
+Salary can't be negative!!!
+
+Test Cases 2:
+-------------
+ 		***Salary Calculation Menu***		
+		 1) FullTime Employees 
+		 2) PartTime Employees  
+Please select the Employee type
+2
+Enter PartTime Employee Id :102
+Enter PartTime Employee Name :Alen
+Enter your hourly rate:-12
+Enter your total works hour in the month :90
+Employee hourly rate can't be zero OR Negative
+
+Test Cases 3:
+-------------
+		***Salary Calculation Menu***		
+		 1) FullTime Employees 
+		 2) PartTime Employees  
+Please select the Employee type
+2
+Enter PartTime Employee Id :102
+Enter PartTime Employee Name :Alen
+Enter your hourly rate:1000
+Enter your total works hour in the month :-10
+Employee hours of work can't be Negative
+
+
+ANS ---------------
+
+package com.nareshIT.day38;
+
+import java.util.Scanner;
+
+public class EmployeeSalary {
+
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		System.out.println("***Salary Calculation Menu***");
+		System.out.println("1) FullTime Employees");
+		System.out.println("2) PartTime Employees");
+		System.out.println("Please select the Employee type");
+		int typeEmp = sc.nextInt();
+		sc.nextLine();
+		if (typeEmp == 1) {
+			System.out.print("Enter Fulltime Employee Id :");
+			int Fid = sc.nextInt();
+			System.out.print("Enter Fulltime Employee Name :");
+			String Fname = sc.nextLine();
+			Fname = sc.nextLine();
+			System.out.print("Enter the Salary :");
+			double Fsal = sc.nextDouble();
+			Employee f = new FullTimeEmployee(Fid, Fname, Fsal);
+			System.out.print(Fname+" Salary is :"+f.calculateSalary());
+		}else {
+			System.out.print("Enter PartTime Employee Id :");
+			int Pid = sc.nextInt();
+			System.out.print("Enter PartTime Employee Name :");
+			String Pname = sc.nextLine();
+			Pname = sc.nextLine();
+			System.out.print("Enter your hourly rate:");
+			double Phourly = sc.nextDouble();
+			System.out.print("Enter your total works hour in the month :");
+			int Pwim = sc.nextInt();
+			Employee p = new PartTimeEmployee(Pid, Pname, Phourly,Pwim);
+			System.out.print(Pname+" Salary is :"+p.calculateSalary());
+		}
+	}
+
+}
+"
+
+package com.nareshIT.day38;
+
+public class PartTimeEmployee extends Employee {
+	  protected double hourlyRate;
+	  protected int hoursWorked;
+	  
+	  public PartTimeEmployee(int id, String name, double hourlyRate, int hoursWorked) {
+		super(id, name);
+		this.hourlyRate = hourlyRate;
+		this.hoursWorked = hoursWorked;
+	  }
+	  
+	  public double calculateSalary() {
+		if (hourlyRate <= 0) {
+			System.err.println("Employee hourly rate can't be zero OR Negative");
+			System.exit(0);
+		}
+		if (hoursWorked <= 0) {
+				System.err.println("Employee hours of work can't be Negative");
+				System.exit(0);
+		 }
+		return hourlyRate*hoursWorked;
+	}
+}
+
+package com.nareshIT.day38;
+
+public class FullTimeEmployee extends Employee{
+	  protected double salary;
+
+	public FullTimeEmployee(int id, String name, double salary) {
+		super(id, name);
+		this.salary = salary;
+	}
+	
+	public double  calculateSalary() {
+		if (salary <= 0) {
+			System.err.println("Salary can't be negative!!!");
+			System.exit(0);
+		}
+		return salary;
+	}
+}
+
+
+package com.nareshIT.day38;
+
+public class Employee {
+	protected int id ; 
+	protected String name;
+	
+	public Employee(int id, String name) {
+		super();
+		this.id = id;
+		this.name = name;
+	}
+	
+	public double calculateSalary() {
+		return 0.0;
+	}
+	
+}
+
+
+-----------------------------------------------------------------------------------------
+
+
+QNS - 2
+=========
+Create a Shopping Mall Application project by using Method Overriding Concept to displayand accept different kinds of discount given to specific customers like PrimeCustomer and VIPCustomer (No discount for General Customer).
+
+Summary :
+
+[Super class : Customer
+Subclasses (GeneralCustomer, PrimeCustomer, VIPCustomer)
+override the calculateBill method to implement different discount rules.]
+
+Coding Requirements :
+---------------------
+
+Create a BLC class Customer
+Fields :
+name String Protected
+
+Use a parameterized constructor to initialize the fields, In this constructor provide
+error message, if name is null or empty (see test cases for more details)
+
+
+Methods :
+
+1) Method Name        : calculateBill()
+Argument              : One argument of type double var args [double... prices]
+Return Type        : void
+Access modifier    : public
+In this method using var args receive item price, Give an error message and exit, if
+Item price is negative, Calculate the total bill by adding all the item price, display
+all the details of customer name, total cost, Discount
+
+Create another BLC class GeneralCustomer which is the sub class of Customer
+
+Fields : No fields
+
+Take a parameterized constructor to initialize super class properties.
+
+Method :
+
+1) Method Name        : calculateBill()
+Argument        : One argument of type double var args [double... prices]
+Return Type        : void
+Access modifier    : public
+Override this method from super class, For general customer discount is not available
+so we can call super class method to display customer bill and information without
+discount. If itemPrice is negative given an error message.
+
+Create another BLC class PrimeCustomer which is the sub class of Customer
+
+Fields :
+protected double discountRate = 10.0;
+
+Take a parameterized constructor to initialize super class properties.
+
+1) Method Name        : calculateBill()
+Argument        : One argument of type double var args [double... prices]
+Return Type        : void
+Access modifier    : public
+Override this method from super class, For Prime customer with 10% discount
+in the final bill amount, calculate the total bill and display Prime Customer
+information [See Test cases for more details]
+
+
+Create another BLC class VIPCustomer which is the sub class of Customer
+
+Fields :
+protected double discountRate = 15.0;
+
+Take a parameterized constructor to initialize super class properties.
+
+1) Method Name        : calculateBill()
+Argument        : One argument of type double var args [double... prices]
+Return Type        : void
+Access modifier    : public
+Override this method from super class, For VIP customer with 20% discount
+in the final bill amount, calculate the total bill and display VIP Customer
+information [See Test cases for more details]
+
+Create an ELC class ShoppingMall with main method to test this application.
+
+Method :
+1) Method Name    : generateBill()
+Argument        : Two arguments [Customer cust, double... prices]
+Return Type        : void
+Access modifier    : public and static
+
+This method will receive Customer object and item price using var args and call
+appropriate object overridden method of sub classes to generate the bill.
+
+
+Write Switch case with Scanner class in the main method
+to Test the application as shown in the below Test Cases.
+
+Test Cases for Output :
+------------------------
+Test Case 1 :
+-------------
+Please select the Customer Type to get additional Discount :
+        1) General Customer
+        2) Prime Customer
+        3) VIP Customer
+       
+       System.out.println("Please enter Customer type :");
+       1
+       Please Enter your Name :
+       Mr Ravishankar
+       Enter number of Items :
+       2
+       Please Enter the Item Name and Price :
+       1)Item Name :T-Shirt
+        Item Price :2300
+       2)Item Name :Jeans
+        Item Price :4500
+       Welcome to Hyderabad Mall :
+       Customer: Mr Ravishankar
+       Total cost RS : 6800.0
+       Discount: No discount for regular customers.
+
+Test Case 2 :
+-------------
+Please select the Customer Type to get additional Discount :
+        1) General Customer
+        2) Prime Customer
+        3) VIP Customer
+       
+       System.out.println("Please enter Customer type :");
+       2
+       Please Enter your Name :
+       Mr Scott
+       Enter number of Items :
+       3
+       Please Enter the Item Name and Price :
+       1)Item Name :Mobile
+        Item Price :12890
+       2)Item Name :Laptop
+        Item Price :86000
+       3)Item Name :Watch
+        Item Price :2300
+       Welcome to Hyderabad Mall :
+       Customer: Mr Scott
+       Total cost RS :101190.0
+       Discount RS :10119.0
+       Final amount RS :91071.0
+
+Test Case 3 :
+-------------
+Please select the Customer Type to get additional Discount :
+        1) General Customer
+        2) Prime Customer
+        3) VIP Customer
+       Please enter Customer type :
+       3
+       Please Enter your Name :
+       Mr Smith
+       Enter number of Items :
+       2
+       Please Enter the Item Name and Price :
+       1)Item Name :Washing Machine
+        Item Price :55000
+       2)Item Name :Smart TV
+        Item Price :100000
+       Welcome to Hyderabad Mall :
+       Customer: Mr Smith
+       Total cost RS :155000.0
+       Discount RS :15500.0
+       Final amount RS :139500.0
+
+
+Test Cases for Input Validation :
+---------------------------------
+Test Case 1:
+-------------
+Please select the Customer Type to get additional Discount :
+        1) General Customer
+        2) Prime Customer
+        3) VIP Customer
+   Please enter Customer type :
+   1
+   Please Enter your Name :
+   
+   Customer name cannot be empty.
+
+Test Case 2:
+-------------
+Please select the Customer Type to get additional Discount :
+        1) General Customer
+        2) Prime Customer
+        3) VIP Customer
+   Please enter Customer type :
+   2
+   Please Enter your Name :
+   Mr Scott
+   Enter number of Items :
+   1
+   Please Enter the Item Name and Price :
+   1)Item Name :Laptop
+    Item Price :-90000
+   Welcome to Hyderabad Mall :
+   Item price cannot be negative.
+
+
+ANS ------------------------
+ShoppingMall.java
+-----------------
+package com.nareshIT.day38;
+
+import java.util.Iterator;
+import java.util.Scanner;
+
+public class ShoppingMall {
+	
+	public static void generateBill(Customer cust, double... prices) {
+		cust.calculateBill(prices);
+	}
+
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		System.out.println("Please select the Customer Type to get additional Discount :");
+		System.out.println("1) General Customer");
+		System.out.println("2) Prime Customer");
+		System.out.println("3) VIP Customer");
+		System.out.print("Please enter Customer type :");
+		int CustType = sc.nextInt();
+		sc.nextLine();
+		if (CustType >=1 && CustType <= 3) {}
+		else {
+			System.err.print("Pls enter a valid customer type!!!");
+			System.exit(0);
+		}
+		
+		System.out.print("Please Enter your Name :");
+		String CustName = sc.nextLine();
+		
+		System.out.print("Enter number of Items :");
+		int noI = sc.nextInt();
+		sc.nextLine();
+		
+		System.out.println("Please Enter the Item Name and Price :");
+		double price = 0.0;
+		for(int i =1 ; i<= noI ; i++) {
+			System.out.print(i+")Item Name");
+			String Iname = sc.nextLine();
+			System.out.print("Item Price :");
+			double Iprice = sc.nextDouble();
+			sc.nextLine();
+			if (Iprice < 0) {
+					System.out.println("_______Welcome to Hyderabad Mall_________");
+	                System.err.println("Item price cannot be negative.");
+	                return;
+	        }
+			price+=Iprice;
+		}
+		
+		Customer cs = null;
+		
+		switch (CustType) {
+		case 1: 
+			cs = new GeneralCustomer(CustName);
+			break;
+		case 2: 
+			cs = new PrimeCustomer(CustName);
+			break;
+		case 3: 
+			cs = new VIPCustomer(CustName);
+			break;
+		default:
+			System.err.println("Enter a valid customer type!!!");
+		}
+		
+		generateBill(cs, price);
+		
+	}
+
+}
+"
+
+Customer.java
+----------------
+
+package com.nareshIT.day38;
+
+public class Customer {
+	protected String name;
+
+	public Customer(String name) {
+		super();
+		this.name = name;
+		if (name == "") {
+			System.err.println("Customer name cannot be empty.");
+			System.exit(0);
+		}
+	}
+	
+	public void calculateBill(double... prices) {
+		
+	}
+	
+}
+
+
+PrimeCustomer.java
+----------------
+package com.nareshIT.day38;
+
+public class PrimeCustomer extends Customer{
+	protected double discountRate = 10.0;
+
+	public PrimeCustomer(String name) {
+		super(name);
+	}
+	
+	public void calculateBill(double... prices) {
+		if (name == "") {
+			System.err.println("Customer name cannot be empty.");
+			System.exit(0);
+		}
+		System.out.println("_______Welcome to Hyderabad Mall_________");
+		System.out.println("Customer: "+name);
+		System.out.println("Total cost RS : "+prices[0]);
+		double dis = prices[0]*(discountRate/100);
+		System.out.println("Discount RS : "+dis);
+		System.out.println("Final amount RS :"+(prices[0]-dis));
+	}
+}
+
+
+
+VIPCustomer.java
+----------------
+package com.nareshIT.day38;
+
+public class VIPCustomer extends Customer {
+	protected double discountRate = 15.0;
+
+	public VIPCustomer(String name) {
+		super(name);
+	}
+	
+	public void calculateBill(double... prices) {
+		if (name == "") {
+			System.err.println("Customer name cannot be empty.");
+			System.exit(0);
+		}
+		System.out.println("_______Welcome to Hyderabad Mall_________");
+		System.out.println("Customer: "+name);
+		System.out.println("Total cost RS : "+prices[0]);
+		double dis = prices[0]*(discountRate/100);
+		System.out.println("Discount RS : "+dis);
+		System.out.println("Final amount RS :"+(prices[0]-dis));
+	}
+}
+
+
+GeneralCustomer.java
+----------------
+package com.nareshIT.day38;
+
+public class GeneralCustomer extends Customer{
+
+	public GeneralCustomer(String name) {
+		super(name);
+	}
+	
+	public void calculateBill(double... prices) {
+		if (name == "") {
+			System.err.println("Customer name cannot be empty.");
+			System.exit(0);
+		}
+		System.out.println("_______Welcome to Hyderabad Mall_________");
+		System.out.println("Customer: "+name);
+		System.out.println("Total cost RS : "+prices[0]);
+		System.out.println("Discount: No discount for regular customers.");
+	}
+}

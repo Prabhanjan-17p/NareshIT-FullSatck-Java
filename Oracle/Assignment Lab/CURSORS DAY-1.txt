@@ -1,0 +1,115 @@
+                         CURSORS
+                            ===========
+
+      Cursor is a private sql memory area which is used to process
+multiple records and also this is an record by record process.
+
+
+  *         /To process multiple records.
+ *** CURSOR
+  *         \record by record process.
+
+
+    Oracle having two types of static cursors.These are
+1)Implicit cursor
+2)Explicit cursor
+
+2)Explicit cursor:-for sql statements return multiple records is 
+=================  called explicit cursor.explicit cursor memory area
+                   is also called  as "active set area".in explicit
+cursor internally having record by record process.
+
+Explicit cursor life cycle
+==========================
+       Every explicit cursor having following 4 step process.these
+are
+
+1)declare
+2)open
+3)fetch
+4)close
+
+1)declare:-in declare section of the pl/sql block we are declaring
+            the cursor by using following syntax.
+
+syntax:-
+=======
+cursor cursorname is select * from tablename
+where condition;
+
+eg:-
+===
+SQL>declare
+    cursor c1 is select * from emp
+    where job='CLERK';
+
+2)open:-whenever we are opening the cursor then only oracle server
+======  retrive data from table into cursor memory area.because in all
+        relational databases whenever we are opening the cursor then
+        only cursor select statements are executed.
+
+syntax:-
+======
+open cursorname;
+
+    in oracle this open statement is used in exeutable section of
+the pl/sql block.
+
+NOTE:-Every cursor memory area internally having a pointer whenever
+====   we are opening the cursor.this cursor pointer always points
+      to first record in cursor memory area.
+
+3)fetch:-(fetching data from cursor memory area)
+================================================
+  By using fetch statement we are fetching data from cursor memory
+area into pl/sql variables
+
+syntax:-
+=======
+fetch cursorname into variablename1,variablename2;
+
+4)close:-whenever we are closing the cursor then automatically all
+========  the resources allocated from cursor memory area is 
+          automatically released.
+
+syntax:-
+=======
+close cursorname;
+
+
+-----------------------------------------------------------------------------------
+
+
+1.Write a pl/sql explicit cursor program which is used  display all employee names and their salaries from emp table by using %notfound attribute?
+
+1)%notfound:-This attribute always returns boolean value either true or false.this attribute returns true whenever  fetch stmt does not fetches any row from cursor memory area.
+where as it returns false when fetch stmt fetches atleast one row 
+from cursor memory are.
+
+syntax:-
+=======
+cursorname%notfound;
+
+-----------------------------------------------------------------------------------
+
+2.Write a pl/sql cursor program which is used to display total salary from emp table without using sum() function ?
+
+
+
+-----------------------------------------------------------------------------------
+
+3.Write a pl/sql cursor program to find the maximum salary without using max function by using %rowcount attribute?
+
+-----------------------------------------------------------------------------------
+
+4.Write a pl/sql explicit cursor program which is used to display even no of records from emp table by using %rowcount attribute?
+
+%rowcoununt:-This attribute always returns number data type.i.e it counts no of records fetched from cursor memory area.
+=============     
+                             
+
+
+
+-----------------------------------------------------------------------------------
+
+

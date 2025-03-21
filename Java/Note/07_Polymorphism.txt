@@ -314,9 +314,6 @@ public class VarArgsDemo4
 -----------
 Wrapper classes in java :
 -------------------------
-
-Wrapper classes in java :
--------------------------
 We have 8 primitive data types in java i.e byte, short, int, long and so on.
 
 Except these 8 primitive data types, everything in java is an object.
@@ -339,10 +336,10 @@ Autoboxing
 When we convert the primitive data types into corresponding wrapper object then it is called Autoboxing as shown below.
 
 Primitive type		Wrapper Object
-----------------   ------------------
+----------------        ------------------
 byte			-	Byte
 short			-	Short
-int			    -	Integer
+int			-	Integer
 long			-	Long
 float			-	Float
 double			-	Double
@@ -392,11 +389,8 @@ public class ImmutableDemo1
 
 
 Note : The above program is a demo example.
-
 --------------------------------------------------------------
 package com.ravi.autoboxing;
-
-
 
 public class ImmutableDemo2 
 {
@@ -435,9 +429,7 @@ public class ImmutableDemo3
 	{
 		str.toUpperCase();
 	}
-
 }
-
 Note : String is also immutable.
 --------------------------------------------------------------
 Overloaded valueOf() method :
@@ -446,7 +438,8 @@ We have 3 overloaded valueOf() method :
 ----------------------------------------
 1) public static Integer valueOf(int x) : It will convert the given int value into Integer Object.
 
-2) public static Integer valueOf(String str) : It will convert the given String into Integer Object.
+2) public static Integer valueOf(String str) : It will convert
+   the given String into Integer Object.
    [valueOf() method will convert the String into Wrapper object where as parseInt() method will convet the String into primitive type]
 
 3) public static Integer valueOf(String str, int radix/base) :
@@ -461,16 +454,977 @@ Output will be generated on the basis of radix
 
 System.out.println(Character.MAX_RADIX); //36
 MAX_RADIX is a final and static variable of Character class.
+---------------------------------------------------------------
+18-03-2025
+----------
+//Integer.valueOf(int);
+public class AutoBoxing1
+{
+	public static void main(String[] args) 
+	{
+		int a = 12;
+		Integer x = Integer.valueOf(a); //Upto 1.4 version
+		System.out.println(x);
+
+		
+        int y = 15;
+		Integer i = y;   //From 1.5 onwards compiler takes care
+		System.out.println(i);		
+	}
+}
+
+Note : Befor JDK 1.5V, It was the responsibility of developer to convert the primitive type into corresponding wrapper object.
+---------------------------------------------------------------
+public class AutoBoxing2
+{  
+	public static void main(String args[])
+	{  
+		byte b = 12;
+	    Byte b1 = Byte.valueOf(b);
+	   System.out.println("Byte Object :"+b1);
+	   
+	   short s = 17;
+	   Short s1 = Short.valueOf(s);
+	   System.out.println("Short Object :"+s1);
+	   
+	   int i = 90;
+	   Integer i1 = Integer.valueOf(i);
+	   System.out.println("Integer Object :"+i1);
+	   
+	  	long g = 12;
+		Long h =  Long.valueOf(g);
+		System.out.println("Long Object :"+h);
+		
+		float f1 = 2.4f;
+		Float f2 = Float.valueOf(f1);
+		System.out.println("Float Object :"+f2);
+		
+		double k = 90.90;
+		Double l = Double.valueOf(k);
+		System.out.println("Double Object :"+l);
+		
+		char ch = 'A';
+		Character ch1 = Character.valueOf(ch);
+		System.out.println("Character Object :"+ch1);
+		
+		boolean x = true;
+		Boolean x1 = Boolean.valueOf(x);
+		System.out.println("Boolean Object :"+x1);
+	   
+	   
+			}   
+}  
+
+Note : Every Wrapper object provided valueOf() method so we can 
+       convert any primitive type into corresponding wrapper object.       
+ -------------------------------------------------------------
+//Integer.valueOf(String str)
+//Integer.valueOf(String str, int radix/base)
+public class AutoBoxing3 
+{
+	public static void main(String[] args) 
+	{
+			Integer a = Integer.valueOf(15);
+			
+			Integer b = Integer.valueOf("25");
+
+            Integer c = Integer.valueOf("111",36); //Here Base we can take upto 36
+
+			System.out.println(a);
+			System.out.println(b);
+			System.out.println(c);
+			
+           
+	}
+}
+---------------------------------------------------------------
+Overloaded parseInt() Method :
+-------------------------------
+Just like valueOf() method, we have also overloaded parseInt() method.
+
+public static int parseInt(String str, int base/radix);
+
+public class Test 
+{
+	public static void main(String[] args) 
+	{
+		String str = "111";
+        int val = Integer.parseInt(str,2);
+		System.out.println(val);
+		
+	}
+}
+--------------------------------------------------------------
+public class AutoBoxing4 
+{
+	public static void main(String[] args) 
+	{
+		Integer i1 = new Integer(100);
+		Integer i2 = new Integer(100);
+		System.out.println(i1==i2);  //false
+
+		Integer a1 = Integer.valueOf(15);
+		Integer a2 = Integer.valueOf(15);
+		System.out.println(a1==a2); //true 
+	}
+}
+
+Note : It will generate Compilation warning because new Integer(int val) is marked for removal from java 9V.
+
+       a1 and a2 reference variable, both are pointing to the same object (immutable) so == operator will provide 
+       true.
+--------------------------------------------------------------- Cache value while working with Integer Wrapper class :
+-------------------------------------------------------
+Every wrapper class has provided (Overridden) equals(Object obj) and hashCode() method.
+
+Every Wrapper class has also provided compareTo(T x) method for 
+Object comparison.
+
+We should never compare any Wrapper class Object by using == operator, Actually we should always compare by using either
+equals(Object obj) method OR compareTo(T x) method.
+
+Integer object are storing the value in the cache memory where the range is -128 to 127 so if we compare Integer object by using == operator then upto 127 value, It refers to same memory location (due to cache memory) so will return true but if the values are beyond the range (-128 to 127) then it will return false.
+
+class BufferTest 
+{
+	public static void main(String[] args) 
+	{		
+		Integer i = 127;
+		Integer j = 127;
+		System.out.println("Using == operator :"+(i==j)); //true 
+		System.out.println("Using equals method "+i.equals(j));
+		
+		System.out.println("...................");
+		
+		Integer a = 128;
+		Integer b = 128;
+		System.out.println("Using == operator :"+(a==b));
+		System.out.println("Using equals method "+a.equals(b));
+	}
+}
+---------------------------------------------------------------
+How to convert Integer object into String :
+-------------------------------------------
+Integer class has provided a static method called toString() 
+through whicg we can convert the Integer Object into String type
+
+public static String toString()
+
+//Converting integer value to String
+public class AutoBoxing5 
+{
+	public static void main(String[] args) 
+	{
+		int x = 12;
+		String str = Integer.toString(x);
+		System.out.println(str+2);
+	}
+}
+---------------------------------------------------------------
+Unboxing :
+----------------
+Converting wrapper object to corresponding primitive type is called Unboxing.
+
+Wrapper            Primitive
+Object               type               
+----------            ----------
+Byte		-	byte
+
+Short		-	short
+
+Integer		-	int
+
+Long		-	long
+
+Float		-	float
+
+Double		-	double
+
+Chracter	-	char
+
+Boolean		-	boolean
+----------------------------------------------------------------
+We have total 8 Wrapper classes.
+
+Among all these 8, 6 Wrapper classes (Byte, Short, Integer, Long, Float and Double) are the sub class of java.lang.Number class which represent numbers (either decimal OR non decimal)
+so all the following six wrapper classes (Which are sub class of Number class) are providing the following common methods.
+
+1) public byte byteValue()
+
+2) public short shortValue()
+
+3) public int intValue()
+
+4) public long longValue()
+
+5) public float floatValue()
+
+6) public double doubleValue()
+
+--------------------------------------------------------------
+//Converting Wrapper object into primitive
+public class AutoUnboxing1
+{  
+   public static void main(String args[])
+	   {  
+            Integer obj = 15;   //Upto 1.4
+			int x = obj.intValue();
+			System.out.println(x);
+		}   
+}  
+
+Note : Upto JDK 1.4V it was the responsibility of the developer to convert the Wrapper Object into primitive type.
+---------------------------------------------------------------
+public class AutoUnboxing2
+{
+	public static void main(String[] args) 
+	{	
+			Integer x = 25; 
+			int y = x;        //JDK 1.5 onwards  
+			System.out.println(y);  
+	}
+}
+--------------------------------------------------------------
+public class AutoUnboxing3
+{
+	public static void main(String[] args) 
+	{	
+			Integer i = 15;
+			System.out.println(i.byteValue());  
+			System.out.println(i.shortValue());
+			System.out.println(i.intValue());
+			System.out.println(i.longValue());
+			System.out.println(i.floatValue());
+			System.out.println(i.doubleValue());			
+	}
+}
+---------------------------------------------------------------
+public class AutoUnboxing4
+{
+	public static void main(String[] args) 
+	{
+		Character c1 = 'A';
+		char ch = c1.charValue();
+		System.out.println(ch);
+	}
+}
+---------------------------------------------------------------
+public class AutoUnboxing5
+{
+	public static void main(String[] args) 
+	{
+		Boolean b1 = true;
+		boolean b = b1.booleanValue();
+		System.out.println(b);
+	}
+}
+---------------------------------------------------------------
+public class Test 
+{
+	public static void main(String[] args) 
+	{
+		long l = 12; //Automatic Type casting OR Widening
+		System.out.println(l);
+		
+		long x = 15;
+		int y = (int) x; //Manual OR Explicit OR Narrowing
+		System.out.println(y);	
+		
+	}
+}
+-------------------------------------------------------------
+public class Test 
+{
+	public static void main(String[] args) 
+	{
+		Long a = 12L;
+		System.out.println(a);
+		
+		Float b = 15F;
+		System.out.println(b);
+		
+		Double c = 1.0;
+		System.out.println(c);
+		
+		Double d = 1D;
+		System.out.println(d);
+	}
+}
+===============================================================
+Ambiguity issue while overloading a method :
+---------------------------------------------
+When we overload a method then compiler is selecting appropriate method among the available methods based on the following types.
+
+1. Different number of parameters 
+2. Different data type of parameters 
+3. Different sequence(order) of data type of parameters
+
+In case of ambiguity where compiler can select more than one method then compiler will provide the priority by using following rules :
+
+1) Most Specific Type :
+-----------------------
+Compiler alwyas provide more priority to most specific data type or class type.
+
+double > float [Here float is the most specific type]  
+float > long 
+long > int
+int > char     
+int > short  //[No relation between short and char]
+short > byte     
+
+2) WAV [Widening ->  Autoboxing  -> Var Args]
+
+   Compiler gives the priority to select appropriate method by using the following sequence :
+   Widening ---> Autoboxing  ----> Var args
+
+3) Nearest Data type or Nearest class (sub class) 
+   
+   While selecting the appropriate method in ambiguity issue compiler provides priority to nearest data type or nearest class i.e sub class
+--------------------------------------------------------------
+class Test
+{
+	public void accept(double d) 
+	{
+		System.out.println("double");
+	}
+	public void accept(float d)
+	{
+		System.out.println("float");
+	}	
+}
+public class AmbiguityIssue {
+
+	public static void main(String[] args) 
+	{
+		Test t = new Test();
+		t.accept(6);
+	}
+}
+
+Note : Here float will be executed becuase float is the most specific type.
+---------------------------------------------------------------
+class Test
+{
+	public void accept(int d)
+	{
+		System.out.println("int");
+	}
+	public void accept(char d)
+	{
+		System.out.println("char");
+	}	
+}
+public class AmbiguityIssue {
+
+	public static void main(String[] args) 
+	{
+		Test t = new Test();
+		t.accept(6);
+
+	}
+}
+Here 6 is int type so int will be executed.
+-------------------------------------------------------------
+class Test
+{
+	public void accept(int ...d)
+	{
+		System.out.println("int");
+	}
+	public void accept(char ...d)
+	{
+		System.out.println("char");
+	}	
+}
+public class AmbiguityIssue {
+
+	public static void main(String[] args) 
+	{
+		Test t = new Test();
+		t.accept();
+
+	}
+}
+char will be executed becoz char is more specific type.
+-------------------------------------------------------------
+class Test
+{
+	public void accept(short ...d)
+	{
+		System.out.println("short");
+	}
+	public void accept(char ...d)
+	{
+		System.out.println("char");
+	}	
+}
+public class AmbiguityIssue {
+
+	public static void main(String[] args) 
+	{
+		Test t = new Test();
+		t.accept();
+
+	}
+}
+Here we will get compilation error because there is no relation between char and short based on the specific type rule.
+-------------------------------------------------------------
+ class Test
+{
+	public void accept(short ...d)
+	{
+		System.out.println("short");
+	}
+	public void accept(byte ...d)
+	{
+		System.out.println("byte");
+	}	
+}
+public class AmbiguityIssue {
+
+	public static void main(String[] args) 
+	{
+		Test t = new Test();
+		t.accept();
+		
+	}
+}
+Here byte will be executed because byte is the specific type.
+-------------------------------------------------------------
+class Test
+{
+	public void accept(double ...d)
+	{
+		System.out.println("double");
+	}
+	public void accept(long ...d)
+	{
+		System.out.println("long");
+	}	
+}
+public class AmbiguityIssue {
+
+	public static void main(String[] args) 
+	{
+		Test t = new Test();
+		t.accept();
+
+	}
+}
+Here long will be executed because long is the most specific type.
+-------------------------------------------------------------
+class Test 
+{
+	public void accept(byte d)  
+	{
+		System.out.println("byte");
+	}
+	public void accept(short s)  
+	{
+		System.out.println("short");
+	}	
+}
+public class AmbiguityIssue {
+
+	public static void main(String[] args)
+	{
+		Test t = new Test();
+		t.accept(9); //error
+                 t.accept((byte)9);
+		 t.accept((short)9);
+	}
+}
+Here value 9 is of type int so, we can't assign directly to byte and short, If we want, explicit type casting is reqd.
+--------------------------------------------------------------
+class Test
+{
+	public void accept(int d)
+	{
+		System.out.println("int");
+	}
+	public void accept(long s)
+	{
+		System.out.println("long");
+	}	
+}
+public class AmbiguityIssue {
+
+	public static void main(String[] args) 
+	{
+		Test t = new Test();
+		t.accept(9);
+	}
+}
+Note : Here int will be executed because int is the nearest type
+-------------------------------------------------------------
+class Test
+{
+	public void accept(Object s)
+	{
+		System.out.println("Object");
+	}
+	public void accept(String s)
+	{
+		System.out.println("String");
+	}	
+}
+public class AmbiguityIssue {
+
+	public static void main(String[] args) 
+	{
+		Test t = new Test();
+		t.accept(9);
+	}
+}
+Here Object will be executed.
+-------------------------------------------------------------
+class Test
+{
+	public void accept(Object s)
+	{
+		System.out.println("Object");
+	}
+	public void accept(String s)
+	{
+		System.out.println("String");
+	}	
+}
+public class AmbiguityIssue {
+
+	public static void main(String[] args) 
+	{
+		Test t = new Test();
+		t.accept("NIT");
+	}
+}
+Here String will be executed
+-------------------------------------------------------------
+class Test
+{
+	public void accept(Object s)
+	{
+		System.out.println("Object");
+	}
+	public void accept(String s)
+	{
+		System.out.println("String");
+	}	
+	public void accept(Integer i)
+	{
+		System.out.println("Integer");
+	}	
+}
+public class AmbiguityIssue {
+
+	public static void main(String[] args) 
+	{
+		Test t = new Test();
+		t.accept(null);
+	}
+}
+
+Here We will get compilation error
+-------------------------------------------------------------
+class Test
+{
+	public void accept(Object s)
+	{
+		System.out.println("Object");
+	}
+	public void accept(Number s)
+	{
+		System.out.println("Number");
+	}	
+	public void accept(Integer i)
+	{
+		System.out.println("Integer");
+	}	
+}
+public class AmbiguityIssue {
+
+	public static void main(String[] args) 
+	{
+		Test t = new Test();
+		t.accept(null);
+	}
+}
+
+Here Integer will be executed.
+--------------------------------------------------------------
+class Alpha
+{
+}
+class Beta extends Alpha
+{
+}
+class Test
+{	
+	public void accept(Alpha a)
+	{
+		System.out.println("Alpha");
+	}	
+	public void accept(Beta b)
+	{
+		System.out.println("Beta");
+	}	
+}
+public class AmbiguityIssue {
+
+	public static void main(String[] args) 
+	{
+		Test t = new Test();
+		t.accept(null);
+	}
+}
+--------------------------------------------------------------
+class Test
+{	
+	public void accept(Number s)
+	{
+		System.out.println("Number");
+	}	
+	public void accept(Integer i)
+	{
+		System.out.println("Integer");
+	}	
+}
+public class AmbiguityIssue {
+
+	public static void main(String[] args) 
+	{
+		Test t = new Test();
+		t.accept(12);
+	}
+}
+
+Note :Integer will be executed.
+-------------------------------------------------------------
+class Test
+{	
+	public void accept(long s)
+	{
+		System.out.println("Widening");
+	}	
+	public void accept(Integer i)
+	{
+		System.out.println("Autoboxing");
+	}	
+}
+public class AmbiguityIssue {
+
+	public static void main(String[] args) 
+	{
+		Test t = new Test();
+		t.accept(12);
+	}
+}
+Here widening is having more priority
+-------------------------------------------------------------
+class Test 
+{	
+	public void accept(int ...s)
+	{
+		System.out.println("Var args");
+	}	
+	public void accept(Integer i)
+	{
+		System.out.println("Autoboxing");
+	}	
+}
+public class AmbiguityIssue {
+
+	public static void main(String[] args) 
+	{
+		Test t = new Test();
+		t.accept(12); 
+	}
+}
+Here Autoboxing will be executed.
+-------------------------------------------------------------
+class Test 
+{	
+	public void accept(Number n)
+	{
+		System.out.println("Number");
+	}	
+	public void accept(Double d)
+	{
+		System.out.println("Double");
+	}	
+}
+public class AmbiguityIssue {
+
+	public static void main(String[] args) 
+	{
+		Test t = new Test();
+		t.accept(12);
+		
+	}
+}
+
+Here Number will be executed.
+-------------------------------------------------------------
+class Test 
+{	
+	public void accept(long x, int y)
+	{
+		System.out.println("long-int");
+	}	
+	public void accept(int x, long y)
+	{
+		System.out.println("int-long");
+	}	
+}
+public class AmbiguityIssue {
+
+	public static void main(String[] args) 
+	{
+		Test t = new Test();
+		t.accept(10,10);
+	}
+}
+
+Note : Here we will get compilation error.
+=============================================================
+****Method Overriding :
+------------------------
+Writing two or more non static methods in super and sub class in such a way that method name along with method parameter (Method Signature) must be same as well as return type must be compaitable is called Method Overriding.
+
+Method Overriding is not possible without inheritance.
+
+Generally we can't change the return type of the method while overriding a method (compatibility issue) but from JDK 1.5v there is a concept called Co-variant (In same direction) through which we can change the return type of the method.
+
+Example :
+---------
+class Super
+{
+	public void m1()
+	{
+	}
+}
+class Sub extends Super
+{
+	public void m1() //Overridden Method
+	{
+		
+	}
+}
+
+Method overriding is mainly used to replacing the implementation of super class method by sub class method body.
+--------------------------------------------------------------
+Advantage of Method Overriding :
+---------------------------------
+The advantage of Method Overriding is, each sub class is specifying its own specific behavior.
+--------------------------------------------------------------
+20-03-2025
+-----------
+Upcasting :- 
+------------
+It is possble to assign sub class object to super class reference variable (up) using dynamic polymorphism. It is known as Upcasting.
+
+Example:-    Animal a = new Lion();  //valid [upcasting]
 
 
+Downcasting :
+-------------
+Downcasting is not possible without upcasting.
 
+It is not possible in java to assign super class object to sub class reference variable. [java.lang.ClassCastException]
 
+Downcasting is a process to assign sub class object to sub class reference variable by using Super class reference.
 
+Example :
 
+ Parent p = new Child(); //Upcasting
+ Child c = (Child)p;     //Downcasting
+ c.display();
 
+The following statement is not downcasting and if we execute it will 
+generate java.lang.ClassCastException.
 
+Case 1:
+--------
+Parent p = new Child(); //Valid
 
+Case 2:
+-------
+Child c = new Parent(); // Invalid [Compilation error]
 
+Case 3:
+-------
+Child c1 = (Child) new Parent(); //no compilation error 
+                                   but at runtime we will get 
+				   java.lang.ClassCastException
+---------------------------------------------------------------------	//Program on method Overriding by using dynamic method displatch :
+------------------------------------------------------------------
+package com.ravi.overriding;
+
+class Payment
+{
+	public void makePayment()
+	{
+		System.out.println("Generic Payment");
+	}
+}
+class CreditCard extends Payment
+{
+	public void makePayment()
+	{
+		System.out.println("Making a payment through Credit Card");
+	}
+}
+class DebitCard extends Payment
+{
+	public void makePayment()
+	{
+		System.out.println("Making a payment through Debit Card");
+	}
+}
+class UPI extends Payment
+{
+	public void makePayment()
+	{
+		System.out.println("Making a payment through UPI");
+	}
+}
+
+public class MethodOverridingDemo1 
+{
+	public static void main(String[] args) 
+	{
+        Payment p = null;
+		
+		p = new CreditCard(); p.makePayment(); //Dynamic Method Dispatch
+		p = new DebitCard(); p.makePayment();
+		p = new UPI(); p.makePayment();
+
+	}
+
+}
+
+----------------------------------------------------------------------
+//Program that describes JVM will start executing the Method based on class type Object [Bottom to top, Puppy --> Dog --> Animal]
+
+package com.ravi.overriding;
+
+class Animal
+{
+	public void roam()
+	{
+		System.out.println("Generic Animal is roaming");
+	}
+}
+class Dog extends Animal
+{
+	public void roam()
+	{
+		System.out.println("Dog Animal is roaming");
+	}
+}
+class Puppy extends Dog
+{
+	public void roam()
+	{
+		System.out.println("Puppy Animal is roaming");
+	}
+}
+
+public class MethodOverridingDemo2 
+{
+	public static void main(String[] args)
+	{		
+		Animal a1 = new Puppy();
+		a1.roam();
+
+	}
+
+}
+---------------------------------------------------------------------
+//Program that describes down-casting
+
+package com.ravi.overriding;
+
+class Parent
+{
+	public void display()
+	{
+		System.out.println("Parent class display method");
+	}
+}
+class Child extends Parent
+{
+	public void display()
+	{
+		System.out.println("Child class display method");
+	}
+}
+
+public class MethodOverridingDemo3
+{
+	public static void main(String[] args)
+	{
+	 
+	  Parent p = new Child();
+	  Child c = (Child)p;
+	  c.display();
+	}
+
+}
+----------------------------------------------------------------------
+@Override annotation :
+----------------------
+Annotation concept is introduced in java from JDK 1.5V.
+
+Every Annotation must start with @ symbol.
+
+It describes metadata (data about data), Actually it describes that 
+method is overridden method.
+
+It is optional but it is always better to write @Override annotation 
+just before Overridden method.
+
+@Override annotation will provide the information that method is overridden method so we will get same class output but not super class.
+
+package com.ravi.overriding;
+
+class Shape
+{
+	public void draw()
+	{
+		System.out.println("Generic Drawing");
+	}
+}
+class Rectangle extends Shape
+{
+	@Override
+	public void draw()
+	{
+		System.out.println("Drawing Rectangle...");
+	}
+}
+class Circle extends Shape
+{
+	@Override
+	public void draw()
+	{
+		System.out.println("Drawing Circle...");
+	}
+}
+public class MethodOverridingDemo4 
+{
+	public static void main(String[] args) 
+	{
+		Shape s = new Rectangle();
+		s.draw();
+
+		s = new Circle();
+		s.draw();
+		
+		
+	}
+
+}
+-----------------------------------------------------------------------
 
 
 

@@ -1,0 +1,90 @@
+                                   CURSORS
+                                 ===========
+
+Eliminating explicit cursor life cycle
+         (or)
+cursor for loop
+
+  in oracle we can also eliminate explicit cursor life cycle by using cursor for loop.This method also called as shortcut method of the  explicit cursor.whenever we are using cursor for loop then we are not required to use open,fetch,close statements in pl/sql block because when we are using cursor for loop then oracle server only internally automatically open the cursor and then fetch data from the cursor and also close the cursor automatically after processing.
+
+ cursor for loop syntax:-
+ =======================
+syntax:-
+======
+for indexvariablename in cursorname
+loop
+stmts;
+end lop;
+
+  This cursor for loop is used in executable section of the pl/sql.
+
+***NOTE:-In cursor for loop index variable internally behaves like a record type variable(%rowtype)
+
+NOTE:-in pl/sql we can also eliminate declare section of the cursor....for loop.in this case we must specify cursorselect statement in place of cursorname within cursor for loop;
+
+  
+syntax:-
+======
+for indexvariablename in(select statement)
+loop
+stmts;
+end loop;
+
+EG:-
+===
+
+1.Write a pl/sql program to display all ename,sal from emp table by using cursor for loop.
+
+BEGIN
+   FOR i IN (SELECT * FROM emp)
+   LOOP
+      DBMS_OUTPUT.PUT_LINE(i.ename || ' ' || i.sal);
+   END LOOP;
+END;
+/
+
+
+-----------------------------------------------------------------------------------
+
+2.Write a pl/sql explicit cursor program which is used to display 5th record from emp table by using cursor for loop
+
+DECLARE
+v_COUNT NUMBER(2) := 0;
+BEGIN
+   FOR i IN (SELECT * FROM emp)
+   LOOP
+      v_COUNT := v_COUNT+1;
+      IF v_COUNT=5 THEN
+        DBMS_OUTPUT.PUT_LINE(i.ename || ' ' || i.sal);
+	EXIT;
+      END IF;
+   END LOOP;
+END;
+/
+OP ---> MARTIN 1250
+
+
+-----------------------------------------------------------------------------------
+
+3.Write a pl/sql explicit cursor program which is used to display total salary from emp table without using sum() function by using cursor for loop?
+
+SQL> DECLARE
+  2  v_SUM NUMBER(8) := 0;
+  3  BEGIN
+  4     FOR i IN (SELECT * FROM emp)
+  5     LOOP
+  6        v_SUM := v_SUM+I.SAL;
+  7     END LOOP;
+  8     DBMS_OUTPUT.PUT_LINE('Total salary =  ' || v_SUM);
+  9  END;
+ 10  /
+Total salary =  31370
+
+SQL> select sum(sal) from emp;
+
+  SUM(SAL)
+----------
+     31370
+
+-----------------------------------------------------------------------------------
+

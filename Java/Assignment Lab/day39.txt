@@ -1,0 +1,630 @@
+Q1)
+
+class Vehicle
+{
+	public int fuelCapacity()
+	{
+		return 40;
+	}	
+	
+	public void printTankCapacity()
+	{
+		System.out.println(this.fuelCapacity()); // this--> is refers to Car class so 18 output
+	}
+}
+class Car extends Vehicle
+{
+	@Override
+	public int fuelCapacity()
+	{
+		return 18;
+	}	
+}
+
+public class Test
+{
+
+	public static void main(String[] args)
+	{
+		Vehicle v1 = new Car();
+		v1.printTankCapacity();
+
+	}
+
+}
+
+ANS - 18
+
+--------------------------------------------------------------------
+Q2) In this Program add code to print value 40.
+
+class Vehicle
+{
+	public int fuelCapacity()
+	{
+		return 40;
+	}	
+	
+	public void printTankCapacity()
+	{
+		System.out.println(this.fuelCapacity());
+	}
+}
+class Car extends Vehicle
+{
+	@Override
+	public int fuelCapacity()
+	{
+		return 18;
+	}	
+}
+
+public class Test
+{
+
+	public static void main(String[] args)
+	{
+		Vehicle v1 = new Car();
+		v1.printTankCapacity();
+
+	}
+
+}
+
+ANS - 18
+
+---------------------------------------------------------------------
+Q3)
+
+class Bird
+{
+	public void fly()
+	{
+		System.out.println("Genric Bird is flying");
+	}
+	
+	public void roam()
+	{
+		System.out.println("Generic Bird is roamig");
+	}	
+	
+}
+class Parrot extends Bird
+{
+	
+	public int fly(double height) // not overridden
+	{
+		System.out.println("Parrot is flying with :"+height+" height");
+		return 0;
+	}
+	
+	public void roam()
+	{
+		System.out.println("Parrot Bird is roamig");
+		
+	}
+}
+public class MethodOverridingDemo1 {
+
+	public static void main(String[] args) 
+	{
+		Parrot p = new Parrot();
+		p.fly(15.6);
+		p.roam();
+	}
+
+}
+
+ANS - 
+Parrot is flying with :15.6 height
+Parrot Bird is roamig
+
+----------------------------------------------------------------------
+Q4)
+
+class Base
+{
+    int value=0; // 4
+    Base() // 3
+	{
+        addValue(); // 5
+    }
+    void addValue(){ // 8,14
+        value += 10; //9 v=10 ,15 v= 50
+    }
+    int getValue(){
+        return value;
+    }
+}
+class Derived extends Base{
+    Derived() // 2
+	{
+       addValue(); //11
+    }
+    void addValue(){  // 6,12
+		super.addValue(); //7 v=10 ,16 v =50
+        value +=  30; // 10 v=40 , 17 v = 80
+    }
+}
+public class Test5 {
+    public static void main(String[] args){
+        Derived b = new Derived();	//1	  
+        System.out.println(b.getValue()); // 18 v=80
+    }
+}
+
+ANS - 80 
+
+-----------------------------------------------------------------------
+Q5)
+
+class Singer 
+{
+  public static String sing() 
+  {
+    return "la";
+  }
+}
+
+public class Test19 extends Singer
+{
+  public static String sing() // not overridden method 
+  {
+    return "fa";
+  }
+
+  public static void main(String[] args) 
+  {
+    Test19 t = new Test19();
+    Singer s = new Test19();
+    System.out.println(t.sing() + " " + s.sing());
+  }
+}
+
+ANS - fa la
+
+-----------------------------------------------------------------------
+Q6)
+public class Test11
+{
+	public static void main(String [] args)
+	{
+		Animal a = new Animal();
+		Animal b = new Horse(); // upcasting
+		a.eat();
+		b.eat();
+		b.buck();
+	}
+}
+class Animal
+{
+	public void eat()
+	{
+		System.out.println("Generic Animal eating");
+	}
+	
+}
+class Horse extends Animal
+{
+	public void eat()
+	{
+		System.out.println("Horse Eating");
+	}
+
+	public void buck()
+	{
+		System.out.println("Printing");
+	}
+}
+
+ANS - Compile Time Error due to "buck()" not in supper class
+
+-----------------------------------------------------------------------
+Q7)
+
+class A {
+    static void foo()
+    {
+        System.out.println("A");
+    }
+}
+
+class B extends A{
+    static int foo()
+    {
+        System.out.println("B");
+        return 1;
+    }
+}
+
+ANS - Compile Time Error
+
+-----------------------------------------------------------------------
+Q8)
+
+class A 
+{
+    void foo() 
+    {
+        System.out.println("A");
+    }
+}
+class B extends A 
+{
+    void foo() 
+    {
+        System.out.println("B");
+    }
+}	
+
+class Test15{
+    public static void main(String[] args)
+    {
+        A obja;
+        B objb = new B();
+        objb.foo();
+        obja = objb;
+        obja.foo();
+    }
+}
+
+ANS -
+B
+B
+
+----------------------------------------------------------------------
+Q9) Find the compilation errors
+
+class Test17
+{
+  public static void main(String[] args) 
+{
+    Test17 a;
+    MySubclass b;
+
+    a = new Test17();             // (1)
+    b = new MySubclass();          // (2)
+
+    a = b;                         // (3)
+    b = a;                         // (4)
+
+    a = new MySubclass();          // (5)
+    b = new Test17();             // (6)
+  }
+}
+
+class MySubclass extends Test17 {}
+
+ANS - 3 AND 6
+
+-----------------------------------------------------------------------
+Q10)
+class A2 {
+    private void printName(){ // due to private it not overridden
+        System.out.println("Value-A");
+    }
+}
+class B2 extends A2{
+    public void printName(){ 
+        System.out.println("Name-B");
+    }
+}
+public class Test23{
+    public static void main (String[] args) {
+        A2 b = new B2();
+        b.printName(); // error
+    }
+}
+
+ANS - Compilation Error
+
+----------------------------------------------------------------------
+Q11)
+class A3 
+{
+    public void printValue(){
+        System.out.println("Value-A");
+    }
+}
+class B3 extends A3
+{
+    public void printNameB(){
+        System.out.println("Name-B");
+    }
+}
+class C3 extends A3{
+    public void printNameC(){
+        System.out.println("Name-C");
+    }
+}
+public class Test27{
+    public static void main (String[] args) {
+        B3 b = new B3();
+        C3 c = new C3();
+        newPrint(b);
+        newPrint(c);
+    }
+    public static void newPrint(A3 a){
+        a.printValue();
+    }
+}
+
+ANS -
+Value-A
+Value-A
+
+
+--------------------------------------------------------------------
+Q12)
+
+class A1 {
+    public void printName()
+    {
+        System.out.println("Value-A");
+    }
+}
+class B1 extends A1{
+    public void printName() {
+        System.out.println("Name-B");
+    }
+}
+public class Test28{
+    public static void main (String[] args){
+        A1 b = new B1();
+        newPrint(b);
+    }
+    public static void newPrint(A1 a){
+        a.printName();
+    }
+}
+
+ANS - Name-B
+
+-----------------------------------------------------------------------
+Q13)
+class A4 {
+    public void printName(){
+        System.out.println("Value-A");
+    }
+}
+class B4 extends A4{
+    public void printName(){
+        System.out.println("Name-B");
+    }
+}
+class C4 extends A4{
+    public void printName(){
+        System.out.println("Name-C");
+    }
+}
+public class Test29{
+    public static void main (String[] args) {
+        A4 b = new B4(); // upcasting
+        C4 c = new C4();
+        b = c; // A b = new C()
+        newPrint(b);
+    }
+    public static void newPrint(A4 a){
+        a.printName();
+    }
+}
+
+ANS - Name-C
+
+-----------------------------------------------------------------------
+Q14)
+
+class A5 {
+    public void printName(){
+        System.out.println("Value-A");
+    }
+}
+class B5 extends A5{
+    public void printName(){
+        System.out.println("Name-B");
+    }
+}
+class C5 extends A5{
+    public void printName(){
+        System.out.println("Name-C");
+    }
+}
+public class Test30{
+    public static void main (String[] args) {
+        B5 b = new B5();
+        C5 c = new C5();
+        b = c; //  b = new C();
+        newPrint(b);
+    }
+    public static void newPrint(A5 a){
+        a.printName();
+    }
+}
+
+ANS - Compilation Error
+
+----------------------------------------------------------------------
+Q15)
+
+class B2 {
+    public String getCountryName(){
+        return "USA";
+    }
+    public StringBuffer getCountryName(){
+        StringBuffer sb = new StringBuffer();
+        sb.append("UK");
+        return sb;
+    }
+}
+public class Test32{
+    public static void main(String[] args)
+    {
+        B2 b = new B2();
+        System.out.println(b.getCountryName().toString());
+    }
+}
+
+ANS - Compilation Error
+
+----------------------------------------------------------------------
+Q16)
+
+class A6{
+    public static void printName(){
+        System.out.println("Value-A");
+    }
+}
+class B6 extends A6{
+    public static void printName(){
+        System.out.println("Name-B");
+    }
+}
+public class Test38
+{
+    public static void main (String[] args) {
+        A6 a = new B6();
+        a.printName();
+    }
+}
+
+ANS -Value-A
+
+----------------------------------------------------------------------
+Q17)
+
+class A7{
+    public void printName(){
+        System.out.println("Name-A");
+    }
+}
+class B7 extends A7{
+    public void printName(){
+        System.out.println("Name-B");
+    }
+    public void printValue(){
+        System.out.println("Value-B");
+    }
+}
+public class Test41{
+    public static void main (String[] args){
+        A7 b = new B7(); // upcasting
+        b.printValue();
+    }
+}
+
+ANS - Compilation Error
+
+----------------------------------------------------------------------
+Q18)
+
+class A8 {
+    public void printName() {
+        System.out.println("Name-A");
+    }
+}
+class B8 extends A8{
+    public void printName(){
+        System.out.println("Name-B");
+    }
+    public void printValue() {
+        System.out.println("Value-B");
+    }
+}
+public class Test42{
+    public static void main (String[] args){
+        A8 a = new A8();
+        B8 b = (B8)a;
+        b.printName();
+    }
+}
+
+ANS -Name-B (If not Run time error)
+
+----------------------------------------------------------------------
+Q19)
+
+class A9 {
+    public void printName() {
+        System.out.println("Name-A");
+    }
+}
+class B9 extends A9{
+    public void printName(){
+        System.out.println("Name-B");
+    }
+    public void printValue(){
+        System.out.println("Value-B");
+    }
+}
+public class Test43{
+    public static void main (String[] args){
+        B9 b = new B9();
+        A9 a = (A9)b;
+        a.printName();
+    }
+}
+
+ANS - Name-B
+
+---------------------------------------------------------------------
+Q20)
+
+class A10{
+    public void printName(){
+        System.out.println("Name-A");
+    }
+}
+class B10 extends A10{
+    public String printName(){
+        System.out.println("Name-B");
+        return null;
+    }
+}
+public class Test44{
+    public static void main (String[] args){
+        A10 a = new B10();
+        a.printName();
+    }
+}
+
+ANS - Compilation Error
+
+-----------------------------------------------------------------------
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -169,3 +169,80 @@ Expected Output : Monthly salary of salaried employee: 5000.0
 Commission Employee
 Input: salesAmount = 50000, commissionRate = 10
 Expected Output: Commission of employee: 5000.0
+
+
+
+ANS -----------------
+
+Tester.java
+-----------
+
+package com.nareshIT.day37;
+
+public class Tester {
+
+	public static void main(String[] args) {
+		Employee e = new Employee(160, 15, 12000, 50000, 10);
+		System.out.println(e.calculateSalary());
+		System.out.println(e.calculateSalary(12000));
+		System.out.println(e.calculateSalary(50000,10));
+	}
+
+}
+
+
+Tester.java
+-----------
+
+package com.nareshIT.day37;
+
+public class Employee {
+	private double hoursWorked;       
+	private double hourlyRate;         
+	private double annualSalary;	   
+	private double salesAmount;
+	private int commissionRate;
+	
+	public Employee(double hoursWorked, double hourlyRate) {
+		super();
+		this.hoursWorked = hoursWorked;
+		this.hourlyRate = hourlyRate;
+	}
+	
+	public Employee(double annualSalary) {
+		super();
+		this.annualSalary = annualSalary;
+	}
+
+	public Employee(double salesAmount, int commissionRate) {
+		super();
+		this.salesAmount = salesAmount;
+		this.commissionRate = commissionRate;
+	}
+	
+	public Employee(double hoursWorked, double hourlyRate, double annualSalary, double salesAmount,
+			int commissionRate) {
+		super();
+		this.hoursWorked = hoursWorked;
+		this.hourlyRate = hourlyRate;
+		this.annualSalary = annualSalary;
+		this.salesAmount = salesAmount;
+		this.commissionRate = commissionRate;
+	}
+
+	public double calculateSalary(){
+		System.out.print("Monthly salary of hourly employee: ");
+		return hoursWorked*hourlyRate;
+	}
+
+	public double calculateSalary(double annualSalary){
+		System.out.print("Monthly salary of salaried employee: ");
+		return annualSalary/12.0;
+	}
+	
+	public double calculateSalary(double salesAmount, double commissionRate){
+		System.out.print("Commission of employee: ");
+		return (salesAmount/commissionRate);
+	}
+	       
+}

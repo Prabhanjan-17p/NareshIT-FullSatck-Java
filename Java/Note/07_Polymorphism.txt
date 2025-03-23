@@ -1255,7 +1255,8 @@ Case 3:
 Child c1 = (Child) new Parent(); //no compilation error 
                                    but at runtime we will get 
 				   java.lang.ClassCastException
----------------------------------------------------------------------	//Program on method Overriding by using dynamic method displatch :
+---------------------------------------------------------------------
+//Program on method Overriding by using dynamic method displatch :
 ------------------------------------------------------------------
 package com.ravi.overriding;
 
@@ -1424,7 +1425,278 @@ public class MethodOverridingDemo4
 	}
 
 }
------------------------------------------------------------------------
+----------------------------------------------------------------------
+21-03-2025
+----------
+Variable Hiding in upcasting :
+-------------------------------
+class Super
+{
+  int x = 100;
+}
+class Sub extends Super
+{
+  int x = 200;  //Variable Hiding
+}
+
+
+In java, there is no concept called Variable Overriding, We can only override non static methods.
+
+Depending upon the context the Object behavior will change but the 
+properties of the Object will remain unchanged.
+
+Static variable, non static variable and static methods are always executing by using current reference.
+
+//Program on Variable Hiding
+
+package com.ravi.variable_hiding;
+
+class RBI
+{
+	protected String ifscCode = "RBIHYD00001";
+	
+	public String loan()
+	{
+		return "Bank should provide loan";
+	}
+}
+class SBI extends RBI
+{
+	protected String ifscCode = "SBIAMPT15314"; //Variable Hiding
+	
+	@Override
+	public String loan()
+	{
+		return "Provides the loan at 9.2% ROI";
+	}
+}
+
+public class VariableHiding 
+{
+	public static void main(String[] args)
+	{
+		RBI r = new SBI();
+		System.out.println(r.ifscCode+" : "+r.loan());
+	}
+}
+----------------------------------------------------------------------
+Can we override a private method of super class ?
+--------------------------------------------------
+No, We can't override private method of super class because private methods are not visible (not available) to the sub class hence we can't override.
+
+We can't use @Override annotation on private method of sub class because it is not overridden method, actually it is re-declared by sub class developer as shown in the program
+
+PrivateMethodOverriding.java
+------------------------------
+package com.ravi.overriding;
+
+class Super
+{
+	private void show()
+	{
+		System.out.println("Private method show of Super class");
+	}
+}
+class Sub extends Super
+{
+	public void show() //Re-declaration
+	{
+		System.out.println("Show method of sub class");
+	}
+}
+public class PrivateMethodOverriding 
+{
+	public static void main(String[] args) 
+	{
+		new Sub().show();
+	}
+
+}
+
+Note :- private method of super class is not available or not inherited in the sub class so if the sub class declare the method with same signature then it is not overridden method, actually it is re-declared in the sub class. 
+----------------------------------------------------------------
+Role of access modifier while overriding a method :
+---------------------------------------------------
+While overriding the method from super class, the access modifier of sub class method must be greater or equal in comparison to access modifier of super class method otherwise we will get compilation error.
+
+In terms of accessibility, public is greater than protected, protected is greater than default (public > protected > default)
+[default < protected < public]
+
+**So the conclusion is we can't reduce the visibility of the method while overriding a method.
+
+Note :- private method is not availble (visible) in sub class so it is not the part of method overriding.
+---------------------------------------------------------------------
+package com.ravi.overriding;
+
+class Vehicle
+{
+	 public void run()
+	{
+		System.out.println("Generic Vehicle is running");
+	}
+}
+class Car extends Vehicle
+{
+	@Override
+	protected void run() //error [Can't reduce the visibility]
+	{
+		System.out.println("Car Vehicle is running");
+	}
+}
+public class Test 
+{	
+	public static void main(String[] args) 
+	{
+		Vehicle v = new Car();	
+		v.run();
+	}
+}
+----------------------------------------------------------------------
+Co-variant in java :
+--------------------
+As we know while method overriding, the method signature must be same as well as return type must be compaitable,
+If return type is not compaitable we will get compilation error as shown in the program.
+
+class Super
+{
+	public void show()
+	{
+		System.out.println("Super class show method!!!!");
+	}	
+}
+class Sub extends Super
+{
+	@Override
+	public int show()
+	{
+		System.out.println("Sub class show method!!!!");
+		return 0;
+	}	
+}
+public class CoVariant 
+{
+	public static void main(String[] args) 
+	{
+		Super s1 = new Sub();
+		s1.show();
+	}
+}
+
+Note : We will get compilation error because return type int is not 
+       compaitable with void.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+				   
+				   
+				   
+				   
+				   
+				   
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+       
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

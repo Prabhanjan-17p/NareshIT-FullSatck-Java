@@ -1,0 +1,516 @@
+1.What is the output of the following code
+private class A
+{
+    public static void main(String[] args) {
+        System.out.println("A");
+    }
+}
+A.    A
+B.    Compile time error
+C.    Compile success but no output
+D.    none of the above
+Answer: B
+
+
+2.What is the output of the following code
+public class A
+{
+    void method1(){
+        System.out.println("A");    
+    }
+}
+public class B extends A {
+    public static void main(String[] args) {
+        method1();
+    }
+}
+A.    Compile time error
+B.    A
+C.    method1()
+D.    none of the above
+Answer: A
+
+3.Choose the correct option for the following program
+class NIT
+{
+    protected int a, b;
+}
+public class OopsMCQ extends NIT {
+    public static void main(String[] args) {
+        System.out.println(a+" "+b);
+    }
+}
+A.    1 2
+B.    2 3
+C.    0 0
+D.    Compile time error
+Answer : D
+
+
+4.What is the output of the following code
+class NIT
+{
+    void nit()
+    {
+        System.out.print("Welcome");
+    }
+}
+
+class NIT1 extends NIT
+{
+    void nit()
+    {
+        System.out.print(" NareshIT");
+    }
+}
+public class OopsMCQ
+{
+    static void print(NIT n)
+    {
+        n.nit();
+    }
+   
+    public static void main(String[] args) {
+        NIT nit1 = new NIT();
+        NIT1 nit2 = new NIT1();
+        NIT nit3 = new NIT1();
+       
+        print(nit1);
+        print(nit2);
+        print(nit3);
+       
+    }
+}
+A.    Welcome NareshIT Welcome
+B.    NareshIT NareshIT
+C.    Welcome NareshIT NareshIT
+D.    Welcome
+Answer: C
+
+5.What is the output of the following code
+class NIT
+{
+    void nit()
+    {
+        System.out.print("Welcome");
+    }
+}
+
+class NIT1 extends NIT
+{
+    void nit()
+    {
+        System.out.print(" NareshIT");
+    }
+}
+public class OopsMCQ
+{
+    static void print(NIT1 n)
+    {
+        n.nit();
+    }
+   
+    public static void main(String[] args) {
+        NIT nit1 = new NIT();
+        NIT1 nit2 = new NIT1();
+        NIT nit3 = new NIT1();
+        print(nit1);
+        print(nit2);
+        print(nit3);
+       
+    }
+}
+A.    Welcome NareshIT Welcome
+B.    NareshIT NareshIT
+C.    Welcome NareshIT NareshIT
+D.    Compile time error
+Answer: D
+
+
+6.What is the output of the following code
+public class OopsMCQ
+{
+    private int a = 5;
+    public static void main(String[] args) {
+        OopsMCQ nit = new OopsMCQ();
+        System.out.println(nit.a);
+    }
+}
+A.    Runtime Error
+B.    Compile time error
+C.    5
+D.    none of the above
+
+Answer :C
+
+7.Which error throws in the given below code?
+class NIT
+{
+    protected int a, b;
+    public NIT(int a1, int b1)
+    {
+        a = a1;
+        b = b1;
+    }
+}
+
+public class OopsMCQ
+{
+    public static void main(String[] args) {
+        NIT nit = new NIT();
+        System.out.println(nit.a+" "+nit.b);
+    }
+}
+A.    The constructor is undefined
+B.    nullpointerException
+C.    0 0
+D.    It does not return any value
+Answer : A
+
+
+8.What is the output of the following code
+class NIT
+{
+    protected int a, b;
+    public NIT(int a1, int b1)
+    {
+        a = a1;
+        b = b1;
+    }
+    public NIT() {
+       
+    }
+}
+public class OopsMCQ
+{
+    public static void main(String[] args) {
+        NIT nit = new NIT();
+        System.out.println(nit.a+" "+nit.b);
+    }
+}
+A.    The constructor is undefined
+B.    nullpointerException
+C.    0 0
+D.    It does not return any value
+Answer: C
+
+
+9.Which error throws in the given below code
+class NIT
+{
+    protected void nit()
+    {
+       
+    }
+}
+class NIT1 extends NIT
+{
+    void nit()
+    {
+       
+    }
+}
+
+public class OopsMCQ
+{
+    public static void main(String[] args) {
+        NIT1 n = new NIT1();
+        n.nit();
+    }
+}
+A.    change derived class method to private
+B.    change derived class method to protected
+C.    Object cannot be initialized
+D.    Run time Error
+Answer: B
+
+10.What is the output of the following code
+class NIT
+{
+    public NIT()
+    {
+        System.out.print("NIT ");
+    }
+}
+
+class NIT1 extends NIT
+{
+    public NIT1() {
+        System.out.print("NIT1 ");
+    }
+}
+
+class NIT2 extends NIT1
+{
+    public NIT2() {
+        System.out.print("NIT2");
+    }
+}
+
+public class OopsMCQ
+{
+    public static void main(String[] args) {
+        NIT2 nit = new NIT2();
+    }
+}
+A.    NIT
+B.    NIT NIT1 NIT2
+C.    NIT2
+D.    NIT1 NIT2
+Answer: B
+
+
+11.What is the output of the following code
+public class OopsMCQ
+{
+    void swap_names(String name1,String name2) {
+        String temp="";
+        temp=name1;
+        name1=name2;
+        name2=temp;
+    }
+    public static void main(String[] args) {
+        String name1="Roger";
+        String name2="Robert";
+        System.out.println("Before swapping: name1="+name1+" name2="+name2);
+        OopsMCQ t11 = new OopsMCQ();
+        t11.swap_names(name1,name2);
+        System.out.println("After swapping: name1="+name1+" name2="+name2);
+    }
+}
+A.    Before swapping: name1=Roger name2=Robert<br>
+    After swapping: name1=None name2=None
+B.    Before swapping: name1=Roger name2=Robert<br>
+    After swapping: name1= Robert name2=Robert
+C.    Before swapping: name1=Roger name2=Robert<br>
+    After swapping: name1=Roger name2=Robert
+D.    Before swapping: name1=Roger name2=Robert<br>
+    After swapping: name1= Robert  name2= Roger
+Answer is C
+
+
+12.    What is the output of the following code?
+class NIT
+{
+    protected static void nit()
+    {
+        System.out.println("NIT");
+    }
+}
+
+class NIT1 extends NIT
+{
+    protected static void nit()
+    {
+       
+    }
+}
+
+public class Abstract extends NIT1 {
+   
+    public static void main(String[] args) {
+        nit();
+    }
+}
+A.    Compiler Error
+B.    No output
+C.    NIT
+D.    None of the above
+Answer: B
+
+13.What is the output of the following code
+class NIT
+{
+    protected void nit()
+    {
+        System.out.println("NIT");
+    }
+}
+
+class NIT1 extends NIT
+{
+    protected void nit()
+    {
+       
+    }
+}
+
+public class Abstract extends NIT1 {
+   
+    public static void main(String[] args) {
+        nit();
+    }
+}
+A.    Compiler Error
+B.    No output
+C.    NIT
+D.    None of the above
+Answer: A
+
+14.What is the output of the following code
+public class Poly {
+   
+    public static void nit(int a)
+    {
+        System.out.println(a +"Int");
+    }
+   
+    public static void nit(String b)
+    {
+        System.out.println(b+" String");
+    }
+   
+    public static void nit(Object c)
+    {
+        System.out.println(c+" Object");
+    }
+   
+    public static void main(String[] args) {
+        nit(null);
+    }
+}
+A.    null String
+B.    c Object
+C.    b String
+D.    null Object
+
+Answer : A
+
+15.    What is the output of the following code
+public class Poly {
+   
+    public static void nit(Integer a)
+    {
+        System.out.println(a);
+    }
+   
+    public static void nit(String b)
+    {
+        System.out.println(b);
+    }
+   
+    public static void nit(Object c)
+    {
+        System.out.println(c);
+    }
+   
+    public static void main(String[] args) {
+        nit(null);
+    }
+}
+A.    a
+B.    c
+C.    b
+D.    null
+E.    Compile time error
+Answer : E
+
+
+16.What is the output?
+class A
+{
+    public int m1()
+    {
+        return 20;
+    }
+}
+class B extends A
+{
+    public int  m1()
+    {
+        return 30;
+    }
+    public int m2()
+    {
+        return 40;
+    }
+}
+class C extends B{
+    public int m2()
+    {
+        return 20;
+    }
+}
+public static void main(String[] args) {
+        A obj1=new A();
+        B obj2=new B();
+        C obj3=new C();
+        System.out.println(obj1.m1() + obj3.m1() + obj3.m2());
+    }
+A.    70
+B.    90
+C.    Error: Method m1 should be overridden in class C.
+D.    80
+Answer is A
+
+
+17.What is the output of the following code snippet?
+class Parent
+{
+    int num;
+    public Parent(int num) {
+        this.num=num;
+    }
+    int get_num()
+    {
+        return this.num;
+    }
+}
+class Child extends Parent
+{
+    int val;
+    public Child(int num,int val) {
+        super(num);
+        this.val=val;
+    }
+    int get_val()
+    {
+        return this.val;
+    }
+}
+public static void main(String[] args) {
+        Child son = new Child(100,200);
+        System.out.print(son.get_num()+" ");
+        System.out.println(son.get_val());
+    }
+A.    200 100
+B.    Error: arguments cannot be passed through super() to the parent class constructor
+C.    100 200
+D.    None 200
+Answer : C
+
+
+18.What is the output of the following code snippet?
+public class Test {  
+     
+    public void myMethod()  
+    {  
+    System.out.println("Method");  
+    }  
+     
+    {  
+    System.out.println(" Instance Block");  
+    }  
+         
+    public void Test()  
+    {  
+    System.out.println("Constructor ");  
+    }  
+
+    static {  
+        System.out.println("static block");  
+    }  
+   
+    public static void main(String[] args)
+    {  
+    Test t1 = new Test();  
+    t1.Test();
+    t1.myMethod();  
+  }  
+}
+a)Instance block, method, static block, and constructor
+b)Method, constructor, instance block, and static block
+c)Static block, method, instance block, and constructor
+d)Static block, instance block, constructor, and method
+
+Answer: (d)

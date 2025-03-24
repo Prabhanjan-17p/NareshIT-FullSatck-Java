@@ -153,13 +153,13 @@ int main(){
     //     printf("5 NOTE = %d\n",no5);
     // }
 
-    int i =2 ;
-    if (i=5) -> 5
-    {
-        printf("%d NOTE = %d\n",i);
-    } else{
-        printf("%d NOerreTE = %d\n",i);
-    }
+    // int i =2 ;
+    // if (i=5) -> 5
+    // {
+    //     printf("%d NOTE = %d\n",i);
+    // } else{
+    //     printf("%d NOerreTE = %d\n",i);
+    // }
     
 
     return 0;

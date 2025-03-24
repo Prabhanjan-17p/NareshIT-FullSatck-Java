@@ -1255,8 +1255,7 @@ Case 3:
 Child c1 = (Child) new Parent(); //no compilation error 
                                    but at runtime we will get 
 				   java.lang.ClassCastException
----------------------------------------------------------------------
-//Program on method Overriding by using dynamic method displatch :
+---------------------------------------------------------------------	//Program on method Overriding by using dynamic method displatch :
 ------------------------------------------------------------------
 package com.ravi.overriding;
 
@@ -1584,6 +1583,736 @@ public class CoVariant
 
 Note : We will get compilation error because return type int is not 
        compaitable with void.
+----------------------------------------------------------------------
+22-03-2025
+-----------
+While overriding a method, return type must be compaitable. Java software people has provided a concept called Co-Variant through which by using Inheritance relation we have make return type as compaitable.
+
+[In a single statement Co-Variant is, If we are able to assign sub class method return type Object to super class method return type Object then it is called Co-Variant]
+
+package com.ravi.co_variant;
+
+class Animal
+{	
+}
+class Dog extends Animal
+{
+	
+}
+
+class Base
+{
+	public Animal display()
+	{
+		System.out.println("Base class display method");
+		return new Dog();
+	}
+}
+class Derived extends Base
+{
+	public Dog display()
+	{
+		System.out.println("Derived class display method");
+		return new Dog();
+	}
+}
+public class CoVariantDemo1 
+{
+	public static void main(String[] args) 
+	{
+		Base b = new Derived();
+		b.display();
+	}
+
+}
+----------------------------------------------------------------------
+package com.ravi.co_variant;
+
+class Super
+{
+	public Super m1()
+	{
+		System.out.println("Super class m1");
+		return this;
+	}
+}
+class Sub extends Super
+{
+	public Sub m1()
+	{
+		System.out.println("Sub class m1");
+		return this;
+	}
+}
+
+public class CoVariantDemo2 {
+
+	public static void main(String[] args) 
+	{
+		Super s1 = new Sub();
+		s1.m1();
+
+	}
+
+}
+----------------------------------------------------------------------
+package com.ravi.co_variant;
+
+class Parent
+{
+	public Object m1()
+	{
+		System.out.println("Parent class m1 method");
+		return null;
+	}
+}
+class  Child extends Parent
+{
+	public System m1()
+	{
+		System.out.println("Child class m1 method");
+		return null;
+	}
+}
+public class CoVariantDemo3 
+{
+	public static void main(String[] args) 
+	{
+		Parent p1 = new Child();
+		p1.m1();
+	}
+
+}
+======================================================================
+***What is Method Hiding in java ?
+             OR
+Can we override a static method?
+             OR
+Can we Override main method?
+ 
+In order to work with Method Hiding we have different Cases :
+
+Case 1 :
+---------
+Any public static method of super class is by default available 
+to sub class so from sub class we can call super class static method as shown in the program below :
+
+class Super
+{
+	public static void m1()
+	{
+		System.out.println("m1 static method of super class");
+	}
+}
+class Sub extends Super
+{
+	
+}
+public class MethodHidingDemo1 
+{
+	public static void main(String[] args) 
+	{
+		Sub.m1();
+		Sub s1 = new Sub();
+		s1.m1();
+	}
+}
+
+NOte : From above program it is clear that public static method of super class is by default available to sub class so from sub class we can call super class static method.
+----------------------------------------------------------------------
+Program that describes when method oevrriding becomes method hiding :
+
+As we know we can achieve method overriding with non static method where as Methdo hiding is only possible with static method.
+
+class Super
+{
+	public static void m1()
+	{
+		System.out.println("m1  static method of super class");
+	}
+}
+class Sub extends Super
+{
+	
+	public static int m1()  
+	{
+		System.out.println("m1 static method of Sub class");
+		return 0;
+	}
+}
+public class MethodHidingDemo2
+{
+	public static void main(String[] args) 
+	{
+		
+	}
+}
+
+Case 2 :
+---------
+We can't override static method with non static method because static method belongs to class where as non static method belongs to Object.
+If we try to override then we will get an error "Overridden method is static"
+
+class Super
+{
+	public static void m1()
+	{
+		System.out.println("m1  static method of super class");
+	}
+}
+class Sub extends Super
+{	
+	public void m1()  
+	{
+		System.out.println("m1 static method of Sub class");
+	}
+}
+public class MethodHidingDemo1 
+{
+	public static void main(String[] args) 
+	{
+		
+	}
+}
+
+Case 3 :
+--------
+We cannot override non static method with static method, If we try to override then we will get an error "Overriding methdo is static".
+
+class Super
+{
+	public  void m1()
+	{
+		System.out.println("m1  static method of super class");
+	}
+}
+class Sub extends Super
+{	
+	public static void m1()  
+	{
+		System.out.println("m1 static method of Sub class");
+	}
+}
+public class MethodHidingDemo3
+{
+	public static void main(String[] args) 
+	{
+		
+	}
+}
+
+Case 4 :
+---------
+
+We can't override static method because It belong to class but not object, If we write static method in the sub class with same signature and compaitable return type then It is Method Hiding but not Method Overriding here compiler will search the method of super class and JVM will also execute the method of super class because method is not overridden.[Single copy and belongs to class area, sharable by all the objects]
+
+Note :- 1) We can't apply @Override annotation on static methods.
+
+        2) Static methods can't be overridden so behavior is 
+	   same for all the Objects hence it is Static Polymorphism.
+
+package com.ravi.method_hiding;
+
+class Bird
+{
+	public static String name = "Bird";
+	
+	public static void fly()
+	{
+		System.out.println("Generic Bird is flying");
+	}
+}
+class Parrot extends Bird
+{
+	public static String name = "Parrot";
+	public static void fly() //Method Hiding
+	{
+		System.out.println("Parrot Bird is flying");
+	}
+}
+
+class Peacock extends Bird
+{
+	public static String name = "Peacock";
+	
+	public static void fly()
+	{
+		System.out.println("Peacock Bird is flying");
+	}
+}
+public class MethodHidingDemo4 {
+
+	public static void main(String[] args)
+	{
+         Bird b = new Peacock();
+         System.out.println(b.name);
+         b.fly();
+	}
+
+}
+
+
+NOTE : SV, NSV and SM always executes from current reference.
+======================================================================
+24-03-2025
+----------
+Polymorphic behavior of Method while using Method Overriding :
+---------------------------------------------------------------
+package com.ravi.polymorphic_behavior;
+
+class Animal
+{
+    public void eat()
+    {
+    	System.out.println("Genric Animal is eating...");
+    }
+}
+class Dog extends Animal
+{
+	@Override
+	public void eat()
+    {
+    	System.out.println("Dog Animal is eating...");
+    }
+}
+
+class Lion extends Animal
+{
+	@Override
+	public void eat()
+    {
+    	System.out.println("Lion Animal is eating...");
+    }
+}
+public class PolymorphicBehavior
+{
+	public static void main(String[] args) 
+	{
+		Animal animal = null;
+		
+		animal = new Dog();		
+		animalEating(animal);
+		
+		animal = new Lion();		
+		animalEating(animal);
+	}
+	
+	public static void animalEating(Animal a1)
+	{
+		a1.eat();
+	}
+
+}
+----------------------------------------------------------------------
+How to call a specfic method of sub class :
+-------------------------------------------
+In order to call specific method of sub class we need current class
+reference so down casting is required.
+
+In order to deal with mulltiple obejcts we need to take the support of 
+instanceof operator.
+
+instanceof Operator :
+---------------------
+It is a relational operator as well as keyword.
+
+It return true/false.
+
+It is mainly used to verify whether a reference variable is pointing 
+to a particular type of Object or not ?
+Example :
+            Dog d1 = new Dog();
+	    if(d1 instanceof Dog)
+	    {
+	       //d1 is pointing Dog type of Object.
+	    }
+
+We must have IS-A relation between reference variable and class type otherwise we will get compilation error.
+
+It is mainly used to avoid java.lang.ClassCastException.
+
+---------------------------------------------------------------------
+//Programs 
+
+package com.ravi.instance_of_optr;
+
+class Alpha
+{
+	
+}
+class Beta extends Alpha
+{
+	
+}
+class Gamma extends Beta
+{
+	
+}
+
+public class InstanceOfDemo1 
+{
+	public static void main(String[] args) 
+	{
+		Gamma g = new Gamma();
+		
+		if(g instanceof Gamma)
+		{
+			System.out.println("g is pointing to Gamma Object");
+		}
+		if(g instanceof Beta)
+		{
+			System.out.println("g is pointing to Beta Object");
+		}
+		if(g instanceof Alpha)
+		{
+			System.out.println("g is pointing to Alpha Object");
+		}
+		if(g instanceof Object)
+		{
+			System.out.println("g is pointing to Object Object");
+		}
+	}
+
+}
+----------------------------------------------------------------------
+package com.ravi.instance_of_optr;
+
+class Bird
+{
+	public void fly()
+	{
+		System.out.println("Can fly");
+	}
+}
+class Fish 
+{
+	public void swim()
+	{
+		System.out.println("Can swim");
+	}
+}
+
+
+public class InstanceofDemo2
+{
+
+	public static void main(String[] args) 
+	{
+		Fish f = new Fish();
+
+		if(f instanceof Bird)  //Compilation error
+		{
+			
+		}
+
+	}
+
+}
+
+
+Here we will get compilation error becoz there is no relation between Bird and Fish
+-----------------------------------------------------------
+package com.ravi.instance_of_optr;
+
+public class InstanceofDemo3 {
+
+	public static void main(String[] args) 
+	{
+		String str = "Hyderabad";
+		
+		if(str instanceof String)
+		{
+			System.out.println("str is pointing to String Object");
+		}
+		
+		Integer i = 454;
+		
+		if(i instanceof Number)
+		{
+			System.out.println("i is pointing to Number Object");
+		}
+		
+		Character c = 'A';
+		
+		if(c instanceof Object)
+		{
+			System.out.println("c is pointing to Object type");
+		}
+		
+		
+		
+		
+	}
+
+}
+---------------------------------------------------------------------
+package com.ravi.instance_of_optr;
+
+class Vehicle
+{
+	public void run()
+	{
+		System.out.println("Vehicle is running");
+	}
+}
+
+class BMW extends Vehicle
+{
+	
+}
+
+class Audi extends Vehicle
+{
+	
+}
+
+
+
+public class InstanceofDemo4 
+{
+
+	public static void main(String[] args) 
+	{
+		
+		BMW b = new BMW();
+		acceptCarType(b);
+		
+		//Audi a = new Audi();
+		//acceptCarType(a);	
+	}
+	
+	public static void acceptCarType(Vehicle v)
+	{
+		
+		if(v instanceof BMW)
+		{
+			System.out.println("BMW Car");
+		}
+		else
+		{
+			System.out.println("AUDI Car");
+		}	
+		
+	}
+
+}
+
+//Program on Dynamic Polymorphism using down casting with instanceof
+ operator to call a specific method.
+
+package com.ravi.polymorphic_behavior;
+
+class Animal
+{
+    public void eat() 
+    {
+    	System.out.println("Genric Animal is eating...");
+    }
+}
+class Dog extends Animal
+{
+	@Override
+	public void eat()
+    {
+    	System.out.println("Dog Animal is eating...");
+    }
+	
+	public void bark()
+	{
+		System.out.println("Dog is barking...");
+	}
+	
+}
+
+class Lion extends Animal
+{
+	@Override
+	public void eat()
+    {
+    	System.out.println("Lion Animal is eating...");
+    }
+	
+	public void roar()
+	{
+		System.out.println("Lion is roaring...");
+	}
+}
+public class PolymorphicBehavior
+{
+	public static void main(String[] args) 
+	{
+		Animal animal = null;
+		
+		animal = new Dog();		
+		animalEating(animal);	
+		
+		animal = new Lion();
+		animalEating(animal);		
+	}
+	
+	public static void animalEating(Animal a1) //loose coupling
+	{		
+		if(a1 instanceof Dog)
+		{
+			Dog dog = (Dog) a1;
+			dog.eat();
+			dog.bark();
+		}
+		else if(a1 instanceof Lion)
+		{
+			Lion lion = (Lion)a1;
+			lion.eat();
+			lion.roar();
+		}	
+		
+	}
+}
+======================================================================
+ final keyword in java :
+-----------------------
+It is used to provide some kind of restriction in our program.
+We can use final keyword in ways 3 ways in java.
+
+1) To declare a class as a final. (Inheritance is not possible)
+2) To declare a method as a final (Overriding is not possible)
+3) To declare a variable (Field) as a final (Re-assignment is not possible)    
+
+
+1) To declare a class as a final :
+-----------------------------------
+Whenever we declare a class as a final class then we cann't extend or inherit that class otherwise we will get a compilation error.
+
+We should declare a class as a final if the composition of the class (logic of the class) is very important and we don't want to share the feature of the class to some other developer to modify the original behavior of the existing class, In that situation we should declare a class as a final.
+
+Declaring a class as a final does not mean that the variables and methods declared inside the class will also become as a final, only the class behavior is final that means we can modify the variables value as well as we can create the object for the final classes.
+
+Note :- In java String and All wrapper classes are declared as final class.
+
+final class A
+{
+	private int x = 100;
+
+	public void setData()
+	{
+		x = 120;
+		System.out.println(x);
+	}
+}
+class B extends A 
+{   
+}
+public class FinalClassEx
+{
+	public static void main(String[] args)
+	{
+		B b1 = new B();
+		b1.setData();		
+	}
+}
+
+Note : class A is final so we can't inherit hence we will get compilation error.
+---------------------------------------------------------------------
+final class Test
+{
+	private int data = 100;
+
+	public Test(int data)
+	{
+		this.data = data;
+		System.out.println("Data value is :"+data);
+	}
+}
+public class FinalClassEx1 
+{
+	public static void main(String[] args) 
+	{
+		Test t1 = new Test(200);		
+	}
+}
+Note : for final class we can create object as well as we can modify the data.
+--------------------------------------------------------------------
+Whenever we declare a constructor as private then we should declare the class with final modifier. If constructor is private then we can't create a sub class because super class constructor is not visible from sub class constructor.
+
+final class Sample
+{
+	private Sample()
+	{
+	  System.out.println("Private Constructor");	
+	}
+}
+
+public class FinalClassEx2 
+{
+	public static void main(String[] args) 
+	{
+		
+	}
+}
+---------------------------------------------------------------------
+Sealed class in Java :
+-----------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+       
+       
 
 
 

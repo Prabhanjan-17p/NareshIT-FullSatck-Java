@@ -134,12 +134,9 @@ public class StudentDemo
 Steps to develop OOP :
 ----------------------
 1) Create BLC and ELC class.
-2) Create an Objec for BLC class, inside the ELC class in the main 
-   method.
-3) Think about Object properties and behavior and write inside the 
-   BLC class.
-4) In the ELC class, With the help of Object reference initialize
-   all the Object properties.
+2) Create an Object for BLC class, inside the ELC class in the main method.
+3) Think about Object properties and behavior and write inside the BLC class.
+4) In the ELC class, With the help of Object reference initialize all the Object properties.
 5) By using Object reference call the methods.
 -----------------------------------------------------------------
 12-02-2025
@@ -236,8 +233,7 @@ What is parameter variable ?:
 -----------------------------
 If a variable is declared inside a method as a parameter (not inside a method body) then it is parameter variable.
 
-It used to recieve the values from the outer world so the end user will provide the values and these values are recieved by 
-parameter variable in the program.
+It used to recieve the values from the outer world so the end user will provide the values and these values are recieved by parameter variable in the program.
 
 Initializing the object properties using parameter variable :
 -------------------------------------------------------------
@@ -335,13 +331,12 @@ Demo.class
 ----------
 public class Demo
 {
-  public Demo() //Default No Argument Constructor [Added by 
-  {                                             java compiler]
+  public Demo() //Default No Argument Constructor [Added by java compiler]
+  {                                             
   }
 }
 
-*Every java class must have at-least one constructor either 
- explicitly written by user OR implicitly added by java compiler.
+*Every java class must have at-least one constructor either explicitly written by user OR implicitly added by java compiler.
 
 The access modifier of default no argument constructor [added by java compiler] will depend upon class access modifier that means, If the class is public then default no argument constructor will also be public otherwise not.
 
@@ -351,8 +346,8 @@ public class Test
 {
 }
 
-javac Test.java [java compiler will compile and add default 
-                 constructor]
+javac Test.java [java compiler will compile and add default constructor]
+                
 
 javap Test.class [To see the Constructor added by java compiler]
 -----------------------------------------------------------------
@@ -377,8 +372,7 @@ We have 2 reasons that why compiler is adding default constructor :
    String - null
    Object - null (For any class i.e reference variable the default value is null)
 
-Program that describes new keyword is repsonsible to allocate 
-the default values for non static variables :
+Program that describes new keyword is repsonsible to allocate the default values for non static variables :
 
 Student.java
 -------------
@@ -405,10 +399,7 @@ public class StudentDemo
 	{
 		Student raj = new Student();
 		raj.show();
-		
-
 	}
-
 }
 
 Here we will get output as default values i.e 0 , null 
@@ -479,8 +470,7 @@ public class EmployeeDemo {
 ---------------------------------------------------------------
 14-02-2025
 -----------
-Role of instance variable OR Non static field (Object Properties)
-while creating an object.
+Role of instance variable OR Non static field (Object Properties) while creating an object.
 
 In java, Whenever we create an object, a separate copy of all the instance variables will be created with each and every object.
 
@@ -517,9 +507,7 @@ A static field is automatically created and initialized with default value at TH
 
 Whenever we create an object in java then a single copy of static field will be created and the same single copy will be sharable by all the objects.
 
-* It is sharable by all the objects hence if we modify the value
-  by any of the Object reference then it will be mofifiable for
-  all the objects.
+* It is sharable by all the objects hence if we modify the value by any of the Object reference then it will be mofifiable for all the objects.
 
 package com.ravi.role_of_static_field;
 
@@ -545,8 +533,7 @@ When we should declare a variable as an instance and we should decalre as static
 
 Instance Variable :
 -------------------
-If the value of the variable is different with respect to object 
-then we should declare the variable as an instance variable.
+If the value of the variable is different with respect to object then we should declare the variable as an instance variable.
 
 Static Variable :
 -----------------
@@ -659,9 +646,7 @@ public class VariableShadow {
 	{
 		Customer cust = new Customer();
 		cust.show(18000);
-
 	}
-
 }
 ----------------------------------------------------------------
 this keyword in java :
@@ -1242,8 +1227,7 @@ In java, class is the example of encapsulation.
 
 How to achieve encapsulation in a class :
 ------------------------------------------
-In order to achieve encapsulation we should follow the following two 
-techniques :
+In order to achieve encapsulation we should follow the following two techniques :
 
 1) Declare all the data members with private access modifiers (Data Hiding OR Data Security)
 
@@ -1272,8 +1256,7 @@ public class Employee
 	@Override
 	public String toString() 
 	{
-		return "Employee [employeeId=" + employeeId + ", employeeName=" +  employeeName + ", employeeSalary="
-				+ employeeSalary + "]";
+		return "Employee [employeeId=" + employeeId + ", employeeName=" +  employeeName + ", employeeSalary=" + employeeSalary + "]";
 	}
 
 	public int getEmployeeId() 

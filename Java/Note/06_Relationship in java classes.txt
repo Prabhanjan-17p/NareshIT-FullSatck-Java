@@ -30,8 +30,8 @@ public class Address
 
 public class Student
 {
-   private Address address; //HAS-A Relation [Student has 
-}                                              Address]
+   private Address address; //HAS-A Relation [Student has Address]
+}                                              
 
 --------------------------------------------------------------
 Inheritance (IS-A Relation) :

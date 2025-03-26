@@ -2249,177 +2249,226 @@ public class FinalClassEx2
 	}
 }
 ---------------------------------------------------------------------
+25-03-2025
+-----------
 Sealed class in Java :
 -----------------------
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-       
-       
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-				   
-				   
-				   
-				   
-				   
-				   
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-       
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+It is a new feature introduced from java 15v (preview version) and become the integral part of java from 17v.
+
+It is an improvement over final keyword.
+
+By using sealed keyword we can declare classes and interfaces as sealed.
+
+It is one kind of restriction that describes which classes and interfaces can extend or implement from Sealed class Or interface.
+
+It is similar to final keyword with less restriction because here we can permit the classes to extend from the original Sealed class.
+
+The class which is inheriting from the sealed class must be final, sealed or non-sealed.
+
+The sealed class must have atleast one sub class.
+
+We can also create object for Sealed class.
+
+It provides the following modifiers :
+
+1) sealed : Can be extended only through permitted class.
+
+2) non-sealed : Can be extended by any sub class, if a user wants to give permission to its sub classes.
+
+3) permits : We can provide permission to the sub classes, which are inheriting through Sealed class OR sealed interface
+
+4) final : we can declare permitted sub class as final so, it cannot be extended further.
+
+package com.ravi.sealed_demo;
+
+sealed class Bird permits Parrot, Sparrow
+{
+	public void roam()
+	{
+		System.out.println("Bird is roaming");
+	}
+}
+non-sealed class Parrot extends Bird
+{
+	@Override
+	public void roam()
+	{
+		System.out.println("Parrot is roaming");
+	}
+}
+final class Sparrow extends Bird
+{
+	@Override
+	public void roam()
+	{
+		System.out.println("Sparrow is roaming");
+	}
+}
+
+public class SealedDemo1 {
+
+	public static void main(String[] args)
+	{
+		Bird b = null;
+		
+		b = new Parrot();  b.roam();
+		b = new Sparrow();  b.roam();
+	}
+
+}
+------------------------------------------------------------------------
+package com.ravi.sealed_demo;
+
+sealed class Flipkart permits Cash, CreditCard, DebitCard, UPI
+{
+	public void payment()
+	{
+		System.out.println("Make a payment for online purchase");
+	}
+}
+final class Cash extends Flipkart
+{
+	public void payment()
+	{
+		System.out.println("Making a payment through cash for online purchase");
+	}
+}
+non-sealed class CreditCard extends Flipkart
+{
+	public void payment()
+	{
+		System.out.println("Making a payment through CreditCard for online purchase");
+	}
+}
+non-sealed class DebitCard extends Flipkart
+{
+	public void payment()
+	{
+		System.out.println("Making a payment through DebitCard for online purchase");
+	}
+}
+final class UPI extends Flipkart
+{
+	public void payment()
+	{
+		System.out.println("Making a payment through UPI for online purchase");
+	}
+}
+public class SealedDemo2 
+{
+	public static void main(String[] args) 
+	{
+		Flipkart f = null;
+		
+		f = new Cash();   f.payment();
+
+	}
+
+}
+-----------------------------------------------------------------------
+2) To declare a method as a final (Overriding is not possible)
+---------------------------------------------------------------
+Whenever we declare a method as a final then we can't override that method in the sub class otherwise there will be a compilation error.
+
+We should declare a method as a final if the body of the method i.e the implementation of the method is very important and we don't want to override or change the super class method body by sub class method body then we should declare the super class method as final method.
+   
+ class A
+{
+	protected int a = 10;
+	protected int b = 20;
+
+     public final void calculate()
+	 {
+		int sum = a+b;
+		System.out.println("Sum is :"+sum);
+	 } 
+}
+class B extends A
+{	
+	@Override
+	public void calculate() 
+	{
+		int mul = a*b;
+		System.out.println("Mul is :"+mul);	
+	}
+}
+public class FinalMethodEx 
+{
+	public static void main(String [] args) 
+	{
+		 A a1 = new B();
+		 a1.calculate();
+	}
+}
+---------------------------------------------------------------------
+class Alpha   
+{
+	private final void accept()
+	{
+		System.out.println("Alpha class accept method");
+	}
+}
+class Beta extends Alpha
+{
+	public void accept()
+	{
+		System.out.println("Beta class accept method");
+	}
+}
+public class FinalMethodEx1 
+{
+	public static void main(String [] args) 
+	{
+		new Beta().accept();
+	}
+}
+Note : Here Program will compile and execute because private method of super class is not available to sub class.
+-------------------------------------------------------------
+3) To declare a variable/Field as a final :
+--------------------------------------------
+In older langugaes like C and C++ we use "const" keyword to declare a constant variable but in java, const is a reserved word for future use so instead of const we should use "final" keyword.
+
+If we declare a variable as a final then we can't perform re-assignment (i.e nothing but re-initialization) of that variable.
+
+In java It is always a better practise to declare a final variable by uppercase letter according to the naming convention.
+
+
+class A
+{
+	final int A = 10;  //re-assignment is not possible
+	
+	public void setData()
+	{
+		A = 10; //error
+		System.out.println(A);
+	}
+	
+}
+class FinalVarEx 
+{
+	public static void main(String[] args) 
+	{
+		 final A a1 = new A();
+		 a1 = new A(); //error
+		 a1.setData();
+		
+	}
+}
+----------------------------------------------------------------------
+Abstraction [Hiding the complexcity]
+------------------------------------
+If we display only the essential details without showing the background details (complexity) then it is called Abstraction.
+
+Example : Electric switch board(Internal Details), ATM , LIFT
+ 
+In java, We can achieve abstraction by using the following two concepts :
+
+ 1) Abstract class and abstract method [Partial Abstraction, 0 to 100%]
+ 2) Interface (Full Abstraction, 100%)
+	  
+
+Abstract class and abstract Method :
+------------------------------------
 
 
 

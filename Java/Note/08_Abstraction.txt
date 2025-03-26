@@ -1,0 +1,276 @@
+Abstraction [Hiding the complexity]
+------------------------------------
+If we display only the essential details without showing the background details (complexity) then it is called Abstraction.
+
+Example : Electric switch board(Internal Details), ATM , LIFT
+ 
+In java, We can achieve abstraction by using the following two concepts :
+
+ 1) Abstract class and abstract method [Partial Abstraction, 0 to 100%]
+ 2) Interface (Full Abstraction, 100%)
+	  
+
+Abstract class and abstract methods :
+-------------------------------------------
+A class that does not provide complete implementation (partial implementation) is defined as an abstract class.
+
+An abstract method is a common method which is used to provide easiness to the programmer because the programmer faces complexcity to remember the method name.
+
+An abstract method observation is very simple because every abstract method contains abstract keyword, abstract method does not contain any method body and at the end there must be a terminator i.e ; (semicolon)
+
+In java, whenever action is common but implementations are different then we should use abstract method, Generally we declare abstract method in the super class and its implementation must be provided in the sub classes.
+
+if a class contains at least one method as an abstract method then we should compulsory declare that class as an abstract class.
+
+Once a class is declared as an abstract class we can't create an object for that class.
+
+*All the abstract methods declared in the super class must be overridden in the sub classes otherwise the sub class will become as an abstract class hence object can't be created for the sub class as well.
+
+In an abstract class we can write all abstract method or all concrete method or combination of both the method. 
+
+It is used to acheive partial abstraction that means by using abstract classes we can acheive partial abstraction(0-100%).
+
+*An abstract class may or may not have abstract method but an abstract method must have abstract class.
+
+Note :- We can't declare an abstract method as final, private and static (illegal combination of modifiers)
+
+We can't declare an abstract class as a final.
+
+------------------------------------------------------------------------
+//Program that describes an abstract class may contain only concrete methdos 
+
+abstract class Hello
+{
+	public void m2()
+	{
+	}
+	
+}
+
+public class AbstractTest 
+{
+	public static void main(String[] args) 
+	{
+		System.out.println("Hello World!");
+	}
+}
+------------------------------------------------------------------------
+//Program that describes how to override abstract method in the sub classes  
+
+abstract class Shape
+{
+	public abstract void draw();
+}
+class Rectangle extends Shape
+{
+	@Override
+	public void draw()
+	{
+		System.out.println("Drawing Rectangle");
+	}	
+}
+class Square extends Shape
+{
+	@Override
+	public void draw()
+	{
+		System.out.println("Drawing Square");
+	}	
+}
+class Circle extends Shape
+{
+	@Override
+	public void draw()
+	{
+		System.out.println("Drawing Circle");
+	}
+}
+
+public class AbstractDemo1 
+{
+	public static void main(String[] args) 
+	{
+		Shape s = null;
+		
+		s = new Rectangle(); s.draw();
+		s = new Square(); s.draw();
+		s = new Circle(); s.draw();
+	}
+}
+-----------------------------------------------------------------------
+The following program explains that we can execute the constructor of abstract class from sub class object by using super().
+
+package com.ravi.abstract_demo;
+
+abstract class Bike
+{
+	protected int speed = 80;
+	
+	public Bike()
+	{
+		System.out.println("Bike class constructor...");
+	}
+	
+	public void bikeDetails()
+	{
+		System.out.println("It has two wheels...");
+	}
+	
+	public abstract void run();
+	
+}
+class KTM extends  Bike
+{
+	
+	@Override
+	public void run() 
+	{
+	   System.out.println("KTM bike is running");		
+	}	
+}
+public class InterviewQuestion 
+{
+	public static void main(String[] args) 
+	{
+        Bike bike = new KTM();
+        System.out.println("Bike Speed is :"+bike.speed);
+        bike.bikeDetails();
+        bike.run();
+	}
+
+}
+----------------------------------------------------------------------
+Q) If we are unable to create an object for abstract class than what is the advantage of writing constructor in the abstract class and how non static variable of abstract class gets memory ? 
+
+We can't create an Object for abstract class but if we write any constructor in the abstract class then it will be executed by using sub class object with the help of super().
+
+Due to constructor chaining, abstract class constructor will be executed hence memory will be allocated for non static variables.
+[26-March-25]
+-----------------------------------------------------------------------
+//Program that describes overriding abstract method is compulsory in the sub classes otherwise sub class will also become as abstract class.
+
+package com.ravi.abstract_demo;
+
+abstract class Alpha
+{
+	public abstract void show();
+	public abstract void demo();
+}
+
+abstract class Beta extends Alpha
+{
+	@Override
+	public void show() //+ demo();
+	{
+		System.out.println("Show method implemented in Beta class");		
+	}	
+}
+class Gamma extends Beta
+{
+	@Override
+	public void demo() 
+	{
+		System.out.println("Demo method is implemented in Gamma class");		
+	}	
+}
+
+public class AbstractDemo
+{
+	public static void main(String[] args) 
+	{
+		Gamma g = new Gamma();
+		g.show();
+		g.demo();
+
+	}
+
+}
+----------------------------------------------------------------------
+Program that describes abstract method is just like business rule so 
+every sub class should implement that rule to exist in the real world.
+
+package com.ravi.abstract_demo;
+
+abstract class Animal
+{
+	protected String name;
+	
+	public Animal(String name) 
+	{
+		super();
+		this.name = name;
+	}
+	public abstract void checkup();
+}
+class Lion extends Animal
+{
+	public Lion(String name)
+	{
+		super(name);
+	}	
+	
+	@Override
+	public void checkup()
+	{
+	  System.out.println(name+" is going for checkup");			
+	}
+	
+}
+class Bird extends Animal
+{
+	public Bird(String name)
+	{
+		super(name);
+	}	
+	
+	@Override
+	public void checkup()
+	{
+	  System.out.println(name+" is going for checkup");			
+	}
+	
+}
+class Dog extends Animal
+{
+	public Dog(String name)
+	{
+		super(name);
+	}	
+	
+	@Override
+	public void checkup()
+	{
+	  System.out.println(name+" is going for checkup");			
+	}	
+}
+
+public class AbstractAnimalRule {
+
+	public static void main(String[] args) 
+	{
+		Lion lions[] = {new Lion("A"), new Lion("B"), new Lion("Simba")};
+		Bird birds[] = {new Bird("Parrot"),new Bird("Koyal")};
+		Dog dogs[] = {new Dog("Tommy"), new Dog("Tiger")};	
+		
+		animalCheckup(lions);
+		animalCheckup(birds);
+		animalCheckup(dogs);
+
+	}
+	
+	public static void animalCheckup(Animal []animals)
+	{
+		for(Animal animal : animals)
+		{
+			animal.checkup();
+		}
+		System.out.println("...............");
+	}
+	
+
+}
+-----------------------------------------------------------------------
+Anonymos inner class :
+---------------------
+
+

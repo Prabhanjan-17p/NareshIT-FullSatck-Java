@@ -2,12 +2,12 @@
 -----------
 History of Java :
 -----------------
-Initial Name of Java	: OAK, 1991 (Tree Name)
-	Developed By	: James Gosling and his friends
-	Released Date	: 23rd January 1996 [JDK 1.0]
-	Project Name	: Green Project
-		Java	: Island, Indonesia
-	Official Symbol : Coffee CUP	
+	Initial Name of Java	: OAK, 1991 (Tree Name)
+	Developed By	        : James Gosling and his friends
+	Released Date	        : 23rd January 1996 [JDK 1.0]
+	Project Name	        : Green Project
+	Java	                : Island, Indonesia
+	Official Symbol         : Coffee CUP	
 ----------------------------------------------------------------
 What is a function?
 -------------------
@@ -718,8 +718,7 @@ public class Addition
 }
 
 
-Note : The above program Addition.java uses package statement 
-       so the compilation style would be different :
+Note : The above program Addition.java uses package statement so the compilation style would be different :
        
        javac -d . Addition.java [java space -d space dot FileName.java]
 
@@ -743,9 +742,7 @@ Example : java.lang, java.util, java.io, java.sql e.t.c
 
 2) Userdefined Packages :
 -------------------------
-The packages which are created by user for some specific purposes
-to arrange the user-defined java programs are called User-defined
-packages.
+The packages which are created by user for some specific purposes to arrange the user-defined java programs are called User-defined packages.
 
 Example : arithmetic, basic, com.ravi.introduction and so on
 ----------------------------------------------------------------

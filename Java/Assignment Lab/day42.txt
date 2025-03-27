@@ -1,0 +1,126 @@
+Assignment 01:
+--------------
+Create a program on abstract class to display Cake details with message and without event message.
+
+Coding Requirements :
+--------------------
+Create a BLC class called Cake with following attributes :
+
+Attributes/Properties/Fields: [Access modifier is private for all the fields]
+
+Attribute Name : shape String
+Attribute Name :flavor String
+Attribute Name :quantity int
+Attribute Name :price double
+
+Create a Parameterized Constructor to initialize only shape, flavor and quantity.
+[Don't initialize price through Constructor, Manual Initialization]
+
+Methods :
+  1) Define setters and getters for all fields
+  2) Name of the method : toString()
+     Return Type : String
+     Modifier : public.
+     Task : It must return the data as per below format/example.
+     "A Round Chocolate Cake Of 4 KG is Ready @ Rs.1600.0"
+     
+Create an inherited class "OrderedCake". Inherit this from "Cake"
+Define the following Attributes
+Attributes: [private for all the fields]
+Attribute name : message String
+
+Constructors:(3 only)
+   1) No argument Constructor : Ensure shape is Round, flavour is Vanilla, qty is 1 kg and price is 400. [see the output test cases]
+   2) Parameterized public Constructor : For shape,flavor,quantity
+   3) Parameterized public Constructor : For shape,flavor,quantity and message.
+   Price is to be dynamically changed @400 per Kg.
+Methods :
+Name of the method : toString()
+     Return Type : String
+     Modifier : public.
+     Task :Print the following if message is not null 
+    "A Square Pineapple Cake of 3KG is Ready with Happy Birthday message @ Rs.1200.0".
+      Otherwise display the message from superclass.
+      
+      
+Create an ELC class CakeOrder to display cake details with price and message.
+
+Test Cases for Output :
+------------------------
+A Round Vanila Cake Of 1 KG is Ready @ Rs.400.0
+A Round Chocolate Cake Of 4 KG is Ready @ Rs.1600.0
+A Square Pineapple Cake Of 3KG is Ready with Happy Birthday message @ Rs.1200.0
+
+
+
+import java.util.Scanner;
+public class CakeOrder {
+
+    public static void main(String[] args) {        Scanner sc = new Scanner(System.in);
+//      System.out.println("Enter Choice");        int chi = sc.nextInt();
+        // sc.nextLine();        
+        Cake oc = null;        switch (chi) {
+        case 1: 
+            oc = new OrderedCake();            break;
+        case 2: //          System.out.println("Enter Shape");
+            String sh = sc.nextLine();
+            sh = sc.nextLine();//          System.out.println("Enter Fal");
+            String fla = sc.nextLine();//          System.out.println("Enter Shape");
+            int qnt = sc.nextInt();            if (qnt < 0) {
+                System.out.println("Quantity must be positive.");                System.exit(0);
+            }            oc = new OrderedCake(sh, fla, qnt);
+            break;        case 3: 
+//          System.out.println("Enter Shape");            String sh1 = sc.nextLine();
+            sh1 = sc.nextLine();//          System.out.println("Enter Fal");
+            String fla1 = sc.nextLine();//          System.out.println("Enter Shape");
+            int qnt1 = sc.nextInt();            sc.nextLine();
+//          System.out.println("Enter MAs");            String msg = sc.nextLine();
+            if (qnt1 < 0) {                System.out.println("Quantity must be positive.");
+                System.exit(0);            }
+             oc = new OrderedCake(sh1, fla1, qnt1,msg);             System.out.println(oc);
+            break;        default:
+            System.out.println("Invalid choice.");
+        }    }
+}
+ class Cake {
+    private String shape;     private String flavor ;
+    private int quantity ;
+    private double price = 400 ;    
+    public Cake(String shape, String flavor, int quantity) {        super();
+        this.shape = shape;
+        this.flavor = flavor;        this.quantity = quantity;
+        this.price = this.price * this.quantity;        super.toString();
+    }
+    public double getPrice() {        return price;
+    }
+    public void setPrice(double price) {        this.price = price;
+    }
+    public String getShape() {        return shape;
+    }
+    public void setShape(String shape) {        this.shape = shape;
+    }
+    public String getFlavor() {        return flavor;
+    }
+    public void setFlavor(String flavor) {        this.flavor = flavor;
+    }
+    public int getQuantity() {        return quantity;
+    }
+    public void setQuantity(int quantity) {        this.quantity = quantity;
+    }
+        @Override
+    public String toString() {        return "A "+this.shape+" "+this.flavor+" Cake Of "+this.quantity+" KG is Ready @ Rs."+this.price;
+    }
+}
+class OrderedCake extends Cake{
+    private String name;
+    public OrderedCake(String shape, String flavor, int quantity,String name) {        super(shape,flavor,quantity);
+        this.name = name;    }
+        public OrderedCake(String shape, String flavor, int quantity) {
+        super(shape,flavor,quantity);        System.out.println(super.toString());
+    }    
+        public OrderedCake() {
+        super("Round","Vanilla",1);//      setPrice(400);
+        System.out.println(super.toString());    }
+    @Override
+    public String toString() {        return "A "+getShape()+" "+getFlavor()+" Cake Of "+getQuantity()+" KG is Ready with "+this.name+" message @ Rs."+getPrice();
+    }}

@@ -416,35 +416,31 @@ In floating point literal we have 2 data types :
 
 
 By default every floating point literal is of type double only so, the following statement will generate compilation error
-
     float f = 1.2; //Error
     
-    In order to represent double value as a float value we can 
-    write the following statements :
-       float f1 = (float) 12.90;
-	   float f2 = 12.66F;
-	   float f3 = 56.89f;
+
+In order to represent double value as a float value we can write the following statements :
+    float f1 = (float) 12.90;
+	float f2 = 12.66F;
+	float f3 = 56.89f;
 
 
-As we know by default every floating point literal is of type double only but still compiler has provided two flavors to 
-represent the double value explicitly.
-      
+As we know by default every floating point literal is of type double only but still compiler has provided two flavors to represent the double value explicitly. 
     double d1 = 10d;
 	double d2 = 18D;
 	
 	
 Floating point literal we can represent in exponent form also.
-          double d1 = 15e2; [15 X 10 to the power of 2]
-	      double d2 = 15e-2;
+    double d1 = 15e2; [15 X 10 to the power of 2]
+	double d2 = 15e-2;
 
 
 * Any integral literal (byte, short, int and long) we can assign to floating point literal (float and double) but a floating point literal we can't assign to integral literal. 
+			Int i1 = 0.129; //InValid
 
-
-* While working with integral literal, we can represent an integral literal in four different forms i.e decimal, octal, 
-binary and hexadecimal but floating point literal we can represent in only one form i.e decimal.
+* While working with integral literal, we can represent an integral literal in four different forms i.e decimal, octal, binary and hexadecimal but floating point literal we can represent in only one form i.e decimal.
   
-              double d1 = 0.129; //Valid
+            double d1 = 0.129; //Valid
 	      
 
  //Programs :
@@ -573,8 +569,7 @@ boolean literal :
 -----------------
 It is used to represent two states i.e. either true or false.
  
-In boolean literal, we have only one data type i.e boolean data type which accepts 1 bit of memory OR depends upon JVM 
-implementation.
+In boolean literal, we have only one data type i.e boolean data type which accepts 1 bit of memory OR depends upon JVM implementation.
 
        boolean isValid = true;
 	   boolean isEmpty = false;
@@ -631,8 +626,7 @@ Character Literal :
 -------------------
 It is also known as char literal.
 
-In Character literal we have only one data type i.e char data type
-which accepts 16 bits of memory.
+In Character literal we have only one data type i.e char data type which accepts 16 bits of memory.
 
 We can represent character literal in the following ways :
 
@@ -642,19 +636,15 @@ We can represent character literal in the following ways :
  b) We can assign char literal to integral literal data types to know the ASCII value of that particular character literal.    
     Example : int x = 'A';
     
- c) In older langugaes like c and c++, which supports ASCII value    format and the range is 0 - 255, on the other hand java 
-    supports UNICODE (ASCII + NON ASCII) value format where the
-    range is 0 - 65535.
+ c) In older langugaes like c and c++, which supports ASCII value format and the range is 0 - 255, on the other hand java supports UNICODE (ASCII + NON ASCII) value format where the range is 0 - 65535.
     
               char ch = 65535; //Valid
     
-  d) We can represent char literal in 4 digit hexadecimal format
-     to support UNICODE value format.
+  d) We can represent char literal in 4 digit hexadecimal format to support UNICODE value format.
      
      The format is  '\udddd'
      
-     Here u represents it is UNICODE and d represents the digit
-     which is in hexadecimal format.
+     Here u represents it is UNICODE and d represents the digit which is in hexadecimal format.
      
      Here the range is :  '\u0000' to '\uffff'
     
@@ -756,7 +746,7 @@ public class Test7
 		System.out.println(ch2);
 
 		char ch3 = '\u0041'; 
-                System.out.println(ch3); //A  
+        System.out.println(ch3); //A  
 
 		char ch4 = '\u0061';
 		System.out.println(ch4); //a
@@ -809,8 +799,6 @@ public class Test11
        
 		System.out.println("Min Value :"+min);
 		System.out.println("Max Value :"+max);
-		
-		
 	}
 }
 ---------------------------------------------------------------
@@ -893,8 +881,7 @@ It is used to inform the compiler how things are grouped in the code.
 --------------------------------------------------------------
 What is a local variable ?
 ---------------------------
-If a variable is declared inside the body of method OR block OR Constructor then it is called Local /Automatic/ Stack/
-temporary variable.
+If a variable is declared inside the body of method OR block OR Constructor then it is called Local /Automatic /Stack /temporary variable.
 
 Example :
 ---------
@@ -903,8 +890,7 @@ public void accept()
    int x = 100;  //x is a local variable
 }
 
-A local variable must be initialized by the developer before 
-use because local variable does not have any default value.
+A local variable must be initialized by the developer before use because local variable does not have any default value.
 
 We can't apply any kind of modifier on local variable except final.
 
@@ -927,8 +913,7 @@ public void m1()
 --------------------------------------------------------------
 Why we can't use local variables outside of the method OR body OR Constructor ?
 
-In java, Every methods are executed in a special memory called
-Stack Memory.
+In java, Every methods are executed in a special memory called Stack Memory.
 
 Stack Memory works on LIFO (Last In First Out) basis.
 
@@ -983,16 +968,13 @@ public class ReadCharacter
 	{
 		System.out.println("Please Enter your Geneder [M/F]");
 		char gender = args[0].charAt(0);
-		System.out.println("Your Gender is :"+gender);
-		
+		System.out.println("Your Gender is :"+gender);	
 	}
-
 }
 
 Note : In the above program, after providing the gender value, It is asking for Gender which is not a recommended way.
 
-Note : charAt(int indexPosition) is a predefined non static method of String class, which is used to retrieve a character
-from the given String.
+Note : charAt(int indexPosition) is a predefined non static method of String class, which is used to retrieve a character from the given String.
 
 //Program on charAt(int indexPosition) method :
 ----------------------------------------------
@@ -1022,8 +1004,7 @@ There are so many ways we can read the data from client which are as follows :
 -----------
 Scanner class :
 ---------------
-In order to read the data from client with user-friendly input 
-message, Java software people has provided a predefined class called Scanner available in java.util package from JDK 1.5V.
+In order to read the data from client with user-friendly input message, Java software people has provided a predefined class called Scanner available in java.util package from JDK 1.5V.
 
 static variables of System class :
 -----------------------------------
@@ -1045,9 +1026,8 @@ The following are the non static method of Scanner class :
 
 1) public String next() : Used to read a single word.
 
-2) public String nextLine() : Used to read a multiple words or
-                              complete line.
-			      
+2) public String nextLine() : Used to read a multiple words or complete line.
+                              
 3) public byte nextByte() : Used to read byte value.
 
 4) public short nextShort() : Used to read short value.
@@ -1094,9 +1074,9 @@ public class ReadAge {
 		System.out.print("Enter your Age :");
 		
 		int age =  sc.nextInt();
-               System.out.println("Your Age is :"+age);
-        
-               sc.close();
+        System.out.println("Your Age is :"+age);
+
+        sc.close();
 	}
 
 }
@@ -1150,8 +1130,7 @@ public class StudentData {
 
 Note : Here we have a buffer problem so, we need to write nextLine() method one more time to accept the user input.
 
-Note : java.lang is a default package so we need not to import but if we use the classes from another package then we should use 
-import statement after package statement in java.
+Note : java.lang is a default package so we need not to import but if we use the classes from another package then we should use import statement after package statement in java.
 ==================================================================
 
 5) Operators      
@@ -1208,7 +1187,7 @@ class Test
 {
 	public static void main(String[] args) 
 	{
-                 int x = 20;
+		int x = 20;
 		int y = ++20; //error
 		System.out.println(x + " : "+ y);
 	}
@@ -1228,7 +1207,7 @@ class Test
 {
 	public static void main(String[] args) 
 	{
-            char ch = 'A';
+        char ch = 'A';
 	    ch++;
 	    System.out.println(ch);
 	}
@@ -1238,7 +1217,7 @@ class Test
 {
 	public static void main(String[] args) 
 	{
-            double d1 = 12.89;
+        double d1 = 12.89;
 	    d1++;
 	    System.out.println(d1);
 	}
@@ -1252,10 +1231,10 @@ public class Test
 {
 	public static void main(String[] args) 
 	{
-           while(false) //unreachable statement
-	   {
-		  System.out.println("Inside the loop body");
-	   }
+        while(false) //unreachable statement
+	    {
+			System.out.println("Inside the loop body");
+	    }
 	   
 	   System.out.println("Outside the loop body");
 	}
@@ -1303,7 +1282,7 @@ public class Test
 		for(int i=1; i<=10; i++)
 		{
 		  if(i=5)
-			 break;
+			break;
 		  System.out.println(i);		   
 		}
 	}
@@ -1315,7 +1294,6 @@ public class Test
 {
 	public static void main(String[] args) 
 	{
-		
 		do
 		{	
 			int i=1; //Block level variable
@@ -1328,8 +1306,7 @@ public class Test
 --------------------------------------------------------------
 Expression Conversion :
 -----------------------
-While working with Arithmetic Operator (+, -, *, /) and Unary minus operator (-), the minimum data type is required to hold the expression result would be int data type that means we need 32 bits of data to hold the result otherwise we will get 
-compilation error.
+While working with Arithmetic Operator (+, -, *, /) and Unary minus operator (-), the minimum data type is required to hold the expression result would be int data type that means we need 32 bits of data to hold the result otherwise we will get compilation error.
 
 public class Test 
 {
@@ -1417,7 +1394,6 @@ public class Test
 			z++;			
 		}
 		System.out.println(z);
-		
 	}
 }
 -------------------------------------------------------------
@@ -1477,8 +1453,7 @@ public class Test
 	public static void main(String[] args) 
 	{		  
 		System.out.println(~ true); 
-	}
-		
+	}	
 }
 -----------------------------------------------------------------
 public class Test 
@@ -1488,7 +1463,6 @@ public class Test
 		System.out.println(~4); //-5
 		System.out.println(~-5);//4
 	}
-		
 }
 ------------------------------------------------------------------
 Member Operator :
@@ -1538,7 +1512,6 @@ public class Test
 		Welcome w = new Welcome();	
 		System.out.println(w.x);
 		w.access();
-		
 	}		
 }
 
@@ -1654,16 +1627,13 @@ public class Test
 	{	
         long l = 12;
 		
-		switch(l) //We can't pass long, float,double and
-		{                                      boolean
+		switch(l) //We can't pass long, float,double and boolean
+		{                                      
 			case 12 :
 				 System.out.println("It is case 12");
 			break;
-		}
-		
-		
+		}	
 	}
-
 }
 ----------------------------------------------------------------
 public class Test 
@@ -1678,11 +1648,8 @@ public class Test
 			case y : //error it is not a constatnt
 				 System.out.println("It is case 12");
 			break;
-		}
-		
-		
+		}	
 	}
-
 }
 ----------------------------------------------------------------
 public class Test 
@@ -1698,10 +1665,7 @@ public class Test
 				 System.out.println("It is case 12");
 			break;
 		}
-		
-		
 	}
-
 }
 ----------------------------------------------------------------
 public class Test 
@@ -1720,10 +1684,7 @@ public class Test
 				 System.out.println("It is case 128");
 			break;
 		}
-		
-		
 	}
-
 }
 ----------------------------------------------------------------
 public class Test 
@@ -1742,16 +1703,12 @@ public class Test
 				 System.out.println("It is case 32768");
 			break;
 		}
-		
-		
 	}
-
 }
 ----------------------------------------------------------------
 Loops in java :
 ---------------
-A loop is nothing but repeatation of statements based on the 
-specified condition.
+A loop is nothing but repeatation of statements based on the specified condition.
 
 In java we have 4 types of loops :
 ----------------------------------
@@ -1815,8 +1772,7 @@ for-each loop in java :
 -----------------------
 It is also known as enhanced for loop available from JDK 1.5V.
 
-Internally compiler will generate ordinary for loop for this
-for each loop.
+Internally compiler will generate ordinary for loop for this for each loop.
 
 It is mainly used to retrieve the values from the collection one by one.
 
@@ -1846,7 +1802,7 @@ In java.util pacakge, there is a predefined class called Arrays which has variou
 
 Example :
            Arrays.sort(int []arr);  //For sorting int array
-	   Arrays.sort(Object []arr) //For sorting String array
+	       Arrays.sort(Object []arr); //For sorting String array
 
 
 package com.ravi.for_each_loop;
@@ -1907,9 +1863,7 @@ public class ForEachDemo4 {
 		{
 			System.out.println(arg);
 		}
-
 	}
-
 }
 ----------------------------------------------------------------
 Creating arrays in different way and retrieving using forEach loop.
@@ -1957,8 +1911,7 @@ public class ForEachDemo5 {
 ---------------------------------------------------------------
 In java, Can we hold hetrogeneous types of data using array ?
 -------------------------------------------------------------
-Yes, by using Object array we can hold hetrogeneous type of data but we can't peform sorting operation using Arrays.sort(), It will generate 
-java.lang.ClassCastException
+Yes, by using Object array we can hold hetrogeneous type of data but we can't peform sorting operation using Arrays.sort(), It will generate java.lang.ClassCastException
 
 package com.ravi.for_each_loop;
 
@@ -1985,8 +1938,7 @@ What is BLC and ELC class in java ?
 ------------------------------------
 BLC :
 -----
-It stands for Business Logic class. A developer should write  the logic inside the BLC class. BLC class will never contain 
-main method.
+It stands for Business Logic class. A developer should write  the logic inside the BLC class. BLC class will never contain main method.
 
 Example :
 ----------
@@ -1996,9 +1948,7 @@ public class Calculate
 
 ELC :
 -----
-It stands for Executable logic class. It contains main method.
-The execution of the program will always start from ELC class 
-only.
+It stands for Executable logic class. It contains main method. The execution of the program will always start from ELC class  only.
 
 Example :
 ---------
@@ -2013,9 +1963,7 @@ public class ELC
 ----------------------------------------------------------------
 In java, Is it possible to write multiple classes in single .java file ?
 
-Yes, We can write multiple classes but in a single .java file,
-we should have only one public class and that class must be file
-name (FileName.java).
+Yes, We can write multiple classes but in a single .java file, we should have only one public class and that class must be file name (FileName.java).
 
 Example :
 
@@ -2039,8 +1987,7 @@ public class ELC
 
 Note : Here file name is ELC.java so, We can declare only ELC class with public access modifier.
 ---------------------------------------------------------------
-//Writing the java program with static and non static methods 
-using BLC and ELC approach
+//Writing the java program with static and non static methods using BLC and ELC approach
 
 package com.ravi.blc_elc;
 
@@ -2083,8 +2030,7 @@ public class ELC
 ----------------------------------------------------------------
 Why we should use BLC and ELC approach to write java program ?
 ---------------------------------------------------------------
-If we write logic and execution, everything in a single class then it is not a recommended way because in this approach,
-THE REUSABILITY OF BLC CLASS IS NOT POSSIBLE.
+If we write logic and execution, everything in a single class then it is not a recommended way because in this approach, THE REUSABILITY OF BLC CLASS IS NOT POSSIBLE.
 
 In order to reuse our BLC classes from same package or even from different packages we should use BLC and ELC approach as shown in the Program.
 

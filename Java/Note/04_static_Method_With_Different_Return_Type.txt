@@ -2,9 +2,7 @@
 -----------
 Working with static Method with different return Type :
 --------------------------------------------------------
-If a static method is available in the ELC class (the class which contains main method) then we can directly call the static method 
-from main method, On the other hand if a static method is available 
-in another class then to call the static method class name is required.
+If a static method is available in the ELC class (the class which contains main method) then we can directly call the static method from main method, On the other hand if a static method is available in another class then to call the static method class name is required.
 
 //1) Program to print the Table :
 ------------------------------
@@ -100,8 +98,7 @@ public class FindingAreaOfCircle
 
 }
 ---------------------------------------------------------------
-3) Finding the square and cube of a number by using following
-   criteria :
+3) Finding the square and cube of a number by using following criteria :
    a) If number is 0 or negative should return -1.
    b) If number is even, return the square of the number
    c) If number is odd, return the cube of the number
@@ -146,8 +143,7 @@ public class FindingSquareAndCube
 
 }
 ---------------------------------------------------------------
-4) WAP to take the details of Student and return all the 
-   student details in String format.
+4) WAP to take the details of Student and return all the student details in String format.
 
 package com.ravi.static_method_demo1;
 
@@ -266,8 +262,7 @@ In java based on the data type we have only 2 types of variables :
 
 Primitive Variables :
 ----------------------
-If any variable in java declared with primitive data type i.e 
-byte, short, int, long, float, double char and boolean then it is called Primitive Variable.
+If any variable in java declared with primitive data type i.e byte, short, int, long, float, double char and boolean then it is called Primitive Variable.
 
 Example :
 
@@ -317,8 +312,8 @@ package com.ravi.variables;
 
 class Test
 {
-	static int a = 100;  //Static Field
-	int b = 200;         //non static Field
+	static int a = 100;  //Static Field OR Class Variable
+	int b = 200;         //non static Field OR Instance Variable
 	
 	public void accept(int c)  //Parameter variable
 	{

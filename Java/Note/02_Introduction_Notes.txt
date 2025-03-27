@@ -24,8 +24,7 @@ DataInputStream.
 
 2) How to write a method in java :
 ----------------------------------
-While writing a method in java we should follow camel case  
-naming convention, According to this naming convention first word will be in small and 2nd word onwards, each word first character must be capital. In java a method represents verb.
+While writing a method in java we should follow camel case naming convention, According to this naming convention first word will be in small and 2nd word onwards, each word first character must be capital. In java a method represents verb.
 
 Example :
 thisIsExampleOfMethod()

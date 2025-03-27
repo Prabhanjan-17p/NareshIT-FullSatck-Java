@@ -278,8 +278,7 @@ public class CustomerDemo
 
 }
 
-Note : Upto here, We know total 3 ways to initialize the object
-properties (instance variable) which are as follows :
+Note : Upto here, We know total 3 ways to initialize the object properties (instance variable) which are as follows :
   
    1) Using Object reference(raj.rollNumber = 122)
    2) Using Method without parameter (Scanner class)
@@ -314,8 +313,7 @@ public class Demo
 
 Default constructor added by compiler :
 ---------------------------------------
-In java, Whenever we write a class and If we don't write any kind of constructor then automatically compiler will add one 
-default no argument constructor in the class at the time of compilation.
+In java, Whenever we write a class and If we don't write any kind of constructor then automatically compiler will add one default no argument constructor in the class at the time of compilation.
 
 Demo.java
 -----------
@@ -793,7 +791,7 @@ In java, There is a class called Object class available in java.lang pacakage. T
 
 Any predefined OR user-defined class in java, can use the method of Object class directly because Object is the super class.
 
-In Object there is a predefined non static method called toString(), Any java class can override this toString() methdo to perform some common operation.
+In Object there is a predefined non static method called toString(), Any java class can override this toString() method to perform some common operation.
 
               public String toString();
 
@@ -810,14 +808,12 @@ If we pass our object reference to the System.out.println() statement then autom
 Example :
 ---------
 Manager raj = new Manager();
-System.out.println(raj); //It will call toString() method of 
-                           Manager class
+System.out.println(raj); //It will call toString() method of Manager class                     
 
 
 Player virat = new Player();
-System.out.println(virat); //It will call toString() method of 
-                           Player class
-
+System.out.println(virat); //It will call toString() method of Player class
+                           
 
 Programs :
 ----------
@@ -921,8 +917,7 @@ The main purpose of constructor to initialize the instance variable i.e to initi
 
 A constructor never contain any return type including void also.
 
-Every class in java must have at-least one constructor, either
-explicitly written by developer OR implicitly added by java compiler.
+Every class in java must have at-least one constructor, either explicitly written by developer OR implicitly added by java compiler.
 
 Whenever we create an object in java by using new keyword, at-least one constructor must be invoked.
 
@@ -940,8 +935,7 @@ In java we have total 3 types of Constructor :
 
 1) Default No Argument Constructor [Added by java Compiler]
 
-2) No Argument OR Non parameterized OR Zero Argument 
-   constructor [Written by user without parameter]
+2) No Argument OR Non parameterized OR Zero Argument constructor [Written by user without parameter]
    
 3) Parameterized Constructor.   
    
@@ -1398,8 +1392,8 @@ public class Sample
     public Sample getSampleObject()
     {
     
-       return new Sample(); //to return this value we depend
-    }                          on Sample class default constr
+       return new Sample(); //to return this value we depend on Sample class default constr
+    }                          
  }
 --------------------------------------------------------------
 //Program on Static Factory Method :
@@ -1452,8 +1446,7 @@ public class BookDemo {
 
 }
 
-Note : In the above program, getBookObject() method returns the Book object but as we know a method is mainly used for
-reusability purpose but here we are receiving only object
+Note : In the above program, getBookObject() method returns the Book object but as we know a method is mainly used for reusability purpose but here we are receiving only object
 
 The following program explains, how to get multiple object from the static factory method.
 
@@ -1481,8 +1474,7 @@ public class Customer
 	@Override
 	public String toString() 
 	{
-		return "Customer [customerId=" + customerId + ", customerName=" + customerName + ", customerBill="
-				+ customerBill + "]";
+		return "Customer [customerId=" + customerId + ", customerName=" + customerName + ", customerBill="+ customerBill + "]";
 	}
 
 	public static Customer getCustomerObject()
@@ -1559,8 +1551,7 @@ public class Product {
 
 	@Override
 	public String toString() {
-		return "Product [productId=" + productId + ", productName=" + productName + ", productPrice=" + productPrice
-				+ "]";
+		return "Product [productId=" + productId + ", productName=" + productName + ", productPrice=" + productPrice+ "]";
 	}
 
 	public int getProductId() {
@@ -1694,8 +1685,7 @@ public class DeepCopy
    }
 }
 
-Note : Here when we modify the object 1 data (Apple, 1500000)
-the 2nd object data will remain unchanged because two different Objects are created in two different memory location.
+Note : Here when we modify the object 1 data (Apple, 1500000) the 2nd object data will remain unchanged because two different Objects are created in two different memory location.
 ------------------------------------------------------------
 ***Pass by Value :
 -----------------
@@ -1817,8 +1807,7 @@ Output is 12000 and 12000
 ----------
 In java we have immutable objects are also available.
 
-Immutable objects means it will not modify (Un-modifiable) so we if try modify the objects then modification will not effect on 
-the existing object it will create another object in another memory location.
+Immutable objects means it will not modify (Un-modifiable) so we if try modify the objects then modification will not effect on the existing object it will create another object in another memory location.
 
 In Java, String class and all the Wrapper classes are immutable so un-modifiable.
 
@@ -1868,24 +1857,21 @@ Output : 100  100
 ----------------------------------------------------------------
 HEAP Memory Management by using Garbage Collector :
 --------------------------------------------------
-Whenever we create an object in java then with the help of new keyword memory is allocated for the Object (Non static members)
-in the HEAP area. [Diagram 22-FEB-25]
+Whenever we create an object in java then with the help of new keyword memory is allocated for the Object (Non static members)in the HEAP area. [Diagram 22-FEB-25]
 
 In older languages like C++, Memory allocation and memory de-allocation is the responsibility of programmer
 
 If C++ programmer forgot to delete the memory then there is a chance of getting OutOfMemoryError.
 
-In Java, A programmer is only responsible to allocate the memory in the HEAP area, Memory de-allocation is automatically done by 
-a component of JVM called Garbege Collector.
+In Java, A programmer is only responsible to allocate the memory in the HEAP area, Memory de-allocation is automatically done by a component of JVM called Garbege Collector.
 
 What is Garbage Collector in java [Deleting the unused objects]
 ----------------------------------------------------------------
 It is a autometic memory management in java. It is used to delete un-used objects from the HEAP memory.
 
-Garbage Collector is a daemon thread, It will scan the HEAP area, 
-identify which objects are eligible for Garbage Collector (Object which does not contain any references) then delete those objects from the HEAP memory so we can create another object inside the HEAP memory.
+Garbage Collector is a daemon thread, It will scan the HEAP area, identify which objects are eligible for Garbage Collector (Object which does not contain any references) then delete those objects from the HEAP memory so we can create another object inside the HEAP memory.
 
-Garbage Collector internally uses an algorithm called Mark and Sweep algorithm to delete the objects from the HEAP memory.
+Garbage Collector internally uses an algorithm called "Mark and Sweep" algorithm to delete the objects from the HEAP memory.
 
 JVM will give the instruction to Garbage Collector to visit the heap memory if the heap memory is 60-70% filled up. A developer can also call Garbage Collector explicitly by using the following static method of System class
 
@@ -2564,7 +2550,8 @@ public class Foo
   }
 	
 }
-============================================================Instance Block OR Instance Initializer OR Non static block :
+============================================================
+Instance Block OR Instance Initializer OR Non static block :
 ------------------------------------------------------------
 An instance block is a very special block in java which is automatically executed at the time of creating the Object.
 
@@ -2799,9 +2786,7 @@ public class NSVInitializationOrder
 
 }
 
-2) Variable initialization at the time of NSV declaration OR
-   Variable initialization inside non static block [Both are having equal priority, variable will initialized based on the order {top to bottom}] 
-   [Remaining part : Illegal Forward reference, JVM Architecture]
+2) Variable initialization at the time of NSV declaration OR Variable initialization inside non static block [Both are having equal priority, variable will initialized based on the order {top to bottom}] [Remaining part : Illegal Forward reference, JVM Architecture]
 
 Case 1:
 -------
@@ -2947,8 +2932,7 @@ class BlankFinalFieldDemo1
 	}
 }
 
-A blank final field cannot be initialized inside the method
-body.
+A blank final field cannot be initialized inside the method body.
 
 class Test
 {

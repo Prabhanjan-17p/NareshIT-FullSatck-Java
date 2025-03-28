@@ -44,13 +44,11 @@ In java, We provide inheritance by using extends keyword.
 
 By using inheritance, The relationship between the classes would be parent and child, According to Java, Parent class is called super class and child class is called sub class.
 
-In inheritance, sub class need not to start the process from 
-begning onwards because sub class has already all the features and properties are available.
+In inheritance, sub class need not to start the process from begning onwards because sub class has already all the features and properties are available.
 
 It provides "tightly couple" relation that menas, if we modify anything in the super class then it will automatically reflect to all the sub classes.
 
-It provides hierarchical classification of classes, In this hierarchy, If we move towards upward direction then more generalized properties will occur but if we move towards downward direction then more specialied properties will 
-occur.
+It provides hierarchical classification of classes, In this hierarchy, If we move towards upward direction then more generalized properties will occur but if we move towards downward direction then more specialied properties will occur.
 
 Types of Inheritance in java :
 -------------------------------
@@ -63,8 +61,7 @@ We have 5 types of Inheritance in java :
 5) Hybrid Inheritance.
 
 Note : a) Inheritance follows top to bottom approach.
-       b) In inheritance, It is always better to create the 
-          Object for more specialized class (child class) 
+       b) In inheritance, It is always better to create the Object for more specialized class (child class) 
 	   
 //Program on Single Level Inheritance :
 ----------------------------------------
@@ -208,8 +205,7 @@ Method Overriding = It is only possible with non-static method.
 
 2) To call the method super class (Method Overriding)
 ------------------------------------------------------
-If the super class non static method name and sub class non static method name both are same (Method Overriding) and if we create an object for sub class then sub class method will be 
-executed (bottom to top), if we want to call super class method from sub class method body then we we should use super keyword as shown in the program.
+If the super class non static method name and sub class non static method name both are same (Method Overriding) and if we create an object for sub class then sub class method will be executed (bottom to top), if we want to call super class method from sub class method body then we we should use super keyword as shown in the program.
 
 package com.ravi.inheritance_demo;
 
@@ -294,10 +290,7 @@ In order to call the constructor of super class as well as same class, we have t
 ----------
 Case 1:
 -------
-super() : Automatically added by compiler to maintain the 
-          hierarchy in the first line of the Constructor. It
-	  is used to call default OR no argument constructor 
-	  of super class.
+super() : Automatically added by compiler to maintain the hierarchy in the first line of the Constructor. It is used to call default OR no argument constructor of super class.
 
 package com.ravi.constructor_chaining;
 
@@ -329,9 +322,7 @@ public class ConstructorChainingDemo1
 ---------------------------------------------------------------
 Case 2 :
 ---------
-super("Scott");  : User has to write explicitly to the first line 
-                   of the Constructor. It is used to call 
-		   Parameterized Constructor (Pramaterized constructor of super class which accepts a String value as a parameter) of super class.
+super("Scott");  : User has to write explicitly to the first line of the Constructor. It is used to call Parameterized Constructor (Pramaterized constructor of super class which accepts a String value as a parameter) of super class.
 
 package com.ravi.constructor_chaining;
 
@@ -395,9 +386,7 @@ So it is clear that, compiler adds default constructor in B class as well as in 
 ------------------------------------------------------------------
 Case 3 :
 ---------
-this()  : Written by user in the first line of constructor. It is 
-          used to call no argument constructor of current class
-	  OR Same class.
+this()  : Written by user in the first line of constructor. It is used to call no argument constructor of current class OR Same class.
 
 package com.ravi.constructor_chaining;
 
@@ -435,9 +424,7 @@ public class ConstructorChaningDemo3
 ------------------------------------------------------------------
 Case 4 :
 --------
-this("Smith");  : It is explicitly written by user in the first
-                  line of the constructor. It is used to call 
-		  parameterized constructor of current class.
+this("Smith");  : It is explicitly written by user in the first line of the constructor. It is used to call  parameterized constructor of current class.
 
 package com.ravi.constructor_chaining;
 
@@ -619,8 +606,8 @@ class Pemp extends Emp
 
 	@Override
 	public String toString() {
-		return "Pemp [employeeId=" + employeeId + ", employeeName=" + employeeName + ", employeeSalary="
-				+ employeeSalary + ", department=" + department + ", designation=" + designation + "]";
+		return "Pemp [employeeId=" + employeeId + ", employeeName=" + employeeName + ", employeeSalary="+ employeeSalary + ", department=" + department + ", designation=" + designation + "]";
+				
 	}	
 }
 
@@ -653,11 +640,7 @@ class Student
 		this.id = id;
 		this.name = name;
 		this.address = address;
-	}
-
-	
-	
-	
+	}	
 }
 
 class Science extends Student
@@ -670,12 +653,9 @@ class Science extends Student
 		super(id, name, address);
 		this.phyMarks = phyMarks;
 		this.cheMarks = cheMarks;
-	}
-
-	
-	
-	
+	}	
 }
+
 class PCM extends Science
 {
 	protected int mathMarks;
@@ -688,8 +668,7 @@ class PCM extends Science
 	@Override
 	public String toString()
 	{
-		return "PCM [id=" + id + ", name=" + name + ", address=" + address + ", phyMarks=" + phyMarks + ", cheMarks="
-				+ cheMarks + ", mathMarks=" + mathMarks + "]";
+		return "PCM [id=" + id + ", name=" + name + ", address=" + address + ", phyMarks=" + phyMarks + ", cheMarks="+ cheMarks + ", mathMarks=" + mathMarks + "]";
 	}	
 	
 	public void totalMarks()
@@ -710,9 +689,7 @@ public class MultiLevelInheritance
 
 }
 =================================================================
-The following program describes that method execution is always 
-from bottom to top only.
-
+The following program describes that method execution is always from bottom to top only.
 
 package com.ravi.multilevel_inheritance;
 
@@ -862,7 +839,7 @@ Here the drawback is all objects will be initialized with same value.
       public Test(int x, int y)  
       {                        
          this.x = x;
-	 this.y = y;
+	 	 this.y = y;
       }
    }
 
@@ -876,18 +853,17 @@ Here the drawback is all objects will be initialized with same value.
 
        public class Manager
        {
-          private int managerId;
-	  private String managerName;
+          	private int managerId;
+	  	  	private String managerName;
           
-	  public Manager(Employee emp)
-	  {
-	    this.managerId = emp.getEmployeeId();
-	    this.managerName = emp.getEmployeeName();
-          }
-       }
+	  		public Manager(Employee emp)
+	  		{
+	    		this.managerId = emp.getEmployeeId();
+	    		this.managerName = emp.getEmployeeName();
+            }
+    	}
 
-Here with the help of Object reference (Employee class) we are 
-initializing the properties of Manager class. (Copy Constructor)
+Here with the help of Object reference (Employee class) we are initializing the properties of Manager class. (Copy Constructor).
 
         d) By using instance block (Instance Initializer)
 	-------------------------------------------------
@@ -919,7 +895,7 @@ initializing the properties of Manager class. (Copy Constructor)
      public Super(int x , int y)
      {
         this.x = x;
-	this.y = y;
+	    this.y = y;
      }
    }
    class Sub extends Super
@@ -950,8 +926,7 @@ In order to define the accessibility level of the class as well as member of the
 
 1) private (Within the same class)
 2) default (Within the same package/folder)
-3) protected (Within the same package OR even from another 
-              package by using Inheritance)
+3) protected (Within the same package OR even from another package by using Inheritance)
 4) public (No Restriction)
 --------------------------------------------------------------
 private :
@@ -1077,12 +1052,9 @@ It is responsible to load all userdefined .class file into JVM memory.
 
 It has the lowest priority because it is the sub class Platform class loader.
 
-It loads the .class file from class path level or environment 
-variable.
+It loads the .class file from class path level or environment variable.
 
-Note : If all the class loaders are failed to load the .class file 
-       into JVM memory then JVM will generate an exception i.e
-       java.lang.ClassNotFoundException.
+Note : If all the class loaders are failed to load the .class file into JVM memory then JVM will generate an exception i.e java.lang.ClassNotFoundException.
 ---------------------------------------------------------------------
 How Delegation Hierarchy algorithm works :-
 ---------------------------------------------------
@@ -1174,8 +1146,7 @@ public class MethodAreaDemo {
 ---------------------------------------------------------------------
 //WAP that describes Application class loader is responsible to load our user-defined .class
 
-java.lang.Class class has provided a predefined non static method 
-called getClassLoader(), the return type of this method is ClassLoader class.
+java.lang.Class class has provided a predefined non static method called getClassLoader(), the return type of this method is ClassLoader class.
 
     public ClassLoader getClassLoader();
 
@@ -1198,8 +1169,7 @@ public class Test {
 ------------------------------------------------------------
 08-03-2025
 ----------
-WAP to show the Platform class loader is super class of 
-Application class loader.
+WAP to show the Platform class loader is super class of Application class loader.
 
 class Hello
 {
@@ -1216,7 +1186,7 @@ getClassLoader() is a predefined non static method of java.lang.Class class and 
 
  public ClassLoader getClassLoader()
 ------------------------------------------------------------
-ClassLoader which is an abstract class has provided a predefined non static methdo called getParent(), the return type of this methdo is ClassLoader.
+ClassLoader which is an abstract class has provided a predefined non static method called getParent(), the return type of this method is ClassLoader.
 
 public ClassLoader getParent() :
 ---------------------------------
@@ -1659,8 +1629,7 @@ At compile, time constant value will be converted by compiler at the time of com
 Example :  public static final int A = 100; //Valid
            [Class will not be loaded]
        
-           public static final int A = m1(); //valid [Here
-	   class will be loaded by JVM]
+           public static final int A = m1(); //valid [Here class will be loaded by JVM]
 --------------------------------------------------------------
 class Test
 {
@@ -1681,8 +1650,7 @@ public class CompileTimeConstantDemo1
 	}
 }
 
-Note : class is not loaded hence static block will not be 
-       executed.
+Note : class is not loaded hence static block will not be executed.
        
  class Demo
 {
@@ -1734,10 +1702,10 @@ It looks like we can write a java program by using static block (without main me
 
 class WithoutMain
 {
-       static
+    static
 	{
-	System.out.println("Hello world");
-	System.exit(0);
+		System.out.println("Hello world");
+		System.exit(0);
 	}
 }
 
@@ -1875,8 +1843,7 @@ Loading the .class file by using Reflection API :
 -------------------------------------------------
 java.lang.Class class has provided a predefined static factory method called forName(String className), It is mainly used to load the given .class file at runtime, The return type of this method is java.lang.Class
 
-public static java.lang.Class forName(String className) throws 
-ClassNotFoundException
+public static java.lang.Class forName(String className) throws ClassNotFoundException
 
 Note : This method throws a checked execption i.e ClassNotFoundException 
 
@@ -1916,8 +1883,7 @@ public class ClassLoading
 
 Note : While working with Eclipse IDE FQN (Full Qualified Name) is required.
 -------------------------------------------------------------
-*** What is the difference between java.lang.ClassNotFoundException 
-and java.lang.NoClassDefFoundError 
+*** What is the difference between java.lang.ClassNotFoundException and java.lang.NoClassDefFoundError 
 
 
 java.lang.ClassNotFoundException :-
@@ -1988,8 +1954,7 @@ Runtime Data areas :
 ---------------------
 Once a class is loaded into JVM memory then it contains verious types of variable (SV, NSV), methods and blocks.
 
-Based on the type of variable, methods and blocks, It is divided into different memory section i.e different memory 
-areas which are as follows :
+Based on the type of variable, methods and blocks, It is divided into different memory section i.e different memory areas which are as follows :
 
 1) Method Area
 2) HEAP Area
@@ -2072,8 +2037,7 @@ public class ClassDescription
 -------------------------------------------------------------
 HEAP AREA :
 -----------
-All the Objects and its member (NSV + NSM) are available in HEAP memory. The Objects which are stored in the HEAP Memory
-are eligible for GC when object does not contain any references.
+All the Objects and its member (NSV + NSM) are available in HEAP memory. The Objects which are stored in the HEAP Memory are eligible for GC when object does not contain any references.
 
 We have only one HEAP Area per JVM.
 
@@ -2137,8 +2101,7 @@ If we use a class as a property to another class then it is called HAS-A Relatio
 
 The limitation of IS-A relation is, it is tightly coupled relation i.e IS-A type relation so if we modify the content of super class then it will automatically, It will reflect to all the sub classes.
 
-While working with HAS-A relation we can access the property of another class so HAS-A relation provides accessibility 
-feature.
+While working with HAS-A relation we can access the property of another class so HAS-A relation provides accessibility feature.
 
 HAS-A relation we can achieve by using Association concept.
 

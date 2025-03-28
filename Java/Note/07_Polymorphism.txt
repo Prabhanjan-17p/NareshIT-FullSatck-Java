@@ -336,15 +336,15 @@ Autoboxing
 When we convert the primitive data types into corresponding wrapper object then it is called Autoboxing as shown below.
 
 Primitive type		Wrapper Object
-----------------        ------------------
-byte			-	Byte
-short			-	Short
-int			-	Integer
-long			-	Long
-float			-	Float
-double			-	Double
-char			-	Chracter
-boolean			-	Boolean 
+----------------    ------------------
+byte					-	Byte
+short					-	Short
+int						-	Integer
+long					-	Long
+float					-	Float
+double					-	Double
+char					-	Chracter
+boolean					-	Boolean 
 
 From JDK 1.5V onwards we can directly assign primitive data type variable value into corresponsing Wrapper object.
 
@@ -438,17 +438,13 @@ We have 3 overloaded valueOf() method :
 ----------------------------------------
 1) public static Integer valueOf(int x) : It will convert the given int value into Integer Object.
 
-2) public static Integer valueOf(String str) : It will convert
-   the given String into Integer Object.
+2) public static Integer valueOf(String str) : It will convert the given String into Integer Object.
    [valueOf() method will convert the String into Wrapper object where as parseInt() method will convet the String into primitive type]
 
 3) public static Integer valueOf(String str, int radix/base) :
-   It will convert the given String number into Integer object 
-   by using the specified radix or base.
+   It will convert the given String number into Integer object by using the specified radix or base.
 
- Note :- We can pass base OR radix upto 36
-i.e A to Z (26) + 0 to 9 (10) -> [26 + 10 = 36], It can be 
-calculated by using Character.MAX_RADIX.
+ Note :- We can pass base OR radix upto 36 i.e A to Z (26) + 0 to 9 (10) -> [26 + 10 = 36], It can be calculated by using Character.MAX_RADIX.
 
 Output will be generated on the basis of radix
 
@@ -515,8 +511,7 @@ public class AutoBoxing2
 			}   
 }  
 
-Note : Every Wrapper object provided valueOf() method so we can 
-       convert any primitive type into corresponding wrapper object.       
+Note : Every Wrapper object provided valueOf() method so we can convert any primitive type into corresponding wrapper object.       
  -------------------------------------------------------------
 //Integer.valueOf(String str)
 //Integer.valueOf(String str, int radix/base)
@@ -571,17 +566,15 @@ public class AutoBoxing4
 
 Note : It will generate Compilation warning because new Integer(int val) is marked for removal from java 9V.
 
-       a1 and a2 reference variable, both are pointing to the same object (immutable) so == operator will provide 
-       true.
---------------------------------------------------------------- Cache value while working with Integer Wrapper class :
+       a1 and a2 reference variable, both are pointing to the same object (immutable) so == operator will provide true.
+---------------------------------------------------------------
+Cache value while working with Integer Wrapper class :
 -------------------------------------------------------
 Every wrapper class has provided (Overridden) equals(Object obj) and hashCode() method.
 
-Every Wrapper class has also provided compareTo(T x) method for 
-Object comparison.
+Every Wrapper class has also provided compareTo(T x) method for Object comparison.
 
-We should never compare any Wrapper class Object by using == operator, Actually we should always compare by using either
-equals(Object obj) method OR compareTo(T x) method.
+We should never compare any Wrapper class Object by using == operator, Actually we should always compare by using either equals(Object obj) method OR compareTo(T x) method.
 
 Integer object are storing the value in the cache memory where the range is -128 to 127 so if we compare Integer object by using == operator then upto 127 value, It refers to same memory location (due to cache memory) so will return true but if the values are beyond the range (-128 to 127) then it will return false.
 
@@ -605,8 +598,7 @@ class BufferTest
 ---------------------------------------------------------------
 How to convert Integer object into String :
 -------------------------------------------
-Integer class has provided a static method called toString() 
-through whicg we can convert the Integer Object into String type
+Integer class has provided a static method called toString() through whicg we can convert the Integer Object into String type
 
 public static String toString()
 
@@ -646,8 +638,7 @@ Boolean		-	boolean
 ----------------------------------------------------------------
 We have total 8 Wrapper classes.
 
-Among all these 8, 6 Wrapper classes (Byte, Short, Integer, Long, Float and Double) are the sub class of java.lang.Number class which represent numbers (either decimal OR non decimal)
-so all the following six wrapper classes (Which are sub class of Number class) are providing the following common methods.
+Among all these 8, 6 Wrapper classes (Byte, Short, Integer, Long, Float and Double) are the sub class of java.lang.Number class which represent numbers (either decimal OR non decimal) so all the following six wrapper classes (Which are sub class of Number class) are providing the following common methods.
 
 1) public byte byteValue()
 
@@ -1239,8 +1230,7 @@ Example :
  Child c = (Child)p;     //Downcasting
  c.display();
 
-The following statement is not downcasting and if we execute it will 
-generate java.lang.ClassCastException.
+The following statement is not downcasting and if we execute it will generate java.lang.ClassCastException.
 
 Case 1:
 --------
@@ -1252,10 +1242,10 @@ Child c = new Parent(); // Invalid [Compilation error]
 
 Case 3:
 -------
-Child c1 = (Child) new Parent(); //no compilation error 
-                                   but at runtime we will get 
-				   java.lang.ClassCastException
----------------------------------------------------------------------	//Program on method Overriding by using dynamic method displatch :
+Child c1 = (Child) new Parent(); //no compilation error but at runtime we will get java.lang.ClassCastException
+                                    
+---------------------------------------------------------------------	
+//Program on method Overriding by using dynamic method displatch :
 ------------------------------------------------------------------
 package com.ravi.overriding;
 
@@ -1377,11 +1367,9 @@ Annotation concept is introduced in java from JDK 1.5V.
 
 Every Annotation must start with @ symbol.
 
-It describes metadata (data about data), Actually it describes that 
-method is overridden method.
+It describes metadata (data about data), Actually it describes that method is overridden method.
 
-It is optional but it is always better to write @Override annotation 
-just before Overridden method.
+It is optional but it is always better to write @Override annotation just before Overridden method.
 
 @Override annotation will provide the information that method is overridden method so we will get same class output but not super class.
 
@@ -1441,8 +1429,7 @@ class Sub extends Super
 
 In java, there is no concept called Variable Overriding, We can only override non static methods.
 
-Depending upon the context the Object behavior will change but the 
-properties of the Object will remain unchanged.
+Depending upon the context the Object behavior will change but the properties of the Object will remain unchanged.
 
 Static variable, non static variable and static methods are always executing by using current reference.
 
@@ -1581,8 +1568,7 @@ public class CoVariant
 	}
 }
 
-Note : We will get compilation error because return type int is not 
-       compaitable with void.
+Note : We will get compilation error because return type int is not compaitable with void.
 ----------------------------------------------------------------------
 22-03-2025
 -----------
@@ -1694,8 +1680,7 @@ In order to work with Method Hiding we have different Cases :
 
 Case 1 :
 ---------
-Any public static method of super class is by default available 
-to sub class so from sub class we can call super class static method as shown in the program below :
+Any public static method of super class is by default available to sub class so from sub class we can call super class static method as shown in the program below :
 
 class Super
 {
@@ -1722,7 +1707,7 @@ NOte : From above program it is clear that public static method of super class i
 ----------------------------------------------------------------------
 Program that describes when method oevrriding becomes method hiding :
 
-As we know we can achieve method overriding with non static method where as Methdo hiding is only possible with static method.
+As we know we can achieve method overriding with non static method where as Method hiding is only possible with static method.
 
 class Super
 {
@@ -1777,7 +1762,7 @@ public class MethodHidingDemo1
 
 Case 3 :
 --------
-We cannot override non static method with static method, If we try to override then we will get an error "Overriding methdo is static".
+We cannot override non static method with static method, If we try to override then we will get an error "Overriding method is static".
 
 class Super
 {
@@ -1803,13 +1788,11 @@ public class MethodHidingDemo3
 
 Case 4 :
 ---------
-
 We can't override static method because It belong to class but not object, If we write static method in the sub class with same signature and compaitable return type then It is Method Hiding but not Method Overriding here compiler will search the method of super class and JVM will also execute the method of super class because method is not overridden.[Single copy and belongs to class area, sharable by all the objects]
 
 Note :- 1) We can't apply @Override annotation on static methods.
 
-        2) Static methods can't be overridden so behavior is 
-	   same for all the Objects hence it is Static Polymorphism.
+        2) Static methods can't be overridden so behavior is same for all the Objects hence it is Static Polymorphism.
 
 package com.ravi.method_hiding;
 
@@ -1906,11 +1889,9 @@ public class PolymorphicBehavior
 ----------------------------------------------------------------------
 How to call a specfic method of sub class :
 -------------------------------------------
-In order to call specific method of sub class we need current class
-reference so down casting is required.
+In order to call specific method of sub class we need current class reference so down casting is required.
 
-In order to deal with mulltiple obejcts we need to take the support of 
-instanceof operator.
+In order to deal with mulltiple obejcts we need to take the support of instanceof operator.
 
 instanceof Operator :
 ---------------------
@@ -1918,10 +1899,9 @@ It is a relational operator as well as keyword.
 
 It return true/false.
 
-It is mainly used to verify whether a reference variable is pointing 
-to a particular type of Object or not ?
+It is mainly used to verify whether a reference variable is pointing to a particular type of Object or not ?
 Example :
-            Dog d1 = new Dog();
+        Dog d1 = new Dog();
 	    if(d1 instanceof Dog)
 	    {
 	       //d1 is pointing Dog type of Object.
@@ -2037,13 +2017,8 @@ public class InstanceofDemo3 {
 		if(c instanceof Object)
 		{
 			System.out.println("c is pointing to Object type");
-		}
-		
-		
-		
-		
+		}		
 	}
-
 }
 ---------------------------------------------------------------------
 package com.ravi.instance_of_optr;
@@ -2097,8 +2072,7 @@ public class InstanceofDemo4
 
 }
 
-//Program on Dynamic Polymorphism using down casting with instanceof
- operator to call a specific method.
+//Program on Dynamic Polymorphism using down casting with instanceof operator to call a specific method.
 
 package com.ravi.polymorphic_behavior;
 

@@ -104,8 +104,7 @@ Note :- We have different JVM for different Operating System that means JVM is p
 
 JVM internally contains an interpreter so it executes the code line by line. It is written in 'C'langugae hance platform dependent.
 
-Note : All the browsers internally contain JVM are known as
-       JEB (Java Enabled Browsers) browser.
+Note : All the browsers internally contain JVM are known as JEB (Java Enabled Browsers) browser.
 
 --------------------------------------------------------------
 21-01-2025

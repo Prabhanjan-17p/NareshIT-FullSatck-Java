@@ -56,6 +56,14 @@ Print these patterns using loops:
         
     }
 
+    OR
+        for (int i = 5; i >= 1 ; i--) {
+            for (int j = 1; j <= i; j++) {
+                System.out.print("*");
+            }
+            System.out.println();
+        }
+
 
 4.  1
     1 2
@@ -202,7 +210,7 @@ int num = 5;
        * * *
       * * * *
      * * * * *
- int num = 5;
+    int num = 5;
     for (int i = 1; i <= num; i++)
     {
         int s = num-i;

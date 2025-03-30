@@ -270,7 +270,336 @@ public class AbstractAnimalRule {
 
 }
 -----------------------------------------------------------------------
+27-03-2025
+-----------
 Anonymos inner class :
 ---------------------
+If we declare a class inside a method body without any class name then it is called Anonymous inner class.
+
+The main purpose of anonymous inner class to extend a super class or to implement an interface that means for creating sub type. 
+[Anonymous inner class is only used for creating the sub type]
+
+Anonymous inner class declaration and Object creation by using new keyword both will be done in a single line i.e single statement.
+
+An inner class .class file is represented by $ symbol.
+
+//Program on Anonymous inner class 
+
+package com.ravi.anonymous_inner_class;
+
+class Vehicle
+{
+	public void run()
+	{
+		System.out.println("Generic Vehicle is running");
+	}
+}
+
+public class AnonymousInnerDemo1
+{
+	public static void main(String[] args) 
+	{
+       //Anonymous inner class		
+	   Vehicle car	= new Vehicle()
+       {
+		   @Override
+		   public void run()
+		   {
+			   System.out.println("Car is running");
+		   }	   
+	   };
+	   
+	   Vehicle bike	= new Vehicle()
+       {
+		   @Override
+		   public void run()
+		   {
+			   System.out.println("Bike is running");
+		   }	   
+	   };
+	      
+	   car.run();
+	   bike.run();
+	}
+
+}
+
+Note : For Anonymous inner class compiler will generate AnonymousInnerDemo1$1.class and AnonymousInnerDemo1$2.class
+-----------------------------------------------------------------------
+Anonymous inner class with abstract method implementation :
+----------------------------------------------------------
+package com.ravi.anonymous_inner_class;
+
+abstract class RBI
+{
+	public abstract void provideLoan();
+}
+
+public class AnonymousInnerDemo2 
+{
+	public static void main(String[] args) 
+	{
+		RBI icici = new RBI()
+		{			
+			@Override
+			public void provideLoan() 
+			{
+				System.out.println("ICICI bank loan interest is 9.2%");				
+			}			
+		};
+		
+		RBI hdfc = new RBI()
+		{			
+			@Override
+			public void provideLoan() 
+			{
+				System.out.println("HDFC bank loan interest is 9.1%");				
+			}			
+		};
+		
+		icici.provideLoan();   hdfc.provideLoan();
+
+	}
+}
+=======================================================================
+28-03-2025
+-----------
+Interface :
+-----------
+interface upto java 1.7
+------------------------
+An interface is a keyword in java which is similar to a class which defines working functionality of a class.
+
+Upto JDK 1.7 an interface contains only abstract methods that means there is a guarantee that inside an interfcae we don't have concrete or general or instance methods.
+
+From java 8 onwards we have a facility to write default and static methods.
+
+By using interface we can achieve 100% abstraction concept because it contains only abstract methods.
+
+In order to implement the member of an interface, java software people has provided implements keyword.
+
+All the methods declared inside an interface is by default public and abstract so at the time of overriding we can't reduce the accessibility level.
+
+All the variables declared inside an interface is by default public, static and final.
+
+We should override all the abstract methods of interface to the sub classes otherwise the sub class will become as an abstract class hence object can't be created.
+
+We can't create an object for interface, but reference can be created.
+
+By using interface we can acheive multiple inheritance in java.
+
+We can achieve loose coupling using interface.
+
+Note :- inside an interface we can't declare any blocks (instance, static), instance variables (No properties) as well as we can't write constructor inside an interface.
+-----------------------------------------------------------------------
+Interface Programs :
+--------------------
+package com.ravi.interface_ex;
+
+sealed interface Moveable permits Car
+{
+	int SPEED = 100; //public + static + final [static blank final field]
+	
+	void move();  //public + abstract
+}
+final class Car implements Moveable
+{
+	@Override
+	public void move()
+	{
+	   //SPEED = 100;  [Invalid]
+		System.out.println("Speed of the Car is :"+SPEED);
+	}	
+}
+
+public class InterfaceDemo1 
+{
+	public static void main(String[] args) 
+	{
+       Moveable moveable = new Car();
+       moveable.move();
+       System.out.println("Car is running with "+Moveable.SPEED+" Speed");
+	}
+
+}
+-----------------------------------------------------------------------
+interface Vehicle    
+{
+	void run();	
+}
+public class InterfaceDemo2  
+{
+	public static void main(String[] args) 
+	{   
+	   Vehicle car = new Vehicle()
+	   {
+		   @Override
+		   public void run()
+		   {
+			   System.out.println("Car is Running");
+		   }
+	   };
+	   
+	   car.run();
+	   
+	   
+	}
+
+}
+
+----------------------------------------------------------------------
+package com.ravi.interface_ex;
+
+interface Bank
+{
+	void deposit(double amount);
+	void withdraw(double amount);
+}
+
+class Customer implements Bank
+{
+	private double balance = 10000;
+
+	@Override
+	public void deposit(double amount) 
+	{
+		if(amount <=0)
+		{
+			System.out.println("Deposit is not possible");
+			System.exit(0);
+		}
+		this.balance = this.balance + amount;
+		System.out.println("Amount after deposit :"+this.balance);
+	}
+
+	@Override
+	public void withdraw(double amount) 
+	{
+	   if(amount > this.balance)
+	   {
+		   System.out.println("Withdraw is not possible");
+		   System.exit(0);
+	   }
+	   this.balance = this.balance - amount;
+	   System.out.println("Amount after withdraw is :"+this.balance);
+	}
+}
+public class InterfaceDemo3 
+{
+	public static void main(String[] args)
+	{
+        Bank bank = new Customer();	
+        bank.deposit(12000);
+        bank.withdraw(50000);
+	}
+
+}
+-----------------------------------------------------------------------
+//Program on loose coupling :
+------------------------------
+Program on loose coupling : (Industry Standard Program)
+--------------------------------------------------------
+Loose Coupling :- If the degree of dependency from one class object to another class is very low then it is called loose coupling. [interface is reqd]
+
+Tightly coupled :- If the degree of dependency of one class to another class is very high then it is called Tightly coupled.
+
+According to IT industry standard we should always prefer loose coupling so the maintenance of the project will become easy.
+
+High Cohesion [Encapsulation]:
+------------------------------
+Our private data must be accessible via public methods (setter and getters) so, in between data and method we must have high cohesion.
+(tight coupling) so, validation of outer data is possible.
+
+6 files :
+---------
+package com.ravi.loose_coupling;
+
+public interface HotDrink 
+{
+  void prepare();
+}
+
+package com.ravi.loose_coupling;
+
+public class Tea implements HotDrink 
+{
+	@Override
+	public void prepare()
+	{
+		System.out.println("Preparing Tea");
+	}
+}
+
+package com.ravi.loose_coupling;
+
+public class Coffee implements HotDrink 
+{
+	@Override
+	public void prepare() 
+	{
+		System.out.println("Preparing Coffee");
+	}
+}
+
+package com.ravi.loose_coupling;
+
+public class ExpressTea implements HotDrink {
+
+	@Override
+	public void prepare() 
+	{
+	  System.out.println("Premimum Tea is preparing");	
+	}
+
+}
+
+
+package com.ravi.loose_coupling;
+
+public class Restaurant 
+{
+   public static void prepareHotDrink(HotDrink hd)  
+   {
+	   hd.prepare();
+   }
+}
+
+package com.ravi.loose_coupling;
+
+public class LooseCoupling 
+{
+	public static void main(String[] args)
+	{
+		Restaurant.prepareHotDrink(new Tea());
+		Restaurant.prepareHotDrink(new Coffee());
+		Restaurant.prepareHotDrink(new ExpressTea());
+
+	}
+
+}
+-----------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 

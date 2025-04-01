@@ -186,8 +186,7 @@ public class AbstractDemo
 
 }
 ----------------------------------------------------------------------
-Program that describes abstract method is just like business rule so 
-every sub class should implement that rule to exist in the real world.
+Program that describes abstract method is just like business rule so every sub class should implement that rule to exist in the real world.
 
 package com.ravi.abstract_demo;
 
@@ -558,7 +557,7 @@ package com.ravi.loose_coupling;
 
 public class Restaurant 
 {
-   public static void prepareHotDrink(HotDrink hd)  
+   public static void prepareHotDrink(HotDrink hd) //hd =  
    {
 	   hd.prepare();
    }
@@ -575,27 +574,262 @@ public class LooseCoupling
 		Restaurant.prepareHotDrink(new ExpressTea());
 
 	}
+}
+
+Note : Taking interface as a method parameter is a very good option which provides loose coupling and we can inject any type of Object to the interface, the only thing is that class must implements from that particular interface.
+
+return type of a Mthod can be interface :
+------------------------------------------
+We also take return type of the method as an interface so we can have lot of option to return different kind of Object.
+
+public HotDrink accept()
+{
+    return new Tea();  OR return new Coffee();
+}
+----------------------------------------------------------------------
+01-04-2025
+-----------
+Another Program on interface :
+-------------------------------
+package com.ravi.interface_demo;
+
+interface Calculator
+{
+	void add(double x, double y);
+	void sub(double x, double y);
+	void mul(double x, double y);
+}
+
+class ArithmeticOperation implements Calculator
+{
+	
+	@Override
+	public void add(double x, double y)
+	{
+		System.out.println("Sum is :"+(x+y));
+		
+	}
+
+	@Override
+	public void sub(double x, double y) 
+	{
+		System.out.println("Sub is :"+(x-y));
+		
+	}
+
+	@Override
+	public void mul(double x, double y)
+	{
+		System.out.println("Mul is :"+(x*y));
+		
+	}
+	
+}
+public class InterfaceCalculation {
+
+	public static void main(String[] args) 
+	{
+		Calculator calc = new ArithmeticOperation();
+		calc.add(23, 89);
+		calc.sub(23, 89);
+		calc.mul(2, 8);
+	}
+}
+---------------------------------------------------------------------
+How can we achieve multiple inheritanec using interface :
+----------------------------------------------------------
+interface never contains any constructor so the implementer class constructor will directly call the Object class Constructor hence multiple Inheritance is possible in java [01-APR-25]
+
+package com.ravi.interface_demo;
+
+interface A
+{
+	void m1();
+}
+interface B
+{
+	void m1();	
+}
+
+class C implements A,B
+{
+	@Override
+	public void m1() 
+	{
+		System.out.println("M1 method Overridden");		
+	}	
+}
+public class MultipleInheritance {
+
+	public static void main(String[] args) 
+	{
+		C c1 = new C();
+		c1.m1();
+	}
 
 }
------------------------------------------------------------------------
+---------------------------------------------------------------------
+Can we exetend OR implement an interface ?
+-------------------------------------------
+One interface can extends another interface, It cannot implement, implementation means we need to provid the body for abstract method.
 
+package com.ravi.interface_demo;
 
+interface Alpha
+{
+	void m1();
+}
+interface Beta extends Alpha
+{
+	void m2();
+}
 
+class Implementer implements Beta
+{
+	@Override
+	public void m1() 
+	{
+		System.out.println("M1 method Overridden");		
+	}
 
+	@Override
+	public void m2() 
+	{
+		System.out.println("M2 method Overridden");		
+	}	
+}
+public class ExtendingInterface {
 
+	public static void main(String[] args) 
+	{
+		Implementer i = new Implementer();
+		i.m1();  i.m2();
 
+	}
 
+}
+======================================================================
+interface from JDK 1.8V (Java 8 features) :
+-------------------------------------------
+Java 8V is very popular and introduced in the March 2014.
 
+As we know upto JDK 1.7, an interface can contain only two things :
+  a) public static and final variables
+  b) public and abstract methods
 
+From java 8V onwards, Java software people has provided the facility to add default and static methods (with method body) inside an interface as shown below :
 
+interface NewFeature
+{
+   default void m1()  //JDK 1.8
+   {
+      System.out.println("Default Method"); 
+   }
+   
+   static void m2()   //JDK 1.8
+   {
+     System.out.println("Static Method"); 
+   }   
+}
 
+Q) Why they allowed to write method body inside an interface ?
+---------------------------------------------------------------
+The basic problem OR limitation with abstract method is, It must be implemented in all the implementer (sub) classes otherwise the implementer class will become as an abstract class.
 
+It leads to big problem for industry because, If we want to add any new feature(new abstract method) to the existing interface then it must be overridden in the sub class, whether it is required OR not required ?
 
+From JDK 1.8V, Java has provided default method facility
 
+What is default method in java :
+---------------------------------
+It is allowed to write method body inside an interface in the form of default method.
+Inside an interface default keyword is used to represent default method to provide default implementation.
 
+Here It is not an access modifier.
 
+default methods are allowed inside an interface only.
 
+The access modifier of default method inside an interface is by default public so, at the time of overriding we can't reduce the visibility.
 
+//Program on default method :
+
+Vehicle.java
+-------------
+package com.ravi.java_8_features;
+
+public interface Vehicle 
+{		
+   void run();
+   void horn();
+   
+   default void digitalMeter() //java 8
+   {
+	   System.out.println("Digital Meter facility is coming soon");
+   }
+}
+
+Car.java
+---------
+package com.ravi.java_8_features;
+
+public class Car implements Vehicle 
+{
+	@Override
+	public void run() 
+	{
+		System.out.println("Car is Running..");		
+	}
+
+	@Override
+	public void horn() 
+	{
+		System.out.println("Car has Horn");		
+	}
+
+	 @Override
+	 public void digitalMeter() 
+	 {
+		   System.out.println("Car has Digital Meter");
+	 }
+	
+
+}
+
+Bike.java
+----------
+
+package com.ravi.java_8_features;
+
+public class Bike implements Vehicle 
+{
+	@Override
+	public void run() 
+	{
+		System.out.println("Bike is Running..");		
+	}
+	
+	@Override
+	public void horn() 
+	{
+		System.out.println("Bike has Horn");		
+	}
+}
+
+NewFaature.java
+----------------
+package com.ravi.java_8_features;
+
+public class NewFeature
+{
+	public static void main(String[] args) 
+	{		
+        Vehicle v = null;
+        v = new Car(); v.run(); v.horn(); v.digitalMeter();
+        System.out.println(".................");
+        v = new Bike(); v.run(); v.horn(); v.digitalMeter();
+	}
+}
+======================================================================
 
 
 

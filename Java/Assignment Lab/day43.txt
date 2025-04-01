@@ -1,0 +1,232 @@
+Assignment 01:
+--------------
+Define an abstract class 'Shape' with following specifications
+Methods:
+1. Name: getArea
+   ReturnType: double
+   Modifier: abstract
+2. Name: printDetails
+    ReturnType: double
+    Modifier: abstract
+Define sub-classes of Shape as Rectangle, Circle and Triangle that overrides the methods of Shape class Rectangle class
+Fields:
+	1. length - double
+	2. breadth - double
+Constructors:
+	A parametrized constructor the accepts and initializes length and breadth.
+Circle class
+Fields:
+	1. radius - double
+Constructors:
+	A parametrized constructor the accepts and initializes radius.
+Triangle class
+Fields:
+	1. base - double
+	2. height - double
+Constructors:
+	A parametrized constructor the accepts and initializes base and height.
+All the sub-classes of Shape should override the methods of the shape.
+getArea() should return the area of the respective shape. 
+printDetails() should print the shape details as below
+	input:  Rectangle(30.3, 45.4)
+	output:
+		Type = Rectangle
+		Length = 30.3
+		Breadth = 45.4
+		Area = 1375.62 (Length*Breadth)
+	input: Circle(23.2)
+	output:
+		Type = Circle
+		Radius = 23.2
+		Area = 1690.0736 (PI*r*r)
+	input: Triangle(146.2, 40.0);
+	output:
+		Type = Triangle
+		Base = 146.2
+		Height = 40.0
+		Area = 2924.0 (1/2(Base*height))
+Given a class Testing with main method to test your code.
+
+ANS 
+-----------
+package com.nareshIT.day44;
+
+public  abstract class Shape {
+	abstract double getArea();
+	abstract void printDetails();
+}
+
+
+package com.nareshIT.day44;
+
+public class Rectangle extends Shape{
+	double length ;
+    double breadth;
+	public Rectangle(double length, double breadth) {
+		this.length = length;
+		this.breadth = breadth;
+	}
+	
+	double area=0.0;
+	@Override
+	public double getArea() {
+		area = length*breadth;
+		return area;
+	}
+	
+	@Override
+	public void printDetails() {
+		System.out.println("Area = "+area);
+	}
+}
+
+
+
+package com.nareshIT.day44;
+
+public class Triangle extends Shape{
+	double base ;
+    double height;
+	public Triangle(double base, double height) {
+		this.base = base;
+		this.height = height;
+	}
+	double area=0.0;
+	@Override
+	public double getArea() {
+		area = 0.5*base*height;
+		return area;
+	}
+	
+	@Override
+	public void printDetails() {
+		System.out.println("Area = "+area);
+	}
+}
+
+
+
+package com.nareshIT.day44;
+
+public class MainShap {
+
+	public static void main(String[] args) 
+	{
+		Shape s = null;
+		s = new Rectangle(30.3, 45.4);
+		s.getArea(); s.printDetails();
+
+		s = new Circle(23.2);
+		s.getArea(); s.printDetails();
+		
+		s = new Triangle(146.2, 40.0);
+		s.getArea(); s.printDetails();
+	}
+
+}
+
+
+-------------------------------------------------------------------------
+Assignment 02 :
+---------------
+creating a Java program to model different animal romes using abstract classes and subclasses. Follow the instructions below to complete the program:
+
+Start by defining an abstract class called Animal with an abstract method:
+
+roam(): This method should represent the roaming style of Animal.
+Create a subclass named Lion that extends the Animal class. Implement the roam() method to print:
+"Lion is roaming"
+
+Create another subclass named Dog that also extends the Animal class. Implement the roam() method to print:
+"Dog is roaming"
+
+In the ELC, Main class, write a main method to accomplish the following by using upcasting.
+
+Create an instance of the Lion class.
+Call the roam() method on the lion instance.
+Create an instance of the Dog class.
+Call the roam() method on the Dog instance.
+Ensure that your program output displays the unique roaming style of both the lion and the dog.
+
+After Execution add the following Methdos in the sub classes :
+
+Lion class :
+-------------
+public void roar() : Add this method in the Lion class to show the roaring behavior of Lion
+
+Dog class :
+-----------
+public void bark() : Add this method in Dog class to show the barking behavior of Dog class
+
+Take another static method in the ELC class
+Method name : getAnimal()
+return type : void
+Parameter type : Animal
+Modifiers : public, static
+
+In the body of getAnimal() method, call both the methods of Lion and Dog class.
+
+ANS
+----------------
+package com.nareshIT.day44;
+
+public abstract class Animal {
+	abstract void roam();
+}
+
+
+package com.nareshIT.day44;
+
+public class Lion extends Animal{
+	@Override
+	void roam() {
+		System.out.println("Lion is roaming");
+	}
+	public void roar() {
+		System.out.println("roar");
+	}
+}
+
+
+package com.nareshIT.day44;
+
+public class Dog extends Animal{
+	@Override
+	void roam() {
+		System.out.println("Dog is roaming");
+	}
+	public void bark() {
+		System.out.println("bark");
+	}
+}
+
+
+package com.nareshIT.day44;
+
+public class CallAnimal {
+
+	public static void main(String[] args) {
+		Animal ld = null;
+		ld = new Lion();
+		ld.roam();
+		getAnimal(ld);
+		
+		System.out.println("-----------------------");
+		
+		ld = new Dog();
+		ld.roam();
+		getAnimal(ld);
+	}
+	
+	public static void getAnimal(Animal a) {
+		
+		if (a instanceof Dog d) {
+			//Dog d = (Dog)a;
+			d.bark();
+		}
+		else if (a instanceof Lion l){
+			l.roar();
+		}
+	}
+
+}

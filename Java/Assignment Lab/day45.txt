@@ -1,0 +1,594 @@
+MCQ on abstract Method and OL, OR :
+---------------------------------------
+Q1)
+class A 
+{
+static void foo()
+{
+System.out.println("A");
+}
+}
+
+class B extends A
+{
+static int foo()
+{
+System.out.println("B");
+return 1;
+}
+}
+-------------------------------------------------------------------
+Q2)
+
+class A 
+{
+static void foo() 
+{ 
+System.out.println("A");
+}
+}
+
+class B extends A 
+{
+static void foo() 
+{ 
+System.out.println("B");
+}
+}	
+
+class Exam 
+{
+public static void main(String[] args) 
+{
+A obja;
+B objb = new B();
+objb.foo();
+obja = objb;
+obja.foo();
+}
+}
+
+static method, NSV and SV are always executed from current reference.
+-----------------------------------------------------------------------
+Q3)
+
+
+class A 
+{
+void foo() 
+{
+System.out.println("A");
+}
+}
+
+class B extends A 
+{
+void foo() 
+{
+System.out.println("B");
+}
+}	
+
+class Exam
+{
+public static void main(String[] args)
+{
+A obja;
+B objb = new B();
+objb.foo();
+obja = objb;
+obja.foo();
+}
+}
+-----------------------------------------------------------------------
+Q4)
+
+public class Exam
+{
+ public static void main(String[] args)
+{
+    B b = new C();
+    A a = b;
+    if (a instanceof A) System.out.println("A");
+    if (a instanceof B) System.out.println("B");
+    if (a instanceof C) System.out.println("C");
+    if (a instanceof D) System.out.println("D");
+  }
+}
+
+class A {}
+class B extends A {}
+class C extends B {}
+class D extends C {}
+----------------------------------------------------------------------
+Q5)
+
+class C 
+{
+}
+class D extends C
+{
+}
+class A
+{
+public C getOBJ()
+{
+System.out.println("class A - return C");
+return new C();
+}
+}
+class B extends A
+{
+public D getOBJ()
+{
+System.out.println("class B - return D");
+return new D();
+}
+}
+public class Test31
+{
+public static void main(String... args) 
+{
+     A a = new B();
+     a.getOBJ();
+}
+}
+----------------------------------------------------------------------
+Q6)
+
+class First 
+{
+public Object method1()
+{
+System.out.println("super method1");
+return new String("Base");
+}
+}
+
+class Second extends First 
+{
+public String method1() 
+{
+System.out.println("Subclass method1");
+return new String("Derived");
+}
+}
+
+class Test20
+{
+public static void main(String[] args)
+{
+First f = new Second();
+String s = f.method1();
+}
+
+}
+---------------------------------------------------------------------
+Q7)
+
+class Vehicle {
+    public void printSound() {
+        System.out.println("vehicle");
+    }
+}
+
+class Car extends Vehicle {
+    public void printSound() {
+        System.out.println("car");
+    }
+}
+
+class Bike extends Vehicle {
+    public void printSound() {
+        System.out.println("bike");
+    }
+}
+
+public class Exam {
+    public static void main(String[] args) {
+        Vehicle v = new Car();
+        Car c = (Car) v;
+        
+        v.printSound();
+        c.printSound();
+    }   
+}
+--------------------------------------------------------------------
+Q8)
+
+class Base
+{
+    String s = "Base";
+    String show()
+	{
+       return s;
+    }
+}
+class Derived extends Base
+{
+  String s = "Derived";
+}
+public class Test8 
+{
+  void print(Base b)
+  {				  
+    System.out.println(b.show());
+  }
+  void print(Derived d)
+  {
+    System.out.println(d.show());
+  }
+  public static void main(String[] args)
+  {
+              Test8 t = new Test8();
+              Base b = new Derived();
+              t.print(b);
+  }
+}
+----------------------------------------------------------------------
+Q9)
+
+interface ITest
+{
+           public void setVal();
+}
+
+public class Test7  
+{
+  private String a;
+  public void aMethod()
+   {
+      String b=" World";
+      ITest it = new ITest() 
+	  {
+         public void setVal()
+		 {
+           a = "Hello";               
+         }
+	   };
+          it.setVal();
+          System.out.println(a + b);
+          }
+          public static void main(String[] args)
+          {
+          Test7 t = new Test7();
+          t.aMethod();
+          }
+       }
+----------------------------------------------------------------------
+Q10)
+
+class Test12
+{
+	public static void main(String[] args) 
+	{
+		System.out.println("M");
+		Alpha.val=100;
+		System.out.println("F");
+		Alpha a = new Alpha();
+	}
+}
+class Beta
+{
+	static 
+	{
+		System.out.println("Q");
+		
+	}
+	Beta()
+	{
+		System.out.println("D");
+	}
+}
+class Alpha extends Beta
+{
+	static int val;
+	static 
+	{
+		System.out.println("W");
+		val=1000;
+	}
+	
+	Alpha()
+	{
+		System.out.println("C");
+	}
+
+	static 
+	{
+		System.out.println("R");
+		val=1000;
+	}
+}
+----------------------------------------------------------------------
+Q11)
+
+class Foo 
+{ 
+ public int a = 3; 
+ public void addFive() 
+{
+	 a += 5; System.out.print("f "); } 
+ } 
+ class Bar extends Foo 
+{ 
+ public int a = 8; 
+ public void addFive() { this.a += 5; System.out.print("b " ); } 
+ }  
+class Test5 
+{
+	public static void main(String[] args) 
+	{
+		 Foo f = new Bar(); 
+		 f.addFive(); 
+		 System.out.println(f.a);
+	}
+}
+-----------------------------------------------------------------------
+Q12)
+
+public abstract class AbstractTest 
+{
+    public int getNum() 
+    {
+        return 45;
+    }
+    public abstract class Bar //Inner class
+    {
+        public int getNum() 
+        {
+            return 38;
+        }
+    }
+    public static void main (String [] args) 
+    {
+        AbstractTest t = new AbstractTest() 
+        {
+            public int getNum() 
+            {
+                return 22;
+            }
+        };
+        AbstractTest.Bar f = t.new Bar() 
+        {
+            public int getNum() 
+            {
+                return 57;
+            }
+        };
+        
+        System.out.println(f.getNum() + " " + t.getNum());
+    }
+}
+--------------------------------------------------------------------
+Q13)
+
+abstract class A 
+{
+ public void printValue()
+ {
+ System.out.println("A");
+ }
+}
+
+public class b209
+{ 
+ public static void main (String[] args)
+ {
+   A a1 = new A() 
+	   { 
+       };
+ a1.printValue(); 
+ }
+ }
+-----------------------------------------------------------------------
+Q14)
+
+ Which among the following code have errors
+
+a) abstract class A {	
+     void m1();
+   }
+
+b) public class A {	
+     abstract void m1();
+   }
+
+c) abstract public class A {	
+    abstract void m1();
+   }
+
+d) abstract public class A 
+   {	
+     void m1() { }
+   }
+
+e) public abstract class A {
+    abstract void m1();	
+    A(){ }	
+    void m2() { }
+    }
+
+f) public abstract class A {
+     abstract int x = 100;	
+     abstract void m1();
+     abstract void m2();
+    }
+
+g) public abstract class A {	
+    abstract void m1();
+   }
+   public class Test {
+   public static void main(String[] args) {
+    A a = new A();
+    }
+   }
+
+h) public abstract class A 
+   {	
+    abstract void m1();
+    A(){ }
+    static void m2() 
+    {
+    System.out.println("Hello Java!"); 
+    }
+   }
+    public class B extends A {
+     void m1(){
+        A.m2(); 
+     }
+    }
+
+i) public abstract class A {	
+    abstract void m1();
+   private A(){ }
+   }
+   public class B extends A { }
+---------------------------------------------------------------------
+Q15)
+
+public abstract class Alpha {
+  abstract void m1(Alpha a);
+}
+public class Beta extends Alpha {
+void m1(Alpha a) {
+  System.out.println("One"); 	
+ }
+}
+public class Gamma extends Beta {
+void m1(Beta b) {	
+ System.out.println("Two");
+ super.m1(new Beta());
+ }
+}
+public class Test {
+public static void main(String[] args) {
+Gamma c = new Gamma();
+ c.m1(new Beta());
+  }
+}
+----------------------------------------------------------------------
+Q16)
+
+class Grandparent 
+{
+    String name = "granparent";
+    void act() 
+    {
+        System.out.println(name);
+    }
+}
+
+class Parent extends Grandparent 
+{
+    String name = "parent";
+}
+
+class Child extends Parent 
+{
+    String name = "child";
+    void act() 
+    {
+        System.out.println(name);
+    }
+}
+
+public class Exam 
+{
+   public static void main(String[] args) 
+   {
+        Parent yo = new Child();
+        yo.act();
+    }
+}
+----------------------------------------------------------------------
+Q17)
+
+
+class Animal {
+ String name = "Rocky ";
+ String makeNoise() { return "generic noise"; }
+ }
+ class Tiger extends Animal {
+String name = "stripes ";
+ String makeNoise() { return "roarrrrrrrrrrr"; }
+ }
+ public class Zoo {
+ public static void main(String[] args) { new Zoo().go(); }
+ void go() {
+ Animal m = new Tiger();
+ System.out.println(m.name + m.makeNoise());
+ }
+}
+---------------------------------------------------------------------
+Q18) 
+class Animal { }
+class Horse extends Animal { }
+class q31
+{
+      public void doStuff(Animal a) 
+      {
+           System.out.println("In the Animal version");
+      }
+      public void doStuff(Horse h) 
+      {
+           System.out.println("In the Horse version");
+      }
+      public static void main (String [] args) 
+      {
+            q31 q = new q31();
+            Animal ob1 = new Animal();
+            Animal ob2 = new Horse();
+            q.doStuff(ob1);
+            q.doStuff(ob2);
+     }
+}
+----------------------------------------------------------------------
+Q19)
+
+class Animal 
+{
+      static void doStuff() 
+      {
+             System.out.print("a  ");
+      }
+}
+class q31 extends Animal 
+{
+      static void doStuff() 
+      {        
+            System.out.print("d  ");
+      }
+      public static void main(String [] args) 
+      {
+            Animal [] a = {new Animal(), new q31(), new Animal()};
+            for(int x = 0; x < a.length; x++)
+                 a[x].doStuff();               
+      }
+}
+----------------------------------------------------------------------
+Q20)
+
+class Dog
+{
+}
+class Cat extends Dog
+{
+}
+class Exam
+{
+	public static void main(String... args)
+	{
+		Dog d = new Dog();
+		Cat c = new Cat();
+		if(d.equals(c))
+		{
+			System.out.println("true");
+		}
+			else
+		{
+				System.out.println("false");
+		}
+	}
+}
+======================================================================

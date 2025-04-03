@@ -186,7 +186,8 @@ public class AbstractDemo
 
 }
 ----------------------------------------------------------------------
-Program that describes abstract method is just like business rule so every sub class should implement that rule to exist in the real world.
+Program that describes abstract method is just like business rule so 
+every sub class should implement that rule to exist in the real world.
 
 package com.ravi.abstract_demo;
 
@@ -736,14 +737,16 @@ Q) Why they allowed to write method body inside an interface ?
 ---------------------------------------------------------------
 The basic problem OR limitation with abstract method is, It must be implemented in all the implementer (sub) classes otherwise the implementer class will become as an abstract class.
 
-It leads to big problem for industry because, If we want to add any new feature(new abstract method) to the existing interface then it must be overridden in the sub class, whether it is required OR not required ?
+It leads to big problem for industry because, If we want to add any new feature(new abstract method) to the existing interface then it must be overridden in the sub class, whether it is required OR not 
+required ?
 
 From JDK 1.8V, Java has provided default method facility
 
 What is default method in java :
 ---------------------------------
 It is allowed to write method body inside an interface in the form of default method.
-Inside an interface default keyword is used to represent default method to provide default implementation.
+
+Inside an interface default keyword is used to represent default method to provide "default implementation".
 
 Here It is not an access modifier.
 
@@ -829,7 +832,397 @@ public class NewFeature
         v = new Bike(); v.run(); v.horn(); v.digitalMeter();
 	}
 }
+
+Note : Unlike abstract method, default method implementation is not compulsory, If a sub class wants to override then can override to change the default implementation.
 ======================================================================
+02-04-2025
+----------
+What is a static method inside an interface ?
+----------------------------------------------
+It is allowed to write static method with method body inside an interface from JDK 1.8V.
+
+It is used to represent the common feature for all the classes which are going to access this static method.
+
+By default the access modifier of static method is public.
+
+Static method of an interface can be accessible through interface name only because the static method of an interface is limited to interface only, It is not available inside the implementer classes.
+
+Example :
+----------
+public interface Callable
+{
+  static void call()  //static method from JDK 1.8V [by default public]
+  {
+  }
+}  
+---------------------------------------------------------------------
+//Program on static method that describes static methods are by default public so we can access from another package.
+
+package com.ravi.static_method_demo;
+
+public interface Calculate 
+{
+   static double doSum(double x, double y)
+   {
+	   return (x+y);
+   }
+   
+   static double getSquare(double num)
+   {
+	   return (num*num);
+   }
+}
+
+package com.ravi.reuse;
+
+import com.ravi.static_method_demo.Calculate;
+
+public class Main {
+
+	public static void main(String[] args)
+	{
+		double sum = Calculate.doSum(100, 200);
+		System.out.println("Sum is :"+sum);
+		
+		double square = Calculate.getSquare(9);
+		System.out.println("Square is :"+square);
+	}
+
+}
+---------------------------------------------------------------------
+* As we know a public static method of super class is by default available to its sub classes.
+
+Q) Is there any difference between class static method and interface 
+   static method (available from JDK 1.8)
+   
+Yes, We have two major differences which are as follows :
+
+a) interface static methods are by default public.
+b) interface static methods are available to interface only, It is not
+   available in the implementer classes.
+
+//Program that describes we can call static method of an interface by using only one way that is by using interface name only.
+
+package com.ravi.static_method_demo;
+
+public interface Callable
+{
+   static void call()
+   {
+	   System.out.println("Static Method");
+   }
+}
+
+package com.ravi.static_method_demo;
+
+public class StaticMethodDemo2  implements Callable
+{
+	public static void main(String[] args) 
+	{		
+		Callable.call();
+	}
+}
+
+Points to remember :
+---------------------
+1) interface static methods are by default public.
+2) It is not available in the implementer classes.
+3) It can be accessible through interface name only.
+----------------------------------------------------------------------
+Program that describes we can write main method inside an interface from JDK 1.8V
+
+package com.ravi.static_method_demo;
+
+public interface Printable 
+{
+   public static void main(String[] args) 
+   {
+	  System.out.println("Interface main method");
+   }
+}
+---------------------------------------------------------------------
+Some points regarding default methods :
+----------------------------------------
+In between class and interface, class is having more priority.
+
+In between concrete method and default method, concrete method which 
+belongs to class is having more priority than default method as shown in the program.
+
+package default_methdo_issues;
+
+interface Alpha
+{
+	default void m1()
+	{
+		System.out.println("default method of Alpha interface...");
+	}
+}
+class Beta
+{
+	public void m1()
+	{
+		System.out.println("Concrete method of Beta class...");
+	}
+}
+
+class Gamma extends Beta implements Alpha 
+{
+	
+}
+public class Priority
+{
+	public static void main(String[] args) 
+	{
+		Gamma g = new Gamma();
+		g.m1();
+	}
+
+}
+=====================================================================
+Can we achive multiple inheritance by using default method ?
+-------------------------------------------------------------
+We can achieve multiple inheritance by using default methods also because interface never contains constructor.
+
+In order to call interface default method, we need to use super keyword with interface name as shown below :
+
+
+package default_methdo_issues;
+
+interface A
+{
+	default void show()
+	{
+		System.out.println("interface A show method");
+	}
+}
+interface B
+{
+	default void show()
+	{
+		System.out.println("interface B show method");
+	}
+}
+class C implements A,B
+{	
+	@Override
+	public void show() 
+	{
+		A.super.show();
+		B.super.show();
+		System.out.println("Overridden show method");
+	}	
+}
+public class MultipleInheritance
+{
+	public static void main(String[] args) 
+	{
+		C c1 = new C();
+		c1.show();
+
+	}
+
+}
+=====================================================================
+03-04-2025
+-----------
+What is Functional Programming ?
+---------------------------------
+It is introduced from Java 8v.
+
+In Functional Programming, First time java concentrated on functions i.e methods. 
+
+The main purpose of learning functional programming is to reduce the length of the function OR method.
+
+What is a Functional Interface ?
+--------------------------------
+If an interface contains exactly one abstract method then that interface is known as Functional interface.
+
+It may contain 'n' numbers of default and static method but It must contain only one abstract method.
+
+It may be represented by @FunctionalInterface annotation so the Java compiler will restrict the developer to take only one abstract method.
+
+Example :
+---------
+@FunctionalInterface
+interface Printable
+{
+	void print();  //SAM [Single Abstract Method]
+	
+	default void draw()
+	{
+	}
+	
+	static void m3()
+	{
+	}
+}
+
+Here Printable is a Functional interface because It contains only one abstract method.
+---------------------------------------------------------------------
+//Program on Functional Interface :
+------------------------------------
+package com.ravi.functional_interface;
+
+@FunctionalInterface
+interface Bird
+{
+   void sleep();   
+}
+public class FunctionalInterfaceDemo 
+{
+	public static void main(String[] args) 
+	{
+		Bird parrot = new Bird()
+		{
+			@Override
+			public void sleep() 
+			{
+				System.out.println("Parrot is sleeping");				
+			}			
+		};
+
+		Bird peacock = new Bird()
+		{
+			@Override
+			public void sleep() 
+			{
+				System.out.println("Peacock is sleeping");				
+			}			
+		};
+		
+		parrot.sleep();
+		peacock.sleep();
+		
+	}
+
+}
+
+---------------------------------------------------------------------
+What is Lambda Expression in java ?
+------------------------------------
+It is a new feature introduced in java from JDK 1.8 onwards.
+It is an anonymous function i.e function without any name.
+In java it is used to enable functional programming.
+It is used to concise our code as well as we can remove boilerplate code.
+Lambda will work only with functional interface.
+If the body of the Lambda Expression contains only one statement then curly braces are optional.
+We can also remove the variables type while defining the Lambda Expression parameter.
+If the lambda expression method contains only one parameter then we can remove () symbol also.
+
+In lambda expression return keyword is optional but if we use return keyword then {} are compulsory.
+
+Independently Lamda Expression is not a statement.
+
+It requires a target variable i.e functional interface reference only.
+
+Lamda target can't be class or abstract class, it will work with functional interface only. 
+
+package com.ravi.lambda;
+
+
+interface Printable
+{
+	void print(); //SAM
+}
+
+public class Lambda1 {
+
+	public static void main(String[] args) 
+	{
+		Printable p1 = () -> System.out.println("Printing");
+		p1.print();
+	}
+
+}
+
+package com.ravi.lambda;
+
+@FunctionalInterface
+interface Vehicle
+{
+	void run();
+}
+public class LambdaDemo2 {
+
+	public static void main(String[] args)
+	{
+		Vehicle car = ()-> System.out.println("Car is running");
+		Vehicle bike = ()-> System.out.println("Bike is running");
+		Vehicle bus = ()-> System.out.println("Bus is running");
+
+		car.run();
+		bike.run();
+		bus.run();
+		
+	}
+
+}
+
+
+package com.ravi.lambda;
+
+@FunctionalInterface
+interface Calculator
+{
+	void doSum(int x, int y);
+}
+public class LambdaDemo3 
+{
+	public static void main(String[] args) 
+	{
+		Calculator calc = (c,d) -> System.out.println("Sum is :"+(c+d));
+		calc.doSum(12, 24);
+	}
+
+}
+
+package com.ravi.lambda;
+
+interface Length
+{
+	public abstract int getLength(String str); 
+}
+public class LambdaDemo4 
+{
+	public static void main(String[] args) 
+	{
+		Length l =  str -> str.length();		
+		System.out.println("Length is :"+l.getLength("Hyderabad"));
+	}
+
+}
+--------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

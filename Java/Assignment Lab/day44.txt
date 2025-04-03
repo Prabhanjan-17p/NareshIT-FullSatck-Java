@@ -181,3 +181,188 @@ Enter Product Price :1567.90
 Enter Product Category :null
 Enter Product License Key :E_BUK_0001
 Category cannot be empty or null.
+
+
+
+
+
+ANS 
+============
+package com.nareshIT.day45;
+
+public abstract class Product {
+	private String name ;
+	private double price; 
+	private String category;
+	
+	public Product(String name, double price, String category) {
+		super();
+		this.name = name;
+		this.price = price;
+		this.category = category;
+	}
+	
+	public abstract void applyDiscount(double percentage);
+	public abstract double calculateTax();
+
+	public double getPrice() {
+		return price;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getCategory() {
+		return category;
+	}
+
+	public void setCategory(String category) {
+		this.category = category;
+	}
+
+	public void setPrice(double price) {
+		this.price = price;
+	}
+
+	@Override
+	public String toString() {
+		return "Product [name=" + name + ", price=" + price + ", category=" + category + "]";
+	}
+	
+	
+}
+
+
+
+
+package com.nareshIT.day45;
+
+public class DigitalProduct extends Product {
+	private String licenseKey ;
+	
+	public DigitalProduct(String name, double price, String category, String licenseKey) {
+		super(name, price, category);
+		this.licenseKey = licenseKey;
+	}
+
+	double Disamt=getPrice();
+	@Override
+	public void applyDiscount(double percentage) {
+		Disamt = Disamt*(percentage/100);
+	}
+
+	@Override
+	public double calculateTax() {
+		return (getPrice()-Disamt)*0.05;
+	}
+
+	@Override
+	public String toString() {
+		return "Digital Product : \nProduct Name: " + getName() + "\nCategory: " + getCategory() + "\nPrice RS: "+getPrice()+"\nLicense Key: "+this.licenseKey+"\nDiscount applied : "+Disamt+"\nNew Price : "+(getPrice()-Disamt)+"\nTax RS : "+calculateTax();
+	}
+
+}
+
+
+
+
+package com.nareshIT.day45;
+
+public class PhysicalProduct extends Product {
+	private double shippingWeight;
+	
+	public PhysicalProduct(String name, double price, String category, double shippingWeight) {
+		super(name, price, category);
+		this.shippingWeight = shippingWeight;
+	}
+
+	double Disamt=getPrice();
+	@Override
+	public void applyDiscount(double percentage) {
+		Disamt = Disamt*(percentage/100);
+	}
+
+	@Override
+	public double calculateTax() {
+		return (getPrice()-Disamt)*0.08;
+	}
+	
+	public double calculateShippingCost() {
+		//1kg = 5rs
+		return 0.0;
+	}
+	
+	@Override
+	public String toString() {
+		return "Physical Product: \nProduct Name: " + getName() + "\nCategory: " + getCategory() + "\nPrice RS: "+getPrice()+"\nShipping Weight: "+this.shippingWeight+"\nDiscount applied : "+Disamt+"\nNew Price : "+(getPrice()-Disamt)+"\nTax RS : "+calculateTax()+"\nShipping Cost RS : "+(shippingWeight*5);
+	}
+
+}
+
+
+
+
+package com.nareshIT.day45;
+
+import java.util.Scanner;
+
+public class Main {
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		System.out.println("Select Product Type:\r\n"+ "1. Digital Product\r\n"+ "2. Physical Product");
+		int choice = sc.nextInt();
+		Product p = null;
+		switch (choice) {
+		case 1: {
+			System.out.println("Enter Digital Product Name :");
+			String pn = sc.nextLine();
+			pn = sc.nextLine();
+			
+			System.out.println("Enter Product Price :");
+			int pp = sc.nextInt();
+			
+			System.out.println("Enter Product Category :");
+			String pc = sc.nextLine();
+			pc = sc.nextLine();
+			
+			System.out.println("Enter Product License Key :");
+			String pl = sc.nextLine();
+			
+			p = new DigitalProduct(pn, pp, pc, pl);
+			p.applyDiscount(10);
+			p.calculateTax();
+			System.out.println(p);
+			break;
+		}
+		case 2: {
+			System.out.println("Enter Digital Product Name :");
+			String pn1 = sc.nextLine();
+			pn1 = sc.nextLine();
+			
+			System.out.println("Enter Product Price :");
+			int pp1 = sc.nextInt();
+			
+			System.out.println("Enter Product Category :");
+			String pc1 = sc.nextLine();
+			pc1 = sc.nextLine();
+			
+			System.out.println("Enter Product weight :");
+			double pw = sc.nextDouble();
+			
+			p = new PhysicalProduct(pn1, pp1, pc1, pw);
+			p.applyDiscount(15);
+			p.calculateTax();
+			System.out.println(p);
+			break;
+		}
+		default:
+			System.err.println("Invalid choice.....");
+		}
+
+	}
+}

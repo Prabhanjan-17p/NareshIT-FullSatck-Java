@@ -3,20 +3,23 @@ MCQ on abstract Method and OL, OR :
 Q1)
 class A 
 {
-static void foo()
-{
-System.out.println("A");
-}
+    static void foo()
+    {
+        System.out.println("A");
+    }
 }
 
 class B extends A
 {
-static int foo()
-{
-System.out.println("B");
-return 1;
+    static int foo()
+    {
+        System.out.println("B");
+        return 1;
+    }
 }
-}
+
+ANS - 
+
 -------------------------------------------------------------------
 Q2)
 

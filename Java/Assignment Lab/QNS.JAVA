@@ -1,16 +1,21 @@
-class Example19{
-static
+class Foo 
+{ 
+public int a = 3; 
+public void addFive() 
 {
-int x = 10;
-Example19.x = x+x;
-}
-static int x;
-public static void main(String[] args){
-System.out.println("Class Level X : "+Example19.x);
-}
-static
+	 a += 5; System.out.print("f "); } 
+ } 
+ class Bar extends Foo 
+{ 
+ public int a = 8; 
+ public void addFive() { this.a += 5; System.out.print("b " ); } 
+ }  
+public class Test5 
 {
-x = x + Example19.x;
-}
-
+	public static void main(String[] args) 
+	{
+		 Foo f = new Bar(); 
+		 f.addFive(); 
+		 System.out.println(f.a);
+	}
 }

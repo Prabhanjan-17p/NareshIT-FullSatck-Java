@@ -186,8 +186,7 @@ public class AbstractDemo
 
 }
 ----------------------------------------------------------------------
-Program that describes abstract method is just like business rule so 
-every sub class should implement that rule to exist in the real world.
+Program that describes abstract method is just like business rule so every sub class should implement that rule to exist in the real world.
 
 package com.ravi.abstract_demo;
 
@@ -737,8 +736,7 @@ Q) Why they allowed to write method body inside an interface ?
 ---------------------------------------------------------------
 The basic problem OR limitation with abstract method is, It must be implemented in all the implementer (sub) classes otherwise the implementer class will become as an abstract class.
 
-It leads to big problem for industry because, If we want to add any new feature(new abstract method) to the existing interface then it must be overridden in the sub class, whether it is required OR not 
-required ?
+It leads to big problem for industry because, If we want to add any new feature(new abstract method) to the existing interface then it must be overridden in the sub class, whether it is required OR not required ?
 
 From JDK 1.8V, Java has provided default method facility
 
@@ -898,8 +896,7 @@ Q) Is there any difference between class static method and interface
 Yes, We have two major differences which are as follows :
 
 a) interface static methods are by default public.
-b) interface static methods are available to interface only, It is not
-   available in the implementer classes.
+b) interface static methods are available to interface only, It is not available in the implementer classes.
 
 //Program that describes we can call static method of an interface by using only one way that is by using interface name only.
 
@@ -1116,9 +1113,8 @@ Independently Lamda Expression is not a statement.
 It requires a target variable i.e functional interface reference only.
 
 Lamda target can't be class or abstract class, it will work with functional interface only. 
-
+---------------------------------------------------------------------
 package com.ravi.lambda;
-
 
 interface Printable
 {
@@ -1134,7 +1130,7 @@ public class Lambda1 {
 	}
 
 }
-
+--------------------------------------------------------------
 package com.ravi.lambda;
 
 @FunctionalInterface
@@ -1158,7 +1154,7 @@ public class LambdaDemo2 {
 
 }
 
-
+------------------------------------------------------------------
 package com.ravi.lambda;
 
 @FunctionalInterface
@@ -1175,7 +1171,7 @@ public class LambdaDemo3
 	}
 
 }
-
+--------------------------------------------------------------------
 package com.ravi.lambda;
 
 interface Length
@@ -1192,40 +1188,230 @@ public class LambdaDemo4
 
 }
 --------------------------------------------------------------------
+04-04-2025
+-----------
+Predefined functional interface :
+----------------------------------
+Java has provided predefined functional interfaces. Here we will see how to work with java.lang.Runnable predefined functional interface.
 
+Java has provided this predefined functional interface :
 
+@FunctionalInterface
+public interface Runnable
+{
+   void run(); //SAM
+}
 
+//Program to work with predefined Runnable functional interfrace :
+package com.ravi.functionl_interface;
 
+public class RunnableDemo {
 
+	public static void main(String[] args) 
+	{
+		Runnable r =  () -> System.out.println("Running");
+		r.run();
 
+	}
 
+}
+---------------------------------------------------------------------
+What is Type Parameter<?> in java ?
+------------------------------------
+In java, It is represented by <T> type parameter.
 
+It is used to make our java application independent of data type.
 
+It also known as Generics from JDK 1.5v
 
+In this type parameter <T> we can pass any Wrapper class, User-defined classes but we can't pass any primitive data type.
 
+---------------------------------------------------------------------
+//Program on Type Parameter
 
+package com.ravi.type_parameter;
 
+class Accept<T>  
+{
+	private T data;
 
+	public Accept(T data) 
+	{
+		super();
+		this.data = data;
+	}
 
+	public T getData() 
+	{
+		return data;
+	}	
+}
 
+public class TypeParameterDemo1 {
 
+	public static void main(String[] args) 
+	{
+		Accept<Integer> intType = new Accept<Integer>(12);
+        System.out.println("Integer Object is :"+intType.getData());
+        
+        Accept<Double> dblType = new Accept<Double>(1234D);
+        System.out.println("Double Object is :"+dblType.getData());
+        
+        Accept<Boolean> boolType = new Accept<Boolean>(true);
+        System.out.println("Boolean Object is :"+boolType.getData());
+        
+        Accept<Student> stuType = new Accept<Student>(new Student());
+        System.out.println("Student Object is :"+stuType.getData());
+	}
 
+}
 
+class Student
+{
 
+	@Override
+	public String toString() 
+	{
+		return "Batch 42 AND 43";
+	}	
+}
+=====================================================================
+Working with predefined functional interfaces :
+-----------------------------------------------
+In order to work with day to day programming and to write concise coding, java has provided predefined functional interafces which are available in java.util.function sub package.
 
+The following are the predefined functional interfaces available in java.lang.function sub package.
 
+1) Predicate<T>
+2) Consumer<T>
+3) Function<T,R>
+4) Supplier<T>
+5) BiPredicate<T,U>
+6) BiConsumer<T,U>
+7) BiFunction<T,U,R>
+8) UnaryOperator<T>
+9) BinaryOperator<T>
+10) ToIntFunction<T>
+11) ToLongFunction<T>
+12) ToDoubleFunction<T>
 
+like that we have total 43 predefined functional interfaces.
 
+1) Predicate<T> functional interface :
+--------------------------------------
+It is a predefined functional interface available in java.util.function sub package.
 
+It is mainly used to verify ONE ARGUMENT BOOLEAN EXPRESSION.
 
+Here the lambda body must return boolean value either by using expression OR by using method.
 
+@FunctionalInterface
+public interface Predicate<T>
+{
+   boolean test(T x);
+}
 
+//Program on Predicate 
+----------------------
+package com.ravi.predicate_demo;
 
+import java.util.Scanner;
+import java.util.function.Predicate;
 
+public class PredicateDemo1 {
 
+	public static void main(String[] args) 
+	{
+		//To verify a number is even or odd
+		
+		Predicate<Integer> p1 =  num -> num % 2 ==0;
+		
+		Scanner sc = new Scanner(System.in);
+		System.out.println("Enter a number :");
+		int num = sc.nextInt();		
+		boolean isEven = p1.test(num);
+		System.out.println(num+ " is even :"+isEven);
+		sc.close();
+		
+		
+	}
 
+}
+------------------------------------------------------------------
+package com.ravi.predicate_demo;
 
+import java.util.Scanner;
+import java.util.function.Predicate;
 
+public class PredicateDemo2 {
+
+	public static void main(String[] args) 
+	{
+		// Verify whether my name starts with R or not
+		
+		Predicate<String> p2 = str -> str.startsWith("R");
+		Scanner sc = new Scanner(System.in);
+		System.out.println("Enter your Name :");
+		String name = sc.next();		
+		System.out.println(name+" starts with 'R' :"+p2.test(name));
+		sc.close();		
+	}
+
+}
+--------------------------------------------------------------------
+package com.ravi.predicate_demo;
+
+import java.util.function.Predicate;
+
+public class PredicateDemo3 {
+
+	public static void main(String[] args) 
+	{
+	  //Verify that your name is Ravi
+	
+	 Predicate<String> p3 = str -> str.equalsIgnoreCase("Ravi");	
+	 System.out.println("Are you Ravi :"+p3.test("ravi"));	
+
+	}
+
+}
+---------------------------------------------------------------------
+Assignment : Verify leap year, Person is eligible for Vote 
+--------------------------------------------------------------------
+Consumer<T> functional interface :
+----------------------------------
+It is a predefined functional interface available in java.util.function sub package.
+
+It is used to accept/consume a single value and returns nothing.
+
+@FunctionalInterface
+public interface Consumer<T>
+{
+   void accept(T x);
+}
+
+//Program
+package com.ravi.consumer_demo;
+
+import java.util.function.Consumer;
+
+public class ConsumerDemo1 
+{
+	public static void main(String[] args) 
+	{
+		//Consume different values
+		Consumer<Integer> conInt = num -> System.out.println(num);
+		conInt.accept(12);
+		
+		Consumer<Float> conFloat = num -> System.out.println(num);
+		conFloat.accept(19F);
+		
+		Consumer<Character> conChar = num -> System.out.println(num);
+		conChar.accept('A');
+	}
+
+}
+=====================================================================
 
 
 

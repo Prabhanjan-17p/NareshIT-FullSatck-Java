@@ -1,3 +1,30 @@
+
+/*
+1) Most Specific Type :
+-----------------------
+Compiler alwyas provide more priority to most specific data type or class type.
+
+double > float [Here float is the most specific type]  
+float > long 
+long > int
+int > char     
+int > short  //[No relation between short and char]
+short > byte     
+
+2) WAV [Widening ->  Autoboxing  -> Var Args]
+
+   Compiler gives the priority to select appropriate method by using the following sequence :
+   Widening (Auto type casting) ---> Autoboxing  ----> Var args
+
+3) Nearest Data type or Nearest class (sub class) 
+   
+   While selecting the appropriate method in ambiguity issue compiler provides priority to nearest data type or nearest class i.e sub class
+
+   NOTE 1 - int - String - boolean are same level or same priority. 
+   	    2 - char - short are same level or same priority. 
+*/
+
+
 Q1) Find the Output on Method Overloading with Ambiguity
 
 class Test
@@ -43,7 +70,7 @@ class Test
 		System.out.println("short :");
 	}	
 }
-public class AmbiguityDemo1
+public class AmbiguityDemo2
 {
 	public static void main(String[] args) 
 	{
@@ -58,7 +85,7 @@ ANS - byte :
 ------------------------------------------------------------------
 Q3) Find the Output 
 
-class Test
+class Test3
 {		    
 	public void accept(int ...s)
 	{
@@ -70,11 +97,11 @@ class Test
 		System.out.println("boolean :");
 	}	
 }
-public class AmbiguityDemo1
+public class AmbiguityDemo3
 {
 	public static void main(String[] args) 
 	{
-		Test t1 = new Test();
+		Test3 t1 = new Test3();
 		t1.accept();
 
 	}
@@ -166,7 +193,7 @@ ANS - Compile Time Error because of "short and char" are same priority.
 ---------------------------------------------------------------------------
 Q7) Find the Output 
 
-class Test
+class Test7
 {		    
 	public void accept(byte b, int i) {
 		System.out.println("byte-int");
@@ -175,15 +202,13 @@ class Test
 		System.out.println("int-byte");
 	}
 }
-public class AmbiguityDemo1
+public class AmbiguityDemo7
 {
 	public static void main(String[] args) 
 	{
-		Test t1 = new Test();  
+		Test7 t1 = new Test7();  
 		t1.accept(1, 2);
-
 	}
-
 }
 
 ANS - Compile Time Error 
@@ -191,7 +216,7 @@ ANS - Compile Time Error
 ---------------------------------------------------------------------------
 Q8) Find the Output 
 
-class Test
+class Test8
 {		    
 	public void accept(byte b, int i) {
 		System.out.println("byte-int");
@@ -200,11 +225,11 @@ class Test
 		System.out.println("int-byte");
 	}
 }
-public class AmbiguityDemo1
+public class AmbiguityDemo8
 {
 	public static void main(String[] args) 
 	{
-		Test t1 = new Test(); 
+		Test8 t1 = new Test8(); 
 		byte b1 = 1;
 		byte b2 = 2;
 		t1.accept(b1, b2);

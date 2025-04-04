@@ -1,0 +1,341 @@
+1.Choose the correct output of the following program
+
+interface Add
+{
+    int add(int b);
+}
+public class FunctionalInterface1 {
+   
+    public static void main(String[] args)
+    {
+        int a = 10;
+       
+        Add add = (int b) -> b;
+        System.out.println(add.add(a));
+    }
+}
+
+ANS - 10
+
+
+2.Choose the correct output of the following program
+@FunctionalInterface
+interface Cube
+{
+    int cube(int b);
+}
+public class FunctionalInterface2 {
+   
+    public static void main(String[] args) {
+        int a = 21;
+       
+        Cube cube = b -> b*b*b;
+        System.out.println(cube.cube(a));
+    }
+}
+
+ANS - 9261
+
+3.What is the output of the following program
+interface Add
+{
+    int add(int b);
+    int add(int a, int b);
+}
+public class FunctionalInterface3 {
+    public static void main(String[] args) {
+        int a = 21;
+        Add add = b -> b+b;
+        System.out.println(add.add(a));
+    }
+}
+
+ANS - Compile Time Error
+
+4.What is the output of the following program
+@FunctionalInterface
+interface Str
+{
+    int methodStr(String str);
+}
+public class FunctionalInterface4 {
+    public static void main(String[] args) {
+        Str str = (String s) -> "2";
+        System.out.println(str.methodStr("2"));
+    }
+}
+
+ANS - Compile Time Error (Because here "2" is string but methodStr return type is int)
+
+5.Choose the correct output of the following program
+public class FunctionalInterface5 {
+    public static void main(String[] args) {
+        String str -> str.compareTo("goolge"); // error
+        System.out.println(str);
+    }
+}
+
+ANS - Compile Time Error 
+
+6.What is the output of the following code
+@FunctionalInterface
+interface NIT
+{
+    String get(String nit);
+}
+public class FunctionalInterfaceExample6
+{
+    public static void main(String[] args) {
+        NIT nit = (str) -> str +"Welcome to"; // str concatenate to "Welcome to"
+        NIT nit1 = (str) -> str + "NARESHIT"; // str1 concatenate to "NARESHIT"
+        information("Hai ", nit); // HAI + Welcome to
+        information("Hai ", nit1); // HAI + NARESHIT
+    }
+    public static void information(String str, NIT obj) {
+        String result = obj.get(str);
+        System.out.println(result);
+    }
+}
+
+ANS -
+Hai Welcome to
+Hai NARESHIT
+
+7.By using FunctionalInterface annotation following code is correct or not?
+@FunctionalInterface
+interface NIT
+{
+    String myInterface(String a);
+    String newInterface();
+}
+
+ANS - Not Correct (it contains must be one abstract method)
+
+8.What is the output of the following code
+@FunctionalInterface
+interface NIT {
+    int square(int x);
+    default int add(int a, int b) {
+        return a + b;
+    }
+    default int sub(int a, int b) {
+        return a - b;
+    }
+    static int multiply(int a, int b) {
+        return a * b;
+    }
+    static int divide(int a, int b) {
+        return a / b;
+    }
+}
+public class FunctionalInterfaceExample8 implements NIT {
+    public static void main(String[] args) {
+        int a = 25;
+        int b = 5;
+        FunctionalInterfaceExample8 fun = new FunctionalInterfaceExample8();
+        int add = fun.add(a, b);
+        int sub = fun.sub(a, b);
+        int mul = NIT.multiply(a, b);
+        int div = NIT.divide(a, b);
+        System.out.println(add + " " + sub + " " + mul + " " + div + " " + fun.square(6));
+    }
+    @Override
+    public int square(int x) {
+        return x * x;
+    }
+}
+
+ANS - 30 20 125 5 36
+
+9.What is the output of the following code
+@FunctionalInterface
+interface NIT{
+ int square(int x);
+ static int add(int a, int b){
+     return a+b;
+ }
+ static int sub(int a, int b){
+     return a-b;
+ }
+ static int multiply(int a, int b){
+     return a*b;
+ }
+ static int divide(int a, int b){
+     return a/b;
+ }
+}
+public class FunctionalInterfaceExample9{
+ public static void main(String[] args){
+     int a = 25;
+     int b = 5;  
+     int add = NIT.add(a,b);
+     int sub = NIT.sub(a,b);
+     int mul = NIT.multiply(a,b);
+     int div = NIT.divide(a,b);
+     System.out.print(add+" "+sub+" "+mul+" "+div+" ");
+     
+     NIT sq = (x) ->
+     {
+         return x*x;
+     };
+     System.out.print(sq.square(6));
+ }
+}
+
+ANS - 30 20 125 5 36
+
+10. public class FunctionalInterfaceExample10{
+    public static void main(String[] args) {
+        Function<String, String> fun = str -> str.substring(2,5);
+        System.out.println(fun.apply("Hyderabad"));
+    }
+}
+
+ANS - der (starting at position 2 and endsWith 5-1 = 4)
+
+
+11.By using FunctionalInterface annotation following code is correct or not?
+@FunctionalInterface
+interface NIT11
+{
+    String myInterface(String a);
+    default void nit()
+    {
+       
+    }
+    default int newInterface(int a)
+    {
+        return a;
+    }
+}
+
+ANS - Correct
+
+12.Is there any error in following code?
+@FunctionalInterface
+interface NIT12
+{
+    String myInterface(String a); //abstract method
+    int hashCode(); //Object class methods
+    String toString();    
+}
+
+ANS - Correct(Because of one abstract_method with 2 predefine methdo or not final method)
+
+13.Is there any error in following code?
+@FunctionalInterface
+interface NIT13
+{
+    String myInterface(String a); //abstract method
+    @Override
+    String toString(); //Object class method
+    void wait();
+    void notify();
+}
+
+ANS - Incorrect (Because of  wait() and notify() are final method)
+
+14.What is the output of the following code
+public class FunctionalInterfaceExample{
+    public static void main(String[] args) {
+        Predicate<Integer> grater = a -> a >15;
+       
+        Predicate<Integer> less = a -> a <10;
+       
+        boolean bool = grater.test(20);
+        boolean bool1 = less.test(5);
+        System.out.println(bool);
+        System.out.println(bool1);        
+       
+    }
+}
+Answer:
+true
+true
+
+15.What is the output of the following code
+public class FunctionalInterfaceExample15{
+    public static void main(String[] args)
+    {
+        String str[]= {"Java","Python","Naresh","IT"};
+       
+        Predicate<String> prediacte = p -> p.endsWith("va");
+        for(String s: str)
+        {
+            if(prediacte.test(s))
+                System.out.println(s);
+        }
+    }
+}
+
+ANS - Java
+
+16.What is the output of the following code
+interface NIT
+{
+    public int myInterface(int a);
+}
+
+public class FunctionalInterfaceExample16 {
+    public static void main(String[] args) {
+        NIT nit = (a) -> a+1;
+        int i = nit.myInterface(6);
+        System.out.println(i);
+    }
+}
+
+ANS - 7
+
+17.What is the output of the following code?
+@FunctionalInterface
+interface NIT17
+{    
+    int myInterface(int a);
+}
+
+@FunctionalInterface
+interface NewInterface
+{
+    void alpha(String a);
+}
+
+public class FunctionalInterfaceExample17 {
+    public static void main(String[] args) {
+        NIT17 nit = (a) -> a*a*a;
+        System.out.println(nit.myInterface(5)); //125
+        NewInterface result = (a) -> System.out.println("Welcome to NareshIT");
+        result.alpha("");
+    }
+}
+
+ANS - 125 Welcome to NareshIT
+
+18.What is the output of the following code?
+public class FunctionalInterfaceExample18 {
+    public static void main(String[] args) {
+        Consumer<Integer> value = (a) -> System.out.println(a*3);
+        value.accept(5);
+    }
+}
+
+ANS - 15
+
+19. What is the output of the following code?
+public class FunctionalInterfaceExample19 {
+    public static void main(String[] args) {
+        Consumer<String> value = (a) -> System.out.println("Naresh I Technologies");
+        value.accept("");
+    }
+}
+Answer:
+Naresh I Technologies
+
+20. What is the output of the following code?
+public class FunctionalInterfaceExample20 {
+    public static void main(String[] args) {
+        Consumer<String> value = (a) -> System.out.println(a.toLowerCase());
+        value.accept("NareshIT");
+    }
+}
+
+ANS - nareshit

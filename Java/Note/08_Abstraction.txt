@@ -186,7 +186,8 @@ public class AbstractDemo
 
 }
 ----------------------------------------------------------------------
-Program that describes abstract method is just like business rule so every sub class should implement that rule to exist in the real world.
+Program that describes abstract method is just like business rule so 
+every sub class should implement that rule to exist in the real world.
 
 package com.ravi.abstract_demo;
 
@@ -736,7 +737,8 @@ Q) Why they allowed to write method body inside an interface ?
 ---------------------------------------------------------------
 The basic problem OR limitation with abstract method is, It must be implemented in all the implementer (sub) classes otherwise the implementer class will become as an abstract class.
 
-It leads to big problem for industry because, If we want to add any new feature(new abstract method) to the existing interface then it must be overridden in the sub class, whether it is required OR not required ?
+It leads to big problem for industry because, If we want to add any new feature(new abstract method) to the existing interface then it must be overridden in the sub class, whether it is required OR not 
+required ?
 
 From JDK 1.8V, Java has provided default method facility
 
@@ -896,7 +898,8 @@ Q) Is there any difference between class static method and interface
 Yes, We have two major differences which are as follows :
 
 a) interface static methods are by default public.
-b) interface static methods are available to interface only, It is not available in the implementer classes.
+b) interface static methods are available to interface only, It is not
+   available in the implementer classes.
 
 //Program that describes we can call static method of an interface by using only one way that is by using interface name only.
 
@@ -1412,6 +1415,500 @@ public class ConsumerDemo1
 
 }
 =====================================================================
+07-04-2025
+----------
+Function<T,R> functional interface :
+------------------------------------
+It is a predefined functional interface available in java.util.function sub package.
+
+Function takes T,R as a parameter, Here T represents input type where as R represents the return result.
+
+In this Function<T,R> functional interface the input type <T> and the return result <R> both are decided by user.
+
+@FunctionalInterface
+public interface Function<T,R>
+{
+    public abstract R apply(T x);
+}
+---------------------------------------------------------------------
+//Programs on Function<T,R> functional interface 
+
+package com.ravi.function_demo;
+
+import java.util.Scanner;
+import java.util.function.Function;
+
+public class FunctionDemo1 {
+
+	public static void main(String[] args) 
+	{
+	  //Find the cube of the number
+	  Function<Integer,Integer> fn1 = num -> num*num*num;	
+	  
+	  Scanner sc = new Scanner(System.in);
+	  System.out.print("Enter a number :");
+	  
+	  int num = sc.nextInt();
+	  System.out.println("Cube of :"+num+" is :"+fn1.apply(num));  
+      sc.close();
+	}
+
+}
+--------------------------------------------------------------------
+package com.ravi.function_demo;
+
+import java.util.Scanner;
+import java.util.function.Function;
+
+public class FunctionDemo2 {
+
+	public static void main(String[] args) 
+	{
+	  //Find the length of the String
+		
+      Function<String,Integer> fn2 = str -> str.length();
+      
+      Scanner sc = new Scanner(System.in);
+      System.out.print("Enter your city name :");
+      String city = sc.next();
+      
+      System.out.println(city +" length is :"+fn2.apply(city));
+      sc.close();
+	}
+
+}
+---------------------------------------------------------------------
+package com.ravi.function_demo;
+
+import java.util.Scanner;
+import java.util.function.Function;
+
+public class FunctionDemo3 
+{
+	public static void main(String[] args) 
+	{
+	  //Verify the name starts with 'R' or not ?
+		
+	  Function<String, Boolean> fn3 = 	str -> str.startsWith("R");
+	  Scanner sc = new Scanner(System.in);
+      System.out.print("Enter your name :");
+      String name = sc.nextLine();
+      
+      Boolean isValid = fn3.apply(name);
+      
+      System.out.println("Does your name start with 'R' "+isValid);
+      sc.close();
+	}
+
+}
+---------------------------------------------------------------------
+4) Supplier<T> Functional interface :
+-------------------------------------
+It is a predefined functional interface available in java.util.function sub package.
+
+It is used to supply/get from the lambda body.
+
+It does not accept any parameter but return type is <T> which is decided by the user.
+
+@FunctionalInterface
+public interface Supplier<T>
+{
+   T get();
+}
+---------------------------------------------------------------------
+package com.ravi.supplier;
+
+import java.util.function.Supplier;
+
+public class SupplierDemo1 {
+
+	public static void main(String[] args) 
+	{
+		Supplier<String> s1 = ()-> 100 + 200 + "Hyd"+ 50 + 50;
+		System.out.println(s1.get());
+	}
+}
+---------------------------------------------------------------------
+package com.ravi.supplier;
+
+import java.util.function.Supplier;
+
+class Player
+{
+	private int id;
+	private String name;
+	
+	public Player(int id, String name) 
+	{
+		super();
+		this.id = id;
+		this.name = name;
+	}
+
+	@Override
+	public String toString() {
+		return "Player [id=" + id + ", name=" + name + "]";
+	}
+	
+}
+
+public class SupplierDemo2 {
+
+	public static void main(String[] args) 
+	{
+		Supplier<Player> s2 = () -> new Player(18, "Virat");
+		Player player = s2.get();
+		System.out.println(player);
+	}
+
+}
+---------------------------------------------------------------------
+package com.ravi.supplier;
+
+import java.util.Scanner;
+import java.util.function.Supplier;
+
+class Product
+{
+	private Integer id;
+	private String name; 
+	private Double price;
+	
+	public Product(Integer id, String name, Double price) 
+	{
+		super();
+		this.id = id;
+		this.name = name;
+		this.price = price;
+	}
+	
+	@Override
+	public String toString() {
+		return "Product [id=" + id + ", name=" + name + ", price=" + price + "]";
+	}	
+}
+public class SupplierDemo3 
+{
+	public static void main(String[] args) 
+	{
+		Supplier<Product> s3 = () -> 
+		{
+			Scanner sc = new Scanner(System.in);
+			System.out.print("Enter Product Id :");
+			int id = Integer.parseInt(sc.nextLine());
+			
+			System.out.print("Enter Product Name :");
+			String name = sc.nextLine();
+			
+			System.out.print("Enter Product Price :");
+			double price = Double.parseDouble(sc.nextLine());			
+					
+			return new Product(id, name, price);
+		};	
+		
+		Product product = s3.get();
+		System.out.println(product);
+		
+	}
+
+}
+---------------------------------------------------------------------
+Is it possible to develop our own functional interfaces with Different Parameter ?
+
+Yes, We can develop our own Functional Interfaces with different Parameter.
+
+package com.ravi.function_demo;
+
+@FunctionalInterface
+interface TriFunction<T,U,V,R>
+{
+	public abstract R applyAsFunction(T a, U b, V c);
+}
+public class CustomFunctionalInterface
+{
+	public static void main(String[] args) 
+	{
+		TriFunction<Integer, Integer, Integer, String>	fn1 = 
+		( a ,  b,   c) ->	a +" "+b+" "+c;
+		
+		System.out.println(fn1.applyAsFunction(100, 200, 300));
+	}
+
+}
+---------------------------------------------------------------------
+BiPredicate<T,U> functional interface :
+-----------------------------------
+It is a predefined functional interface available in java.util.function sub package.
+
+It is a functional interface in Java that represents a predicate (a boolean-valued function) OF TWO ARGUMENTS.
+
+The BiPredicate interface has method named test, which takes two parameters and returns a boolean value, basically this BiPredicate is same with the Predicate, instead, it takes 2 arguments for the metod test.
+
+
+@FunctionalInterface
+public interface BiPredicate<T, U> 
+{
+    boolean test(T t, U u);
+}
+
+Type Parameters:
+
+T - the type of the first argument to the predicate
+U - the type of the second argument the predicate
+
+Note : return type is boolean.
+
+---------------------------------------------------------------------
+import java.util.function.*;
+public class Lambda11 
+{
+	public static void main(String[] args)   
+    {
+        BiPredicate<String, Integer> filter = (x, y) -> 
+		{
+            return x.length() == y;  
+        };
+
+        boolean result = filter.test("Ravi", 4);
+        System.out.println(result);  
+
+        result = filter.test("Hyderabad", 10);
+        System.out.println(result);
+	}
+}
+---------------------------------------------------------------------
+import java.util.function.BiPredicate;
+
+public class Lambda12
+{
+  public static void main(String[] args) 
+  {
+    // BiPredicate to check if the sum of two integers is even
+    BiPredicate<Integer, Integer> isSumEven = (a, b) -> (a + b) % 2 == 0;
+
+        System.out.println(isSumEven.test(2, 3));    
+        System.out.println(isSumEven.test(5, 7));   
+    }
+}
+----------------------------------------------------------------------
+BiConsumer<T, U> functional interface :
+---------------------------------------
+It is a predefined functional interface available in java.util.function sub package.
+
+It is a functional interface in Java that represents an operation that accepts two input arguments and returns no result.
+
+It takes a method named accept, which takes two parameters and performs an action without returning any result.
+
+@FunctionalInterface
+public interface BiConsumer<T, U> 
+{
+    void accept(T t, U u);
+}
+-----------------------------------------------------------------------
+import java.util.function.BiConsumer;
+
+public class Lambda13
+{
+   public static void main(String[] args) 
+   {
+     BiConsumer<Integer, String> updateVariables =  (num, str) -> 
+		 {
+            num = num * 2;
+            str = str.toUpperCase();
+            System.out.println("Updated values: " + num + ", " + str);
+        };
+
+        
+        int number = 15;
+        String text = "nit";
+
+        updateVariables.accept(number, text);
+
+        // Values after the update (note that the original values are unchanged)
+        System.out.println("Original values: " + number + ", " + text);
+    }
+}
+-----------------------------------------------------------------------
+BiFunction<T, U, R> Functional interface :   
+---------------------------------
+It is a predefined functional interface available in java.util.function sub package.
+
+It is a functional interface in Java that represents a function that accepts two arguments and produces a result R.
+
+The BiFunction interface has a method named apply that takes two arguments and returns a result of type R.
+
+@FunctionalInterface
+public interface BiFunction<T, U, R> 
+{
+    R apply(T t, U u);
+}
+-----------------------------------------------------------------------
+import java.util.function.BiFunction;
+
+public class Lambda14
+{
+  public static void main(String[] args) 
+  {
+        // BiFunction to concatenate two strings
+    BiFunction<String, String, String> concatenateStrings = (str1, str2) -> str1 + str2;
+
+        String result = concatenateStrings.apply("Hello", " Java");
+        System.out.println(result);  
+
+
+      // BiFunction to find the length two strings
+    BiFunction<String, String, Integer> calculateLength = (str1, str2) -> str1.length() + str2.length();
+
+        Integer result1 = calculateLength.apply("Hello", "Java");
+        System.out.println(result1);  
+
+
+  }
+}
+-----------------------------------------------------------------------
+UnaryOpeartor<T>
+-----------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

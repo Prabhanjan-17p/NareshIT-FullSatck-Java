@@ -1,0 +1,52 @@
+Exception Handling :
+--------------------
+An exception is an abnormal situation OR un-expected situation in a normal execution flow.
+
+Due to an exception, the execution of the program will be disturbed first and then terminated permanently.
+
+Exception always encounter at runtime only.
+
+Exception encounter due to the following reasons :
+
+  1) The Wrong input given by the user.
+  2) Due to dependency, When one part of the program is dependent to another part to complete the task then there might be a chance of getting an exception. 
+  
+Different Criteria for Exception :
+-----------------------------------
+1) java.lang.ArithmeticException :
+----------------------------------
+If we divide a number by zero (an int value) then at runtime we will get an exception i.e java.lang.ArithmeticException 
+
+        int x = 18; 
+		int y = 0; 
+		int z = x/y;
+  
+2) java.lang.ArrayIndexOutOfBoundException :
+---------------------------------------------
+ If we try to access the index of an array which is not available then we will get java.lang.ArrayIndexOutOfBoundsException 
+  
+  int []arr = {10,20};
+  System.out.println(arr[3]);
+  
+3) java.lang.NumberFormatException
+-----------------------------------
+If we try to convert the String into corresponding int(primitive) OR Wrapper(Integer) and if the String is not in a numeric format then we will get runtime exception i.e java.lang.NumberFormatException. 
+
+Case 1:
+-------
+String str = "NIT";
+int val = Integer.parseInt(str);
+System.out.println(val);
+  
+Case 2:
+--------
+String str = "India";
+Integer val = Integer.valueOf(str);
+System.out.println(val);  
+  
+4) java.lang.NullPointerException :
+-----------------------------------
+If any reference variable is pointing to null and by using the reference variable we are calling any non static field OR non static method then we will get java.lang.NullPointerException.
+
+String str = null;
+System.out.println(str.toUpperCase());

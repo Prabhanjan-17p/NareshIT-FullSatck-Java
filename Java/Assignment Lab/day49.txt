@@ -1,0 +1,368 @@
+Assignment - 1
+--------------
+Create a Java program that demonstrates the usage of the Predicate interface to test if a number is even or prime. Your task is to implement a method testPredicate in the NumberTester class that tests a given number against a provided predicate.
+
+NumberTester Class(ELC):
+
+In the main method:
+Define two predicates:
+isEven: Checks if a given number is even.
+isPrime: Checks if a given number is prime.
+
+Take an integer number by using Scanner class and verify whether the given number is even OR prime by using Predicate.
+
+Test each predicate using the testPredicate method and print the result indicating whether the number satisfies each predicate.
+
+Test Cases:
+
+Test Case 1:
+Input: 13
+Output:
+Is 13 even? false
+Is 13 prime? true
+
+Test Case 2:
+Input: 5
+Output:
+Is 5 even? false
+Is 5 prime? true
+
+Test Case 3:
+Input: 20
+Output:
+Is 20 even? true
+Is 20 prime? false
+
+ANS ----------------
+package com.nareshIT.day49;
+
+import java.util.Iterator;
+import java.util.Scanner;
+import java.util.function.Predicate;
+
+public class NumberTester {
+
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		System.out.print("Enter a number : ");
+		int num = sc.nextInt();
+		
+		Predicate<Integer> test = x ->{
+			int ch = (int)x;
+			return testPredicate(ch,1);
+		};
+		System.out.println("Is "+num+" even? "+test.test(num));
+		
+		//For Prime check
+		Predicate<Integer> test1 = x ->{
+			int ch = (int)x;
+			return testPredicate(ch,2);
+		};
+		System.out.println("Is "+num+" prime? "+test1.test(num));
+		
+	}
+	public static boolean testPredicate(int num,int checkPE) {
+		
+		if (checkPE == 1) {
+			if (num % 2 == 0 ) {
+				return true;
+			}
+		}else {
+			boolean isPrime = true;
+			
+			for(int i=2 ; i< num;i++) {
+				if (num % i == 0) {
+					isPrime = false;
+					break;
+				}
+			}
+			if (isPrime) {
+				return true;
+			}else {
+				return false;
+			}
+		}
+		
+	
+		return false;
+	}
+
+}
+
+
+Assignment - 2
+--------------
+Create a Java program that demonstrates the usage of the Consumer interface to perform various operations on a given integer and string value. Your task is to define and use consumers to modify and display these values.
+
+ValueModifier class (ELC) :
+
+Instructions:
+Inside the main method, define two consumers:
+
+stringConsumer: Converts the string to uppercase and prints it.
+integerConsumer: Squares the integer value and prints it.
+
+Define a sample string value (e.g., "hello") and an integer value (e.g., 3).
+
+Use each consumer to perform the corresponding operation on the sample values by taking the value from Scanner class and print the results.
+
+Test Cases:
+Test Case 1:
+
+Input: "world", 5
+Output:
+Original string: world
+Original integer: 5
+After converting string to uppercase: WORLD
+After squaring the integer: 25
+
+Test Case 2:
+Input: "java", 7
+Output:
+Original string: java
+Original integer: 7
+After converting string to uppercase: JAVA
+After squaring the integer: 49
+
+Test Case 3:
+Input: "example", 4
+Output:
+Original string: example
+Original integer: 4
+After converting string to uppercase: EXAMPLE
+After squaring the integer: 16
+
+ANS ---------------
+package com.nareshIT.day49;
+
+import java.util.Scanner;
+import java.util.function.Consumer;
+
+public class ValueModifier {
+
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		System.out.print("Enter a Name : ");
+		String name = sc.nextLine();
+		System.out.print("Enter a Number : ");
+		int num = sc.nextInt();
+		System.out.println("Original string: "+name);
+		System.out.println("Original integer: "+num);
+		Consumer<String> upper = (x)->{
+			System.out.println("After converting string to uppercase: "+x.toUpperCase());
+		};
+		
+		Consumer<Integer> sq = (x)->{
+			System.out.println("After squaring the integer: "+x*x);
+		};
+		upper.accept(name);
+		sq.accept(num);
+		
+	}
+
+}
+
+
+Assignment - 3
+--------------
+Design a Java program that utilizes the Function interface within the main method to perform operations on both strings and integers. Implement two functions for string operations: calculating the string length and formatting an integer division result. Your task is to implement these operations inline within the main method using lambda expressions.
+
+FunctionApplier class(ELC):
+
+Requirements:
+Main Method:
+
+Define two lambda expressions by using Function<-,->:
+getStringLength: Computes and returns the length of the input string.
+divideAndFormat: Takes an integer input, divides it by 2.0, and returns the formatted result as a double.
+
+Print the results by calling the functions.
+
+Test Case 1:
+
+Input:
+String testString = "Hello";
+int testInteger = 10;
+Output:
+String length of "Hello": 5
+Result of dividing 10 by 2: 5.0
+
+Test Case 2:
+Input:
+String testString = "Java Programming";
+int testInteger = 15;
+Output:
+String length of "Java Programming": 17
+Result of dividing 15 by 2: 7.5
+
+Test Case 3:
+
+Input:
+String testString = "";
+int testInteger = 8;
+
+Output:
+String length of "": 0
+Result of dividing 8 by 2: 4.0
+
+
+ANS ---------------------------
+package com.nareshIT.day49;
+
+import java.util.Scanner;
+import java.util.function.Function;
+
+public class FunctionApplier {
+
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		System.out.print("Enter a String : ");
+		String name = sc.nextLine();
+		System.out.print("Enter a Number : ");
+		int num = sc.nextInt();
+		
+		Function<String, Integer> len = x -> x.length();
+		
+		Function<Integer, Double> div = x -> x/2.0;
+		
+		System.out.println("String length of "+name+": "+len.apply(name));
+		System.out.println("Result of dividing "+num+" by 2: "+div.apply(num));
+	}
+
+}
+
+
+Assignment - 4
+--------------
+Create a Java program using the Supplier interface to generate random passwords. The password should be 8 characters long.
+
+Contain a mix of uppercase letters, lowercase letters, digits, and special characters (e.g., @, #, $, !).
+
+Coding  Requirements:
+Create a PasswordGenerator class.
+
+Inside the main method :
+
+Define character sets [For password generation as shown below]
+
+ String upper = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+ String lower = "abcdefghijklmnopqrstuvwxyz";
+ String digits = "0123456789";
+ String special = "@#$%!&*";
+
+Combine all the character set into a single String
+
+Define a Supplier<String> named passwordSupplier which will generate and return a Random Password (Using all character set) by using java.util.Random class.
+
+Use this supplier to generate and print a random secure password.
+
+Output :
+
+Generated Password: Ab3#eT9!
+------------------------------
+
+
+
+(For knowning purpose)
+How to generate a random Number :
+-----------------------------------------------------------
+*There a predefined class called Random available in java.util package.
+
+* It contans a predefined non static method called nextInt(int bound)
+  the return type of this method is integer
+* In this method we cannot pass 0(zero) OR -ve value oterwise we will
+  get java.lang.IllegalArgumentException
+
+  Program to generate random number in between 0 to 99
+  public class Comparison {
+
+    public static void main(String[] args)
+    {
+        Random random = new Random();
+        int val = random.nextInt(100); // 0 to 99
+        System.out.println(val);
+    }
+
+}
+
+
+ANS -------------
+package com.nareshIT.day49;
+
+import java.util.Random;
+import java.util.function.Supplier;
+
+public class PasswordGenerator {
+
+	public static void main(String[] args) {
+		 String upper = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+		 String lower = "abcdefghijklmnopqrstuvwxyz";
+		 String digits = "0123456789";
+		 String special = "@#$%!&*";
+		 
+		 Random ran = new Random();
+//		 int con = ran.nextInt(3);
+//		 System.out.println(con);
+		 
+		Supplier<String> pass = () -> {
+			
+//			return pass1(upper,lower,digits,special);
+//			return pass2(upper,lower,digits,special);
+			return pass3(upper,lower,digits,special);
+		};
+		System.out.println("password = "+pass.get());
+	}
+	public static String pass1(String upper,String lower,String digits,String special) {
+		Random ran = new Random();
+		String passWord = "";
+			 for(int i =1;i<=8;i++) {
+				 if (i == 1 || i == 5) {
+					 int chUpper = ran.nextInt(26);
+					 passWord += upper.charAt(chUpper);
+				}else if (i == 2 || i == 6) {
+					int chLower = ran.nextInt(26);
+					passWord += lower.charAt(chLower);
+				}else if (i == 3 || i == 7) {
+					int chNum = ran.nextInt(10);
+					passWord += digits.charAt(chNum);
+				}else if (i == 4 || i == 8){
+					int chSpecial = ran.nextInt(7);
+					passWord += special.charAt(chSpecial);
+				}
+		}
+		return passWord;
+	}
+	public static String pass2(String upper,String lower,String digits,String special) {
+		Random ran = new Random();
+		String passWord = "";
+		while(passWord.length() != 16) {
+			 int chFirst = ran.nextInt(4);
+				 if (chFirst == 1 ) {
+					 int chUpper = ran.nextInt(26);
+					 passWord += upper.charAt(chUpper);
+				}else if (chFirst == 2 ) {
+					int chLower = ran.nextInt(26);
+					passWord += lower.charAt(chLower);
+				}else if (chFirst == 3 ) {
+					int chNum = ran.nextInt(10);
+					passWord += digits.charAt(chNum);
+				}else if (chFirst == 4 ){
+					int chSpecial = ran.nextInt(7);
+					passWord += special.charAt(chSpecial);
+				}
+			 }
+		return passWord;
+	}
+	
+	public static String pass3(String upper,String lower,String digits,String special) {
+		Random ran = new Random();
+		String totString = upper+lower+digits+special;
+		String passWord = "";
+		for(int i =1;i<=8;i++) {
+			int index = ran.nextInt(69);
+			passWord += totString.charAt(index);
+		}
+		return passWord;
+	}
+
+}

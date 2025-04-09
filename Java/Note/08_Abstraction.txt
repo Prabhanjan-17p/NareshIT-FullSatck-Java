@@ -1766,138 +1766,294 @@ public class Lambda14
   }
 }
 -----------------------------------------------------------------------
-UnaryOpeartor<T>
+08-04-2025
+------------
+UnaryOperator<T> :[Operand type<T> and return result<T> both are same type]
+----------------------------------------------------------------------
+It is a predefined functional interface available in java.util.function sub package.
+
+It is a functional interface in Java that represents an operation on a single operand that produces a result of the same type as its operand. This is a specialization of Function for the case where the operand and result are of the same type.
+
+It has a single type parameter, T, which represents both the operand type and the result type.
+
+@FunctionalInterface
+public interface UnaryOperator<T> extends Function<T,T>
+{
+  public abstract T apply(T x);
+}
+----------------------------------------------------------------------
+import java.util.function.*;
+public class Lambda15  
+{
+	public static void main(String[] args) 
+	{
+		UnaryOperator<Integer> square =  x -> x*x;		
+        System.out.println(square.apply(5));
+
+		UnaryOperator<String> concat = str -> 
+         str.concat("base");
+		 System.out.println(concat.apply("Data"));
+	}
+}
+-----------------------------------------------------------------------
+BinaryOperator<T>
 -----------------
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+It is a predefined functional interface available in java.util.function sub package.
+
+It is a functional interface in Java that represents an operation upon two operands of the same type, producing a result of the same type as the operands. 
+
+This is a specialization of BiFunction for the case where the operands and the result are all of the same type.
+
+It has two parameters of same type, T, which represents both the operand types and the result type.
+
+@FunctionalInterface
+public interface BinaryOperator<T> extends BiFunction<T,T,T>
+{
+  public abstract T apply(T x, T y);
+}
+-----------------------------------------------------------------------
+import java.util.function.*;
+public class Lambda16  
+{
+	public static void main(String[] args) 
+	{
+	  BinaryOperator<Integer> add = (a, b) -> a + b;
+          System.out.println(add.apply(3, 5));  
+	}
+}
+-----------------------------------------------------------------------
+Can we use all different types of variables in the lambda body ?
+-----------------------------------------------------------------
+Yes, we can use all different types of variable in the lambda body like static, non static and local variable.
+
+While using the local variable in the Lambda body, the local variable must be final OR effectively final.
+
+@FunctionalInterface
+interface Drawable
+{
+	void draw();
+}
+
+public class LambdaBodyLocalVariable 
+{
+	public static void main(String[] args) 
+	{
+	   String shapeType = "Circle";	
+	   //shapeType = "Square"; //Invalid	  
+		
+	  Drawable d1 =	() -> System.out.println("Drawing "+shapeType);
+	  d1.draw();
+	}
+}
+-----------------------------------------------------------------------
+Does an interface extend a class :
+----------------------------------
+No, an interface can't extend a class, An interface can extend another interface.
+
+In order to support upcasting concept in java, all the public and non final methods of Object class are re-declared inside an interface as an abstract method if that interface does not extend from another interface.
+
+package com.ravi.interface_object_class;
+
+interface Printable 
+{
+	
+}
+public class InterfaceDemo1 
+{
+	public static void main(String[] args) 
+	{
+		Printable p = null;
+        p.toString();
+        p.hashCode();
+        p.equals(null);
+
+	}
+
+}
+-----------------------------------------------------------------------
+package com.ravi.interface_object_class;
+
+@FunctionalInterface
+interface Callable   
+{
+	public abstract void call();
+	public abstract String toString();
+	public abstract int hashCode();
+	public abstract boolean equals(Object obj);
+	
+}
+class Call extends Object implements Callable
+{
+	@Override
+	public void call() 
+	{
+				
+	}	
+}
+
+public class InterfaceDemo2 {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+	}
+
+}
+Note : java compiler will not add any final method of Object class inside an interface because abstract method we can't declare as final.
+-----------------------------------------------------------------------
+Can a default method of interface override/write the public method of Object class with same signature and return type.
+
+No, a default method of an interface can't override/write the public method of Object class due to the following two reasons :
+(01-JAN)
+
+1) Ambiguity issue : Object class already contain the method which
+                     interface wants to define as a default method hence it will provide Ambiguity to sub class
+		     (Implementer class)
+
+
+2) Priority : Concrete method is having more priority than 
+              default method that means Object class method is having more priority than default method of interface so compiler will not allow to write any default method as a public method of Object class.(There is no use)
+               
+
+package com.ravi.interface_object_class;
+
+public interface Callable 
+{
+  default String toString()  //error
+  {
+	  return "Hello";
+  }
+	
+  default int hashCode() //error
+  {
+	  return 10;
+  }
+	
+}
+
+So, the conclusion is Object class methods we cannot write as a default method inside an interface.
+-----------------------------------------------------------------------
+09-04-2025
+------------
+Interface from JAVA 9V
+----------------------
+We can write private static and private non static (not public)
+methods inside an interface from java 9 version.
+
+The main purpose of providing these two methods inside an 
+interface are as follows :
+
+1) Code Reusability 
+--------------------
+If two or more than two default methods want to share a common code (Helper Method code) then we can write these common code in private methods so it will enhance code reusability.
+
+2) Hide the Logic from Outer World 
+----------------------------------
+By writing these code in private static and private non static methods the actual logic is not visible to the outer world so, It is way to make our interface as a fully abstract class so 100% abstraction is possible.
+
+Note : By default interface is not Fully abstract but we can make it full abstract from java 9V by writing the logic inside private method.
+
+Note : from default method we can call private static as well as private non static methods but from public static method (java 8V) of interface we can call only private static method.
+----------------------------------------------------------------------
+package com.ravi.java_9;
+
+interface Printable
+{
+	 int printingSpeed = 40;  //JDK 1.0
+	 
+	 void print();  //JDK 1.0
+	 	 
+	 
+	 default void m1() //JDK 1.8
+	 {
+		 m3();
+		 m4();
+	 }
+	 
+	 default void anotherMethod()
+	 {
+		m3();
+		m4();
+	 }
+	 
+	 
+	 static void m2() //JDK 1.8
+	 {
+		m4();
+	 }
+	 
+	 private void m3() //java 9 [private non static method]
+	 {
+		 System.out.println("Private non static method");
+	 }
+	 
+	 private static void m4() //java 9 [private  static method]
+     {
+		 System.out.println("Private static method");
+	 }	 
+}
+class Print implements Printable
+{
+	@Override
+	public void print() 
+	{
+		System.out.println("Printing Speed is :"+printingSpeed);		
+	}
+	
+}
+
+public class JavaNewFeatures {
+
+	public static void main(String[] args) 
+	{
+		Printable p = new Print();
+		System.out.println(p.toString());
+		p.m1();
+		Printable.m2();
+	}
+
+}
+-----------------------------------------------------------------------
+What is a Marker interface in java :
+-------------------------------------
+If an interface does not contain any field OR method, basically an empty interface OR tag interface is known as Marker Interface.
+
+Example :
+---------
+public interface Drawbale  //Marker interface
+{
+
+}
+
+Java software people has provided the following marker interface :
+
+1) java.lang.Cloneable
+2) java.io.Serializable
+3) java.util.RandomAccess
+
+* The main purpose of marker interface to provide the additional information to JVM regarding the Object.
+-----------------------------------------------------------------------
+
+ ****What is difference between abstract class and interface ?
+----------------------------------------------------------------
+The following are the differences between abstract class and interface.
+
+1) An abstract class can contain instance variables but interface variables are by default public , static and final (no instance variable).
+
+2) An abstract class can have state (properties) of an object but interface can't have state of an object.
+
+3) An abstract class can contain constructor but inside an interface we can't define constructor.
+
+4) An abstract class can contain instance and static blocks but inside an interface we can't define any blocks.
+
+5) Abstract class can't refer Lambda expression but using Functional interface we can refer Lambda Expression.	
+
+6) By using abstract class multiple inheritance is not possible but by using interface we can achieve multiple inheritance.
+
+--------------OOPs Completed..........................................
+
+Exception Handling :
+--------------------
 
 
 

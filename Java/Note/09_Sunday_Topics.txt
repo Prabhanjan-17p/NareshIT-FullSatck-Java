@@ -1,0 +1,757 @@
+SUNDAY COMMON TOPIC :
+----------------------
+1) Object class and its method (11 Methods , 4 methods)
+2) Nested class OR Inner class in Java 
+3) Enum in Java
+4) Input/Output and File Handling
+
+Object class and Methods :
+--------------------------
+Object is the super class for all the classes we have in java.
+
+We can override (non final methods) the methods of Object class to sub classes.
+
+Example :
+
+public class Ravi
+{
+  //Here we can override the methods of Object class but non final methods
+}
+
+Object class contains total 11 methods.
+
+Whenever we create an Object in java, due to constructor chaining, first of all Object class Constructor will be executed, Actually the execution of non static members will not be started without executing 
+this Object class Constructor.
+
+class Super
+{
+	public Super(String name)
+	{
+		System.out.println(name);
+	}	
+}
+class Sub extends Super
+{
+	public Sub()
+	{
+		super(getName());
+	}
+	
+	public String getName()
+	{
+		return "Scott";
+	}	
+}
+
+public class ObjectClassConstructor 
+{
+	public static void main(String[] args) 
+	{
+		new Sub();
+	}
+}
+
+Note : It will generate CE becoz Object class constructor is not executed so we can't start the execution of non static member.
+-----------------------------------------------------------------------
+If we declare the getName() method as static method then the program will be executed becoz static members are loaded at the time of class loading.
+
+class Super
+{
+	public Super(String name)
+	{
+		System.out.println(name);
+	}	
+}
+class Sub extends Super
+{
+	public Sub()
+	{
+		super(getName());
+	}
+	
+	public static String getName()
+	{
+		return "Scott";
+	}	
+}
+
+public class ObjectClassConstructor 
+{
+	public static void main(String[] args) 
+	{
+		new Sub();
+	}
+}
+----------------------------------------------------------------------
+Working with Object class Methdos :
+-----------------------------------
+1) public final native Class getClass() :
+-----------------------------------------
+getClass() is a predefined non static method of Object class.
+
+It is used to provide runtime information of the class that means it will provide class keyword + Fully Qualified Name (Package Name + Class Name)
+
+The return type of this method is java.lang.Class so further we can call the method of java.lang.Class class by using method Chaining.
+java.lang.Class class has provided getName() method which will return Fully Qualified Name in String format.
+
+package com.ravi.object_class_method;
+
+class Test
+{
+	
+}
+
+public class GetClassDemo {
+
+	public static void main(String[] args) 
+	{
+       Test t1 = new Test();
+       Class cls = t1.getClass();
+       System.out.println(cls);  //class keyword + Fully Qualified Name
+
+       System.out.println("By Using Method Chaining...");
+       
+       Test t2 = new Test();
+       String name = t2.getClass().getName();
+       System.out.println(name);       
+       
+	}
+}
+----------------------------------------------------------------------
+2) public native int hashCode() :
+----------------------------------
+It is a predefined non static method of Object class.
+
+It is used to calculate the hashCode of the Object.
+
+By using this hashCode of the Object, we can find the bucket location 
+of the Object in the hashtable data structure by using Collections Framework.
+
+The hashcode of the Object is not meant for object comparison (for Object comparison we should use equals(Object obj)) it is used to find the bucket location. 
+
+There is a contract between hashCode() and equals() method is "If two object are same by using equals(Object obj) method then hashCode of both the objects must be same but if two objects are having same hashCode then the Object may be same or different"
+
+package com.ravi.object_class_method;
+
+class Student
+{
+}
+
+
+public class HashCodeDemo1 {
+
+	public static void main(String[] args) 
+	{
+		Student s1 = new Student();
+		Student s2 = new Student();
+		Student s3 = s2;
+		
+		
+		System.out.println(s1.hashCode() +" : "+s2.hashCode());
+		System.out.println(s3.hashCode() +" : "+s2.hashCode());
+		
+	}
+
+}
+----------------------------------------------------------------------
+package com.ravi.object_class_method;
+
+class Sample
+{
+	
+}
+
+public class HashCodeDemo2 {
+
+	public static void main(String[] args) 
+	{
+		Sample s1 = new Sample();
+		System.out.println(s1.hashCode());
+		
+		Sample s2 = new Sample();
+		System.out.println(s2.hashCode());
+
+	}
+
+}
+----------------------------------------------------------------------
+3) public String toString() :
+------------------------------
+It is a predefined non static method of Object class.
+
+It is "String representation of the Object" so anyone can easily read this concise information.
+
+In order to print the Object properties we should Override toString() method in the sub classes.
+
+If we don't override then it will call Object class toString() method 
+which will retun Fully Qualified Name @ and hexadecimal format of 
+hashcode of the object
+
+The logic written inside Object class toString() :
+--------------------------------------------------
+public String toString()
+{
+  return getClass().getName()+"@"+Integer.toHexString(hashCode());
+}
+
+package com.ravi.basic;
+
+public class Ravi
+{
+}
+
+Ravi r1 = new Ravi();
+System.out.println(r1); //com.ravi.basic.Ravi@67af
+
+Programs :
+-----------
+package com.ravi.object_class_method;
+
+class Demo  
+{
+	@Override
+	public String toString()
+	{
+		return "Batch 43";
+	}
+}
+
+public class ToStringDemo1 
+{
+	public static void main(String[] args) 
+	{
+		Demo d1 = new Demo();
+		System.out.println(d1);
+	}
+
+}
+
+
+package com.ravi.object_class_method;
+
+class Hello
+{
+	
+}
+
+public class ToStringDemo2 {
+
+	public static void main(String[] args)
+	{
+		Hello h1 = new Hello();
+		System.out.println(h1);
+
+		System.out.println("...............");
+		
+		int hashCode = h1.hashCode();
+		System.out.println(Integer.toHexString(hashCode));
+		
+	}
+
+}
+
+Note : toString() internally uses getClass() and hashCode() method of 
+       Object class.
+----------------------------------------------------------------------
+4) public boolean equals(Object obj) :
+------------------------------------
+It is a predefined non static method of Object class.
+
+It is used to compare two Objects based on the memory referenec OR memory address of two Objects because internally it uses == operator only as shown in the program below.
+
+package com.ravi.object_class_method;
+
+class Customer
+{
+	private int id;
+	private String name;
+	
+	public Customer(int id, String name) 
+	{
+		super();
+		this.id = id;
+		this.name = name;
+	}	
+}
+
+public class EqualsDemo1
+{
+	public static void main(String[] args) 
+	{
+		Customer c1 = new Customer(111, "Scott");
+		Customer c2 = new Customer(111, "Scott");
+		Customer c3 = c2;
+		
+		System.out.println(c1==c2);
+		System.out.println(c1.equals(c2));
+		
+		System.out.println("-----------------------");
+		System.out.println(c2==c3);
+		System.out.println(c2.equals(c3));
+		
+	}
+
+}
+
+Note : Here c1 and c2 both are two different Object so equals(Object obj) method of Object class retunds false.
+
+If we observe closely then we will find that c1 and c2 both are having same content that means CONTENT WISE SAME BUT ADDRESS WISE DIFFERENT
+
+If we want to compare two Object based on the Content then we should override equals(Object obj) method from Object class.
+
+Overriding the equals(Object obj) method from Object class for content comparison :
+------------
+package com.ravi.object_class_method;
+
+class Product
+{
+	int id;
+	String name;	
+	
+	public Product(int id, String name) 
+	{
+		super();
+		this.id = id;
+		this.name = name;
+	}
+
+
+    //Overriding for content Comparison
+	public boolean equals(Object obj)
+	{
+		//First Object Data
+		int id1 = this.id;
+		String name1 = this.name;
+		
+		//2nd Object data
+		Product p2 = (Product)obj;
+		int id2 = p2.id;
+		String name2 = p2.name;
+		
+		if(id1==id2 && name1.equals(name2))
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}		
+	}
+}
+
+public class EqualsDemo2 
+{
+	public static void main(String[] args) 
+	{
+		Product p1 = new Product(111, "Camera");
+		Product p2 = new Product(111, "Camera");
+		
+		System.out.println(p1.equals(p2));
+
+	}
+
+}
+----------------------------------------------------------------------
+08-04-2025
+----------
+public boolean equals(Object obj) :
+-----------------------------------
+It is a predefined non static method of Object class.
+
+It is used to compare two objects based on the memory refrenec because, Object class equals(Object obj) method internally uses == opeartor.
+
+String class and All the wrapper classes have overridden equals(Object obj) and hashCode() method.
+
+
+package com.ravi.equals_demo;
+
+class Student
+{
+	private int id;
+	private String name;
+	
+	public Student(int id, String name) 
+	{
+		super();
+		this.id = id;
+		this.name = name;
+	}
+}
+public class EqualsDemo1 
+{
+	public static void main(String[] args) 
+	{
+		Student s1 = new Student(111,"Scott");
+		Student s2 = new Student(111,"Scott");
+		
+		System.out.println(s1==s2); //false
+		System.out.println(s1.equals(s2)); //false
+
+	}
+
+}
+
+Note : Here we will get the output false and false because Object class equals(Object obj) method internally uses == Opeartor only.
+------------------------------------------------------------------------
+If we want to compare two Objects BASED ON THE CONTENT but not memory address then we should override equals(Object obj) method from 
+Object class.
+
+The following program explains how to compare two Objects based on the content by overriding equals(Object obj) method of Obejct class.
+
+
+package com.ravi.equals_demo;
+
+class Product
+{
+	private int id;
+	private String name;
+	
+	public Product(int id, String name) 
+	{
+		super();
+		this.id = id;
+		this.name = name;
+	}
+	
+	@Override
+	public int hashCode()
+	{
+		return this.id;
+	}
+	
+	
+	//Content Comparison
+	@Override
+	public boolean equals(Object obj)  //this 
+	{
+		//retrieving first object data
+		int id1 = this.id;
+		String name1 = this.name;
+		
+		//retrieving second object data
+		Product p2 = (Product) obj;
+		int id2 = p2.id;
+		String name2 = p2.name;
+		
+		if(id1==id2  && name1.equals(name2))
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+		
+	}
+	
+	
+}
+
+public class EqualsDemo2 
+{
+	public static void main(String[] args) 
+	{
+		Product p1 = new Product(111, "Laptop");
+		Product p2 = new Product(111, "Laptop");		
+		System.out.println(p1.equals(p2));	
+		
+		System.out.println("..............");
+		System.out.println(p1.hashCode());
+		System.out.println(p2.hashCode());
+		
+	}
+
+}
+------------------------------------------------------------------------
+One more program to override equals(Object obj) method for content 
+comparison.
+
+package com.ravi.equals_demo;
+
+class Customer
+{
+	private int cid;
+	private String cname;
+	public Customer(int cid, String cname) 
+	{
+		super();
+		this.cid = cid;
+		this.cname = cname;
+	}
+	
+	@Override
+	public boolean equals(Object obj)
+	{
+		Customer c2 = (Customer) obj;
+		
+		if(this.cid == c2.cid && this.cname.equals(c2.cname))
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+		
+	}
+	
+}
+
+
+public class EqualsDemo3 {
+
+	public static void main(String[] args) 
+	{
+		Customer c1 = new Customer(1, "Alen");
+		Customer c2 = new Customer(1, "Alen");
+		
+		System.out.println(c1.equals(c2));
+	}
+
+}
+------------------------------------------------------------------------
+It is recommended to compare same type of Object using equals(Object obj) method, If an end user compares two different types of Object OR If null comparison then to avoid ClassCastException we should use instanceof operator.
+
+package com.ravi.equals_demo;
+
+class Employee
+{
+	private int eid;
+	private String ename;
+	
+	public Employee(int eid, String ename) 
+	{
+		super();
+		this.eid = eid;
+		this.ename = ename;
+	}
+	
+	@Override
+	public boolean equals(Object obj)
+	{
+		if(obj instanceof Employee)
+		{
+			Employee e2 = (Employee) obj;
+			
+			if(this.eid == e2.eid && this.ename.equals(e2.ename))
+			{
+				return true;
+			}
+			else
+			{
+				return false;
+			}
+		}
+		else
+		{
+			System.err.println("Comparison is not possible");
+			return false;
+		}
+		
+	}
+	
+}
+public class EqualsDemo4 
+{
+	public static void main(String[] args) 
+	{
+		Employee e1 = new Employee(111, "Smith");
+		Student s1 = new Student(111,"Smith");
+		System.out.println(e1.equals(s1));
+		
+		System.out.println("..........");
+		System.out.println(e1.equals(null));	
+	}
+}
+
+class Student
+{
+	private int sid;
+	private String sname;
+	
+	public Student(int sid, String sname) 
+	{
+		super();
+		this.sid = sid;
+		this.sname = sname;
+	}
+	
+}
+------------------------------------------------------------------------
+equals(Object obj) method with String and Wrapper classes :
+------------------------------------------------------------
+package com.ravi.equals_demo;
+
+public class EqualsDemo5 {
+
+	public static void main(String[] args) 
+	{
+		String s1 = "india";
+		String s2 = new String("india");
+		
+		System.out.println(s1==s2); //false
+		System.out.println(s1.equals(s2)); //true [Overridden]	
+		
+		System.out.println(s1.hashCode()+" "+s2.hashCode());		
+	}
+}
+String class has overridden this equals(Object obj) method from Object class for content comparsion.
+-----------------------------------------------------------------------
+package com.ravi.equals_demo;
+
+public class EqualsDemo6 {
+
+	public static void main(String[] args)
+	{
+		Integer i1 = 127;
+		Integer i2 = 127;
+		System.out.println(i1==i2);
+		System.out.println(i1.equals(i2));
+		
+		System.out.println(".................");
+		
+		Integer x = 128;
+		Integer y = 128;
+		System.out.println(x==y);
+		System.out.println(x.equals(y));
+	}
+
+}
+----------------------------------------------------------------------
+09-04-2025
+-----------
+Record class in java :        
+-----------------------
+public abstract class Record extends Object.
+
+record Student(){} //final class Student extends Record [Compiler generated code]
+
+It is a new feature introduced from java 17.(In java 14 preview version)
+
+As we know only objects are moving in the network from one place to another place so we need to write BLC class with nessacery requirements to make BLC class as a Data carrier class.
+
+Records are immutable data carrier so, now with the help of record we can send our immutable data (final data) from one application to another application.
+
+It is also known as DTO (Data transfer object) OR POJO (Plain Old Java Object) classes.
+
+It is mainly used to concise our code as well as remove the boiler plate code.
+
+In record, automatically constructor will be generated which is known as canonical constructor and the variables which are known as components are by default final.
+
+In order to validate the outer world data, we can write our own constructor which is known as compact constructor.
+
+Record will automatically generate the implemenation of toString(), equals(Object obj) and hashCode() method.
+
+We can define static and non static method as well as static variable  and static block inside the record. We cannot define instance variable and instance block inside the record.
+
+We cann't extend or inherit records because by default every record is implicilty final and It is extending from java.lang.Reocrd class, which is an abstract class.
+
+We can implement an interface by using record.
+
+We don't have setter facility in record because by default components are final.
+----------------------------------------------------------------------
+package com.ravi.record_feature;
+
+import java.util.Objects;
+
+public class EmployeeClass 
+{
+	private int empId;
+	private String empName;
+
+	public EmployeeClass(int empId, String empName) 
+	{
+		super();
+		this.empId = empId;
+		this.empName = empName;
+	}
+
+	public int getEmpId() {
+		return empId;
+	}
+
+	public void setEmpId(int empId) {
+		this.empId = empId;
+	}
+
+	public String getEmpName() {
+		return empName;
+	}
+
+	public void setEmpName(String empName) {
+		this.empName = empName;
+	}
+
+	@Override
+	public String toString() {
+		return "EmployeeClass [empId=" + empId + ", empName=" + empName + "]";
+	}
+
+	@Override
+	public int hashCode() 
+	{
+		return Objects.hash(empId, empName);
+	}
+
+	@Override
+	public boolean equals(Object obj) 
+	{
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		EmployeeClass other = (EmployeeClass) obj;
+		return empId == other.empId && Objects.equals(empName, other.empName);
+	}
+}
+
+
+package com.ravi.record_feature;
+
+              //Canonical Constructor [Components]
+public record EmployeeRecord(int eid, String ename) 
+{	
+	//Compact Constructor [For validating Outer Data]
+	public EmployeeRecord
+	{
+	   if(eid<=0)
+	   {
+		   System.err.println("Invalid id");
+	   }
+	  
+	}
+}
+
+package com.ravi.record_feature;
+
+public class Comparison {
+
+	public static void main(String[] args) 
+	{
+		//class
+		EmployeeClass cls1 = new EmployeeClass(111, "Scott");
+		System.out.println(cls1);
+		EmployeeClass cls2 = new EmployeeClass(111, "Scott");
+		System.out.println(cls1.equals(cls2));
+		System.out.println(cls1.hashCode() +" : "+cls2.hashCode());
+		System.out.println(cls1.getEmpId());
+		
+		System.out.println("------------------------");
+
+		//record
+		EmployeeRecord rec1 = new EmployeeRecord(-101, "Alen");
+		System.out.println(rec1);
+		EmployeeRecord rec2 = new EmployeeRecord(999, "Alen");
+		System.out.println(rec1.equals(rec2));
+		System.out.println(rec1.hashCode()+" : "+rec2.hashCode());
+		System.out.println(rec1.eid());
+	}
+
+}
+-----------------------------------------------------------------------
+Nested class in java :
+----------------------
+
+

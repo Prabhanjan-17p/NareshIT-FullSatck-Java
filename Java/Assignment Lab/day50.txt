@@ -1,0 +1,344 @@
+Ques - 1
+--------------
+Question:
+
+Write a Java program that defines a method testPredicate to test a given number against a provided predicate.
+class name CalculationLogic(ELC) :
+
+Method name : testPredicate
+Access Modifier : public
+Non-Access Modifier : static
+return type : boolean
+parameters : int, Predicate<Integer>
+This method should return a boolean value indicating whether the given number satisfies the provided predicate.
+
+
+In the main method:
+Define three predicates:
+isEven: Checks if a given number is even.
+isGreaterThanTen: Checks if a given number is greater than 10.
+isPrime: ishat it tests the given number against the provided predicate and returns the result.
+
+Define a sample integer number (e.g., 13).
+Test each predicate using the testPredicate method and print the result indicating whether the number satisfies each predicate.
+
+Test Cases:
+
+Test case 1 : Sample Number (13):
+13 is even: false
+13 is greater than 10: true
+13 is prime: true
+
+Test Case 2:
+
+For number1 = 6:
+6 is even: true
+6 is greater than 10: false
+6 is prime: false
+
+Test Case 3:
+For number2 = 17:
+17 is even: false
+17 is greater than 10: true
+17 is prime: true
+ANS 
+-----------
+package com.nareshIT.day50;
+
+import java.util.Scanner;
+import java.util.function.Predicate;
+
+public class CalculationLogic {
+
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		System.out.print("Enrter a number : ");
+		int num = sc.nextInt();
+		
+        Predicate<Integer> isEven = num1 -> num1 % 2 == 0;
+
+        Predicate<Integer> isGreaterThanTen = num1 -> num1 > 10;
+
+        Predicate<Integer> isPrime = num1 -> {
+            if (num1 <= 1) return false;
+            for (int i = 2; i <= Math.sqrt(num1); i++) {
+                if (num1 % i == 0) return false;
+            }
+            return true;
+        };
+
+        System.out.println(num + " is even: " + testPredicate(num, isEven));
+        System.out.println(num + " is greater than 10: " + testPredicate(num, isGreaterThanTen));
+        System.out.println(num + " is prime: " + testPredicate(num, isPrime));
+	}
+	public static boolean testPredicate(int x, Predicate<Integer> t) {
+		return t.test(x);
+	}
+}
+
+
+
+Ques - 2
+---------------
+Question:
+
+Create a Java program that defines a method modifyValue to perform modifications on an integer value using a provided consumer. The program should include three consumers: doubleValue, incrementBy, and squareValue, each with different modification operations. Your task is to implement the modifyValue method such that it accepts an integer value and a consumer as parameters, and applies the modification specified by the consumer to the value.
+
+class name  ValueModifier(ELC): 
+
+Define a method modifyValue in the ValueModifier class :
+Method name : modifyValue
+Access Modifier : public
+Non-Access Modifier : static
+return type : void
+parameters : int value, Consumer<Integer>
+This method should apply the operation specified by the consumer to the value.
+Implement the modifyValue method such that it applies the operation specified by the consumer to the value.
+
+In the main method:
+Define three consumers:
+doubleValue: Doubles the value.
+incrementBy: Increments the value by a given value increment.
+squareValue: Squares the value.
+
+Define a sample integer value (e.g., 5).
+Test each consumer using the modifyValue method and print the modified value after each operation.
+
+Example Output:
+Original value: 5
+After doubling the value: 10
+After incrementing the value by 3: 8
+After squaring the value: 64
+
+Test Case 1:
+For sampleValue = 5:
+
+Expected Output :
+Original value: 5
+After doubling the value: 10
+After incrementing the value by 3: 8
+After squaring the value: 25
+
+Test Case 2: 
+Negative Value = -8
+
+Expected Output :
+Original value: -8
+After doubling the value: -16
+After incrementing the value by 3: -5
+
+Test Case 3: Zero Value = 0
+Expected Output :
+Original value: 0
+After doubling the value: 0
+After incrementing the value by 3: 3
+ANS 
+----------------
+package com.nareshIT.day50;
+
+import java.util.Scanner;
+import java.util.function.Consumer;
+
+public class ValueModifier {
+
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		System.out.print("Enrter a number : ");
+		int num = sc.nextInt();
+		System.out.println("Original value: "+num);
+		
+		Consumer<Integer> doubling = x ->{
+			System.out.println("After doubling the value: "+(x+x));
+		};
+		
+		Consumer<Integer> incrementing = x ->{
+			System.out.println("After incrementing the value by 3: "+(x+3));
+		};
+		
+		Consumer<Integer> squaring = x ->{
+			System.out.println("After squaring the value: "+(x*x));
+		};
+		
+		testPredicate(num , doubling);
+		testPredicate(num , incrementing);
+		testPredicate(num , squaring);
+	}
+	public static void testPredicate(int value, Consumer<Integer> con) {
+		con.accept(value);
+	}
+}
+
+
+
+Ques - 3
+-------------
+Question:
+
+Create a Java program that defines a method applyFunction to apply a function to a given integer value. The program should include three functions: add, multiply, and subtract, each with different operations. Your task is to implement the applyFunction method such that it accepts an integer value and a function as parameters, and applies the operation specified by the function to the value.
+
+FunctionApplier class(ELC) :
+
+Method name : applyFunction
+Access Modifier : public
+Non-Access Modifier : static
+return type : int
+parameters : int value,  Function<Integer, Integer>
+This method should apply the operation specified by the function to the value and return the result.
+
+In the main method:
+Define three functions:
+add: Adds a given value increment to the input value.
+multiply: Multiplies the input value by a given value factor.
+subtract: Subtracts a given value decrement from the input value.
+
+Define a sample integer value (e.g., 10).
+Test each function using the applyFunction method and print the result after each operation.
+
+Test Case 1:
+For sampleValue = 10:
+
+Expected Output :
+Original value: 10
+After adding 5: 15
+After multiplying by 2: 20
+After subtracting 3: 7
+
+Test Case 2: 
+Negative Value = -15
+
+Expected Output :
+Original value: -15
+After adding 5: -10
+After multiplying by 2: -30
+After subtracting 3: -18
+
+Test Case 3: 
+Large Value = 100
+
+Expected Output :
+Original value: 100
+After adding 5: 105
+After multiplying by 2: 200
+After subtracting 3: 97
+ANS 
+-----
+package com.nareshIT.day50;
+
+import java.util.Scanner;
+import java.util.function.Function;
+
+public class FunctionApplier {
+
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		System.out.print("Enrter a number : ");
+		int num = sc.nextInt();
+		System.out.println("Original value: "+num);
+		if (num < 0) {
+			System.err.println("Negative Number...");
+			System.exit(0);
+		}
+		
+		Function<Integer, Integer> adding = x -> {
+			return x+5;
+		};
+		
+		Function<Integer, Integer> multiplying = x -> {
+			return x*2;
+		};
+		
+		Function<Integer, Integer> subtracting = x -> {
+			return x-3;
+		};
+		
+		System.out.println("After adding 5: "+applyFunction(num, adding));
+		System.out.println("After multiplying by 2: "+applyFunction(num, multiplying));
+		System.out.println("After subtracting 3: "+applyFunction(num, subtracting));
+		
+	}
+	public static int applyFunction(int value,  Function<Integer, Integer> fun) {
+		return fun.apply(value);
+	}
+
+}
+
+
+Ques - 4
+---------------
+Question:
+
+Create a Java program that demonstrates the usage of the Supplier interface to generate random numbers within a specified range. Your task is to implement a method generateRandomNumber in the NumberGenerator class that generates a random integer between a given minimum and maximum value (inclusive).
+
+NumberGenerator class(ELC) :
+
+Method name : generateRandomNumber
+Access Modifier : public
+Non-Access Modifier : static
+return type : int
+parameters : int min, int max
+Implement the generateRandomNumber method such that it generates and returns a random integer between the specified min and max values (inclusive) by using Supplier<Integer>.
+
+In the main method:
+
+Prompt the user to enter the minimum and maximum values for the range.
+Use the generateRandomNumber method to generate a random number within the specified range.
+Print the generated random number.
+
+Example Output:
+Enter the minimum value: 5
+Enter the maximum value: 10
+Random number generated: 7
+
+Test Case 1
+Input:
+Enter the minimum value: 5
+Enter the maximum value: 10
+Output:
+Random number generated: 7
+
+Test Case 2
+Input:
+Enter the minimum value: 1
+Enter the maximum value: 100
+
+Output:
+Random number generated: 42
+Test Case 3
+
+Input:
+Enter the minimum value: 10
+Enter the maximum value: 20
+
+Output:
+Random number generated: 15
+
+ANS 
+----
+package com.nareshIT.day50;
+
+import java.util.Random;
+import java.util.Scanner;
+import java.util.function.Supplier;
+
+public class NumberGenerator {
+
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		System.out.print("Enrter a min number : ");
+		int min = sc.nextInt();
+		System.out.print("Enrter a max number : ");
+		int max = sc.nextInt();
+//		System.out.println(min+" : "+max);
+		
+		Supplier<Integer> ranGen = ()->{
+			return generateRandomNumber(min,max);
+		};
+		System.out.println("Random number generated: "+ranGen.get());
+	}
+	public static int generateRandomNumber(int min, int max) {
+		Random ran = new Random();
+		
+		int index = ran.nextInt(max-min+1)+min;
+		return index;
+	}
+}

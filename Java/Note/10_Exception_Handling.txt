@@ -17,9 +17,9 @@ Different Criteria for Exception :
 ----------------------------------
 If we divide a number by zero (an int value) then at runtime we will get an exception i.e java.lang.ArithmeticException 
 
-        int x = 18; 
-		int y = 0; 
-		int z = x/y;
+                  int x = 18; 
+		  int y = 0; 
+		  int z = x/y;
   
 2) java.lang.ArrayIndexOutOfBoundException :
 ---------------------------------------------
@@ -48,5 +48,137 @@ System.out.println(val);
 -----------------------------------
 If any reference variable is pointing to null and by using the reference variable we are calling any non static field OR non static method then we will get java.lang.NullPointerException.
 
+Case 1 :
+--------
 String str = null;
 System.out.println(str.toUpperCase());
+
+Case 2 :
+---------
+String s1 = "null";
+System.out.println(s1.length());
+System.out.println(s1.toUpperCase());
+
+Case 3 :
+---------
+Scanner sc = new Scanner(System.in);
+System.out.println("Enter a String value :");
+String s1 = sc.nextLine(); //"null"
+System.out.println(s1.length()); //4
+
+5) java.lang.NegativeArraySizeException
+---------------------------------------
+Whenever we create an array, the size of the array must be positive
+integer only otherwise we will get java.lang.NegativeArraySizeException
+
+int []arr = new int[-12];
+
+6) java.lang.StringIndexOutOfBoundsException 
+---------------------------------------------
+If we try to access the String index (String is character array) but if the index is out of the range then we will get 
+java.lang.StringIndexOutOfBoundsException 
+
+String str = "Hyderabad";
+System.out.println(str.substring(2,-5)); 
+
+Note : ArrayIndexOutOfBoundsException class StringIndexOutOfBoundsException class both are sub class of java.lang.IndexOutOfBoundsException.
+
+
+7) java.util.InputMismatchException :
+-------------------------------------
+While reading the value using Scanner class, We should always read 
+appropriate value other we will get java.util.InputMismatchException
+
+Scanner sc = new Scanner(System.in);
+System.out.println("Enter a number :");
+int num = sc.nextInt(); //If we don't read int value then exception
+System.out.println(num); 
+=======================================================================
+Exception Hierarchy :
+---------------------
+Paint Digram [10th April]
+
+Note :- As a developer we are responsibe to handle the Exception. System admin is responsibe to handle the error because we cannot recover from error.
+----------------------------------------------------------------------
+Q) WAP to show that Exception is the super class of all types of 
+   Exception whether it is checked Or unchecked
+
+Ans : From the Exception Hierarchy, It is clear that java.lang.Exception is the super class for all type of Exception whether it is checked OR Unchecked.
+
+package com.ravi.exception_demo;
+
+import java.io.IOException;
+
+public class ExceptionDemo 
+{
+	public static void main(String[] args)
+	{
+		Exception e1 = new ArithmeticException();
+		System.out.println(e1);
+		
+		Exception e2 = new ArrayIndexOutOfBoundsException();
+		System.out.println(e2);
+		
+                Exception e3 = new IOException();
+                System.out.println(e3);		
+	}
+
+}
+-----------------------------------------------------------------------
+What is Exception Format ?
+---------------------------
+Whenever we print any Exception Object then the by default format is :
+FUlly Qualified Name : error Message
+
+Example :
+
+Exception e1 = new ArithmeticException("My error message");
+System.out.println(e1.toString());	
+
+java.lang.ArithmeticException:My error message
+-----------------------------------------------------------------------
+WAP that desribes, whenever an exception is encounter in the 
+program then our program will be terminated abnormally (halt in the middle)
+
+package com.ravi.exception_demo;
+
+import java.util.Scanner;
+
+public class AbnormalTermination {
+
+	public static void main(String[] args) 
+	{
+		System.out.println("Main Method started..");
+		Scanner sc = new Scanner(System.in);
+		System.out.print("Enter the value of x :");
+		int x = sc.nextInt();
+		System.out.print("Enter the value of y :");
+		int y = sc.nextInt();
+		
+		int result = x /y;
+		System.out.println("Result is :"+result);
+		System.out.println("Main Method ended..");
+		sc.close();		
+	}
+
+}
+
+In the above progran, If we put the value of y as 0 then the program will halt in the middle which is known as abnormal termination.
+
+By default, JVM has default exception handler which will handle the 
+execption, terminate the program in the middle (abnormal termination)
+and generate the exception message.
+-----------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+

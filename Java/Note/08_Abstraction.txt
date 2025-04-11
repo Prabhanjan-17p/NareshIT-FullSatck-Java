@@ -186,8 +186,7 @@ public class AbstractDemo
 
 }
 ----------------------------------------------------------------------
-Program that describes abstract method is just like business rule so 
-every sub class should implement that rule to exist in the real world.
+// Program that describes abstract method is just like business rule so every sub class should implement that rule to exist in the real world.
 
 package com.ravi.abstract_demo;
 
@@ -272,7 +271,7 @@ public class AbstractAnimalRule {
 -----------------------------------------------------------------------
 27-03-2025
 -----------
-Anonymos inner class :
+Anonymous inner class :
 ---------------------
 If we declare a class inside a method body without any class name then it is called Anonymous inner class.
 
@@ -737,8 +736,7 @@ Q) Why they allowed to write method body inside an interface ?
 ---------------------------------------------------------------
 The basic problem OR limitation with abstract method is, It must be implemented in all the implementer (sub) classes otherwise the implementer class will become as an abstract class.
 
-It leads to big problem for industry because, If we want to add any new feature(new abstract method) to the existing interface then it must be overridden in the sub class, whether it is required OR not 
-required ?
+It leads to big problem for industry because, If we want to add any new feature(new abstract method) to the existing interface then it must be overridden in the sub class, whether it is required OR not required ?
 
 From JDK 1.8V, Java has provided default method facility
 
@@ -892,14 +890,12 @@ public class Main {
 ---------------------------------------------------------------------
 * As we know a public static method of super class is by default available to its sub classes.
 
-Q) Is there any difference between class static method and interface 
-   static method (available from JDK 1.8)
+Q) Is there any difference between class static method and interface static method (available from JDK 1.8)
    
 Yes, We have two major differences which are as follows :
 
 a) interface static methods are by default public.
-b) interface static methods are available to interface only, It is not
-   available in the implementer classes.
+b) interface static methods are available to interface only, It is not available in the implementer classes.
 
 //Program that describes we can call static method of an interface by using only one way that is by using interface name only.
 
@@ -945,8 +941,7 @@ Some points regarding default methods :
 ----------------------------------------
 In between class and interface, class is having more priority.
 
-In between concrete method and default method, concrete method which 
-belongs to class is having more priority than default method as shown in the program.
+In between concrete method and default method, concrete method which belongs to class is having more priority than default method as shown in the program.
 
 package default_methdo_issues;
 
@@ -1906,13 +1901,11 @@ Can a default method of interface override/write the public method of Object cla
 No, a default method of an interface can't override/write the public method of Object class due to the following two reasons :
 (01-JAN)
 
-1) Ambiguity issue : Object class already contain the method which
-                     interface wants to define as a default method hence it will provide Ambiguity to sub class
-		     (Implementer class)
+1) Ambiguity issue : Object class already contain the method which interface wants to define as a default method hence it will provide Ambiguity to sub class
+(Implementer class)
 
 
-2) Priority : Concrete method is having more priority than 
-              default method that means Object class method is having more priority than default method of interface so compiler will not allow to write any default method as a public method of Object class.(There is no use)
+2) Priority : Concrete method is having more priority than default method that means Object class method is having more priority than default method of interface so compiler will not allow to write any default method as a public method of Object class.(There is no use)
                
 
 package com.ravi.interface_object_class;
@@ -1937,8 +1930,7 @@ So, the conclusion is Object class methods we cannot write as a default method i
 ------------
 Interface from JAVA 9V
 ----------------------
-We can write private static and private non static (not public)
-methods inside an interface from java 9 version.
+We can write private static and private non static (not public) methods inside an interface from java 9 version.
 
 The main purpose of providing these two methods inside an 
 interface are as follows :

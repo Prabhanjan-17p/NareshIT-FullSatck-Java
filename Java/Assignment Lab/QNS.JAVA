@@ -1,21 +1,34 @@
-class Foo 
+interface Course 
 { 
-public int a = 3; 
-public void addFive() 
-{
-	 a += 5; System.out.print("f "); } 
- } 
- class Bar extends Foo 
+String name = "Naresh"; 
+int duration = 1; 
+void addCourse(); 
+abstract void addDuration(); 
+abstract void addfaculty(); 
+} 
+class Impl implements Course 
 { 
- public int a = 8; 
- public void addFive() { this.a += 5; System.out.print("b " ); } 
- }  
-public class Test5 
-{
-	public static void main(String[] args) 
-	{
-		 Foo f = new Bar(); 
-		 f.addFive(); 
-		 System.out.println(f.a);
-	}
-}
+@Override 
+public void addCourse() { 
+System.out.println("Cource Added"); 
+} 
+@Override 
+public void addDuration() { 
+System.out.println("Add Duration"); 
+} 
+@Override 
+public void addfaculty() { 
+System.out.println("Add Faculty"); 
+} 
+} 
+public class Abstract 
+{ 
+public static void main(String[] args) {
+1 
+Course course = new Impl(); 
+course.addCourse(); 
+Impl impl = new Impl(); 
+impl.addDuration(); 
+impl.addfaculty(); 
+} 
+} 

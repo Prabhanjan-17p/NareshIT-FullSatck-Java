@@ -169,6 +169,168 @@ By default, JVM has default exception handler which will handle the
 execption, terminate the program in the middle (abnormal termination)
 and generate the exception message.
 -----------------------------------------------------------------------
+11-04-2025
+----------
+In order to handle the exception and to work with exception. Java software people has provided the following keywords :
+
+1) try block
+2) catch block
+3) finally block [Java 1.7V, try with resourses]
+4) throw keyword
+5) throws keyword
+
+
+try block :
+-----------
+Whenever our statement is error suspecting statement OR Risky statement then we should write that statement inside the try block.
+
+try block must be followed either by catch block or finally block or both.
+
+*try block is responsible to trace our code line by line, if any execption is encountered then with the help of JVM, TRY BLOCK WILL CREATE APPROPRIATE EXECPTION OBJECT, AND THROW THIS EXCEPTION OBJECT to the nearest catch block.
+
+After the execption in the try block, the remaining code of try block will not be executed because control will directly transfer to the catch block.
+
+In between try and catch block we cannot write any kind of statement.
+
+catch block :
+--------------
+The main purpose of catch block to handle the exception which is thrown by try block.
+
+catch block will only executed if there is an exception in the try block.
+-----------------------------------------------------------------------
+package com.ravi.exception;
+
+import java.util.Scanner;
+
+public class TryDemo {
+
+	public static void main(String[] args)
+	{
+		 System.out.println("Main method Started!!!");
+					
+		   Scanner sc = null;
+			try
+			{
+				sc = new Scanner(System.in);
+				System.out.print("Enter the value of x :");
+				int x = sc.nextInt();
+				
+				System.out.print("Enter the value of y :");
+				int y = sc.nextInt();
+				
+				int result = x/y;
+				
+				System.out.println("Result is :"+result);
+				System.out.println("End of try block");
+			}
+			catch(Exception e)
+			{
+				System.out.println("Inside Catch block");
+				System.err.println(e);
+			}			
+			System.out.println("Main method Completed!!!");
+			sc.close();
+	}
+
+}
+
+In the above program if we put the value of y as 0 but still program will be executed normally because we have used try-catch so it is a 
+normal termination even we have an exception in the program.
+-----------------------------------------------------------------------
+In case on any Exception in the try block, try block is responsible to create (with the help of JVM) exception object and throw the exception object to the nearest catch block but user can also explicitly create and throw the Exception object as shown below.
+
+public class TryDemo 
+{
+	public static void main(String[] args) 
+	{
+		try
+		{
+		   throw new ArithmeticException();
+		   //System.out.println(10/0);
+		}
+		catch(Exception e)
+		{
+			System.out.println("Catch Block");
+			System.err.println(e);
+		}
+		
+		System.out.println("Main Completed");
+	}
+}
+
+
+After throw keyword we can't write any kind of statement, It 
+will become un-reachable code. 
+----------------------------------------------------------------------
+package com.ravi.exception;
+
+class Demo extends Throwable
+{
+	public Demo(String errorMessage)
+	{
+		super(errorMessage);
+	}
+}
+
+public class ThrowableException
+{
+	public static void main(String[] args)
+	{
+		try
+		{
+		   throw new Demo("demo error");	
+		}
+		catch(Throwable e)
+		{
+			System.err.println(e.toString());
+		}
+	}
+
+}
+
+Note : If our Demo class does not extend from any of the Exception class OR Throwable class then this Demo Object is not a Throwable type of object hance we can't use throw keyword.
+-----------------------------------------------------------------------
+Without Exception Handling, If exception = Abnormal termination.
+With Exception Handling, If exception = Normal Termination.
+
+The actual use of Exception Handling :
+--------------------------------------
+ The main purpose of exception handling to provide user-friendly message so client can enjoy the services of software/websites.   
+
+Exception handlinag = No Abnormal Termination + User-friendly message on wrong input given by the client.
+
+package com.ravi.exception;
+
+import java.util.Scanner;
+
+public class CustomerDemo 
+{
+	public static void main(String[] args) 
+	{
+		System.out.println("Hello Client, Welcome to my Application :");
+		Scanner sc = new Scanner(System.in);
+		
+		try
+		{
+			System.out.print("Please enter the value of x :");
+			int x = sc.nextInt();
+			System.out.print("Please enter the value of y :");
+			int y = sc.nextInt();
+			
+			int result = x /y;
+			System.out.println("Result is :"+result);
+		}
+		catch(Exception e)
+		{
+			System.err.println("Please don't put zero here");
+		}
+		sc.close();
+		System.out.println("Thank you Client, Please Visit Again!!");
+	}
+
+}
+----------------------------------------------------------------------
+
 
 
 

@@ -1,0 +1,403 @@
+1. What is the output of the following program 
+public interface Course {
+    String name = "Naresh";
+    int duration = 1;
+
+    void addCourse();
+
+    abstract void addDuration();
+
+    abstract void addfaculty();
+}
+
+class Impl implements Course {
+    @Override
+    public void addCourse() {
+        System.out.println("Cource Added");
+    }
+
+    @Override
+    public void addDuration() {
+        System.out.println("Add Duration");
+    }
+
+    @Override
+    public void addfaculty() {
+        System.out.println("Add Faculty");
+    }
+}
+
+public class Abstract {
+public static void main(String[] args) {
+        Course course = new Impl(); 
+        course.addCourse(); 
+        Impl impl = new Impl(); 
+        impl.addDuration(); 
+        impl.addfaculty(); 
+    }
+}
+
+Answer :  
+Cource Added 
+Add Duration 
+Add Faculty 
+
+2. What is the output of the following program 
+interface Impl {
+    int a = 0;
+}
+
+class NIT implements Impl {
+    public void display() {
+        a++;
+        System.out.println(a);
+    }
+}
+
+public class Abstract {
+    public static void main(String[] args) {
+        NIT nit = new NIT();
+        nit.display();
+    }
+}
+Answer :  
+Error : The final field Impl.a cannot be assigned in NIT class 
+
+3. What is the output of the following program 
+interface Course {
+    void course();
+}
+
+interface Faculty {
+    void faculty();
+}
+
+class Impl implements Course, Faculty
+{
+
+    @Override
+    private void course() {
+        System.out.println("Course");
+    }
+
+    @Override
+    void faculty() {
+        System.out.println("Faculty");
+    }
+}
+
+public class Abstract {
+    public static void main(String[] args) {
+        Impl impl = new Impl();
+        impl.course();
+        impl.faculty();
+    }
+}
+Answer : Compile Time Error 
+
+4. What is the output of the following program 
+abstract class Course {
+    abstract void course();
+}
+
+abstract class Faculty {
+    abstract void faculty();
+}
+
+class Impl extends Course {
+    @Override
+    void course() {
+        System.out.println("Course");
+    }
+
+    Faculty faculty = new Faculty() {
+        @Override
+        void faculty() {
+            System.out.println("Faculty");
+        }
+    };
+}
+
+public class Abstract {
+    public static void main(String[] args) {
+        Impl impl = new Impl();
+        impl.course();
+        impl.faculty();
+    }
+}
+Answer : Compile time error 
+
+5. What is the output of the following program 
+interface Course {
+    void course();
+}
+
+interface Faculty {
+    void faculty();
+}
+
+class Impl implements Course, Faculty {
+    @Override
+    public void course() {
+        System.out.println("Course");
+    }
+
+    @Override
+    public void faculty() {
+        System.out.println("Faculty");
+    }
+}
+
+public class Abstract {
+    public static void main(String[] args) {
+        Impl impl = new Impl();
+        impl.course();
+        impl.faculty();
+    }
+}
+Answer :  
+Course 
+Faculty
+
+6. What is the output of the following program 
+abstract class Course {
+    abstract void course();
+}
+
+abstract class Faculty {
+    abstract void faculty();
+}
+
+class Impl extends Course {
+    @Override
+    void course() {
+        System.out.println("Course");
+    }
+
+    Faculty faculty = new Faculty() {
+        @Override
+        void faculty() {
+            System.out.println("Faculty");
+        }
+    };
+
+    public Faculty getFaculty() {
+        return faculty;
+    }
+}
+
+public class Abstract {
+    public static void main(String[] args) {
+        Impl impl = new Impl();
+        impl.course();
+        impl.getFaculty();
+    }
+}
+Answer : Course 
+
+7. What is the output of the following program 
+abstract class Course {
+    abstract void course();
+}
+
+abstract class Faculty {
+    abstract void faculty();
+}
+
+class Impl extends Course 
+{
+
+    @Override
+    void course() {
+        System.out.println("Course");
+    }
+}
+
+public class Abstract {
+    public static void main(String[] args) {
+        Impl impl = new Impl();
+        impl.course();
+        Faculty faculty = new Faculty() {
+            @Override
+            void faculty() {
+                System.out.println("Faculty");
+            }
+        };
+        faculty.faculty();
+    }
+}
+Answer : Course 
+
+8. What is the output of the following program 
+interface NIT {
+    void department();
+
+    default void course() {
+        System.out.println("Java");
+    }
+}
+
+class Impl implements NIT {
+    public void department() {
+        System.out.println("Software");
+    }
+}
+
+public class Abstract {
+    public static void main(String[] args) {
+        Impl impl = new Impl();
+        impl.department();
+        impl.course();
+    }
+} 
+Answer :  
+Software 
+Java 
+
+9. What is the output of the following code 
+interface NIT {
+    void department();
+
+    default void course() {
+        System.out.println("Java");
+    }
+}
+
+class Impl implements NIT {
+    public void department() {
+        System.out.println("Software");
+    }
+
+    // override default method
+    public void course() {
+        System.out.println("Python");
+    }
+}
+
+public class Abstract {
+    public static void main(String[] args) {
+        Impl impl = new Impl();
+        impl.department();
+        impl.course();
+    }
+}
+Answer :  
+Software 
+Python 
+
+10. What is the output of the following code 
+interface NIT {
+    static void course() // abstract not applicable { System.out.println("Java");}
+    
+        void department();
+    }
+    
+    class Impl implements NIT {
+        @Override
+        public void department() {
+            System.out.println("Software");
+        }
+    }
+    
+    public class Abstract {
+        public static void main(String[] args) {
+            Impl impl = new Impl();
+            impl.department();
+            impl.course();
+        }
+    }
+Answer : Compile time Error 
+
+11 Choose the correct answer for the following program 
+abstract class NIT {
+    private void print(); // line 1
+}
+
+public class Abstract {
+    public static void main(String[] args) {
+        NIT nit = new NIT() {
+            public void print() {
+                System.out.println("nit");
+            }
+        };
+        nit.print(); // line 2
+    }
+}
+A. line 1: This method requires a body instead of semicolon line 2 : No error 
+B. line 1 : No error 
+line 2: This method print() from the type NIT is not visible C. line 1 : This method requires a body instead of semicolon line 2 : This method print() from the type NIT is not visible D. line1 : No error 
+line 2 : No error
+8 
+Answer : C 
+
+12 Choose the correct answer for the following program 
+abstract class NIT {
+    protected void print(); // line 1
+}
+
+public class Abstract {
+    public static void main(String[] args) {
+        NIT nit = new NIT() {
+            public void print() {
+                System.out.println("nit");
+            }
+        };
+        nit.print(); // line 2
+    }
+}
+A. line 1: This method requires a body instead of semicolon line 2 : No error 
+B. line 1 : No error 
+line 2: This method print() from the type NIT is not visible C. line 1 : This method requires a body instead of semicolon line 2 : This method print() from the type NIT is not visible D. line1 : No error 
+line 2 : No error 
+Answer : A 
+
+13 Choose the correct answer for the following program 
+abstract class NIT {
+    private abstract void print(); // line 1
+}
+
+public class Abstract {
+    public static void main(String[] args) {
+        NIT nit = new NIT() {
+            public void print() {
+                System.out.println("nit");
+            }
+        };
+        nit.print(); // line 2
+    }
+}
+A. line 1 : No error 
+line 2 : No error 
+B. line 1 : The abstract method print in type NIT can only set a visibility modifier, one of  public or protected 
+line 2 : This method print() from the type NIT is not visible 
+C. line 1 : The abstract method print in type NIT can only set a visibility modifier, one of  public or protected 
+line 2 : No error 
+D. line 1 : No error 
+line 2 : This method print() from the type NIT is not visible 
+Answer : B 
+
+14 Choose the correct answer for the following program 
+abstract class NIT {
+    protected abstract void print(); // line 1
+}
+
+public class Abstract {
+    public static void main(String[] args) {
+        NIT nit = new NIT() {
+            public void print() {
+                System.out.println("nit");
+            }
+        };
+        nit.print(); // line 2
+    }
+}
+A. line 1 : No error 
+line 2 : No error 
+B. line 1 : The abstract method print in type NIT can only set a visibility modifier, one of  public or protected 
+line 2 : This method print() from the type NIT is not visible 
+C. line 1 : The abstract method print in type NIT can only set a visibility modifier, one of  public or protected
+1 0 
+line 2 : No error 
+D. line 1 : No error 
+line 2 : This method print() from the type NIT is not visible Answer : A
+1 1 

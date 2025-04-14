@@ -330,6 +330,462 @@ public class CustomerDemo
 
 }
 ----------------------------------------------------------------------
+12-04-2025
+-----------
+Working with predefined non static method of Throwable class :
+---------------------------------------------------------------
+Throwable class has provided the following methods :
+----------------------------------------------------
+Throwable class has provided the following three methods :
+
+1) public String getMessage() :- It will provide only error message.
+
+2) public void printStackTrace() :-  It will provide the complete details regarding exception like exception class name, exception error message, exception class location, exception method name and exception line number.
+
+3) public String toString() :- It will convert the throwable into String representation.
+
+package com.ravi.exception;
+
+public class ThrowableMethod {
+
+	public static void main(String[] args) 
+	{
+		try
+		{
+			throw new ArithmeticException("Divide by zero"); 
+		}
+		catch(Exception e)
+		{
+			System.out.println(e.getMessage()); 
+			System.out.println("===============");
+			e.printStackTrace();
+			System.out.println("===============");
+			System.out.println(e.toString());
+		}
+	}
+
+}
+-----------------------------------------------------------------------
+Working with Specific Exception :
+---------------------------------
+While working with exception, in the corresponding catch block we can take Exception (super class) which can handle any type of Exception.
+
+On the other hand we can also take specific type of exception (ArithmetiException, InputMismatchException and so on) which will handle only one type i.e specific type of exception.
+
+package com.ravi.basic;
+
+import java.util.InputMismatchException;
+import java.util.Scanner;
+
+public class SpecificException 
+{
+	public static void main(String[] args) 
+	{
+       System.out.println("Main started");
+		
+		Scanner sc = new Scanner(System.in);
+		
+		try
+		{			
+			System.out.print("Enter your Roll :");
+			int roll = sc.nextInt();  
+			System.out.println("Your Roll is :"+roll);
+			
+		}
+		catch(InputMismatchException e)
+		{
+			e.printStackTrace();
+		}		
+		sc.close();
+		System.out.println("Main ended");
+	}
+}
+----------------------------------------------------------------------
+
+public class TryDemo 
+{
+	public static void main(String[] args) 
+	{
+		try
+		{
+		   throw new Error();
+		}
+		catch (Exception e)
+		{
+			System.out.println("Inside Catch Block");
+			e.printStackTrace();
+		}
+	}
+}
+
+Note : Here catch(Exception e) block is unable to handle because Error and Exception both are sub classes of Throwable, In the catch block
+if we use Error OR Throwable then only catch block will handle.
+-----------------------------------------------------------------------
+Working with Infinity and Not a number(NaN) :
+---------------------------------------------
+Working with Infinity and Not a number(NaN) :
+---------------------------------------------
+10/0    -> Infinity (Java.lang.ArithmeticException)
+10/0.0  -> Infinity  (POSITIVE_INFINITY)
+
+0/0     -> Undefined (Java.lang.ArithmeticException)
+0/0.0   -> Undefined  (NaN)
+
+While dividing a number with Integral literal in both the cases i.e Infinity (10/0) and Undefined (0/0) we will get java.lang.ArithmeticException because java software people has not provided any final, static variable support to deal with Infinity and Undefined.
+
+On the other hand while dividing a number with with floating point literal in the both cases i.e Infinity (10/0.0) and Undefined (0/0.0) we have final, static variable support so the program will not be terminated in the middle which are as follows
+
+10/0.0 = POSITIVE_INFINITY
+-10/0.0 = NEGATIVE_INFINITY
+0/0.0 = NaN
+
+java.lang.Float and java.lang.Double classes are provided the support for these final and static variable, the same OR same type of variables are not available in Integeral Literal classes.
+
+package com.ravi.basic;
+
+public class InfinityFloatingPoint 
+{	
+	public static void main(String[] args) 
+	{
+	   System.out.println("Main Started");
+	   System.out.println(10/0.0); 
+	   System.out.println(-10/0.0); 
+	   System.out.println(0/0.0);
+	   System.out.println(10/0); 
+	   System.out.println("Main Ended");
+	}
+
+}
+----------------------------------------------------------------------
+Working with multiple try catch :
+---------------------------------
+According to our application requirement we can provide multiple try-catch in my application to work with multiple execptions.
+
+Example :
+
+try
+{
+}
+catch(X e)
+{
+}
+
+try
+{
+}
+catch(X e)
+{
+}
+
+try
+{
+}
+catch(X e)
+{
+}
+
+//Program :
+-----------
+package com.ravi.basic;
+public class MultipleTryCatch 
+{
+	public static void main(String[] args) 
+	{
+	  System.out.println("Main method started!!!!");
+	  
+	  try
+	  {
+		  int arr[] = {10,20,30};
+		  System.out.println(arr[3]);
+	  }
+	  catch(ArrayIndexOutOfBoundsException e)
+	  {
+		  System.err.println("Array index is out of limit!!!");
+	  }
+	  
+	  try
+	  {
+		 String str = null;
+		 System.out.println(str.length());
+	  }
+	  catch(NullPointerException e)
+	  {
+		  System.err.println("ref variable is pointing to null");
+	  } 
+	  
+	  System.out.println("Main method ended!!!!");	
+	}
+}
+
+Note : In the above program the drawback is, Client will get all the error messages at once which is not a recommended way.
+
+In order to avoid this drawback we introduced multiple catch blocks with single try.
+-----------------------------------------------------------------------
+Multiple catch block with a single try block :
+-----------------------------------------------
+According to industry standard we should write try with multiple catch blocks so we can provide proper information for each and every exception to the end user.
+
+While working with multiple catch block always the super class catch block must be last catch block.
+
+From java 1.7v this multiple exceptions we can write in a single catch block by using | symbol.
+
+If try block is having more than one exception then always try block will entertain only first exception because control will transfer to the nearest catch block.
+-----------------------------------------------------------------------
+package com.ravi.basic;
+public class MultyCatch 
+{
+	public static void main(String[] args) 
+	{
+		System.out.println("Main Started...");		
+		try
+		{
+			int c = 10/0;			
+			System.out.println("c value is :"+c);	
+			
+			int []x = {12,78,56};
+			System.out.println(x[4]);		
+		}
+			
+		catch(ArrayIndexOutOfBoundsException e1)
+		{
+			System.err.println("Array is out of limit...");
+		}
+		catch(ArithmeticException e1)
+		{
+			System.err.println("Divide By zero problem...");
+		}
+		catch(Exception e1)
+		{
+			System.out.println("General");
+		}									
+		System.out.println("Main Ended...");
+	}
+}
+-----------------------------------------------------------------------
+package com.ravi.basic;
+
+public class MultyCatch1 
+{
+	public static void main(String[] args) 
+	{
+		System.out.println("Main method started!!!");
+		try
+		{
+		   String str1 = "null";
+		   System.out.println(str1.toUpperCase()); //NULL
+		   
+		   String str2 = "Ravi";
+		   int x = Integer.parseInt(str2);
+		   System.out.println("Number is :"+x);
+		}
+		catch(NumberFormatException  | NullPointerException  e)
+		{
+		  if(e instanceof NumberFormatException)
+		  {
+			  System.err.println("Number is not in a proper format");
+		  }
+		  else if(e instanceof NullPointerException)
+		  {
+			  System.err.println("ref variable is pointing to null");
+		  }
+		}
+
+		System.out.println("Main method ended!!");
+	}
+
+}
+----------------------------------------------------------------------
+14-04-2025
+----------
+finally block : [Guarantted for execution regardless of Excption]
+------------------------------------------------------------------
+finally is a block which is meant for Resource handling purposes.
+
+According to Software Engineering, the resources are memory creation, buffer creation, opening of a database, working with files, working with network resourses and so on hence these resourses must be closed properly.
+
+Whenever the control will enter inside the try block always the finally block would be executed.
+
+We should write all the closing statements inside the finally block because irrespective of exception finally block will be executed every time.
+
+If we use the combination of try and finally then only the resources will be handled but not the execption, on the other hand if we use try-catch and finally then execption and resourses both will be handled.
+
+finally block will not be executed in the following 2 cases :
+
+ 1) If we write System.exeit(0) and if this statement is executed in the try block.
+ 
+ 2) If we have infinite loop in the try block.
+
+-----------------------------------------------------------------------
+package com.ravi.basic;
+
+public class FinallyBlock 
+{
+	public static void main(String[] args) 
+	{
+		System.out.println("Main method started");
+		try
+		{				
+			System.out.println(10/0);
+			System.exit(0);
+		}		
+		finally
+		{	
+			System.out.println("Finally Block");
+		}
+		
+		System.out.println("Main method ended");
+	}
+
+}
+
+Note :- In the above program finally block will be executed, even we have an exception in the try block but here only the resourses will be handled but not the exception.
+-----------------------------------------------------------------------
+package com.ravi.basic;
+
+public class FinallyWithCatch 
+{
+	public static void main(String[] args) 
+	{		
+		try
+		{			
+		    int []x = new int[-2];	
+		    x[0] = 12;
+		    x[1] = 15;
+		    System.out.println(x[0]+" : "+x[1]);	   
+		   
+		}
+		catch(NegativeArraySizeException e)
+		{		
+			System.err.println("Array Size is in negative value...");			 
+		}
+		finally
+		{
+		   System.out.println("Resources will be handled here!!");		   
+		}
+		System.out.println("Main method ended!!!");
+	}
+}
+
+In the above program exception and resourses both are handled because we have a combination of try-catch and finally.
+-----------------------------------------------------------------------
+Limitation of finally block :
+------------------------------
+We have following limitations with finally block 
+
+1) A developer is responsible to write finally block, to close the 
+   resourses manually.
+2) User need to write finally block so It increases the length of the 
+   code.
+3) Any resourse which we want to close inside the finally block, must 
+   be declared outside of try otherwise it will become block level 
+   variable.
+
+package com.ravi.basic;
+
+import java.util.InputMismatchException;
+import java.util.Scanner;
+
+public class LimitationOfFinally 
+{
+
+	public static void main(String[] args)
+	{
+		Scanner sc = null;
+	    try
+	    {
+	    	 sc = new Scanner(System.in);
+	    	System.out.println("Enter your Salary :");
+	    	double salary = sc.nextDouble();
+	    	System.out.println("Your Salary is :"+salary);
+	    	
+	    }
+	    catch(InputMismatchException e)
+	    {
+	    	System.err.println("Input is not in a proper format");
+	    }
+	    finally
+	    {
+	    	System.out.println("Inside finally Block");
+	    	sc.close();
+	    }
+
+	}
+
+}
+
+In order to resolve all the limitations of finally block, Java software people has introduced try with resourses from JDK 1.7V.
+-----------------------------------------------------------------------
+try with resourses :
+---------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

@@ -1,0 +1,289 @@
+Ques - 1
+-------------
+Exception and Messages 
+
+a. Write a program to create an ELC class SimpleExceptionDemo ,which contains main method.
+
+b. This program should read two integer numbers for the variables a and b from console using Scanner class.
+
+c. If you enter any other character except number (0 - 9) then the error is caught by InputMisMatchException object.
+
+d. After that using following methods print the information about the error occurring causes in the console. getMessages(),  printStackTrace(),   toString().
+
+
+Test Cases
+Test Case 1:
+Enter the first integer (a): 10
+Enter the second integer (b): 20
+
+Output:
+You entered a = 10 and b = 20
+Test Case 2:
+
+
+Enter the first integer (a): 10
+Enter the second integer (b): abc
+Output:
+Enter the first integer (a): 10
+Enter the second integer (b): abc
+An InputMismatchException occurred.
+Message: null
+String representation: java.util.InputMismatchException
+Stack trace: 
+java.util.InputMismatchException
+    at java.base/java.util.Scanner.throwFor(Scanner.java:939)
+    at java.base/java.util.Scanner.next(Scanner.java:1594)
+    at java.base/java.util.Scanner.nextInt(Scanner.java:2258)
+    at java.base/java.util.Scanner.nextInt(Scanner.java:2212)
+    at SimpleExceptionDemo.main(SimpleExceptionDemo.java:10)
+
+
+
+ANS -
+------
+package com.nareshIT.day52;
+
+import java.util.Scanner;
+
+public class SimpleExceptionDemo {
+
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		
+
+		try {
+			System.out.print("Enter 1st number :");
+			int num1 = sc.nextInt();
+			System.out.print("Enter 2nd number :");
+			int num2 = sc.nextInt();
+			
+			System.out.print("You entered a = "+num1+" and b = "+num2);
+		}catch(Exception e) {
+			System.out.println(e);
+			System.out.println(e.getMessage()); // due to detailMessage null it show null
+			e.printStackTrace();
+		}
+	}
+}
+
+
+Ques - 2
+-------------
+ArrayIndexOutOfBoundException 
+
+a. Write a program to create an ELC class ArrayIndexExceptionDemo which implements main method.
+
+b. Inside main method create an array of int type as follows.
+
+int a[] = new int[2];
+
+c. Now try to print the value of a[3] in the console where handle the Exceptions coming from this line using try catch.
+
+d. In the catch block handle this exception using ArrayIndexOutOfBound Exception and print appropriate message in the console from this Exception.
+
+Test Case 1:
+
+Input:
+No input required, just running the program.
+
+Output:
+An ArrayIndexOutOfBoundsException occurred.
+Message: Index 3 out of bounds for length 2
+String representation: java.lang.ArrayIndexOutOfBoundsException: Index 3 out of bounds for length 2
+Stack trace: 
+java.lang.ArrayIndexOutOfBoundsException: Index 3 out of bounds for length 2
+    at ArrayIndexExceptionDemo.main(ArrayIndexExceptionDemo.java:8)
+
+Test Case 2:
+Input:
+1 2
+
+Output:
+An ArrayIndexOutOfBoundsException occurred.
+Message: Index 3 out of bounds for length 2
+String representation: java.lang.ArrayIndexOutOfBoundsException: Index 3 out of bounds for length 2
+Stack trace: 
+java.lang.ArrayIndexOutOfBoundsException: Index 3 out of bounds for length 2
+    at ArrayIndexExceptionDemo.main(ArrayIndexExceptionDemo.java:8)
+
+ANS-
+----
+package com.nareshIT.day52;
+
+public class ArrayIndexExceptionDemo {
+
+	public static void main(String[] args) {
+		int a[] = new int[2];
+		try {
+			System.out.println(a[3]);
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+			System.out.println(e);
+			e.printStackTrace();
+		}
+	}
+
+}
+
+
+Ques - 3
+--------------
+IllegalStateException 
+
+a. Write a program to create an ELC class IllegalStateExceptionDemo which implements a method as follows 
+   static void throwIllegalException( ) { 
+	try{ 
+		throw new IllegalStateException("MyException"); 
+	} catch(IllegalStateException objA){
+		System.out.println("caught:" +objA); 
+	}
+    }
+
+b. Implement the main method, and from main method call the above method.
+
+c. Check the output of the program.
+
+Test Case 1:
+Input:
+No input required, just running the program.
+
+Output:
+Calling throwIllegalException from main method:
+Caught: java.lang.IllegalStateException: MyException
+
+Test Case 2:
+Input:
+No input required, just running the program.
+
+Output:
+Calling throwIllegalException from main method:
+Caught: java.lang.IllegalStateException: MyException
+
+ANS -
+-------------
+package com.nareshIT.day52;
+
+public class IllegalStateExceptionDemo {
+	static void throwIllegalException( ) {
+		try {
+			throw new IllegalStateException("MyException");
+		}  catch(IllegalStateException objA) {
+			System.out.println("caught:" +objA); 
+		}
+	}
+
+	public static void main(String[] args) {
+		System.out.println("Calling throwIllegalException from main method:");
+		throwIllegalException();
+	}
+
+}
+
+Ques - 4
+-----------
+Handling NumberFormatException and NullPointerException
+Objective:
+Write a Java program that demonstrates how to handle NumberFormatException and NullPointerException. The program should include a method that takes a string input, prints its length, attempts to convert it to an integer, and performs operations that might result in a NullPointerException. If an exception occurs, it should be caught and an appropriate message should be displayed.
+
+Instructions:
+Create a class named ExceptionHandlingDemo:
+
+Implement a static method handleExceptions that takes a String parameter representing the input.
+Method name : handleExceptions
+Access Modifier : public
+Non-Access Modifier : static
+return type : void
+parameters : String
+
+Inside the method, use a try block to:
+Print the length of the input string.
+Attempt to convert the string input to an integer using Integer.parseInt().
+Attempt to call a method on the input string to deliberately cause a NullPointerException if the string is null.
+Catch NumberFormatException and print an appropriate message.
+Catch NullPointerException and print an appropriate message.
+
+Create a main method:
+Inside the main method, create a Scanner object to read input from the user.
+Prompt the user to enter a string.
+Read the user's input and pass it to the handleExceptions method.
+Close the Scanner object.
+Test the program:
+
+Write three test cases:
+Input a valid integer string.
+Input a non-integer string.
+Input a null string to see the NullPointerException handling.
+
+Test Case 1:
+
+Input:
+Enter a string to convert to an integer: 123
+
+Output:
+Enter a string to convert to an integer: 123
+Length of the input string: 3
+Converted number: 123
+
+Test Case 2:
+Input:
+Enter a string to convert to an integer: abc
+
+Output:
+Enter a string to convert to an integer: abc
+Length of the input string: 3
+NumberFormatException: Invalid input, not a number.
+java.lang.NumberFormatException: For input string: "abc"
+    at java.base/java.lang.NumberFormatException.forInputString(NumberFormatException.java:67)
+    at java.base/java.lang.Integer.parseInt(Integer.java:668)
+    at java.base/java.lang.Integer.parseInt(Integer.java:786)
+    at ExceptionHandlingDemo.handleExceptions(ExceptionHandlingDemo.java:12)
+    at ExceptionHandlingDemo.main(ExceptionHandlingDemo.java:23)
+
+Test Case 3:
+
+Input:
+Enter a string to convert to an integer: null
+
+Output:
+Enter a string to convert to an integer: null
+NullPointerException: Attempted to operate on a null object.
+java.lang.NullPointerException: Cannot invoke "String.length()" because "nullCheck" is null
+    at ExceptionHandlingDemo.handleExceptions(ExceptionHandlingDemo.java:16)
+    at ExceptionHandlingDemo.main(ExceptionHandlingDemo.java:23)
+
+ANS-
+----
+package com.nareshIT.day52;
+
+public class ExceptionHandlingDemo {
+
+	public static void handleExceptions(String name) {
+		try {
+			System.out.println("Length of the input string: "+name.length());
+			int num = Integer.parseInt(name);
+			System.out.println("After Converting integer : "+num);
+		} catch (Exception e) {
+			//TestCase- 1
+//			System.out.println(e);
+			
+			//TestCase- 2 or 3
+			e.printStackTrace();
+		}
+	}
+	public static void main(String[] args) {
+		//TestCase - 1
+//		String name =  "123";  // Length of the input string: 3 // After Converting integer : 123
+//		handleExceptions(name);
+		
+		
+		//TestCase - 2
+//		String name1 =  "abc";
+//		handleExceptions(name1);
+		
+		
+		//TestCase - 3
+		String name2 =  null;
+		handleExceptions(name2);
+	}
+
+}

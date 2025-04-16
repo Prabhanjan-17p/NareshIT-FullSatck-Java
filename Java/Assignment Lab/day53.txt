@@ -1,0 +1,318 @@
+Q1)
+import java.io.FileNotFoundException;
+public class Test
+{
+       public static void main(String[] argv) throws Exception 
+       {
+            try 
+            {
+                throw new FileNotFoundException("");
+            } 
+	        catch (FileNotFoundException ex) 
+            {
+                System.out.println("book list not found!");
+                throw ex;
+            }
+       }
+}
+
+ANS -
+book list not found!
+Exception in thread "main" java.io.FileNotFoundException: 
+	at Task.Test.main(Test.java:10)
+
+-----------------------------------------------------------------------
+Q2)
+import java.io.FileNotFoundException;
+public class a60
+{
+       public static void main(String[] argv)  
+       {
+             try 
+             {
+                    throw new FileNotFoundException("");
+             } 
+			 catch (FileNotFoundException ex) 
+              {
+                    System.out.println("book list not found!");
+                    throw ex;
+              }
+       }
+}
+
+ANS -
+book list not found!
+Exception in thread "main" java.io.FileNotFoundException: 
+	at Task.Test.main(Test.java:10)
+
+---------------------------------------------------------------------
+Q3)
+import java.io.StreamCorruptedException;
+import java.net.MalformedURLException;
+
+public class a86 
+{
+  public static void main(String[] argv) 
+  {
+    try 
+	{
+
+      throw new MalformedURLException("bad url");
+      throw new StreamCorruptedException("bad file");
+      throw new Exception("bad");
+      System.out.println("Success");
+    } 
+	catch (MalformedURLException e) 
+	{
+      System.out.println("Bad URL");
+    } 
+	catch (StreamCorruptedException e) 
+	{
+      System.out.println("Bad file contents");
+    } 
+	catch (Exception e) 
+	{
+      System.out.println("General exception");
+    } 
+	finally {
+      System.out.println("Doing finally part");
+    }
+    System.out.println("Carrying on");
+
+  }
+}
+
+ANS - Compile time Error
+
+---------------------------------------------------------------------
+Q4)
+public class a87 {
+  public static void main(String[] argv) {
+    try 
+	{
+      throw new OutOfMemoryError();
+      
+    }
+	catch (Exception e)
+	{
+      System.out.println("General exception");
+    } 
+	finally 
+	{
+      System.out.println("Doing finally part");
+    }
+    System.out.println("Carrying on");
+
+  }
+}
+
+ANS -
+General exception
+Doing finally part
+Carrying on
+
+-----------------------------------------------------------------------
+Q5) What is the superclass of all exceptions in Java?
+a) Error
+b) RuntimeException
+c) Throwable
+d) Exception
+
+ANS - d) Exception
+
+-----------------------------------------------------------------------
+Q6) Which of the following is an unchecked exception?
+a) IOException
+b) SQLException
+c) NullPointerException
+d) ClassNotFoundException
+
+ANS -c) NullPointerException
+
+-----------------------------------------------------------------------
+Q7) Which keyword is used to manually throw an exception?
+a) throws
+b) throw
+c) try
+d) catch
+
+ANS - b) throw
+
+-----------------------------------------------------------------------
+Q8) What is the purpose of the finally block in exception handling?
+a) To handle exceptions not caught by catch.
+b) To execute code regardless of an exception being thrown.
+c) To throw an exception manually.
+d) To close the program after an exception.
+
+ANS - b) To execute code regardless of an exception being thrown.
+
+-----------------------------------------------------------------------
+Q9) What is the correct order of try, catch, and finally blocks in a Java program?
+a) try, catch, finally
+b) try, finally, catch
+c) catch, try, finally
+d) finally, try, catch
+
+ANS -a) try, catch, finally
+
+----------------------------------------------------------------------
+Q10) What does the getMessage() method in an exception class do?
+a) Prints the stack trace of the exception.
+b) Returns the error message of the exception.
+c) Logs the exception details to a file.
+d) None of the above.
+
+ANS - b) Returns the error message of the exception.
+
+----------------------------------------------------------------------
+Q11) What will happen if an exception is not caught in a Java program?
+a) The program will terminate abruptly.
+b) The program will handle the exception automatically.
+c) The exception will be ignored, and execution will continue.
+d) The program will retry the failed operation.
+
+ANS - a) The program will terminate abruptly.
+
+----------------------------------------------------------------------
+Q12)
+Which of the following is true about try-catch blocks in Java?
+a) try block we can write independently (Without try with resourses)
+b) A try block can be followed by multiple catch blocks.
+c) try blocks are optional in Java programs.
+d) Only one catch block can follow a try block.
+
+ANS - b) A try block can be followed by multiple catch blocks.
+
+----------------------------------------------------------------------
+Q13)
+What type of exceptions does the java.lang.Error class represent?
+a) Recoverable exceptions.
+b) Unchecked exceptions that indicate serious problems.
+c) Checked exceptions that must be handled.
+d) Logical errors in the code.
+
+ANS - b) Unchecked exceptions that indicate serious problems.
+
+----------------------------------------------------------------------
+Q14)
+What happens when an exception occurs in a try block and there is no matching catch block?
+a) The program ignores the exception and continues execution.
+b) The program crashes without any message.
+c) The exception is propagated to the calling method.
+d) The finally block is skipped.
+
+ANS - c) The exception is propagated to the calling method.
+
+----------------------------------------------------------------------
+Q15)
+
+Which of the following methods prints the exception's stack trace?
+a) getMessage()
+b) toString()
+c) printStackTrace()
+d) getStackTrace()
+
+ANS - c) printStackTrace()
+
+----------------------------------------------------------------------
+Q16)
+Which of the following blocks will execute even if an exception occurs?
+a) try
+b) catch
+c) finally
+d) None of the above
+
+ans -c) finally
+
+----------------------------------------------------------------------
+Q17)
+
+Which block must always be associated with a try block?
+a) catch
+b) finally
+c) Either catch or finally
+d) Both catch and finally
+
+ANS - c) Either catch or finally
+
+----------------------------------------------------------------------
+Q18)
+
+What happens when an exception is caught in a catch block?
+a) The program terminates immediately.
+b) The catch block handles the exception, and the program continues.
+c) The exception is logged, but the program terminates.
+d) The exception is re-thrown automatically.
+
+ANS - a) The program terminates immediately.
+
+----------------------------------------------------------------------
+Q19) 
+
+Can a try block exist without a catch block?
+a) Yes, if it is followed by a finally block.
+b) No, it must always be followed by a catch block.
+c) Yes, but only if no exceptions are expected.
+d) No, it is syntactically invalid.
+
+ANs - a) Yes, if it is followed by a finally block.
+
+
+----------------------------------------------------------------------
+Q20)
+
+What is the purpose of the try-catch-finally structure?
+a) To detect and prevent compile-time errors.
+b) To allow a program to continue running after an exception occurs and handle the resourses.
+c) To terminate the program safely during an exception.
+d) To force garbage collection during exceptions.
+
+ANS -b) To allow a program to continue running after an exception occurs and handle the resourses.
+
+======================================================================
+Sample coding Program :
+-----------------------
+Ques - 1
+------------
+Handling ArithmeticException 
+Objective:
+Write a Java program that demonstrates how to handle ArithmeticException. The program should include a method that performs division and throws an ArithmeticException if division by zero occurs. Implement exception handling in the main method to catch and handle this exception.
+
+Instructions:
+Create a class named DivisionExample:
+
+Implement a static method performDivision :
+Takes two integer parameters: dividend and divisor.
+Access Modifier : public
+Non-Access Modifier : static
+return type : int
+parameters : int, int
+
+Performs division dividend / divisor.
+Throws an ArithmeticException if divisor is zero.
+
+Implement the main method:
+Inside the main method, call the performDivision method with different inputs, including zero as a divisor.
+Use a try-catch block to catch and handle any ArithmeticException thrown by performDivision.
+Print an appropriate error message when division by zero occurs.
+Test the program:
+
+Write test cases to cover scenarios with valid and invalid inputs for the divisor, including zero.
+
+
+Test Case 1: Valid division
+Input as : 
+Enter dividend : 10
+Enter divisor : 2
+
+Output as :
+Result of division: 5
+
+Test Case 2: Division by zero
+Input as : 
+Enter dividend : 5
+Enter divisor : 0
+
+Output :
+ArithmeticException caught: Division by zero: dividend=5, divisor=0

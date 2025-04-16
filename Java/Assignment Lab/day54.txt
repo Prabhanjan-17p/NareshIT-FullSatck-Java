@@ -1,0 +1,305 @@
+Ques - 1
+------------
+Handling ArithmeticException 
+Objective:
+Write a Java program that demonstrates how to handle ArithmeticException. The program should include a method that performs division and throws an ArithmeticException if division by zero occurs. Implement exception handling in the main method to catch and handle this exception.
+
+Instructions:
+Create a class named DivisionExample:
+
+Implement a static method performDivision :
+Takes two integer parameters: dividend and divisor.
+Access Modifier : public
+Non-Access Modifier : static
+return type : int
+parameters : int, int
+
+Performs division dividend / divisor.
+Throws an ArithmeticException if divisor is zero.
+
+Implement the main method:
+Inside the main method, call the performDivision method with different inputs, including zero as a divisor.
+Use a try-catch block to catch and handle any ArithmeticException thrown by performDivision.
+Print an appropriate error message when division by zero occurs.
+Test the program:
+
+Write test cases to cover scenarios with valid and invalid inputs for the divisor, including zero.
+
+
+Test Case 1: Valid division
+Input as : 
+Enter dividend : 10
+Enter divisor : 2
+
+Output as :
+Result of division: 5
+
+Test Case 2: Division by zero
+Input as : 
+Enter dividend : 5
+Enter divisor : 0
+
+Output :
+ArithmeticException caught: Division by zero: dividend=5, divisor=0
+
+ANS 
+-----
+package com.nareshIT.day54;
+
+import java.util.Scanner;
+
+public class DivisionExample {
+
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		System.out.print("Enter dividend :");
+		int num1 =sc.nextInt();
+		System.out.print("Enter divisor :");
+		int num2 =sc.nextInt();
+		try {
+			System.out.println("Result of division: "+performDivision(num1,num2));
+		} catch (Exception e) {
+			System.out.println("ArithmeticException caught: Division by zero: dividend="+num1+", divisor="+num2);
+		}
+		
+	}
+	public static int performDivision(int x, int y) throws ArithmeticException
+	{
+		return x/y;
+	}
+}
+
+
+Ques - 2
+-------------
+Instructional Question: Handling ClassCastException in Java
+Objective:
+Write a Java program that demonstrates how to handle ClassCastException. The program should include a method that attempts to cast an object of one type to another incompatible type. If a ClassCastException occurs, it should be caught and an appropriate message should be displayed.
+
+Instructions:
+Create a class named ClassCastExceptionDemo:
+
+Implement a static method handleClassCastException :
+Access Modifier : public
+Non-Access Modifier : static
+return type : void
+parameters : No-Param
+
+Declares an array of Object type and initializes it with some values of different types.
+Attempts to cast each element of the array to String.
+Use a try block to perform the casting.
+Catch ClassCastException and print an appropriate message along with the stack trace.
+Create a main method:
+
+Inside the main method, call the handleClassCastException method.
+Test the program:
+
+Write a test case where you attempt to cast objects of different types to String.
+
+Test Case 1: Successful Casting
+Input:
+Objects: {"Hello", "World", "Java"}
+Expected Output:
+Casting successful: Hello
+Casting successful: World
+Casting successful: Java
+
+
+Test Case 2: Unsuccessful Casting
+Input:
+Objects: {"Hello", 123, "Java"}
+Expected Output:
+Casting successful: Hello
+ClassCastException: Cannot cast java.lang.Integer to String.
+java.lang.ClassCastException: java.lang.Integer cannot be cast to java.lang.String
+    at ClassCastExceptionDemo.handleClassCastException(ClassCastExceptionDemo.java:14)
+    at ClassCastExceptionDemo.main(ClassCastExceptionDemo.java:26)
+
+
+Test Case 3: Mixed Types
+Input:
+Objects: {"Hello", true, "Java"}
+Expected Output:
+Casting successful: Hello
+ClassCastException: Cannot cast java.lang.Boolean to String.
+java.lang.ClassCastException: java.lang.Boolean cannot be cast to java.lang.String
+    at ClassCastExceptionDemo.handleClassCastException(ClassCastExceptionDemo.java:14)
+    at ClassCastExceptionDemo.main(ClassCastExceptionDemo.java:26)
+Casting successful: Java
+
+ANS 
+-----
+package com.nareshIT.day54;
+
+public class ClassCastExceptionDemo {
+
+	public static void main(String[] args) {
+			handleClassCastException();
+	}
+	public static void handleClassCastException() throws ClassCastException
+	{
+//		Object name[] =  {"Hello", 123, "Java"};
+//		Object name[] =  {"Hello", "World", "Java"};
+		Object name[] =  {"Hello", true, "Java"};
+		for(Object s : name) {
+			try {
+				String str = (String)s;
+				System.out.println("Casting successful: "+str);		
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+
+		}
+	}
+
+}
+
+
+Ques - 3
+------------
+Rectangle Area Calculation with Exception Handling
+Objective:
+Write a Java program that calculates the area of a rectangle. Implement exception handling to throw and catch an IllegalArgumentException when the dimensions (length or width) provided by the user are non-positive.
+
+Instructions:
+Create a class named AreaCalculator:
+
+Implement a static method calculateArea :
+Takes two integer parameters: length and width.
+Access Modifier : public
+Non-Access Modifier : static
+return type : double
+parameters : double, double
+
+Calculates the area using the formula length * width.
+Throws an IllegalArgumentException if either length or width is non-positive.
+Implement the main method:
+
+Inside the main method, use a Scanner object to read input from the user.
+Prompt the user to enter the length and width of the rectangle.
+
+Call the calculateArea method within a try-catch block to handle any IllegalArgumentException.
+Print the area of the rectangle if dimensions are valid; otherwise, print an error message.
+Test the program:
+
+Write test cases for both valid and invalid inputs:
+Test with positive values for length and width.
+Test with non-positive values for length and width to ensure the exception is properly thrown and caught.
+
+Test Case 1: Valid Input
+Enter length of rectangle: 5
+Enter width of rectangle: 4
+Area of rectangle with length 5 and width 4 is: 20.0
+
+Test Case 2: Invalid Input
+Enter length of rectangle: -3
+Enter width of rectangle: 6
+IllegalArgumentException caught: Dimensions must be positive: length=-3, width=6
+
+ANS 
+----
+package com.nareshIT.day54;
+
+import java.util.Scanner;
+
+public class AreaCalculator {
+
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		System.out.print("Enter length of rectangle: ");
+		int len = sc.nextInt();
+		System.out.print("Enter width of rectangle: ");
+		int bre = sc.nextInt();
+		calculateArea(len,bre);
+	}
+	public static double calculateArea(double x,double y) {
+		double res =0;
+		try {
+			if (x < 0 || y < 0) {
+				throw new IllegalArgumentException();
+			}else {
+				res = x*y;
+				System.out.println("Area of rectangle with length "+x+" and width "+y+" is: "+res);
+			}
+		} catch (Exception e) {
+			System.out.println("IllegalArgumentException caught: Dimensions must be positive: length="+x+", width="+y);
+		}
+		return res;
+	}
+
+}
+
+
+Ques - 4
+------------
+Handling ClassNotFoundException in Java
+Objective:
+Write a Java program that demonstrates how to handle ClassNotFoundException. The program should prompt the user to enter a class name and attempt to load that class using reflection. If the class does not exist, the program should catch the exception and print an appropriate message.
+
+Instructions:
+Create a class named ClassNotFoundExpDemo:
+
+Implement a constructor that takes a String parameter representing the class name.
+Access Modifier : public
+parameter : String
+
+Inside the constructor, declare a variable of type Class<?>.
+Use a try block to attempt to load the class using Class.forName(className).
+Catch ClassNotFoundException and print an appropriate message along with the stack trace.
+
+Create a main method:
+Inside the main method, create a Scanner object to read input from the user.
+Prompt the user to enter a class name.
+Read the user's input and pass it to the ClassNotFoundExpDemo constructor.
+Close the Scanner object.
+
+Test Case 1:
+Input:
+Enter the class name to load: java.lang.String
+
+Output:
+Enter the class name to load: java.lang.String
+Class java.lang.String found: java.lang.String
+
+Test Case 2:
+Input:
+Enter the class name to load: NonExistentClass
+
+Output:
+Enter the class name to load: NonExistentClass
+Class NonExistentClass not found.
+java.lang.ClassNotFoundException: NonExistentClass
+    at java.base/jdk.internal.loader.BuiltinClassLoader.loadClass(BuiltinClassLoader.java:641)
+    at java.base/jdk.internal.loader.ClassLoaders$AppClassLoader.loadClass(ClassLoaders.java:188)
+    at java.base/java.lang.ClassLoader.loadClass(ClassLoader.java:521)
+    at java.base/java.lang.Class.forName0(Native Method)
+    at java.base/java.lang.Class.forName(Class.java:398)
+    at ClassNotFoundExpDemo.<init>(ClassNotFoundExpDemo.java:8)
+    at ClassNotFoundExpDemo.main(ClassNotFoundExpDemo.java:17)
+
+ANS 
+----
+package com.nareshIT.day54;
+
+import java.util.Scanner;
+
+public class ClassNotFoundExpDemo
+{
+	public  ClassNotFoundExpDemo(String name) {
+		try {
+			Class<?> cls = Class.forName(name);
+			System.out.println("Class "+name+" found: "+cls.getName());
+		} catch (Exception e) {
+			System.out.println("Class " + name + " not found.");
+			e.printStackTrace();
+		}
+	}
+
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		System.out.print("Enter the class name to load: ");
+		String name = sc.nextLine();
+		ClassNotFoundExpDemo c = new ClassNotFoundExpDemo(name);
+	}
+
+}

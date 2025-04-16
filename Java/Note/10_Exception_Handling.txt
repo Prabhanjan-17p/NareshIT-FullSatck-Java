@@ -715,8 +715,174 @@ public class LimitationOfFinally
 
 In order to resolve all the limitations of finally block, Java software people has introduced try with resourses from JDK 1.7V.
 -----------------------------------------------------------------------
-try with resourses :
----------------------
+15-04-2025
+-----------
+try with Resourses (Automatic Closing Facility)
+------------------------------------------------
+To avoid all the limitation of finally block, Java software people introduced a separate concept i.e try with resources from java 7V onwards.
+
+Case 1:
+-------
+try(resource1 ; resource2)  //Only the resources will be handled
+{
+}
+
+Case 2 :
+----------
+//Resources and Exception both will be  handled
+try(resource1 ; resource2) 
+{                          
+}
+catch(Exception e)
+{
+}
+
+Case 3 :
+----------
+try with resourses enhancement from java 9v
+
+Resourse r1 = new Resourse();
+MyResourse r2 = new MyResourse();
+
+try(r1; r2)
+{
+}
+catch(Exception e)
+{
+}
+
+Note : The Resourse,MuResourse class must implements either from Closeable or AutoCloseable.
+
+There is a predefined interface available in java.lang package called AutoCloseable from JDK 1.7 which contains predefined abstract method i.e close() which throws Exception.
+
+There is another predefined interface available in java.io package called Closeable from JDK 1.5, this Closeable interface is the sub interface for AutoCloseable interface.
+
+public interface java.lang.AutoCloseable
+{
+   public abstract void close() throws Exception;
+}
+public interface java.io.Closeable extends java.lang.AutoCloseable
+{
+   void close() throws IOException;
+}
+
+Whenever we pass any resourse class object as part of try with resources as a parameter then that class must implements either Closeable or AutoCloseable interface so, try with resourses will automatically call the respective class
+close() method even an exception is encountered in the try block.
+
+ResourceClass rc = new ResourceClass();
+try(rc)  
+{                                              
+}                                               
+catch(Exception e)                             
+{                                          
+
+}
+
+This ResourceClass must implements either Closeable or AutoCloseable interface so, try block will automatically call the close() method as well as try block will get the guarantee of close() method support in the respective class.
+
+-----------------------------------------------------------------------
+The following program explains how try block will call the close method of DatabaseResourse and FileResourse class but both the class must implements either from java.io.Closeable OR java.lang.AutoCloseable.
+
+package com.ravi.try_with_resourses;
+
+public class DatabaseResourse implements AutoCloseable
+{
+	@Override
+	public void close() throws Exception 
+	{
+		System.out.println("Database Resourse Closed Successfully!!!");		
+	}
+
+}
+
+package com.ravi.try_with_resourses;
+
+import java.io.Closeable;
+import java.io.IOException;
+
+public class FileResourse implements Closeable
+{
+	@Override
+	public void close() throws IOException 
+	{
+		System.out.println("File Resourse closed Successfully!!!");
+		
+	}
+
+}
+
+package com.ravi.try_with_resourses;
+
+public class TryWithResoursesDemo1 {
+
+	public static void main(String[] args) throws Exception
+	{
+		DatabaseResourse dr = new DatabaseResourse();
+		FileResourse fr = new FileResourse();
+		
+        try(dr; fr)
+        {
+        	System.out.println(10/0);
+        }
+        catch(ArithmeticException e)
+        {
+        	System.out.println(e);
+        }
+     
+
+	}
+
+}
+
+Note : Whenever we use try with resourses then automatically one finally block will be inserted by the compiler to provide closing facility.
+----------------------------------------------------------------------
+try with resourses using Scanner class :
+-----------------------------------------
+package com.ravi.try_with_resourses;
+
+import java.util.InputMismatchException;
+import java.util.Scanner;
+
+public class TryWithResoursesDemo2 
+{
+	public static void main(String[] args)
+	{
+		System.out.println("Main Method Started");
+		Scanner sc = new Scanner(System.in);
+		
+		try(sc)
+		{
+			System.out.println("Enter your Age :");
+            int age = sc.nextInt();
+            System.out.println("Your Age is :"+age);            
+		}
+		catch(InputMismatchException e)
+		{
+			System.out.println("Input is not in a valid format");
+		}
+		System.out.println("Main Method Ended");
+	}
+
+}
+-----------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

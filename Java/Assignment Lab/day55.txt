@@ -1,0 +1,356 @@
+Ques - 1
+----------
+Handling ArrayStoreException in Java
+Objective:
+Write a Java program that demonstrates how to handle ArrayStoreException. The program should include a method that attempts to store objects of incompatible types into an array of String[]. Implement exception handling in the main method to catch and handle this exception.
+
+Instructions:
+Create a class named ArrayStoreExample:
+
+Implement a static method storeObjects that:
+
+method name : storeObjects
+Access Modifiers : public
+Non-Access Modifier : static
+return type : void
+
+Initializes an Object array of type String[] with a size of 5.
+Attempts to store objects of different types (String, Integer, etc.) into the array using array indexing.
+Throws an ArrayStoreException if an attempt is made to store an object that is not compatible with String.
+
+Implement the main method:
+Inside the main method, call the storeObjects method with different objects, including objects of incompatible types.
+Use a try-catch block to catch and handle any ArrayStoreException thrown by storeObjects.   
+Print an appropriate error message when an incompatible object type is attempted to be stored in the array.
+Test the program:
+
+Test Case 1:
+Store objects of different types in the array
+      strings[0] = "Hello";   // Storing a String
+      strings[1] = "World";   // Storing another String
+      strings[2] = "Java";    // Storing another String
+Output as :
+Objects stored successfully.
+
+Test Case 2:
+ // Store objects of different types in the array
+            strings[0] = "Hello";   // Storing a String
+            strings[1] = "World";   // Storing another String
+            strings[2] = 123;       // Trying to store an Integer in a String array
+
+Output as :
+ArrayStoreException caught: Incompatible type: java.lang.Integer cannot be stored in an array of java.lang.String
+
+ANS -
+=====
+package com.nareshIT.day55;
+
+import java.util.Scanner;
+
+public class ArrayStoreExample {
+
+	public static void main(String[] args) {
+		try {
+			storeObjects();
+			System.out.println("Objects stored successfully.");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	public static void storeObjects() throws Exception {
+		Scanner sc = new Scanner(System.in);
+		Object[] obj = new String[5];
+		obj[0] = "java";
+		obj[1] = 2;
+
+	}
+}
+
+
+Ques - 2
+----------
+Handling Multiple Exceptions in Method Overriding
+Objective:
+Write a Java program that demonstrates method overriding where the superclass method throws a checked exception (ClassNotFoundException), and the subclass overrides this method to handle various cases and throw appropriate exceptions (IllegalArgumentException).
+
+Instructions:
+Create a superclass BLC named ParentClass:
+Accepts a String parameter representing the class name to be loaded.
+
+Implement a method loadingClass :
+method name : loadingClass
+Access modifier : public 
+return type : void
+parameter :String
+
+Load the class by using Class.forName(-) method.
+Throws a checked exception, ClassNotFoundException, if the class is not found.
+
+Create a subclass BLC named ChildClass:
+
+Override the loadingClass method.
+method name : loadingClass
+Access modifier : public 
+return type : void
+parameter :String
+
+Handle the case for an empty string, throwing IllegalArgumentException with message "Class name cannot be empty".
+Call the superclass method if the string is valid.
+Handle the ClassNotFoundException within the method .
+
+Create a ELC class Tester and implement the main method:
+
+Inside the main method, create an instance of ChildClass and call the overridden loadingClass method with various test inputs.
+Take the input from command line.   
+Use a try-catch block to catch and handle the exceptions.
+
+
+Test Case 1: Valid class name
+Input: java.lang.String
+Expected Output:
+Class loaded successfully: java.lang.String
+
+Test Case 2: Invalid class name
+Input: NonExistentClass
+Expected Output:
+Error loading class in ChildClass. Converting to unchecked exception.
+Exception caught: Unchecked Exception: RuntimeException from ChildClass
+
+Test Case 3: Empty class name
+Input: ""
+Expected Output:
+Exception caught: Class name cannot be empty
+
+ANS 
+-----
+package com.nareshIT.day55;
+
+class ParentClass {
+	public void loadingClass(String name) throws ClassNotFoundException 
+	{
+		Class.forName(name);
+		System.out.println("Class loaded successfully: "+name);
+	}
+	
+}
+
+class ChildClass extends ParentClass{
+	
+	@Override
+	public void loadingClass(String name) 
+	{
+		try {
+			if (name =="") {
+				throw new IllegalArgumentException();
+			}
+			else {
+				super.loadingClass(name);
+			}
+			
+		} catch (Exception e) {
+			System.out.println(e);
+		}
+	}
+}
+
+public class Tester {
+
+	public static void main(String[] args)  {
+			ChildClass c = new ChildClass();
+			c.loadingClass("NonExistentClass");
+
+	}
+
+}
+
+
+
+Ques - 3
+----------
+Command Line Division with Exception Handling
+Objective:
+Write a Java program that processes command line arguments, handles exceptions for invalid inputs and division by zero, and demonstrates the use of nested try-catch blocks with a finally block for cleanup.
+
+Instructions:
+Create a ELC class named CommandLineDivision.
+Implement the main method that:
+Checks if exactly two command line arguments are provided.
+Parses these arguments into integers (dividend and divisor).
+Uses nested try-catch blocks:
+Outer block catches IllegalArgumentException for insufficient arguments or invalid input types (NumberFormatException).
+Inner block attempts the division and catches ArithmeticException for division by zero.
+Prints the result of the division if successful.
+Includes a finally block to print "Division operation completed."
+Test the program with different scenarios:
+
+Provide valid integers for division.
+Test division by zero scenario.
+Test with invalid input types (non-integer values).
+
+
+Test case 1 : Valid Input - Division Result
+Command: java CommandLineDivisionQuestion 10 2
+Expected Output:
+Division result: 5.0
+Division operation completed.
+
+Test case 2 : Division by Zero
+Command: java CommandLineDivisionQuestion 8 0
+Expected Output:
+Arithmetic error: / by zero
+Division operation completed.
+
+Test case 3 : Invalid Input - Non-integer Argument
+Command: java CommandLineDivisionQuestion 12 abc
+Expected Output:
+NumberFormatException: For input string: "abc"
+Division operation completed.
+
+ANS 
+----
+package com.nareshIT.day55;
+
+public class CommandLineDivision {
+
+    public static void main(String[] args) {
+        try {
+            if (args.length != 2) {
+                throw new IllegalArgumentException("Exactly two integer arguments required.");
+            }
+
+            try {
+                int dividend = Integer.parseInt(args[0]);
+                int divisor = Integer.parseInt(args[1]);
+
+                try {
+                    double result = (double) dividend / divisor;
+                    System.out.println("Division result: " + result);
+                } catch (ArithmeticException e) {
+                    System.out.println("Arithmetic error: " + e.getMessage());
+                }
+
+            } catch (NumberFormatException e) {
+                System.out.println("NumberFormatException: " + e.getMessage());
+            }
+
+        } catch (IllegalArgumentException e) {
+            System.out.println("IllegalArgumentException: " + e.getMessage());
+        } finally {
+            System.out.println("Division operation completed.");
+        }
+    }
+}
+
+
+Ques - 4
+-------------
+Financial Transaction Validation
+Objective:
+Write a Java program that validates and processes financial transaction data entered by a user. Use a multi-catch block to handle exceptions related to input validation and processing.
+
+Instructions:
+Create a BLC class named FinancialTransaction.
+
+Implement a processTransaction method that:
+method name : processTransaction
+Access Modifiers : public
+return type : void
+parameters : double, long
+Accepts user input for transaction details such as transaction amount and account number.
+
+Uses a multi-catch block to handle exceptions:
+NumberFormatException for invalid numeric inputs.
+IllegalArgumentException for invalid transaction amount (negative or zero).
+RuntimeException for other unexpected errors during processing.
+Validates the transaction amount and account number.
+Prints appropriate messages for successful transaction or specific error conditions.
+
+Implement the main method in an ELC class.
+
+Create an instance of FinancialTransaction.
+Prompt the user to input transaction details.
+Call the processTransaction method with user inputs to test different scenarios:
+Valid transaction amount and account number.
+Invalid transaction amount (negative or zero).
+Invalid input types (non-numeric values).
+
+Test Case 1 : Valid Transaction:
+Transaction amount: 500
+Account number: 1234567890
+Expected Output:
+Processing transaction...
+Transaction successful: Amount Rs.500.0 transferred to account 1234567890
+
+Test Case 2 :Invalid Transaction Amount (Negative):
+Transaction amount: -100
+Account number: 9876543210
+Expected Output:
+Error processing transaction: Transaction amount must be positive.
+
+Test Case 3 :Invalid Input (Non-numeric Transaction Amount):
+
+Transaction amount: abc
+Account number: 4567890123
+Expected Output:
+Invalid input: Please enter a valid number for transaction amount.
+
+ANS
+-----
+package com.nareshIT.day55;
+
+public class FinancialTransaction {
+
+    public void processTransaction(double amount, long accountNumber) {
+        try {
+            if (amount <= 0) {
+                throw new IllegalArgumentException("Transaction amount must be positive.");
+            }
+
+            if (String.valueOf(accountNumber).length() != 10) {
+                throw new IllegalArgumentException("Invalid account number format.");
+            }
+
+            System.out.println("Processing transaction...");
+            System.out.println("Transaction successful: Amount Rs." + amount + " transferred to account " + accountNumber);
+
+        } catch (IllegalArgumentException e) {
+            System.out.println("Error processing transaction: " + e.getMessage());
+        } catch (RuntimeException e) {
+            System.out.println("Error processing transaction: " + e.getMessage());
+        }
+    }
+}
+
+
+package com.nareshIT.day55;
+
+import java.util.Scanner;
+
+public class TransactionMain {
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        FinancialTransaction transaction = new FinancialTransaction();
+
+        try {
+            System.out.print("Enter transaction amount: ");
+            String amountInput = scanner.nextLine();
+
+            System.out.print("Enter account number: ");
+            String accountInput = scanner.nextLine();
+
+            double amount = Double.parseDouble(amountInput);
+            long accountNumber = Long.parseLong(accountInput);
+
+            transaction.processTransaction(amount, accountNumber);
+
+        } catch (NumberFormatException e) {
+            System.out.println("Invalid input: Please enter a valid number for transaction amount.");
+        } catch (RuntimeException e) {
+            System.out.println("Unexpected error: " + e.getMessage());
+        } finally {
+            scanner.close();
+        }
+    }
+}

@@ -865,103 +865,388 @@ public class TryWithResoursesDemo2
 
 }
 -----------------------------------------------------------------------
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+16-04-2025
+----------
+Difference between checked and Unchecked Exception :
+-----------------------------------------------------
+Checked Exception :
+----------------------
+A checked exception is a common exception that must be declared or handled by the application code where it is thrown, Here compiler takes very much care and wanted the clarity regarding the exception by saying that, by using this code you may face some problem at runtime and you did not report me how would you handle this situation at runtime are called Checked exception, so provide either try-catch or declare the method as throws.
+
+Except RuntimeException, all the checked exceptions are directly sub class of java.lang.Exception OR Throwable.
+
+Eg:
+---
+FileNotFoundException, IOException, InterruptedException,ClassNotFoundException, SQLException, CloneNotSupportedException, EOFException and so on
+
+Unchecked Exception :-
+--------------------------
+An unchecked exception is rare and any exception that does not need to be declared or handled by the application code where it is thrown, here compiler does not take any care are called unchecked exception.
+
+Unchecked exceptions are directly entertain by JVM because they are rarely occurred in java.
+
+All the un-checked exceptions are sub class of RuntimeException as well as Error and all the sub classes of Error are considered as Unchecked Exception.
+
+RuntimeException is also Unchecked Exception.
+
+Eg:
+---
+ArithmeticException, ArrayIndexOutOfBoundsException, NullPointerException, NumberFormatException, ClassCastException, ArrayStoreException and so on.
+-------------------------------------------------------------
+Some Bullet points regarding Checked and Unchecked :
+-----------------------------------------------------
+Checked Exception :
+------------------
+  1) Common Exception
+  2) Compiler takes care (Will not compile the code)
+  3) Handling is compulsory (try-catch OR throws)
+  4) Directly the sub class of java.lang.Exception OR Throwable
+
+Unchecked Exception :
+----------------------
+  1) Rare Exception
+  2) Comiler will not take any care
+  3) Handling is not Compulsory
+  4) Sub class of RuntimeException OR Error OR Sub class of Error
+---------------------------------------------------------------------
+*Why compiler takes very much care regarding the checked Exception ?
+---------------------------------------------------------------
+As we know Checked Exceptions are very common exception so in case of checked exception "handling is compulsory" because checked Exception depends upon other resources as shown below.
+
+IOException  (we are depending upon System Keyboard OR Files )
+FileNotFoundException(We are depending upon the file)
+InterruptedException (Thread related problem)
+ClassNotFoundException (class related problem)
+SQLException (SQL related or database related problem)
+CloneNotSupportedException (Object is the resourse)
+EOFException(We are depending upon the file)
+
+----------------------------------------------------------------------
+When to provide try-catch or declare the method as throws for Checked Exception :-
+
+try-catch
+----------
+We should provide try-catch if we want to handle the exception in the method where checked exception is encountered, as well as if we want to provide user-defined messages to the client.
+
+throws :
+--------
+throws keyword describes that the method might throw an Exception, It also might not. It is used only at the end of a method declaration to indicate what exceptions it supports OR what type of Exception it might throw which will be handled by JVM or caller method.
+
+Note :- It is always better to use try catch so we can provide appropriate user defined messages to our client.
+
+======================================================================
+17-04-2025
+----------
+Exception propagation [Propagation of Exception Object from Callee to Caller]
+--------------------------------------------------------------
+Whenever we call a method and if the the callee method contains any kind of exception (checked OR Unchecked) and if callee method doesn't contain any kind of exception handling mechanism (try-catch OR throws) then JVM will propagate the exception object to caller method for handling purpose. This is called Exception Propagation.
+
+If the caller method also does not contain any exception handling mechanism then JVM will terminate the method from the stack frame hence the remaining part of the method(m1 method) will not be executed even if we handle the exception in another caller method like main.
+
+If any of the the caller method does not contain any exception handling mechanism then exception will be handled by JVM, JVM has default exception handler which will provide the exception message and terminates the program abnormally.-
+
+//Exception Propagation with unchecked Exception
+
+package com.ravi.exception_demo;
+
+public class ExceptionPropagationWithUnchecked {
+
+	public static void main(String[] args) 
+	{
+		System.out.println("Main method Started!!!!!");
+		try
+		{
+			m1();
+		}
+		catch(ArithmeticException e)
+		{
+			System.out.println("Handled in main method");
+		}
+		System.out.println("Main method Ended!!!!!");
+
+	}
+	public static void m1() 
+	{
+		System.out.println("M1 method Started!!!!!");
+		m2();
+		System.out.println("M1 method Ended!!!!!");
+
+	}
+	public static void m2()
+	{
+		System.out.println("m2 method Started!!!!!");
+		
+		System.out.println(10/0);
+		
+		System.out.println("m2 method Ended!!!!!");
+
+	}
+
+}
+
+//Exception Propagation with Checked Exception
+package com.ravi.exception_demo;
+
+class Sample
+{
+	static
+	{
+		System.out.println("Static Block");
+	}
+}
+
+
+
+public class ExceptionPropagationWithChecked {
+
+	public static void main(String[] args)
+	{
+		System.out.println("Main method Started!!!!!");
+		
+		try
+		{
+			m1();
+		}
+		catch(ClassNotFoundException e)
+		{
+			System.out.println("Handled in main method");
+		}
+		
+		System.out.println("Main method Ended!!!!!");
+
+	}
+	public static void m1() throws ClassNotFoundException
+	{
+		System.out.println("M1 method Started!!!!!");		
+		m2();		
+		System.out.println("M1 method Ended!!!!!");
+
+	}
+	public static void m2() throws ClassNotFoundException
+	{
+		System.out.println("m2 method Started!!!!!");
+				
+		Class.forName("com.ravi.exception_demo.Demo");		
+		
+		System.out.println("m2 method Ended!!!!!");
+
+	}
+}
+---------------------------------------------------------------------
+Calling a method which is throwing checked Exception
+-----------------------------------------------------
+package com.ravi.exception_demo;
+
+public class MethodWithCheckedException {
+
+	public static void main(String[] args) 
+	{
+		try
+		{
+			pune();
+			
+			indore();
+		}
+		catch(ClassNotFoundException e)
+		{
+			System.out.println("Pune Branch exception handled");
+		}
+		catch(Exception e)
+		{
+			
+		}
+	}
+	
+	public static void pune() throws ClassNotFoundException
+	{
+		Class.forName("com.ravi.exception_demo.Demo");
+	}
+	
+	public static void indore() throws Exception
+	{
+		
+	}
+
+}
+
+Note : It is strongly recommended that if, while working with checked exception, method uses throws keyword to skip from the current situation and try to send the exception object to the calledr method then any of the caller method must handle the 
+exception.
+----------------------------------------------------------------------
+Some important rules regarding the checked Exception :
+------------------------------------------------------
+a) If the try block does not throw any checked exception then in the corresponding catch block we can't handle checked exception.It will generate compilation error i.e "exception never thrown from the corresponding try statement"
+
+public class CheckedDemo 
+{
+    public static void main(String [] args) 
+    {
+	   try
+	   {
+		 //try block is not throwing checked exception
+		  //i.e. ClassNotFoundException
+		
+	   }
+	   catch(ClassNotFoundException e) //error
+	   {
+	   }
+   }
+	
+	
+}
+
+
+
+Note :- The above rule is not applicable for Unchecked Exception
+
+               try
+		{
+			
+		}
+		catch(ArithmeticException e)  //Valid
+		{
+			e.printStackTrace();
+		}
+---------------------------------------------------------------------
+b) If the try block does not throw any exception then in the corresponding catch block we can write Exception OR Throwable because both are the super classes for all types of Exception whether it is checked or unchecked.
+
+package com.ravi.method_related_rule;
+
+import java.io.EOFException;
+
+import com.ravi.basic.ThrowException;
+
+public class CatchingWithSuperClass 
+{
+	public static void main(String[] args) 
+	{	
+		
+		try
+		{
+			
+		}
+		catch(Throwable e)  //Exception and Throwable both are allowed
+		{
+          e.printStackTrace();			
+		}
+
+	}
+
+}
+----------------------------------------------------------------------
+c) At the time of method overriding if the super class method does not reporting or throwing checked exception then the overridden method of sub class not allowed to throw checked exception otherwise it will generate compilation error but overridden method can throw Unchecked Exception.
+
+package com.ravi.method_related_rule;
+
+import java.io.EOFException;
+import java.io.IOException;
+
+class Super
+{
+	public void show()  
+	{
+		System.out.println("Super class method not throwing checked Exception");
+	}
+}
+class Sub extends Super
+{
+	@Override
+	public void show()  throws InterruptedException //error
+	{
+		System.out.println("Sub class method should not throw checked Exception");
+	}
+}
+
+public class MethodOverridingWithChecked {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+	}
+
+}
+----------------------------------------------------------------------
+d) If the super class method declare with throws keyword to throw a checked exception, then at the time of method overriding, sub class method may or may not use throws keyword.
+               If the Overridden method is also using throws
+ keyword to throw checked exception then it must be either same exception class or sub class, it should not be super class as well as we can't add more exceptions in the overridden method.
+
+package com.ravi.method_related_rule;
+
+import java.io.FileNotFoundException;
+import java.io.IOException;
+
+class Base
+{
+	public void show() throws FileNotFoundException
+	{
+		System.out.println("Super class method ");
+	}
+}
+class Derived extends Base
+{
+	public void show() throws IOException //error
+	{
+		System.out.println("Sub class method ");
+	}
+}
+
+public class MethodOverridingWithThrows 
+{
+	public static void main(String[] args) 
+	{
+	  System.out.println("Overridden method may or may not throw checked exception but if it is throwing then must be same or sub class");	
+	}
+
+}
+---------------------------------------------------------------------
+e) Just like return keyword, we can't use throw keyword inside static and non static block  to throw an exception because all initializers must be executed normally.
+
+We can use throw keyword in the protection of try-catch so the code will be executed normally.
+
+
+
+public class TryDemo 
+{
+	{
+		try
+		{
+			throw new ArithmeticException();
+		}
+		catch (ArithmeticException e)
+		{
+			System.out.println("Normal Termination");
+		}
+	}
+	
+    public static void main(String [] args) 
+	{
+	   new TryDemo();
+	}
+	
+}
+----------------------------------------------------------------------
+
+
+public class TryDemo 
+{
+	static
+	{
+		try
+		{
+			throw new ArithmeticException();
+		}
+		catch (ArithmeticException e)
+		{
+			System.out.println("Normal Termination");
+		}
+	}
+	
+    public static void main(String [] args) 
+	{
+	  
+	}
+	
+}
+----------------------------------------------------------------------
 
 
 

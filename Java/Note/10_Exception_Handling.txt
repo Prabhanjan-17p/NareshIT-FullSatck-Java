@@ -1026,7 +1026,7 @@ public class ExceptionPropagationWithChecked {
 	{
 		System.out.println("m2 method Started!!!!!");
 				
-		Class.forName("com.ravi.exception_demo.Demo");		
+		Class.forName("com.ravi.exception_demo.Demo");	
 		
 		System.out.println("m2 method Ended!!!!!");
 
@@ -1202,8 +1202,6 @@ e) Just like return keyword, we can't use throw keyword inside static and non st
 
 We can use throw keyword in the protection of try-catch so the code will be executed normally.
 
-
-
 public class TryDemo 
 {
 	{
@@ -1224,8 +1222,6 @@ public class TryDemo
 	
 }
 ----------------------------------------------------------------------
-
-
 public class TryDemo 
 {
 	static
@@ -1247,6 +1243,416 @@ public class TryDemo
 	
 }
 ----------------------------------------------------------------------
+18-04-2025
+----------
+Nested try block :
+------------------
+If we write a try block inside another try block then it is called Nested try block.
+
+try  //Outer try             
+{
+  statement1;
+     try  //Inner try
+     {
+        statement2;
+     }
+     catch(Exception e) //Inner catch
+     {
+     }
+}
+catch(Exception e) //Outer Catch
+{
+}
+
+The execution of inner try block depends upon outer try block that means if we have an exception in the Outer try block then inner try block will not be executed.
+----------------------------------------------------------------------
+package com.ravi.basic;
+
+public class NestedTryBlock 
+{
+	public static void main(String[] args) 
+	{		
+	      try  //outer try
+	      {
+	    	    String x = "null";
+	    	    System.out.println("It's length is :"+x.length());
+	    	        
+		    	  try  //inner try
+		    	  {
+		    		 String y = "NIT"; 
+		    		 Integer z = Integer.valueOf(y);
+		    		 System.out.println("z value is :"+z);	    				    		  
+		    	  }
+		    	  catch(NumberFormatException e)
+		    	  {
+		    		System.err.println("Number is not in a proper format");  
+		    	  }
+	      }
+	      catch(NullPointerException e)
+	      {
+	    	  System.err.println("Null pointer Problem"); 	    	 
+	      }	      
+	}
+}
+----------------------------------------------------------------------
+Writing try-catch inside catch block :
+---------------------------------------
+We can write try-catch inside catch block but this try-catch block will be exceuted if the catch block will executed that means if we have an exception in the try block.
+
+package com.ravi.basic;
+
+import java.util.Arrays;
+import java.util.InputMismatchException;
+import java.util.Scanner;
+
+public class TryWithCatchInsideCatch 
+{	
+	public static void main(String[] args)
+	{
+		Scanner sc = new Scanner(System.in);
+		
+		try(sc)
+		{			
+			System.out.print("Enter your Roll number :");
+			int roll = sc.nextInt();
+			System.out.println("Your Roll is :"+roll);			
+			
+		}	
+		catch(InputMismatchException e)
+		{
+			System.err.println("Provide Valid input!!");
+			
+			try
+			{
+				System.out.println(10/0);
+			}
+			catch(ArithmeticException e1)
+			{
+			  System.err.println("Divide by zero problem");	
+			}
+			
+		}
+		finally
+		{
+			System.out.println("Finally block");
+			
+			try
+			{
+				Object []arr = new String[3];
+				
+				arr[0] = "Scott";
+				arr[1] = "Smith";
+				arr[2] = 90;  //java.lang.ArrayStoreException
+				System.out.println(Arrays.toString(arr));
+			}
+			catch(ArrayStoreException e)
+			{
+				System.err.println("Invalid data inside array");
+			}
+			
+		}
+	}
+
+}
+
+Note : We can write try-catch inside finally block.
+----------------------------------------------------------------------
+try-catch with return statement
+-------------------------------
+If we write try-catch block inside a method and that method is returning some value then we should write return statement in both the places i.e inside the try block as well as inside the catch block.
+
+We can also write return statement inside the finally block only, if the finally block is present. After this return statement we cannot write any kind of statement. (Unrechable)
+
+Always finally block return statement having more priority then try-catch return statement.
+
+package com.ravi.advanced;
+public class ReturnExample
+{
+    public static void main(String[] args) 
+    {     	
+       System.out.println(methodReturningValue());        
+    }	
+	
+	
+	public static int methodReturningValue()
+    {
+        try
+        {
+            System.out.println("Try block");
+            return 10/0;    
+        }
+        catch (Exception e)
+        {
+            System.out.println("catch block");         
+           return 20;  //return statement is compulsory  
+        }
+        
+       //System.out.println("Unreachable code");
+               
+    }
+}
+----------------------------------------------------------------------
+package com.ravi.advanced;
+
+public class ReturnExample1 {
+
+	public static void main(String[] args)
+	{
+		System.out.println(m1());
+	}
+
+	@SuppressWarnings("finally")
+	public static int m1()
+	{	
+		try
+		{
+			System.out.println("Inside try");
+			return 100;
+		}
+		catch(Exception e)
+		{
+			System.out.println("Inside Catch");
+			return 200;
+		}
+		finally
+		{
+			System.out.println("Inside finally");
+			return 300;
+		}
+		
+		// System.out.println("....");   Unreachable line
+	}
+}
+----------------------------------------------------------------------
+Initialization of a variable in try and catch :
+-----------------------------------------------
+A local variable must be initialized inside try block as well as catch block OR at the time of declaration.
+
+If we initialize inside the try block only then from catch block we cannot access local variable value, Here initialization is compulsory inside catch block.
+
+package com.ravi.basic;
+
+public class VariableInitialization 
+{
+	public static void main(String[] args)
+	{      
+	  int x;
+	  
+	  try
+	  {		 
+		  x = 190;
+		  System.out.println(x);
+	  }
+	  catch(Exception e)
+	  {
+		 x = 200;
+		 System.out.println(x);
+	  }
+		
+		
+	}
+
+}
+----------------------------------------------------------------------
+** What is the difference between throw and throws :
+---------------------------------------------------
+throw [THROWING THE EXCEPTION OBJCET EXPLICITLY.]
+------------------------------------------------------
+We should use throw keyword to throw the exception object explicitly, In case of try block, try block is responsible to create the exception object with JVM as well as throw the exception object to the nearest catch block. 
+but if a developer wants to throw exception object explicitly then we use throw keyword.
+
+           throw new ArithmeticException();
+	   throw new LowBalanceException();
+
+after using throw keyword the control will transfer to the nearest catch block so after throw keyword statement, the remaining statements are un-reachable.
+
+throws :- 
+---------
+throws keyword describes that the method might throw an Exception, It also might not. It is used only at the end of a
+method declaration to indicate what exceptions it supports OR what type of Exception it might throw at runtime.
+
+It is used to skip from the current situation so now the execption will be propagated to the caller method OR JVM for 
+handling purpose.
+
+It is mainly used to work with Checked Exception.
+
+----------------------------------------------------------------------
+Types of Exception :
+--------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

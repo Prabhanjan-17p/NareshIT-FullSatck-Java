@@ -346,7 +346,7 @@ public class TransactionMain {
             transaction.processTransaction(amount, accountNumber);
 
         } catch (NumberFormatException e) {
-            System.out.println("Invalid input: Please enter a valid number for transaction amount.");
+            System.out.println("Invalid input Please enter a valid number for transaction amount");
         } catch (RuntimeException e) {
             System.out.println("Unexpected error: " + e.getMessage());
         } finally {

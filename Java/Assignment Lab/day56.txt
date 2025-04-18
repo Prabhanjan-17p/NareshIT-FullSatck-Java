@@ -1,0 +1,434 @@
+Please complete previous pending Assignment, Only 15 MCQs
+
+Q1) Find the output of the Program
+
+class  ExceptionTest
+{
+	public static void main(String[] args) 
+	{
+	    Exception e1 = new ArithmeticException("Number is divided by zero");
+		System.out.println(e1);
+
+        Exception e2 = new ArrayIndexOutOfBoundsException("Array is out of limit");  // it calling the constructor Of ArrayIndexOutOfBoundsExceptionclass
+		System.out.println(e2); // it return the FQC name with given message
+
+	}
+}
+
+ANS -
+------
+java.lang.ArithmeticException: Number is divided by zero
+java.lang.ArrayIndexOutOfBoundsException: Array is out of limit
+
+
+Q2) Find the output of the Program
+
+public class a87 {
+  public static void main(String[] argv) 
+  {
+    try 
+    {
+      throw new OutOfMemoryError();
+      System.out.println("Success"); // error at this line because this will be not be reached
+    }
+    catch (Exception e) 
+    {
+      System.out.println("General exception");
+    } 
+    finally
+    {
+      System.out.println("Doing finally part");
+    }
+    System.out.println("Carrying on");
+
+  }
+}
+ANS - Compile Time Error
+
+Q3) Find the output of the Program
+
+public class a103 
+{
+      static String s = "";
+      public static void main(String[] args) 
+      {
+            try 
+            {
+                 s += "1"; //s=1
+                 throw new Exception();
+            } catch (Exception e) 
+            {
+                 s += "2"; // s =12
+            } 
+            finally 
+            { 
+                  s += "3"; // s = 123
+                  doStuff(); 
+                  s += "4";
+            }
+            System.out.println(s);
+       }
+       static void doStuff() 
+       { 
+            int x = 0; 
+            int y = 7/x; // Error occure at this point 
+       }
+}
+
+ANS - Runtime Error / by Zero Exception
+
+Q4) Find the output of the Program
+
+ public class a105
+{
+      static String s = "-";
+      public static void main(String[] args) 
+      {
+            try 
+            {
+                 throw new Exception();
+            } 
+            catch (Exception e) 
+            {
+                 try 
+                 {
+                      try 
+                      {
+                           throw new Exception();
+                      } 
+                      catch (Exception ex)
+                      {
+                           s += "ic "; // s = -ic 
+                      }
+                      throw new Exception();
+                  } 
+                  catch (Exception x) 
+                  {
+                       s += "mc "; // s = -ic mc 
+                  } 
+                  finally 
+                  {
+                       s += "mf "; // s = -ic mc mf 
+                  }
+            } 
+            finally 
+            {
+                  s += "of "; // s = -ic mc mf of
+            }
+            System.out.println(s); //// s = -ic mc mf of
+     }
+}
+
+ANS - -ic mc mf of
+
+
+Q5) Find the output of the Program
+
+public class a110 
+	{
+    public static void main(String[] args) 
+	{
+        try {
+            throw new java.io.IOException();
+        } 
+		catch (java.io.IOException exc) {
+            System.err.println("In catch IOException: "+exc.getClass());
+            throw new RuntimeException(); // Run time error at this line because no one can handle it 
+        }
+		catch (Exception exc) { // it will be not executed 
+            System.err.println("In catch Exception: "+exc.getClass());
+        }
+		finally {
+            System.err.println("In finally");
+        }
+    }
+}
+ANS - 
+In catch IOException: java.io.IOException
+In finally
+Exception in thread "main" java.lang.RuntimeException
+
+Q6) Find the output of the Program
+
+public class Test40{
+   public static void main(String[] args) throws Exception
+	{
+      System.out.println("Enter main()"); // 1-Enter main()
+      try
+      {
+		methodA();
+      }
+      catch (Exception e)
+      {
+		  System.out.println(e); // 5- / by zero Exception
+      }
+      System.out.println("Exit main()"); // 6- Exit main()
+   }
+ 
+   public static void methodA() throws Exception
+	   {
+      System.out.println("Enter methodA()"); // 2- Enter methodA()
+      methodB();
+      System.out.println("Exit methodA()");
+   }
+ 
+   public static void methodB() throws Exception
+	   {
+      System.out.println("Enter methodB()"); // 3- Enter methodB()
+      	methodC();
+      System.out.println("Exit methodB()");
+   }
+ 
+   public static void methodC() throws Exception
+	   {
+      System.out.println("Enter methodC()"); // 4- Enter methodC()
+       System.out.println(1/0); // error throw
+      System.out.println("Exit methodC()");
+   }
+}
+"
+ANS ---
+Enter main()
+Enter methodA()
+Enter methodB()
+Enter methodC()
+java.lang.ArithmeticException: / by zero
+Exit main()
+
+Q7) Find the output of the Program
+class Test43 
+{
+	public static void main(String[] args)  
+	{
+		methodA(); // Error at this point. we should be catch or throws the exception
+	}
+
+	public static void methodA() throws Exception
+	{
+		System.out.println("Completed..");
+	}
+}
+ANS - Compile Time Error
+
+Q8) Find the output of the Program
+
+class Test44 
+{
+	public static void main(String[] args) throws Exception 
+	{
+		methodA();
+	}
+
+	public static void methodA() throws Exception
+	{
+		System.out.println("Completed..");
+	}
+}
+ANS - Completed..
+
+Q9) Find the output of the Program
+import java.io.*;
+class Test45 
+{
+	public static void main(String[] args) throws Exception 
+	{
+		methodA();
+	}
+
+	public static void methodA() throws IOException
+	{
+		System.out.println("Completed..");
+	}
+}
+ANS - Completed..
+
+Q10) Find the output of the Program
+import java.io.*;
+class Test46 
+{
+	public static void main(String[] args) throws IOException // if it is change as "throws Exception" then error will not be occure
+	{
+		methodA(); // Error at this point because super method have smaller type according to the baseMethod.
+	}
+
+	public static void methodA() throws Exception
+	{
+		System.out.println("Completed..");
+	}
+}
+ANS - Compile Time Error
+
+Q11) Find the output of the Program
+
+public class Test477
+{
+	public static void main(String [] args)
+	{
+		String test="no";
+		try
+		{
+			System.out.println("Start try"); //1- Start try
+			doRisky(test);
+			System.out.println("End try"); // 4- End try
+		}
+		catch (Exception e)
+		{
+			System.out.println("Exception Handled");
+		}
+		finally
+		{
+			System.out.println("Finally"); //5- Finally
+		}
+		System.out.println("End of main"); // 6- End of main
+	}
+	static void doRisky(String test) throws Exception
+	{
+		System.out.println("Start risky"); //2- Start risky
+		if("yes".equals(test)) // false
+		{
+			throw new Exception();
+		}
+		System.out.println("End Risky"); //3- End Risky
+		return;
+	}
+}
+ANS-
+Start try
+Start risky
+End Risky
+End try
+Finally
+End of main
+
+
+Q12) Find the output of the Program
+
+public class Test48
+{
+	public static void main(String [] args)
+	{
+		String test="yes";
+		try
+		{
+			System.out.println("Start try"); //1- Start try
+			doRisky(test);
+			System.out.println("End try");
+		}
+		catch (Exception e)
+		{
+			System.out.println("Exception Handled"); // 3- Exception Handled
+		}
+		finally
+		{
+			System.out.println("Finally"); //4- Finally
+		}
+		System.out.println("End of main"); // 5- End of main
+	}
+	static void doRisky(String test) throws Exception
+	{
+		System.out.println("Start risky"); //2- Start risky
+		if("yes".equals(test))
+		{
+			throw new Exception();
+		}
+		System.out.println("End Risky");
+		return;
+	}
+}
+ANS -
+Start try
+Start risky
+Exception Handled
+Finally
+End of main
+
+Q13) Find the output of the Program
+
+public class ExceptionPropogation 
+{
+	public static void main(String[] args) 
+	{
+		System.out.println("Main method started"); //1- Main method started
+		m1(); 
+		System.out.println("Main method ended"); //3 - Main method ended
+	}
+	public static void m1()
+	{
+		try
+		{
+			m2();
+		}
+		catch (Exception e)
+		{
+			System.out.println("Handled in m1"); //2- Handled in m1
+		}
+	}
+	public static void m2()
+	{
+	   	m3();
+	}
+	public static void m3()
+	{
+		System.out.println(10/0);
+	}
+}
+ANS -
+Main method started
+Handled in m1
+Main method ended
+
+
+Q14) Find the output of the Program
+
+import java.io.FileNotFoundException;
+public class a60
+{
+       public static void main(String[] argv) throws Exception 
+       {
+             try 
+             {
+                    throw new FileNotFoundException("");
+             } 
+			 catch (FileNotFoundException ex) 
+               {
+                    System.out.println("book list not found!");
+                    throw ex; // Exception occure at this point
+               }
+       }
+}
+ANS -
+book list not found!
+Exception in thread "main" java.io.FileNotFoundException
+
+Q15) Find the output of the Program
+
+public class InnerTry 
+{
+	public static void main(String[] args) 
+	{
+		try
+		{
+			String s=null;
+			System.out.println(s.length());
+		}
+		catch (NullPointerException np)
+		{
+			System.out.println("Null Problem"); // 1- Null Problem
+			try
+			{
+				String s="xyz";
+				int no=Integer.parseInt(s);
+				System.out.println(no);
+			}
+			catch (NumberFormatException nf)
+			{
+				System.out.println("Number Format Problem"); //2- Number Format Problem
+			}
+		}
+		System.out.println("Completed"); //3- Completed
+	}
+}
+ANS -
+Null Problem
+Number Format Problem
+Completed

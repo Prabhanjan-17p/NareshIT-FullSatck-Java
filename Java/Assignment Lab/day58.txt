@@ -1,0 +1,406 @@
+MCQs :
+-------
+1.What is the output of the following program
+public class ExceptionHandling1
+{
+	static void nit(int marks) 
+	{
+		if(marks<0||marks>50)
+		{
+			throw new IllegalArgumentException(Integer.toString(marks)); // it throw the IllegalArgumentException class then IllegalArgumentException throw RuntimeException and RuntimeException throw Exception and Exception throw ThrowableException class
+		}
+	}
+	public static void main(String[] args) {
+		nit(55);
+	}
+}
+ANS- RuntimeException - Exception in thread "main" java.lang.IllegalArgumentException: 55
+
+2.What is the output of the following program
+class InvalidPassword extends Exception
+{
+	InvalidPassword(String str) {
+		super(str);
+	}
+}
+
+public class ExceptionHandling2
+{
+	static void nit(String password) throws InvalidPassword
+	{
+		if(password.length()<5)
+			throw new InvalidPassword("Invalid Password");
+		else 
+		{
+			System.out.println("Valid Password");
+		}
+	}
+	public static void main(String[] args) {
+		try {
+			nit("NareshIT");
+		} catch (InvalidPassword e) {
+			System.out.println("Exception "+e);
+		}
+		
+	}
+}
+ANS - Valid Password
+
+3.What is the output of the following program
+public class ExceptionHandling3 {
+	public static void main (String[] args) {
+		int a=20;
+		for(int i=0;i<a;i++)
+		   try{
+                System.out.println(a/i);  
+		   } // error at this point
+	}
+}
+ANS - Compile tiem error
+
+4.What is the output of the following program
+class Age extends Exception
+{
+	Age(String str) {
+		super(str);
+	}
+}
+public class ExceptionHandling4
+{
+	static void nit(int age) throws Age
+	{
+		if(age<18)
+			throw new Age("Not for Vote");
+		else 
+		{
+			System.out.println("Vote");
+		}
+	}
+	public static void main(String[] args) {
+		try {
+			nit(15);
+		} catch (Age e) {
+			System.out.println("Exception "+e);
+		}		
+	}
+}
+ANS - java.Exception.Age : Not for Vote
+
+5.What is the output of the following program
+class Age extends Exception
+{
+	
+}
+
+public class ExceptionHandling5
+{
+	public static void main(String[] args) {
+		try {
+			throw new Age();
+		} catch (Age e) {
+			System.out.println("Exception "+e.getMessage());
+		}
+		
+	}
+}
+ANS - Exception null
+
+6.What is the output of the following program
+class Age extends Exception
+{
+	Age(String str) {
+		super(str);
+	}
+}
+public class ExceptionHandling6
+{
+	static void nit(int age) throws Age
+	{
+		if(age<18)
+			throw new Age("Not for Vote");
+		else 
+		{
+			System.out.println("Vote");
+		}
+	}
+	public static void main(String[] args) {
+		try {
+			nit(19);
+		} catch (Age e) {
+			System.out.println("Exception "+e);
+		}finally {
+			System.out.println("Vote count");
+		}
+	}
+}
+ANS-
+Vote
+Vote count
+
+7.What is the output of the following program
+class Student{    
+	void message() throws ArithmeticException {  //line 1
+		System.out.println("Hai Student");  
+	}    
+}    
+class Faculty extends Student{    
+	void message() throws Exception {  // line 2 // Error at this point
+		System.out.println("hai faculty");  
+	}
+}
+public class ExceptionHandling7
+{
+	public static void main(String args[]) {    
+	   Student nit = new Faculty();    
+	     
+	   try {    
+	        nit.message();    
+	   }  
+	   catch (Exception e){}   
+	  
+	}    
+}     
+ANS - Compile Time Error
+
+8.What is the output of the following program
+class Student{    
+	void message(){  // line 1
+		System.out.println("Hai Student");  
+	}    
+}    
+	    
+class Faculty extends Student{    
+	void message()throws Exception {  // line 2 // Error at this point 
+		System.out.println("hai faculty");  
+	}
+}
+
+public class ExceptionHandling8 
+{
+	public static void main(String args[]) {    
+	   Student nit = new Faculty();    
+	     
+	   try {    
+	   nit.message();    
+	   }  
+	   catch (Exception e){}   
+	  
+	}    
+}
+ANS - Compile Time Error
+
+9.What is the output of the following program
+class Student{    
+	void message(){  //line 1
+		System.out.println("Hai Student");  
+	}    
+}    
+	    
+class Faculty extends Student{    
+	void message()throws ArithmeticException {  // line 2
+		System.out.println("hai faculty");  
+	}
+}
+public class ExceptionHandling9 
+{
+	public static void main(String args[]) {    
+	   Student nit = new Faculty();    
+	     
+	   try {    
+	        nit.message();    
+	   }  
+	   catch (Exception e){}   
+	 
+	}    
+}
+ANS - hai faculty 
+
+10.What is the output of the following program
+class Student{    
+	void message() throws Exception{  // line 1
+		System.out.println("Hai Student");  
+	}    
+}    
+class Faculty extends Student{    
+	void message() throws Exception {  // line 2
+		System.out.println("hai faculty");  
+	}
+}
+
+public class ExceptionHandling 
+{
+	public static void main(String args[]) {    
+	   Student nit = new Faculty();    
+	     
+	   try {    
+	   nit.message();    
+	   }  
+	   catch (Exception e){}   
+	  
+	}    
+}
+ANS - hai faculty
+
+-----------------------------------------------------------------------------
+Assignment - 01
+---------------
+Bank Application
+Objective:
+Develop a Java program for a bank application that performs deposit, withdrawal, transfer, loan application, and balance check operations with proper input validation and error handling. The program should utilize a Bank interface, BankAccount and Customer classes, and an ATM class to demonstrate the application's functionality. Use custom exceptions, switch-case statements, try-with-resources, and multi-catch blocks for error handling.
+
+Requirements:
+Custom Exceptions:
+
+class InsufficientFundsException(Checked):
+Methods:
+Parameterized Constructor with String as parameter
+Purpose: Thrown when there are not enough funds for a withdrawal or transfer.
+
+class InvalidAmountException(Unchecked):
+Methods:
+Parameterized Constructor with String as parameter
+Purpose: Thrown when an invalid amount is entered for any transaction.
+
+class AccountNotFoundException(Checked):
+Methods:
+Parameterized Constructor with String as parameter
+Purpose: Thrown when an account is not found during a transfer.
+
+class LoanNotAllowedException(Unchecked):
+Methods:
+Parameterized Constructor with String as parameter
+Purpose:
+Thrown when the loan amount exceeds the allowed limit.
+
+Bank Interface:
+-------------------
+Methods:
+
+Method name: deposit 
+return type : void
+parameters : double amount
+throws InvalidAmountException
+Deposits the specified amount into the account. Throws InvalidAmountException if the amount is less than or equal to zero.(amt<0)
+
+
+Method name: withdraw 
+return type : void
+parameters : double amount
+throws InsufficientFundsException, InvalidAmountException:
+Withdraws the specified amount from the account. Throws InsufficientFundsException if the amount is greater than the account balance. Throws InvalidAmountException if the amount is less than or equal to zero. (amt <=0 ) or (curAMT > totAMT)
+
+
+Method name: transfer 
+return type : void
+parameters : (BankAccount toAccount, double amount) 
+throws InsufficientFundsException, AccountNotFoundException, InvalidAmountException: 
+Transfers the specified amount to another account. Throws InsufficientFundsException if the amount is greater than the account balance. Throws AccountNotFoundException if the target account is not found. Throws InvalidAmountException if the amount is less than or equal to zero. (curAMT > totAMT) or (userAC != Target) or  (amt <=0 )
+
+
+Method name: applyForLoan 
+return type : void
+parameters : (double amount) 
+throws LoanNotAllowedException, InvalidAmountException:
+Applies for a loan of the specified amount(50000). Throws LoanNotAllowedException if the loan amount exceeds the allowed limit(50000) or if the balance is less than specified amount(50000). Throws InvalidAmountException if the amount is less than or equal to zero. (curAMT < 50000) or (loanAMT  > 50000)
+
+Method name: getBalance 
+return type : double
+Returns the current balance of the account.
+
+BankAccount Class(BLC):
+Attributes:
+accountNumber: long: private
+balance:double: private
+
+Implements Bank interface.
+Methods:
+Implement all methods from the Bank interface.
+deposit(double amount): Increases the account balance by the specified amount. Throws InvalidAmountException if the amount is less than or equal to zero.
+
+withdraw(double amount): Decreases the account balance by the specified amount. Throws InsufficientFundsException if the amount is greater than the account balance. Throws InvalidAmountException if the amount is less than or equal to zero.
+
+transfer(BankAccount toAccount, double amount): Transfers the specified amount to another account. Throws InsufficientFundsException if the amount is greater than the account balance. Throws AccountNotFoundException if the target account is not found(i,e if toAccount is null). Throws InvalidAmountException if the amount is less than or equal to zero.
+
+applyForLoan(double amount): Allows the user to apply for a loan. Throws LoanNotAllowedException if the loan amount exceeds the allowed limit. Throws InvalidAmountException if the amount is less than or equal to zero.
+
+getBalance(): Returns the current balance of the account.
+Constructor to initialize account number and initial balance.
+
+
+Customer Class(BLC):
+Attributes:
+name: String: private
+account: BankAccount: private //HAS-A
+
+Methods:
+Constructor to initialize the customer's name and account.
+
+getAccount(): Returns the customer's bank account.
+
+ATM Class(ELC):
+Contains the main method to demonstrate the application.
+Uses switch-case for different operations (deposit, withdraw, transfer, loan application, check balance).
+Uses try-with-resources and multi-catch blocks for error handling , use switch case to  display the oprations as menu
+like : 
+      Select an option :
+           1. Deposit
+           2. Withdraw
+           3. Transfer
+           4. Loan Application
+           5. Check Balance
+           6. Exit
+      Enter your option : 1
+
+Validates all inputs.
+
+Test Cases for Bank Application
+---------------------------------
+Deposit Test Cases - 1:
+Valid Deposit:
+Action: Deposit 1000 into account.
+Expected Output: Balance should increase by 1000.
+Invalid Deposit Amount:
+Action: Attempt to deposit -500.
+Expected Output: Should throw InvalidAmountException with appropriate message.
+
+Withdrawal Test Cases - 2:
+Valid Withdrawal:
+Action: Withdraw 500 from account balance of 1000.
+Expected Output: Balance should decrease by 500.
+Insufficient Funds:
+Action: Attempt to withdraw 1500 from account balance of 1000.
+Expected Output: Should throw InsufficientFundsException with appropriate message.
+Invalid Withdrawal Amount:
+Action: Attempt to withdraw -200.
+Expected Output: Should throw InvalidAmountException with appropriate message.
+
+Transfer Test Cases - 3:
+Valid Transfer:
+Action: Transfer 300 from one account to another with sufficient balance.
+Expected Output: Sender's balance should decrease by 300, receiver's balance should increase by 300.
+Insufficient Funds for Transfer:
+Action: Attempt to transfer 1000 from account with balance 500.
+Expected Output: Should throw InsufficientFundsException with appropriate message.
+Account Not Found:
+Action: Attempt to transfer to a null account.
+Expected Output: Should throw AccountNotFoundException with appropriate message.
+Invalid Transfer Amount:
+Action: Attempt to transfer -200.
+Expected Output: Should throw InvalidAmountException with appropriate message.
+
+
+Loan Application Test Cases - 4:
+Valid Loan Application:
+Action: Apply for a loan of 30000 with account balance greater than 50000.
+Expected Output: Loan should be approved, balance should increase by 30000.
+Loan Amount Exceeds Limit:
+Action: Apply for a loan of 60000 with account balance greater than 50000.
+Expected Output: Should throw LoanNotAllowedException with appropriate message.
+Invalid Loan Amount:
+Action: Apply for a loan of -200.
+Expected Output: Should throw InvalidAmountException with appropriate message.
+Check Balance Test Cases:
+
+Valid Check Balance - 5:
+Action: Retrieve balance after performing transactions.
+Expected Output: Balance should reflect all deposits, withdrawals, transfers, and loans correctly.

@@ -1,0 +1,223 @@
+Ques - 1
+----------------
+Implement a Java program that simulates various car-related exceptions using custom exception classes (CarStopped, CarPuncture, CarHeat). The program should handle different scenarios and test cases using the CarTest class and demonstrate exception handling through static methods.
+
+For CarStoppedException: extends Exception
+Purpose: Represents an exception when the car stops for reasons other than puncture or overheating.
+
+Instance Methods:
+No Instance methods
+
+Methods:
+Parameterized Constructor with String as parameter
+
+For CarPunctureException: extends Exception
+This class is used for raise the exception if car is punctured.
+Instance Methods:
+No Instance methods
+
+Methods:
+Parameterized Constructor with String as parameter
+
+For CarHeatException: extends Exception
+This class is used for raise the exception if the car engine is more than 50 degrees Celsius
+
+Instance Methods:
+No Instance methods
+
+Methods:
+Parameterized Constructor with String as parameter
+
+For CarTest class:
+Contains static methods to simulate car operations and throw exceptions based on certain conditions.
+
+Instance Variables:
+No Instance Variables
+
+Methods:
+Stop(String): void: static
+
+This class throws CarStoppedException. If the string is  stop  throw new exception and get the message or else message is Car not stall
+
+
+Methods:
+puncture(String): void: static: public
+
+This class throws CarPunctureException. If the string is  puncture  throw new exception and get the message line  Car is punctured  or else message is Car not stall.
+
+Methods:
+carHeat(int): void: static : public
+
+This class throws CarHeatException. If the car heat is more than 50 degrees calicoes it throw new exception and get the message line  Car is heated more the 50 degrees  or else message is Car not stall.
+
+ELC class CarUser :-
+Invoke stop, puncture, and carHeat methods with appropriate messages or temperatures to test different scenarios.
+Ensure that exceptions are properly thrown and caught where applicable.
+
+Test Cases for Car Exceptions
+----------------------------------
+Car Stopped Exception Test:
+Action: Invoke CarTest.stop("stop").
+Expected Output: Should throw CarStoppedException with message "Car stopped for some reason."
+
+Car Not Started Test:
+Action: Invoke CarTest.stop("go").
+Expected Output: Should print "Car not stalled."
+
+Car Puncture Exception Test:
+Action: Invoke CarTest.puncture("puncture").
+Expected Output: Should throw CarPunctureException with message "Car is punctured."
+
+Car Not Punctured Test:
+Action: Invoke CarTest.puncture("move").
+Expected Output: Should print "Car not punctured."
+
+Car Overheating Exception Test:
+Action: Invoke CarTest.carHeat(60).
+Expected Output: Should throw CarHeatException with message "Car is heated more than 50 degrees Celsius."
+
+Car Temperature Normal Test:
+Action: Invoke CarTest.carHeat(40).
+Expected Output: Should print "Car temperature normal."
+
+
+ANS 
+----------
+public class Main {
+    public static void main(String[] args) throws  Exception{
+        try {
+//            CarTest.stop("stop");
+//            CarTest.puncture("puncture");
+            CarTest.carHeat(50);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+    }
+}
+
+
+
+public class CarTest {
+
+    public static void stop(String n1) throws CarStopped {
+        if (n1 == "stop"){
+            throw  new CarStopped("Car stopped for some reason.");
+        }else {
+            System.out.println("Not stop yet!!!");
+        }
+    }
+    public  static  void  puncture(String n2) throws  CarPuncture{
+        if (n2 == "puncture"){
+            throw  new CarPuncture("Car is puncture!!!");
+        }else {
+            System.out.println("Car is running smoothly");
+        }
+    }
+    public  static  void  carHeat(int n3) throws  CarHeat{
+        if (n3 == 50){
+            throw  new CarHeat("Car is heated more than 50 degrees Celsius.");
+        }else {
+            System.out.println("Car temperature normal.");
+        }
+    }
+}
+
+
+
+public class CarPuncture extends  Exception{
+    CarPuncture(String name){
+        super(name);
+    }
+}
+
+
+public class CarHeat extends Exception{
+    CarHeat(String name){
+        super(name);
+    }
+}
+
+
+public class CarStopped extends  Exception{
+    CarStopped(String name){
+        super(name);
+    }
+}
+
+
+QNS - 2
+--------------
+You are tasked with developing a comprehensive Java program to validate Passport numbers entered by users. In this exercise, your objective is to create a user-defined unchecked exception named InvalidPassportException. This exception should be thrown when the length of the Passport number entered by the user is not equal to 9 or if the format of the Passport number is invalid. Your goal is to implement a program that not only validates Passport numbers but also educates users about the correct Passport number format.
+
+
+
+Your program should follow the following components:
+
+
+
+InvalidPassportException class:
+
+
+
+Develop a class named InvalidPassportException that extends the RuntimeException class.
+
+Include a constructor within InvalidPassportException that accepts a message as a parameter. Ensure this constructor passes the message to the super class constructor.
+
+PassportValidationProgram class:
+
+
+
+Establish a class called PassportValidationProgram.
+
+Within this class, implement the main method to process the program's execution.
+
+Design a method named getPassportNumberFromUser that simulates user input for Passport numbers. Anticipate future enhancements by including prompts or additional validation logic.
+
+Develop a method named validatePassportNumber that accepts a Passport number as a parameter. This method should verify whether the Passport number's length is equal to 9 and if the format of the Passport number is valid (Passport number starts with two letters followed by seven digits (e.g., AB1234567)). If the conditions are not met, throw the InvalidPassportException with a message providing details on the correct Passport number format.
+
+
+
+Main Program Logic:
+
+Within the main method, encapsulate the entire program within a try-catch block to capture and handle exceptions.
+
+Utilize the getPassportNumberFromUser method to obtain the Passport number from the user.
+
+Employ the validatePassportNumber method to check the validity of the entered Passport number. If the Passport number is deemed valid, print a success message. If an exception is caught, print an error message.
+
+Your program should not only validate Passport numbers but also guide users in understanding the correct Passport number format. Consider including additional features, such as prompts for user input, to enhance the overall user experience.
+
+
+
+Feel free to use the template provided in the previous questions and modify it for Passport number validation.
+
+import java.util.Scanner;
+
+public class PassportValidationProgram {
+    public static void main(String[] args) {
+        try {
+            getPassportNumberFromUser();
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+    }
+    public static void getPassportNumberFromUser(){
+        Scanner sc = new Scanner(System.in);
+        System.out.print("Enter your passport number: ");
+        String no = sc.nextLine();
+        validatePassportNumber(no);
+    }
+    public static void validatePassportNumber(String no) throws InvalidPassportException{
+        if (no.length() == 9){
+            if (!Character.isUpperCase(no.charAt(0)) || !Character.isUpperCase(no.charAt(1))) {
+                throw new InvalidPassportException("Invalid format. First two characters must be uppercase letters (A-Z).");
+            }
+
+            else {
+                throw  new InvalidPassportException("First two character start with alphabet!!!");
+            }
+        }else {
+            throw  new InvalidPassportException("length not perfect match");
+        }
+    }
+}

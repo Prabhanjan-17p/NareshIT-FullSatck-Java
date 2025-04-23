@@ -1,0 +1,739 @@
+21-04-2025
+----------
+Uniprocessing :- 
+----------------
+In uniprocessing, only one process can occupy the memory So the
+major drawbacks are 
+
+1) Memory is westage
+2) Resources are westage
+3) Cpu is idle
+
+To avoid the above said problem, multitasking is introduced.
+
+In multitasking multiple tasks can concurrently work with CPU so, our task will be completed as soon as possible.
+
+Multitasking is further divided into two categories.
+
+a) Process based Multitasking [Diagram : 19th April]
+b) Thread based Multitasking  [Diagram : 19th April]
+
+
+Process based Multitasking :
+----------------------------
+If a CPU is switching from one subtask(Thread) of one process to another subtask of another process then it is called Process based Multitasking.
+
+Thread based Multitasking :
+---------------------------
+If a CPU is switching from one subtask(Thread) to another subtask within the same process then it is called Thread based Multitasking.
+
+What is a Thread ?
+------------------
+A thread is a light weight process. It is the basic unit of CPU.
+
+A thread can concurrently run with another thread within the same process.
+
+A thread is well known for Independent Exception in a separate Stack Memory.
+
+The main purpose of the thread to provide fast execution so the particular task will be completed by multiple threads concurrently
+
+In Java, Whenever we define main method then internally JVM create a thraed called main thread under main group
+
+WAP that describes main is thread :
+-----------------------------------
+Whenever we define main method then JVM will create main thread internally under main group, the purpose of this main thread to execute the entire main method code.
+
+In java there is a predefined class called Thread available in java.lang package, this class contains a predefined static factory method currentThread() which will provide currently executing Thread Object.
+
+Thread t = Thread.currentThread(); //static Factory Method
+
+Thread class has provided predefined non static method getName() to get the name of the Thread.
+                 public final String getName();
+
+Program :
+
+package com.ravi.thread;
+
+public class MainThread 
+{
+	public static void main(String[] args)
+	{
+		Thread t = Thread.currentThread();
+                 System.out.println("Current Thread Name is :"+t.getName());    
+              
+                    //OR (Method Chaining)
+        
+        String name = Thread.currentThread().getName();
+        System.out.println("Running Thread name is :"+name);
+        
+	}
+
+}
+-----------------------------------------------------------------------
+How to create our own user defined Thread in java :
+---------------------------------------------------
+We can create user defined Thread by using the following two packages in java :
+
+1) By using java.lang package (JDK 1.0)
+2) By using java.util.concurrent sub package (JDK 1.5)
+
+Creating Thread by java.lang Package :
+--------------------------------------
+We can create Thred by using one of the following two ways :
+
+1) By extending java.lang.Thread class
+2) By implementing java.lang.Runnable functional interface.
+-----------------------------------------------------------------------
+public synchronized void start() :
+-----------------------------------
+start() is a predefined non static method of Thread class which internally performs the following two tasks :
+
+1) It will make a request to the O.S to assign a new thread for concurrent execution.
+
+2) It will implicitly call run() method on the current object.
+
+//Program
+----------
+package com.ravi.thread;
+
+class UserThread extends Thread
+{
+	@Override
+	public void run()
+	{
+		System.out.println("Child Thread is running"); 
+	}
+}
+
+public class CustomThread 
+{
+	public static void main(String[] args)
+	{
+		System.out.println("Main Thread started!!!");		
+		UserThread ut = new UserThread();
+		ut.start();		
+		System.out.println("Main Thread ended!!!");
+	}
+
+}
+
+In the above program, we have two threads, main thread which is responsible to execute 
+main method and Thread-0 thread which is responsible to execute run() method. [21 APRIL]
+
+In entire Multithreading concept start() is the only method which is responsible to create a new thread.
+-----------------------------------------------------------------------
+22-04-2025
+----------
+public final boolean isAlive() :
+---------------------------------
+As we know when we call start() method then a new thread will be created in a separate Stack Memory.
+
+Thread class has provided a predefined non static method called isAlive(), return type is boolean. This method is used to verify whether a thread has started or not, that thread is alive or not.
+
+If we use isAlive() method before the start method then it will return false because Thread has not started, on the other hand if we use isAlive() method, after start() method then it will return true.
+
+In java, We cannot re-start a thread, If we try to re-start then it will generate a runtime exception i.e java.lang.IllegalThreadStateException.
+
+package com.ravi.basic;
+
+class Foo extends Thread
+{
+	@Override
+	public void run()
+	{
+		System.out.println("Child thread is running...");
+		System.out.println("It is running with separate stack memory");		
+	}	
+}
+public class IsAlive 
+{
+	public static void main(String[] args) 
+	{
+		System.out.println("Main Thread started...");
+		
+		Foo f1 = new Foo();
+		System.out.println("Is Thread alive : "+f1.isAlive());
+		
+		f1.start(); 
+		
+		System.out.println("Thread is alive or not : "+f1.isAlive());
+		
+		f1.start(); //java.lang.IllegalThreadStateException
+		
+		System.out.println("Main Thread ended...");	
+	}
+}
+---------------------------------------------------------------------
+package com.ravi.basic;
+
+class Stuff extends Thread
+{
+	@Override
+	public void run() 
+	{		
+		String name = Thread.currentThread().getName();		
+		System.out.println("Child Thread is Running, name is :"+name);
+	}	
+}
+public class ExceptionDemo 
+{
+	public static void main(String[] args)
+	{		
+		String name = Thread.currentThread().getName();		
+	    System.out.println(name+" thread started");		
+	
+		Stuff s1 = new Stuff(); 
+		Stuff s2 = new Stuff(); 		
+				
+		s1.start();
+		s2.start();
+		
+		System.out.println(10/0);
+		
+		System.out.println("Main Thread Ended");
+	}
+
+}
+
+Note :- Here main thread is interrupted due to AE but still child threads will be executed because child threads are executing with separate Stack.
+-----------------------------------------------------------------------
+package com.ravi.basic;
+
+class Sample extends Thread
+{
+	@Override
+	public void run()
+	{
+		String name = Thread.currentThread().getName();
+		
+		for(int i=1; i<=10; i++)
+		{
+			System.out.println("i value is "+i+" by "+name+" thread");
+		}
+		
+	}
+}
+
+public class ThreadLoop 
+{
+	public static void main(String[] args) 
+	{
+		Sample s1 = new Sample();
+		s1.start();
+		
+
+        String name = Thread.currentThread().getName();
+		
+		for(int i=1; i<=10; i++)
+		{
+			System.out.println("i value is "+i+" by "+name+" thread");
+		}
+		
+		int x=1;
+		do
+		{
+			System.out.println("Multithreading");
+			x++;
+		}
+		while(x<=10);	
+		
+	}
+
+}
+
+Note : Here processor is frequently switching from main thread to Thread-0 thread so output is un-predicatable.
+
+We have something called Thread Schedular which is responsible to schedule the thread that means it is schedular who will decide which 
+thread will get the processor time.
+---------------------------------------------------------------------
+How to set and get the name of the Thread :
+-------------------------------------------
+Whenever we create a userdefined Thread in java then by default JVM assigns the name of thread is Thread-0, Thread-1, Thread-2 and so on.
+
+If a user wants to assign some user defined name of the Thread, then Thread class has provided a predefined method called setName(String name) to set the name of the Thread.
+
+On the other hand we want to get the name of the Thread then Thread class has provided a predefined method called getName().
+
+public final void setName(String name)  //setter
+
+public final String getName()  //getter
+----------------------------------------------------------------------
+package com.ravi.basic;
+class DoStuff extends Thread  
+{
+	@Override
+	public void run()
+	{
+		String name = Thread.currentThread().getName();
+		System.out.println("Running Thread name is :"+name);
+	}
+}
+public class ThreadName 
+{
+	public static void main(String[] args) 
+	{
+		DoStuff t1 = new DoStuff(); 
+		DoStuff t2 = new DoStuff(); 
+		
+				
+		t1.start();			
+		t2.start();		
+			
+			
+	System.out.println(Thread.currentThread().getName()+" thread is running.....");
+	}
+}
+
+We are not providing the user-defined names so by default the name of thread would be Thread-0, Thread-1.
+---------------------------------------------------------------
+package com.ravi.basic;
+
+class Demo extends Thread
+{
+	@Override
+	public void run()
+	{
+		 String name = Thread.currentThread().getName();
+		 System.out.println("Running Thread name is :"+name);
+	}
+}
+public class ThreadName1 
+{
+	public static void main(String[] args) 
+	{
+	   Thread t = Thread.currentThread();
+	   t.setName("Parent");
+	   
+	   Demo d1 = new Demo();
+	   Demo d2 = new Demo();
+	   
+	   d1.setName("Child1");
+	   d2.setName("Child2");
+	   
+	   d1.start();
+	   d2.start();
+	   
+	   String name = Thread.currentThread().getName();
+	   System.out.println(name + " Thread is running Here..");
+	   
+	   
+	}
+}
+
+Note : Here we are providing the user-defined name i.e child1 and child2 for both the user-defined thread.
+---------------------------------------------------------------
+package com.ravi.basic;
+
+import java.util.InputMismatchException;
+import java.util.Scanner;
+
+class BatchAssignment extends Thread
+{
+	@Override
+	public void run()
+	{
+		String name = Thread.currentThread().getName();
+		
+		if(name !=null && name.equalsIgnoreCase("Placement"))
+		{
+			this.placementBatch();
+		}
+		else if(name !=null && name.equalsIgnoreCase("Regular"))
+		{
+			this.regularBatch();
+		}
+		else
+		{
+			throw new NullPointerException("Name can't be null");
+		}
+	}
+	
+	public void placementBatch()
+	{
+		System.out.println("I am a placement batch student.");
+	}
+	
+	public void regularBatch()
+	{
+		System.out.println("I am a Regular batch student.");
+	}
+}
+
+
+public class ThreadName2 
+{
+	public static void main(String[] args) 
+	{
+		Scanner sc = new Scanner(System.in);	
+		try(sc)
+		{
+			System.out.print("Enter your Batch Title [Placement/Regular] :");
+			String title = sc.next();
+			
+			BatchAssignment b = new BatchAssignment();
+			b.setName(title);
+			
+			b.start();
+		}
+		catch(InputMismatchException e)
+		{
+			System.out.println("Invalid Input");
+		}
+		
+		
+	}
+
+}
+=======================================================================
+Thread.sleep(long millisecond) :
+--------------------------------
+sleep() is a predefined static method of Thread class which accepts long ms as a parameter.
+
+The main purpose of sleep method to put a thread into temporarly waiting state OR sleeping state, The waiting period of the thread will depend upon the time specified by the user as a parameter of sleep() method.
+
+Example :
+Thread.sleep(1000);  //Thread will wait here for 1 second.
+
+It is throwing a checked Exception i.e InterruptedException because there may be chance that this sleeping thread may be interrupted by a thread so provide either try-catch or declare the method as throws.
+
+package com.ravi.basic;
+
+class Sleep extends Thread
+{
+    @Override
+    public void run() 
+    {
+    	for(int i=1; i<=10; i++)
+    	{
+    		System.out.println("i value is :"+i);
+    		try
+    		{
+    			Thread.sleep(5000);
+    		}
+    		catch(InterruptedException e)
+    		{
+    			System.err.println("Catch Block");
+                System.out.println(e);
+    		}
+    	}
+    }
+}
+public class SleepDemo 
+{
+	public static void main(String[] args) 
+	{
+	   Sleep s1 = new Sleep();
+	   s1.start(); 
+	   s1.interrupt();
+	     
+	}
+}
+----------------------------------------------------------------------
+package com.ravi.basic;
+
+class MyTest extends Thread 
+{	
+		
+	@Override
+	public void run()  
+	{	
+		System.out.println("Child Thread id is :"+Thread.currentThread().getId());  //12 13
+		
+		for(int i=1; i<=5; i++)
+		{
+			System.out.println("i value is :"+i);  //11  22  33   44   55
+			try
+			{
+				Thread.sleep(1000);
+			}
+			catch(InterruptedException e)
+			{
+				e.printStackTrace();
+			}
+		}
+		
+	}
+}
+public class SleepDemo1 
+{
+	public static void main(String[] args) 
+	{		
+		System.out.println("Main Thread id is :"+Thread.currentThread().getId());  //1
+		
+		MyTest m1 = new MyTest();		
+		MyTest m2 = new MyTest();
+		
+		m1.start();
+		m2.start();			
+	}
+}
+-----------------------------------------------------------------------
+23-04-2025
+-----------
+package com.ravi.basic;
+
+class MyThread1 extends Thread
+{
+	@Override
+	public void run()
+	{
+		System.out.println("Child Thread is running");
+	}
+}
+
+public class SleepDemo2 {
+
+	public static void main(String[] args) throws InterruptedException
+	{
+        System.out.println("Main thread is Started");	
+        
+        MyThread1 mt = new MyThread1();
+        mt.start();
+        
+        //mt.sleep(2000);
+        Thread.currentThread().sleep(2000);
+        
+        System.out.println("Main thread is Ended");	
+
+	}
+
+}
+
+Note : Here main thrread will wait for 2 seconds.
+-----------------------------------------------------------------------
+Assignment :
+------------
+Thread.sleep(long mills, int nanos);
+--------------------------------------------------------------
+Old Thread life cycle (Before Java 1.5V) :[23rd JAN 25]
+-----------------------------------------
+As we know a thread is well known for Independent execution and it contains a life cycle which internally contains 5 states (Phases). 
+
+During the life cycle of a thread, It can pass from thses 5 states. At a time a thread can reside to only one state of the given 5 states.
+
+1) NEW State (Born state)
+
+2) RUNNABLE state (Ready to Run state) [Thread Pool]
+
+3) RUNNING state
+
+4) WAITING / BLOCKED state
+
+5) EXIT/Dead state
+
+----------------------------------------------------------------------
+New State :-
+-------------
+Whenever we create a thread instance(Thread Object) a thread comes to new state OR born state. New state does not mean that the Thread has started yet only the object or instance of Thread has been created.
+
+Runnable state :-
+-------------------
+Whenever we call start() method on thread object, A thread moves to Runnable state i.e Ready to run state. Here Thread schedular is responsible to select/pick a particular Thread from Runnable state and sending that particular thread to Running state for execution.
+
+Running state :-
+-----------------
+If a thread is in Running state that means the thread is executing its own run() method in a separate stack Memory.
+
+From Running state a thread can move to waiting state either by an order of thread schedular OR user has written some method(wait(), join() or sleep()) to put the thread into temporarly waiting state.
+
+From Running state the Thread may also move to Runnable state directly, if user has written Thread.yield() method explicitly.
+
+Waiting state :-
+------------------
+A thread is in waiting state means it is waiting for it's time period to complete OR in some cases it is also waiting for lock (monitor) OR another thread to complete. Once the time period will be completed then it will re-enter inside the Runnable state to complete its remaining task.
+
+Dead or Exit :
+----------------
+Once a thread has successfully completed its run method in the corresponding stack then the thread will move to dead state. Please remember once a thread is dead we can't restart a thread in java.
+---------------------------------------------------------------------
+IQ :- If we write Thread.sleep(1000) then exactly after 1 sec the Thread will re-start?
+
+Ans :- No, We can't say that the Thread will directly move from waiting state to Running state. 
+
+The Thread will definetly wait for 1 sec in the waiting state and then again it will re-enter into Runnable state which is control by Thread Schedular so we can't say that the Thread will re-start just after 1 sec.
+---------------------------------------------------------------------
+Anonymous inner class by using Thread class approach :
+-------------------------------------------------------
+Anonymous inner class by using Thread class with reference variable :
+----------------------------------------------------------------------
+package com.ravi.basic;
+
+public class AnonymousInnerClassWithRef 
+{
+	public static void main(String[] args)
+	{
+		Thread thread = new Thread()
+		{
+			@Override
+			public void run()
+			{
+				String name = Thread.currentThread().getName();
+				System.out.println("Name of the Thread is :"+name);
+			}
+		};
+
+		thread.start();
+	}
+
+}
+
+Anonymous inner class by using Thread class without reference variable :
+----------------------------------------------------------------------
+package com.ravi.basic;
+
+public class AnonymousInnerClassWithoutRef {
+
+	public static void main(String[] args) 
+	{
+		new Thread()
+		{
+			@Override
+			public void run()
+			{
+				String name = Thread.currentThread().getName();
+				System.out.println("Name of the Thread is :"+name);
+			}
+		}.start();
+
+	}
+}
+---------------------------------------------------------------------------
+join() method of Thread class :
+-------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

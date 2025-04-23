@@ -404,3 +404,218 @@ Check Balance Test Cases:
 Valid Check Balance - 5:
 Action: Retrieve balance after performing transactions.
 Expected Output: Balance should reflect all deposits, withdrawals, transfers, and loans correctly.
+
+ANS
+-----------
+package com.nareshIT.day58;
+
+public class InsufficientFundsException extends Exception{
+	public InsufficientFundsException(String name) {
+		super(name);
+	}
+}
+
+
+package com.nareshIT.day58;
+
+public class InvalidAmountException extends RuntimeException {
+	public InvalidAmountException(String name){
+		super(name);
+	}
+}
+
+
+package com.nareshIT.day58;
+
+public class AccountNotFoundException extends RuntimeException{
+	public AccountNotFoundException(String name) {
+		super(name);
+	}
+}
+
+
+package com.nareshIT.day58;
+
+public class LoanNotAllowedException extends Exception{
+	public LoanNotAllowedException(String name) {
+		super(name);
+	}
+}
+
+
+package com.nareshIT.day58;
+
+public interface Bank {
+	public void deposite(double amount) throws InvalidAmountException;
+	void withdraw(double amount) throws InsufficientFundsException, InvalidAmountException;
+	void transfer(BankAccount toAccount,double amount) throws InsufficientFundsException,AccountNotFoundException;
+	void applyForLoan(double amount) throws LoanNotAllowedException,InvalidAmountException;
+	double getBalance();
+}
+
+
+package com.nareshIT.day58;
+
+public class BankAccount  implements Bank,AutoCloseable{
+	private  long accountNumber;
+	 private double balance;
+	 
+	 public BankAccount(long accountNumber, double initialBalance) {
+		    this.accountNumber = accountNumber;
+		    this.balance = initialBalance;
+		}
+	 
+	@Override
+	public void deposite(double amount) throws InvalidAmountException {
+		if(amount <= 0) {
+			throw new InvalidAmountException("AMT must be grater than 0");
+		}else {
+			this.balance += amount; 
+		}
+	}
+	@Override
+	public void withdraw(double amount) throws InsufficientFundsException,InvalidAmountException{
+		if (this.balance < amount) {
+			throw new InsufficientFundsException("Insufficient Funds");
+		}else if (amount <= 0) {
+			throw new InvalidAmountException("AMT must be grater than 0");
+		}else {
+			this.balance -= amount;
+		}
+	}
+	@Override
+	public void transfer(BankAccount toAccount, double amount) 
+	        throws InsufficientFundsException, AccountNotFoundException, InvalidAmountException {
+
+	    if (toAccount == null) {
+	        throw new AccountNotFoundException("Target account not found");
+	    }
+
+	    if (amount <= 0) {
+	        throw new InvalidAmountException("Amount must be greater than 0");
+	    }
+
+	    if (this.balance < amount) {
+	        throw new InsufficientFundsException("Insufficient funds in the account");
+	    }
+
+	    this.balance -= amount;
+	    toAccount.balance += amount;
+
+	    System.out.println("Successfully transferred ₹" + amount + " to Account ID: " + this.accountNumber);
+	}
+
+	@Override
+	public void applyForLoan(double amount) throws LoanNotAllowedException,InvalidAmountException{
+		if (this.balance < 50000) {
+		    throw new LoanNotAllowedException("Balance must be at least 50000 to apply for a loan");
+		}
+		else if (amount <= 0) {
+			throw new InvalidAmountException("AMT must be grater than 0");
+		}else {
+			System.out.println("Success");
+		}
+	}
+	@Override
+	public double getBalance() {
+		return this.balance;
+	}
+	@Override
+	public void close() throws Exception {
+		throw new Exception("Closed");
+	}
+}
+
+
+package com.nareshIT.day58;
+
+public class Customer {
+	private String name;
+	public BankAccount bankAccount;
+	
+	public Customer(BankAccount bankAccount,String name) {
+		this.bankAccount = bankAccount;
+		this.name = name;
+	}
+
+	public BankAccount getBankAccount() {
+		return bankAccount;
+	}
+}
+
+
+package com.nareshIT.day58;
+
+import java.util.Scanner;
+
+public class ATM {
+
+    public static void main(String[] args) {
+        try (Scanner sc = new Scanner(System.in)) {
+            BankAccount b1 = new BankAccount(1, 5000);
+            BankAccount b2 = new BankAccount(2, 3000); 
+            Customer c1 = new Customer(b1, "Prabhanjan");
+
+            boolean ch = true;
+            while (ch) {
+                System.out.println("\nSelect an option :\n"
+                        + "     1. Deposit\n"
+                        + "     2. Withdraw\n"
+                        + "     3. Transfer\n"
+                        + "     4. Loan Application\n"
+                        + "     5. Check Balance\n"
+                        + "     6. Exit");
+                System.out.print("Enter your option : ");
+                int op = sc.nextInt();
+
+                switch (op) {
+                    case 1:
+                        try {
+                            System.out.print("Enter amount to deposit: ");
+                            double amt = sc.nextDouble();
+                            c1.getBankAccount().deposite(amt);
+                        } catch (InvalidAmountException e) {
+                            System.out.println(e.getMessage());
+                        }
+                        break;
+                    case 2:
+                        try {
+                            System.out.print("Enter amount to withdraw: ");
+                            double with = sc.nextDouble();
+                            c1.getBankAccount().withdraw(with);
+                        } catch (InvalidAmountException | InsufficientFundsException e) {
+                            System.out.println(e.getMessage());
+                        }
+                        break;
+                    case 3:
+                        try {
+                            System.out.print("Enter amount to transfer: ");
+                            double trn = sc.nextDouble();
+                            c1.getBankAccount().transfer(b2, trn);
+                        } catch (InvalidAmountException | InsufficientFundsException | AccountNotFoundException e) {
+                            System.out.println(e.getMessage());
+                        }
+                        break;
+                    case 4:
+                        try {
+                            System.out.print("Enter loan amount: ");
+                            double loanAmount = sc.nextDouble();
+                            c1.getBankAccount().applyForLoan(loanAmount);
+                        } catch (LoanNotAllowedException | InvalidAmountException e) {
+                            System.out.println(e.getMessage());
+                        }
+                        break;
+                    case 5:
+                        System.out.println("Current Balance: " + c1.getBankAccount().getBalance());
+                        break;
+                    case 6:
+                        ch = false;
+                        System.out.println("Thank you for using our ATM.");
+                        break;
+                    default:
+                        System.out.println("Invalid option. Please try again.");
+                }
+            }
+        }
+    }
+}

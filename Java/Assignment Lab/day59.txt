@@ -1,0 +1,339 @@
+MCQs :
+-------
+1.What is the output of the following program
+class Student{    
+	void message() throws Exception{  // line 1
+		System.out.println("Hai Student");  
+		}    
+	}    
+	    
+class Faculty extends Student{    
+	void message() {  // line 2
+		System.out.println("hai faculty");  
+		}
+}
+
+public class ExceptionHandling11 
+{
+	public static void main(String args[]) {    
+	   Student nit = new Faculty();    
+	     
+	   try {    
+	   nit.message();    
+	   }  
+	   catch (Exception e){}   
+	  
+	  }    
+}
+ANS - hai faculty
+
+2.What is the output of the following program
+public class ExceptionHandling12  {  
+    public static void main(String args[])  
+    {           
+        try {  
+            try {  
+                try {  
+                    int arr[] = { 5,7,89,7,54,22,35,144,587,4,25,33,698,541,2,44,5,74,4 };  
+                    System.out.println(arr[35]);  
+                } catch (ArithmeticException e) {  
+                    System.out.println("Arithmetic exception");  
+                }  
+            }catch (ArrayIndexOutOfBoundsException ar) {  // this catch will be run because of ArrayIndexOutOfBoundsException
+                System.out.println(" ArrayIndexOutOfBoundsException ");  
+            }  
+        }  
+        catch (Exception e) {  
+            System.out.print("Exception");  
+        }  
+    }  
+}  
+ANS - ArrayIndexOutOfBoundsException
+
+3.What is the output of the following program
+public class ExceptionHandling13  {
+	void nit()  
+	{
+		throw new java.io.IOException(); // error at this point 
+	}
+	public static void main(String[] args) {
+		ExceptionHandling nit = new ExceptionHandling();
+		nit.nit();
+		System.out.println("Executed");
+	}
+}
+ANS - Compile Time Error
+
+4.What is the output of the following program
+class NIT
+{
+	static void nit() throws IOException  
+	{
+		throw new IOException("IOException");
+	}
+}
+public class ExceptionHandling14  {
+	
+	public static void main(String[] args) {
+		try {
+			NIT.nit();
+		} catch (IOException e) {
+			System.out.println("Exception in catch");
+		}
+		System.out.println("Executed");
+	}
+}
+ANS - 
+Exception in catch
+Executed
+
+5.What is the output of the following program
+class NIT
+{
+	static void nit() throws IOException  
+	{
+		throw new IOException("Input Output Exception");
+	}
+}
+
+public class ExceptionHandling15  {
+	public static void main(String[] args) throws IOException {		
+			NIT.nit();
+	}
+} 
+ANS - Exception in thread "main" java.io.IOException: Input Output Exception
+
+6. What is the output of the following program
+public class ExceptionHandling16 {
+	static void nit(int a,int b) {
+		   System.out.println(10/a); // 1 ,1
+		   int[] arr={25,54,22,141,22,141,22,35};
+		   System.out.println(arr[b]); // 25
+	}
+	public static void main (String[] args) {
+		try{
+			nit(10, 0);
+			nit(10, 15);
+		    		    
+    	}catch(ArithmeticException e){
+    	   System.out.println("can't divide by zero");
+    	}catch(ArrayIndexOutOfBoundsException e){
+    	   System.out.println("Out of bounds!"); // Out of bounds!
+    	}
+	}
+}
+ANS - 
+1
+25
+1
+Out of bounds!
+
+Assignment - 01
+---------------
+Simple Shopping Application
+Objective:
+Develop a Java program for a simple shopping application that allows users to add products to a shopping cart and calculate the total price of the items in the cart. You will define custom exceptions for handling specific error cases and implement the necessary classes and methods to support the shopping functionality.
+
+Requirements:
+Custom Exceptions:
+
+class InsufficientQuantityException(make it a Checked Exception) :
+Methods:
+Parameterized Constructor with String as parameter
+
+Purpose : Thrown when the requested quantity of a product is not available.
+
+class InvalidProductException(make it an Unchecked Exception):
+Methods:
+Parameterized Constructor with String as parameter.
+
+Purpose : Thrown when a product is not found in the inventory.
+
+BLC Product Class:
+
+Attributes:
+id: int: representing the product's unique identifier.
+name: String: representing the product's name.
+price: double: representing the product's price.
+quantity: int: representing the available quantity of the product.
+
+
+Constructor: 
+Parameterized Constructor to initialize all the atributes.
+
+methods : 
+Method name: decreaseQuantity 
+Access Modifier : public
+return type : void
+parameters : amount: int
+Takes an integer amount as a parameter and decreases the product's quantity. Throws InsufficientQuantityException if the requested quantity is not available.
+
+BLC  ShoppingCart Class:
+Attributes:
+cartItems: Product[] : to store items in the cart.
+itemCount: int : An integer representing the number of items in the cart.
+
+Constructor:
+parameter : capacity : int 
+Initialize the cartItems with a Product[] based on the given 
+capacity.
+
+Mehtods:
+
+Method name: addToCart 
+Access Modifier : public
+return type : void
+parameters : Product,int
+Adds the product to the cart or updates its quantity.Throws InsufficientQuantityException if the requested quantity is not available, or InvalidProductException if the product is not found.
+
+
+Method name: calculateTotal 
+Access Modifier : public
+return type : double
+parameters : no param
+Method: Calculates and returns the total price of all items in the cart.
+
+
+ElC ShoppingApplication Class:
+
+Main Method: Demonstrates the shopping application's functionality.
+Creates some sample products and a shopping cart with a capacity of 10 products.
+Adds products to the cart and handles exceptions as needed.
+Calculates and displays the total price of the items in the cart.
+
+Test Cases for Shopping Application
+-----------------------------------------
+Valid Product Addition:
+Action: Add valid quantities of products to the cart.
+Expected Output: Total price should be calculated correctly.
+
+Insufficient Quantity:
+Action: Attempt to add more quantity of a product than available.
+Expected Output: Should throw InsufficientQuantityException with appropriate message.
+
+Invalid Product Addition:
+Action: Attempt to add a product that does not exist(i,e null).
+Expected Output: Should throw InvalidProductException with appropriate message.
+
+Full Cart:
+Action: Attempt to add more products than the cart's capacity.
+Expected Output: Should throw InvalidProductException with appropriate message.
+
+Calculate Total with Empty Cart:
+Action: Calculate total price with no products added.
+Expected Output: Total price should be 0.0.
+
+Calculate Total with Mixed Products:
+Action: Add different products and quantities, then calculate total price.
+Expected Output: Total price should reflect all products and quantities correctly.
+
+ANS
+-----
+package com.nareshIT.day59;
+
+public class InsufficientQuantityException extends Exception{
+	public InsufficientQuantityException(String name) {
+		super(name);
+	}
+}
+
+
+package com.nareshIT.day59;
+
+public class InvalidProductException extends RuntimeException{
+	public InvalidProductException(String name) {
+		super(name);
+	}
+}
+
+
+package com.nareshIT.day59;
+
+public class Product {
+	int id;
+	String name;
+	double price;
+	int quantity;
+	
+	public Product(int id, String name, double price, int quantity) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.price = price;
+		this.quantity = quantity;
+	}
+	
+	public void decreaseQuantity(int DeQnt) throws InsufficientQuantityException{
+		if (quantity < DeQnt) {
+			throw new InsufficientQuantityException("Insufficient Quantity");
+		}else {
+			this.quantity -= DeQnt;
+		}
+	}
+	
+}
+
+
+package com.nareshIT.day59;
+
+public class ShoppingCart {
+    private Product[] cartItems;
+    private int[] quantities;
+    private int itemCount;
+
+    public ShoppingCart(int capacity) {
+        cartItems = new Product[capacity];
+        quantities = new int[capacity];
+        itemCount = 0;
+    }
+
+    public void addToCart(Product product, int quantity) throws InsufficientQuantityException {
+        if (product == null) {
+            throw new InvalidProductException("Product not found");
+        }
+
+        if (itemCount >= cartItems.length) {
+            throw new InvalidProductException("Cart is full");
+        }
+
+        product.decreaseQuantity(quantity); 
+        
+        cartItems[itemCount] = product;
+        quantities[itemCount] = quantity;
+        itemCount++;
+    }
+
+    public double calculateTotal() {
+        double total = 0.0;
+        for (int i = 0; i < itemCount; i++) {
+            total += cartItems[i].price * quantities[i];
+        }
+        return total;
+    }
+}
+
+
+package com.nareshIT.day59;
+
+public class ShoppingApplication {
+    public static void main(String[] args) {
+        try {
+            Product p1 = new Product(1, "Mobile", 10000, 5);
+            Product p2 = new Product(2, "Laptop", 50000, 3);
+            Product p3 = new Product(3, "Mouse", 500, 10);
+
+            ShoppingCart cart = new ShoppingCart(10);
+            
+//            cart.addToCart(p1, 2); 
+            cart.addToCart(p2, 2);
+//          cart.addToCart(p2, 10); 
+//          cart.addToCart(null, 1); 
+//          cart.addToCart(p3, 2); 
+
+            System.out.println("Total Amount: " + cart.calculateTotal());
+
+        } catch (InsufficientQuantityException | InvalidProductException e) {
+            System.out.println("Error: " + e.getMessage());
+        }
+    }
+}

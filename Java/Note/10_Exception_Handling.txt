@@ -1475,185 +1475,97 @@ It is used to skip from the current situation so now the execption will be propa
 handling purpose.
 
 It is mainly used to work with Checked Exception.
-
 ----------------------------------------------------------------------
-Types of Exception :
---------------------
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+19-04-2025
+----------
+Types of exception in java :
+-------------------------------
+Exception can be divided into two types :
+
+1) Predefined Exception OR Built-in Exception
+
+2) Userdefined Exception OR Custom Exception
+
+Predefined Exception :-
+-------------------------
+The Exceptions which are already defined by Java software people for some specific purposes are called predefined Exception or Built-in exception.
+Ex :
+----
+IOException, ArithmeticException and so on
+
+Userdefined Exception :-
+---------------------------
+The exceptions which are defined by user according to their own use and requirement are called User-defined Exception.
+
+Ex:-
+----
+InvalidAgeException, GreaterMarksException
+----------------------------------------------------------------------
+How to develop User-defined Exceptions :
+-----------------------------------------
+As a developer we can develop user-defined checked and user-defined unchecked exception.
+
+If we want to develop checked exception then our user-defined class must extends from java.lang.Exception, on the other hand if we want to develop un-checked exception then our user-defined class must extends from java.lang.RuntimeException.
+
+In the user-defined exception class we should write No argument constructor(in case if we don't want to pass any error message) and we should write parameterized constructor with String errorMessage as a parameter (in case if we  want to pass any error message) with super keyword.
+
+In order to throw the exception object explicitly we should use throw keyword as well as our user-defined class object must be of Throwable type.
+
+---------------------------------------------------------------------
+//Program to create userdefined Checked Exception
+
+package com.ravi.custom_exception;
+
+import java.util.Scanner;
+
+@SuppressWarnings("serial")
+class GreaterMarksException extends Exception //Checked Exception
+{
+	
+	public GreaterMarksException()
+	{		
+	}
+	
+	public GreaterMarksException(String errorMessage)
+	{
+		super(errorMessage);
+	}
+}
+
+
+public class CustomCheckedException {
+
+	public static void main(String[] args) 
+	{
+		Scanner sc = new Scanner(System.in);
+		try(sc)
+		{		
+		  System.out.println("Enter the Marks :");
+		  int marks = sc.nextInt();
+		  validateMarks(marks);
+		}
+		catch(GreaterMarksException e)
+		{
+			System.err.println("Marks must be in between 0 to 100");
+			System.out.println("..............");
+			e.printStackTrace();
+		}
+	}
+	
+	public static void validateMarks(int marks) throws GreaterMarksException
+	{
+		if(marks <0 || marks>100)
+		{
+			throw new GreaterMarksException("Marks is Invalid");
+		}
+		else
+		{
+			System.out.println("Your Marks is :"+marks);
+		}
+		System.out.println("End of Validate Marks");
+	}
+
+}
+----------------------------------------------------------------------
+Assignemnt : Develop one custom unchecked Exception
+----------------------------------------------------------------------

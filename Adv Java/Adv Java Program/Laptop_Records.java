@@ -9,7 +9,7 @@ public class Laptop_Records {
 		try {
 			Connection con = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521/orcl", "MYDB", "MYDB");
 			Statement stm = con.createStatement();
-			ResultSet res = stm.executeQuery("SELECT * FROM LAPTOPREC");
+			ResultSet res = stm.executeQuery("SELECT * FROM 9");
 			System.out.println("Brand\tModel\tProcessor\tRamsize\tPrice");
 			System.out.println("----------------------------------------------");
 			while (res.next()) {

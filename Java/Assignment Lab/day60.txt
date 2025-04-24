@@ -1,0 +1,563 @@
+Find the output of the following code
+
+Q1)
+class Test extends Thread
+{
+	public void run()
+	{
+		for(int i=0; i<=10; i++)
+		{
+			System.out.println("Hello Welcome here.."+i);
+		}
+	}
+}
+public class Test1 
+{
+	public static void main(String[] args) 
+	{
+		Test t = new Test();
+		t.start();
+		t.start();
+	}
+}
+ANS - IllegalThreadStateException
+
+Q2)
+public class Test2
+{
+    public static void main(String []args)
+    {
+        Thread t = Thread.currentThread();
+		System.out.println(t); // Thread[#1,main,5,main]
+        System.out.println("Name of thread  : "+t.getName()); // mainThread
+		System.out.println("Id of thread  : "+t.getId()); // 1
+
+    } 
+}
+ANS -
+Thread[#1,main,5,main]
+Name of thread  : mainThread
+Id of thread  :  1
+
+
+Q3) 
+public class Test3{
+    public static void main(String args[]){
+        new Thread(){
+            public void run(){
+              System.out.println("task one");
+            }
+        }.start();
+
+        new Thread(){
+            public void run(){
+                System.out.println("task two");
+            }
+        }.start();
+    }
+}
+ANS -
+task one
+task two
+
+Q4)
+public class Test4 {
+    public static void main(String args[]) {
+        Runnable r1 = new Runnable() { // due to intreface and annamous class
+            public void run() {
+                System.out.println("task one");
+            }
+        };
+
+        Runnable r2 = new Runnable() {
+            public void run() {
+                System.out.println("task two");
+            }
+        };
+
+        Thread t1 = new Thread(r1); //task one
+        Thread t2 = new Thread(r2); // task two
+
+        t1.start();
+        t2.start();
+    }
+}
+ANS - 
+task one
+task two
+
+
+Q5)
+class SimpleThread extends Thread {
+	public SimpleThread(String str) {
+		super(str);
+	}
+
+	public void run() {
+		for (int i = 0; i < 10; i++) {
+			System.out.println(i + " " + getName());
+			try {
+				sleep((int) (Math.random() * 1000));
+			} catch (InterruptedException e) {
+			}
+		}
+		System.out.println("DONE! " + getName());
+	}
+}
+
+public class Test5 {
+	public static void main(String args[]) {
+		new SimpleThread("J2EE").start();
+		new SimpleThread("J2ME").start();
+	}
+}
+ANs - it will be print 1 to 10 for both Thread(J2EE,J2ME) but the sequences not same evry time becuase it work in thread
+
+Q6)
+import java.io.*;
+import java.util.*;
+class Prime extends Thread
+{
+	public void run()
+	{
+		try
+		{
+			for(int i=1;i<=10;i++)
+			{
+				if(i==2||i==3||i==5||i==7)
+				{
+					System.out.println ("Prime No.= "+i);
+				}
+				Thread.sleep(500);
+			}
+		}
+		catch (Exception e){}
+	}
+}
+class NotPrime extends Thread
+{
+	public void run()
+	{
+		try
+		{
+			for(int i=1;i<=10;i++)
+			{
+				if(i==4||i==6||i==8||i==9||i==10)
+				{
+					System.out.println ("Non-Prime No.= "+i);
+				}
+				Thread.sleep(500);
+			}
+		}
+		catch (Exception e){}
+	}
+}
+public class Test6
+{
+	public static void main(String args[])
+	{
+		new Prime().start();
+		new NotPrime().start();
+	}
+}	
+ANS - due to Thread.sleep(500); method it will be switch one class to another class 
+Prime No.= 2
+Prime No.= 3
+Non-Prime No.= 4
+Prime No.= 5
+Non-Prime No.= 6
+Prime No.= 7
+Non-Prime No.= 8
+Non-Prime No.= 9
+Non-Prime No.= 10
+
+
+Q7)
+public class Test7 extends Thread {
+	static Thread t;
+
+	public static void main(String[] args) {
+		try {
+			t = new Thread(new Test7(), "Ravi"); // calling a new thread for currentThread named is Ravi
+			t.start();
+		} catch (Exception e) {
+			System.out.println(e);
+		}
+	}
+
+	public void run() {
+		for (int i = 1; i < 5; i++) {
+			try {
+				System.out.print(Thread.currentThread().getName() + "");
+				t.start(); // at this point it will be throw Exception 
+			} catch (Exception e) {
+				System.out.println(" will not botther about but " + e + " happened " + i + " times");
+			}
+		}
+	}
+}
+ANS -
+Ravi will not botther about but java.lang.IllegalThreadStateException happened 1 times
+Ravi will not botther about but java.lang.IllegalThreadStateException happened 2 times
+Ravi will not botther about but java.lang.IllegalThreadStateException happened 3 times
+Ravi will not botther about but java.lang.IllegalThreadStateException happened 4 times
+
+Q8)
+public class Test8
+{
+	public static void main(String[] args) 
+	{		
+		try
+		{
+			Horse h = new Horse();
+			Thread t1= new Thread(h,"MyHorse");
+			Thread t2= new Thread(h,"YourHorse");
+			new Test22().go(t2);
+			t1.start(); t2.start();
+		}
+		catch (Exception e)
+		{
+			System.out.println(e);
+		}
+
+		void go(Thread t) // ERROR at this point
+		{
+			t.start();
+		}		
+	}
+	
+}
+class Horse implements Runnable
+{
+	public void run()
+	{
+		System.out.println(Thread.currentThread().getName()+" ");
+	}
+}
+ANS- Compile Time ERROR
+
+Q9)
+public class Test9 {
+	public static void main(String[] args) {
+		try {
+			Horse1 h = new Horse1();
+			Thread t1 = new Thread(h, "MyHorse");
+			Thread t2 = new Thread(h, "YourHorse");
+			new Test9().go(t2);
+			t1.start();
+			t2.start();
+		} catch (Exception e) {
+			System.out.println(e);
+		}
+	}
+
+	void go(Thread t) {
+		t.start();
+	}
+}
+
+class Horse1 implements Runnable {
+	public void run() {
+		System.out.println(Thread.currentThread().getName() + " ");
+	}
+}
+ANS -
+java.lang.IllegalThreadStateException (becuase t2 start 2time)
+MyHorse 
+YourHorse 
+
+Q10)
+class Parrot implements Runnable {
+	public void run() {
+		System.out.println(Thread.currentThread().getName() + " ");
+	}
+}
+
+public class Test10 {
+	static Parrot p;
+
+	static {
+		p = new Parrot();
+	}
+
+	{
+		Thread t1 = new Thread(p, "Peacock");
+		t1.start();
+	}
+
+	public static void main(String[] args) {
+		new Test26();
+
+		new Thread(new Runnable() {
+			public void run() {
+				;
+			}
+		}, "Koyal").start();
+
+		new Thread(new Parrot(), "Parrot").start();
+	}
+
+	{
+		Thread t2 = new Thread(p, "Sparrow");
+		t2.start();
+	}
+
+}
+ANS -  (Peacock , Sparrow this 2 will be come not same all the time)
+Peacock
+Sparrow
+Parrot
+
+
+Q11)
+class MyThreadA extends Thread {
+	String s;
+
+	public void run(String s) {
+		this.s = s;
+		for (;;) {
+			System.out.println("s will be printed :" + s);
+		}
+	}
+}
+
+class MyThreadB extends Thread {
+	String t;
+
+	public void run(String t) {
+		this.t = t;
+		for (;;) {
+			System.out.println("t will be printed :" + t);
+		}
+	}
+}
+
+public class Test11 {
+	public static void main(String[] args) {
+		MyThreadA t1 = new MyThreadA();
+		MyThreadB t2 = new MyThreadB();
+		t1.start();
+		t2.start();
+	}}ANS-
+
+	Nothing will
+	be print
+
+	Q12)
+
+	public class Test12 extends Thread {
+		public static void main(String argv[]) {
+			Test12 b = new Test12();
+			b.run(); // Nothing Will be print here
+			b.start(); // it will be call Non-static method of Test12 Class
+		}
+
+		public void start() {
+			for (int i = 0; i < 10; i++) {
+				System.out.println("Value of i = " + i);
+			}
+		}
+	}ANS-
+
+	Value of i=0
+Value of i=1
+Value of i=2
+Value of i=3
+Value of i=4
+Value of i=5
+Value of i=6
+Value of i=7
+Value of i=8
+Value of i=9
+
+	Q13)
+
+class Test58 
+{
+	public static void main(String[] args) 
+	{
+		
+	}
+	System.out.println("Hello World!");
+}ANS-
+
+	Compile Time
+	ERROR
+
+Q14)
+public class Test14 {
+	public static void main(String[] args) {
+		Runnable r1 = new Runnable() {
+			public void run() {
+				try {
+					while (true) {
+						System.out.println("Hello, world!");
+						Thread.sleep(1000);
+					}
+				} catch (InterruptedException iex) {
+				}
+			}
+		};
+		Runnable r2 = new Runnable() {
+			public void run() {
+				try {
+					while (true) {
+						System.out.println("Goodbye, " + " Beautiful world!");
+						Thread.sleep(2000);
+					}
+				} catch (InterruptedException iex) {
+				}
+			}
+		};
+		Thread thr1 = new Thread(r1);
+		Thread thr2 = new Thread(r2);
+		thr1.start();
+		thr2.start();
+	}
+}
+
+Q15)
+class Test4
+{
+   public static void main(String []argv)
+   {
+      Thread t = Thread.currentThread();
+      System.out.println("Name of current thead : "+t.getName());
+      t.setName("First Thread");
+      System.out.println("Name of thread after change : "+t.getName());
+   } 
+}
+
+Q16)
+class Test15 extends Thread
+{
+public void run()
+{
+System.out.println("PRINT ME");
+}
+public static void main(String []str)
+{
+try
+{
+for(int i=0;i<9;i++)
+{
+System.out.println(i);
+Thread.sleep(500);
+}
+}
+catch(InterruptedException e)
+{
+System.out.println("thread exception");
+}
+Thread t=new Thread();
+t.start();
+}
+}
+
+Q17)
+class Foo implements Runnable
+{
+public void run() 
+{
+for(int i=0;i<3;i++)
+System.out.println("Run by..."+Thread.currentThread().getName()+",i Is "+ i);
+}
+public void run(String name)
+{
+System.out.println("This is Second"+name);
+}
+}
+public class Test18
+{
+public static void main(String args [])
+{
+Foo f = new Foo();
+Thread t = new Thread(f);
+try 
+{
+System.out.println("Number Will be printt After 500 MiliSecond..");
+for(int j=0;j<5;j++)
+{
+System.out.println("This is j..."+j);
+t.sleep(500);
+}
+}
+catch(InterruptedException e) 
+{
+System.out.println("InterruptedException.."+ e);
+e.printStackTrace();
+}
+}
+}
+
+Q18)
+public class Test28 extends Thread
+{
+	public static void main(String [] args)
+	{
+		System.out.println(Thread.currentThread().getId()+" ");
+		Thread t1 = new Thread(new Test28(),"Rahul");
+		Thread t2 = new Thread(new Test28(),"Ravi");
+		Thread t3 = new Thread(new Test28(),"Puja");
+		t3.start();
+		t1.start();
+		t2.run();
+		t2.start();
+	}
+	public  void run()
+	{
+		    for(int i=0; i<2; i++)
+			System.out.println(Thread.currentThread().getName()+" I'm :"+i);
+			System.out.println("It is end of loop");
+	}
+}
+
+Q19)
+
+class MyThread extends Thread 
+{
+public void run() 
+{
+		for (int i=0; i < 10; i++) 
+		{
+			System.out.println("hello world1");
+		}
+	}
+}
+public class Test36
+{
+public static void main(String [] args) 
+{
+MyThread t1 = new MyThread();
+t1.start();
+try 
+{
+t1.join(); 
+} 
+catch (InterruptedException e) 
+{
+System.out.println("ERROR: Thread was interrupted");
+}       
+System.out.println("Thread is done!");
+	}
+}
+
+Q20)
+public class JoinDemo1 
+{
+	public static void main(String[] args) throws InterruptedException 
+	{
+		System.out.println("Main thread started");
+		Thread thread = Thread.currentThread();
+		String name = thread.getName();
+		
+		for(int i=1; i<=5; i++)
+		{			
+			System.out.println(i + " by "+name+ " thread ");
+			Thread.sleep(1000);
+			thread.join(); 
+		}		
+		System.out.println("Main thread ended");
+	}
+
+}

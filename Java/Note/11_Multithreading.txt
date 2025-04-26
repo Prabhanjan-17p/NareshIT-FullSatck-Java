@@ -598,8 +598,479 @@ public class AnonymousInnerClassWithoutRef {
 	}
 }
 ---------------------------------------------------------------------------
+24-04-2025
+-----------
 join() method of Thread class :
 -------------------------------
+The main purpose of join() method to put the current thread into waiting state until the other thread finish its execution.
+
+Here the currently executing thread stops its execution and the thread goes into the waiting state. The current thread remains in the wait state until the thread on which the join() method is invoked has achieved its dead state.
+
+It also throws checked exception i.e InterruptedException so better to use try catch or declare the method as throws.
+
+It is a non static method so we can call this method with the help of Thread object reference.
+
+--------------------------------------------------------------------------
+package com.ravi.basic;
+
+class Join extends Thread
+{
+	@Override
+	public void run()
+	{
+		String name = Thread.currentThread().getName();
+		System.out.println(name+" Thread started");
+		
+		for(int i=1; i<=5; i++)
+		{
+			System.out.println("i value is :"+i+" by "+name+ " thread");
+			try
+			{
+				Thread.sleep(1000);
+			}
+			catch(InterruptedException e)
+			{
+			  e.printStackTrace();	
+			}			
+		}
+		System.out.println(name+" Thread ended");
+	}	
+}
+
+public class JoinDemo 
+{
+	public static void main(String[] args) throws InterruptedException
+	{
+		System.out.println("Main Thread Started!!!!");
+		
+		Join j1 = new Join();
+		Join j2 = new Join();
+		Join j3 = new Join();
+		
+		j1.setName("J1");		
+		j2.setName("J2");		
+		j3.setName("J3");		
+		
+		j1.start();
+		
+		j1.join(); //Main thread  halt here
+		
+		j2.start();
+		
+		j3.start();	
+		
+		System.out.println("Main Thread Ended!!!!");
+	}
+
+}
+--------------------------------------------------------------------------
+package com.ravi.basic;
+
+class Alpha extends Thread   
+{
+	@Override
+	public void run()
+	{
+		Thread t = Thread.currentThread();
+		String name = t.getName();	//Alpha_Thread is current thread		
+		
+		Beta b1 = new Beta();
+		b1.setName("Beta_Thread");
+        b1.start();  
+        try 
+        {
+			b1.join(); //Alpha thread is waiting 4 Beta Thread to complete
+		
+			System.out.println("Alpha thread re-started");
+		} 
+        catch (InterruptedException e) 
+        {			
+			e.printStackTrace();
+		}
+		
+		for(int i=1; i<=10; i++)
+		{
+			System.out.println(i+" by "+name);
+		}
+		
+	}
+}
+
+public class JoinDemo2 
+{
+	public static void main(String[] args) 
+	{
+		Alpha a1 = new Alpha();
+		a1.setName("Alpha_Thread");
+		a1.start();
+	}
+}
+
+class Beta extends Thread
+{
+	@Override
+	public void run()
+	{
+		Thread t = Thread.currentThread();
+		String name = t.getName();	//Beta_Thread
+		
+		for(int i=1; i<=20; i++)
+		{
+			System.out.println(i+" by "+name);
+			try
+			{
+				Thread.sleep(500);
+			}
+			catch(InterruptedException e) {
+				
+			}
+		}
+		System.out.println("Beta Thread Ended");
+	}
+}
+--------------------------------------------------------------------------
+package com.ravi.basic;
+
+public class JoinDemo1 
+{
+	public static void main(String[] args) throws InterruptedException 
+	{
+       System.out.println("Main Thread started");
+       
+       Thread t = Thread.currentThread();
+       
+       for(int i=1; i<=10; i++)
+       {
+    	   System.out.println(i+" by "+t.getName());
+       }
+      
+       t.join();  //Main thread is waiting for main thread to complete (Deadlock)
+       
+       System.out.println("Main Thread ended");
+      
+	}
+}
+
+Note : It is a deadlock state because main thread is waiting for main thread to complete.
+----------------------------------------------------------------------
+Assigning the target for the thread by using Runnable interface :
+-----------------------------------------------------------------
+package com.nit.testing;
+
+class UserThread implements Runnable
+{   
+	@Override
+    public void run()
+    {
+         System.out.println("User Thread is running");
+    }
+}
+class RunnableDemo
+{
+    public static void main(String [] args)
+    {
+    	System.out.println("Main Thread started");
+    	
+    	UserThread ut = new UserThread();
+    	
+    	Thread t1 = new Thread(ut);
+    	t1.start(); 	
+    	
+    }
+}
+
+Note : Here Overriding run() method is compulsory and to create a new thread we need to call Thread class start() method.
+----------------------------------------------------------------------
+25-04-2025
+-----------
+Assigning target to different threads :
+----------------------------------------
+package com.ravi.testing_demo;
+
+class Tatkal implements Runnable 
+{	
+	@Override
+	public void run()
+	{
+		String name = Thread.currentThread().getName();
+		System.out.println(name+" is booking the tatkal Ticket!!!");
+			
+	}	
+}
+
+class PremimumTatkal implements Runnable
+{
+	@Override
+	public void run()
+	{
+		String name = Thread.currentThread().getName();
+		System.out.println(name+" is booking the premimum tatkal Ticket!!!");	
+	}	
+}
+
+class GeneralTicket implements Runnable
+{
+	@Override
+	public void run()
+	{
+		String name = Thread.currentThread().getName();
+		System.out.println(name+" is booking the General Ticket!!!");	
+	}	
+}
+
+
+public class AssigningTarget 
+{
+	public static void main(String[] args) throws InterruptedException 
+	{
+		Thread alen = new Thread(new Tatkal(),"Mr. Alen");		
+		
+		Thread scott = new Thread(new PremimumTatkal(),"Mr. Scott");		
+		
+		Thread smith = new Thread(new GeneralTicket(),"Mr. Smith");		
+
+		scott.start();
+		
+		scott.join();
+		
+		alen.start();
+		
+		alen.join();
+			
+		smith.start();
+	}
+
+}
+--------------------------------------------------------------------
+Runnable interface by using different Cases :
+----------------------------------------------
+Case 1 :
+--------
+Runnable interface by using Anonymous inner class :
+----------------------------------------------------
+package com.ravi.cases;
+
+public class AnonymousApproach {
+
+	public static void main(String[] args) 
+	{
+		Runnable r1 = new Runnable() 
+		{			
+			@Override
+			public void run() 
+			{
+				String name = Thread.currentThread().getName();
+				System.out.println("Thread name is :"+name);
+				
+			}
+		};
+		
+	    Thread t1 = new Thread(r1,"Child1");
+	    t1.start();
+		
+
+	}
+
+}
+-------------------------------------------------------------------
+Case 2 :
+---------
+Anonymous inner class by using Thred class constructor :
+
+package com.ravi.cases;
+
+public class AnontmousWithThreadConstructor {
+
+	public static void main(String[] args) 
+	{
+		Thread t1 = new Thread(new Runnable()    //Anonymous inner class
+		{
+			@Override
+			public void run() 
+			{
+				String name = Thread.currentThread().getName();
+				System.out.println("Thread name is :"+name);				
+			}				
+		});
+		
+		t1.start();
+
+	}
+
+}
+--------------------------------------------------------------------
+Case 3 : 
+--------
+Runnable by using Lambda :
+--------------------------
+package com.ravi.cases;
+
+public class RunnableByLambda {
+
+	public static void main(String[] args) 
+	{
+		Runnable r1 =   () -> 
+		{
+			String name = Thread.currentThread().getName();
+			System.out.println("Thread name is :"+name);
+		};
+		
+		Thread t1 = new Thread(r1);
+		t1.start();
+
+	}
+
+}
+-------------------------------------------------------------------
+Case 4 :
+---------
+Lambda by using Thred class constructor with/withot reference :
+
+package com.ravi.cases;
+
+public class LAmbdaByRef {
+
+	public static void main(String[] args) 
+	{
+	        //With Ref
+		Thread t1 = new Thread(()-> System.out.println(Thread.currentThread().getName()),"Child1");
+		t1.start();
+		
+		//OR
+		//Without Ref
+		new Thread(()-> System.out.println(Thread.currentThread().getName()),"Child2").start();
+
+	}
+
+}
+--------------------------------------------------------------------
+Thread class Constructor :
+---------------------------
+Thread is a predefined class available in java.lang package. It contains 10 constructors. We we have the list of constructors which we are using commonly.
+
+1) Thread t1 = new Thread();
+2) Thread t2 = new Thread(String name);
+3) Thread t3 = new Thread(Runnable target);
+4) Thread t4 = new Thread(Runnable target, String name);
+5) Thread t5 = new Thread(ThreadGroup tg, String name);  
+6) Thread t6 = new Thread(ThreadGroup tg, Runnable target);  
+7) Thread t7 = new Thread(ThreadGroup tg, Runnable target, String name);
+---------------------------------------------------------------------
+Drawback of Multithreading :
+----------------------------
+
+package com.ravi.basic;
+
+class Customer implements Runnable
+{
+	private int availableSeat = 1;
+	private int wantedSeat; //1
+	
+	public Customer(int wantedSeat)
+	{
+		super();
+		this.wantedSeat = wantedSeat;
+	}
+	
+	@Override
+	public synchronized void run() 
+	{
+	  	String name = null;
+	  	
+	  	if(availableSeat >= wantedSeat)
+	  	{
+	  		name = Thread.currentThread().getName();
+	  		System.out.println(wantedSeat+" seat is reserved for "+name);
+	  		availableSeat = availableSeat - wantedSeat;
+	  	}
+	  	else
+	  	{
+	  		name = Thread.currentThread().getName();
+	  		System.err.println("Sorry!!!"+name+" seat is not available");
+	  	}			
+	}	
+}
+public class RailwayReservation 
+{
+	public static void main(String[] args) throws InterruptedException 
+	{
+		Customer c1 = new Customer(1);
+		
+		Thread t1 = new Thread(c1,"Scott");
+		Thread t2 = new Thread(c1,"Smith");
+		
+		t1.start();  
+		t2.start();
+		
+
+	}
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

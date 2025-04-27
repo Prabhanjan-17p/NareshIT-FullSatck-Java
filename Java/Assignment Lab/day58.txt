@@ -44,7 +44,7 @@ public class ExceptionHandling2
 		
 	}
 }
-ANS - Valid Password
+ANS - Exception Exception.InvalidPassword: Invalid Password
 
 3.What is the output of the following program
 public class ExceptionHandling3 {

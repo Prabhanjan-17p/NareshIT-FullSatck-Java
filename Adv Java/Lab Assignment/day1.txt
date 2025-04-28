@@ -1,0 +1,153 @@
+Assignment::Write a jdbc program as follows:
+===========
+Table Name:Employee_Info.
+Table Columns:-empId,empName,empSalary,empAddress,empMailId,empPhNo.
+Note:-Create table Employee_Info from database directly and perform operations based on user choice.(Use Scanner class to take input from user)
+       1.Insert data into Employee Table.
+       2.Retrieve all Employee data.
+       3.Retrieve employee whose name stats with 'S'.
+       4.Retrieve employees whose salary between 10000 to 20000.
+       5.Update employee salary with the help of eid.
+       6.delete employee who is getting maximum salary.
+       7.delete employee whose name ends with 'a';
+       8.Exit.
+Note:Perform these operations contineously until user press 8(Exit).       
+
+ANS
+------
+package day1;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.util.Scanner;
+
+public class Student_Login_Register {
+
+	public static void main(String[] args) {
+		try {
+			Scanner sc = new Scanner(System.in);
+			Connection con = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:orcl", "MYDB","MYDB");
+			PreparedStatement logIN = con.prepareStatement("SELECT * FROM STUDENTLAB WHERE ROLLNO = ? OR NAME = ?");
+			PreparedStatement insertData = con.prepareStatement("INSERT INTO STUDENTLAB VALUES(?,?,?,?,?,?,?)");
+			PreparedStatement above60 = con.prepareStatement("SELECT * FROM STUDENTLAB WHERE PERCENTAGE > 60");
+			PreparedStatement updateData = con.prepareStatement("UPDATE STUDENTLAB SET EMAIL=? , PHONENO=? WHERE ROLLNO=?");
+			PreparedStatement deleteBet = con.prepareStatement("DELETE STUDENTLAB WHERE PERCENTAGE > 30 AND PERCENTAGE < 60");
+			PreparedStatement more80 = con.prepareStatement("SELECT * FROM STUDENTLAB WHERE PERCENTAGE > 80");
+			System.out.println("Enter your choice: \n1-Register \n2-Login");
+			System.out.print("Enter now : ");
+			int ch = Integer.parseInt(sc.nextLine());
+			switch (ch) {
+			case 1: 
+				System.out.print("Enter your Roll No: ");
+				String rollNo = sc.nextLine();
+				System.out.print("Enter your name: ");
+				String name = sc.nextLine();
+				System.out.print("Enter your PERCENTAGE: ");
+				int perc = Integer.parseInt(sc.nextLine());
+				System.out.print("Enter your First Name: ");
+				String fName = sc.nextLine();
+				System.out.print("Enter your Last Name: ");
+				String lName = sc.nextLine();
+				System.out.print("Enter your Roll No: ");
+				String eMail = sc.nextLine();
+				System.out.print("Enter your Roll No: ");
+				int mobileNumber = Integer.parseInt(sc.nextLine());
+				
+				insertData.setString(1, rollNo);
+				insertData.setString(2, name);
+				insertData.setInt(3, perc);
+				insertData.setString(4, fName);
+				insertData.setString(5, lName);
+				insertData.setString(6, eMail);
+				insertData.setInt(7, mobileNumber);
+				
+				int x = insertData.executeUpdate();
+				
+				if (x > 0) {
+					System.out.println("Data insert successfully");
+				}else {
+					System.out.println("Data not inserted!!!");
+				}
+				break;
+			case 2:
+				System.out.print("Enter your Roll No: ");
+				String rollNoLog = sc.nextLine();
+				System.out.print("Enter your name: ");
+				String nameLog = sc.nextLine();
+				
+				logIN.setString(1, rollNoLog);
+				logIN.setString(2, nameLog);
+				
+				int suc = logIN.executeUpdate();
+				ResultSet res = logIN.executeQuery();
+				if(suc > 0) {
+					System.out.println("Login successfully");
+					System.out.println("1. Show Students whose percentage > 60%\r\n"
+							+ "2. Update Mail_ld & Phine_Number based on RollNo\r\n"
+							+ "3. Delete Student whose Percentage between 30% to 60%.\r\n"
+							+ "4. Find how many student got more than 80%");
+					System.out.print("Enter Your Choice Here");
+					int secCH = Integer.parseInt(sc.nextLine());
+					switch(secCH) {
+					case 1:
+						ResultSet abv60 = above60.executeQuery();
+						while(abv60.next()) {
+							System.out.println(abv60.getString(1)+"\t"+abv60.getString(2)+"\t"+abv60.getInt(3)+"\t"+abv60.getString(4)+"\t"+abv60.getString(5)+"\t"+abv60.getString(6)+"\t"+abv60.getInt(7));
+						}
+						break;
+					case 2:
+						String roll = res.getString(1);
+						System.out.print("Your old Roll Number: "+roll);
+						System.out.print("Your old Email: "+res.getString(6));
+						System.out.print("Your New Email: ");
+						String newEmail = sc.nextLine();
+						System.out.print("Your old Phone Number: "+res.getInt(7));
+						System.out.print("Your New Email: ");
+						int newPhone = Integer.parseInt(sc.nextLine());
+						
+						updateData.setString(1, newEmail);
+						updateData.setInt(2, newPhone);
+						updateData.setString(2, roll);
+						
+						int up = updateData.executeUpdate();
+						if (up >0) {
+							System.out.println("Update successfully");
+						}else {
+							System.out.println("Not Update!!!");
+						}
+						break;
+					case 3:
+						int det = deleteBet.executeUpdate();
+						if (det > 0) {
+							System.out.println("Data deleted successfully");
+						}else {
+							System.out.println("Data not deleted!!!");
+						}
+						break;
+					case 4:
+						ResultSet abv80 = more80.executeQuery();
+						while(abv80.next()) {
+							System.out.println(abv80.getString(1)+"\t"+abv80.getString(2)+"\t"+abv80.getInt(3)+"\t"+abv80.getString(4)+"\t"+abv80.getString(5)+"\t"+abv80.getString(6)+"\t"+abv80.getInt(7));
+						}
+						break;
+					default:
+						System.err.println("Enter a valid chioce!!!");
+					}
+				}else {
+					System.out.println("Please enter valid Name and RollNo");
+				}
+				break;
+			
+			default:
+				System.err.println("Enter a valid chioce!!!");
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+	}
+
+}

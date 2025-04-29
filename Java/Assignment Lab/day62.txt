@@ -105,10 +105,11 @@ public class MultiThread25 extends Thread
 		}
 	}
 }
+ANS - 10 time it will print the id.
 
 
 6.	What is the output of the following code
-public class MultiThread extends Thread
+public class MultiThread26 extends Thread
 {
 	public void run() {
 		System.out.print(Thread.currentThread().getId()+" ");
@@ -120,16 +121,17 @@ public class MultiThread extends Thread
 	}
 	
 	public static void main(String[] args) {
-		MultiThread nit = new MultiThread();
+		MultiThread26 nit = new MultiThread26();
 		for(int i=0;i<10;i++)
 		{
 			nit.start();
 		}
 	}
 }
+ANS - main main main main main main main main main main 
 
 7.	What is the output of the following code
-public class MultiThread extends Thread
+public class MultiThread27 extends Thread
 {
 	public void run() {
 		System.out.print(Thread.currentThread().getId()+" ");
@@ -141,13 +143,14 @@ public class MultiThread extends Thread
 	}
 	
 	public static void main(String[] args) {
-		MultiThread nit = new MultiThread();
+		MultiThread27 nit = new MultiThread27();
 		for(int i=0;i<10;i++)
 		{
 			nit.run();
 		}
 	}
 }
+ANS - 1 1 1 1 1 1 1 1 1 1 
 
 8.	What is the output of the following program
 public class MultiThread implements Runnable

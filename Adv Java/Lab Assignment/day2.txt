@@ -1,0 +1,274 @@
+Program_01:
+==========
+You are developing a JDBC-based Java application to manage customer data for a billing system using a Customer class and a test class.
+
+Requirements:
+-------------
+
+Customer Class:
+Attributes:
+-----------
+.String customerId
+.String customerName
+.String email
+.String phoneNumber
+.String address
+.String city
+.int pincode
+
+Functional Requirements:
+------------------------
+Define the above attributes as instance variables.
+
+->Create a method named insertCustomer(String customerId, String customerName, String email, String phoneNumber, String address, String city, int pincode) that:
+->Establishes a connection to an Oracle database.
+->Inserts the customer data into a table called CustomerTable using PreparedStatement.
+->Uses placeholders (?) for each parameter in the SQL query.
+->Executes the query and prints "Customer record inserted successfully" on success.
+->Handles any exceptions using a try-catch block and displays the error message.
+
+BillingSystemApp Class:
+-----------------------
+Functional Requirements:
+.Create at least three Customer objects.
+.Call the insertCustomer() method for each object with different values.
+.Demonstrate calling the method using:
+
+Direct method parameters.
+
+.Instance variables set via setters or constructors (optional).
+.Optionally, create another method called displayCustomerByCity(String city) that: Accepts a city name.
+.Fetches and displays all customers from that city using a SELECT query.(SELECT * FROM CUSTM42 WHERE CITYNAME = ?)
+
+Additional Notes:
+-----------------
+Oracle JDBC URL:jdbc:oracle:thin:@localhost:1521:XE
+       Username: xxxxxx
+       Password: xxxxxx
+
+Consider creating a parameterized constructor or setter methods for flexible initialization.
+
+The CustomerTable in the database must include matching columns:
+(customerId, customerName, email, phoneNumber, address, city, pincode)
+
+Note:
+1.Use Scanner Class to take input.
+2.U will perform this operation using PreparedStatement Interface.
+ANS
+--------
+package day2;
+
+import java.util.Scanner;
+
+public class BillingSystemApp {
+	public static void main(String[] args) {
+//		Scanner sc = new Scanner(System.in);
+//		System.out.print("Enter customerId");
+//		String cID = sc.nextLine();
+//		System.out.print("Enter customerName");
+//		String cName = sc.nextLine();
+//		System.out.print("Enter email");
+//		String cEmail = sc.nextLine();
+//		System.out.print("Enter phoneNumber");
+//		String cPHN = sc.nextLine();
+//		System.out.print("Enter address");
+//		String cAddress = sc.nextLine();
+//		System.out.print("Enter city");
+//		String cCity = sc.nextLine();
+//		System.out.print("Enter pinCode");
+//		int  cpin = Integer.parseInt(sc.nextLine());
+		
+		Customer c1 = new Customer();
+//		c1.insertCustomer("1", "Smith", "smith@gmail.com", "1231231", "Pune", "ABC", 55555);
+		c1.findWithCityName();
+		Customer c2 = new Customer();
+		c2.insertCustomer("1", "Smith", "smith@gmail.com", "1231231", "Pune", "ABC", 55555);
+		Customer c3 = new Customer();
+		c3.insertCustomer("1", "Smith", "smith@gmail.com", "1231231", "Pune", "ABC", 55555);
+	}
+}
+
+
+
+package day2;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.util.Scanner;
+
+public class Customer {
+//	String customerId;
+//	String customerName;
+//	String email;
+//	String phoneNumber;
+//	String address;
+//	String city;
+//	int pincode;
+	
+	public void insertCustomer(String customerId, String customerName, String email, String phoneNumber, String address, String city, int pincode) {
+		try {
+			Scanner sc = new Scanner(System.in);
+			Connection con = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:orcl", "MYDB","MYDB");
+			PreparedStatement insertData = con.prepareStatement("INSERT INTO CustomerTable42 VALUES(?,?,?,?,?,?,?)"); //"
+
+			insertData.setString(1, customerId);
+			insertData.setString(2, customerName);
+			insertData.setString(3, email);
+			insertData.setString(4, phoneNumber);
+			insertData.setString(5, address);
+			insertData.setString(6, city);
+			insertData.setInt(7, pincode);
+			
+			int x = insertData.executeUpdate();
+			if(x > 0) {
+				System.out.println("Data insert successfully...");
+			}else {
+				System.err.println("Data not inserted!!!");
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void findWithCityName() {
+		try {
+			Connection con = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:orcl", "MYDB","MYDB");
+			PreparedStatement findWithCityName = con.prepareStatement("SELECT * FROM CustomerTable42 WHERE CITY = ?");
+			
+			Scanner sc = new Scanner(System.in);
+			System.out.print("Enter the city name to find the records: ");
+			String cCName = sc.nextLine();
+			
+			findWithCityName.setString(1, cCName);
+			
+			int y = findWithCityName.executeUpdate();
+			
+			ResultSet res = findWithCityName.executeQuery();
+			
+			if (y > 0) {
+				while (res.next()) {
+					System.out.println(res.getString(1)+"\t"+res.getString(2)+"\t"+res.getString(3)+"\t"+res.getString(4)+"\t"+res.getString(5)+"\t"+res.getString(6)+"\t"+res.getInt(7));
+				}
+			}else {
+				System.err.println("Not data found in records!!!");
+			}
+			
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+}
+
+
+
+
+Program_02:
+===========
+Write a jdbc program as follows:
+Note:Create a table:-Product (U can create table from database).
+              Table Columns:-productId,productName,productPrice,productQty.
+Give Option to the user:
+          1.Insert productdetails into product table.
+          2.Retrieve productdetails in forward direction.
+          3.Retrieve productdetails in reverse direction.
+          4.Retrieve 3rd record from top.
+          5.Retrieve 3rd record from bottom. 
+Note:
+1.Use Scanner Class to take input.
+2.U will perform this operation using PreparedStatement Interface.
+
+ANS 
+----
+package day2;
+
+import java.util.Scanner;
+import java.sql.*;
+
+public class Product {
+
+	public static void main(String[] args) {
+		try {
+			Scanner sc = new Scanner(System.in);
+			Connection con = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:orcl", "MYDB","MYDB");
+			PreparedStatement insertProduct = con.prepareStatement("insert into Product42 values(?,?,?,?)");
+			Statement forward = con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_READ_ONLY);
+			ResultSet resFor = forward.executeQuery("SELECT * FROM Product42");
+			
+			
+			System.out.println("Enter your choice: \n          1.Insert productdetails into product table.\r\n"
+					+ "          2.Retrieve productdetails in forward direction.\r\n"
+					+ "          3.Retrieve productdetails in reverse direction.\r\n"
+					+ "          4.Retrieve 3rd record from top.\r\n"
+					+ "          5.Retrieve 3rd record from bottom. "); //"
+			System.out.print("Enter Now :");
+			int key = Integer.parseInt(sc.nextLine());
+			switch (key) {
+			case 1: 
+				System.out.print("Enter Product ID: ");
+				String pId = sc.nextLine();
+				System.out.print("Enter Product Name: ");
+				String pName = sc.nextLine();
+				System.out.print("Enter Product Price: ");
+				float  pPrice = Float.parseFloat(sc.nextLine());
+				System.out.print("Enter Product QTY: ");
+				int  pQTY = Integer.parseInt(sc.nextLine());
+				
+				insertProduct.setString(1, pId);
+				insertProduct.setString(2, pName);
+				insertProduct.setFloat(3, pPrice);
+				insertProduct.setInt(4, pQTY);
+				
+				int x = insertProduct.executeUpdate();
+				
+				if (x > 0) {
+					System.out.println("Product Insert Successfully...");
+				}else {
+					System.err.println("Product Not Insert!!!");
+				}
+				break;
+			case 2: 
+				while(resFor.next()) {
+					System.out.println(resFor.getString(1)+"\t"+resFor.getString(2)+"\t"+resFor.getFloat(3)+"\t"+resFor.getInt(4));
+				}
+				break;
+			case 3: 
+				resFor.last();
+				System.out.println(resFor.getString(1)+"\t"+resFor.getString(2)+"\t"+resFor.getFloat(3)+"\t"+resFor.getInt(4));
+				while(resFor.previous()) {
+					System.out.println(resFor.getString(1)+"\t"+resFor.getString(2)+"\t"+resFor.getFloat(3)+"\t"+resFor.getInt(4));
+				}
+				break;
+			case 4: 
+				int c = 1;
+				while(resFor.next()) {
+					if (c>=1 && c<= 3) {
+						System.out.println(resFor.getString(1)+"\t"+resFor.getString(2)+"\t"+resFor.getFloat(3)+"\t"+resFor.getInt(4));
+					}
+					c++;
+				}
+				break;
+			case 5: 
+				int c1 = 1;
+				resFor.afterLast();
+//				System.out.println(resFor.getString(1)+"\t"+resFor.getString(2)+"\t"+resFor.getFloat(3)+"\t"+resFor.getInt(4));
+				while(resFor.previous()) {
+					if (c1 >=1 && c1<= 2) {
+						System.out.println(resFor.getString(1)+"\t"+resFor.getString(2)+"\t"+resFor.getFloat(3)+"\t"+resFor.getInt(4));
+					}
+					c1++;
+				}
+				break;
+			default:
+				throw new IllegalArgumentException("Unexpected value: " + key);
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+}

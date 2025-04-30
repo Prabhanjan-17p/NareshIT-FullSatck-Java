@@ -1,0 +1,365 @@
+Q1)
+---
+Your task is to create a Java program that simulates a scenario where multiple cars arrive at a petrol pump for refilling. The program should utilize multithreading concepts with synchronization to manage concurrent refilling operations at the petrol pump. The main goal is to observe and record which car completes the refilling process first.
+
+Instructions:
+
+PetrolPump Class:
+
+Create a PetrolPump class with the following attribute and method:
+refillCar(String carName): A synchronized method simulating the refilling process. Ensure that only one car can execute this method at a time.
+Simulation Details:
+In the refillCar method, print messages to indicate when a car starts and completes refilling. Use the format: <CarName> started refilling... and <CarName> completed refilling!.
+Implement a sleep period in the refillCar method (e.g., Thread.sleep(3000)) to simulate the time it takes for a car to refill.
+
+Car Class:
+
+Create a Car class that implements the Runnable interface. Include the following members:
+name (String): The name of the car.
+petrolPump (PetrolPump): A reference to the petrol pump.
+run(): Implement the run method from the Runnable interface. Inside this method, call the refillCar method of the petrol pump to simulate the refilling process.
+
+PetrolPumpSimulation Class (Main):
+
+In the main method, create an instance of PetrolPump.
+Create an array of Car objects, each initialized with a unique name and the reference to the petrol pump.
+Create an array of Thread objects to represent each car's thread.
+Start each car thread and wait for all car threads to complete using the join method.
+
+
+Note:
+
+Use the synchronized keyword to achieve synchronization without using Semaphore.
+Ensure proper exception handling for InterruptedException.
+Your implementation should be well-documented with comments explaining the logic of each class and method.
+Adjust the sleep time and other parameters based on your desired simulation.
+
+Output :
+---------
+<Ford> started filling
+<Ford> completed filling
+<Naxon> started filling
+<Naxon> completed filling
+<Maruti> started filling
+<Maruti> completed filling
+-------------------------------------------------------------------------
+MCQs :
+------
+Q1)
+
+class Task extends Thread {
+    public void run() {
+        synchronized (this) {
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            System.out.println("Task Completed by :"+Thread.currentThread().getName());
+        }
+    }
+}
+
+public class Exam31 {
+    public static void main(String[] args) throws InterruptedException {
+        Task task1 = new Task(); //lock-task1
+        Task task2 = new Task(); //lock-task2
+        task1.start();
+        task2.start();
+        task1.join();
+        task2.join();
+    }
+}
+ANS - (Sequence will be up-down)
+Task Completed by : Thread-0
+Task Completed by : Thread-1
+
+Q2)
+public class Exam {
+    public static void main(String[] args) throws InterruptedException {
+        final Object lock = new Object(); // lock-1
+
+        Thread t1 = new Thread(() -> {
+            synchronized (lock) {
+                try {
+					System.out.println("Waiting for Response");
+                    lock.wait();
+                    System.out.println("Waiting for Response");
+                } catch (InterruptedException e) {
+                    System.out.println("Interrupted");
+                }
+            }
+        });
+
+        Thread t2 = new Thread(() -> {
+            synchronized (lock) {
+                lock.notify();
+				System.out.println("Sending Notification");
+            }
+        });
+
+        t1.start();
+        t2.start();
+
+        t1.join();
+        t2.join();
+		System.out.println("Completed");
+    }
+}
+ANS -
+Waiting for Response
+Sending Notification
+Waiting is Complete
+Complete
+
+Q3)
+class Reentrant {
+    public synchronized void m() {
+        n();
+        System.out.println("this is m() method");
+    }
+
+    public synchronized void n() {
+        System.out.println("this is n() method"); // "
+    }
+}
+
+public class Exam33 {
+    public static void main(String args[]) {
+        final Reentrant re = new Reentrant();
+        Thread t1 = new Thread() {
+            public void run() {
+                re.m();// calling method of Reentrant class
+            }
+        };
+        t1.start();
+    }
+} 
+ANS -
+this is n() method
+this is m() method
+
+Q4)
+class Tester {
+    synchronized void hit(long n) {
+       for (int i = 1; i < 3; i++)
+          System.out.print(n + "-" + i + " "); 
+    }
+}
+ 
+public class Exam34 implements Runnable {
+   static Tester pp2 = new Tester();
+
+   public static void main(String[] args) {
+      new Thread(new Exam34()).start();
+      new Thread(new Exam34()).start();
+   }
+
+   public void run() {
+      pp2.hit(Thread.currentThread().getId());
+   }
+}
+ANS-
+Thread-0id-1 Thread-0id-2 Thread-1id-1 Thread-1id-2
+ex- 30-1 30-2 31-1 31-2 
+
+Q5)
+
+class Pen {
+}
+
+class Paper {
+}
+
+public class Exam35 {
+  public static void main(String[] args) {
+    final Pen pn = new Pen();
+    final Paper pr = new Paper();
+
+    Thread t1 = new Thread() {
+      public void run() {
+        synchronized (pn) {
+          System.out.println("Thread1 is holding Pen");
+          try {
+            Thread.sleep(1000);
+          } catch (InterruptedException e) {
+          }
+          synchronized (pr) { // these will be not work becuase lock is already taken by pn
+            System.out.println("Requesting for Paper");
+          }
+
+        }
+      }
+    };
+    Thread t2 = new Thread() {
+      public void run() {
+        synchronized (pr) {
+          System.out.println("Thread2 is holding Paper");
+          try {
+            Thread.sleep(1000);
+          } catch (InterruptedException e) {
+          }
+          synchronized (pn) { // these will be not work becuase lock is already taken by pn
+            System.out.println("requesting for Pen");
+          }
+
+        }
+      }
+    };
+
+    t1.start();
+    t2.start();
+  }
+
+}
+ANS -
+Thread1 is holding Pen
+Thread2 is holding Paper
+
+Q6)
+class Job extends Thread {
+    private Integer number = 0;
+
+    public void run() {
+        synchronized (this) {
+            for (int i = 1; i < 100; i++) {
+                number++;
+            }
+            notify();
+        }
+    }
+
+    public Integer getNumber() {
+        return number;
+    }
+}
+
+public class Exam36 {
+    public static void main(String[] args) throws Exception {
+        Job thread = new Job();
+        thread.start();
+        synchronized (thread) {
+            thread.wait();
+        }
+        System.out.println(thread.getNumber());
+    }
+}
+ANS - 99
+
+Q7)
+public class Exam37
+{
+    public static void main(String[] args) 
+    {
+        System.out.print("A ");
+        new Object().notifyAll();
+        System.out.println("B");
+    }
+}
+ANS - A Exception in thread "main" java.lang.IllegalMonitorStateException: current thread is not owner
+
+Q8)
+class InterruptDemo extends Thread {
+    public void run() {
+        try {
+            Thread.sleep(1000);
+            System.out.println("task");
+        } catch (InterruptedException e) {
+            throw new RuntimeException(" My Thread interrupted..." + e);
+        }
+
+    }
+}
+
+public class Exam38 {
+
+    public static void main(String args[]) {
+        InterruptDemo t1 = new InterruptDemo();
+        t1.start();
+        try {
+            t1.interrupt();
+        } catch (Exception e) {
+            System.out.println("Exception handled " + e);
+        }
+
+    }
+}  
+ANS - It will gives interrupted exception
+
+Q9)
+public class Exam39 extends Thread {
+
+    public void run() {
+       try {
+          Thread.sleep(100);
+       } catch (Exception e) {
+          System.out.println("Thread terminated");
+       }
+       for (int i = 1; i <= 5; i++)
+          System.out.println(i);
+    }
+ 
+    public static void main(String args[]) {
+       Exam39 t1 = new Exam39();
+       t1.start();
+ 
+       t1.interrupt();
+ 
+    }
+} 
+ANS - 
+Thread terminated
+1
+2
+3
+4
+5
+
+Q10)
+package MultiThread;
+
+public class Exam40
+{
+	public static void main(String[] args) 
+	{
+		ThreadB b = new ThreadB();
+		b.start();
+
+//		synchronized(b)
+		synchronized(Exam40.class) // run time error because of run method accept ThreadB reference
+		{
+			try
+			{
+				System.out.println("Waiting for b to complete...");
+				b.wait();
+			}
+			catch (InterruptedException e)
+			{
+			}
+			System.out.println("Total is :"+b.total);
+		}
+//		b.start();
+	}
+}
+class ThreadB extends Thread
+{
+	int total;
+	public void run()
+	{
+//		synchronized(Exam40.class) // error
+		synchronized(this)
+		{
+			for(int i=0; i<100; i++)
+			{
+				total=total+i;
+			}
+			System.out.println("Complted I am going to awake him");
+			notify();
+		}
+	}
+}
+
+ANS -
+Waiting for b to complete...
+Complted I am going to awake him
+Exception in thread "main" java.lang.IllegalMonitorStateException: current thread is not owner

@@ -1,0 +1,61 @@
+Program_01: Student Management System (JDBC-Based)
+==================================================
+
+You are developing a JDBC-based Java application to manage student data for a university system using a Student class and a test class.
+
+Requirements:
+--------------
+
+Student Class:
+--------------
+Attributes:
+
+.String studentId
+.String studentName
+.String course
+.int semester
+.String email
+.String phoneNumber
+
+Functional Requirements:
+------------------------
+➔one parameterised constructor to initialise all variables.
+
+➔ Create a method insertStudent(Student student) that Inserts a new student into the StudentTable using PreparedStatement.Uses placeholders (?) in the SQL query.
+➔Prints success or failure messages.
+
+➔ Create a method fetchAllStudents() that:
+Fetches and displays all students.
+
+➔ Create a method fetchStudentById(String studentId) that:
+Fetches a student by ID.
+
+➔ Create a method updateStudentEmail(String studentId, String newEmail) that:
+Updates a student's email.
+
+➔ Create a method deleteStudentById(String studentId) that:
+Deletes a student by ID.
+
+UniversityApp Class(Main Class):
+--------------------------------
+➔Provide a menu-driven(switch case) system using Scanner to allow the user to perform the following operations dynamically:
+
+1.Insert Student objects into the database by calling the insertStudent(Student student) method.
+
+2.Fetch and display all student records by calling the fetchAllStudents() method.
+
+3.Search a student by Student ID by calling the fetchStudentById(String studentId) method.
+
+4.Update a student's email by asking for the Student ID and new Email, then calling updateStudentEmail(String studentId, String newEmail).
+
+5.Delete a student record based on Student ID by calling the deleteStudentById(String studentId) method.
+
+6.Exit the application.
+
+Use a loop (such as while(true)) to continuously show the menu until the user chooses to exit.
+
+Handle user input properly, taking String and integer inputs where needed.
+
+Display appropriate success or failure messages after each operation.
+
+

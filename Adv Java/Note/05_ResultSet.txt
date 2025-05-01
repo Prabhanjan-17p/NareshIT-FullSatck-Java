@@ -1,0 +1,116 @@
+ResultSet:
+-----------
+- It is an interface available in java.sql.
+- ResultSet extends java.sql.Wrapper,java.lang.AutoCloseable
+- In Java, when you run a SQL query (like SELECT * FROM employees) using
+JDBC (Java Database Connectivity), you get data back from the database.
+This data is stored in an object called a ResultSet.
+
+Note: ResultSet is like a table in Java memory that contains the data you
+got from the database query.
+
+Question. How do you get a ResultSet?
+Answer: You typically get a ResultSet by calling the executeQuery() method of
+the Statement or PreparedStatement object.
+Statement stmt = connection.createStatement();
+ResultSet rs = stmt.executeQuery("SELECT * FROM employees");
+
+
+Important Fields of ResultSet:
+---------------------------------
+  public static final int CONCUR_READ_ONLY;
+  public static final int CONCUR_UPDATABLE;
+ 
+  public static final int TYPE_SCROLL_INSENSITIVE;
+  public static final int TYPE_SCROLL_SENSITIVE;
+
+  public static final int FETCH_FORWARD;
+  public static final int FETCH_REVERSE;
+  public static final int FETCH_UNKNOWN;
+  public static final int TYPE_FORWARD_ONLY;
+ 
+  public static final int HOLD_CURSORS_OVER_COMMIT;
+  public static final int CLOSE_CURSORS_AT_COMMIT;
+
+Important methods in ResultSet:
+--------------------------------
+  - public abstract boolean first() throws java.sql.SQLException;
+  - public abstract boolean last() throws java.sql.SQLException;
+  - public abstract int getRow() throws java.sql.SQLException;
+  - public abstract boolean absolute(int) throws java.sql.SQLException;
+  - public abstract boolean relative(int) throws java.sql.SQLException;
+  - public abstract boolean previous() throws java.sql.SQLException;
+
+Types of ResultSet based in direction of movement:
+-----------------------------------------------------
+  1.  NonScrollable ResultSet:
+  -----------------------------
+     - It is a simple ResultSet, which moves forward
+       through the data.
+     - It can't move backward or not even in random order.
+        * You can move forward to the next row by using next().
+    * You cant move backwards by using previous() in case of NonScrollable
+      ResultSet.
+     - It is best for the situation where we have to read the data only once
+       from top to bottom.
+     
+  - Scrollable ResultSet:
+  -----------------------------
+  It helps to move cursor in both direction i.e, in forward as well as in
+  background direction.
+
+  Syntax for Scrollable ResultSet:
+  ----------------------------------
+        Statement refVariable = connectionreference.createStatement
+                            (type,mode);
+  e.g:
+      Statement s1 = con.createStatement
+                     (ResultSet.TYPE_FORWARD_ONLY,ResultSet.CONCUR_READ_ONLY);
+      ResultSet rSet = s1.executeQuery("select * from laptop");
+      In the above syntax:
+      'type' will specify direction of movement.
+      'mode' will specify about the operation/action in ResultSet.
+Note:
+   For specifying the type we use the following fields/variables from
+   java.sql.ResultSet:
+       -  public static final int TYPE_FORWARD_ONLY;
+       -  public static final int TYPE_SCROLL_INSENSITIVE;
+       -  public static final int TYPE_SCROLL_SENSITIVE;
+   
+    For specifying the mode we use the following fields/variables from
+    java.sql.ResultSet:
+          - public static final int CONCUR_READ_ONLY;
+          - public static final int CONCUR_UPDATABLE;
+----------------------------------------------------------------------------
+Types based on Scrolling:
+----------------------------
+
+           Type                                               Meaning
+i. ResultSet.TYPE_FORWARD_ONLY             The cursor can only move forward
+                                          (default type).
+
+ii. ResultSet.TYPE_SCROLL_INSENSITIVE      Cursor can move forward and backward.
+                                          It does not reflect changes made to
+                      the database after the ResultSet was
+                      created.
+
+iii. ResultSet.TYPE_SCROLL_SENSITIVE    Cursor can move forward and backward,
+                                        and reflects changes made in the
+                    database after the ResultSet was
+                    created.
+
+Types based on Updating:
+-----------------------------
+         Type                                 Meaning
+i. ResultSet.CONCUR_READ_ONLY          You can only read the ResultSet. You
+                                      cannot update its data. (default)
+
+ii. ResultSet.CONCUR_UPDATABLE          You can update, insert, or delete
+                                      rows inside the ResultSet.
+
+Commonly used Methods from ResultSet to get control over the cursor:
+- previous()            Moves cursor to previous row.
+- first()            Moves cursor to the first row.
+- last()            Moves cursor to the last row.
+- absolute(int row)    Moves cursor to the given row number.
+- relative(int rows)    Moves cursor relative to the current row.

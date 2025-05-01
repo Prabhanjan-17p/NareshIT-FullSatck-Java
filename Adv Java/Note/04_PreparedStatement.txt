@@ -1,0 +1,89 @@
+PreparedStatement:
+------------------
+- PreparedStatement is a subinterface of Statement in JDBC.
+- It is used to execute parameterized SQL queries — meaning SQL queries
+  with placeholders (?) for values.
+- The Query type is Static in case of Statement whereas Dynamic (parameterized) in
+  PreparedStatement.
+- In case of Statement, Security is prone to SQL injection whereas in
+  PreparedStatement it is Safer against SQL injection.
+- In Statement there is manual string concatenation but in PreparedStatement it Uses
+  ? placeholders and setters.
+  Note:
+   When you send a SQL query to the database, the database engine needs to:
+      -> Parse the SQL string
+      -> Compile it into an execution plan
+      -> Execute it and return results
+This parsing and compiling step takes time, especially when the same query
+is sent repeatedly with just different values.
+
+Q. What happens with Statement?
+Answer: If you're using Statement, every time you run a query,even if it's
+the same query, the database parses and compiles it from scratch.
+For e.g:
+ Statement stmt = con.createStatement();
+ResultSet rs = stmt.executeQuery("SELECT * FROM users WHERE city = 'Delhi'");
+If you run this with different cities in a loop, the query string changes each
+time,the database treats it as a new query.
+
+Q. What happens with PreparedStatement?
+Answer: With PreparedStatement, you define the SQL once with ? placeholders.
+For e.g:
+ String query = "SELECT * FROM users WHERE city = ?";
+ PreparedStatement pstmt = con.prepareStatement(query);
+
+ pstmt.setString(1, "Delhi");
+ ResultSet rs1 = pstmt.executeQuery();
+
+ pstmt.setString(1, "Mumbai");
+ ResultSet rs2 = pstmt.executeQuery();
+ Here, the SQL gets compiled only once, and only the parameter values change.
+This saves a lot of time and memory, especially when running large numbers of queries.
+
+package com.nit.advJavaTest;
+
+import java.sql.*;
+class Employee{
+ String name;//can be initialized by object or constructor
+String id;//can be initialized by object or constructor
+int salary;//
+can be initialized by object or constructor
+    public void addEmployee(String id,String name,int salary) {
+        try {
+            //create a connection
+            Connection con = DriverManager.getConnection
+                    ("jdbc:oracle:thin:@localhost:1521:XE","system","tiger");
+            //Prepare a statement for a query to insert records
+            PreparedStatement psmt = con.prepareStatement
+                             ("insert into EmployeeDB values(?,?,?)");
+            psmt.setString(1,id);
+            psmt.setString(2, name);
+            psmt.setInt(3, salary);
+           
+            int rowInserted = psmt.executeUpdate();
+            if(rowInserted>0) {
+                System.out.println("Record entered succesfully");
+            }
+            else {
+                System.out.println("Could not insert the record");
+            }
+        }
+        catch(Exception e) {
+            System.out.println(e.toString());
+        }
+    }
+}
+public class TestEmployeeDB {
+public static void main(String[] args) {
+    Employee e1 = new Employee();
+    Employee e2 = new Employee();
+    Employee e3 = new Employee();
+    e1.addEmployee("TYP123", "Raju", 20000);
+    e2.addEmployee("NIT6679", "Rancho", 25000);
+    e3.addEmployee("HYWL5632", "Banti", 35000);    
+    /*
+  We can show the usage of instance variable by creating object and intializing variables 
+or create object and initialize variables with help of parameterized constructor and then pass the
+values of each variables belonging to individual object to the addEmployee().
+*/
+        }}

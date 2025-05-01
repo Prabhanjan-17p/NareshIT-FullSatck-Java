@@ -1,0 +1,117 @@
+Question 1:
+------------
+Create a table Laptops to store the details of laptops.
+Each laptop has: brandName, model, processor, ramSize (in GB), and price.
+
+Sample Records:
+BRANDNAME    MODEL    PROCESSOR    RAMSIZE    PRICE
+Dell          Inspiron     i5          8    55000
+HP          Pavilion     i7          16    72000
+Lenovo          Ideapad     Ryzen          5    48000
+Asus          Vivobook     i3          4    35000
+Apple          MacBook      M1          8    95000
+
+Write a Java program to:
+- Fetch all records using Statement and ResultSet.
+
+Question 2:
+------------
+Create a table Students which stores:
+rollNumber, name, department, year, and percentage.
+
+Sample Records:
+ROLLNO    NAME    DEPARTMENT    YEAR    PERCENTAGE
+101    Rohan    CSE        3    86.5
+102    Priya    ECE        2    78.9
+103    Anjali    CSE        4    91.2
+104    Yash    ME        1    94.3
+105    Neha    EEE        2    88.0
+
+Write a Java program to:
+- Fetch and print Students detail using Statement and ResultSet
+
+Question 3:
+------------
+Design a Books table with fields: isbn, title, author, price, and publicationYear.
+
+Sample Records:
+ISBN    TITLE            AUTHOR            PRICE      PUBLICATIONYEAR
+978011    Java Made Easy        Rajeev Kumar        450        2021
+978012    Learn Python Fast    Ankit Sharma        380        2020
+978013    DBMS Concepts        Sudha Singh        520        2022
+978014    Web Development        Basics    Ramesh Iyer    400        2019
+978015    Clean Code        Robert Martin        850        2008
+
+Create a Java program to:
+- Fetch and print book details using Statement and ResultSet.
+
+Question 4:
+-------------
+Create a table Employees with fields: empId, name, designation, salary, and department.
+
+Sample Records:
+EMPID    NAME    DESIGNATION    SALARY    DEPARTMENT
+E101    Arjun    Developer    60000    IT
+E102    Sheetal    Analyst            55000    Finance
+E103    Deepak    HR Manager    58000    HR
+E104    Sneha    QA Engineer    50000    IT
+E105    Ramesh    DevOps            62000    IT
+Write a Java program to:
+- Retrieve and print employee details all records using Statement and ResultSet.
+
+Question 5:
+------------
+Create a table Movies that stores:
+movieName, genre, releaseYear, rating, and duration.
+
+Sample Records:
+MOVIENAME    GENRE        RELEASEYEAR    RATING    DURATION (mins)
+Inception    Sci-Fi           2010        8.8    148
+The Dark Knight    Action           2008        9.0    152
+Interstellar    Sci-Fi           2014        8.6    169
+PK        Comedy           2014        8.2    153
+Dangal        Drama           2016        8.4    161
+Write a Java program to:
+- Retrieve and print Movies details all records using Statement and ResultSet.
+
+
+
+Create a table of records which will contain the details of Cars
+ Cars have brandName, model, yom, type(CNG/Petrol/Diesel), mileage.
+ 
+ Create 5 different records and add them into the table.
+ BRANDNAME  MODEL             YOM TYPE          MILEAGE
+ ---------- ---------- ---------- ---------- ----------
+Mahindra   Thar             2024 Petrol             13
+Mahindra   ScorpioN         2025 Diesel              9
+Tata       Safari           2023 Petrol             12
+Tata       Nexon            2017 Petrol             15
+Nexa       Baleno           2019 CNG                18
+-------------------- Cars DB ---------------------------------------
+ Create a java program to connect to the Cars D/B.
+ Fetch the details of each car and display with readable o/p.
+   
+-----------------------------------------------------------------------------------------------------------------------------------
+import java.sql.*;
+public class TestCars {
+public static void main(String[] args) {
+    try {
+        Connection con = DriverManager.getConnection
+                ("jdbc:oracle:thin:@localhost:1521:XE","system", "tiger");
+         Statement stmt = con.createStatement();
+         ResultSet rSet = stmt.executeQuery("select * from Cars");
+         System.out.println("Details of cars: ");
+         while(rSet.next()) {
+         System.out.println("Brand Name: "+rSet.getString(1)
+         +"\tModel: "+rSet.getString(2)+"\tYOM: "+rSet.getInt(3)
+         +"\tType: "+rSet.getString(4)+"\tMileage: "+rSet.getInt(5));    
+         }
+         rSet.close();
+         stmt.close();
+         con.close();    
+    }
+    catch(Exception e) {
+       
+    }
+}
+}

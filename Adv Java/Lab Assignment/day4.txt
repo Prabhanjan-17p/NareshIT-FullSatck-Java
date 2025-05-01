@@ -1,0 +1,96 @@
+Program01:
+==========
+Step01=>Create Table:emp_info
+Columns:empId,empName,empAddress,empMailId,empPhNo,empResume(.pdf file).
+Step02:Write a JDBC program to insert employee details into database table.
+ANS 
+-----
+package day4;
+
+import java.io.File;
+import java.io.FileInputStream;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.util.Scanner;
+
+public class Emp_info42 {
+
+	public static void main(String[] args) {
+		try {
+			Connection con = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:orcl", "MYDB", "MYDB");
+			PreparedStatement insert = con.prepareStatement("insert into emp_info42  values(?,?,?,?,?,?)");
+			Scanner sc = new Scanner(System.in);
+			System.out.println("Enter Resum path: ");
+			String path = sc.nextLine();
+			
+			File file = new File(path);
+			
+			if (file.exists()) {
+				FileInputStream fis = new FileInputStream(file);
+				insert.setString(1, "TY001");
+				insert.setString(2, "ALLEN");
+				insert.setString(3, "PUNE");
+				insert.setString(4, "ALLEN@GMAIL.COM");
+				insert.setInt(5, 1234123433);
+				insert.setBinaryStream(6, fis, file.length());
+				
+				int x = insert.executeUpdate();
+				if (x > 0) {
+					System.out.println(x+" record's insert successfully...");
+				}else {
+					System.out.println("Record not insert yet!!!");
+				}
+			}else {
+				System.out.println("Sorry file not found!!!");
+			}
+			
+					
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+}
+//"
+
+Program02:
+==========
+You are tasked with developing a Java application that interacts with a relational database using JDBC. Your task is to design and implement a Java program that accomplishes the following:
+Connect to a database.
+
+=>create a table and insert records. your table data should represent as below.
+
+Table Name: Employee:
+======================
+Column name data type
+----------- -----------
+Id number(8),name varchar2(20),age number(3),salary number(8,2)
+
+Employee Data:
+==============
+1 Naresh 22 23432.6
+2 Suresh 23 32222.5
+3 Jain 32 43332.6
+4 David 27 15009.2
+5 Anthony 34 32322.5
+
+Create Employee class:
+======================
+instance variables:
+-------------------
+int id;
+String name;
+int age;
+double salary;
+->parameterised constructor to initialize all variables.
+->retrive the data from employee table and store it in Employee Array;
+->Display those Employee Details who is getting salary greater than 30000 from array of Employee.
+
+Expected output:
+--------------
+-
+2 Suresh 23 32222.5
+3 Jain 32 43332.6
+5 Anthony 34 32322.5
+

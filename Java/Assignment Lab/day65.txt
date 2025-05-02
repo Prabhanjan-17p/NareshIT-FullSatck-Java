@@ -150,4 +150,171 @@ Special discount: Get 20% off on all courses!
 
 Limited time offer: Enroll in any two courses and get one course free!
 
-Dhoni has enrolled in the course: Science
+Dhoni has enrolled in the course: Science\
+
+
+ANS -
+------
+package com.nareshIT.day65;
+
+public class Student {
+	String name ;
+	EducationInstitute institute;
+	
+	Course c1[] = {};
+	Course java = new Course(1, "java", 12);
+	Course c2[] = {java};
+	Course c3[] = {new Course(2, "Pyh", 112)};
+	
+	public Student(String name, EducationInstitute institute) {
+		super();
+		this.name = name;
+		this.institute = institute;
+	}
+	public void viewCoursesAndFees() {
+		Course[] cn = institute.getCourses();
+		System.out.println("Course Name and His Fees: ");
+		for (Course cn1 : cn) {
+			System.out.println("\t"+cn1.getCourseName()+"\t"+cn1.getCorseFee());
+		}
+	}
+	
+	public 	void viewOffers() {
+		Offer of [] = institute.getOffeers();
+		System.out.println("Offers on course : ");
+		for (Offer of1 : of) {
+			System.out.println("\t"+of1.offerText);
+		}
+	}
+	public void enrollInCourse(int courseId){
+		institute.enrollStudentInCourse(courseId, name);
+	}
+}
+
+
+package com.nareshIT.day65;
+
+public class Offer {
+	String offerText;
+
+	public Offer(String offerText) {
+		super();
+		this.offerText = offerText;
+	}
+	
+	public void getOfferText() {
+		System.out.println("Offer description...");
+	}
+
+//	@Override
+//	public String toString() {
+//		return  offerText;
+//	}
+}
+
+
+
+package com.nareshIT.day65;
+
+import java.util.Scanner;
+
+public class EducationInstituteApp {
+
+	public static void main(String[] args) {
+		Course c1 = new Course(101, "JAVA", 30000);
+		Course c2 = new Course(102, "PYTHON", 12000);
+		Course c3 = new Course(103, ".NET", 30000);
+		Course [] courses = {c1,c2,c3};
+		
+		Offer of1 = new Offer("Special discount: Get 20% off on all courses!");
+		Offer of2 = new Offer("Limited time offer: Enroll in any two courses and get one course free!");
+		Offer [] offers = {of1,of2};
+		
+		EducationInstitute ed = new EducationInstitute(courses, offers);
+		
+		Student s1 = new Student("Virat", ed);
+		Student s2 = new Student("Dhoni", ed);
+		
+		Thread t1 = new Thread(()->{
+			synchronized (EducationInstituteApp.class) {
+				s1.viewCoursesAndFees();
+				s1.viewOffers();
+				s1.enrollInCourse(101);
+			}
+			
+		});
+		Thread t2 = new Thread(()->{
+			synchronized (EducationInstituteApp.class) {
+				s2.viewCoursesAndFees();
+				s2.viewOffers();
+				s2.enrollInCourse(103);
+			}
+			
+		});
+		t1.start();
+		t2.start();
+	
+	}
+
+}
+
+
+
+package com.nareshIT.day65;
+
+public class EducationInstitute {
+//	Course [] courses = {new Course(101,"Java",30000),new Course(102,"Python",12000),new Course(103,".Net",25000)};
+//	Offer [] offeers = {new Offer("5% discount on Java"),new Offer("2% discount on .Net")};
+	
+	Course [] courses = {};
+	Offer [] offeers = {};
+	public EducationInstitute(Course[] courses, Offer[] offeers) {
+		super();
+		this.courses = courses;
+		this.offeers = offeers;
+	}
+	public Course[] getCourses() {
+		return courses;
+	}
+	public Offer[] getOffeers() {
+		return offeers;
+	}
+	
+	public void enrollStudentInCourse(int courseId, String studentName){
+		Course c1 [] = getCourses();
+		for (Course course : c1) {
+			if (course.courseId == courseId) {
+				System.out.println(studentName + " has buy "+course);
+			}
+		}
+	}
+	
+}
+
+
+package com.nareshIT.day65;
+
+public class Course {
+	int courseId;
+	String courseName;
+	double corseFee;
+	public Course(int courseId, String courseName, double corseFee) {
+		super();
+		this.courseId = courseId;
+		this.courseName = courseName;
+		this.corseFee = corseFee;
+	}
+	public int getCourseId() {
+		return courseId;
+	}
+	public String getCourseName() {
+		return courseName;
+	}
+	public double getCorseFee() {
+		return corseFee;
+	}
+	@Override
+	public String toString() {
+		return  courseName ;
+	}
+}

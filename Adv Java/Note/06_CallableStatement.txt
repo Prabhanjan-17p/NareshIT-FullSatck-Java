@@ -1,0 +1,111 @@
+CallableStatement:
+------------------
+- java.sql.CallableStatement is an interface in the Java Database Connectivity (JDBC) API.
+- It is used to execute stored procedures in a relational database.
+- It extends the PreparedStatement interface and provides methods for calling database stored procedures that may have input, output, and input-output parameters.
+
+- ** Structure of CallableStatement:
+   ----------------------------------------------------------------
+   | public interface CallableStatement extends PreparedStatement |
+   ----------------------------------------------------------------
+
+- CallableStatement is used to call stored procedures and functions defined in the database.
+- Stored procedures are precompiled SQL code that can take parameters and be reused.
+
+- Syntax:
+   --------------------------------------------------------------------------------------------
+   | CallableStatement cstmt = connection.prepareCall ("{call procedure_name(?, ?, ?)}"); //" |
+   --------------------------------------------------------------------------------------------
+
+  * {call ...}: JDBC escape syntax to invoke a stored procedure.
+  * Parameters: ? represents input, output, or input-output parameters.
+
+- In Java JDBC, prepareCall() is a method of the Connection interface that is used to call a stored procedure in the database.
+
+- prepareCall() is specifically used when you want to execute a stored procedure (a set of SQL statements stored in the database and callable by name).
+
+- prepareCall() Returns a CallableStatement object.
+- It can accept IN, OUT, and INOUT parameters.
+- It supports calling procedures with or without parameters.
+- It is part of JDBC API used in enterprise applications for better performance and logic encapsulation at the database level.
+
+------------------------------------------------------------------------
+Types of Parameters:
+-------------------
+Parameter Type       Description
+IN (input)       Value provided by the Java program
+OUT (output)     Value returned by the stored procedure
+INOUT            Passed in and updated by the procedure
+
+Advantages of CallableStatement:
+---------------------------------
+- Encourages reuse of SQL logic via stored procedures.
+- Improves performance through precompiled SQL.
+- Enhances security (parameterized calls reduce SQL injection).
+- Facilitates business logic encapsulation inside the DB.
+
+---------------------------------------------------------------------
+Note:
+** What do you mean by procedure?
+-------------------------------
+Answer: A procedure (or stored procedure) is a precompiled collection of SQL statements that perform a specific task and is stored in the database.
+
+Syntax:
+        --------------------------------------------------                                              
+        |  CREATE PROCEDURE procedure_name (parameters)  |
+        | BEGIN                                          |
+        |    -- SQL statements                           |
+        | END;                                           |  
+        | /                                              |  
+        ---------------------------------------------------
+
+--------------------------------------------------------------------------
+** When shall we choose procedure?
+-----------------------------------
+Answer:
+ 1. To group related SQL tasks (e.g., insert + log)
+ --------------------------------------------------
+   When you have multiple SQL statements that should always be executed together, you can wrap them inside a procedure. This ensures that the logic is grouped and reused consistently. Suppose whenever a new employee is added, you also want to log this action:
+   CREATE PROCEDURE addEmployeeWithLog(
+    IN empName VARCHAR(100),
+    IN empDept VARCHAR(100)
+    )
+    BEGIN
+    INSERT INTO employees(name, department) VALUES (empName, empDept);
+    INSERT INTO logs(action, created_at) VALUES (CONCAT('Added employee ', empName), NOW());
+    END;
+    /
+Now you can call this procedure from Java or SQL to handle both tasks in one go, rather than writing both inserts each time.
+
+2. For modular programming at the database level
+-------------------------------------------------
+Modular programming means breaking a program into small, manageable, and reusable units (modules). Stored procedures allow you to create modular pieces of logic in the database itself, just like methods or functions in Java.
+Example:
+Imagine your app needs to frequently calculate an employee's bonus:
+CREATE PROCEDURE calculateBonus(
+    IN emp_id INT,
+    OUT bonus_amount DECIMAL(10,2)
+)
+BEGIN
+    SELECT salary * 0.10 INTO bonus_amount FROM employees WHERE id = emp_id;
+END;
+/
+Instead of repeating the bonus formula in multiple Java files or SQL scripts, this logic is stored once in the procedure and reused consistently.
+
+3. When logic is data-intensive and better processed closer to the data
+-------------------------------------------------------------------------- 
+If your business logic involves heavy data processing, such as aggregations, joins, or filtering across large tables, it's more efficient to perform that logic inside the database (using procedures) rather than fetching all the data into Java and processing it there.
+Example:
+If you need to generate a department-wise salary report:
+CREATE PROCEDURE getDeptSalaryReport()
+BEGIN
+    SELECT department, SUM(salary) AS total_salary
+    FROM employees
+    GROUP BY department;
+END;
+Calling this procedure avoids transferring all employee data to Java, reducing computation time and memory usage on the application side.
+
+4. To reduce network traffic between the application and the database
+-------------------------------------------------------------------
+Each SQL query sent from a Java app to the DB requires network round-trips. If your logic needs to send multiple SQL statements (e.g., 5–10 queries), network overhead can slow things down. By moving the logic into a single stored procedure call, you minimize database round-trips.
+--------------------------------------------------------------------------------------------------------------------------------

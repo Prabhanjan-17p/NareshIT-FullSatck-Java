@@ -1,0 +1,260 @@
+Section - A
+-------------------------------------------
+1	What will be the output? 
+public class MyThread extends Thread {
+    public void run() {
+        for (int i = 0; i < 3; i++)
+            System.out.println("Child Thread");
+    }
+
+    public static void main(String[] args) {
+        MyThread t = new MyThread();
+        t.start();
+        for (int i = 0; i < 3; i++)
+            System.out.println("Main Thread");
+    }
+}
+
+2	What is the main advantage of using multithreading in Java?	
+
+3	Which interface must be implemented to create a thread in Java?	
+
+4	How can threads communicate with each other in Java?	
+
+5	What is output of the code?
+class CheckingMyDaemonThread extends Thread {
+    public void run() {
+        if (Thread.currentThread().isDaemon()) {
+            System.out.println("I am daemon thread and I am working");
+        } else {
+            System.out.println("I am user thread and I am working");
+        }
+    }
+}
+
+class NewPlatForm7 {
+    public static void main(String[] args) {
+        CheckingMyDaemonThread t1 = new CheckingMyDaemonThread();
+        CheckingMyDaemonThread t2 = new CheckingMyDaemonThread();
+        CheckingMyDaemonThread t3 = new CheckingMyDaemonThread();
+        t1.start();
+        t2.start();
+        t3.start();
+        t2.setDaemon(true);
+    }
+}
+
+6	Which keyword is used to prevent multiple threads from accessing a shared resource simultaneously?	
+
+7	wait(), notify() & notifyAll() are methods of which class or interface?
+
+8	What is multithreading in Java?	
+
+9	Which of the following methods is not defined in the Thread class?	
+
+10	What does the yield() method do?
+
+11	What is the default priority of a thread in Java?
+
+12	What is the output of below program 
+class MyThread extends Thread {
+    public void run() {
+        System.out.println("thread running....");
+    }
+
+    public static void main(String args[]) {
+        MyThread obj = new MyThread();
+        obj.start();
+    }
+}
+
+13	What is the output of below program 
+class DaemonTest extends Thread {
+    public void run() {
+        if (Thread.currentThread().isDaemon()) {
+            System.out.println("Daemon thread is running");
+        } else {
+            System.out.println("Not Running");
+        }
+    }
+
+    public static void main(String[] args) {
+        DaemonTest obj = new DaemonTest();
+        obj.setDaemon(true);
+        obj.start();
+    }
+}
+
+14	What is the output of the code?
+public class Test implement Runnable
+{
+
+    public static void main(String[] args) {
+        Thread t = new Thread(this);
+        t.start();
+    }
+
+    public void run() {
+        System.out.println("test");
+    }
+}
+
+15	Which method is used to pause the execution of the current thread for a specified time?	
+
+16	Which method is used to start a thread in Java?	
+
+17	What is the output of below program 
+class MyThread extends Thread {
+    public void run() {
+        System.out.println("thread running....");
+    }
+
+    public static void main(String args[]) {
+        MyThread obj = new MyThread();
+        obj.start();
+    }
+}
+
+18	What is the output of below program
+public class ThreadPriority extends Thread {
+    public void run() {
+        System.out.println(Thread.currentThread().getPriority());
+    }
+
+    public static void main(String[] args) throws InterruptedException {
+        ThreadPriority t1 = new ThreadPriority();
+        ThreadPriority t2 = new ThreadPriority();
+        t1.start();
+        t2.start();
+    }
+}	
+
+19	How can you explicitly set the priority of a thread?	
+
+20	What is the purpose of the join() method in Java threads?	
+
+21	What is output of the code?
+class MyThread extends Thread {
+    public void run() {
+        System.out.print("Child ");
+    }
+}
+
+public class Test {
+    public static void main(String[] args) throws InterruptedException {
+        MyThread t = new MyThread();
+        t.start();
+        t.join();
+        System.out.print("Main ");
+    }
+}
+
+22	What is the difference between a process and a thread?	
+
+23	How can you explicitly set the priority of a thread?	
+
+24	What happens when wait() is called inside a synchronized method?	
+
+25	Which method is used to interrupt a thread in Java?	
+
+26	What is the output of the code?
+class Test extends Thread {
+    public void run() {
+        for (int i = 0; i <= 3; i++) {
+            System.out.println("Hello Welcome here.." + i);
+        }
+    }
+}
+
+class NewPlatForm1 {
+    public static void main(String[] args) {
+        Test t = new Test();
+        t.start();
+        Test t2 = new Test();
+        t.start();
+    }
+}
+
+27	What happens if you call start() on a thread that has already been started?	
+
+28	What is the output of the code?
+class A implements Runnable {
+    public void run() {
+        System.out.println("run-a");
+    }
+}
+
+public class Test {
+    public static void main(String[] args) {
+        A a = new A();
+        Thread t = new Thread(a);
+        t.start();
+        t.start();
+    }
+}	
+
+29	What is the range of values for the thread priority in Java?
+
+30	Which method is used to check if a thread is alive?	
+
+Section - B
+-------------------------------------------------------------------------------------
+Develop a program by using Inter Thread Communication (ITC), where two customers called Depositor and Drawer will deposit and withdraw the money respectively from the ATM machine.
+
+➤ Create a Business Logic Class (BLC) called Account
+
+Instance Variable:
+- private int balance = 0; (Initial balance is 0)
+
+Methods:
+
+1. withdraw Method
+   - Name: withdraw
+   - Modifier: public
+   - Parameter: int amount
+   - This should be a synchronized method.
+   - Inside this method:
+     - Write logic using a while loop to verify that the current balance is not less than the withdrawal amount.
+     - If the balance is less than the withdrawal amount, put the current thread in a wait() state.
+     - If the balance is sufficient, withdraw the amount, print the updated balance, and notify() any waiting thread.
+
+2. deposit Method
+   - Name: deposit
+   - Modifier: public
+   - Parameter: int amount
+   - This should be a synchronized method.
+   - Inside this method:
+     - Deposit the amount.
+     - Print the updated balance.
+     - notify() any thread waiting to withdraw the amount.
+
+➤ Create another BLC class Drawer which extends from the Thread class
+
+Instance Variable:
+- private Account account; // HAS-A Relationship
+
+- Initialize the object using a parameterized constructor.
+
+- Override the run() method:
+  - Inside run(), create an int[] withdrawals array with multiple values.
+  - Use a for-each loop to pass each value to the withdraw() method.
+  - Add a delay of 1 second (Thread.sleep(1000)) for each withdrawal.
+
+➤ Create another BLC class Depositor which extends from the Thread class
+
+Instance Variable:
+- private Account account; // HAS-A Relationship
+
+- Initialize the object using a parameterized constructor.
+
+- Override the run() method:
+  - Inside run(), create an int[] deposits array with multiple values.
+  - Use a for-each loop to pass each value to the deposit() method.
+  - Add a delay of 1 second (Thread.sleep(1000)) for each deposit.
+
+➤ Create an Executable Logic Class (ELC) ATMMachine
+
+- In the main() method:
+  - Create an Account object.
+  - Create objects of Depositor and Drawer by passing the Account object.
+  - Start both threads to observe Inter Thread Communication in action.

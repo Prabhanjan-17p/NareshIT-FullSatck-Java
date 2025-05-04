@@ -379,8 +379,8 @@ class Test58
 		
 	}
 	System.out.println("Hello World!");
-}ANS-
-
+}
+ANS-
 	Compile Time
 	ERROR
 
@@ -415,9 +415,19 @@ public class Test14 {
 		thr2.start();
 	}
 }
+ANS - Infinite loop 
+Hello, world!
+Goodbye,  Beautiful world!
+Hello, world!
+Hello, world!
+Goodbye,  Beautiful world!
+Hello, world!
+Goodbye,  Beautiful world!
+Hello, world!
+Hello, world! ......
 
 Q15)
-class Test4
+class Test15
 {
    public static void main(String []argv)
    {
@@ -427,71 +437,78 @@ class Test4
       System.out.println("Name of thread after change : "+t.getName());
    } 
 }
+ANS -
+Name of current thead : main
+Name of thread after change : First Thread
 
 Q16)
-class Test15 extends Thread
-{
-public void run()
-{
-System.out.println("PRINT ME");
+public class Test16 extends Thread {
+    public void run() {
+        System.out.println("PRINT ME");
+    }
+
+    public static void main(String[] str) {
+        try {
+            for (int i = 0; i < 9; i++) {
+                System.out.println(i);
+                Thread.sleep(500);
+            }
+        } catch (InterruptedException e) {
+            System.out.println("thread exception");
+        }
+        Thread t = new Thread();
+        t.start();
+    }
 }
-public static void main(String []str)
-{
-try
-{
-for(int i=0;i<9;i++)
-{
-System.out.println(i);
-Thread.sleep(500);
-}
-}
-catch(InterruptedException e)
-{
-System.out.println("thread exception");
-}
-Thread t=new Thread();
-t.start();
-}
-}
+ANS -
+0
+1
+2
+3
+4
+5
+6
+7
+8
 
 Q17)
-class Foo implements Runnable
-{
-public void run() 
-{
-for(int i=0;i<3;i++)
-System.out.println("Run by..."+Thread.currentThread().getName()+",i Is "+ i);
-}
-public void run(String name)
-{
-System.out.println("This is Second"+name);
-}
-}
-public class Test18
-{
-public static void main(String args [])
-{
-Foo f = new Foo();
-Thread t = new Thread(f);
-try 
-{
-System.out.println("Number Will be printt After 500 MiliSecond..");
-for(int j=0;j<5;j++)
-{
-System.out.println("This is j..."+j);
-t.sleep(500);
-}
-}
-catch(InterruptedException e) 
-{
-System.out.println("InterruptedException.."+ e);
-e.printStackTrace();
-}
-}
+class Foo implements Runnable {
+    public void run() {
+        for (int i = 0; i < 3; i++)
+            System.out.println("Run by..." + Thread.currentThread().getName() + ",i Is " + i);
+    }
+
+    public void run(String name) {
+        System.out.println("This is Second" + name);
+    }
 }
 
+public class Test17 {
+    public static void main(String args[]) {
+        Foo f = new Foo();
+        Thread t = new Thread(f);
+        try {
+            System.out.println("Number Will be printt After 500 MiliSecond..");
+            for (int j = 0; j < 5; j++) {
+                System.out.println("This is j..." + j);
+                t.sleep(500);
+            }
+        } catch (InterruptedException e) {
+            System.out.println("InterruptedException.." + e);
+            e.printStackTrace();
+        }
+    }
+}
+ANS -
+Number Will be printt After 500 MiliSecond..
+This is j...0
+This is j...1
+This is j...2
+This is j...3
+This is j...4
+
 Q18)
-public class Test28 extends Thread
+public class Test18 extends Thread
 {
 	public static void main(String [] args)
 	{
@@ -511,39 +528,57 @@ public class Test28 extends Thread
 			System.out.println("It is end of loop");
 	}
 }
+ANS -
+1 
+main I'm :0
+main I'm :1
+It is end of loop
+Rahul I'm :0
+Rahul I'm :1
+It is end of loop
+Puja I'm :0
+Puja I'm :1
+It is end of loop
+Ravi I'm :0
+Ravi I'm :1
+It is end of loop
 
 Q19)
-
-class MyThread extends Thread 
-{
-public void run() 
-{
-		for (int i=0; i < 10; i++) 
-		{
+class MyThread extends Thread {
+	public void run() {
+		for (int i = 0; i < 10; i++) {
 			System.out.println("hello world1");
 		}
 	}
 }
-public class Test36
-{
-public static void main(String [] args) 
-{
-MyThread t1 = new MyThread();
-t1.start();
-try 
-{
-t1.join(); 
-} 
-catch (InterruptedException e) 
-{
-System.out.println("ERROR: Thread was interrupted");
-}       
-System.out.println("Thread is done!");
+
+public class Test19 {
+	public static void main(String[] args) {
+		MyThread t1 = new MyThread();
+		t1.start();
+		try {
+			t1.join();
+		} catch (InterruptedException e) {
+			System.out.println("ERROR: Thread was interrupted");
+		}
+		System.out.println("Thread is done!");
 	}
 }
+ANS -
+hello world1
+hello world1
+hello world1
+hello world1
+hello world1
+hello world1
+hello world1
+hello world1
+hello world1
+hello world1
+Thread is done!
 
 Q20)
-public class JoinDemo1 
+public class Test20 
 {
 	public static void main(String[] args) throws InterruptedException 
 	{
@@ -561,3 +596,6 @@ public class JoinDemo1
 	}
 
 }
+ANS -
+Main thread started
+1 by main thread  and the progrom will be dead lock

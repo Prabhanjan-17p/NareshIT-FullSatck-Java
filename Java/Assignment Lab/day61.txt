@@ -1,68 +1,59 @@
 Find out the output of the following Program :
 
 Q1)
-public class Test45 extends Thread
-{
-static String sName = "good";
-public static void main(String argv[]) 
-{
-Test45 t = new Test45();
-t.nameTest(sName);
+public class Test51 extends Thread {
+    static String sName = "good";
 
-System.out.println(sName);    
-}
+    public static void main(String argv[]) {
+        Test45 t = new Test45();
+        t.nameTest(sName);
 
-public void nameTest(String sName)
-{
-sName = sName + " idea ";
-start();
-}
+        System.out.println(sName);
+    }
 
-public void run()
-{
-for(int i=0; i<4; i++)
-{
- sName = sName + " " + i;
-}
-}
+    public void nameTest(String sName) {
+        sName = sName + " idea ";
+        start();
+    }
+
+    public void run() {
+        for (int i = 0; i < 4; i++) {
+            sName = sName + " " + i;
+        }
+    }
 
 }
 ---------------------------------------------------------------------
 Q2)
-public class Test46
-{
-public static void main(String argv[])
-{
-	Test1 pm1 = new Test1("One");
-	pm1.run();
-	Test1 pm2 = new Test1("Two");
-	pm2.run();
+public class Test46 {
+	public static void main(String argv[]) {
+		Test1 pm1 = new Test1("One");
+		pm1.run();
+		Test1 pm2 = new Test1("Two");
+		pm2.run();
 
-}
-}
-class Test1 extends Thread
-{
-private String sTname="";
-Test1(String s)
-{
-	sTname = s;
-
-}
-public void run()
-{
-for(int i =0; i < 5 ; i++)
-{
-try
-{
-sleep(1000);
-}
-catch(InterruptedException e)
-{}
-Thread.yield();
-System.out.println(sTname);
+	}
 }
 
-}
+class Test1 extends Thread {
+	private String sTname = "";
+
+	Test1(String s) {
+		sTname = s;
+
+	}
+
+	public void run() {
+		for (int i = 0; i < 5; i++) {
+			try {
+				sleep(1000);
+			} catch (InterruptedException e) {
+			}
+			Thread.yield();
+			System.out.println(sTname);
+		}
+
+	}
 }
 ----------------------------------------------------------------------
 Q3)
@@ -141,9 +132,7 @@ public void run()
 }
 ----------------------------------------------------------------------
 Q6)
-
-
-class Test {
+class Test60 {
     public static void main(String[] args) {
         Thread t = new Thread(() -> {
             for (int i = 0; i < 5; i++) {
@@ -169,7 +158,7 @@ class Counter {
     }
 }
 
-public class Test {
+public class Test61 {
     public static void main(String[] args) throws InterruptedException {
         Counter counter = new Counter();
 
@@ -197,7 +186,7 @@ public class Test {
 --------------------------------------------------------------------
 Q8)
 
-class Test {
+class Test62 {
     public static void main(String[] args) throws InterruptedException {
         Thread t1 = new Thread(() -> {
             System.out.println("Thread-1 running");
@@ -211,7 +200,7 @@ class Test {
 ---------------------------------------------------------------------
 Q9)
 
-class Test {
+class Test63 {
     public static void main(String[] args) {
         Thread t = new Thread(() -> {
             System.out.println(Thread.currentThread().getName() + " is running");
@@ -224,7 +213,7 @@ class Test {
 ----------------------------------------------------------------------
 Q10)
 
-class Test {
+class Test64 {
     public static void main(String[] args) {
         Runnable task = () -> {
             for (int i = 0; i < 5; i++) {
@@ -419,7 +408,7 @@ class MyThread extends Thread
 
 	public void start()
 	{
-		System.out.println("MyThread: start()");
+		System.out.println("MyThread: start()"); //"
 	}
 }
 
@@ -435,7 +424,7 @@ class MyRunnable implements Runnable
 		System.out.println("MyRunnable: start()");
 	}
 }
-
+//"
 public class Test 
 {
 	public static void main(String args[])

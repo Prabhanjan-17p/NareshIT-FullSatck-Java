@@ -1,0 +1,173 @@
+SQL EXAM
+============
+
+1.Write a query to display 2nd highest salary employee 
+from emp table by using analytical function or
+corelated subquery ?(5m)
+
+
+2.Write a query to display duplicate records from the
+following TEST table ?(5m)
+
+SQL>select * from test;
+
+deptno
+----------
+10
+10
+10
+20
+20
+20
+30
+30
+40
+50
+
+
+
+3.Write a query to display state wise, gender wise no of persons from
+the following PERSONS table?(2m)
+
+
+PID      PNAME         GENDER        STATE
+------   ---------     --------      --------
+1     SUBBARAO         M             AP
+2      KAVYA           F             TS
+3      KIRAN           M             TS
+4     GOWTHAM          M             AP
+5     KERTHI           F             AP
+6     SURYA            M             AP
+7    ANUSHKA           F             AP
+8      RAJU            M             TS
+
+
+
+4.Write a query to display the employee names and their manager names
+from emp table by using self join ?(3m)
+
+
+
+5.Write a query  to find all NAMES that contains SIRISHA from following table?(2m)
+
+NAME
+----------------
+SIRISHA GAYATRI
+GAYATRI SIRISHA
+ANUSHKA SHETTY
+ANU SIRISHA RAI
+SURYA SURYA
+
+
+6.Write a query to display ENAME as (use alliasname EMP FIRST NAME),
+SAL,JOB from EMP table and whose salary is greater than 2000 ?(2m)
+
+
+7.Set job as a MANAGER and increase 20% on salary whose name is
+started with 'A' and ended with 'S' from emp table ?(2m)
+
+
+8.Write a query to display mailid as ename first 4 characters and 
+hiredate last 2 digits and add @gmail.com at the end from emp table ?(2m)
+
+
+9.Write a query to display the employees who are joining in 1981
+4th quarter from emp table ?(2m)
+
+
+10.Write a query to display last 2 rows from emp table by using
+row_number() analytical function ?(2m)
+
+
+11.Write a query to delete duplicate rows from the above TEST table ?(5m)
+
+
+12.Create following tables with given rules ?(5m)
+
+ACCOUNTS
+ACCNO        ACCTYPE      BAL
+
+1.accno should not be duplicate and null
+2.acctype must be 'S' OR 'C'
+3.bal must be min 1000
+
+TRASACTIONS
+TID     TTYPE     TDATE      ACCNO
+
+1.tid should not be duplicate and null
+2.ttype must be 'W' OR 'D'
+3.by default tdate is today's date
+4.accno should be present in accounts table accno column
+
+
+13.Write a query to display employee details along with department details AND
+also display the employees to whom deptno is not assign?(3m)
+
+SQL> SELECT * FROM EMPLOYEES;
+
+EMPID     NAME         DEPTNO
+-------  ----------      --------
+1      KIRAN           10
+2     GOWTHAM          20
+3      SURYA
+4      RAJU            20
+
+
+SQL> SELECT * FROM DEPARTMENTS;
+
+DEPTNO      DNAME
+-------    ----------
+10         HR
+20         IT
+40      FINANCE
+
+
+
+14.Write a query to fetch all employee records from the employee details
+table who have a salary record in the employee salary table ?(3m)
+
+EMPLOYEE_DETAILS TABLE:-
+======================
+
+empid     name         dob          state
+-------  ------      -------       -------
+1      JOHN       23-apr-95       NY
+2      SMITH      15-aug-90       CA
+3      ROHAN      27-apr-96       TX
+4      JOHNSON    12-feb-75       CA
+5      BROWN      05-nov-00       AL
+6      JILL       15-jun-99       CA
+7      JAMES      12-sep-83       WA
+8      JACK       25-sep-82       CA
+
+
+EMPLOYEE_SALARY TABLE:-
+======================
+
+ID          SALARY
+------      ----------
+1           15000
+2           20000
+3           25000
+4           18000
+5           35000
+6           40000
+7           45000
+
+
+
+15.Write a query to display the employees who are working in the location CHICAGO
+from emp, dept tables ?(3m)
+
+
+
+16.Write a query to display senior most employee details from emp table ?(1m)
+
+
+
+17.Write a query To display employee who are working as a 
+MANAGER,CLERK and 
+earning salary between 1500 and 3000 and
+joined in 1981 year and 
+not working in the departments 10,20 ?(3m)
+

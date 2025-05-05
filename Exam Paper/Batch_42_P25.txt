@@ -1,0 +1,33 @@
+1) What is the difference between compile-time and runtime polymorphism in Java?
+
+2) What is Data hiding in java?
+
+3) What is encapsulation in java ?
+
+4) What is a Functional interface ? Give Example
+
+5) What is the difference between abstract class and interface?
+
+6) What are the advantages and features of OOP?
+
+7) What is Lambda Expression in java ?
+
+8) What is Class loader subsytem?
+
+9) How many types of constructors are available in java?
+
+10) Why java is treated as most secure language?
+
+11) Write Program on Constructor Overloading?
+
+12) What is non static block in java?
+
+13) How static field is different with non static field in case of object creation?
+
+14) What is the advantage of writing constructor in the class?
+
+15) Describe the different access modifiers in Java (public, private, protected, and default). How do they affect inheritance?
+
+16) Discuss the use of the final keyword in Java for variables, methods, and classes. What are its implications for inheritance?
+
+17) What is a marker interface in java?

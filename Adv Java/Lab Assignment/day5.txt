@@ -1,0 +1,220 @@
+Program_01:
+=============
+Write a JDBC program to retrieve empResume based on empPhNo and store that resume(file) at any location in your system.
+
+ANS 
+----
+package day5;
+
+import java.io.File;
+import java.io.FileOutputStream;
+import java.sql.Blob;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.util.Scanner;
+
+public class Retrieve_empResume {
+
+	public static void main(String[] args) {
+		try {
+			Scanner sc = new Scanner(System.in);
+			Connection con = DriverManager.getConnection
+			        ("jdbc:oracle:thin:@localhost:1521:orcl","MYDB","MYDB");
+	        PreparedStatement ps = con.prepareStatement
+                    ("select * from emp_info42 where EMPID = ?");
+	        
+	        System.out.print("Enter EMP ID :");
+	        String id = sc.nextLine();
+	        ps.setString(1, id);
+	        ResultSet rs =  ps.executeQuery();
+	        
+	        while (rs.next()) {
+				Blob b = rs.getBlob(6); // fetch the file into the database 
+				byte arr[] = b.getBytes(1, (int)(b.length())); // then convert it into byte array
+				
+				System.out.print("Enter the destination location: ");
+		        String desLoc = sc.nextLine();
+		        
+		        File f = new File(desLoc); // User path convert into file 
+		        FileOutputStream fos = new FileOutputStream(f);// convert the file into FileOutputStream 
+		        
+		        fos.write(arr); // add into the user location
+		        System.out.println("File add your location successfully...");
+			}
+	        
+	        
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+}
+
+
+Program_02:
+===========
+step-1 : Create the following DB Tables
+create table StuData(stuId varchar2(10),stuRollNo varchar2(10),stuName varchar2(20),stuBranch varchar2(15));
+create table StuAddress(stuIAdd varchar2(10),stuHno varchar2(10),city varchar2(20),pincode number(10));
+create table StuContact(stuIdCon varchar2(10),mid varchar2(10),phno number(10));
+
+step-2 : Construct Procedure to insert student details into DB Tables.
+1  CREATE PROCEDURE STU_INFO_PROCEDURE(stuId in varchar2,stuRollNo in varchar2,stuName in varchar2,stuBranch in varchar2,stuIAdd in varchar2,stuHno  in varchar2,city1 in varchar2,pincode in number,stuIdCon in varchar2,mid in varchar2,phno in number) IS
+2  begin
+3  insert into StuData values(stuId,stuRollNo,stuName,stuBranch);
+4  insert into StuAddress values(stuIAdd,stuHno,city1,pincode);
+5  insert into StuContact values(stuIdCon,mid,phno);
+6  end;
+7  /
+
+step-3 : Construct JDBC Application to execute Procedure.
+
+ANS 
+----
+package day5;
+
+import java.sql.CallableStatement;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.util.Scanner;
+
+public class PrepareStatement1 {
+
+	public static void main(String[] args) {
+		try {
+			Scanner sc = new Scanner(System.in);
+			Connection con = DriverManager.getConnection
+			        ("jdbc:oracle:thin:@localhost:1521:orcl","MYDB","MYDB");
+			CallableStatement call = con.prepareCall("{call STU_INFO_PROCEDURE(?,?,?,?,?,?,?,?,?,?,?)}");
+			System.out.println("-----------Enter for StuData table data-----------");
+			System.out.print("Enter stuID: ");
+			String stuID = sc.nextLine();
+			System.out.print("Enter stuRollNO: ");
+			String stuRollNO = sc.nextLine();
+			System.out.print("Enter stuNAME: ");
+			String stuNAME = sc.nextLine();
+			System.out.print("Enter stuBRANCH: ");
+			String stuBRANCH = sc.nextLine();
+			
+			System.out.println("-----------Enter for StuAddress table data-----------");
+			System.out.print("Enter stuIADD: ");
+			String stuIADD = sc.nextLine();
+			System.out.print("Enter stuHNO: ");
+			String stuHNO = sc.nextLine();
+			System.out.print("Enter city: ");
+			String city1 = sc.nextLine();
+			System.out.print("Enter pinCode: ");
+			int pinCode = Integer.parseInt(sc.nextLine());
+			
+			System.out.println("-----------Enter for StuContact table data-----------");
+			System.out.print("Enter stuIdCON: ");
+			String stuIdCON = sc.nextLine();
+			System.out.print("Enter MID: ");
+			String MID = sc.nextLine();
+			System.out.print("Enter phNO: ");
+			int phNO = Integer.parseInt(sc.nextLine());
+			
+			call.setString(1, stuID);
+			call.setString(2, stuRollNO);
+			call.setString(3, stuNAME);
+			call.setString(4, stuBRANCH);
+			call.setString(5, stuIADD);
+			call.setString(6, stuHNO);
+			call.setString(7, city1);
+			call.setInt(8, pinCode);
+			call.setString(9, stuIdCON);
+			call.setString(10, MID);
+			call.setInt(11, phNO);
+			
+			call.executeUpdate();
+			
+			System.out.println("Data insert successfully...");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+}
+//"
+
+Program_03:
+============
+Write a JDBC application to read the data from CSV file(excel sheet) and insert data into database.
+Example:
+Table:Emp_Info
+Columns:Id,firstName,lastName,email,gender.
+Note:Create table Emp_Info having above column and read this info from csv file and insert into database table Emp_Info.
+
+ANS 
+----
+package day5;
+
+import java.io.File;
+import java.io.FileReader;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.util.Scanner;
+
+public class CSV_file_Retrive {
+
+    public static void main(String[] args) {
+    	//D:\Test\MOCK_DATA.csv
+        Scanner sc = null;
+        Scanner read = null;
+        FileReader fr = null;
+        Connection con = null;
+
+        try {
+            sc = new Scanner(System.in);
+            System.out.print("Enter your file path: ");
+            String path = sc.nextLine();
+
+            File file = new File(path);
+
+            if (!file.exists()) {
+                System.out.println("File does not exist.");
+                return;
+            }
+
+            con = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:orcl", "MYDB", "MYDB");
+
+            fr = new FileReader(file);
+            read = new Scanner(fr);
+
+            if (read.hasNextLine()) {
+                read.nextLine();
+            }
+
+            String insertSQL = "INSERT INTO RETRIVE_CSV_FILE (id, name, email) VALUES (?, ?, ?)";
+            PreparedStatement ps = con.prepareStatement(insertSQL);
+
+            while (read.hasNextLine()) {
+                String line = read.nextLine();
+                String[] data = line.split(",");
+
+                if (data.length >= 3) {
+                    int id = Integer.parseInt(data[0].trim());
+                    String name = data[1].trim();
+                    String email = data[2].trim();
+
+                    ps.setInt(1, id);
+                    ps.setString(2, name);
+                    ps.setString(3, email);
+                    ps.executeUpdate();
+                } else {
+                    System.out.println("Invalid line format: " + line);
+                }
+            }
+
+            System.out.println("Data inserted successfully.");
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+}
+

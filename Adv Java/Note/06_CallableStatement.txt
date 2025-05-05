@@ -53,6 +53,7 @@ Answer: A procedure (or stored procedure) is a precompiled collection of SQL sta
 Syntax:
         --------------------------------------------------                                              
         |  CREATE PROCEDURE procedure_name (parameters)  |
+        | is / AS                                        |
         | BEGIN                                          |
         |    -- SQL statements                           |
         | END;                                           |  
@@ -69,7 +70,7 @@ Answer:
    CREATE PROCEDURE addEmployeeWithLog(
     IN empName VARCHAR(100),
     IN empDept VARCHAR(100)
-    )
+    ) is
     BEGIN
     INSERT INTO employees(name, department) VALUES (empName, empDept);
     INSERT INTO logs(action, created_at) VALUES (CONCAT('Added employee ', empName), NOW());
@@ -85,7 +86,7 @@ Imagine your app needs to frequently calculate an employee's bonus:
 CREATE PROCEDURE calculateBonus(
     IN emp_id INT,
     OUT bonus_amount DECIMAL(10,2)
-)
+) is
 BEGIN
     SELECT salary * 0.10 INTO bonus_amount FROM employees WHERE id = emp_id;
 END;

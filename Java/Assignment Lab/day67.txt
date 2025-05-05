@@ -1,0 +1,739 @@
+1.How to create anonymous a Thread of inner class Object 
+public class Java71 
+{
+	public static void main(String[] args) {
+		new Thread(new Runnable() {
+			@Override
+			public void run() {
+				System.out.println("Naresh I Technologies");
+			}
+		}).start();
+		System.out.println(new Thread().isAlive());
+    }
+}
+ANS -
+false
+Naresh I Technologies
+
+2.What is the output of the following code
+class NIT extends Thread
+{
+	@Override
+	public void run() {
+		
+		System.out.println("1st Thread");
+	}
+}
+
+class NIT1 extends Thread
+{
+	@Override
+	public void run() {
+		
+		System.out.println("2nd Thread");
+	}
+}
+
+public class Java72 {
+	public static void main(String[] args) {
+		NIT thread = new NIT();
+		NIT1 thread1 = new NIT1();
+		
+		thread.start(); //1st Thread
+		System.out.println(thread.getPriority()); //5
+		System.out.println(thread.isAlive());//true
+		System.out.println(thread1.isAlive());//false
+		thread1.start(); //2nd Thread
+		System.out.println(thread1.getPriority());//5
+		
+    }
+}
+ANS -
+5
+true
+false
+1st Thread
+5
+2nd Thread
+
+3.Can Create Thread by using lambda function
+public class Java73 {
+	public static void main(String[] args) {
+		new Thread(()-> 
+		System.out.println("Naresh I Technologies")).start();
+    }
+}
+ANS -
+Naresh I Technologies
+
+4.What is the output of the following program
+class NIT3 implements Runnable 
+{
+	@Override
+	public void run() {
+		for(int a=0;a<10;a++) //0-9
+		{
+			System.out.println("NareshIT1");//1 3 5 7 8 9 10 11 12 13
+			try {
+				 Thread.sleep(2000);
+			} catch (InterruptedException e) {
+				System.out.println("NIT Thread failed");
+			}
+		}
+	}
+}
+
+class NIT4 implements Runnable
+{
+	@Override
+	public void run() {
+		for(int a =0;a<10;a++) //0-9
+		{
+			System.out.println("NareshIT2"); //2222 4444 66
+			try {
+				Thread.sleep(500);
+			} catch (InterruptedException e) {
+				System.out.println("NIT1 Thread failed");
+			}
+		}
+		
+	}
+}
+
+public class Java74 {
+	public static void main(String[] args) {
+		Runnable nit = new NIT3();
+		Runnable nit1 = new NIT4();
+		
+		Thread thread = new Thread(nit);
+		Thread thread1 = new Thread(nit1);
+		
+		thread.start();
+		thread1.start();
+    }
+}
+ANS -
+NareshIT1
+NareshIT2
+NareshIT2
+NareshIT2
+NareshIT2
+NareshIT1
+NareshIT2
+NareshIT2
+NareshIT2
+NareshIT2
+NareshIT1
+NareshIT2
+NareshIT2
+NareshIT1
+NareshIT1
+NareshIT1
+NareshIT1
+NareshIT1
+NareshIT1
+NareshIT1
+
+
+5. What is the output of the following code without override run() method using thread and setDaemon?
+public class Java75 extends Thread {
+	public static void main(String[] args) {
+		if(Thread.currentThread().isDaemon()) 
+		{
+			System.out.println("Daemon thread Running");
+		}
+		else
+			System.out.println("Normal Thread Running"); // one time print because currentThread is Daemon or not
+		
+		Java75 java = new Java75();
+		Java75 java1 = new Java75(); //setDaemon
+		Java75 java2 = new Java75();
+		Java75 java3 = new Java75();
+		
+		java1.setDaemon(true);
+		
+		java.start();
+		java1.start();
+		java2.start();
+		java3.start();
+		
+    }
+}
+ANS -
+Normal Thread Running
+
+6.What is the output of the following code to override run() method using thread and setDaemon?
+public class Java76 extends Thread {
+	
+	@Override
+	public void run() {
+		if(Thread.currentThread().isDaemon()) 
+		{
+			System.out.println("Daemon thread Running");
+		}
+		else
+			System.out.println("Normal Thread Running");
+	}
+	
+	public static void main(String[] args) {
+		
+		
+		Java76 java = new Java76();
+		Java76 java1 = new Java76(); //setDaemon
+		Java76 java2 = new Java76();
+		Java76 java3 = new Java76();
+		
+		java1.setDaemon(true);
+		
+		java.start();
+		java1.start();
+		java2.start();
+		java3.start();
+		
+    }
+}
+ANS -
+Normal Thread Running
+Daemon thread Running
+Normal Thread Running
+Normal Thread Running
+
+
+7.What is the output of the following code?
+public class Java77 extends Thread {
+	
+	public void display() {
+		for(int a=0;a<5;a++) 
+		{
+			System.out.println("display");
+		}
+	}
+	
+	public void display1() {
+		for(int a=0;a<5;a++) 
+		{
+			System.out.println("display1");
+		}
+	}
+	
+	public static void main(String[] args) throws InterruptedException {
+		
+		Java77 java = new Java77();
+		java.start(); // nothing will be print
+		java.display(); // display display display display display
+		java.wait(); //Exception in thread "main" java.lang.IllegalMonitorStateException: current thread is not owner
+		java.display1();
+    }
+}
+ANS-
+display
+display
+display
+display
+display
+Exception in thread "main" java.lang.IllegalMonitorStateException: current thread is not owner
+
+8.	What is the output of the following code override without run() method and one class?
+public class Java78 extends Thread {
+	
+	public void display() {
+		for(int a=0;a<5;a++) 
+		{
+			System.out.println("display");
+		}
+	}
+	
+	public void display1() {
+		for(int a=0;a<5;a++) 
+		{
+			System.out.println("display1");
+		}
+	}
+	
+	public static void main(String[] args) throws InterruptedException {
+		
+		Java78 java = new Java78();
+		java.start(); // nothing will be print
+		java.display(); // display display display display display
+		java.sleep(1000);
+		java.display1(); //display1 display1 display1 display1 display1
+    }
+}
+ANS -
+display
+display
+display
+display
+display
+display1
+display1
+display1
+display1
+display1
+
+9.What is the output of the following code override without run() method and Serial Execution?
+class NIT5 extends Thread
+{
+	public void display() throws InterruptedException {
+		for(int a=0;a<5;a++) 
+		{
+			System.out.println("NIT Display");
+			
+			Thread.sleep(500);
+		}
+	}
+}
+
+class NIT6 extends Thread
+{
+	public void display1() throws InterruptedException {
+		for(int a=0;a<5;a++) 
+		{
+			System.out.println("NIT Display1");
+			
+			Thread.sleep(1000);
+		}
+	}
+}
+
+public class Java79 {
+	
+	public static void main(String[] args) throws InterruptedException {
+		NIT5 nit = new NIT5();
+		NIT6 nit1 = new NIT6();
+		
+		nit.start(); // nothing print
+		nit1.start(); // nothing print
+		
+		nit.display();
+		nit1.display1();
+    }
+}
+ANS -
+NIT Display
+NIT Display
+NIT Display
+NIT Display
+NIT Display
+NIT Display1
+NIT Display1
+NIT Display1
+NIT Display1
+NIT Display1
+
+
+10. What is the output of the following code override run() method and Parallel Execution?
+class NIT7 extends Thread
+{
+	@Override
+	public void run() {
+		for(int a=0;a<5;a++) 
+		{
+			System.out.println("NIT Display");
+			
+			try {
+				Thread.sleep(500);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+		}
+	}
+}
+
+class NIT8 extends Thread
+{
+	@Override
+	public void run() {
+		for(int a=0;a<5;a++) 
+		{
+			System.out.println("NIT Display1");
+			
+			try {
+				Thread.sleep(1000);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+		}
+	}
+}
+
+public class Java80 {
+	
+	public static void main(String[] args) throws InterruptedException {
+		NIT7 nit = new NIT7();
+		NIT8 nit1 = new NIT8();
+		
+		nit.start();
+		nit1.start();
+    }
+}
+ANS -
+NIT Display
+NIT Display1
+NIT Display
+NIT Display1
+NIT Display
+NIT Display
+NIT Display1
+NIT Display
+NIT Display1
+NIT Display1
+
+11.What is the output of the following code?
+class NIT9 extends Thread
+{
+	@Override
+	public void run() {
+		System.out.println(currentThread().getId());
+		System.out.println(currentThread().getName());
+	}
+}
+
+public class Java81 {
+	
+	public static void main(String[] args) throws InterruptedException {
+		NIT9 nit = new NIT9();
+		NIT9 nit1 = new NIT9();
+		NIT9 nit2 = new NIT9();
+		nit.start();
+		nit1.start();
+		nit2.start();
+    }
+}
+ANS -
+30
+Thread-0
+31
+Thread-1
+32
+Thread-2
+
+12.Write a program to get default priority of thread?
+class NIT10 extends Thread
+{
+	@Override
+	public void run() {
+		System.out.println(currentThread().getName());
+		System.out.println(currentThread().getPriority());
+	}
+}
+
+public class Java8 {
+	
+	public static void main(String[] args) throws InterruptedException {
+		NIT10 nit = new NIT10();
+		NIT10 nit1 = new NIT10();
+		NIT10 nit2 = new NIT10();
+		nit.start();
+		nit1.start();
+		nit2.start();
+    }
+}
+ANS - 
+Thread-0
+5
+Thread-1
+5
+Thread-2
+5
+
+13.Write a program to get Normal priority of thread?
+class NIT11 extends Thread
+{
+	@Override
+	public void run() {
+		System.out.println(currentThread().getName());
+		System.out.println(currentThread().getPriority());
+	}
+}
+
+public class Java83 {
+	
+	public static void main(String[] args) throws InterruptedException {
+		NIT11 nit = new NIT11();
+		NIT11 nit1 = new NIT11();
+		NIT11 nit2 = new NIT11();
+		
+		nit.setPriority(Thread.NORM_PRIORITY);
+		nit1.setPriority(Thread.NORM_PRIORITY);
+		nit2.setPriority(Thread.NORM_PRIORITY);
+		
+		nit.start();
+		nit1.start();
+		nit2.start();
+    }
+}
+ANS -
+Thread-0
+5
+Thread-1
+5
+Thread-2
+5
+
+14.Write a program to get Minimum priority of thread?
+class NIT12 extends Thread
+{
+	@Override
+	public void run() {
+		System.out.println(currentThread().getName());
+		System.out.println(currentThread().getPriority());
+	}
+}
+
+public class Java84 {
+	
+	public static void main(String[] args) throws InterruptedException {
+		NIT12 nit = new NIT12();
+		NIT12 nit1 = new NIT12();
+		NIT12 nit2 = new NIT12();
+		
+		nit.setPriority(Thread.MIN_PRIORITY);
+		nit1.setPriority(Thread.MIN_PRIORITY);
+		nit2.setPriority(Thread.MIN_PRIORITY);
+		
+		nit.start();
+		nit1.start();
+		nit2.start();
+    }
+}
+ANS -
+Thread-1
+1
+Thread-0
+1
+Thread-2
+1
+
+
+15.Write a program to get Maximum priority of thread?
+class NIT13 extends Thread
+{
+	@Override
+	public void run() {
+		System.out.println(currentThread().getName());
+		System.out.println(currentThread().getPriority());
+	}
+}
+
+public class Java85 {
+	
+	public static void main(String[] args) throws InterruptedException {
+		NIT13 nit = new NIT13();
+		NIT13 nit1 = new NIT13();
+		NIT13 nit2 = new NIT13();
+		
+		nit.setPriority(Thread.MAX_PRIORITY);
+		nit1.setPriority(Thread.MAX_PRIORITY);
+		nit2.setPriority(Thread.MAX_PRIORITY);
+		
+		nit.start();
+		nit1.start();
+		nit2.start();
+    }
+}
+ANS -
+Thread-0
+10
+Thread-1
+10
+Thread-2
+10
+
+16.What is the output of the following code?
+class NIT14 extends Thread
+{
+	@Override
+	public void run() {
+		System.out.println(currentThread().getName());
+		System.out.println(currentThread().getPriority());
+	}
+}
+public class Java86 {
+	
+	public static void main(String[] args) throws InterruptedException {
+		NIT nit = new NIT();
+		NIT nit1 = new NIT();
+		NIT nit2 = new NIT();
+		NIT nit3 = new NIT();
+		
+		nit.start(); // Thread-0
+		nit.setPriority(Thread.NORM_PRIORITY);//5
+		nit1.start();// Thread-1
+		nit.setPriority(Thread.MIN_PRIORITY); //1
+		nit2.start(); // Thread-2
+		nit.setPriority(Thread.MAX_PRIORITY); //10
+		nit3.start(); // Thread-3
+		
+    }
+}
+ANS -
+Thread-0
+5
+Thread-1
+1
+Thread-2
+10
+Thread-3
+
+
+17.What is the output of the following code?
+class NIT15 extends Thread
+{
+	@Override
+	public void run() {
+		System.out.println(currentThread().getName());
+		System.out.println(currentThread().getPriority());
+	}
+}
+
+public class Java87 {
+	
+	public static void main(String[] args) throws InterruptedException {
+		NIT15 nit = new NIT15();
+		nit.run();
+    }
+}
+ANS -
+main 
+5
+
+18.What is the output of the following code?
+class NIT16 extends Thread
+{
+	@Override
+	public void run() {
+		System.out.println(currentThread().getId());
+	}
+}
+
+public class Java88 {
+	
+	public static void main(String[] args) throws InterruptedException {
+		for(int a = 0; a<10;a++)  //0-9
+		{
+		  Thread newThread = new Thread(new NIT16());
+		  newThread.start();
+		}
+    }
+}
+ANS - 
+31
+33
+35
+36
+37
+39
+41
+43
+45
+47
+
+
+19.Write a program to Synchronized Thread in java?
+class TestSync
+{
+	void display(int a) throws InterruptedException {
+		synchronized (this) {
+			System.out.println(a*5); //5
+			Thread.sleep(500);
+		}
+	}
+}
+
+class NIT17 extends Thread
+{
+	TestSync test;
+	@Override
+	public void run() {
+		try {
+			test.display(Thread.MIN_PRIORITY); //1
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public NIT17(TestSync test) {
+		this.test = test;
+	}
+}
+class NIT18 extends Thread
+{
+	TestSync test;
+	@Override
+	public void run() {
+		try {
+			test.display(MIN_PRIORITY);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public NIT18(TestSync test) {
+		this.test = test;
+	}
+}
+
+public class Java89 {
+	
+	public static void main(String[] args) throws InterruptedException {
+		TestSync test = new TestSync();
+		NIT17 nit = new NIT17(test);
+		NIT18 nit1 = new NIT18(test);
+		
+		nit.start();
+		nit1.start();
+    }
+}
+ANS -
+5
+5
+
+20. Write a program to static Synchronized Thread in java?
+class TestSync
+{
+	public static synchronized void display(String name) {
+		System.out.println("Congratulations Mr/Mrs "+name);
+	}
+}
+
+class NIT19 extends Thread
+{
+	
+	TestSync test;
+	String name;
+	@Override
+	public void run() {
+		test.display(name);
+	}
+	
+	public NIT19(TestSync test, String name) {
+		this.test = test;
+		this.name = name;
+	}
+}
+
+
+public class Java90 {
+	
+	public static void main(String[] args) throws InterruptedException {
+		TestSync test = new TestSync();
+		NIT19 nit = new NIT19(test,"Naresh");
+		NIT19 nit1 = new NIT19(test,"Ravi");
+		nit.start();
+		nit1.start();
+    }
+}
+
+21) Can we make main thread as a Daemon Thread
+
+public class IsDaemon
+{
+  public static void main(String [] args)
+   {
+      Thread t = Thread.currentThread();
+      t.setDaemon(true);
+   }
+}
+ANS -
+Exception in thread "main" java.lang.IllegalThreadStateException

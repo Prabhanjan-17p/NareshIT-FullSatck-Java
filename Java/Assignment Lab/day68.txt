@@ -1,0 +1,381 @@
+Assignment 01 :
+----------------
+Develop a program by using ITC to implement the Car Parking System.Here in the parking area we have MAX_SPOTS. A car can only park in the parking area if the available spot is free otherwise car has to wait for another car to vacant the parking spot.
+
+Coding Requirements :
+----------------------
+Create a BLC class called ParkingGarage
+
+Fields/Attributes/Properties [private access modifier] :
+--------------------------------------------------------
+
+       availableSpots : int
+       MAX_SPOTS final : int
+
+ Take a parameter constructor which accept one parameter maxSpots to initialize both the non static field.   
+
+Methods :
+---------    
+    1) Method Name 		: parkCar()
+       Parameter   		: carName of type String
+       Return Type 		: void
+       Access modifier		: public
+       Modifier			: synchronized
+       In this method Car thread will verify whether parking spot is available or not, If not available then Car thread has to wait, If available car will be parked in the available spot and 1 spot will be decreased from the available spot. [see the Test cases for Output]
+
+    
+    2) Method Name 		: freeSpot()
+       Parameter   		: carName of type String
+       Return Type 		: void
+       Access modifier		: public
+       Modifier			: synchronized
+       In this method Car thread will verify at-least one car is parked in the parking area or not, If not then the thread has to wait for making a spot free, On the other hand if cars are already parked in the parking area then car will leave the spot ONE BY ONE and it will increase the available spot in the parking area.[see the Test cases for Output]
+
+    3) Create a getter method for the non static field availableSpots.
+
+Take another BLC class called Car which implements from Runnable interface.
+
+Fields/Attributes/Properties [private access modifier] :
+--------------------------------------------------------
+   garage  : ParkingGarage
+   carName : String
+
+Take a Parameterized constructor to initialize all the fields.
+
+Override the run() method.In this run() method perform the following task
+ a) Park the car in the Parking area. [See the Test cases]
+ b) The car will be parked there for some time, The time is not fixed so you need to take a Ranom time.
+ c) The car leaves parking spot after staying parked for a while.
+ d) Interrupt the thread in the catch block.
+
+Create an ELC class CarParkingProject with main method.Implement the project in the main method.
+
+Test cases for Output [Will change Dynamically]
+------------------------------------------------
+Case 1 :
+--------
+Welcome to D-Mart Parking
+Total Available spots are :5
+Maruti Brezza parked. Available spots: 4
+Tata Naxon parked. Available spots: 3
+Mahindra BE6 parked. Available spots: 2
+Kia Seltos parked. Available spots: 1
+Honda city parked. Available spots: 0
+Toyota Fortuner is waiting for a spot.
+Hundai i20 is waiting for a spot.
+Honda city left. Available spots: 1
+Toyota Fortuner parked. Available spots: 0
+Hundai i20 is waiting for a spot.
+Toyota Fortuner left. Available spots: 1
+Hundai i20 parked. Available spots: 0
+Tata Naxon left. Available spots: 1
+Kia Seltos left. Available spots: 2
+Maruti Brezza left. Available spots: 3
+Mahindra BE6 left. Available spots: 4
+Hundai i20 left. Available spots: 5
+Parking garage simulation is complete.
+
+Case 2 :
+--------
+Welcome to D-Mart Parking
+Total Available spots are :5
+Maruti Brezza parked. Available spots: 4
+Kia Seltos parked. Available spots: 3
+Tata Naxon parked. Available spots: 2
+Hundai i20 parked. Available spots: 1
+Mahindra BE6 parked. Available spots: 0
+Honda city is waiting for a spot.
+Toyota Fortuner is waiting for a spot.
+Tata Naxon left. Available spots: 1
+Honda city parked. Available spots: 0
+Toyota Fortuner is waiting for a spot.
+Mahindra BE6 left. Available spots: 1
+Toyota Fortuner parked. Available spots: 0
+Toyota Fortuner left. Available spots: 1
+Hundai i20 left. Available spots: 2
+Honda city left. Available spots: 3
+Kia Seltos left. Available spots: 4
+Maruti Brezza left. Available spots: 5
+Parking garage simulation is complete.
+
+ANS 
+--------
+package com.nareshIT.day68;
+
+public class CarParkingProject {
+
+	public static void main(String[] args) {
+		ParkingGarage pg = new ParkingGarage(5);
+		Car [] cars= {new Car(pg, "Maruti Brezza"),new Car(pg,"Tata Naxon"),new Car(pg,"Mahindra BE6"),new Car(pg,"Kia Seltos"),
+				new Car(pg,"Honda city"),new Car(pg,"Toyota Fortuner"),new Car(pg,"Hundai i20")};
+		
+		 System.out.println("Welcome to D-Mart Parking");
+	     System.out.println("Total Available spots are :" + pg.getAvailableSpots());
+		for(Car car : cars) {
+			Thread t = new Thread(car);
+			t.start();
+		}
+		try {
+			Thread.sleep(10000);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+		System.out.println("Parking garage simulation is complete.");
+	}
+
+}
+
+
+package com.nareshIT.day68;
+
+import java.util.Random;
+
+public class Car implements Runnable {
+    private ParkingGarage garage;
+    private String carName;
+
+    public Car(ParkingGarage garage, String carName) {
+        this.garage = garage;
+        this.carName = carName;
+    }
+
+    @Override
+    public void run() {
+        try {
+            garage.parkCar(carName);
+            
+            Random rand = new Random();
+            int stayTime = 1000 + rand.nextInt(4000); 
+            Thread.sleep(stayTime);
+
+            garage.freeSpot(carName);
+        } catch (InterruptedException e) {
+            System.out.println(carName + " thread was interrupted.");
+        }
+    }
+}
+
+
+package com.nareshIT.day68;
+
+public class ParkingGarage {
+	int availableSpots=5;
+	final int MAX_SPOTS ;
+
+	public ParkingGarage(int mAX_SPOTS) {
+		super();
+		MAX_SPOTS = mAX_SPOTS;
+		this.availableSpots = MAX_SPOTS;
+	}
+
+	public synchronized void parkCar(String carName) throws InterruptedException {
+        while (availableSpots == 0) {
+            System.out.println(carName + " is waiting for a spot.");
+            wait();
+        }
+
+        availableSpots--;
+        System.out.println(carName + " parked. Available spots: " + availableSpots);
+    }
+	  public synchronized void freeSpot(String carName) {
+	        availableSpots++;
+	        System.out.println(carName + " left. Available spots: " + availableSpots);
+	        notifyAll();
+	    }
+	public int getAvailableSpots() {
+		return this.availableSpots;
+	}
+}
+
+
+=============================================================================
+Assignment 02 :
+---------------
+Objective:
+Design a COVID-19 vaccine booking application that allows users to check their eligibility based on age and health conditions. Users who meet the eligibility criteria can book a dose, and the application should handle concurrent user interactions using threads.
+
+Instructions:
+
+1.Implement the VaccineEligibility class with the following properties :
+
+-> private int age: The age of the user.
+
+-> private boolean hasHealthCondition: A boolean indicating whether the user has a health condition.
+
+-> Implement a constructor that takes age and health condition as parameters and initializes the class properties.
+
+-> Implement the isEligible() method within the VaccineEligibility class to check if a user is eligible for the vaccine. A user is eligible if their age is 18 years or above and either their age is less than 60 years or they have a health condition.
+
+
+
+2. Implement the DoseBooking class with the following property:
+
+
+
+-> private boolean booked: A boolean indicating whether the user has booked a dose.
+
+-> Implement bookDose() within the DoseBooking class to book a dose. If the dose is already booked, throw a RuntimeException with the message "Dose already booked."
+
+-> Implement isDoseBooked() within the DoseBooking class to check if the user has booked a dose.
+
+
+
+3.Define the User class with the following properties:
+
+
+
+-> private String name: The name of the user.
+
+-> private VaccineEligibility eligibility: An instance of the VaccineEligibility class to check the user's eligibility.
+
+->  private DoseBooking doseBooking: An instance of the DoseBooking class to manage dose booking for the user.
+
+-> Implement a constructor that takes the user's name, age, and health condition as parameters and initializes the class properties.
+
+
+
+-> Implement the isEligible() method within the User class to check if the user is eligible for the vaccine by using the isEligible() method of the VaccineEligibility class.
+
+-> Implement the bookDose() method within the User class to book a dose for the user if they are eligible. If the user is not eligible, throw a RuntimeException with the message "You are not eligible for the vaccine."
+
+-> Implement the isDoseBooked() method within the User class to check if the user has already booked a dose by using the isDoseBooked() method of the DoseBooking class.
+
+
+
+4. In the CoronaVaccineApp class:
+
+
+
+-> Create two User objects: user1 and user2.
+
+-> Simulate concurrent user interactions using threads by creating two threads (thread1 and thread2) with anonymous runnable instances representing the user interactions.
+
+
+
+Sample Output:
+
+Dose booked successfully for Ramesh
+
+Suresh is not eligible for the vaccine.
+
+
+ANS
+----
+package com.nareshIT.day68;
+
+public class VaccineEligibility {
+    private int age;
+    private boolean hasHealthCondition;
+
+    public VaccineEligibility(int age, boolean hasHealthCondition) {
+        this.age = age;
+        this.hasHealthCondition = hasHealthCondition;
+    }
+
+    public void isEligible() throws Eligible {
+        if (age >= 18 && (age < 60 || hasHealthCondition)) {
+            // Eligible
+        } else {
+            throw new Eligible("You are not eligible for the vaccine.");
+        }
+    }
+}
+
+
+package com.nareshIT.day68;
+
+public class DoseBooking {
+    private boolean booked = false;
+
+    public synchronized void bookDose() {
+        if (booked) {
+            throw new RuntimeException("Dose already booked.");
+        } else {
+            booked = true;
+        }
+    }
+
+    public boolean isDoseBooked() {
+        return booked;
+    }
+}
+
+
+package com.nareshIT.day68;
+
+public class User {
+    private String name;
+    private VaccineEligibility eligibility;
+    private DoseBooking doseBooking;
+
+    public User(String name, int age, boolean hasHealthCondition) {
+        this.name = name;
+        this.eligibility = new VaccineEligibility(age, hasHealthCondition);
+        this.doseBooking = new DoseBooking();
+    }
+
+    public void isEligible() {
+        try {
+            eligibility.isEligible();
+        } catch (Eligible e) {
+            throw new RuntimeException(name + " is not eligible for the vaccine.");
+        }
+    }
+
+    public void bookDose() {
+        try {
+            isEligible();
+            doseBooking.bookDose();
+            System.out.println("Dose booked successfully for " + name);
+        } catch (RuntimeException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    public boolean isDoseBooked() {
+        return doseBooking.isDoseBooked();
+    }
+}
+
+
+
+
+package com.nareshIT.day68;
+
+public class CoronaVaccineApp {
+    public static void main(String[] args) {
+        Runnable user1Task = () -> {
+            User user1 = new User("Ramesh", 45, false);
+            user1.bookDose();
+        };
+
+        Runnable user2Task = () -> {
+            User user2 = new User("Suresh", 13, false);
+            user2.bookDose();
+        };
+
+        Thread t1 = new Thread(user1Task);
+        Thread t2 = new Thread(user2Task);
+
+        t1.start();
+        t2.start();
+    }
+}
+
+
+package com.nareshIT.day68;
+
+public class DoseErr extends Exception{
+	public DoseErr(String name) {
+		super(name);
+	}
+}
+
+
+package com.nareshIT.day68;
+
+public class Eligible extends Exception {
+    public Eligible(String message) {
+        super(message);
+    }
+}

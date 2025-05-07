@@ -1,0 +1,525 @@
+Logical Programming :
+---------------------
+String handling in java :
+--------------------------
+It is a predefined class available in java.lang Package.
+It is an immutable class so once we create String Object it is un-modifiable OR immutable (un-changed).
+
+In Java we can create String Object by using 3 ways :
+-------------------------------------------------------
+1) By using String Literal :
+   Example :   
+   String str = "india";
+   
+2) By using new keyword :
+   Example :
+   String str1 = new String("Java");
+   
+3) By using Character Array : [Not recommended]
+   Example :
+   char ch[] = {'R','A','J'};
+
+Working with String literal :
+-----------------------------
+With String Literal we have different Cases :
+----------------------------------------------
+Case 1 :
+--------
+package com.ravi.string_demo;
+
+public class StringDemoCase1 {
+
+	public static void main(String[] args) 
+	{
+		String str = "india";
+		str.toUpperCase();
+		System.out.println(str);
+	}
+
+}
+
+Case 2 :
+---------
+package com.ravi.string_demo;
+
+public class StringDemoCase2 {
+
+	public static void main(String[] args) 
+	{
+		String s1 = "Data";
+		s1 = s1.concat("base");
+		System.out.println(s1);
+
+	}
+
+}
+
+Case 3 :
+--------
+package com.ravi.string_demo;
+
+public class StringDemoCase3 {
+
+	public static void main(String[] args) 
+	{
+		String s3 = "Hyderabad";
+		String s4 = s3.toUpperCase();		
+		System.out.println(s3);
+		System.out.println(s4);
+
+	}
+
+}
+------------------------------------------------------------------------
+Facts about String and it's memory :
+-------------------------------------
+In java Whenever we create a new String object by using String literal, first of all JVM will verify whether the String we want to create is pre-existing (already available ) in the String constant pool or not.
+
+If the String is pre-existing (already available) in the String Constant pool then JVM will not create any new String object, the same old existing String object would be refer by new reference variable as shown in the diagram.
+
+Note :- In SCP area we can't have duplicate String Object.[06-MAY]
+------------------------------------------------------------------------** Why Strings are immutable in java :
+---------------------------------------
+As we know a String object in the String constant pool can be refer by multiple reference variables, if any of the reference variable will modify the String Object value then it would be very difficult for the another reference variables pointing to same String object to get the original value, what they have defined earlier as shown in the diagram.(06-MAY)
+
+Along with that String we are using as a HashMap key so it must be immutable otherwise anyone can modify the original HashMap key.
+
+That is the reason Strings are immutable in java.
+------------------------------------------------------------------------
+WAP in Java that describes String objects created by using String literals are not eligible for Garbage Collector.
+
+package com.ravi.string_demo;
+
+public class StringGC
+{
+	public static void main(String[] args) throws InterruptedException
+	{
+		String s1 = "india";
+		System.out.println(s1+" : "+s1.hashCode());
+		
+		s1 = null;
+		System.gc();
+		Thread.sleep(5000);
+		
+		String s2 = "india";
+		System.out.println(s2+" : "+s2.hashCode());
+	}
+}
+------------------------------------------------------------------------
+What is the difference bwteen the following two statements
+--------------------------------------------------------------------
+
+String x = "Naresh";   [Creating String by Literal]
+
+String y = new String("Hyderabad"); [Creating String Object by new keyword]
+
+------------------------------------------------------------------------String x = "Naresh"; 
+
+It will create one String object and one reference variable and String object will be created in the String constant pool.Actually to place this String object in the SCP area JVM internally calls intern() method.
+-------------------------------------------------------------------
+String y = new String("Hyderabad");
+
+It will create two String objects one is inside the heap memory(non SCP area) which will be reffered by y reference variable and the same String object will be placed in the String constant pool if it is not available there.
+Hence two String Objects and one reference variable will be created.
+(06 MAY)
+
+Note :- IF WE ARE CREATING THE STRING BY USING LITERAL OR BY USING NEW KEYWORD, STRING OBJECTS ARE NOT ELIGIBLE 4 GC AS WELL NOT ELIGIBLE FOR MODIFICATION.
+------------------------------------------------------------------------
+Note :- JVM internally uses intern process to place the String object created by using new keyword inside SCP area[interning process]
+
+public String intern()  :
+---------------------------
+It is a predefined method available in the String class. The main purpose of this method to return canonical representation for the string object that means String interning ensures that all strings having the same content use the same memory location.
+
+The return type of this method is String
+
+Case 1 :
+---------
+package com.ravi.string_demo;
+
+public class StringInternDemo1 {
+
+	public static void main(String[] args) 
+	{
+		String s1 = "Java";
+		String s2 = new String("Java");
+		
+		System.out.println(s1==s2); //false		
+		s2 = s2.intern();		
+		System.out.println(s1==s2); //true
+
+	}
+
+}
+
+Case 2:
+-------
+package com.ravi.string_demo;
+
+public class StringInternDemo1 {
+
+	public static void main(String[] args) 
+	{
+		String s1 = "Java";
+		String s2 = new String("Java");
+		
+		System.out.println(s1==s2);		
+		String s3 = s2.intern();		
+		System.out.println(s1==s2);//false
+		System.out.println(s1==s3);//true
+
+	}
+
+}
+------------------------------------------------------------------------
+07-05-2025
+-----------
+How many ways we can put the String into String constant pool :
+---------------------------------------------------------------
+The following are the ways to put the String into String constant pool :
+
+1) String s1 = "india";
+2) String s2 = new String("india").itern();
+3) String s3 = "Tata" + "Nagar";  //Compile time constant
+4) String s4 = String.valueOf("india");
+
+package com.ravi.string_demo;
+
+public class PlacingStringIntoSCP {
+
+	public static void main(String[] args) 
+	{
+		String s1 = "Database";
+		String s2 = "Data" + "base";
+		String s3 = String.valueOf("Database");
+		String s4 = new String("Database").intern();
+		
+		
+		System.out.println(s1==s2);
+		System.out.println(s1==s3);
+		System.out.println(s1==s4);
+
+	}
+
+}
+------------------------------------------------------------------------
+Working with String class method :
+-----------------------------------
+1) public char charAt(int indexPosition) 
+-----------------------------------------
+It is used to fetch a single character from the given String based on the index position. Method return type is char.
+
+package com.ravi.string_demo;
+
+public class StringCommonMethod {
+
+	public static void main(String[] args) 
+	{
+		   String x = "Hello Hyderabad";
+
+	        char ch1 =  x.charAt(6); //H
+			System.out.println(ch1); 
+
+	}
+
+}
+
+
+2) pulic String concat(String str) :
+------------------------------------
+It is used to concatenate of two Strings. Method return type is String.
+It can also be done by using + operator.
+
+package com.ravi.string_demo;
+
+public class StringCommonMethod {
+
+	public static void main(String[] args) 
+	{
+		String s1 = "Data";
+		String s2 = "base";
+		String s3 = s1.concat(s2);  
+		System.out.println("String after concatenation :"+s3);
+
+        String s4 = "Tata";
+		String s5 = "Nagar";
+		String s6 = s4+s5;
+		System.out.println("String after concatenation :"+s6);
+
+        String s7 = "Naresh";
+		System.out.println(s7.concat(" Technology"));	
+
+	}
+
+}
+
+
+3) public boolean equals(Object obj) :
+--------------------------------------
+It is an overridden method, Overridden from Object class. It is used 
+to compare two Strings based on the content.Method return type is 
+boolean.
+
+
+package com.ravi.string_demo;
+
+public class StringCommonMethod {
+
+	public static void main(String[] args) 
+	{
+		String username = args[0]; 
+
+		if(username.equals("Ravi"))
+		{
+			System.out.println("Welcome Ravi");
+		}
+		else
+		{
+			System.out.println("Sorry! wrong username /Password");
+		}
+
+	}
+
+}
+
+4) public boolean equalsIgnoreCase(String str)
+-----------------------------------------------
+It is also used to compare two Strings based on the content by ignoring the case.Method return type is boolean.
+
+package com.ravi.string_demo;
+
+public class StringCommonMethod {
+
+	public static void main(String[] args) 
+	{
+		String username = args[0]; 
+
+		if(username.equalsIgnoreCase("Ravi"))
+		{
+			System.out.println("Welcome Ravi");
+		}
+		else
+		{
+			System.out.println("Sorry! wrong username /Password");
+		}
+
+	}
+
+}
+
+IQ
+--
+What is the difference between == operator and equals(Object obj) method of String class while comparing the String?
+
+equals(object obj) method of String class compares two strings based on the content because it is an overriden method where as == operator compares two Strings based on the reference i.e memory address.
+
+package com.ravi.string_demo;
+
+public class IQ {
+
+	public static void main(String[] args)
+	{
+		String str1 = "india";
+		String str2 = new String("india");
+		
+		System.out.println(str1==str2); //false
+		System.out.println(str1.equals(str2));//true
+
+	}
+
+}
+
+5) public int length() :-
+----------------------
+The main purpose of this method to find out the length of the given String. The return type of this method is int. 
+
+String str = "india"
+       str.length(); //5
+
+IQ :
+----
+class IQ 
+{
+	public static void main(String[] args) 
+	{
+	    String []x = new String[3];		
+		System.out.println("Length is :"+x.length());
+	}
+}
+
+Note : CE becoz x is an array variable and with array we have length property but not length() method.
+------------------------------------------------------------------------
+6) public String replace(CharSequence old, CharSequence new)
+   public String replace(Char old, Char new)
+
+It is an overloaded method. CharSequence is an interface. String, StringBuffer and StringBuilder class, all are implementing from 
+CharSequence to provide loose coupling.
+
+It is used to replace a particular character OR a string value from the 
+given String. Method return type is String.
+
+package com.ravi.string_demo;
+
+public class StringCommonMethod {
+
+	public static void main(String[] args) 
+	{
+		String x = "Manager";
+		String y = x.replace("Man", "Dam");
+		System.out.println(y);
+
+		String a = "oxoxoxoxox";
+		System.out.println("Original String :"+a);
+		System.out.println("String after replacement :"+a.replace('x','X'));
+
+	}
+
+}
+
+7) public int compareTo(String str) :
+-------------------------------------
+String class implements from Comparable<T> functional interface. It provides a single abstract method compareTo(T x). The return type of this method in int.
+String class has overridden this compareTo(String str) methd to compare two Strings by using UNICODE value.
+Comparing two Strings character by character by using UNICODE value is 
+known as Lexicographical comparison or dictionary comparison or alphabetical comparison(String case). 
+
+The return type of this method is int. It takes String as a parameter.
+
+If s1 and s2 are two valid Strings 
+
+if s1==s2  -> 0
+
+if s1>s2  -> +ve
+
+if s1<s2   -> -ve
+-----------------------------------------------------------------------
+package com.ravi.string_demo;
+
+public class StringCommonMethod {
+
+	public static void main(String[] args) 
+	{
+		String s1="Sachin";      //PQRS        S > R         
+        String s2="Sachin";
+        String s3="Ratan";  
+
+	   System.out.println(s1.compareTo(s2)); //0
+	   System.out.println(s1.compareTo(s3)); //1
+	   System.out.println(s3.compareTo(s1)); //-1   
+
+       String s4 = "Apple"; 
+	   String s5 = "apple"; 
+	   System.out.println(s4.compareTo(s5));  // -32  [65 to 97]
+	   System.out.println(s5.compareTo(s4));  // 32 [97 to 65]
+
+	   String s6 = "Ravi";
+	   String s7 = "Rajiv";
+	   System.out.println(s6.compareTo(s7)); //12
+
+       }
+
+}
+-----------------------------------------------------------------------
+public String substring(int startIndex) 
+public String substring(int startIndex, int endIndex) 
+
+The main purpose of this method to extract the part of the specified string based on the index position.
+
+In this method the startIndex starts from 0 whereas endIndex starts from 1.
+
+Both index will be inclusive for printing the value
+
+If end index will be less than start index then we will get an exception i.e StringIndexOutOfBoundsException  
+substring(5,2);
+
+If start index and end index both are equal, nothing will print
+
+Nither start index nor end index will accept (-ve) value otherwise StringIndexOutOfBoundsException.
+
+package com.ravi.string_demo;
+
+public class StringCommonMethod {
+
+	public static void main(String[] args) 
+	{
+		String s1 = "Hyderabad";
+		
+		System.out.println(s1.substring(2)); //derabad
+		System.out.println(s1.substring(3,6));//era
+		System.out.println(s1.substring(4,4)); //Will not print anything
+		System.out.println(s1.substring(6,2)); //StringIndexOutOfBoundsException
+		System.out.println(s1.substring(-2,6)); //StringIndexOutOfBoundsException
+	}
+
+}
+------------------------------------------------------------------------
+public boolean isEmpty() :-
+------------------------------
+The main purpose of this method to check whether a String is empty or not. This method returns true if the String is empty that means length is 0, otherwise it will return false.
+
+The return type of this method is boolean.
+
+package com.ravi.string_demo;
+
+public class StringCommonMethod {
+
+	public static void main(String[] args) 
+	{
+		String str1 = "Java by James Gosling";
+		String str2 = "";
+
+		System.out.println(str1.isEmpty()); 
+		System.out.println(str2.isEmpty()); 
+	}
+
+}
+------------------------------------------------------------------------
+hashCode() and equals(Object obj) :
+------------------------------------
+As we know there is a contract between hashCode() and equals(Object obj)
+
+We should always override both the methods.
+
+String class has overridden both the method and saying that : IF TWO STRING OBJECTS ARE SAME BASED ON THE equals(Object obj) overriden method of String class THEN THE HASHCODE OF BOTH THE STRING OBJECT must be same.
+
+package com.ravi.string_demo;
+
+public class StringCommonMethod 
+{
+	public static void main(String[] args) 
+	{
+		String str1 = "Java by James Gosling";
+		String str2 = new String("Java by James Gosling");
+
+		System.out.println(str1==str2);  //false
+		System.out.println(str1.equals(str2)); //true
+		System.out.println(str1.hashCode());
+		System.out.println(str2.hashCode());
+	}
+
+}
+------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   
+   
+   
+   
+   
+   
+   
+   
+   

@@ -1,0 +1,297 @@
+Program Statement 01:
+=====================
+Write a Java program named CallableStatementHospital that connects to an Oracle database using JDBC. The program should include the following functionalities:
+
+Establish a connection to the database using the provided JDBC URL, username, and password.
+
+Define a method named callProcedure() that executes a stored procedure named insertPatientDetails in the database.
+This method should:
+Use a CallableStatement to call the procedure.
+
+Insert a patient's data into the following three tables:
+
+PatientData(patientId, patientName, patientAge, patientDisease)
+
+PatientAddress(patientId, houseNo, city, pincode)
+
+PatientContact(patientId, email, phoneNo)
+
+Accept required input values to insert records into the tables.
+
+Implement a main() method that demonstrates the usage of the connect() and callProcedure() methods. The main method should:
+
+Call the connect() method to establish a connection to the database.
+
+Call the callProcedure() method to execute the stored procedure and insert patient details.
+
+Close the CallableStatement and the database connection after executing the procedure call.
+
+Ensure proper exception handling for potential database connectivity issues and SQL errors.
+
+✅ Tables and Procedure Details:
+
+Tables to be created:
+
+PatientData(patientId, patientName, patientAge, patientDisease)
+
+PatientAddress(patientId, houseNo, city, pincode)
+
+PatientContact(patientId, email, phoneNo)
+
+
+SQL
+====
+
+SQL> CREATE TABLE PatientData(patientId VARCHAR2(5) PRIMARY KEY , patientName VARCHAR2(10), patientAge NUMBER(2), patientDisease VARCHAR2(10));
+
+
+SQL> CREATE TABLE PatientAddress(patientId VARCHAR2(5) PRIMARY KEY, houseNo VARCHAR2(10), city VARCHAR2(10), pincode NUMBER(5));
+
+
+SQL> CREATE TABLE PatientContact(patientId VARCHAR2(5) PRIMARY KEY, email VARCHAR2(20), phoneNo NUMBER(10));
+
+SQL> 
+
+  1  CREATE OR REPLACE PROCEDURE Patient_Info42(patientId VARCHAR2, patientName VARCHAR2, patientAge NUMBER, patientDisease VARCHAR2,houseNo VARCHAR2, city VARCHAR2, pincode NUMBER,email VARCHAR2, phoneNo NUMBER) IS
+  2  BEGIN
+  3  INSERT INTO PatientData VALUES(patientId, patientName, patientAge, patientDisease);
+  4  INSERT INTO PatientAddress VALUES(patientId, houseNo, city, pincode);
+  5  INSERT INTO PatientContact VALUES(patientId, email, phoneNo);
+  6  END;
+  7  /
+
+  CREATE OR REPLACE PROCEDURE Patient_Info_Get42(P_ID IN VARCHAR2, patientName OUT VARCHAR2, patientAge OUT NUMBER, patientDisease OUT VARCHAR2,houseNo OUT VARCHAR2, city OUT VARCHAR2, pincode OUT NUMBER,email OUT VARCHAR2, phoneNo OUT NUMBER) IS
+  BEGIN
+        SELECT patientName, patientAge, patientDisease INTO patientName, patientAge, patientDisease from PatientData WHERE patientId = P_ID;
+        SELECT houseNo, city, pincode INTO houseNo, city, pincode from PatientAddress WHERE patientId = P_ID;
+        SELECT email, phoneNo INTO email, phoneNo from PatientContact WHERE patientId = P_ID;
+  END;
+  /
+
+Java
+====
+package day6;
+
+import java.sql.CallableStatement;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.util.Scanner;
+
+public class CallableStatementHospital {
+
+	public static void main(String[] args) {
+		callProcedure();
+	}
+	
+	public static void callProcedure() {
+		try {
+			Scanner sc = new Scanner(System.in);
+			Connection con = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:orcl", "MYDB", "MYDB");
+			CallableStatement cs = con.prepareCall("{call Patient_Info42(?,?,?,?,?,?,?,?,?)}");
+			System.out.print("Enter Patient ID: ");
+			String p_ID = sc.nextLine();
+			System.out.print("Enter Patient Name: ");
+			String p_Name = sc.nextLine();
+			System.out.print("Enter Patient Age: ");
+			int p_Age = Integer.parseInt(sc.nextLine());
+			System.out.print("Enter Patient Disease: ");
+			String p_Dis = sc.nextLine();
+			System.out.print("Enter Patient HouseNo: ");
+			String p_houseNo = sc.nextLine();
+			System.out.print("Enter Patient City: ");
+			String p_City = sc.nextLine();
+			System.out.print("Enter Patient PinCode: ");
+			int p_Pin = Integer.parseInt(sc.nextLine());
+			System.out.print("Enter Patient Email: ");
+			String p_Email = sc.nextLine();
+			System.out.print("Enter Patient Phone Number: ");
+			int p_PhNo = Integer.parseInt(sc.nextLine());
+			
+			cs.setString(1, p_ID);
+			cs.setString(2, p_Name);
+			cs.setInt(3, p_Age);
+			cs.setString(4, p_Dis);
+			cs.setString(5, p_houseNo);
+			cs.setString(6, p_City);
+			cs.setInt(7, p_Pin);
+			cs.setString(8, p_Email);
+			cs.setInt(9, p_PhNo);
+			
+			cs.execute();
+			
+			System.out.println("Data insert successfully...");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+}
+//"
+Program Statement 02:
+========================
+
+Write a Java program named CallableStatementRetrievePatient that connects to an Oracle database using JDBC. The program should include the following functionalities:
+
+Establish a connection to the database using the provided JDBC URL, username, and password.
+
+Define a method named callProcedure() that executes a stored procedure named getPatientDetails in the database.
+This method should:
+
+Use a CallableStatement to call the procedure.
+
+Pass the patientId as an input parameter to the procedure.
+
+Retrieve patient details such as:
+
+patientName, patientAge, patientDisease
+
+houseNo, city, pincode
+
+email, phoneNo
+
+Display the retrieved patient details on the console.
+
+Implement a main() method that demonstrates the usage of the connect() and callProcedure() methods. The main method should:
+
+Call the connect() method to establish a connection to the database.
+
+Call the callProcedure() method by providing a valid patientId.
+
+Close the CallableStatement and the database connection after executing the procedure call.
+
+Ensure appropriate exception handling for potential database connectivity issues and SQL errors.
+
+
+SQL
+====
+SQL> CREATE OR REPLACE PROCEDURE Patient_Info_Get42(P_ID IN VARCHAR2, patientName OUT VARCHAR2, patientAge OUT NUMBER, patientDisease OUT VARCHAR2,houseNo OUT VARCHAR2, city OUT VARCHAR2, pincode OUT NUMBER,email OUT VARCHAR2, phoneNo OUT NUMBER) IS
+  2    BEGIN
+  3          SELECT patientName, patientAge, patientDisease INTO patientName, patientAge, patientDisease from PatientData WHERE patientId = P_ID;
+  4          SELECT houseNo, city, pincode INTO houseNo, city, pincode from PatientAddress WHERE patientId = P_ID;
+  5          SELECT email, phoneNo INTO email, phoneNo from PatientContact WHERE patientId = P_ID;
+  6    END;
+  7    /
+
+Java
+==========
+package day6;
+
+import java.sql.CallableStatement;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.Types;
+import java.util.Scanner;
+
+public class CallableStatementRetrievePatient {
+
+	public static void main(String[] args) {
+		callProcedure();
+	}
+	public static void callProcedure() {
+		try {
+			Scanner sc = new Scanner(System.in);
+			Connection con = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:orcl", "MYDB", "MYDB");
+			CallableStatement cs = con.prepareCall("{call Patient_Info_Get42(?,?,?,?,?,?,?,?,?)}");
+			
+			System.out.print("Enter the Patient ID: ");
+			String p_ID = sc.nextLine();
+			
+			cs.setString(1, p_ID);
+			cs.registerOutParameter(2, Types.VARCHAR);
+			cs.registerOutParameter(3, Types.INTEGER);
+			cs.registerOutParameter(4, Types.VARCHAR);
+			cs.registerOutParameter(5, Types.VARCHAR);
+			cs.registerOutParameter(6, Types.VARCHAR);
+			cs.registerOutParameter(7, Types.INTEGER);
+			cs.registerOutParameter(8, Types.VARCHAR);
+			cs.registerOutParameter(9, Types.INTEGER);
+			
+			cs.execute();
+			
+			System.out.println("------------Patient Details------------");
+			System.out.println("Patient Name        :"+cs.getString(2));
+			System.out.println("Patient Age         :"+cs.getInt(3));
+			System.out.println("Patient Disease     :"+cs.getString(4));
+			System.out.println("Patient HouseNo     :"+cs.getString(5));
+			System.out.println("Patient City        :"+cs.getString(6));
+			System.out.println("Patient PinCode     :"+cs.getInt(7));
+			System.out.println("Patient Email       :"+cs.getString(8));
+			System.out.println("Patient Phone Number:"+cs.getInt(9));
+
+			cs.close();
+			con.close();
+			sc.close();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+}
+//"
+
+
+Program_03:
+============
+Write a JDBC application to read the data from CSV file(excel sheet) and insert only even data(Id) into database.
+Table:Emp_Info
+Columns:Id,firstName,lastName,email,gender.
+
+SQL
+====
+SQL> CREATE TABLE Emp_Info_42_75(Id NUMBER(6),firstName VARCHAR2(20),lastName VARCHAR2(20),email VARCHAR2(50),gender VARCHAR2(20));
+
+Java
+====
+package day6;
+
+import java.io.File;
+import java.io.FileInputStream;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.util.Scanner;
+
+public class Read_CSV_Data {
+
+	public static void main(String[] args) {
+		try {
+			//D:\Test\day6.csv
+			Scanner sc = new Scanner(System.in);
+			Connection con = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:orcl", "MYDB", "MYDB");
+			PreparedStatement ps = con.prepareStatement("insert into Emp_Info_42_75 values(?,?,?,?,?)");
+			
+			System.out.print("Enter file path: "); //"
+			String path = sc.nextLine();
+			File f = new File(path);
+			
+			if (f.exists()) {
+				FileInputStream fs = new FileInputStream(f);
+				Scanner rd = new Scanner(fs);
+				int i=0;
+				while (rd.hasNext()) {
+					String row = rd.nextLine();
+					String [] spl = row.split(",");
+//					int id1 =Integer.parseInt(spl[0]);
+//					String id1 = spl[0];
+					if (i%2 == 0) {
+						ps.setString(1, spl[0]);
+						ps.setString(2, spl[1]);
+						ps.setString(3, spl[2]);
+						ps.setString(4, spl[3]);
+						ps.setString(5, spl[4]);
+					}
+					i++;
+					ps.executeQuery();
+				}
+			}else {
+				System.err.println("File not found!!!");
+			}		
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+	}
+
+}

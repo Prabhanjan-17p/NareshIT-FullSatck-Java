@@ -1,0 +1,58 @@
+Types:
+Here is a list of commonly used constants in the java.sql.Types
+class (like Types.VARCHAR) that represent SQL data types in JDBC:
+
+Character and String Types
+------------------------
+Constant                SQL Type            Description
+Types.CHAR              CHAR                Fixed-length character string
+Types.VARCHAR           VARCHAR             Variable-length character string
+Types.LONGVARCHAR       LONGVARCHAR         Long variable-length character string
+Types.NCHAR             NCHAR               Unicode fixed-length string
+Types.NVARCHAR          NVARCHAR            Unicode variable-length string
+Types.LONGNVARCHAR      LONGNVARCHAR        Unicode long variable-length string
+
+Numeric Types
+-----------------
+Constant            SQL Type        Description
+Types.INTEGER       INTEGER         4-byte integer
+Types.SMALLINT      SMALLINT        2-byte integer
+Types.TINYINT       TINYINT         1-byte integer
+Types.BIGINT        BIGINT          8-byte integer
+Types.FLOAT         FLOAT           Floating point number
+Types.REAL          REAL            Single-precision float
+Types.DOUBLE        DOUBLE          Double-precision float
+Types.NUMERIC       NUMERIC         Exact precision number
+Types.DECIMAL       DECIMAL         Fixed-point number
+
+Date and Time Types
+---------------------
+Constant            SQL Type     Description
+Types.DATE          DATE         Date (year, month, day)
+Types.TIME          TIME         Time (hour, min, sec)
+Types.TIMESTAMP     TIMESTAMP    Date and time
+
+Binary and Large Object Types
+-----------------------------
+Constant                SQL Type            Description
+Types.BINARY            BINARY              Fixed-length binary data
+Types.VARBINARY         VARBINARY           Variable-length binary data
+Types.LONGVARBINARY     LONGVARBINARY       Long binary data
+Types.BLOB              BLOB                Binary Large Object
+Types.CLOB              CLOB                Character Large Object
+Types.NCLOB             NCLOB               National Character Large Object
+
+Other SQL Types
+------------------
+Constant                SQL Type        Description
+Types.BIT               BIT             Single-bit value (true/false)
+Types.BOOLEAN           BOOLEAN         Boolean value
+Types.NULL              NULL            SQL NULL
+Types.OTHER             OTHER           Other DB-specific type
+Types.JAVA_OBJECT       JAVA_OBJECT     Java object stored in DB
+Types.SQLXML            SQLXML          XML value
+Types.ARRAY             ARRAY           SQL array
+Types.STRUCT            STRUCT          SQL structured type
+Types.REF               REF             Reference to a SQL structured type
+Types.DATALINK          DATALINK        URL reference
+Types.ROWID             ROWID           Row ID

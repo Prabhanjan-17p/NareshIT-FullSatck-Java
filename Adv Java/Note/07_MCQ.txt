@@ -1,0 +1,218 @@
+1. Which of the following is true about Statement in JDBC?
+A) It is used to execute parameterized queries
+B) It is more efficient than PreparedStatement for repeated queries
+C) It is used to execute static SQL queries without parameters
+D) It allows calling stored procedures directly
+Answer: C
+
+2. What is the main advantage of using PreparedStatement over Statement?
+A) It allows Java methods to be called from SQL
+B) It reduces SQL injection risk and improves performance
+C) It supports executing stored procedures
+D) It can only execute SELECT queries
+Answer: B
+
+3. Which of the following JDBC interface is used to call stored procedures?
+A) Statement
+B) CallableStatement
+C) PreparedStatement
+D) ResultSet
+Answer: B
+
+4. In PreparedStatement, which method is used to assign a value to the first parameter placeholder ??
+A) setValue(1, "abc")
+B) setString(1, "abc")
+C) put(1, "abc")
+D) bind(1, "abc")
+Answer: B
+
+5. What does the executeUpdate() method return when used with PreparedStatement
+or Statement?
+A) A ResultSet
+B) A boolean indicating success
+C) Number of rows affected
+D) An object array
+Answer: C
+
+6. Which of the following is a correct way to create a CallableStatement?
+A) con.createStatement("{call proc_name()}")
+B) con.prepareCall("{call proc_name()}")
+C) con.callableStatement("call proc_name")
+D) con.execute("{call proc_name()}") //"
+Answer: B
+
+7. Which statement is not true about PreparedStatement?
+A) It can be reused with different parameter values
+B) It automatically escapes input to prevent SQL injection
+C) It is slower than Statement for dynamic queries
+D) It helps improve performance for batch executions
+Answer: C
+
+8. Which method is used to register an output parameter in a CallableStatement?
+A) setOutParameter()
+B) registerOutParameter()
+C) registerParameter()
+D) setParameter()
+Answer: B
+
+9. You should use CallableStatement when you need to:
+A) Insert data into a table
+B) Execute a parameterized query
+C) Call a stored procedure that may return values
+D) Delete rows from a table
+Answer: C
+
+10. Which statement best describes the difference between Statement and PreparedStatement?
+A) Statement is secure, PreparedStatement is not
+B) PreparedStatement is used only for SELECT queries
+C) Statement can call stored procedures directly
+D) PreparedStatement allows parameter binding and precompilation
+Answer: D
+
+11. What is the primary use of CallableStatement in JDBC?
+A) Executing static SQL queries
+B) Executing parameterized SQL queries
+C) Calling stored procedures from the database
+D) Reading configuration files
+Answer: C
+
+12.  Which method of Connection interface is used to create a CallableStatement?
+A) prepareStatement(String sql)
+B) createStatement()
+C) prepareCall(String sql)
+D) createCall(String sql)
+Answer: C
+
+13.  What syntax is used to call a stored procedure named getEmployeeData with two parameters in JDBC?
+A) "{call getEmployeeData(?, ?)}"
+B) "select getEmployeeData(?, ?)"
+C) "execute getEmployeeData(?, ?)"
+D) "{execute getEmployeeData(?, ?)}"
+Answer: A
+
+14. Which method is used to assign a value to the second input parameter of a CallableStatement?
+A) setParam(2, value)
+B) registerOutParameter(2, value)
+C) setValue(2, value)
+D) setString(2, value) (or appropriate set<Type> method)
+Answer: D
+
+15.  Which method is used to register an output parameter in a CallableStatement?
+A) setOutParameter(int, int)
+B) registerOutParameter(int, int)
+C) setParameter(int, int)
+D) registerOutput(int, int)
+Answer: B
+
+16. What does the second parameter in registerOutParameter(index, type) specify?
+A) The value to be returned
+B) The SQL type of the output parameter (e.g., Types.INTEGER)
+C) The Java data type
+D) The stored procedure name
+Answer: B
+
+17. After executing a CallableStatement, how do you retrieve an output parameter?
+A) getOutput(int)
+B) getResult(int)
+C) getInt(int) or corresponding get<Type>(index)
+D) readOut(int)
+Answer: C
+
+18.Which of the following correctly executes a stored procedure call in JDBC?
+A) callStmt.run()
+B) callStmt.execute()
+C) callStmt.start()
+D) callStmt.query()
+Answer: B
+
+19.  What does CallableStatement.execute() return?
+A) The number of rows affected
+B) true if it returns a ResultSet, false otherwise
+C) A string indicating success or failure
+D) A connection object
+Answer: B
+
+20. Which package contains the CallableStatement interface?
+A) java.sql.*
+B) javax.sql.*
+C) org.jdbc.*
+D) com.jdbc.callable.*
+Answer: A
+
+21. If a stored procedure has both input and output parameters,
+what is the correct order of steps in JDBC?
+A) registerOutParameter, setXXX, execute
+B) execute, setXXX, registerOutParameter
+C) setXXX, registerOutParameter, execute
+D) setXXX, execute, registerOutParameter
+Answer: C
+
+22. You want to call a procedure updateSalary(IN empId INT, OUT status VARCHAR) — which of these is valid?
+A) "{call updateSalary(?, ?)}"
+B) "select updateSalary(?, ?)"
+C) "{execute updateSalary(?, ?)}"
+D) "{proc updateSalary(?, ?)}"
+Answer: A
+
+23. What JDBC constant is used to register a parameter of type VARCHAR?
+A) JDBCType.STRING
+B) SQLType.VARCHAR
+C) Types.VARCHAR
+D) VarcharType.STRING
+Answer: C
+
+24.  If a stored procedure has a parameter defined as INOUT, how is it handled in JDBC?
+A) Set it using setXXX() only
+B) Register it using registerOutParameter() only
+C) Both setXXX() and registerOutParameter() must be used
+D) It is automatically handled
+Answer: C
+
+25.  After executing a stored procedure, how can you access the second output parameter (e.g., an int)?
+A) cs.getInt("param2")
+B) cs.getInt(2)
+C) cs.fetchInt(2)
+D) cs.getParameter(2)
+Answer: B
+
+26. Which method allows the CallableStatement to be closed and resources released?
+A) close()
+B) end()
+C) dispose()
+D) finalize()
+Answer: A
+
+27. What is the purpose of constants defined in java.sql.Types?
+A) Represent Java primitive types
+B) Represent SQL data types used in JDBC
+C) Define transaction isolation levels
+D) Indicate SQL exceptions
+Answer: B
+
+28. What SQL type constant would you use to register a parameter of type DATE?
+A) Types.DATETIME
+B) Types.TIME
+C) Types.DATE
+D) Types.TIMESTAMP
+Answer: C
+
+29. Which of the following SQL types does not exist in java.sql.Types?
+A) Types.VARCHAR
+B) Types.JSON
+C) Types.INTEGER
+D) Types.FLOAT
+Answer: B
+
+30. In JDBC, which ResultSet type allows both forward and backward movement through rows?
+A) ResultSet.TYPE_FORWARD_ONLY
+B) ResultSet.TYPE_SCROLL_INSENSITIVE
+C) ResultSet.TYPE_SCROLL_SENSITIVE
+D) Both B and C
+Answer: D
+
+31.  What is the difference between TYPE_SCROLL_INSENSITIVE and TYPE_SCROLL_SENSITIVE?
+A) One is used for input, the other for output
+B) One supports CallableStatement, the other does not
+C) Insensitive doesn't reflect DB changes; sensitive does
+D) They differ only in performance, not behavior
+Answer: C

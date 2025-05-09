@@ -499,6 +499,314 @@ public class StringCommonMethod
 
 }
 ------------------------------------------------------------------------
+08-05-2025
+-----------
+public boolean isBlank() :
+--------------------------
+We have alraedy isEmpty() method which will verify the length of the 
+String. 
+isBlank() is introduced from java 11V.
+It trurns true, If the String is empty OR it contais white space character.
+
+package com.ravi.string_demo;
+
+public class StringCommonMethod 
+{
+	public static void main(String[] args) 
+	{
+		System.out.println("".isBlank());
+		System.out.println(" ".isBlank());
+		System.out.println("\n ".isBlank());
+		System.out.println("\t ".isBlank());
+		System.out.println(" nit ".isBlank());
+		System.out.println("..................");
+		System.out.println("".isEmpty());
+		System.out.println(" ".isEmpty());
+		System.out.println("\n ".isEmpty());
+		System.out.println("\t ".isEmpty());
+		System.out.println(" nit ".isEmpty());
+	}
+
+}
+------------------------------------------------------------------------
+//public boolean startsWith(String prefix)
+//public boolean endsWith(String suffix)
+
+
+Both the methods are available in String class. 
+
+startsWith() is used to verify that the given String is Starting with prefix String or not, if yes it will return true otherwise it will return false.
+
+endsWith() is used to verify that the given String is ending with suffix String or not, if yes it will return true otherwise it will return false.
+
+Both the methods are case-sensitive.
+
+package com.ravi.string_demo;
+
+public class StringCommonMethod 
+{
+	public static void main(String[] args) 
+	{
+		String s1 = "Virat Kohli";
+		System.out.println(s1.startsWith("Vi"));
+		
+		String s2 = "Hyderabad";
+		System.out.println(s2.endsWith("bad"));
+	}
+
+}
+
+public int indexOf(String str) :
+----------------------------------
+The main purpose of this method to find out the index position of the specified String in the existing String.
+
+It will serach the index position of the first occurrance of the specified String as a parameter.
+
+It takes String as a parameter and return type of this method is int.
+
+if the specified string is not available in the existing string then it will return -1.
+
+
+public int lastIndexOf(String str) :
+-------------------------------------
+The main purpose of this method to find out the last index position of the Specified String in the existing String.
+
+It will serach the index position of the last occurrance of the String.
+
+It takes String as a parameter and return type of this method is int.
+
+if the specified string is not available in the existing string then it will return -1.
+
+package com.ravi.string_demo;
+
+public class StringCommonMethod 
+{
+	public static void main(String[] args) 
+	{
+		String s1 = "it is a nice city";
+		System.out.println(s1.indexOf("it"));
+		System.out.println(s1.lastIndexOf("it"));
+		System.out.println(s1.lastIndexOf("hyd"));
+	}
+
+}
+------------------------------------------------------------------------
+public String trim() :
+----------------------
+The main purpose of this method to remove the white spaces from the begning (heading) and end (trailing) from the String.
+
+It will not remove any white space in the between the String. The return type of this method is String.
+
+package com.ravi.string_demo;
+
+public class StringCommonMethod 
+{
+	public static void main(String[] args) 
+	{
+		String s1="   Tata    ";  
+		System.out.println(s1+"Nagar"); //       Tata      Nagar     
+
+        s1 = "          Hello       Data        ";
+		System.out.println(s1.trim() +"Base"); //Hello    DataBase	
+	}
+
+}
+-----------------------------------------------------------------------
+public []String split(String delimiter) :
+------------------------------------------
+The main purpose of this method to split or break the given String based on specified delimiter(Criteria).
+
+The return type of this method is String array because It returns the collection of String tokens or multiple Strings.
+
+package com.ravi.string_demo;
+
+public class StringCommonMethod 
+{
+	public static void main(String[] args) 
+	{
+		String s1 = "Hyderabad is a nice city";
+		String[] words = s1.split(" ");
+		
+		for(String word : words)
+		{
+			System.out.println(word);
+		}
+		
+		System.out.println("...............");
+		
+		String s2 = "Hyderabad is an IT city"; 
+		String[] split = s2.split("a");
+		
+		for(String x : split)
+		{
+			System.out.println(x);
+		}
+		
+	}
+
+}
+-----------------------------------------------------------------------
+Program on StringTokenizer class
+---------------------------------
+It is a predefined class available in java.util package.
+It used to split the given String based on the delimiter.
+
+Constructor :
+-------------
+public StringTokenizer(String str, String delimiter)
+{
+}
+
+Methods :
+-----------
+public int countTokens()
+public boolean hasMoreTokens()
+public String nextToken()
+
+
+package com.ravi.string_demo;
+
+import java.util.StringTokenizer;
+
+public class StringTokenizerDemo 
+{
+	public static void main(String[] args) 
+	{
+		String str = "Hyderabad is a nice city";
+		
+		StringTokenizer st = new StringTokenizer(str, " ");
+		
+		System.out.println("Total Tokens are :"+st.countTokens());
+
+		while(st.hasMoreTokens())
+		{
+			System.out.println(st.nextToken());
+		}
+		
+		
+		
+	}
+
+}
+
+-----------------------------------------------------------------------
+public char[] toCharArray() :
+------------------------------
+The main purpose of this method to convert the given string into a sequence of characters. The returned array length is equal to the length of the string.
+
+This method does not take any parameter and return type is character array.
+
+
+package com.ravi.string_demo;
+
+import java.util.StringTokenizer;
+
+public class StringTokenizerDemo 
+{
+	public static void main(String[] args) 
+	{
+		String str = "Hyderabad is a nice city";
+		
+	   char[] charArray = str.toCharArray();
+		
+	   for(char ch : charArray)
+	   {
+		   System.out.print(ch+"\t");
+	   }	
+	
+	}
+}
+-----------------------------------------------------------------------
+public byte [] getBytes() :-
+-------------------------------
+It is a predefined method available in the String class. The main purpose of this method encode the string into bytes. It converts the string into a sequence of bytes and returns an array of bytes. 
+
+package com.ravi.string_demo;
+
+public class StringCommonMethod 
+{
+	public static void main(String[] args) 
+	{
+		String str = "ABCDEF";
+		 
+		byte[] bytes = str.getBytes();
+		
+		for(byte b : bytes)
+		{
+			System.out.println(b);
+		}
+		
+		
+	}
+
+}
+------------------------------------------------------------------------
+StringBuffer :-
+----------------
+While working with String class the drawback is memory consumption is very high because it is immutable so whenever we want to perform some operation on the existing String Object, a new String object will be created.
+
+In order to solve the problem of immutability as well as high memory consumption, java software people has introdued a separate class called StringBuffer available in java.lang package from 1.0 onwards.
+
+StringBuffer is a mutable class so we can modify the existing String hence automatically the memory consumption will be low but we have some performance issue because almost all the methods of StringBuffer class are synchronized so at a time only one thread can access the method of StringBuffer hence it is Thread-safe. 
+
+In order to solve this performance issue problem java software people has introduced StringBuilder class from 1.5v onwards.
+
+StringBuilder :-
+-----------------
+It is a predefined class available in java.lang packge. It is also mutable class. The only difference between StringBuffer and StringBuilder is, almost all the methods of StringBuffer are synchronized where as all the methods of StringBuilder are non-synchronized hence performance wise StringBuilder is more better than StringBuffer.
+
+Both the classes are sharing same API so, method name, return type, parameter list all are same.
+
+**** What is the difference String, StringBuffer and StringBuilder?
+Available in paint diagram [08-MAY-25]
+------------------------------------------------------------------------
+WAP that descrines StringBuffer and StringBuilder both are mutable object
+
+package com.ravi.string_demo;
+
+import java.time.LocalDate;
+import java.util.Vector;
+
+public class MutableDemo {
+
+	public static void main(String[] args) 
+	{
+		String s1 = new String("Data");
+		s1.concat("base");
+		System.out.println(s1);
+		
+		StringBuffer buffer = new StringBuffer("Data");
+		buffer.append("base");
+		System.out.println(buffer);
+		
+		StringBuilder builder = new StringBuilder("Data");
+		builder.append("base");
+		System.out.println(builder);		
+	}
+
+}
+------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

@@ -1,0 +1,120 @@
+Program Statement01:
+====================
+Write a Java program named CallableStatementExample that connects to a Oracle database using JDBC. The program should include the following functionalities:
+
+-Establish a connection to the database using the provided JDBC URL, username, and password.
+-Define a method named callFunction() that executes a stored function named getTotalEmployees in the database.
+-This method should use a CallableStatement to call the function and retrieve the total number of employees. Print the total number of employees obtained from the function call.
+-Implement a main() method that demonstrates the usage of the connect() and callFunction() methods. The main() method should:
+Call the connect() method to establish a connection to the database.
+Call the callFunction() method to execute the stored function and retrieve the total number of employees.
+Close the CallableStatement and the database connection after executing the function call.
+Ensure appropriate exception handling for potential database connectivity issues and SQL errors.
+
+Note: Replace "jdbc:oracle:thin:@localhost:1521:xe", "username", and "password" with your actual database URL, username, and password respectively. Additionally, ensure that the stored function getTotalEmployees exists in your database and returns an integer value.
+
+SQL
+====
+SQL> CREATE OR REPLACE FUNCTION getTotalEmployees
+  2  RETURN NUMBER
+  3  AS
+  4      empNo NUMBER(3);
+  5  BEGIN
+  6      SELECT COUNT(*) INTO empNo FROM emp;
+  7      RETURN empNo;
+  8  END;
+  9  /
+
+JAVA
+======  
+package day7;
+
+import java.sql.CallableStatement;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.Types;
+import java.util.Scanner;
+
+public class CallableStatementExample {
+
+	public static void main(String[] args) {
+		callFunction();
+	}
+	
+	public static void callFunction() {
+		try {
+			Scanner sc = new Scanner(System.in);
+			Connection con = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:orcl", "MYDB", "MYDB");
+			CallableStatement cs = con.prepareCall("{call ?:=getTotalEmployees()}");
+		
+
+            cs.registerOutParameter(1, Types.INTEGER);
+
+            cs.execute();
+
+            System.out.println("Total Number of Emp : "+cs.getInt(1)); //"
+		} catch (Exception e) {
+			
+		}
+	}
+}
+
+
+
+Program Statement02:
+====================
+Step01=>Create Table:emp_info
+Columns:empId,empName,empAddress,empSalary,empPhNo.
+Step02: Construct Function to retrieve Employee's name based on Employee Id.
+step03: Construct JDBC Application to execute function.
+
+
+SQL
+====
+SQL> CREATE OR REPLACE FUNCTION retrieve_emp_info_08(EMPIDS NUMBER)
+  2  RETURN VARCHAR2
+  3  AS
+  4      empNameS VARCHAR2(20);
+  5  BEGIN
+  6      SELECT empname INTO empNameS FROM emp_info_08 WHERE empid = EMPIDS;
+  7      RETURN empNameS;
+  8  END;
+  9  /
+
+
+JAVA
+======
+package day7;
+
+import java.sql.CallableStatement;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.Types;
+import java.util.Scanner;
+
+public class Featch_Name {
+
+	public static void main(String[] args) {
+		try {
+			Scanner sc = new Scanner(System.in);
+			System.out.print("Enter Emp ID: ");
+			int id = Integer.parseInt(sc.nextLine());
+			
+			Connection con = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:orcl", "MYDB", "MYDB");
+			CallableStatement cs = con.prepareCall("{call ?:=retrieve_emp_info_08(?)}");
+		
+			
+            cs.registerOutParameter(1, Types.VARCHAR);
+            cs.setInt(2, id);
+
+            cs.execute();
+
+            System.out.println("Emp Name is : "+cs.getString(1));
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+
+}
+//"

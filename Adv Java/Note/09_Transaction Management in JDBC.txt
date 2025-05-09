@@ -1,0 +1,123 @@
+Transaction Management in JDBC:
+-------------------------------
+A Transaction in JDBC (Java Database Connectivity) is a set of one or more SQL
+operations that are executed as a single unit of work. A transaction ensures
+data integrity and consistency—either all operations within the transaction
+are completed successfully (committed), or none are (rolled back).
+
+Note:
+Auto-commit mode: By default, JDBC runs in auto-commit mode, which means each
+SQL statement is treated as a transaction and is automatically committed after
+execution.
+
+Manual transaction management: You can disable auto-commit to manually control
+when to commit or roll back a set of operations.
+
+ACID Properties in Database Systems:
+-----------------------------------
+ACID stands for Atomicity, Consistency, Isolation, and Durability. These are
+the four key properties that ensure reliability of transactions in a
+database system.
+ 
+* Atomicity
+------------
+Definition:
+Ensures that all operations within a transaction are completed
+successfully, or none of them are.
+
+Example: Transferring ₹100 from Account A to Account B.
+Debit ₹100 from A
+Credit ₹100 to B
+→ If either step fails, the whole transaction is rolled back.
+
+* Consistency
+-----------
+Definition: Ensures the database remains in a valid state before and after the
+transaction.
+
+Example: If total balance across accounts must remain ₹10,000, no transaction
+should violate this rule.
+
+* Isolation
+-----------
+Definition: Ensures that concurrent transactions do not interfere with each other.
+Example: Two users booking the last seat on a flight must not end up both getting
+it due to overlapping transactions.
+
+* Durability
+------------
+Definition: Once a transaction is committed, its changes are permanent,
+even if the system crashes.
+
+Example: After money is transferred and the transaction is committed, a system
+crash won't reverse the change.
+
+
+//Program
+=========
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.util.Scanner;
+public class TestTransaction {
+public static void main(String[] args) {
+    try {
+        Connection con = DriverManager.getConnection
+                ("jdbc:oracle:thin:@localhost:1521:XE","system","tiger");
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Transactions are autocommit: "+con.getAutoCommit());
+        con.setAutoCommit(false);//auto-commit is disabled
+        System.out.println("Transactions are autocommit: "+con.getAutoCommit());
+        PreparedStatement ps1 = con.prepareStatement
+                        ("select * from BankAccount where accNo = ?");
+        PreparedStatement ps2 = con.prepareStatement
+                        ("update BankAccount set BALANCE = BALANCE+? where accNo = ?");
+        System.out.println("Enter the source account number: ");
+       
+        long accNo = Long.parseLong(sc.nextLine());
+        ps1.setLong(1, accNo);
+        ResultSet rs = ps1.executeQuery();
+        con.commit();
+        if(rs.next()) {
+            double bal = rs.getDouble(4);// 1000
+            System.out.println("Balance in your account is: "+bal);
+            System.out.println("Enter the dest account: ");
+            long desAcc = Long.parseLong(sc.nextLine());
+            ps1.setLong(1, desAcc);
+            ResultSet rs2 = ps1.executeQuery();
+            //
+            if(rs2.next()) {
+            System.out.println("Enter the amount to transfer: ");
+            double transferAmt = Double.parseDouble(sc.nextLine());//200
+            if(bal>=transferAmt) {
+                //deduct from srcAcc and update into destAcc
+                ps2.setDouble(1, -transferAmt);
+                ps2.setLong(2, accNo);
+                int i = ps2.executeUpdate();//1
+                //update destAcc
+                ps2.setDouble(1, +transferAmt);
+                ps2.setLong(2, desAcc);
+               
+                int j = ps2.executeUpdate();//1
+                //validate both the queries updated or not
+                con.commit();
+            }
+            else {
+                System.out.println("Insufficient funds");
+            }
+           
+            }
+            else {
+                System.out.println("Invalid destination account: ");
+            }
+        }
+        else {
+            System.out.println("Invalid Source Account Number.Try Again");
+        }
+    }
+    catch(Exception e) {
+        e.printStackTrace();
+    }
+}
+}

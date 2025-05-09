@@ -1,0 +1,70 @@
+Program 01 :
+------------
+Create an application to compare two objects based on the content by overriding the equals(Object obj) method of Object class.
+
+Create a BLC class called Product
+
+Instance variables :
+private int productId
+private String productName
+
+Create a parameterized constructor to initialize all properties.
+
+Override equals(Object obj) method from Object class to compare the content of Product object, Make sure that if end user try to compare the content of two different objects (Product and Employee) then program should provide proper message.
+
+Create an ELC class ProductEquality to test your application by creating two objects of Product class to compare the content by calling Product class overridden equals(Object obj) method.
+
+Follow the equals() and hashCode() contract.
+
+
+ANS 
+===
+package com.nareshIT.day70;
+
+
+public class Product {
+    private int productId;
+    private String productName;
+
+    public Product(int productId, String productName) {
+        this.productId = productId;
+        this.productName = productName;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+      
+        if (this.getClass() != obj.getClass()) {
+            System.out.println("You can't compare because two different class. ");
+            return false;
+        }
+
+        Product pro = (Product) obj;
+        return this.productId == pro.productId && this.productName == pro.productName;
+    }
+
+   
+}
+
+
+package com.nareshIT.day70;
+
+public class ProductEquality {
+
+	public static void main(String[] args) {
+		/*
+		 * These are creating 2 different memory location.
+		 * Internally equals() method used == mechanism (it will be check the address)
+		 */
+		
+		Product p1 = new Product(1, "laptop");
+		Product p2 = new Product(1, "laptop");
+		
+		System.out.println(p1.equals(p2));
+	}
+
+}
+
+
+Prepare for tomorrow Exam :
+---------------------------

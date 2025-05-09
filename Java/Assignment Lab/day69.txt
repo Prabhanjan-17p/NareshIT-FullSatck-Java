@@ -1,0 +1,300 @@
+1.Choose the correct output of the following snippet
+public class StringHandling1 {
+	public static void main(String[] args) {
+		String str = "NareshIT";
+		String str1 = "NareshIT";
+		System.out.println(str == str1);
+		System.out.println(str.equals(str1));
+	}
+}
+A.	true fasle
+B.	fasle true
+C.	true true
+D.	false false
+
+ANS - C.	true true
+
+2.What is the output of the following program
+public class StringHandling2 {
+	public static void main(String[] args) {
+		String str = "NareshIT";
+		char ch[] = {'N','a','r','e','s','h','I','T'};
+		String str1 = new String(ch);
+		System.out.println(str.length()+str1.length());
+	}
+}
+A.	15
+B.	16
+C.	14
+D.	17
+
+ANS - B.	16
+
+3.What is the output of the following code
+public class StringHandling3 {
+	public static void main(String[] args) {
+		String str = "NareshIT";
+		System.out.println(str.endsWith("It"));
+	}
+}
+A.	true
+B.	false
+
+ANS - B.	false
+
+4.Choose the correct output of the following snippet 
+public class StringHandling4 {
+	public static void main(String[] args) {
+		String str = new String("NareshIT"); // line 1
+	}
+}
+A.	In line 1 create two objects and one reference variable
+B.	In line 1 create one object and one reference variable
+C.	In line 1 create two objects and two  reference variable
+D.	In line 1 create one objects and two reference variable
+
+ANS - A.	In line 1 create two objects and one reference variable
+
+5.What is the output of the following program
+public class StringHandling5 {
+	public static void main(String[] args) {
+		String str = "Naresh I Technologies".replace("e", "E");
+		System.out.println(str);
+	}
+}
+A.	NarEsh I Technologies
+B.	NarEsh 
+C.	Naresh I Technologies
+D.	NarEsh I TEchnologiEs
+
+ANS - D.	NarEsh I TEchnologiEs
+
+6.What is the output of the following program
+public class StringHandling6 {
+	public static void main(String[] args) {
+		String str = "NareshIT";
+		String str1 = "Welcome ";
+		System.out.println(str1+str);
+	}
+}
+A.	WelcomeNareshIT
+B.	Welcome
+C.	Welcome NareshIT
+D.	NareshIT
+
+ANS - C.	Welcome NareshIT
+
+7.What is the output of the following program
+public class StringHandling7 {
+	public static void main(String[] args) {
+		String str = "NareshIT";
+		System.out.println(str+=10);
+	}
+}
+A.	NareshIT 10
+B.	Compile time error
+C.	NareshIT10
+D.	Run time error
+
+ANS - C.	NareshIT10
+
+8.What is the output of the following program
+public class StringHandling8 {
+	public static void main(String[] args) {
+		String str = "NareshIT";
+		String str1 = new String("NareshIT");
+		System.out.println(str == str1); // CHECK ADDRESS
+		System.out.println(str.equals(str1)); // CHECK VALUE
+	}
+}
+A.	true false
+B.	false true
+C.	true true
+D.	false false
+
+ANS - B.	false true
+
+9.What is the output of the following program
+public class StringHandling9 {
+	public static void main(String[] args) {
+		String str = "NareshIT";
+		String str1 = new String("NareshIT").intern();
+		System.out.println(str == str1); //TRUE
+		System.out.println(str.equals(str1)); //TRUE
+	}
+}
+A.	true false
+B.	false true
+C.	true true
+D.	false false
+
+ANS - C.	true true
+
+10.Choose the correct output of the following snippet
+public class StringHandling10 {
+	public static void main(String[] args) 
+	{
+		String str = "apple,banana,orange";
+        String[] fruits = str.split(",");
+        System.out.println(fruits[1]);
+	}
+}
+A. apple
+B. banana
+C. orange
+D. ,banana
+
+ANS - B. banana
+
+11.Choose the correct option for the following program
+public class StringHandling11 {
+	public static void main(String[] args) 
+	{
+		String[] result = "a:b:c:".split(":");
+        System.out.println(result.length);
+	}
+}
+A. 3
+B. 4
+C. 2
+D. 1
+
+ANS -A. 3
+
+12.Choose the correct option for the following snippet
+public class StringHandling12 {
+	public static void main(String[] args) 
+	{
+		String str = "  Java Programming  ";
+        System.out.println(str.trim());
+	}
+}
+A. "Java Programming"
+B. " Java Programming "
+C. "Java Programming "
+D. Compilation error
+
+ANS - A. "Java Programming"
+
+13.Which Exception raise for the following snippet
+public class StringHandling13 {
+	public static void main(String[] args) {
+		String str = "NareshIT";
+		System.out.println(str.charAt(10));
+	}
+}
+A.	StringIndexOutOfBoundsException
+B.	ArrayIndexOutOfBoundsException
+C.	IndexOutOfBoundsException
+D.	StringOutOfBoundsException
+
+ANS - A.	StringIndexOutOfBoundsException
+
+14.What is the output of the following code
+public class StringHandling14 {
+	public static void main(String[] args) {
+		String str = "NareshIT";
+		System.out.println(str.charAt(6));
+	}
+}
+A.	T
+B.	s
+C.	I
+D.	h
+
+ANS - C.	I
+
+15.What is the output of the following code
+public class StringHandling15 {
+	public static void main(String[] args) {
+		String str = "Naresh I Technologies Java";
+		System.out.println(str.charAt(str.length()-6));
+	}
+}
+A.	T
+B.	s
+C.	J
+D.	o
+
+ANS - B.	s
+
+16.What is the output of the following code
+public class StringHandling16 {
+	public static void main(String[] args) {
+		String str = "Naresh I Technologies Java";
+		for(int i=0;i<=str.length();i++)
+		{			
+			System.out.print(str.charAt(i)+" ");
+		}
+	}
+}
+A.	Compile time error
+B.	Run time error
+C.	N a r e s h   I   T e c h n o l o g i e s   J a v a
+D.	NareshITechnologiesJava
+
+ANS - N a r e s h   I   T e c h n o l o g i e s   J a v a (with Runtime Exception Occure)
+
+17.Choose the correct output of the following snippet
+public class StringHandling17 {
+	public static void main(String[] args) {
+		String str = "Naresh I Technologies Java";
+		str = str.replace(" ", ""); //NareshITechnologiesJava
+		for(int i=0;i<str.length();i++)
+		{		
+			System.out.print(str.charAt(i)+"");
+		}
+	}
+}
+A.	Compile time error
+B.	Run time error
+C.	N a r e s h   I   T e c h n o l o g i e s   J a v a
+D.	NareshITechnologiesJava
+
+ANS - D.	NareshITechnologiesJava
+
+18.What is the output of the following code
+public class StringHandling18 {
+	public static void main(String[] args) {
+		String str = " Welcome to Naresh I Technologies Java ";
+		System.out.println(str.indexOf('o'));
+		System.out.println(str.indexOf('I'));
+		System.out.println(str.lastIndexOf('e'));
+	}
+}
+A.	5 19 31
+B.	6 19 32
+C.	4 18 30
+D.	4 18 31
+
+ANS - A.	5 19 31
+
+19.What is the output of the following code
+public class StringHandling19 {
+	public static void main(String[] args) 
+	{
+		String str = "   ";
+        System.out.println(str.isBlank());
+	}
+}
+A. true
+B. false
+C. Compilation error
+D. Runtime exception
+
+ANS - A. true
+
+20.Choose the correct output of the following snippet
+public class StringHandling20 {	
+	public static void main(String[] args) {
+		String str = "Naresh I Technologies";//21
+		String str1[] = new String[] {str}; //str traet as a string (full string length means 1)
+		System.out.println(str.length()+" "+str1.length);
+	}
+}
+A.	21 21
+B.	20 21
+C.	21 1
+D.	20 20
+
+ANS  - C.	21 1

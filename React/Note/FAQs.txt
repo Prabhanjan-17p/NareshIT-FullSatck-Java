@@ -1,0 +1,13 @@
+*** FAQ's:
+1. What is DOM?
+	- DOM is a hierarchy of elements in page.(elements are stand in hierachy order)
+
+2. What is shadow DOM?
+	- It is a hierarchy of elements in a component.
+	- It uses a shadow root for components in page.
+	- It comprises of of elements hierarchy and styles with logic inside component.
+
+3. What is virtual DOM?
+	- It is a copy of actual DOM.
+	- It is in the memory that update and renders output to client.
+	- However it have to update actual DOM for final rendering.

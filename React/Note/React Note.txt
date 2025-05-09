@@ -1,0 +1,274 @@
+1. What is React?
+	- It is a JavaScript library for building IJI. [ https://legacy.reactjs.org/]
+	- It is a JavaScript library for web and native Ul. [ https://react.dev/ ]
+
+2. What is difference between Angular & React?
+	- Angular is a framework.
+	- React is a library.
+	- If app have lot of framework in backend, it needs just a good Ul - React
+	- If app have less framework features in backend what a rich front end - Angular
+
+Note: Angular is not an alternative for React and vice versa.
+
+3. Why we need Angular and React?
+	- To build SPA & PWA(Single Page Application & Page W Application)
+
+4. What are the challenges in modern web development?
+	* Unified UX
+	- Application must have same experience across various devices.
+	- Mobile users must get access to everything.
+	* Fluid UX
+	- User stays on one page and can get access to everything from the page.
+	- Technically it requires lot of AJAX.
+	* Loosely coupled & extensible
+	- It allows to build and plugin new features without disturbing existing.
+	- It should add new functionality without leading to catastrophic failures.
+	* It must follow all web principles
+	- Accessibility
+	- Internationalization
+	- privacy
+	- Security
+
+5. What is solution?
+	- Better build SPA & PWA.	
+	- Earlier we were building Multi Page Applications.
+
+6. How to build SPA?
+	- By using JavaScript, jQuery, React, Angular, Vue, Knockout JS, Back Bone JS etc.
+
+7. What are the issues with JavaScript & jQuery ?
+	- Lot of DOM interactions
+	- Lot of coding
+	- Heavy on application
+	- Slow in interactions etc..
+
+
+Features of React:
+1. It is component based.
+	- It is easy to build interactive UI.
+	- It is faster in building UI.
+	- It enable reusability, extensibility, testability and maintainability.
+	- It enables loosely coupled and extensible architecture.
+
+2. It uses "Virtual DOM".	
+    - It is faster in interactions.
+	- It is faster in rendering. 
+
+3. It is a modular library
+	- It enable reusability and extensibility.
+	- It enables separation and testability.
+	- It is light weight and faster.
+	- It uses application specific functions.  	
+
+4. It uses async techniques
+	- It uses unblocking mechanism.
+	- It allows to run multiple tasks parallelly.
+	- It improves performance of application.
+
+
+*** FAQ's:
+1. What is DOM?
+	- DOM is a hierarchy of elements in page.(elements are stand in hierachy order)
+
+2. What is shadow DOM?
+	- It is a hierarchy of elements in a component.
+	- It uses a shadow root for components in page.
+	- It comprises of of elements hierarchy and styles with logic inside component.
+
+3. What is virtual DOM?
+	- It is a copy of actual DOM.
+	- It is in the memory that update and renders output to client.
+	- However it have to update actual DOM for final rendering.
+
+
+
+
+
+
+
+
+
+
+
+State in React App
+	- Web uses "HTTP" as protocol.
+	- HTTP is a state less protocol.
+	- It can't remember information between requests.
+
+	[ GO - GET - FORGET ]
+		GO      Establish connection with server
+		GET     Get response from server
+		FORGET  Clean up the response details from server
+
+	- Web applications use various state management techniques to remembers and use information across requests.
+
+	- State management allows to allocate memory which is accessible across requests.
+
+	- State can be managed both
+		a) Client Side
+		b) Server Side
+	- Client Side State Management allows to allocate memory and store data on client
+device so that it can avoid round trips.
+	- Server Side state management allocates memory on server so that data is loaded
+always as a result of round trip.
+
+	- React can manage server side rendering and state by using a full stack environment
+designed using framework like Next JS.
+
+	- React can manage state client side by using various techniques (hooks) like
+		a) useState()
+		b) useContext()
+		c) useCallback()
+		d) useMemo()
+		e) useRef()
+		f) useReducer() etc.
+
+	- React can use a 3rd party state management library like "Redux" while handling large
+scale applications.
+
+ useState()
+	- It is a react hook for handling local state for component.
+	- Hook is technically a function.
+	- It represents a service.
+	- Service is a pre-defined business logic which you can inject, customize and implement
+for your requirements.
+	- useState() is a hook that returns memory object with getter & setter.
+	- Getter can read and return state value.
+	- Setter can assign and save value into state.
+	- It requires a de-structuring declaration to access the getter and setter of state.	
+	Syntax:
+		const [getter, setter] = useState();
+
+
+FAQ'S:
+1. What is [getter, setter] referring to?
+	A. It refers to de-structuring declaration.
+
+2. Why you are using const for declaring state, can we use var or let?
+A.
+	- State must be initialized.
+	- Var & Let allows to ignore initialization, hence they are not recommended.
+	- State can't be assigned after initialization.
+	- Var & Let allows assignment, hence they are not good.
+	- State must be initialized first then you can use it.
+	- Var allows hoisting, hence it is not good for state.
+	- Yes we can use var & let to declare state but not recommended.
+
+3. Why const for state?
+A.
+	- It allows only initialization.
+	- It will not allow assignment
+	- It will not allow shadowing and hoisting.
+
+4. How you can configure a new value into state if it is declared with const?
+A.
+	- We will not assign value into const.
+	- We re-initialize value into const.
+	Syntax:
+		const [uname, setUname] = useState("John");
+		setUname = "David"; // invalid - assignment to const is not valid
+		setUname("David"); // valid
+
+Note: 
+	- You can't set state while creating the component.
+	- You can set value into state after component creation.
+	- It can be at the mount phase or on any specific event.
+	-Component mount [load] is defined using "useEffect()" hook.
+
+useEffect()
+	- It is used to define actions to perform at the time of mounting component.
+	- It can also defined actions on unmount.
+	- It uses a call back and dependencies.
+	Syntax:
+		useEffect(
+			// actions on mount
+			return()=>{
+				// actions on unmount
+			}
+		},[dependencies])
+
+
+Data Binding
+- Databinding is a technique of accessing data from source and updating into UI.
+It identifies the changes from UI and updates back to source.
+- React supports "One Way Binding".
+- JavaScript requires lot of DOM methods for data binding.
+- React uses a binding expression "{ }" to bind dynamic values with Ul elements.
+
+Syntax:
+var uname = "John";
+<p> Hello ! {uname } </p>
+<input type="text" value= uname} />
+
+*** Binding various type of Data
+-----------------------------------
+- JavaScript data types are categorized into 2 groups
+	1. Primitive Types
+	2. Non Primitive Types
+- Primitive Types
+	a) Number
+	b) Boolean
+	c) String
+	d) Null
+	e) Undefined
+	f) Big Int
+	g) Symbol
+
+Number Type:
+------------------
+- Number can be any one of the following
+	Signed Integer
+	Unsigned Integer
+	Float
+	Double
+	Decimal
+	Exponent	
+	Binary
+	Hexadecimal
+	Octa
+	Big Int
+
+- JavaScript number functions are required in React to verify and present number.
+	a) toFixed()
+const [price] = useState(4500.40);
+<p>{ price.toFixed(2) }</p>
+
+	b) toPrecision()
+const [price] = useState(3.414);
+<p>{ price.toPrecision(2) }</p>
+
+
+
+
+
+
+
+
+
+
+
+----------------------------
+Day-1 https://youtu.be/aWytG6aGG3s 
+Day-2 https://youtu.be/87Asu_qwOGc 
+Day-3 https://youtu.be/zxNhBLR-0-k 
+Day-4 https://youtu.be/xbyPXRviLrM 
+Day-5 https://youtu.be/puKoTcanrzM 
+Day-6 https://youtu.be/zfdbuBiAHyM 
+Day-7 https://youtu.be/YtDFA_5cfKY
+Day-8 https://youtu.be/3zmK41JP5zU
+-----------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

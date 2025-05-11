@@ -1,0 +1,124 @@
+State in React App
+- Web uses "HTTP" as protocol.
+- HTTP is a state less protocol.
+- It can't remember information between requests.
+    [ GO - GET - FORGET ]
+
+    GO            Establish connection with server
+    GET            Get response from server
+    FORGET        Clean up the response details from server
+
+- Web applications use various state management techniques to remember and use information across requests.
+
+- State management allows to allocate memory which is accessible across requests.
+
+- State can be managed both
+    a) Client Side
+    b) Server Side
+
+- Client Side State Management allows to allocate memory and store data on client device so that it can avoid round trips.
+
+- Server Side state management allocates memory on server so that data is loaded always as a result of round trip.
+
+- React can manage server side rendering and state by using a full stack environment designed using framework like Next JS.
+
+- React can manage state client side by using various techniques (hooks) like
+
+    a) useState()
+    b) useContext()
+    c) useCallback()
+    d) useMemo()
+    e) useRef()
+    f)  useReducer() etc.
+
+- React can use a 3rd party state management library like "Redux" while handling large scale applications.
+
+
+                          useState()
+
+- It is a react hook for handling local state for component.
+- Hook is technically a function.
+- It represents a service.
+- Service is a pre-defined business logic which you can inject, customize and implement for your requirements.
+- useState() is a hook that returns memory object with getter & setter.
+- Getter can read and return state value.
+- Setter can assign and save value into state.
+- It requires a de-structuring declaration to access the getter and setter of state.
+
+Syntax:
+       const [getter, setter] = useState();
+
+FAQ's:
+1. What is [getter, setter] referring to?
+A. It refers to de-structuring declaration.
+
+2. Why you are using const for declaring state, can we use var or let?
+A.
+     - State must be initialized.
+     - Var & Let allows to ignore initialization, hence they are not recommended.
+     - State can't be assigned after initialization.
+     - Var & Let allows assignment, hence they are not good.
+     - State must be initialized first then you can use it.
+     - Var allows hoisting, hence it is not good for state.
+     - Yes we can use var & let to declare state but not recommended.
+
+3. Why const for state?
+A.
+    - It allows only initialization.
+    - It will not allow assignment
+    - It will not allow shadowing and hoisting.
+
+4. How you can configure a new value into state if it is declared with const?
+A  We will not assign value into const.
+     We re-initialize value into const.
+
+Syntax:
+       const  [uname, setUname] = useState("John");
+     
+           setUname = "David";        // invalid - assignment to const is not valid
+           setUname("David");        // valid
+
+Note: You can't set state while creating the component.
+          You can set value into state after component creation.
+       It can be at the mount phase or on any specific event.
+       Component mount [load] is defined using "useEffect()" hook.
+
+                              useEffect()
+- It is used to define actions to perform at the time of mounting component.
+- It can also defined actions on unmount.
+- It uses a call back and  dependencies.
+
+Syntax:
+        useEffect( ()=>{
+           
+            // actions on mount
+
+               return()=>{
+                 // actions on unmount
+            }
+
+        },[dependencies])
+
+Ex:
+StateDemo.jsx
+
+import { useEffect, useState } from "react";
+
+export function StateDemo(){
+
+      const [title, setTitle] = useState('Hello !');
+     
+
+      useEffect(()=>{
+          setTitle('Welcome');
+      },[]);
+
+    return(
+        <div>
+            <h3>State Demo</h3>
+            <p>{title}</p>
+        </div>
+    )
+}
+
+

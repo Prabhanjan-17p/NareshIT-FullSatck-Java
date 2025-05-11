@@ -1,0 +1,179 @@
+Setup Environment for using React in existing Web Application
+- Libraries required
+    a) react
+    b) react-dom
+    c) babel
+
+Downloading Libraries for React in existing web application:
+
+1. Open terminal and run the commands
+
+      >npm  install   react@18  react-dom@18   --save
+
+      >npm   install  @babel/standalone  --save
+
+
+2. Libraries are copied into "node_modules"
+
+3. You have to link the suitable module for your application.
+
+4.  React 18 provides  CJS & UMD module systems.
+       
+        CJS - Common JS
+        UMD - Universal Module Distribution
+
+5. NPM default enabled with UMD in your project hence link the libraries from UMD.
+
+     <script src="../node_modules/react/umd/react.development.js"> </script>
+     <script src="../node_modules/react-dom/umd/react-dom.development.js"> </script>
+     <script src="../node_modules/@babel/standalone/babel.js"> </script>
+
+Ex:
+home.html
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <script src="../node_modules/react/umd/react.development.js"></script>
+    <script src="../node_modules/react-dom/umd/react-dom.development.js"></script>
+    <script src="../node_modules/@babel/standalone/babel.js"></script>
+    <script type="text/babel">
+         const root = ReactDOM.createRoot(document.getElementById("root"));
+         root.render("    ");
+    </script>
+</head>
+<body>
+    <noscript>Please enable JavaScript on your browser</noscript>
+    <div id="root"></div>
+</body>
+</html>
+
+                         Components in React
+
+- React is component based.
+- A component comprises
+    a) Presentation    
+    b) Styles
+    c) Functionality
+- Presentation is by using HTML.
+- Styles are by using CSS.
+- Functionality by using JavaScript & TypeScript.
+- Component uses pre-defined services to handle various functionalities, which include
+    a) Form Services
+    b) Validation Services
+    c) API Services
+    d) Routing Services etc..
+
+Creating Component:
+
+- React component can be designed by using Class or Function.
+- Classes are supported but not recommended in modern React.
+
+Syntax:
+        function Component()
+        {
+        }
+
+        class Component
+        {
+        }
+
+Function Component Rules:
+- It can be defined as declaration or expression.
+
+Syntax: declaration
+
+        function  Component()
+        {
+        }
+
+Syntax: expression
+
+        const  Component = function(){
+
+        }
+
+- It's name must start with an uppercase letter.
+- It can't be void type.
+- It must return a value.
+- It must return a function with markup.
+- Markup must be in one fragment.
+
+Syntax:
+     function  Login()
+     {
+       return(
+             <div>
+
+             </div>
+            );
+      }
+
+- The markup returned by component function is known as JSX.
+- Every component function must return JSX element.
+
+Syntax:
+          function Login()
+          {
+        return (
+                    <h2> React </h2>                => invalid - multiple fragments
+                <p> JavaScript library </p>
+               );
+        }
+
+- JSX markup can't have void elements.
+
+         <img>                // invalid
+         <img> </img>        // valid
+         <img />            // valid
+         <input type="text" />
+         <input type="text"> </input>
+
+- Every element must end in JSX.
+- JSX elements can't use attributes, you have to use only properties.
+
+         <img  class="img-fluid"  />        // invalid
+
+         <img  className="img-fluid" />   // valid
+
+Ex:
+home.html
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <script src="../node_modules/react/umd/react.development.js"></script>
+    <script src="../node_modules/react-dom/umd/react-dom.development.js"></script>
+    <script src="../node_modules/@babel/standalone/babel.js"></script>
+    <script type="text/babel">
+
+         function Login(){
+            return(
+                <div>
+                    <h3>User Login</h3>
+                    <dl>
+                        <dt>User Name</dt>
+                        <dd><input type="text" /> </dd>
+                        <dt>Password</dt>
+                        <dd><input type="password" /> </dd>
+                    </dl>
+                    <button>Login</button>
+                </div>
+            )
+         }
+
+         const root = ReactDOM.createRoot(document.getElementById("root"));
+         root.render(<section> <Login/> <Login/> </section>);
+    </script>
+</head>
+<body>
+    <noscript>Please enable JavaScript on your browser</noscript>
+    <div id="root"></div>
+</body>
+</html>

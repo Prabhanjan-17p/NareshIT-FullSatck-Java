@@ -1,0 +1,75 @@
+Bundling Tools
+- They can create a new web application or native application.
+- They can setup all required library for building application.
+- They can create and configure local or cloud server for hosting application.
+- They can provide various environments like
+    a) Development
+    b) Production
+- They configure libraries and map to the resources.
+- They can compile your application using AOT [Ahead-of-Time].
+- There are various bundling tools like
+    a) webpack
+    b) vite
+    c) parcel
+    d) rs-build  etc.
+
+Create a new application using Vite:
+
+1. Open any location on your PC from command prompt
+
+2. Run the following command
+
+    >npm  create  vite@latest  app-name -- --template  react
+
+3. It will scaffold a project folder with required configuration, however the library is not yet ready for project.
+
+4. Change into the project folder
+
+    F:\> cd   app-name
+    F:\app-name> npm  install
+
+5. This will install all required library for react.
+    a) react
+    b) react-dom
+
+6. Open your project folder in VS code
+
+7.  Run your application
+
+     > npm run dev
+
+8. Your application is hosted on local server
+
+    http://localhost:5173/
+
+
+                         React Vite Application File Structure
+
+1. node_modules        : It comprises of all modules required for project.
+                      Modules installed using NPM are kept in this folder.
+
+2. public                : It comprises of static resources like html, images, docs,
+                      videos etc.
+
+3. src                : It comprises of dynamic resource like css, scss, js, jsx,
+                      ts, tsx etc.
+
+4. .gitignore            : It configures the resources to ignore while publishing onto
+                      GIT pages.
+
+5. eslint.config.js        : It is JavaScript language analysis tool used to find issues
+                      in JavaScript while using with React.
+
+
+6. index.html            : It is the startup page for application.
+
+7. package.json        : configures the dependencies and batch operations
+8. package.lock.json    : to run, debug, test and deploy project.
+
+9. README.md        : It is a help document for developer by developer.
+
+10. vite.config.js        : It configures all required plugins using vite.
+                      Initially is defined with "react()".
+
+
+Note : Change  "src/app.jsx"  to change the startup component UI

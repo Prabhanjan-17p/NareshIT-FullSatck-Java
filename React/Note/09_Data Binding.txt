@@ -1,0 +1,109 @@
+Data Binding
+
+- Databinding is a technique of accessing data from source and updating into UI.
+  It identifies the changes from UI and updates back to source.
+
+- React supports "One Way Binding".
+    - It can access from source and binding to UI elements.
+    - It makes the data in UI read-only.
+    - Read-Only allows to submit but will not allow to modify.
+    - It is secured and will not allow accidental or intentional changes.
+
+- React requires explicit techniques to enable two way binding.
+
+- JavaScript requires lot of DOM methods for data binding.
+
+- React uses a binding expression "{  }" to bind dynamic values with UI elements.
+
+Syntax:
+        var uname = "John";
+
+        <p> Hello !  { uname } </p>
+   
+        <input type="text"  value={uname} />
+
+                       Binding various types of Data
+- JavaScript data types are categorized into 2 groups
+    1. Primitive Types
+    2. Non Primitive Types
+
+- Primitive Types
+    a) Number
+    b) Boolean
+    c) String
+    d) Null
+    e) Undefined
+    f) Big Int
+    g) Symbol
+
+Number Type:
+- Number can be any one of the following
+    Signed Integer
+    Unsigned Integer
+    Float
+    Double
+    Decimal
+    Exponent
+    Binary
+    Hexadecimal
+    Octa
+    Big Int
+- JavaScript number functions are required in React to verify and present number.
+
+    a) toFixed()
+
+           const [price] = useState(4500.40);
+
+           <p> { price.toFixed(2) } </p>
+
+    b) toPrecision()
+
+           const [price]  = useState(3.414);
+
+            <p>  { price.toPrecision(2) } </p>    // 3.4
+
+ 
+    c) toLocaleString()         [formats according to region]
+
+         const [price] = useState(600000);
+
+         <p>  { price.toLocaleString('en-IN') } </p>
+
+        i) style        : currency, percent, unit
+
+            ex:
+                price.toLocaleString('en-IN', { style : 'currency', currency: 'INR' })
+                price.toLocaleString('en-IN', { style : 'percent' })
+                price.toLocaleString('en-IN', { style : 'unit',  unit: 'kilogram' })
+
+        ii) notation    : compact
+           
+            ex:
+               const [ views ]  = useState(5500);
+
+               <p> { views.toLocaleString('en-US', { notation: 'compact' }) } </p>
+           
+                5.5 K
+               
+
+    d) isNaN()        : It used to verify number
+
+    e) parseInt()
+
+    f) parseFloat()
+
+
+String Type:
+
+    a) Double Quotes        "  "
+    b) Single Quotes        '   '
+    c) Backtick             `  `
+
+  - Backtick allow dynamic binding expression using "${ }"
+
+Syntax:
+        const [effect] = useState("text-style");
+
+        <h1  className={ `bg-style  ${effect} ` }>  </h1>
+
+Note: All string functions are same as in JavaScript.

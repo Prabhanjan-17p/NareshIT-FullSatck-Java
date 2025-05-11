@@ -1,0 +1,167 @@
+Summary:
+React Vite Application
+File System
+Application High Level Flow
+
+Adding components into React App:
+
+1. React app uses a modular system, hence every component is configured in a JavaScript file with extension ".js" or ".jsx".
+
+2. Every component file must be in "src" folder.
+
+3. Every component can have style sheet & test file, hence it is always recommended to keep your component file is a separate folder.
+
+            .jsx            markup & logic
+            .css            styles
+            .test.js        test cases
+               (or)
+            .spec.js
+
+4. A component can be class or function. Modern React recommends function as component. You have to configure a function in ".jsx" file.
+
+        function Name()            // declaration
+        {
+        }
+
+        const Name = function(){    // expression
+
+        }
+
+5. It is mandatory that every component function is exported.
+
+           export  function Name()
+        {
+        }
+            (or)
+
+        const Name = function(){
+
+        }
+        export default Name;
+
+6. Add following files
+        home.jsx
+        home.css
+        home.test.js
+
+7. home.jsx
+
+    export function Home()
+    {
+      return(
+             <>
+             <h2>Home</h2>
+             </>
+            )
+      }
+
+8. Go to main.jsx and import  Home
+
+    import   { Home } from  './components/home/home.jsx'
+                      (or)
+    import  Home from './components/home/home.jsx'    => if marked as default export
+
+
+9. Change the startup to render
+
+     root.render(<Home/>)
+
+FAQ: What is  <StrictMode> ?
+Ans:  It is used to force developers to following good coding techniques.
+     It reduces code inconsistency.
+     It compiles and executes the application for development & production.
+   
+Note: Hence your react application compiles 2 times. You can remove the
+      <StrictMode> to run only for development.
+
+10. Clean up all  CSS code from index.css & app.css in src
+
+12.  You can configure styles individually for every component in its CSS file.
+        But make sure that you are not using "type" selector.
+
+    home.css
+
+    .text-style {
+          text-align:center;
+          color:blue;
+    }
+
+13. Import the CSS file into your JSX
+
+    home.jsx
+   
+    import  './home.css';
+
+    <h2  className="text-style"> Home </h2>
+
+
+14. If you are using static resources like images & docs, then make sure that they
+      are defined inside "public". You can directly access public resources.
+
+     home.css
+
+     .bg-style {
+        background-image : url("public/image.jpg");
+      }
+
+Ex:
+ src/login/login.css
+
+
+.form-background {
+    background-image: url("public/travel.jpg");
+    background-size: cover;
+    padding: 20px;
+}
+
+src/login/login.jsx
+
+import './login.css';
+
+export function Login(){
+    return(
+        <form className='form-background'>
+            <h3>User Login</h3>
+            <dl>
+                <dt>User Name</dt>
+                <dd><input type="text" /></dd>
+                <dt>Password</dt>
+                <dd><input type="password" /></dd>
+            </dl>
+            <button>Login</button>
+        </form>
+    )
+}
+
+src/home.css
+
+
+.text-style {
+    text-align: center;
+    color: blue;
+}
+
+src/home.jsx
+
+import './home.css';
+import { Login } from '../login/login';
+
+export function Home()
+{
+    return(
+        <>
+            <header>
+                <h2 className='text-style'>Home Component</h2>
+            </header>
+            <section>
+                <Login />
+            </section>
+        </>
+    )
+}
+
+                            React State
+
+
+
+View material

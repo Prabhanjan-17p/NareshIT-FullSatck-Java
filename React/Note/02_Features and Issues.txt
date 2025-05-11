@@ -1,0 +1,50 @@
+Summary
+- What is React?
+- Difference between React & Angular?
+- What are the challenges in modern web development?
+- SPA & PWA
+- What are the issues with JavaScript & jQuery in building SPA?
+
+
+Features of React:
+1. It is component based
+    - It is easy to build interactive UI.
+    - It is faster in building UI.
+    - It enables reusability, extensibility, testability and maintainability.
+    - It enables loosely coupled and extensible architecture.
+
+2. It uses "Virtual DOM"
+    - It is faster in interactions.
+    - It is faster in rendering.
+
+3. It is a modular library
+    - It enable reusability and extensibility.
+    - It enables separation and testability.
+    - It is light weight and faster.
+    - It uses application specific functions.
+
+4. It uses async techniques
+    - It uses unblocking mechanism.
+    - It allows to run multiple tasks parallelly.
+    - It improves performance of application.
+
+
+FAQ's:
+1. What is DOM?
+A. DOM is a hierarchy of elements in page.
+
+2. What is shadow DOM?
+A. It is a hierarchy of elements in a component.
+    It uses a shadow root for components in page.
+    It comprises of elements hierarchy and styles with logic inside component.
+
+3. What is virtual DOM?
+A. It is a copy of actual DOM.
+    It is in the memory that update and renders output to client.
+    However it have to update actual DOM for final rendering.
+
+Issues with React:
+- It is not designed for what you are using.
+- Hence lot of GAP's.
+- You have to fill the GAPS by using lot of 3rd party integrations.
+- Virtual DOM is not always satisfying.

@@ -1,0 +1,191 @@
+Data Binding in React
+- One Way
+- Two Way
+- Bind various data types
+    1. Number
+    2. String
+   
+3. Boolean Type
+- JavaScript Boolean type handles true or false.
+- React JSX element can't display Boolean value, it can just use the Boolean.
+- You have to use various operators and functions to customize the display.
+
+Syntax:
+    const [stock] = useState(true);
+
+    <p>  Stock  :  { (stock===true) ? "true" : "false" } )  </p>
+
+
+4. Null Type
+- It returns a keyword "null" when value is not defined dynamically into a reference.
+- You can verify by using null keyword.
+
+Syntax:
+    a) Set a session in your browser console
+
+        > sessionStorage.setItem("uname", "John");
+
+    b) You can view and control the session storage in your browser debugging tools
+     at application category.
+
+    c) Verify the session and render conditionally. Session returns "null" if it is removed
+    from browser storage.
+
+
+            { (sessionStorage.getItem("uname")===null) ? "Signin" : "Signout" }
+
+Ex:
+data-binding.jsx
+
+import { useState } from "react";
+import './data-binding.css';
+
+export function DataBinding(){
+
+     return(
+        <div>
+            <header>
+                <span>Shopping</span>
+                {(sessionStorage.getItem("uname")===null)?<button>Signin</button>:<span>{sessionStorage.getItem("uname")}<button>Signout</button></span> }
+            </header>
+        </div>
+    )
+}
+
+5. Undefined Type
+- React configures undefined as keyword when value is not defined into a reference.
+- It is verified using "undefined" keyword.
+
+Syntax:
+
+       const [price] = useState();
+
+       <p>  { (price===undefined) ? "Price Not Defined": price }  </p>    // Not Good
+   
+       <p>  { (price) ? price : "Price Not Defined" } </p>    // Good
+
+6. Big Int
+-  Large integers are not safe to use in browser.
+-  Big Int specifies that it is a safe large integer and can be safely used in browser.
+
+Syntax:
+        const  [price]  = useState( 998283842n );
+
+        <p> { price } </p>
+
+7. Symbol
+- It is used to configure a hidden property for object.
+- Hidden properties are ignored over iterations but accessible individually.
+
+Syntax:
+      const  Id = Symbol();
+   
+      const  [ product ] = useState( { [Id]: 1, Name: "TV", Price: 56000 });
+
+Ex:
+<script>
+     let Id = Symbol();
+
+     let product = {
+           [Id]: 1,
+           Name : "TV",
+           Price: 45000
+     }
+
+     for(var key in product){
+          document.write(key + "<br>");
+     }
+     document.write(`Product Id : ${product[Id]}`);
+</script>
+
+Summary:
+- Number
+- String
+- Boolean
+- Null
+- Undefined
+- Big Int
+- Symbol
+
+
+
+                             Non Primitive Types
+1. Array
+- Configuring array is same as in JavaScript
+
+    a) [ ]         meta character
+    b) Array()        constructor
+
+- Storing elements into array is same.
+- Reading elements from array requires same JS functions
+
+    a) find()
+    b) filter()
+    c) map()
+    d) forEach()
+    e) toString()
+    f) join()
+    g) slice()
+
+- You can present array elements in UI directly by configuring element token.
+
+Syntax:
+       const  [ data ] = useState( [ "A", "B", "C" ] );
+
+       <ol>
+           {
+          data.map(function(item, index){
+            return  <li key={index}> { item } </li>
+          })
+           }
+       </ol>
+
+        <select>
+           {
+         data.map((item, index) => <option key={index}> {item} </option>)
+        }
+        </select>
+Ex:
+data-binding.jsx
+
+import { useState } from "react";
+import './data-binding.css';
+
+export function DataBinding(){
+
+   
+    const [categories] = useState(["All", "Electronics", "Fashion", "Footwear"]);
+
+    return(
+        <div>
+             <h3>Categories</h3>
+             <ol>
+                {
+                    categories.map(function(category){
+                         return <li key={category} >{category}</li>
+                    })
+                }
+             </ol>
+             <h3>Choose Category</h3>
+             <select>
+                {
+                    categories.map((category, index)=> <option key={index}>{category}</option> )
+                }
+             </select>
+             <h3>Shopping</h3>
+             <nav>
+                {
+                    categories.map((category, index)=> <a key={index} href="#">{category}</a> )
+                }
+             </nav>
+        </div>
+    )
+}
+
+data-binding.css
+
+
+nav a {
+    padding-left: 30px;
+    padding-right: 20px;
+}

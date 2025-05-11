@@ -1,0 +1,123 @@
+Summary
+Features of React
+Issues with React
+
+FAQ: Is there any difference between React & React JS?
+Ans:  No. React can be used with JavaScript & TypeScript.
+
+Note:  React latest is 19x [beta]
+       React LTS is 18x [GA]
+       React up to 18x are different in library and approach.
+       React 18x version is a complete re-write of React.
+       React is backward compatible.
+
+                    React in existing web application
+
+1. Install Node JS on your PC, make sure that the version of Node is 14x above.
+   
+    - Node JS is an open source JavaScript runtime.
+    - Developers require Node JS to build Web Apps, Servers, CLI tools & Scripts.
+    - Install Node JS gets a Package Manager. [ NPM ]
+
+        https://nodejs.org/
+
+    - After install check the version from command prompt
+
+        > node  -v
+        > npm  -v
+
+2. Download and Install Visual Studio Code Editor
+
+3. Install plugins for VS code
+
+        - Live Server
+        - vscode-icons
+        - IntelliSense for CSS class name in HTML
+        - Live Preview
+       
+4. Create a new web application
+
+    - Create a new folder for application
+   
+            e:\web-app
+
+    - Open folder in VS code
+    - Setup traditional web application development environment            
+       
+             a) Setup package.json
+
+                > npm init  -y        
+
+             b) Add  "README.md"
+             c) Add folders
+                - public    [ for static resources like html, images, docs..]
+                - src        [ for dynamic resources like css, scss, js, jsx, ts, tsx..]
+
+    - Add following pages into public folder
+
+         a) index.html
+         b) home.html
+
+5. Enable React in home page
+
+    - To use React in any web page you must have the following libraries
+   
+        a) react
+        b) react-dom
+        c) babel
+
+    - "react" is the core library to enable react in page. It contains all basic react
+       methods.
+    - "react-dom" is virtual DOM library.
+    - "babel"  is a JavaScript compiler for react. [JIT, AOT]
+
+Note: You can get the libraries from CDN.
+      - React 18x CDN is available on  https://legacy.reactjs.org/
+      - Babel CDN is available on  https://babeljs.io/  => Integration Packages =>
+      "@babel/standalone"
+
+    - Add a root into your web page to handle the components from virtual DOM.
+
+        <div id="root"> </div>
+
+Ex:
+1. index.html
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Index</title>
+</head>
+<body>
+    <h1>Welcome to Web App</h1>
+    <a href="./home.html"> Go to React Page </a>
+</body>
+</html>
+
+2. home.html
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script&gt;
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script&gt;
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script&gt;
+    <script type="text/babel">
+          // up to React 17x
+          // ReactDOM.render("Welcome to React", document.getElementById("root"));
+
+          // React 18x
+          const root = ReactDOM.createRoot(document.getElementById("root"));
+          root.render("Hello ! React");
+    </script>
+</head>
+<body>
+    <noscript>Please enable JavaScript on your browser</noscript>
+    <div id="root"></div>
+</body>
+</html>

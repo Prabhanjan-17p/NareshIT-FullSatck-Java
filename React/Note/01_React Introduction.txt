@@ -1,0 +1,52 @@
+. What is React?
+- It is a JavaScript library for building UI.  [ https://legacy.reactjs.org/ ]
+- It is a JavaScript library for web and native UI. [ https://react.dev/ ]
+
+2. What is difference between Angular & React?
+- Angular is a framework.
+- React is a library.
+
+Note: Angular is not an alternative for React and vice versa.
+
+3. Why we need Angular & React?
+-  To build SPA & PWA
+
+
+4. What are the challenges in modern web development?
+
+     -  Unified UX
+        * Application must have same experience across various devices.
+        * Mobile users must get access to everything.
+
+    -  Fluid UX
+        * User stays on one page and can get access to everything from the page.
+        * Technically it requires lot of AJAX.
+
+    - Loosely coupled & extensible
+        * It allows to build and plugin new features without disturbing existing.
+        * It should add new functionality without leading to catastrophic failures.
+
+    - It must follow all web principles
+        * Accessibility
+        * Internationalization
+        * Privacy
+        * Security
+
+5. What is solution?
+  - Better build SPA & PWA.
+  - Earlier we were building Multi Page Applications.
+
+6. How to build SPA?
+   - By using JavaScript, jQuery, React, Angular, Vue, Knockout JS, Back Bone JS etc.
+
+7. What are the issues with JavaScript & jQuery ?
+  - Lot of DOM interactions
+  - Lot of coding
+  - Heavy on application
+  - Slow in interactions etc..
+
+8. What are the features of React?
+
+
+
+View material

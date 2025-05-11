@@ -1,0 +1,169 @@
+CDN
+Download Library
+    - react
+    - react-dom
+    - babel/standalone
+Function Components
+JSX Rules
+
+Setup Bootstrap for project:
+
+1. Install bootstrap & icons library
+
+        >npm install  bootstrap  bootstrap-icons --save
+
+2. Link the following files to web page
+
+<link rel="stylesheet"  href="../node_modules/bootstrap/dist/css/bootstrap.css">
+<link rel="stylesheet"  href="../node_modules/bootstrap-icons/font/bootstrap-icons.css">
+<script src="../node_modules/bootstrap/dist/js/bootstrap.bundle.js"> </script>
+
+Ex:
+1. src/styles/netflix.css
+
+.bg-style {
+    height: 100vh;
+    background-image: linear-gradient(to bottom, rgb(94, 41, 41) 70%, white);
+}
+.brand-title {
+    color:red;
+    font-size: 40px;
+    font-family: Arial;
+    font-weight: bold;
+    text-shadow: 1px 1px 1px white;
+}
+main {
+    background-image: url("../../public/netflix-banner.jpg");
+    background-size: cover;
+    height: 400px;
+    margin: 5px 30px 30px 30px;
+    border-radius: 30px;
+}
+.main-shade {
+    height: 400px;
+    background-color: rgba(0,0,0,0.6);
+    border-radius: 30px;
+    border:1px solid white;
+    text-align: center;
+    color:white;
+    font-family: Arial;
+}
+.main-title {
+    font-size: 50px;
+    font-weight: bold;
+    padding-top: 30px;
+}
+.main-subtitle {
+    font-size: 20px;
+}
+.email, .btn-start {
+    font-size: 23px;
+    padding: 10px;
+    border-radius: 25px;
+    margin-right: 10px;
+    border:none;
+}
+.email::placeholder {
+    font-size: 16px;    
+}
+.btn-start {
+    background-color: red;
+    color:white;
+}
+
+2. public/nextflix.html
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Netflix - Movies Online</title>
+    <link rel="stylesheet" href="../node_modules/bootstrap-icons/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.css">
+    <link rel="stylesheet" href="../src/styles/netflix.css">
+    <script src="../node_modules/react/umd/react.development.js"></script>
+    <script src="../node_modules/react-dom/umd/react-dom.development.js"></script>
+    <script src="../node_modules/@babel/standalone/babel.js"></script>
+    <script src="../node_modules/bootstrap/dist/js/bootstrap.bundle.js"></script>
+    <script type="text/babel">
+
+        function NetflixIndex(){
+            return(
+                <div className="bg-style">
+                     <NetflixHeader/>
+                     <section>
+                         <NetflixMain />
+                     </section>
+                     <footer className="mt-4 bg-dark p-4 text-white text-center">
+                         <NetflixRegister/>
+                     </footer>
+                </div>
+            )
+        }
+
+
+        function NetflixHeader(){
+            return(
+                <header className="p-4 d-flex justify-content-between">
+                    <div> <span className="brand-title">NETFLIX</span> </div>
+                    <div className="d-flex justify-content-between">
+                       <div>
+                            <div className="input-group">
+                                <span className="bi bi-translate input-group-text"></span>
+                                <select className="form-select">
+                                    <option>Language</option>
+                                    <option>English</option>
+                                </select>
+                            </div>
+                       </div>
+                       <div>
+                         <button className="btn btn-light mx-2">Sign in</button>
+                       </div>
+                    </div>
+                </header>
+            )
+        }
+
+        function NetflixMain(){
+            return(
+                <main>
+                    <div className="main-shade">
+                       <div className="main-title"> Unlimited movies, TV <br />shows and more</div>
+                        <div className="main-subtitle"> Starts at ₹149. Cancel at any time. </div>
+                        <div className="pt-4">
+                            <NetflixRegister />
+                        </div>
+                    </div>
+                </main>
+            )
+        }
+
+        function NetflixRegister(){
+            return(
+                <form>
+                    <div className="pb-4">Ready to watch? Enter your email to create or restart your membership.</div>
+                    <div>
+                        <input type="email" placeholder="Email address" className="email" />
+                        <button className="btn-start"> Get Started <span className="bi bi-chevron-right"></span> </button>
+                    </div>
+                </form>
+            )
+        }
+
+        const root = ReactDOM.createRoot(document.getElementById("root"));
+        root.render(<NetflixIndex />);
+
+    </script>
+</head>
+<body>
+    <noscript>Please enable JavaScript on your browser</noscript>
+    <div id="root"></div>
+</body>
+</html>
+
+                        React App  - Vite
+
+
+
+View material

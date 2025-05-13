@@ -1,0 +1,210 @@
+Program01: Car Rental System
+=============================
+Table Name: Car_Info
+
+Columns:
+
+carId (INT)
+
+carModel (VARCHAR)
+
+carRatePerDay (DOUBLE)
+
+availabilityStatus (VARCHAR)
+
+Using Batch Processing, perform:
+
+.Insert available cars.
+
+.Update availabilityStatus of few cars to "Booked".
+
+.Delete all cars where carRatePerDay > ₹10,000 (Luxury segment moving to premium database).
+
+ANS 
+======
+package day8;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.Statement;
+
+public class Car_Insert_Batch {
+
+	public static void main(String[] args) {
+	       try {
+	            Connection con = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:orcl","MYDB","MYDB");
+	            Statement stm = con.createStatement();
+	            stm.addBatch("INSERT INTO CAR_INFO_42_12 VALUES(102,'TATA_NEXON',200,'BOOKEDE')");
+	            stm.addBatch("INSERT INTO CAR_INFO_42_12 VALUES(101,'TATA_SAFARI',1200,'BOOKEDE')"); //"
+
+	            int [] k = stm.executeBatch();
+	            for (int i=0;i<k.length;i++){
+	                System.out.println("Data insert...");
+	            }
+	            
+	            stm.addBatch("update CAR_INFO_42_12 set AVILABILITYSTATUS ='Not Booked' where CARID =101");
+	            int [] k1 = stm.executeBatch();
+	            for (int i=0;i<k1.length;i++){
+	                System.out.println("Data Updated...");
+	            }
+	            //
+	            
+	            stm.addBatch("delete CAR_INFO_42_12 where carid = 101");
+	            int [] k2 = stm.executeBatch();
+	            for (int i=0;i<k2.length;i++){
+	                System.out.println("Data Deleted...");
+	            }
+	            stm.clearBatch();
+	            con.close();
+	        } catch (Exception e) {
+	            e.printStackTrace();
+	        }
+	}
+
+}
+
+
+Program02: Product Discount Campaign
+Table Name: Product_Info
+
+Columns:
+
+productId (INT)
+
+productName (VARCHAR)
+
+productPrice (DOUBLE)
+
+discountPercent (DOUBLE)
+
+Using Batch Processing, perform:
+
+Insert products into table.
+
+Apply discount to all products by updating price:
+newPrice = price - (price × discountPercent/100)
+
+Delete products whose price after discount falls below ₹100.
+
+productId number(3),productName VARCHAR2(15),productPrice number(8,2),discountPercent number(2)
+
+insert into Product_Info_42_12 values(101,'laptop',53000,12)
+insert into Product_Info_42_12 values(102,'mobile',93000,5)
+
+delete Product_Info_42_12 where productId = 101
+
+update Product_Info_42_12 set productPrice =(productPrice-5/100) where productId =101
+
+Question 3: Employee Salary Update
+==================================
+📝 Problem Statement:
+----------------------
+Develop a Java JDBC program to manage employee salaries:
+
+.Connect to a Oracle database.
+
+.Disable auto-commit.
+
+Create a table employees:
+-------------------------
+.emp_id (INT)
+
+.emp_name (VARCHAR)
+
+.salary (DOUBLE)
+
+During the transaction:
+------------------------
+Insert the following employees:
+
+Employee 1: ID=1, Name="Michael", Salary=45000.00
+
+Employee 2: ID=2, Name="Sarah", Salary=55000.00
+
+Then:
+
+Increase salary of all employees by ₹5000.
+
+Finally:
+
+If any employee’s final salary exceeds ₹60000, rollback and print:
+➔ "Salary cap exceeded! Transaction rolled back."
+
+Otherwise, commit and print:
+➔ "Salary updates committed successfully."
+
+
+import java.sql.*;
+
+public class EmployeeSalaryUpdate {
+    public static void main(String[] args) {
+        Connection con = null;
+        Statement stmt = null;
+
+        try {
+            // Load Oracle JDBC Driver
+            Class.forName("oracle.jdbc.driver.OracleDriver");
+
+            // Connect to Oracle Database (update URL, user, password as needed)
+            con = DriverManager.getConnection(
+                "jdbc:oracle:thin:@localhost:1521:xe", "username", "password"
+            );
+
+            // Disable auto-commit
+            con.setAutoCommit(false);
+            stmt = con.createStatement();
+
+            // Create employees table
+            String createTable = "CREATE TABLE employees (" +
+                                 "emp_id INT PRIMARY KEY, " +
+                                 "emp_name VARCHAR2(50), " +
+                                 "salary DOUBLE PRECISION)";
+            stmt.executeUpdate(createTable);
+
+            // Insert employee records
+            stmt.executeUpdate("INSERT INTO employees VALUES (1, 'Michael', 45000)");
+            stmt.executeUpdate("INSERT INTO employees VALUES (2, 'Sarah', 55000)");
+
+            // Increase salary by ₹5000 for all employees
+            stmt.executeUpdate("UPDATE employees SET salary = salary + 5000");
+
+            // Check for salary cap violation
+            ResultSet rs = stmt.executeQuery("SELECT salary FROM employees");
+            boolean capExceeded = false;
+
+            while (rs.next()) {
+                if (rs.getDouble("salary") > 60000) {
+                    capExceeded = true;
+                    break;
+                }
+            }
+
+            // Conditional commit or rollback
+            if (capExceeded) {
+                con.rollback();
+                System.out.println("Salary cap exceeded! Transaction rolled back.");
+            } else {
+                con.commit();
+                System.out.println("Salary updates committed successfully.");
+            }
+
+        } catch (SQLException se) {
+            try {
+                if (con != null) con.rollback();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+            se.printStackTrace();
+        } catch (ClassNotFoundException ce) {
+            ce.printStackTrace();
+        } finally {
+            // Clean-up
+            try {
+                if (stmt != null) stmt.close();
+                if (con != null) con.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+}

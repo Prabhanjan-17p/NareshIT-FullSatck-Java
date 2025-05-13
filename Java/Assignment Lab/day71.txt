@@ -1,0 +1,180 @@
+Program-1
+----------
+A class Employee is given to you. It contains the following:
+Instance Variables: 
+name:String  private  
+employeeId: int  private
+salary: double private
+Methods: set and get methods for all.
+Default constructor AND  All-fields constructor
+
+An Enum called ManagerType is given to you. It defines the two types of managers, HR and Sales
+
+
+Create two sub classes of Employee called Manager and Clerk. 
+The details of each class is given below.
+For class Manager:
+Instance Variables:
+type: enum ManagerType private
+
+
+Methods: set and get methods for type. 
+Default constructor AND  All-fields constructor
+
+Override :
+setSalary(): If the type is HR manager, add 10000 to the given salary. 
+and for a sales manager, add 5000 to the given salary.
+
+
+For class Clerk:
+Instance Variables: 
+speed: int
+accuracy:int
+
+Methods: set and get methods for speed and accuracy.
+Default constructor AND All-fields constructor.
+
+Override:
+setSalary(): If the clerk has a typing speed of greater than 70 AND accuracy greater than 80 then add 1000 to the salary. Otherwise set the same salary. 
+Note that any change in speed and accuracy(using setSpeed() or setAccuracy() ) should result in 
+recalculation of salary, as the Trainee may qualify for the extra amount. 
+HOWEVER, when once the extra 1000 is given for extra speed/ and accuracy it should not be given again.
+For example, if a Clerk's speed is already 85 and accuracy is already 75, and the speed is changed to 90, 
+then the extra amount should not be added again. This extra amount should be credited to salary only the first time the Clerk qualifies for the amount.
+Provide proper constructors for all classes.
+A class EmployeeTester is given to you with a main method. Use this class to test your solution's classes and methods.
+-----------------------------------------------------------------------
+package com.nareshIT.day71;
+
+enum ManagerType {
+    HR, SALES
+}
+
+public class Employee {
+    private String name;
+    private int employeeId;
+    private double salary;
+
+    public Employee(String name, int employeeId, double salary) {
+        this.name = name;
+        this.employeeId = employeeId;
+        this.salary = salary;
+    }
+
+    public Employee() {}
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public int getEmployeeId() {
+        return employeeId;
+    }
+
+    public void setEmployeeId(int employeeId) {
+        this.employeeId = employeeId;
+    }
+
+    public double getSalary() {
+        return salary;
+    }
+
+    public void setSalary(double salary) {
+        this.salary = salary;
+    }
+}
+
+package com.nareshIT.day71;
+
+public class Manager extends Employee {
+    private ManagerType type;
+
+    public ManagerType getType() {
+        return type;
+    }
+
+    public void setType(ManagerType type) {
+        this.type = type;
+    }
+
+    public Manager(String name, int employeeId, double salary, ManagerType type) {
+        super(name, employeeId, salary);
+        this.type = type;
+        setSalary(salary);
+    }
+
+    public Manager() {}
+
+    @Override
+    public void setSalary(double salary) {
+        if (type == ManagerType.HR) {
+            super.setSalary(salary + 10000);
+        } else {
+            super.setSalary(salary + 5000);
+        }
+    }
+}
+
+package com.nareshIT.day71;
+
+public class Clerk extends Employee {
+    private int speed;
+    private int accuracy;
+
+    public int getSpeed() {
+        return speed;
+    }
+
+    public void setSpeed(int speed) {
+        this.speed = speed;
+        reSetSal();
+    }
+
+    public int getAccuracy() {
+        return accuracy;
+    }
+
+    public void setAccuracy(int accuracy) {
+        this.accuracy = accuracy;
+        reSetSal();
+    }
+
+    public Clerk(String name, int employeeId, double salary, int speed, int accuracy) {
+        super(name, employeeId, salary);
+        this.speed = speed;
+        this.accuracy = accuracy;
+        reSetSal();
+    }
+
+    public Clerk() {}
+
+    @Override
+    public void setSalary(double salary) {
+        super.setSalary(salary);
+        reSetSal();  
+    }
+
+    private void reSetSal() {
+        if (speed > 70 && accuracy > 80) {
+            super.setSalary(getSalary() + 1000);
+        }
+    }
+}
+
+
+package com.nareshIT.day71;
+
+public class EmployeeTester {
+    public static void main(String[] args) {
+        Manager miller = new Manager("Miller", 1, 15000, ManagerType.HR);
+        Clerk jhon = new Clerk("Jhon", 2, 5000, 77, 85);
+
+        System.out.println("Manager Salary: " + miller.getSalary());
+        System.out.println("Clerk Salary: " + jhon.getSalary());     
+    }
+}
+

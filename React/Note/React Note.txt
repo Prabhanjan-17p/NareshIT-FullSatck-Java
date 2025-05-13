@@ -87,6 +87,117 @@ Features of React:
 	- Virtual DOM is not always satisfying.
 
 
+*** FAQ's:
+1. Is there any difference between React & React JS?
+	- Now. React can be used with JavaScript & TypeScript.
+
+NOTE - React latest is 19x [beta].
+	   React LTS is 18x [GA].
+	   React upto 18x are different in library and approach.
+	   React 18x version is a complete re-write of React.
+	   React is backward compatible.
+			-backward compatible(Means We can used old version to bulid your app)
+			-Side by side execution(Means We can used old and new version to make a app)
+	   
+
+*** React in existing Web-Application
+1. Install Node JS on your PC, make sure that the version of Node is 14x above.
+	- Node JS is an open source JavaScript runtime.
+	- Developers require Node JS to build Web Apps, Servers, CLI tools & Scripts.
+	- Install Node JS gets a Package Manager. [ NPM ]
+	- After install check the version from command prompt
+		> node -v
+		> npm -v
+2. Download and Install Visual Studio Code Editor.
+3. Install plugins for VS code
+	- Live Server
+	- vs-code icon
+	- IntelliSense for CSS class name in HTML
+	- Live Preview 
+4. Create a new Web-Application
+	- Create a new folder for application.
+	- Create a new folder for application
+	D:\NareshIt\Fullstack-Java-NareshIT\React\web-app
+	- Open folder in VS code
+	- Setup traditional web application development environment
+	a) Setup package.json
+		> npm jnjt -y [ package.json ]
+	b) Add "README.md"
+	c) Add folders
+		- public(all static resource)
+		- src(all dynamic resource)
+
+
+Work With Fetch API:
+
+
+Issues with Fetch:
+- It returns data in binary
+- It requires explicit conversions
+- It not good in error handling
+- You can't cancel the request.
+- XSRF , XSS, CORS issues.		
+
+
+Axios
+- It is a 3rd party library for React used to make Ajax calls.
+- It is good in error handling.
+- It uses async techniques.
+- It handles issues like CORS, XSRF, XSS etc.
+- It allows to cancel requests.
+- It uses virtual DOM.
+- It can handle multiple requests simultaneously at the same time.
+- can transform data into native format.
+- It can transform JSON.
+- Explicit conversions not required.
+
+www.npmjs.com
+1. Install axios for your project
+> npm install axios --save
+2. Import axios into component
+import axios from "axios";      // It is a default export
+3. Configure axios request. It is promise based hence it uses
+	a) then()
+	b) catch()
+	c) finally()
+
+axlos.get()
+axlos.post()
+axlos.put()
+axlos.patch()
+axios.delete()
+for fetching
+for saving
+for updating
+for partial update
+for removing etc.
+
+Syntax:
+.then(function(response){
+// returns response object
+.catch(function(){
+// returns error object
+})
+.finally(function(){
+	//executes always
+})
+
+- Axios response comprises of various details like
+a) data
+b) headers[Content Type]
+c) statusCode
+d) statusText
+e) read State etc..
+
+Binding Date Type
+- JavaScript date is configured by using Data Constructor.
+	var now = new Date(); 		// loads current date & time
+	var mdf = new Date("yy-mm-dd hrs:min:sec.milliSec"); 
+
+- React date is configure by using date constructor.
+- If you want to initialize date then avoid "new" dynamic memory allocation.
+Syntax:
+const [today, setTQOay] = useState(Date());
 
 
 
@@ -94,6 +205,11 @@ Features of React:
 
 
 
+
+
+
+
+-----------------------------------------------------
 State in React App
 	- Web uses "HTTP" as protocol.
 	- HTTP is a state less protocol.
@@ -337,7 +453,70 @@ const [data ] = useState( [ "A", "B", "C" ] );
 </select>
 
 
+*** React Ajax Techniques
+===========================
+	1. XMLHttpRequest object
+		- It can handle AJAX request from browser.
+		- It is JavaScript browser window object.
 
+	Step-1: Configure XMLHttpRequest object
+		let http = new XMLHttpRequest();
+
+	Step-2: Configure the request method & URL
+		httpopen("method", "url", "as nc:true/false")
+		method : GET, POST, PUT, DELETE
+
+	Step-3: Send the request
+		httpsend();
+
+	Step-4: Execute the request by using "onreadystatechange" event
+		http.onreadystatechange = function(){
+
+		}
+
+	Setp-5: Verify the ready state
+		1 Initial
+		2 Success
+		3 Complete
+		4 Ready
+		On ready you can get the response and implement in component
+		if(http.readState === 4){
+
+		}
+	
+	step—6: Access the response
+		http.responseText
+		http.responseHTML		
+		http.responseXML		
+
+
+Enable Bootstrap for your React project:
+	1. Open terminal in your project workspace
+	2. Install bootstrap & icons
+		> npm install bootstrap bootstrap-icons
+	3. Go to "main.•sx" and import CSS
+		import '../node modules/bootstrap/dist/css/bootstrap.css';
+		import '../node modules/bootstrap-icons/font/bootstrap-icons.css';
+
+
+EX :-
+1. Add a new file into public folder by name
+	"product.json"
+2. Go to "src/components"
+	"ajax-demo.jsx"
+3. Go to main.•sx and set <AjaxDemo> in startup
+
+Issues with XMLHttpRequest:
+	- It is not async by default.
+	- You have to make it async explicitly.		
+	- It returns response in XML or Text.
+	- Hence explicit parsing techniques are required.
+	- It is not good in error handling.
+	- It is not good in security. [XSS, XSRF]
+			xss - Cross Site Scripting Attack
+			XSRF - Cross Site Request Forgers
+
+Solution: JavaScript Fetch API			
 
 
 
@@ -361,11 +540,21 @@ Day-6 https://youtu.be/zfdbuBiAHyM
 Day-7 https://youtu.be/YtDFA_5cfKY
 Day-8 https://youtu.be/3zmK41JP5zU
 Day-9 https://youtu.be/qlqASkO2tyI
+Day-10 https://youtu.be/NQ1C2cNSWaI
 -----------------------------
 
 
 
+------------------------------------------------------------------------------------------------------
+React Js @ 7:30 AM (IST) by Mr. Sudhakar Sharma_New_Link [30-04-2025]
 
+Joining URL: https://us06web.zoom.us/j/89710056976?pwd=pVaWxn6PZ5wp4cJdz1jwx8ZooXPrIk.1
+
+Meeting Link : https://zoom.us/j/89710056976
+Password: 228247
+Admin: Mr. Areef
+From 12th May 2025 MONDAY ONWARDS
+-------------------------------------------------------------------------------------------------------
 
 
 

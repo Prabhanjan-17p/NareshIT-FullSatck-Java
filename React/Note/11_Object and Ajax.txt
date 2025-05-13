@@ -1,0 +1,223 @@
+Object Type
+- Object is same as in JavaScript.
+- All object manipulations are same.
+
+Syntax:
+     var obj = { key: value }
+
+
+1. Reading all keys                Object.keys(),  for..in
+2. Read specific key value        obj.key ,  obj[key]        => outside object
+                            this.key                => inside object
+
+3. Remove any key                delete operator
+
+4. Find any key                in  operator
+
+Syntax:
+    const  [ obj ] = useState( { key: value } );
+
+    <p> { obj.key } </p>
+
+Ex:
+data-binding.jsx
+
+import { useState } from "react";
+import './data-binding.css';
+
+export function DataBinding(){
+
+   
+    const [product] = useState({Name:"Samsung TV", Price: 50000, Stock:true, Cities:['Delhi', 'Hyd'], Rating:{Rate:4.2, Count:500}});
+   
+
+    return(
+        <div>
+            <h3>Product Details</h3>
+            <dl>
+                <dt>Name</dt>
+                <dd>{product.Name}</dd>
+                <dt>Price</dt>
+                <dd>{product.Price.toLocaleString('en-in',{style:'currency', currency:'INR'})}</dd>
+                <dt>Stock</dt>
+                <dd>{(product.Stock===true)?"Available":"Out of Stock"}</dd>
+                <dt>Cities</dt>
+                <dd>
+                    <ul>
+                        {
+                            product.Cities.map((city, index)=> <li key={index}>{city}</li>)
+                        }
+                    </ul>
+                </dd>
+                <dt>Rating</dt>
+                <dd>{product.Rating.Rate} [ {product.Rating.Count} ]</dd>
+            </dl>
+        </div>
+    )
+}
+
+data-binding.css
+
+dt {
+    font-weight: bold;
+}
+dl {
+    display: grid;
+    grid-template-columns: 3fr 9fr;
+}
+
+                         React Ajax Techniques
+
+1. XMLHttpRequest  object
+
+- It can handle AJAX request from browser.
+- It is JavaScript browser window object.
+
+Step-1: Configure XMLHttpRequest  object
+
+      let  http = new XMLHttpRequest();
+
+
+Step-2: Configure the request method & URL
+
+       http.open("method", "url", "async:true/false")
+
+       method        : GET, POST, PUT, DELETE
+
+Step-3:  Send the request
+
+        http.send();
+
+Step-4:  Execute the request  by using  "onreadystatechange"  event
+
+        http.onreadystatechange = function() {
+
+        }
+
+Setp-5: Verify the ready state
+   
+        1    Initial
+        2    Success
+        3    Complete
+        4    Ready
+
+         On ready you can get the response and implement in component
+
+              if(http.readyState===4)
+          {
+
+          }
+
+Step-6: Access the response
+
+         http.responseText
+         http.responseHTML
+         http.responseXML
+
+
+Enable Bootstrap for your React project:
+
+1. Open terminal in your project workspace
+
+2. Install bootstrap & icons
+
+    > npm   install  bootstrap  bootstrap-icons
+
+3. Go to "main.jsx" and import CSS
+
+    import   '../node_modules/bootstrap/dist/css/bootstrap.css';
+    import   '../node_modules/bootstrap-icons/font/bootstrap-icons.css';
+
+Ex:
+1. Add a new file into public folder by name  
+
+            "product.json"
+
+{
+    "title": "Apple iPhone 16 (White, 128 GB)",
+    "price": 69999,
+    "rating": {"rate":4.6, "ratings":13498, "reviews":500},
+    "image": "iphone-white.jpg",
+    "offers": [
+        "Bank Offer5% Unlimited Cashback on Flipkart Axis Bank Credit Card",
+        "Special PriceGet extra ₹9901 off (price inclusive of cashback/coupon)T&C",
+        "Bank Offer5% Unlimited Cashback on Flipkart Axis Bank Credit Card",
+        "Special PriceGet extra ₹9901 off (price inclusive of cashback/coupon)T&C"
+    ]
+}
+
+
+2. Go to "src/components"
+
+ajax-demo.jsx
+
+import { useEffect, useState } from "react"
+
+export function AjaxDemo(){
+
+    const [product, setProduct] = useState({title:'', price:0, rating:{rate:0, ratings:0, reviews:0}, image:'', offers:[]});
+
+    function GetProduct(){
+
+          let http = new XMLHttpRequest();
+          http.open('GET', 'product.json', true);
+          http.send();
+
+          http.onreadystatechange = function(){
+
+               if(http.readyState===4){
+                    setProduct(JSON.parse(http.responseText));
+               }
+
+          }
+
+    }
+
+    useEffect(()=>{
+        GetProduct();
+    },[])
+
+
+    return(
+        <div className="container-fluid">
+            <div className="row mt-4">
+                <div className="col-3">
+                    <img src={product.image} width='100%' />
+                </div>
+                <div className="col-9">
+                    <div className="fs-4 fw-bold">{product.title}</div>
+                    <div className="mt-2">
+                        <span className="badge bg-success text-white rounded">{product.rating.rate} <span className="bi bi-star-fill"></span> </span>
+                        <span className="mx-2 text-secondary fs-6 fw-bold">{product.rating.ratings.toLocaleString()} ratings & {product.rating.reviews} reviews</span>
+                    </div>
+                    <div className="mt-4">
+                        <div className="fs-1 fw-bold">&#8377; {product.price.toLocaleString('en-in')}</div>
+                    </div>
+                    <div className="mt-3">
+                        <ul className="list-unstyled">
+                            {
+                                product.offers.map((offer,i)=><li className="bi bi-tag-fill text-success my-2" key={i}> <span className="text-secondary">{offer}</span></li>)
+                            }
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    )
+}
+
+3. Go to main.jsx and set  <AjaxDemo> in startup
+
+Issues with XMLHttpRequest:
+- It is not async by default.
+- You have to make it async explicitly.
+- It returns response in XML or Text.
+- Hence explicit parsing techniques are required.
+- It is not good in error handling.
+- It is not good in security. [XSS, XSRF]
+ 
+   XSS         - Cross Site Scripting Attack
+   XSRF        - Cross Site Request Forgery
+
+   
+Solution:    JavaScript Fetch API

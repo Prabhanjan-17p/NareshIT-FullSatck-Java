@@ -11,3 +11,17 @@
 	- It is a copy of actual DOM.
 	- It is in the memory that update and renders output to client.
 	- However it have to update actual DOM for final rendering.
+
+*** FAQ's:
+1. Is there any difference between React & React JS?
+	- Now. React can be used with JavaScript & TypeScript.
+
+NOTE - React latest is 19x [beta].
+	   React LTS is 18x [GA].
+	   React upto 18x are different in library and approach.
+	   React 18x version is a complete re-write of React.
+	   React is backward compatible.
+			-backward compatible(Means We can used old version to bulid your app)
+			-Side by side execution(Means We can used old and new version to make a app)
+	   
+	

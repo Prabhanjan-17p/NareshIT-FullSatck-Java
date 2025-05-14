@@ -1,0 +1,610 @@
+Que 1 : Reading And Printing Array.
+====================================
+-> Write a java program to create an new array using new keyword and store the N elements into the array using for loop. 
+   and print the array elements using following ways:
+ 
+   1) for loop
+   2) for each loop 
+   3) Arrays.toString() method.
+
+-> Follow the below given requirments To devlop this program .....
+
+
+STEP 1 : Create ReadAndPrintArray class.
+
+STEP 2 : In ReadAndPrintArray class create 3 methods like below
+
+         -> public static void usingForLoop(int arr[]) : this method will print array values using for loop
+
+         -> public static void usingForEachLoop(int arr[]) : this method will print array values using for_each loop
+
+         -> public static void usingArraysToString(int arr[]) : this method will print array values using Arrays.toString() method.
+
+         
+STEP 3 : Create main method in same to test above 3 methods. 
+         in main method perform following operations :
+
+         1) Read the N size of array from user and based on N size create the new array using new keyword.
+
+         2) Read N elements from user and store into the array using loop.
+
+         3) Call above 3 methods by passing array object and see the working of for loop, for_each loop and Arrays.toString() method. 
+
+
+Conditions :
+------------
+         if N<0 then print message "Error...Negative size"
+         if N==0 then print message "Error...Array size is 0"
+         if array == null then print "Error...Array object is null"
+
+
+TEST CASE 1 :
+-------------
+sample input :  N = -5
+sample output : Error...Negative size
+
+
+TEST CASE 2 :
+-------------
+sample input :  N = 0
+sample output : Error...Array size is 0
+
+
+TEST CASE 3 :
+-------------
+sample input :  N = 5
+                int arr[N];
+                arr[]=null;
+
+sample output : Error...Array object is null
+
+
+TEST CASE 4 :
+-------------
+sample input :  N = 5
+                int arr[N];
+                arr[]= {1,2,3,4,5} 
+
+sample output : Using for loop  : 1 2 3 4 5
+                Using for each  : 1 2 3 4 5
+                Using Arrays.toString() : [1, 2, 3, 4, 5] 
+ 
+
+ANS 
+--------------
+package com.nareshIT.day73;
+
+
+import java.util.Arrays;
+import java.util.Scanner;
+
+public class ReadAndPrintArray {
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Enter the size of array: ");
+        int size = sc.nextByte();
+
+        int [] nums ;
+
+        if (size < 0){
+            System.out.println("Error...Negative size");
+        } else if (size == 0) {
+            System.out.println("Error...Negative size");
+        }else{
+            nums = new int[size];
+            for (int i = 0; i < nums.length; i++) {
+                System.out.println("Enter the value of "+(i+1)+" Position :");
+                int n = sc.nextInt();
+                nums[i] =n;
+            }
+            usingArraysToString(nums);
+            usingForLoop(nums);
+            usingForEachLoop(nums);
+        }
+
+
+    }
+    public static void usingForLoop(int arr[]) {
+        System.out.println("usingForLoop");
+        if (arr==null){
+            System.out.println("Error...Array object is null");
+        }else {
+            for (int i = 0; i < arr.length; i++) {
+                System.out.print(arr[i]+" ");
+            }
+            System.out.println("");
+        }
+
+    } //: this method will print array values using for loop
+
+    public static void usingForEachLoop(int arr[]){
+        System.out.println("usingForEachLoop");
+        if (arr==null){
+            System.out.println("Error...Array object is null");
+        }else {
+            for(int val : arr){
+                System.out.print(val+" ");
+            }
+            System.out.println("");
+        }
+    }// : this method will print array values using for_each loop
+
+    public static void usingArraysToString(int arr[]){
+        System.out.println("usingArraysToString");
+        if (arr==null){
+            System.out.println("Error...Array object is null");
+        }else {
+            System.out.println(Arrays.toString(arr));
+        }
+    }// : this method will print array values using Arrays.toString() method.
+
+}
+
+
+#################################################################
+
+
+Que 2 : Reverse Of Array
+============================
+
+-> Write a java program to print the array in reverse order.
+
+-> Example:
+
+   Input : {1,10,3,5,4};
+
+   Output : 4,5,3,10,1
+
+-> Follow the below given requirments To devlop this program .....
+
+
+STEP 1 : Create ReverseArray class.
+
+STEP 2 : In ReverseArray class create one user defined methods like below
+        
+         -> public static void reverseArray(int arr[]) : this method will print array in reverse order.
+
+STEP 3 : Create main method in same class and follow below steps to perform the operation.
+
+         1) Read the N size of array from user and based on N size create the new array using new keyword.
+
+         2) Read N elements from user and store into the array using loop.
+
+         3) Call above reverseArray() methods by passing array object and print the array.
+
+
+Conditions :
+------------
+         if N<0 then print message "Error...Negative size"
+         if N==0 then print message "Error...Array size is 0"
+         if array == null then print "Error...Array object is null"
+
+
+TEST CASE 1 :
+-------------
+sample input :  N = -5
+sample output : Error...Negative size
+
+
+TEST CASE 2 :
+-------------
+sample input :  N = 0
+sample output : Error...Array size is 0
+
+
+TEST CASE 3 :
+-------------
+sample input :  N = 5
+                int arr[N];
+                arr[]=null;
+
+sample output : Error...Array object is null
+
+
+TEST CASE 4 :
+-------------
+sample input :  N = 5
+                int arr[N];
+                arr[]= {1,2,3,4,5} 
+
+sample output : 5 4 3 2 1  
+ 
+ANS
+----------
+
+import java.util.Arrays;
+import java.util.Scanner;
+
+public class ReverseArray {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Enter the size of array: ");
+        int size = sc.nextByte();
+
+        int [] nums ;
+
+        if (size < 0){
+            System.out.println("Error...Negative size");
+        } else if (size == 0) {
+            System.out.println("Error...Negative size");
+        }else{
+            nums = new int[size];
+            for (int i = 0; i < nums.length; i++) {
+                System.out.println("Enter the value of "+(i+1)+" Position :");
+                int n = sc.nextInt();
+                nums[i] =n;
+            }
+            reverseArray(nums);
+        }
+
+
+    }
+    public static void reverseArray(int arr[]){
+        System.out.println("Original Array is : "+ Arrays.toString(arr));
+        if (arr == null){
+            System.out.println("Error...Array object is null");
+        }else {
+            System.out.print("Reverse Array is : ");
+            for (int i = arr.length-1; i >= 0 ; i--) {
+                System.out.print(arr[i]+" ");
+            }
+        }
+    }// : this method will print array in reverse order.
+}
+
+
+#################################################################
+
+
+Que 3 : Sum Of Array Elements
+==============================
+
+-> Write a java program to print sum of all elements of given array.
+
+-> Example : 
+
+   Input : {1,2,3,4,5};
+
+   Output : 15
+
+-> Follow the below given requirments To devlop this program .....
+
+
+STEP 1 : Create SumOfArray class.
+
+STEP 2 : In SumOfArray class create one user defined methods like below
+        
+         -> public static int sumOfArray(int arr[]) : this method will return sum of array elements.
+
+STEP 3 : Create main method in same class and follow below steps to perform the operation.
+
+         1) Read the N size of array from user and based on N size create the new array using new keyword.
+
+         2) Read N elements from user and store into the array using loop.
+
+         3) Call above sumOfArray() methods by passing array object and print the sum.
+
+
+Conditions :
+------------
+         if N<0 then print message "Error...Negative size"
+         if N==0 then print message "Error...Array size is 0"
+         if array == null then print "Error...Array object is null"
+
+
+TEST CASE 1 :
+-------------
+sample input :  N = -5
+sample output : Error...Negative size
+
+
+TEST CASE 2 :
+-------------
+sample input :  N = 0
+sample output : Error...Array size is 0
+
+
+TEST CASE 3 :
+-------------
+sample input :  N = 5
+                int arr[N];
+                arr[]=null;
+
+sample output : Error...Array object is null
+
+
+TEST CASE 4 :
+-------------
+sample input :  N = 5
+                int arr[N];
+                arr[]= {1,2,3,4,5} 
+
+sample output : 15
+
+
+ANS 
+-----
+package com.nareshIT.day73;
+
+
+import java.util.Scanner;
+
+public class SumOfArray {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Enter the size of array: ");
+        int size = sc.nextByte();
+
+        int [] nums ;
+
+        if (size < 0){
+            System.out.println("Error...Negative size");
+        } else if (size == 0) {
+            System.out.println("Error...Negative size");
+        }else{
+            nums = new int[size];
+            for (int i = 0; i < nums.length; i++) {
+                System.out.println("Enter the value of "+(i+1)+" Position :");
+                int n = sc.nextInt();
+                nums[i] =n;
+            }
+           System.out.println("Sum = "+sumOfArray(nums));
+        }
+
+
+    }
+    public static int sumOfArray(int arr[]){
+        int sum =0;
+        if (arr==null){
+            System.out.println("Error...Array object is null");
+            System.exit(0);
+        }else {
+            for (int x : arr){
+                sum +=x;
+            }
+        }
+        return sum;
+    };// : this method will return sum of array elements.
+}
+
+
+#################################################################
+
+
+Que 4 : Find Prime Number From Array
+====================================
+
+-> Write a java program to print all the prime number from array.
+
+-> Example : 
+
+   Input : {1,2,3,4,5,6,7,11}
+
+   Ouput : 2,3,5,7,11
+
+-> Follow the below given requirments To devlop this program .....
+
+
+STEP 1 : Create PrimeNumbersOfArray class.
+
+STEP 2 : In PrimeNumbersOfArray class create one user defined methods like below
+        
+         -> public static boolean isPrime(int n) : this method will check given element is prime or not and will return true/false.
+
+STEP 3 : Create main method in same class and follow below steps to perform the operation.
+
+         1) Read the N size of array from user and based on N size create the new array using new keyword.
+
+         2) Read N elements from user and store into the array using loop.
+
+         3) iterate one by one elements from array using loop and call the isPrime() method to check elements are prime or not. 
+             if elements is prime then only print that elements.
+
+Conditions :
+------------
+         if N<0 then print message "Error...Negative size"
+         if N==0 then print message "Error...Array size is 0"
+
+
+TEST CASE 1 :
+-------------
+sample input :  N = -5
+sample output : Error...Negative size
+
+
+TEST CASE 2 :
+-------------
+sample input :  N = 0
+sample output : Error...Array size is 0
+
+
+TEST CASE 3 :
+-------------
+sample input :  N = 11
+                int arr[N];
+                arr[]= {1,2,3,4,5,6,7,8,9,10,11} 
+
+sample output : 2 3 5 7 11
+
+ANS 
+---------
+package com.nareshIT.day73;
+
+import java.util.Scanner;
+
+public class PrimeNumbersOfArray {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Enter the size of array: ");
+        int size = sc.nextByte();
+
+        int [] nums ;
+
+        if (size < 0){
+            System.out.println("Error...Negative size");
+        } else if (size == 0) {
+            System.out.println("Error...Negative size");
+        }else{
+            nums = new int[size];
+            for (int i = 0; i < nums.length; i++) {
+                System.out.println("Enter the value of "+(i+1)+" Position :");
+                int n = sc.nextInt();
+                nums[i] =n;
+            }
+            for (int i : nums){
+                if (isPrime(i)){
+                    System.out.println(i);
+                }
+            }
+        }
+ 
+    }
+
+    public static boolean isPrime(int num){
+        boolean isPrime = true;
+        if (num < 2) {
+            isPrime = false;
+        } else {
+            for (int i = 2; i <= Math.sqrt(num); i++) {
+                if (num % i == 0) {
+                    isPrime = false;
+                    break;
+                }
+            }
+        }
+        return isPrime;
+    }// : this method will check given element is prime or not and will return true/false.
+}
+
+
+
+#################################################################
+
+
+Que 5 : Sorting Array Using User-Defined Logic
+==============================================
+
+-> Write a java program to sort the array in Ascending order and Descending order.
+
+-> Example : 
+
+   Input : {5,2,1,4,3};
+  
+   Output : 
+         Ascending Order  : [1,2,3,4,5]
+         Descending Order : [5,4,3,2,1]
+
+-> Follow the below given requirments To devlop this program .....
+
+
+STEP 1 : Create SortArray class.
+
+STEP 2 : In SortArray class create 2 user defined methods like below
+        
+         -> public static int[] ascendingSort(int arr[]) : this method will return sorted array object in ascending order.
+
+         -> public static int[] descendingSort(int arr[]) : this method will return sorted array object in descending order.
+
+STEP 3 : Create main method in same class and follow below steps to perform the operation.
+
+         1) Read the N size of array from user and based on N size create the new array using new keyword.
+
+         2) Read N elements from user and store into the array using loop.
+
+         3) Call above both methods by passing array object. and also stored objects into some array variable which is return by both methods like below.
+            
+             int result1 [] = ascendingSort(arr);
+             int result2 [] = descendingSort(arr);
+          
+         4) print the result1 and result2 object.
+             
+
+Conditions :
+------------
+         if N<0 then print message "Error...Negative size"
+         if N==0 then print message "Error...Array size is 0"
+         if array == null then print "Error...Array object is null"
+
+
+TEST CASE 1 :
+-------------
+sample input :  N = -5
+sample output : Error...Negative size
+
+
+TEST CASE 2 :
+-------------
+sample input :  N = 0
+sample output : Error...Array size is 0
+
+
+TEST CASE 3 :
+-------------
+sample input :  N = 5
+                int arr[N];
+                arr=null;
+
+sample output : Error...Array object is null
+
+
+TEST CASE 4 :
+-------------
+sample input :  N = 5
+                int arr[N];
+                arr[]= {10,5,6,1,20} 
+
+sample output :  Ascending order = 1 5 6 10 20
+                 Descending order = 20 10 6 5 1
+
+ANS 
+--------                 
+package com.nareshIT.day73;
+
+import java.util.Arrays;
+
+public class SortArray {
+    public static void main(String[] args) {
+        int x [] = {5,2,21,4,32};
+        System.out.println("Original Array : "+Arrays.toString(x));
+        int ase[] =ascendingSort(x);
+        System.out.println("Ascending Order  : "+Arrays.toString(ase));
+        int dse[] =descendingSort(x);
+        System.out.println("Descending Order :"+Arrays.toString(dse));
+    }
+    public static int[] ascendingSort(int arr[]) {
+        int asc[] = new int[arr.length];
+        for (int j = 0; j < asc.length; j++) {
+            asc[j] = arr[j];
+        }
+        for (int j = 0; j < asc.length; j++) {
+            for (int k = j; k < asc.length; k++) {
+                if (asc[j] > asc[k]){
+                    int x = asc[k];
+                    asc[k] = asc[j];
+                    asc[j] = x;
+                }
+            }
+        }
+        return  asc;
+    }//: this method will return sorted array object in ascending order.
+    public static int[] descendingSort(int arr[]) {
+        int asc[] = new int[arr.length];
+        for (int j = 0; j < asc.length; j++) {
+            asc[j] = arr[j];
+        }
+        for (int j = 0; j < asc.length; j++) {
+            for (int k = j; k < asc.length; k++) {
+                if (asc[j] < asc[k]){
+                    int x = asc[k];
+                    asc[k] = asc[j];
+                    asc[j] = x;
+                }
+            }
+        }
+        return  asc;
+    }//: this method will return sorted array object in descending order.
+
+}
+
+#################################################################

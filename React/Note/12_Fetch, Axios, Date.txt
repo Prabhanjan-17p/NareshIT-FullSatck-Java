@@ -1,0 +1,327 @@
+Data Binding
+- Array
+- Object
+- Ajax Calls
+    a) XMLHttpRequest
+    b) Fetch API
+
+                               Fetch API
+- It is a JavaScript promise.
+- It is async by default.
+
+Syntax:
+      fetch("url")
+      .then(function(response){
+          // on success
+       })
+      .catch(function(error){
+         // report error
+      })
+      .finally(function(){
+        // executes always
+      })
+
+Ex:
+ajax-demo.jsx
+
+import { useEffect, useState } from "react"
+
+export function AjaxDemo(){
+
+    const [product, setProduct] = useState({title:'', price:0, rating:{rate:0, ratings:0, reviews:0}, image:'', offers:[]});
+
+    function GetProduct(){
+
+         fetch('product.json')
+         .then(response=>{
+             return response.json();
+         })
+         .then(product=>{
+            setProduct(product);
+         })
+
+    }
+
+    useEffect(()=>{
+        GetProduct();
+    },[])
+
+
+    return(
+        <div className="container-fluid">
+            <div className="row mt-4">
+                <div className="col-3">
+                    <img src={product.image} width='100%' />
+                </div>
+                <div className="col-9">
+                    <div className="fs-4 fw-bold">{product.title}</div>
+                    <div className="mt-2">
+                        <span className="badge bg-success text-white rounded">{product.rating.rate} <span className="bi bi-star-fill"></span> </span>
+                        <span className="mx-2 text-secondary fs-6 fw-bold">{product.rating.ratings.toLocaleString()} ratings & {product.rating.reviews} reviews</span>
+                    </div>
+                    <div className="mt-4">
+                        <div className="fs-1 fw-bold">&#8377; {product.price.toLocaleString('en-in')}</div>
+                    </div>
+                    <div className="mt-3">
+                        <ul className="list-unstyled">
+                            {
+                                product.offers.map((offer,i)=><li className="bi bi-tag-fill text-success my-2" key={i}> <span className="text-secondary">{offer}</span></li>)
+                            }
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    )
+}
+
+Issues with Fetch:
+- It returns data in binary
+- It requires explicit conversions
+- It not good in error handling.
+- You can't cancel the request.
+- XSRF , XSS, CORS issues.
+
+                              Axios
+- It is a 3rd party library for React used to make Ajax calls.
+- It is good in error handling.
+- It uses async techniques.
+- It handles issues like CORS, XSRF, XSS etc.
+- It allows to cancel requests.
+- It uses virtual DOM.
+- It can handle multiple requests simultaneously at the same time.
+- It can transform data into native format.
+- It can transform JSON.
+- Explicit conversions not required.
+
+    www.npmjs.com
+
+1. Install axios for your project
+
+    > npm install axios --save
+
+2. Import axios into component
+
+    import axios from "axios";        // It is a default export
+
+3. Configure axios request. It is promise based hence it uses
+    a) then()
+    b) catch()
+    c) finally()
+
+    axios.get()        for fetching
+    axios.post()        for saving
+    axios.put()        for updating
+    axios.patch()        for partial update
+    axios.delete()        for removing  etc.
+
+Syntax:
+    axios.get("url")
+        .then(function(response){
+            // returns response object
+        })
+        .catch(function(error){
+            // returns error object
+        })
+        .finally(function(){
+            // executes always
+        })
+
+- Axios response comprises of various details like
+    a) data
+    b) headers [content type]
+    c) statusCode
+    d) statusText
+    e) readyState etc..
+
+Ex:
+ajax-demo.jsx
+
+import { useEffect, useState } from "react";
+import axios from "axios";
+
+export function AjaxDemo(){
+
+    const [product, setProduct] = useState({title:'', price:0, rating:{rate:0, ratings:0, reviews:0}, image:'', offers:[]});
+
+    function GetProduct(){
+
+        axios.get('product.json')
+        .then(response=> {
+            setProduct(response.data);
+        })
+       
+
+    }
+
+    useEffect(()=>{
+        GetProduct();
+    },[])
+
+
+    return(
+        <div className="container-fluid">
+            <div className="row mt-4">
+                <div className="col-3">
+                    <img src={product.image} width='100%' />
+                </div>
+                <div className="col-9">
+                    <div className="fs-4 fw-bold">{product.title}</div>
+                    <div className="mt-2">
+                        <span className="badge bg-success text-white rounded">{product.rating.rate} <span className="bi bi-star-fill"></span> </span>
+                        <span className="mx-2 text-secondary fs-6 fw-bold">{product.rating.ratings.toLocaleString()} ratings & {product.rating.reviews} reviews</span>
+                    </div>
+                    <div className="mt-4">
+                        <div className="fs-1 fw-bold">&#8377; {product.price.toLocaleString('en-in')}</div>
+                    </div>
+                    <div className="mt-3">
+                        <ul className="list-unstyled">
+                            {
+                                product.offers.map((offer,i)=><li className="bi bi-tag-fill text-success my-2" key={i}> <span className="text-secondary">{offer}</span></li>)
+                            }
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    )
+}
+
+Ex:
+1. public/courses.json
+
+[
+    {
+        "title": "Salesforce CRM",
+        "duration": "60days",
+        "faculty": "Mr. Adhan",
+        "image": "sales-force.png"
+    },
+    {
+        "title": "Playwright Automation",
+        "duration": "2 Months",
+        "faculty": "Real Time Expert",
+        "image": "playwright.png"
+    },
+    {
+        "title": ".NET",
+        "duration": "4 Months",
+        "faculty": "Mr. Bagnar Raju",
+        "image": "dot-net.png"
+    },
+    {
+        "title": "Java",
+        "duration": "4 Months",
+        "faculty": "Mr. Kishan",
+        "image": "Java.png"
+    }
+]
+
+
+2. ajax-demo.css
+
+.card {
+    width: 250px;
+}
+
+3. ajax-demo.jsx
+
+import { useEffect, useState } from "react";
+import axios from "axios";
+import './ajax-demo.css';
+
+export function AjaxDemo(){
+
+    const [courses, setCourses] = useState([{title:'', duration:'', faculty:'', image:''}])
+
+    useEffect(()=>{
+
+        axios.get('courses.json')
+        .then(response=>{
+            setCourses(response.data);
+        })
+       
+    },[])
+
+
+    return(
+        <div className="container-fluid">
+            <main className="d-flex flex-wrap mt-4">
+                {
+                    courses.map((course,index)=>
+                        <div key={index} className="card m-2 p-2">
+                            <img src={course.image} className="card-img-top" height="120" />
+                            <div className="card-header">
+                                <div className="fw-bold">{course.title}</div>
+                            </div>
+                            <div className="card-body">
+                                <dl>
+                                    <dt>Faculty</dt>
+                                    <dd>{course.faculty}</dd>
+                                    <dt>Duration</dt>
+                                    <dd>{course.duration}</dd>
+                                </dl>
+                            </div>
+                            <div className="card-footer">
+                                <button className="btn btn-primary w-100">Join Course</button>
+                            </div>
+                        </div>
+                    )
+                }
+            </main>
+        </div>
+    )
+}
+
+Summary
+- Array
+- Object
+
+                            Binding Date Type
+
+- JavaScript date is configured by using Data Constructor.
+
+        var now = new Date();        // loads current date & time
+
+        var mdf = new Date("yy-mm-dd hrs:min:sec.milliSec");
+
+- React date is configure by using date constructor.
+- If you want to initialize date then avoid "new" dynamic memory allocation.
+
+Syntax:
+     const [today, setToday] = useState(Date());
+
+     { today }         // return current date and time
+
+- JavaScript can display date and time value by using various methods
+   
+    getHours()
+    getMinutes()
+    getSeconds()
+    getDay()
+    getDate()
+    getMonth()
+    getFullYear()
+    toLocaleDateString()
+    toDateString()
+    toLocaleTimeString()
+    toTimeString()
+
+- React will not directly allows the date & time functions for formatting.
+- React uses 3rd party date libraries like
+    a) moment
+    b) dayjs
+    c) luxon   etc..
+
+Syntax:
+      const [today, setToday] = useState();
+
+      useEffect(()=>{
+
+        var now = new Date('2025-06-22 14:56');
+        var date = now.toDateString();
+            var time = now.toTimeString();
+
+        setToday(`${date} ${time}`);
+
+    },[])

@@ -200,6 +200,104 @@ Syntax:
 const [today, setTQOay] = useState(Date());
 
 
+Formatting Date & Time using Moment:
+	1. Install moment for project
+		> npm install moment --save
+	2. Import moment into component
+		- import moment from "moment";
+	3. Apply format for date using moment method
+		- moment(your_date).format('your_format')
+		Your date format can have:
+			- ddd     short weekday
+			- dddd    long weekday
+			- DD      date value
+			- Do      date value with suffix
+			- MM      month number
+			- MMM     short month format
+			- MMMM    long month format
+			- YY      short year format
+			- yyyy    full year format
+
+*** Two Way Binding
+	- React supports only one way binding implicitly.
+	- Two way binding requires explicit techniques.
+	- To manage two way binding element requires "onChange" event to configure.
+
+*** Event Binding in React
+1. What is Event?
+- Event is a message sent by sender to its subscriber in order to notify change.
+- Event uses a communication pattern called "Observer".	
+- Event follows a delegate mechanism (function pointer).
+
+2. What is Event handler?
+	- A handler is used to configure event for any element statically.
+	- It uses "on" as prefix to attach any event with element.
+	Syntax:
+		onclick="handIeClick()"    // handler name
+		click                      // event name
+
+3. What is Event Listener?
+	- A listener is used to configure event for element dynamically.
+	- JavaScript uses "addEventListener()" function for configuring events.
+	Syntax:
+		document.querySelector("button").addEventListener("event",function(){})
+		event => click, blur, keyup, change etc.
+
+4. What are Event Arguments?
+- Event arguments carry payload.
+- Payload is the data carried from one location to another.
+- JavaScript can use default arguments and custom arguments.
+- The default arguments are
+a) this
+b) event
+- "this" sends information about current element, which includes
+id, name, className, src, width, height, href..
+- "event" sends information about current event, which includes
+clientX, clientY,gtrlKey,altKey,shiftKe etc...
+Syntax:
+<button onclick="InsertClick(this, event)">
+function InsertClick(obj,e){
+obj.id, obj.value, obj.name..
+e.clientX, e.ke Code, e.ctrlKe
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

@@ -1,0 +1,172 @@
+Que 1 :
+========
+Search for a given Element in an Array if present then print
+"Element found at index : ", if not present print "Element not found"
+    
+Input as: 1 4 3 5 2 6 5
+Enter searching element: 5
+Output: Element found at index 3
+
+Input as: 1 4 3 5 2 6
+Enter searching element: 7
+Output: Element not found
+
+ANS 
+--------
+package Array;
+
+import java.util.Arrays;
+import java.util.Scanner;
+
+public class ElementSearch {
+    public static void main(String[] args) {
+        int [] nums = {1 ,4, 3 ,5, 2 ,6, 5};
+        System.out.println("Original Array is :"+Arrays.toString(nums));
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Enter the Element to Search: ");
+        int n = sc.nextInt();
+
+        for (int i = 0; i < nums.length; i++) {
+            if (n == nums[i]){
+                System.out.println("Element found at index "+i);
+                break;
+            }
+
+        }
+    }
+}
+
+
+Que 2:
+=======
+Print all elements in reverse order of an Array.
+
+Input as: 1 2 3 4 5
+Output as: 5 4 3 2 1
+
+ANS
+-----
+package Array;
+
+import java.util.Arrays;
+
+public class ReverseArray2 {
+    public static void main(String[] args) {
+        int [] nums = {1 ,4, 3 ,5, 2 ,6, 5};
+        System.out.println("Original Array is :"+ Arrays.toString(nums));
+        System.out.print("Reverse Array is :[");
+        for (int i = nums.length-1; i >= 0; i--) {
+            System.out.print(nums[i]);
+            if (i >= 1){
+                System.out.print(", ");
+            }
+        }
+        System.out.println("]");
+    }
+}
+
+
+Que 3 :
+=======
+Write a java program to add the last and first element of a given array.
+
+Input as: [1,2,3,4,5,6]   
+Output as: 7
+
+ANS 
+-----
+package Array;
+
+import java.util.Arrays;
+
+public class AddLastAndFirst {
+    public static void main(String[] args) {
+        int [] nums = {1,2,3,4,5,6};
+        System.out.println("Original Array is :"+ Arrays.toString(nums));
+        System.out.print("After Adding First and Last element is : "+(nums[0]+nums[nums.length-1]));
+    }
+}
+
+Que 4 :
+=======
+Write a java program to print all even elements and odd elements 
+separately from an array.
+
+Input as  : 1 2 3 4 5 6 7
+Even elements are : 2 4 6
+Odd elements are : 1 3 5 7
+
+ANS 
+---------
+package Array;
+
+import java.util.Arrays;
+
+public class OddAndEvenPrint {
+    public static void main(String[] args) {
+        int[] nums = {2, 4, 3, 5, 2, 6, 5, 8};
+        System.out.println("Original Array is: " + Arrays.toString(nums));
+
+        System.out.print("Even Array is :[");
+        boolean first = true;
+        for (int i = 0; i < nums.length; i++) {
+            if (nums[i] % 2 == 0) {
+                if (!first) {
+                    System.out.print(", ");
+                }
+                System.out.print(nums[i]);
+                first = false;
+            }
+        }
+        System.out.println("]");
+
+
+        System.out.print("Odd Array is :[");
+        boolean first1 = true;
+        for (int i = 0; i < nums.length; i++) {
+            if (nums[i] % 2 != 0) {
+                if (!first1) {
+                    System.out.print(", ");
+                }
+                System.out.print(nums[i]);
+                first1 = false;
+            }
+        }
+        System.out.println("]");
+    }
+}
+
+
+Que 5:
+=======
+Write a java program to find the middle elements of a given array. 
+If array is odd then print only the middle element, if array is even
+then print both the middle elements.
+
+Input as : 1 2 3 4 5     
+Output is : 3
+
+Input is :1 2 3 4 5 6    
+Output is :3 4
+
+ANS 
+-------
+package Array;
+
+import java.util.Arrays;
+
+public class PrintMiddleElement {
+    public static void main(String[] args) {
+        int [] nums = {1,2,3,4,5};
+        System.out.println("Original Array is :"+ Arrays.toString(nums));
+        int size = nums.length;
+        if (size % 2 != 0){
+            System.out.println("Middle Element of Odd Array is : "+nums[size/2]);
+        }else {
+            System.out.println("Middle Element of Even Array is : "+(nums[(size/2)-1]+" "+nums[size/2]));
+        }
+    }
+}
+
+
+==========================================================================

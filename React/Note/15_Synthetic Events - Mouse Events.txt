@@ -1,0 +1,279 @@
+React Events
+- It can't use DOM events
+- Synthetic Events
+- Event Handler   onClick
+
+      onClick={ handleClick }
+      e.clientX
+      e.target.id, name, value
+
+FAQ: How React uses custom arguments in Events?
+Ans:  By configuring a function that returns handler with arguments.
+
+Syntax:
+
+    <button onClick={ (event) => handleClick(event, your_args) }>  
+
+     function handleClick(e, args)
+     {
+     }
+
+    - You can configure a rest parameter to access multiple arguments.
+
+     function handleClick(...args)
+     {
+     }
+
+Ex:
+two-way-binding.jsx
+
+import { useState } from "react";
+
+export function TwoWayBinding(){
+
+   
+    function handleClick(e, msg, list, rating){
+        console.log(`
+              Button Id : ${e.target.id} \n
+              Button Value: ${e.target.value} \n
+              X Position : ${e.clientX} \n
+              Message : ${msg} \n
+              List : ${list.toString()} \n
+              Rating: ${rating.Rate}
+            `);
+    }
+   
+    return(
+        <div className="container-fluid">
+            <h2>Events</h2>
+            <button id="btnInsert" value="Insert" onClick={(event)=> handleClick(event, 'Welcome', ['Delhi', 'Hyd'],{Rate:4.2})}>Insert</button>
+        </div>
+    )
+}
+
+FAQ: How to stop propagation & How to prevent default actions?
+Ans:  By using event methods
+        a) stopPropagation()
+        b) preventDefault()
+
+Ex:
+import { useState } from "react";
+
+export function TwoWayBinding(){
+
+   
+   
+    function handleNavClick(){
+        alert('Nav Clicked');
+    }
+    function handleSearchClick(e){
+        e.stopPropagation();
+        alert('Search Clicked');
+    }
+    function handleSubmit(e){
+        e.preventDefault();
+        alert('Form Submitted');
+    }
+   
+    return(
+        <div className="container-fluid">
+            <h2>Events</h2>
+            <nav className="border border-2 p-2" onClick={handleNavClick}>
+                <h3>Shopping</h3>
+                <button onClick={handleSearchClick} className="bi bi-search"></button>
+            </nav>
+            <form onSubmit={handleSubmit}>
+                <dl>
+                    <dt>Name</dt>
+                    <dd><input type="text" name="User" /></dd>
+                </dl>
+                <button>Submit</button>
+            </form>
+        </div>
+    )
+}
+
+Synthetic React Events:
+    1. Mouse Events
+    2. Keyboard Events
+    3. Button Events
+    4. Form Events
+    5. Element State Events
+    6. Clipboard Events
+    7. Timer Events
+    8. Touch Events etc..
+
+React Style Binding:
+- Styles are configured for JSX elements using "style" property.
+- It requires a dynamic style object.
+- Style object is a JavaScript object in JSX with key and value.
+- Key is a CSS property defined in camel case.
+- Value is a string.
+
+        {
+           backgroundColor: 'red',
+           boxShadow: '2px 3px 2px black',
+           color: 'white'
+        }
+
+Syntax:
+    <p  style={ { key: 'value' } }>  </p>
+
+Ex:
+import { useState } from "react";
+
+export function TwoWayBinding(){
+
+   
+   
+    function handleNavClick(){
+        alert('Nav Clicked');
+    }
+    function handleSearchClick(e){
+        e.stopPropagation();
+        alert('Search Clicked');
+    }
+    function handleSubmit(e){
+        e.preventDefault();
+        alert('Form Submitted');
+    }
+   
+    return(
+        <div className="container-fluid">
+            <h2 style={{color:'red'}}>Events</h2>
+            <nav className="border border-2 p-2" onClick={handleNavClick}>
+                <h3>Shopping</h3>
+                <button onClick={handleSearchClick} className="bi bi-search"></button>
+            </nav>
+            <form onSubmit={handleSubmit} style={{border:'1px solid black', padding:'20px', backgroundColor:'#00ffff'}}>
+                <dl>
+                    <dt>Name</dt>
+                    <dd><input type="text" name="User" /></dd>
+                </dl>
+                <button>Submit</button>
+            </form>
+        </div>
+    )
+}
+
+Ex: Configure styles using  a style object
+
+import { useEffect, useState } from "react";
+
+export function TwoWayBinding(){
+
+   
+    const [effects, setEffects] = useState({color:'red', backgroundColor:'yellow'});
+   
+    useEffect(()=>{
+        setEffects({color:'white', backgroundColor:'green'});
+    },[])
+   
+    return(
+        <div className="container-fluid">
+           <h2 style={effects}>React Style Binding</h2>
+        </div>
+    )
+}
+
+                        React Mouse Events
+- onMouseOver
+- onMouseOut
+- onMouseUp
+- onMouseDown
+- onMouseMove
+
+
+Ex:
+mouse-demo.css
+
+
+.col-1 div {
+    border:2px solid gray;
+    padding: 5px;
+}
+.col-1 div:hover {
+    border: 2px solid blue;
+    cursor: grab;
+}
+
+mouse-demo.jsx
+
+import axios from "axios";
+import { useEffect, useState } from "react";
+import './mouse-demo.css';
+
+export function MouseDemo(){
+
+    const [mobiles, setMobiles] = useState([{img_src:''}]);
+    const [previewSrc, setPreviewSrc] = useState('m1.jpg');
+
+    useEffect(()=>{
+
+        axios.get('mobiles.json')
+        .then(response=>{
+            setMobiles(response.data);
+        })
+
+    },[])
+
+    function handleMouseOver(e){
+        setPreviewSrc(e.target.src);
+    }
+
+    return(
+        <div className="container-fluid">
+            <div className="row mt-4">
+                <div className="col-1">
+                    {
+                        mobiles.map((mobile,i)=>
+                        <div key={i} className="my-4">
+                          <img onMouseOver={handleMouseOver} width="50" height="50" src={mobile.img_src} />
+                        </div>)
+                    }
+                </div>
+                <div className="col-11">
+                    <img src={previewSrc} width="300" height="400"/>
+                </div>
+            </div>
+        </div>
+    )
+}
+
+Ex: Mouse Over, Out, Up, Down with Dynamic Styles
+
+mouse-animation.css
+
+@keyframes Spin {
+    form{
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+mouse-animation.jsx
+
+import { useState } from 'react';
+import './mouse-animation.css';
+
+export function MouseAnimation(){
+
+    const [animation, setAnimation] = useState({animationName:'Spin', animationDuration:'8s', animationIterationCount:'infinite', animationTimingFunction:'linear'});
+
+    function handleMouseOver(){
+        setAnimation({animationName:'Spin', animationDuration:'1s', animationIterationCount:'infinite', animationTimingFunction:'linear'});
+    }
+    function handleMouseOut(){
+         setAnimation({animationName:'Spin', animationDuration:'8s', animationIterationCount:'infinite', animationTimingFunction:'linear'});
+    }
+
+    return(
+        <div className="d-flex justify-content-center align-items-center" style={{height:'100vh'}}>
+            <div>
+                <img onMouseDown={handleMouseOver} onMouseUp={handleMouseOut} style={animation} src="react.svg" width="200" height="200" />
+            </div>
+        </div>
+    )
+}

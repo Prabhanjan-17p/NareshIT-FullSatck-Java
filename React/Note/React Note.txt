@@ -685,16 +685,19 @@ Solution: JavaScript Fetch API
 
 
 ----------------------------
-Day-1 https://youtu.be/aWytG6aGG3s 
-Day-2 https://youtu.be/87Asu_qwOGc 
-Day-3 https://youtu.be/zxNhBLR-0-k 
-Day-4 https://youtu.be/xbyPXRviLrM 
-Day-5 https://youtu.be/puKoTcanrzM 
-Day-6 https://youtu.be/zfdbuBiAHyM 
+React Js @ 7:30 AM IST by Mr Sudhakar Sharma
+Day-1 https://youtu.be/aWytG6aGG3s
+Day-2 https://youtu.be/87Asu_qwOGc
+Day-3 https://youtu.be/zxNhBLR-0-k
+Day-4 https://youtu.be/xbyPXRviLrM
+Day-5 https://youtu.be/puKoTcanrzM
+Day-6 https://youtu.be/zfdbuBiAHyM
 Day-7 https://youtu.be/YtDFA_5cfKY
 Day-8 https://youtu.be/3zmK41JP5zU
 Day-9 https://youtu.be/qlqASkO2tyI
 Day-10 https://youtu.be/NQ1C2cNSWaI
+Day-11 https://youtu.be/D4LNmWrr0kc
+Day-12 https://youtu.be/GLyp7XKh7oQ
 -----------------------------
 
 

@@ -1,0 +1,174 @@
+Summary
+1. What is Event?
+2. What is Event Handler?
+3. What is Event Listener?
+4. What are Event Arguments?
+    a) this
+    b) event
+    c) custom arguments
+
+Note: Event Listener allows only one argument that is "event". However it allows to
+      access both element and event details.
+
+Syntax:
+       addEventListener("click", function(event){
+           
+        event.clientX, event.ctrlKey, event.keyCode..    // event properties
+           
+        event.target.id, event.target.value, event.target.name.. // element properties
+
+       })
+
+Ex:
+<!DOCTYPE html>
+<html lang="en">
+<head>
+     <meta charset="UTF-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <title>Document</title>
+     <script>
+         function bodyload(){
+               document.getElementById("btnInsert").addEventListener("click", function(e){
+                    console.log(`
+                         X Position : ${e.clientX} \n
+                         Ctrl Key   : ${e.ctrlKey} \n
+                         Button Id  : ${e.target.id} \n
+                         Button Value: ${e.target.value}
+                    `);
+               })
+         }
+     </script>
+</head>
+<body onload="bodyload()">
+    <button id="btnInsert" value="Insert">Insert</button>
+</body>
+</html>
+
+5. What is Event Propagation or Event Bubbling? How to stop propagation?
+A. It is a mechanism where the child event simulates parent events.
+    It child continues to propagate with its parent events.
+    You can prevent propagation by using event method "stopPropagation()".
+
+Syntax:
+        function ChildEvent(e) {
+            e.stopPropagation();
+        }
+
+Ex:
+<!DOCTYPE html>
+<html lang="en">
+<head>
+     <meta charset="UTF-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <title>Document</title>
+     <script>
+         function NavClick(){
+            alert("Navbar Clicked");
+         }
+         function SearchClick(e){
+           e.stopPropagation();
+           alert("Search Clicked");
+         }
+     </script>
+</head>
+<body>
+    <nav onclick="NavClick()" style="border:1px solid black; padding: 20px;">
+        <span>Amazon</span>
+        <button onclick="SearchClick(event)">Search</button>
+    </nav>
+</body>
+</html>
+
+6. How to stop default functionality of generic elements?
+A. Generic elements are configured with pre-defined functionality.
+     If you define any custom actions to perform then it triggers both default & custom.
+     You can stop default actions by using event method "preventDefault()".
+
+Syntax:
+       function Submit(e)
+       {
+        e.preventDefault();
+       }
+   
+      <form onsubmit="Submit(event)">  
+
+Ex:
+<!DOCTYPE html>
+<html lang="en">
+<head>
+     <meta charset="UTF-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <title>Document</title>
+     <script>
+         function SubmitClick(e){
+             e.preventDefault();
+             alert("Form Submitted..");
+         }
+     </script>
+</head>
+<body>
+    <form onsubmit="SubmitClick(event)">
+         User Name : <input type="text" name="UserName"> <button>Submit</button>
+    </form>
+</body>
+</html>
+
+7. What is Event loop?
+A. It is a mechanism of JavaScript that allows to execute events without blocking
+    other requests in the process. It uses unblocking mechanism.
+    JavaScript provides implicitly several techniques that use event loop, like
+    a) setTimeout()
+    b) fetch()
+    You can explicitly configure event loop by using "async & await".
+
+Ex:
+<script>
+     console.log("Start Execution");
+     fetch(`https://fakestoreapi.com/products/categories`)
+     .then(async response => await response.json())
+     .then(data => {
+          data.map(async item=>{
+                console.log(await item);
+          })
+     })
+     setTimeout(function(){
+        console.log(`I am fetching data from API`);
+     },0);
+     console.log("End Execution");
+</script>
+
+8. What is Event Profiling?
+A. It is the mechanism of identifying the actions performed and tracking the performance of actions in page.
+    Developers can track the events and actions performed by events.
+
+    a) Go to developer tools in browser
+    b) Open "performance"
+    c) Start recording
+    d) Trigger Events
+    e) Stop recording
+    f) Watch the profile
+
+Note: All JavaScript events are browser events. They are configured by browser
+      window object.
+
+                                React Events
+- React can't use the JavaScript browser events.
+- React provides "Synthetic Events" library.
+- It is a virtual DOM library for React to handle events.
+- The Synthetic Events map to browser events.
+
+        onClick Synthetic Event => onclick Browser Event
+
+- Synthetic Event is the base for all events in React.
+
+    onClick  : MouseEventHandler : EventHandler : SynthenticEvent
+
+- Synthetic Events are categorized into various groups
+
+    1. Mouse Events
+    2. Keyboard Events
+    3. Button Events
+    4. Timer Events
+    5. Clipboard Events
+    6. Form Events
+    7. Touch Events etc..

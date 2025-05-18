@@ -14,7 +14,7 @@
 
 *** FAQ's:
 1. Is there any difference between React & React JS?
-	- Now. React can be used with JavaScript & TypeScript.
+	- No. React can be used with JavaScript & TypeScript.
 
 NOTE - React latest is 19x [beta].
 	   React LTS is 18x [GA].
@@ -24,4 +24,71 @@ NOTE - React latest is 19x [beta].
 			-backward compatible(Means We can used old version to bulid your app)
 			-Side by side execution(Means We can used old and new version to make a app)
 	   
-	
+*** FAQ: 
+1.What is  <StrictMode> ?
+Ans: It is used to force developers to following good coding techniques.
+     It reduces code inconsistency.
+     It compiles and executes the application for development & production.
+   
+Note: Hence your react application compiles 2 times. You can remove the
+      <StrictMode> to run only for development.
+
+*** FAQ's:
+1. What is [getter, setter] referring to?
+A. It refers to de-structuring declaration.
+
+2. Why you are using const for declaring state, can we use var or let?
+A.
+     - State must be initialized.
+     - Var & Let allows to ignore initialization, hence they are not recommended.
+     - State can't be assigned after initialization.
+     - Var & Let allows assignment, hence they are not good.
+     - State must be initialized first then you can use it.
+     - Var allows hoisting, hence it is not good for state.
+     - Yes we can use var & let to declare state but not recommended.
+
+3. Why const for state?
+A.
+    - It allows only initialization.
+    - It will not allow assignment
+    - It will not allow shadowing and hoisting.
+
+4. How you can configure a new value into state if it is declared with const?
+A  We will not assign value into const.
+     We re-initialize value into const.
+
+Syntax:
+       const  [uname, setUname] = useState("John");
+     
+           setUname = "David";        // invalid - assignment to const is not valid
+           setUname("David");        // valid
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

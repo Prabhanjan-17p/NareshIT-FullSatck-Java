@@ -1,0 +1,697 @@
+Collections Framework : (40-45% IQ)
+-----------------------------------
+Collections framework is nothing but handling individual Objects(Collection Interface) and Group of objects(Map interface).
+
+We know only object can move from one network to another network.  
+
+A collections framework is a class library to handle group of Objects.
+
+It is implemented by using java.util package.
+
+It provides an architecture to store and manipulate group of objects.
+
+All the operations that we can perform on data such as searching, sorting, insertion and deletion can be done by using collections framework because It is the data structure of Java.
+
+The simple meaning of collections is single unit of Objects.
+-------------------------------------------------------------
+It provides the following sub interfaces :
+
+1) List (Accept duplicate elements)
+2) Set (Not accepting duplicate elements)
+3) Queue (Storing and Fetching the elements based on some order i.e FIFO)
+
+Note : Collection is a predefined interface available in java.util package where as Collections is a predefined  utility class which is available from JDK 1.2V which contains only static methods (Constructor is private)
+
+----------------------------------------------------------------
+Collection Hierarchy :
+-----------------------
+Hierarchy is available in Paint Diagram (13-MAY-25)
+-------------------------------------------------------------------------
+14-05-2025
+-----------
+Methods of Collection interface :
+----------------------------------
+a) public boolean add(E element) : It is used to add an item/element in the in the collection.
+
+b) public boolean addAll(Collection c) :- It is used to insert the specified collection elements in the existing collection(For merging the Collection)
+
+c) public boolean retainAll(Collection c) :- It is used to retain all the elements from existing element. (Common Element)
+
+d) public boolean removeAll(Collection c) :- It is used to delete all the elements from the existing collection.
+
+e) public boolean remove(Object element) :- It is used to delete an element from the collection based on the object.
+
+f) public int size() :- It is used to find out the size of the Collection [Total number of elements available]
+
+g) public void clear() :- It is used to clear all the elements at once from the Collection.
+
+All the above methods of Collection interface will be applicable to all the sub interfaces like List, Set and Queue.
+-------------------------------------------------------------------------
+List<E> interface :
+-------------------
+It is the sub interface of SequenceCollection<E> (Available from java 21) which extends from Collection<E> available from JDK 1.2V
+
+List<E> interface accepts duplicate elements.
+
+It stores the elements based on the index because List<E> interface internally uses Array concept. [List interface classes are implemented by Linear Data structure]
+
+It uses Array and LinkedList data structure so we can perform sorting 
+operation.
+------------------------------------------------------------------------
+List interface Hierarchy :
+---------------------------
+Hierarchy is Available in Diagram [14th May]
+
+Behaviour of List interface Specific classes :
+-----------------------------------------------
+It stores the elements based on the index position.
+
+It stores everything in the form of Object.
+
+It uses Linear(Dynamic Array + LinkedList) data structure.
+
+By using generics we can eliminate compilation warning as well as we can 
+hold homogeneous and hetrogeneous types of element by using <Object>
+
+Few classes of List interface are DYNAMICALLY GROWABLE.
+-----------------------------------------------------------------------
+15-05-2025
+-----------
+List interface Methods :
+------------------------
+1) public boolean isEmpty() :- Verify whether List is empty or not
+
+2) public void clear() :- Will clear all the elements, Basically List will become empty.
+
+3) public int size() :- To get the size of the Collections(Total number of elements are available in the collection)
+
+4) public void add(int index, Object o) :- Insert the element based on the index position.
+
+5) public boolean addAll(int index, Collection c) :- Insert the Collection based on the index position
+
+6) public Object get(int index) :- To retrieve the element based on the index position
+
+
+7) public Object set(int index, Object o) :- To override or replace the existing element based on the index position
+
+8) public Object remove(int index) :- remove the element based on the index position
+
+9) public boolean remove(Object element) :-  remove the element based on the object element, It is the Collection interface method extended by List interface 
+
+10) public int indexOf() :- index position of the element
+
+11) public int lastIndex() :- last index position of the element
+
+12) public Iterator iterator() :- To fetch or iterate or retrieve the elements from Collection in forward direction only.
+
+13) public ListIterator listIterator() :- To fetch or iterate or retrieve the elements from Collection in forward and backward direction.
+
+------------------------------------------------------------------------
+How many ways we can fetch OR retrieve the Object from the Collection :
+-----------------------------------------------------------------------
+There are 10 ways to retrieve the Collection Object which are as follows :
+
+1) By using toString() method of respective class (JDK 1.0)
+2) By using Ordinary for Loop (JDK 1.0)
+3) By using for-Each loop (JDK 1.5)
+4) By using Enumeration interface(JDK 1.0)
+5) By using Iterator interface (JDK 1.2)
+6) By using ListIterator interface (JDK 1.2)
+*7) By using forEach(Consumer<T> cons) method (JDK 1.8)
+*8) By using SplIterator interface (JDK 1.8)
+*9) By using Method Reference (JDK 1.8)
+**10) By using Stream API (stream())  (JDK 1.8)
+
+Among all these, Enumeration, Iterator, ListIterator and SplIterator are 
+the cursors so It can move from one direction to another direction.
+--------------------------------------------------------------------------
+Enumeration :
+----------------
+It is a predefined interface available in java.util package from JDK 1.0 onwards(Legacy interface).
+
+We can use Enumeration interface to fetch or retrieve the Objects one by one from the Collection because it is a cursor.
+
+We can create Enumeration object by using elements() method of the legacy Collection class. Internally it uses anonymous inner class object.
+
+public Enumeration elements();   
+
+Enumeration interface contains two methods :
+---------------------------------------------------
+1) public boolean hasMoreElements() :- It will return true if the Collection is having more elements.
+
+2) public Object nextElement() :- It will return collection object so return type is Object and move the cursor to the next line.
+
+Note :- It will only work with legacy Collections classes.
+--------------------------------------------------------------------------
+Iterator<E>
+-----------
+It is a predefined interface available in java.util package available from 1.2 version.
+
+It is used to fetch/retrieve the elements from the Collection in forward direction only because it is also a cursor.
+
+It is also using private inner class i.e Itr class.
+
+public Iterator iterator();
+
+Example :
+-----------
+ Iterator itr = listOfCity.iterator();
+
+Now, Iterator interface has provided two methods 
+
+
+public boolean hasNext() :- 
+
+It will verify, the element is available in the next position or not, if available it will return true otherwise it will return false.
+
+public Object next() :- It will return the collection object and move the cursor to the element object.
+--------------------------------------------------------------------------
+ListIterator<E> interface :
+-------------------------
+It is a predefined interface available in java.util package and it is the sub interface of Iterator available from JDK 1.2v.
+
+It is used to retrieve the Collection object in both the direction i.e in forward direction as well as in backward direction. Here the inner class name is LstItr class extends from Itr class.
+
+public ListIterator listIterator();
+
+Example :
+-----------
+ListIterator lit =   listOfCity.listIterator();
+
+1) public boolean hasNext() :- 
+It will verify the element is available in the next position or not, if available it will return true otherwise it will return false.
+
+2) public Object next() :- It will return the next position collection object.
+
+3) public boolean hasPrevious() :- 
+It will verify the element is available in the previous position or not, if available it will return true otherwise it will return false.
+
+
+4) public Object previous () :- It will return the previous position collection object.
+
+Note :- Apart from these 4 methods we have add(), set() and remove() method in ListIterartor interface.  
+
+public default void forEach(Consumer<T> cons) :
+-----------------------------------------------
+It is a predfined default method available in java.lang.Iterable interface.
+
+forEach(Consumer<T> cons) method of Iterable interface internally uses for each loop.
+
+It takes Consumer as a parameter.
+
+
+Case 1 :
+---------
+package com.ravi.collection;
+
+import java.util.Vector;
+import java.util.function.Consumer;
+
+public class ForEachMethodInternalDemo1 {
+
+	public static void main(String[] args) 
+	{
+		Vector<String> listOfCity = new Vector<>();
+		 listOfCity.add("Hyderabad");
+	     listOfCity.add("Kolkata");
+	     listOfCity.add("Pune");
+	     listOfCity.add("Indore");
+	     
+	     //Anonymous inner class
+	     Consumer<String> cons = new Consumer<String>() 
+	     {			
+			@Override
+			public void accept(String t) 
+			{
+				System.out.println(t.toUpperCase());				
+			}
+		 };
+	     
+         listOfCity.forEach(cons);
+		 
+		 
+		 
+	}
+
+}
+
+
+
+Case 2 :
+---------
+package com.ravi.collection;
+
+import java.util.Vector;
+import java.util.function.Consumer;
+
+public class ForEachInternalDemo2 
+{
+	public static void main(String[] args) 
+	{
+		Vector<String> listOfCity = new Vector<>();
+		 listOfCity.add("Hyderabad");
+	     listOfCity.add("Kolkata");
+	     listOfCity.add("Pune");
+	     listOfCity.add("Indore");
+	     
+	     //Lambda Approach
+	     Consumer<String> cons = city -> System.out.println(city.toUpperCase());
+	     
+         listOfCity.forEach(cons);
+		 
+		 
+		 
+	}
+}
+
+Case 3 :
+---------
+
+package com.ravi.collection;
+
+import java.util.Vector;
+
+public class ForEachInternalDemo3 
+{
+	public static void main(String[] args) 
+	{
+		Vector<String> listOfCity = new Vector<>();
+		 listOfCity.add("Hyderabad");
+	     listOfCity.add("Kolkata");
+	     listOfCity.add("Pune");
+	     listOfCity.add("Indore");
+	          
+         listOfCity.forEach(city -> System.out.println(city.toUpperCase()));
+		 
+		 
+		 
+	}
+}
+--------------------------------------------------------------------------
+Spliterator interface :
+-----------------------
+It is available from JDK 1.8V
+
+It is used to iterate the element over the Collection by eliminating hasNext() and next()
+
+It contains a default method forEachRemaining(Consumer<T> cons).
+
+It internally uses do-while loop.
+
+--------------------------------------------------------------------------Stream interface :
+------------------
+Stream is a predefined interface available in java.util.stream sub package.
+
+Collection interface has provided a method called stream(), the return type of this method is Stream interface.
+
+public Stream stream();
+-------------------------------------------------------------------------
+-------------------------------------------------------------------------
+//Program that describes how we can fetch the Collection Object by 
+all possible ways :
+  
+package com.ravi.collection;
+
+import java.util.Enumeration;
+import java.util.Iterator;
+import java.util.ListIterator;
+import java.util.Spliterator;
+import java.util.Vector;
+
+public class RetrievingCollectionObject {
+
+	public static void main(String[] args)
+	{
+		 Vector<String> listOfCity = new Vector<>();
+		 listOfCity.add("Hyderabad");
+	     listOfCity.add("Kolkata");
+	     listOfCity.add("Pune");
+	     listOfCity.add("Indore");
+	     listOfCity.add("Mumbai");	    
+	     listOfCity.add("Haryana");	    
+	     
+	     System.out.println("By using 1) toString() Method :");
+	     System.out.println(listOfCity.toString());
+	     
+	     
+	     System.out.println("By using 2) Ordinary For Loop:");
+	     
+	     for(int i=0; i<listOfCity.size(); i++)
+	     {
+	    	 System.out.println(listOfCity.get(i));
+	     }
+	     
+	     System.out.println("By using 3) For Each Loop:");
+	     
+	     for(String city : listOfCity)
+	     {
+	    	 System.out.println(city);
+	     }
+	     
+	     System.out.println("By using 4) Enumeration Interface :");
+
+	     Enumeration<String> elements = listOfCity.elements();
+	     
+	     while(elements.hasMoreElements())
+	     {
+	    	 System.out.println(elements.nextElement());
+	     }
+	     	     
+	     System.out.println("By using 5) Iterator Interface :");	     
+	     Iterator<String> itr = listOfCity.iterator();	     
+	     itr.forEachRemaining(city -> System.out.println(city));
+	     
+	     System.out.println("By using 6) ListIterator Interface :");
+	     
+	     ListIterator<String> listItr = listOfCity.listIterator();
+	     
+	     System.out.println("IN FORWARD DIRECTION :");
+	     
+	     while(listItr.hasNext())
+	     {
+	    	 System.out.println(listItr.next());
+	     }
+	     
+	     System.out.println("IN BACKWARD DIRECTION :");
+	     
+	     while(listItr.hasPrevious())
+	     {
+	    	 System.out.println(listItr.previous());
+	     }
+	     
+	     System.out.println("By using 7) for Each Method :");
+	     listOfCity.forEach(city -> System.out.println(city));
+	     
+	     System.out.println("By using 8) Spliterator interface :");	     
+	     Spliterator<String> spliterator = listOfCity.spliterator();
+	     spliterator.forEachRemaining(city -> System.out.println(city));
+	     
+	     
+	     System.out.println("By using 9) Method Reference :");	   
+	     listOfCity.forEach(System.out::println);
+	     
+	     System.out.println("By using 10) Method Reference :");	 
+	     listOfCity.stream().forEach(System.out::println);
+	     
+	}
+
+}
+==========================================================================
+Working with List interface implemented class :
+-----------------------------------------------
+Inside List interface we have 4 implemented classes :
+
+ 1) Vector
+ 2) Stack
+ 3) ArrayList
+ 4) LinkedList
+ 
+
+Vector<E> :
+-----------
+public class Vector<E> extends AbstractList<E>  implements List<E>, Serializable, Clonable, RandomAccess
+
+Vector is a predefined class available in java.util package under List interface. 
+
+Vector is always from java means it is available from jdk 1.0 version.
+
+It can accept duplicate, null, homogeneous as well as hetrogeneous elements.
+
+Vector and Hashtable, these two classes are available from jdk 1.0, remaining Collection classes were added from 1.2 version. That is the reason Vector and Hashtable are called legacy(old) classes.
+
+The main difference between Vector and ArrayList is, ArrayList methods are not synchronized so multiple threads can access the method of ArrayList where as on the other hand most the methods are synchronized in Vector so performance wise Vector is slow.
+
+*We should go with ArrayList when Threadsafety is not required on the other hand we should go with Vector when we need ThreadSafety for reterival operation.
+
+Here Iterator is Fail Fast Iterator.
+
+It stores the elements on index basis.It is dynamically growable with initial capacity 10. The next capacity will be 20 i.e double of the first capacity.
+
+new capacity = current capacity * 2;
+
+It implements List, Serializable, Clonable, RandomAccess interfaces.
+
+Constructors in Vector :
+-------------------------
+We have 4 types of Constructor in Vector
+
+1) Vector v1 = new Vector();        
+     It will create the vector object with default capacity is 10        
+    
+2) Vector v2 = new Vector(int initialCapacity);     
+     Will create the vector object with user specified capacity.
+
+3) Vector v3 = new Vector(int initialCapacity, int capacityIncrement);     
+     Eg :-     Vector v = new Vector(1000,5);
+
+     Initially It will create the Vector Object with initial capacity 1000 and then when  the capacity will be full then increment by 5 so the next capacity would be 1005, 1010 and so on.
+
+ 4) Vector v4 = new Vector(Collection c);
+    We can achieve loose coupling.
+    
+--------------------------------------------------------------------------
+package com.ravi.vector;
+
+import java.util.Collections;
+import java.util.Vector;
+
+public class VectorDemo {
+
+	public static void main(String[] args) 
+	{
+		
+		Vector<String> listOfCity = new Vector<>();
+		listOfCity.add("Hyderabad");
+		listOfCity.add("Pune");
+		listOfCity.add("Indore");
+		listOfCity.add("Bhubneswar");
+		listOfCity.add("Kolkata");
+			
+		 System.out.println("Before Sorting :"+listOfCity);
+		 Collections.sort(listOfCity);	
+	     System.out.println("After Sorting :"+listOfCity);
+		
+		
+        //Removing based on the index
+        listOfCity.remove(3);
+		System.out.println("After removing by index :"+listOfCity);
+		       
+        //Retrieving by using forEach() Method
+		listOfCity.forEach(city -> System.out.println(city));
+		
+		System.out.println("Size is :"+listOfCity.size());
+		
+		System.out.println("Is list empty :"+listOfCity.isEmpty());
+       
+	}
+
+}
+
+Note : Collections utility class has provided sort(List<E> list) static method.
+--------------------------------------------------------------------------
+//Vector Program on capacity
+
+package com.ravi.vector;
+
+import java.util.*;
+
+public class VectorDemo1 {
+	public static void main(String[] args)
+	{
+		Vector<Integer> v = new Vector<>(100,10); 
+		
+		System.out.println("Initial capacity is :" + v.capacity());
+
+		for (int i = 0; i < 100; i++) 
+		{
+			v.add(i);
+		}
+
+		System.out.println("After adding 100 elements  capacity is :" + v.capacity()); 
+		
+		v.add(101);
+		System.out.println("After adding 101th elements  capacity is :" + v.capacity());
+
+		for(int i=0; i<v.size(); i++)
+		{
+			if(i%5==0)
+			{
+				System.out.println();
+			}
+			System.out.print(v.get(i)+"\t");
+		}
+
+		
+	}
+}
+--------------------------------------------------------------------------
+package com.ravi.vector;
+
+//Array To Collection
+import java.util.*;
+public class VectorDemo2
+{
+	public static void main(String args[])
+	{
+		Vector<Integer> v = new Vector<>();  
+		
+		int x[]={22,20,10,40,15,58};
+		
+ 
+      //Adding array values to Vector
+		for(int i=0; i<x.length; i++)
+		{
+			v.add(x[i]);
+		}		
+		Collections.sort(v);
+		System.out.println("Maximum element is :"+Collections.max(v));
+		System.out.println("Minimum element is :"+Collections.min(v));
+		System.out.println("Vector Elements :");
+		
+		v.forEach(y -> System.out.println(y));
+		
+		System.out.println(".....................");
+		Collections.reverse(v);
+		System.out.println("Reverse Order");
+		v.forEach(y -> System.out.println(y));
+		
+		//How to convert Vector to Array
+		  System.out.println("Object Array");
+		  Object[] array = v.toArray();
+		  System.out.println(Arrays.toString(array));	
+	}
+}
+--------------------------------------------------------------------------
+package com.ravi.vector;
+
+import java.util.Vector;
+
+//Custom Object
+
+record Employee(Integer id, String name, Double salary)
+{	
+}
+
+
+
+public class VectorDemo3
+{
+	public static void main(String[] args) 
+	{
+	   Vector<Employee> listOfEmployee = new Vector<>();
+	   listOfEmployee.add(new Employee(333, "Aryan", 65000D));
+	   listOfEmployee.add(new Employee(444, "Zuber", 45000D));
+	   listOfEmployee.add(new Employee(111, "Satish", 55000D));
+	   listOfEmployee.add(new Employee(222, "Jay", 52000D));
+	   
+	   listOfEmployee.forEach(emp -> System.out.println(emp));  
+	  
+	}
+}
+-------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

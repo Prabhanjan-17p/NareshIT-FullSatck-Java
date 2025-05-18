@@ -1071,7 +1071,7 @@ public class ArrayRetrieval {
 		System.out.println("By using  toString() method");
 		
 		int []z = {1000, 2000,3000};
-		System.out.println(Arrays.toString(z)); //"
+		System.out.println(Arrays.toString(z));
 
 	}
 
@@ -1318,8 +1318,336 @@ public class ArrayDemo9
 
 }
 ----------------------------------------------------------------------
+12-05-2025
+----------
+WAP to create Customer array to hold multiple customer Object(Manual insertion)   
+package com.ravi.array_programs;
+
+record Customer(Integer id, String name)
+{
+	
+}
+
+public class CustomerArray {
+
+	public static void main(String[] args)
+	{
+		Customer []customers = new Customer[2];
+		
+		customers[0] = new Customer(111, "Scott");
+		customers[1] = new Customer(222, "Smith");
+		
+		for(Customer cust : customers)
+		{
+			System.out.println(cust);
+		}
+	}
+
+}
+
+11) WAP to create Student array Object to hold multiple Student object dynamically.
+
+package com.ravi.array_programs;
+
+import java.util.Arrays;
+import java.util.Scanner;
+
+record Student(Integer id, String name)
+{
+	
+}
+
+public class ArrayDemo11 
+{
+   public static void main(String[] args)
+   {
+	   Scanner sc = new Scanner(System.in);
+	   System.out.println("Enter the Size :");
+	   int size = Integer.parseInt(sc.nextLine());
+	   
+	   Student []students = new Student[size];
+	   
+	   
+	   //Initializing
+	   for(int i=0; i<students.length; i++)
+	   {
+		 System.out.print("Enter Student Id :");
+		 int id = Integer.parseInt(sc.nextLine());
+		 
+		 System.out.print("Enter Student Name :");
+		 String name = sc.nextLine();
+		 
+		 students[i] = new Student(id, name);		 
+	   }
+	   
+	   //Printing the Data 
+	   System.out.println(Arrays.toString(students));   
+	   
+   }
+}
+
+12) Create Animal abstract class with sub classes to show using dynamic Polymorphism.
+
+package com.ravi.array_programs;
+
+abstract class Animal
+{
+	abstract public void sleep();
+}
+class Lion extends Animal
+{
+	@Override
+	public void sleep() 
+	{
+		System.out.println("Lion is sleeping");		
+	}	
+}
+class Dog extends Animal
+{
+	@Override
+	public void sleep() 
+	{
+		System.out.println("Dog is sleeping");		
+	}
+	
+}
+
+public class ArrayDemo12
+{
+	public static void main(String[] args)
+	{
+		Animal animals[] = new Animal[2];
+		
+        animals[0] = new Lion();
+        animals[1] = new Dog();
+        
+        for(Animal animal : animals)
+        {
+        	animal.sleep();
+        }        
+	}
+}
+
+13) Create sealed Shape interface and sub classes to show dynamic polymorphism.
+package com.ravi.array_programs;
+
+sealed interface Shape
+{
+	double getArea();
+}
+final class Circle implements Shape
+{
+    final double PI = 3.14;
+    double radius;
+    
+    public Circle(double radius)
+    {
+    	this.radius = radius;
+    }
+	
+	
+	@Override
+	public double getArea() 
+	{
+		double area = PI * radius * radius;
+		return area;
+	}	
+}
+public class ArrayDemo13
+{
+	public static void main(String[] args) 
+	{
+        Shape shape[] = new Shape[1];
+        shape[0] = new Circle(2);
+        
+        for(Shape s : shape)
+        {
+        	System.out.println(s.getArea());
+        }
+        
+	}
+
+}
+
+14) Object array by using Literal.[instanceof]
+package com.ravi.array_programs;
+
+public class ArrayDemo14 {
+
+	public static void main(String[] args) 
+	{
+		Object []arr = {12,23.90,"NIT",new StringBuffer("Hyd"),24,36};
+		
+		int sum =0;
+		
+		for(Object obj : arr)
+		{
+		   if(obj instanceof Integer)
+		   {
+			   sum = sum + (int)obj;
+		   }					
+		}
+		System.out.println("Sum is :"+sum);
+		
+		
+	}
+
+}
+
+15) Object array by using new keyword using BLC class.
+
+    Object []obj = new Object[5];
+    obj[0] = any class obejct we can create.
+    
+ Note : 2D Array + Files (6PM)   
+-----------------------------------------------------------------------
+Collections Framework [40 - 45% IQ] 
+-----------------------------------
 
 
 
 
-  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   
+   
+   
+   
+   
+   
+   
+   
+   

@@ -64,6 +64,91 @@ Syntax:
            setUname("David");        // valid
 
 
+*** FAQ: How React uses custom arguments in Events?
+Ans:  By configuring a function that returns handler with arguments.
+
+Syntax:
+
+    <button onClick={ (event) => handleClick(event, your_args) }>  
+
+     function handleClick(e, args)
+     {
+     }
+
+    - You can configure a rest parameter to access multiple arguments.
+
+     function handleClick(...args)
+     {
+     }
+
+Ex:
+two-way-binding.jsx
+
+import { useState } from "react";
+
+export function TwoWayBinding(){
+
+   
+    function handleClick(e, msg, list, rating){
+        console.log(`
+              Button Id : ${e.target.id} \n
+              Button Value: ${e.target.value} \n
+              X Position : ${e.clientX} \n
+              Message : ${msg} \n
+              List : ${list.toString()} \n
+              Rating: ${rating.Rate}
+            `);
+    }
+   
+    return(
+        <div className="container-fluid">
+            <h2>Events</h2>
+            <button id="btnInsert" value="Insert" onClick={(event)=> handleClick(event, 'Welcome', ['Delhi', 'Hyd'],{Rate:4.2})}>Insert</button>
+        </div>
+    )
+}
+
+*** FAQ: How to stop propagation & How to prevent default actions?
+Ans:  By using event methods
+        a) stopPropagation()
+        b) preventDefault()
+
+Ex:
+import { useState } from "react";
+
+export function TwoWayBinding(){
+
+   
+   
+    function handleNavClick(){
+        alert('Nav Clicked');
+    }
+    function handleSearchClick(e){
+        e.stopPropagation();
+        alert('Search Clicked');
+    }
+    function handleSubmit(e){
+        e.preventDefault();
+        alert('Form Submitted');
+    }
+   
+    return(
+        <div className="container-fluid">
+            <h2>Events</h2>
+            <nav className="border border-2 p-2" onClick={handleNavClick}>
+                <h3>Shopping</h3>
+                <button onClick={handleSearchClick} className="bi bi-search"></button>
+            </nav>
+            <form onSubmit={handleSubmit}>
+                <dl>
+                    <dt>Name</dt>
+                    <dd><input type="text" name="User" /></dd>
+                </dl>
+                <button>Submit</button>
+            </form>
+        </div>
+    )
+}
 
 
 

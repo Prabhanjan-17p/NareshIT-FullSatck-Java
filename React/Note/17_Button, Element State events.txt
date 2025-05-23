@@ -1,0 +1,181 @@
+Synthetic Events
+- Mouse Events
+- Keyboard Events
+
+3. Button Events
+    onClick
+    onDoubleClick   [ondblclick]
+    onContextMenu [right click]
+
+Note: You can disable the DOM events by configuring a function that returns false.
+
+Ex:
+button-demo.jsx
+
+export function ButtonDemo(){
+
+
+    function handleDoubleClick(){
+        window.open('iphone-white.jpg','Iphone','width=300 height=400');
+    }
+
+    function handleContextMenu(){
+        document.oncontextmenu = ()=> {
+             alert('Right Click Not Allowed');
+             return false;
+        }
+    }
+
+    return(
+        <div onContextMenu={handleContextMenu} className="container-fluid">
+            <img src="iphone-white.jpg" onDoubleClick={handleDoubleClick} width="100" height="100" />
+            <p>Double click to view large</p>
+            <h1>Right Click disabled on this page</h1>
+        </div>
+    )
+}
+
+4. Element State Events
+    onFocus
+    onBlur
+    onChange
+
+Note: React two way binding can be configured only by using "onChange".
+
+Ex:
+element-state-demo.jsx
+
+import { useState } from "react"
+
+
+export function ElementStateDemo(){
+
+    const [msg, setMsg] = useState('');
+    const [userName, setUserName] = useState('');
+
+    function handleFocus(){
+        setMsg('Name in Block Letters');
+    }
+    function handleBlur(){
+        setMsg('');
+        setUserName(userName.toUpperCase());
+    }
+    function handleNameChange(e){
+        setUserName(e.target.value);
+    }
+
+    return(
+        <div className="container-fluid">
+            <h3>Register User</h3>
+            <dl>
+                <dt>User Name</dt>
+                <dd><input type="text" value={userName} onChange={handleNameChange} onBlur={handleBlur} onFocus={handleFocus} /></dd>
+                <dd className="text-warning">{msg}</dd>
+            </dl>
+        </div>
+    )
+}
+
+Ex:
+emi-calculator.jsx
+
+
+import { useState } from "react"
+
+export function EmiCalculator(){
+
+    const [amount, setAmount] = useState(100000);
+    const [years, setYears] = useState(1);
+    const [rate, setRate] = useState(10.45);
+    const [emi, setEmi] = useState(0);
+
+
+    function handleAmountChange(e){
+        setAmount(e.target.value);
+    }
+    function handleYearsChange(e){
+        setYears(e.target.value);
+    }
+    function handleRateChange(e){
+        setRate(e.target.value);
+    }
+
+    function handleCalculateClick(){
+        var P = parseInt(amount);
+        var R = parseFloat(rate)/12/100;
+        var N = parseInt(years) * 12;
+        var EMI = P * R * (Math.pow(1+R, N)) / (Math.pow(1+R,N))- 1;
+        setEmi(EMI);
+    }
+   
+
+
+    return(
+        <div className="bg-secondary container-fluid p-4" style={{height:'100vh'}}>
+            <div>
+                <h5 className="text-center text-white">Personal Loan EMI Calculator</h5>
+                <div className="bg-light text-dark">
+                    <div className="row p-4">
+                        <div className="col">
+                            Amount you need &#8377; <input value={amount} onChange={handleAmountChange} type="text" size="16" />
+                        </div>
+                        <div className="col">
+                            for <input type="text" value={years} size="2" onChange={handleYearsChange} /> years
+                        </div>
+                        <div className="col">
+                            interest rate <input value={rate} type="text" size="2" onChange={handleRateChange} /> %
+                        </div>
+                    </div>
+                    <div className="row p-4">
+                        <div className="col">
+                          <input onChange={handleAmountChange} className="form-range" type="range" step="1000" min="100000" value={amount} max="1000000" />
+                          <div>
+                            <span>&#8377; 1,00,000 </span>
+                            <span className="float-end">&#8377; 10,00,000 </span>
+                          </div>
+                        </div>
+                        <div className="col">
+                           <input onChange={handleYearsChange} className="form-range" type="range" min="1" value={years} max="5" />
+                          <div>
+                            <span>1 Year </span>
+                            <span className="float-end">5 Years </span>
+                          </div>
+                        </div>
+                        <div className="col">
+                          <input onChange={handleRateChange} className="form-range" type="range" min="10.45" step="0.01"  value={rate} max="18.45" />
+                          <div>
+                            <span>10.45% </span>
+                            <span className="float-end">18.45% </span>
+                          </div>
+                        </div>
+                    </div>
+                    <div className="row p-4">
+                        <div className="col text-end">
+                            <button onClick={handleCalculateClick} className="btn btn-primary">Calculate</button>
+                        </div>
+                    </div>
+                    <div className="row p-4">
+                        <div className="col text-center">
+                            <div>Your montly EMI is <span className="fs-3 fw-bold">{Math.round(emi).toLocaleString('en-in', {style: 'currency', currency: 'INR'})}</span> for next {years * 12} months </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    )
+}
+
+5. Timer Events
+    setTimeout()
+    clearTimeout()
+    setInterval()
+    clearInterval()
+
+Debounce:
+- It is a mechanism of delaying task by specified duration.
+- It can load the task into memory and lock or make it inactive for specific duration, so that later it can be released into process.
+- It reduces the overload of tasks in process.
+- You can configure debounce by using "setTimeout()".
+
+Syntax:
+     setTimeout(function(){}, interval)

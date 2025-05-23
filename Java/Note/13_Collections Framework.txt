@@ -396,6 +396,7 @@ public class RetrievingCollectionObject {
 	}
 
 }
+//"
 ==========================================================================
 Working with List interface implemented class :
 -----------------------------------------------
@@ -572,8 +573,6 @@ record Employee(Integer id, String name, Double salary)
 {	
 }
 
-
-
 public class VectorDemo3
 {
 	public static void main(String[] args) 
@@ -588,7 +587,863 @@ public class VectorDemo3
 	  
 	}
 }
--------------------------------------------------------------------------
+-----------------------------------------------------------------------
+19-05-2025
+----------
+//Program to describe that ArrayList is better than Vector in performance
+
+package com.ravi.vector;
+
+import java.util.ArrayList;
+import java.util.Vector;
+
+public class VectorDemo4 
+{
+	public static void main(String[] args) 
+	{
+		long startTime = System.currentTimeMillis();
+		
+		ArrayList<Integer> al = new ArrayList<Integer>();
+		
+		for(int i=0; i<1000000; i++)
+		{
+			al.add(i);
+		}
+		
+		long endTime = System.currentTimeMillis();
+		
+		System.out.println("Total Time taken by ArrayList class :"+(endTime - startTime)+" ms");
+		
+       startTime = System.currentTimeMillis();
+		
+		Vector<Integer> v1 = new Vector<Integer>();
+		
+		for(int i=0; i<1000000; i++)
+		{
+			v1.add(i);
+		}
+		
+		endTime = System.currentTimeMillis();
+		
+		System.out.println("Total Time taken by Vector class :"+(endTime - startTime)+" ms");
+			
+		
+	}
+}
+------------------------------------------------------------------------
+package com.ravi.vector;
+
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.OptionalInt;
+import java.util.Vector;
+
+public class VectorDemo5
+{
+
+	public static void main(String[] args) 
+	{
+		Vector<String> listOfCity = new Vector<>();
+		listOfCity.add("Surat");
+		listOfCity.add("Pune");
+		listOfCity.add("Ahmadabad");
+		listOfCity.add("Vanaras");
+		
+		Collections.sort(listOfCity);
+		
+		listOfCity.forEach(System.out::println);
+		
+		
+		System.out.println(".............");
+		
+		Vector<Integer> listOfNumbers = new Vector<>();
+		listOfNumbers.add(500);
+		listOfNumbers.add(900);
+		listOfNumbers.add(400);
+		listOfNumbers.add(300);
+		listOfNumbers.add(800);
+		listOfNumbers.add(200);
+		listOfNumbers.add(100);	
+		
+		System.out.println("Original Data...");
+		System.out.println(listOfNumbers);
+		
+		
+		System.out.println("Ascending Order...");
+		Collections.sort(listOfNumbers);
+		System.out.println(listOfNumbers);
+		
+		System.out.println("Descending Order...");
+		
+		Collections.sort(listOfNumbers, Collections.reverseOrder());
+		System.out.println(listOfNumbers);
+		
+		//Converting Our Vector(Collection Object) into Array
+		Vector<String> listOfFruits = new Vector<>();
+		listOfFruits.add("Orange");
+		listOfFruits.add("Apple");
+		listOfFruits.add("Mango");
+		
+		Object[] fruits = listOfFruits.toArray();
+		System.out.println(Arrays.toString(fruits));
+		
+				
+	}
+
+}
+
+Sorting Data in Ascending Order :Collections.sort(List<E> list)
+In descending Order :Collections.sort(List<E> list, Collections.reverseOrder())
+
+Collections.reverseOrder() method return type is Comparator interface.
+------------------------------------------------------------------------
+package com.ravi.vector;
+
+import java.util.Scanner;
+import java.util.Vector;
+
+public class VectorDemo6
+{
+    public static void main(String[] args) 
+    {        
+        Vector<String> toDoList = new Vector<>();
+
+        Scanner scanner = new Scanner(System.in);
+
+        int choice;
+        do 
+        {
+            System.out.println("To Do List Menu:");
+            System.out.println("1. Add Task");
+            System.out.println("2. View Tasks");
+            System.out.println("3. Mark Task as Completed");
+            System.out.println("4. Exit");
+            
+            System.out.print("Enter your choice: ");
+
+            choice = scanner.nextInt(); 
+            scanner.nextLine(); 
+
+            switch (choice) 
+            {
+                case 1:
+                    // Add Task
+                    System.out.print("Enter task description: ");
+                    String task = scanner.nextLine();  
+                    toDoList.add(task);
+                    System.out.println("Task added successfully!\n");
+                    break;
+                case 2:
+                    // View Tasks
+                    System.out.println("To Do List:");
+                    for (int i = 0; i < toDoList.size(); i++) 
+                    {
+                      System.out.println((i + 1) + ". " + toDoList.get(i));
+                    }
+                    System.out.println();
+                    break;
+                case 3:
+                    // Mark Task as Completed
+                    System.out.print("Enter task number to mark as completed: ");
+                    int taskNumber = scanner.nextInt(); //1
+                    if (taskNumber >= 1 && taskNumber <= toDoList.size()) 
+                    {
+                        String completedTask = toDoList.remove(taskNumber - 1);
+                        System.out.println("Task marked as completed: " + completedTask + "\n");
+                    } 
+                    else {
+                        System.out.println("Invalid task number!\n");
+                    }
+                    break;
+                case 4:
+                    System.out.println("Exiting ToDo List application. Goodbye!");
+                    break;
+                default:
+                    System.out.println("Invalid choice. Please enter a valid option.\n");
+            }
+
+        } 
+        while (choice != 4);
+
+       
+        scanner.close();
+    }
+}
+----------------------------------------------------------------------
+default Iterator asIterator() :
+-------------------------------
+This method is added in Enumeration interface from java 9V to support 
+backward compatibility(suppoting old version)
+
+package com.ravi.vector;
+
+import java.util.Enumeration;
+import java.util.Iterator;
+import java.util.Vector;
+
+record Product(int productId, String productName)
+{
+	
+}
+
+public class VectorDemo7 
+{
+	public static void main(String[] args) 
+	{
+		Vector<Product> listOfProduct = new Vector<>();
+		listOfProduct.add(new Product(111, "Laptop"));
+		listOfProduct.add(new Product(222, "Mobile"));
+		listOfProduct.add(new Product(333, "Camera"));
+		listOfProduct.add(new Product(444, "Bag"));
+		listOfProduct.add(new Product(555, "Watch"));
+	
+		
+		Enumeration<Product> ele = listOfProduct.elements(); 
+		Iterator<Product> itr = ele.asIterator();
+		itr.forEachRemaining(System.out::println);
+		
+	}
+
+}
+-----------------------------------------------------------------------
+*** What is Fail Fast and Fail safe Iterator ?
+----------------------------------------------
+While retrieving the object from the collection by using Itearor interface or for each loop, if at any point of time the original structure is going to modify after the creation of Itearator then we will get java.util.ConcurrentModificationExacption.
+
+We will not get this exception, If it is modified by Iterators OWN 
+method like add() OR remove().
+
+package com.ravi.vector;
+
+import java.util.Iterator;
+import java.util.Vector;
+
+class Concurrent extends Thread
+{
+	private Vector<String> cities;  //1000x
+
+	public Concurrent(Vector<String> cities) 
+	{
+		super();
+		this.cities = cities;
+	}
+	
+	@Override
+	public void run()
+	{
+		try
+		{
+			Thread.sleep(2000);
+		}
+		catch(InterruptedException e)
+		{
+			e.printStackTrace();
+		}
+		
+		cities.add("Goa");
+	}	
+}
+
+
+public class VectorDemo8 
+{
+	public static void main(String[] args) throws InterruptedException 
+	{
+		Vector<String> listOfCity = new Vector<>(); //listOfCity = 1000x
+		listOfCity.add("Surat");
+		listOfCity.add("Pune");
+		listOfCity.add("Ahmadabad");
+		listOfCity.add("Vanaras");
+		listOfCity.add("Hyderabad");
+		
+		Concurrent cons = new Concurrent(listOfCity);
+		cons.start();
+		
+		Iterator<String> itr = listOfCity.iterator();
+		while(itr.hasNext())
+		{
+			System.out.println(itr.next());
+			Thread.sleep(500);
+		}
+				
+	}
+
+}
+
+Note : We will get java.util.ConcurrentModificatioinException
+
+package com.ravi.vector;
+
+import java.util.Iterator;
+import java.util.Spliterator;
+import java.util.concurrent.CopyOnWriteArrayList;
+
+class Concurrent extends Thread
+{
+	private CopyOnWriteArrayList<String> cities;  //1000x
+
+	public Concurrent(CopyOnWriteArrayList<String> cities) 
+	{
+		super();
+		this.cities = cities;
+	}
+	
+	@Override
+	public void run()
+	{
+		try
+		{
+			Thread.sleep(1000);
+		}
+		catch(InterruptedException e)
+		{
+			e.printStackTrace();
+		}
+		
+		cities.add("Goa");
+	}	
+}
+
+
+public class VectorDemo8 
+{
+	public static void main(String[] args) throws InterruptedException 
+	{
+		CopyOnWriteArrayList<String> listOfCity = new CopyOnWriteArrayList<>(); //listOfCity = 1000x
+		listOfCity.add("Surat");
+		listOfCity.add("Pune");
+		listOfCity.add("Ahmadabad");
+		listOfCity.add("Vanaras");
+		listOfCity.add("Hyderabad");
+		
+		Concurrent cons = new Concurrent(listOfCity);
+		cons.start();
+		
+		Iterator<String> itr = listOfCity.iterator();
+		while(itr.hasNext())
+		{
+			System.out.println(itr.next());
+			Thread.sleep(500);
+		}
+		System.out.println("..............");
+		
+		Spliterator<String> spliterator = listOfCity.spliterator();
+		spliterator.forEachRemaining(System.out::println);		
+	}
+
+}
+=======================================================================
+Stack<E> :
+-----------
+Stack<E> :
+------------
+public class Stack<E> extends Vector<E>
+
+It is a predefined class available in java.util package. It is the sub class of Vector class introduced from JDK 1.0 so, It is also a legacy class. 
+
+It is a linear data structure that is used to store the Objects in LIFO (Last In first out) order.
+
+Inserting an element into a Stack is known as push operation  where as extracting an element from the top of the stack is known as pop operation.
+
+It throws an exception called java.util.EmptyStackException, if Stack is empty and we want to fetch the element.
+
+It has only one constructor as shown below
+
+Stack s = new Stack(); 
+
+Will create empty Stack Object.
+------------------------------------------------------------------------------------
+Methods :
+----------
+public E push(Object o) :- To insert an element in the bottom of the Stack.
+
+public E pop() :- To remove and return the element from the top of the Stack.
+
+public E peek() :- Will fetch the element from top of the Stack without removing.
+
+public boolean empty() :- Verifies whether the stack is empty or not (return type is boolean)
+
+public int search(Object o) :- It will search a particular element in the Stack and it returns OffSet position (int value). If the element is not present in the Stack it will return -1
+----------------------------------------------------------------------
+//Program to insert and fetch the elements from stack
+package com.ravi.stack;
+import java.util.*;
+public class Stack1
+{
+      public static void main(String args[])
+      {
+            Stack<Integer> s = new Stack<>();
+             try
+             {
+                  s.push(12);
+                  s.push(15);
+				  s.push(22);
+				  s.push(33);
+				  s.push(49);				  
+				  System.out.println("After insertion elements are :"+s); 
+               
+                  System.out.println("Fetching the elements using pop method");
+                  System.out.println(s.pop());
+                  System.out.println(s.pop()); 
+                  System.out.println(s.pop());  
+                  System.out.println(s.pop());  
+                  System.out.println(s.pop());
+                                                                        
+                 			  	
+	 			  System.out.println("After deletion elements are :"+s);//[]
+				  
+				  System.out.println("Is the Stack empty ? :"+s.empty());  
+              }
+			catch(EmptyStackException e)
+			{
+			   e.printStackTrace();
+			} 
+		
+      }
+}
+----------------------------------------------------------------------
+//add(Object obj) is the method of Collection
+package com.ravi.stack;
+import java.util.*;
+public class Stack2
+{
+      public static void main(String args[])
+      {
+            Stack<Integer> st1 = new Stack<>();
+            st1.add(10);
+            st1.add(20);      
+            st1.forEach(x -> System.out.println(x));
+
+            Stack<String> st2 = new Stack<>();
+            st2.add("Java");  
+            st2.add("is");
+            st2.add("programming");
+            st2.add("language"); 
+            st2.forEach(x -> System.out.println(x));
+
+            Stack<Character> st3 = new Stack<>();
+            st3.add('A');  
+            st3.add('B');
+            st3.forEach(x -> System.out.println(x));
+
+            Stack<Double> st4 = new Stack<>();
+            st4.add(10.5);
+            st4.add(20.5);               
+            st4.forEach(x -> System.out.println(x));          
+      }  
+}
+----------------------------------------------------------------------
+package com.ravi.stack;
+import java.util.Stack;  
+
+public class Stack3
+{  
+	public static void main(String[] args)   
+		{  
+			Stack<String> stk= new Stack<>();  
+			stk.push("Apple");  
+			stk.push("Grapes");  
+			stk.push("Mango");  
+			stk.push("Orange");  
+			System.out.println("Stack: " + stk);  
+			
+			String fruit = stk.peek(); 			
+			System.out.println("Element at top: " + fruit);  
+			System.out.println("Stack elements are : " + stk); 
+		}  
+}  
+----------------------------------------------------------------------
+//Searching an element in the Stack
+package com.ravi.stack;
+import java.util.Stack;  
+public class Stack4
+{  
+	public static void main(String[] args)   
+		{ 		       
+			Stack<String> stk= new Stack<>();  //Apple   Grapes   Mango
+			stk.push("Apple");  
+			stk.push("Grapes");  
+			stk.push("Mango"); 			
+			System.out.println("Offset Position is : " + stk.search("Mango"));	//1		
+			System.out.println("Offser Position is : " + stk.search("Banana")); //-1
+		    System.out.println("Is stack empty ? "+stk.empty());	//false
+			
+			System.out.println("Index Position is : " + stk.indexOf("Mango")); //2	    
+		
+		}  
+}  
+----------------------------------------------------------------------
+20-05-2025
+-----------
+ArrayList<E> :
+--------------
+public class ArrayList<E> extends AbstractList<E> implements List<E>,
+Cloneable, Serializable, RandomAccess
+
+
+It is a predefined class available in java.util package under List interface from java 1.2v.
+
+It accepts duplicate,null, homogeneous and hetrogeneous elements.
+
+It is dynamically growable array.
+
+It stores the elements on index basis so it is simillar to dynamic array.
+
+Initial capacity of ArrayList is 10. The new capacity of Arraylist can be calculated by using the  formula
+new capacity = (current capacity * 3)/2 + 1  [Almost 50% increment]
+
+*All the methods declared inside an ArrayList is not synchronized so multiple thread can access the method of ArrayList so performance wise it is good.
+
+*It is highly suitable for fetching or retriving operation when duplicates are allowed and Thread-safety is not required.
+
+Here Iterator is Fail Fast Iteartor.
+
+It implements List,Serializable, Clonable, RandomAccess interfcaes.
+
+hashCode() and equlas(Object obj) methods are overridden.
+
+Constructor of ArrayList :
+----------------------------
+In ArrayList we have 3 types of Constructor:
+Constructor of ArrayList :
+
+1) ArrayList al1 = new ArrayList();
+   Will create ArrayList object with default capacity 10.
+
+2) ArrayList al2 = new ArrayList(int initialCapacity);
+   Will create an ArrayList object with user specified Capacity
+
+3) ArrayList al3 = new ArrayList(Collection c)
+   We can copy any Collection interface implemented class data to the current object   reference (Coping one Collection data to another)
+---------------------------------------------------------------------
+//How to add ArrayList element
+
+package com.ravi.arraylist;
+
+import java.util.ArrayList;
+
+public class ArrayListDemo
+{
+    public static void main(String[] args) 
+    {
+        
+        ArrayList<Integer> numbers = new ArrayList<>(100);
+                
+        numbers.add(100);
+        numbers.add(200);
+        numbers.add(300);
+        numbers.add(400);
+        
+        int sum = 0;
+        
+        for (int number : numbers) 
+        {
+            sum += number;
+        }        
+        System.out.println("Sum of numbers: " + sum);
+    }
+}
+---------------------------------------------------------------------
+//Custom Object
+package com.ravi.arraylist;
+
+import java.util.ArrayList;
+
+record Customer(Integer custId, String custName, Double custBill)
+{	
+}
+
+public class ArrayListDemo1
+{
+	public static void main(String[] args) 
+	{
+		ArrayList<Customer> listOfCustomer = new ArrayList<>();
+		listOfCustomer.add(new Customer(111, "Scott", 12000D));
+		listOfCustomer.add(new Customer(222, "Smith", 12000D));
+		listOfCustomer.add(new Customer(333, "Alen", 12000D));
+		listOfCustomer.add(new Customer(444, "John", 12000D));
+		
+		listOfCustomer.forEach(System.out::println);		
+		
+	}
+}
+
+----------------------------------------------------------------------
+package com.ravi.arraylist;
+
+//Program to merge and retain of two collection addAll()   retainlAll()
+import java.util.*;
+public class ArrayListDemo2  
+	{
+		public static void main(String args[]) 
+		{ 
+		  ArrayList<String> al1=new ArrayList<>();
+		  al1.add("Ravi");
+		  al1.add("Rahul");
+		  al1.add("Rohit");		  
+		  
+		  ArrayList<String> al2=new ArrayList<>();
+		  al2.add("Pallavi");
+		  al2.add("Sweta");
+		  al2.add("Puja");		  
+
+		  al1.addAll(al2);  
+
+          al1.forEach(str -> System.out.println(str.toUpperCase()) );
+
+        System.out.println(".................................");
+
+		  ArrayList<String> al3=new ArrayList<>();
+		  al3.add("Ravi");
+		  al3.add("Rahul");
+		  al3.add("Rohit");		  
+		  
+		  ArrayList<String> al4=new ArrayList<>();
+		  al4.add("Pallavi");
+		  al4.add("Rahul");
+		  al4.add("Raj");
+		  
+		  al3.retainAll(al4);  
+
+          al3.forEach(x -> System.out.println(x));		  
+   }
+}
+---------------------------------------------------------------------
+How to create fixed length Array and Immutable List :
+------------------------------------------------------
+1) How to create a fixed length Array :
+---------------------------------------
+java.util.Arrays class has provided a predefined static method
+asList(T ...x), It will create a fixed length array and the return type of this method is List interface. 
+
+In this fixed length array we can't perform add or remove opeartion otherwise we will get  java.lang.UnsupportedOperationException but we can replace the existing element.
+
+       public static List<E> asList(T ...x);
+
+package com.ravi.arraylist;
+
+import java.util.Arrays;
+import java.util.List;
+
+public class FixedLengthArray 
+{
+	public static void main(String[] args)
+	{
+		List<Integer> listOfNumber = Arrays.asList(1,2,3,4,5,6,7);
+		System.out.println(listOfNumber);
+		
+		//listOfNumber.remove(0); //java.lang.UnsupportedOperationException
+		//listOfNumber.add(8); //java.lang.UnsupportedOperationException
+		
+		listOfNumber.set(0, 100);
+		System.out.println(listOfNumber);
+
+	}
+
+}
+
+2) Immutable List :
+-------------------
+List interface has provided a predefined static method called 
+of(T ...x) available from java 9V.
+
+It will create an immutable list, return type of this method is 
+List<E>. Once it is created after that we can't pefrom any kind of operation like add(), remove() or replace [set(int index, Object obj)] otherwise we will get java.lang.UnsupportedOperationException
+
+package com.ravi.arraylist;
+
+import java.util.List;
+
+public class ImmutableList {
+
+	public static void main(String[] args) 
+	{
+		List<Integer> listOfNumber = List.of(1,2,3,4,5,6);		
+		listOfNumber.set(0,100); //java.lang.UnsupportedOperationException
+		listOfNumber.add(7); //java.lang.UnsupportedOperationException
+		listOfNumber.remove(0); //java.lang.UnsupportedOperationException
+	}
+
+}
+----------------------------------------------------------------------
+//Program to fetch the elements in forward and backward 
+//direction using ListIterator interface
+
+package com.ravi.arraylist;
+
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+import java.util.ListIterator;
+
+public class ArrayListDemo3   
+{                             
+public static void main(String args[])
+  {
+	 List<String> listOfName = Arrays.asList("Rohit","Akshar","Pallavi","Sweta"); //Length is fixed
+	 
+	 Collections.sort(listOfName);
+	 
+	 //Fetching the data in both the direction
+	 ListIterator<String> lst = listOfName.listIterator();
+	 
+	 System.out.println("In Forward Direction..");	 
+	 while(lst.hasNext())
+	 {
+		System.out.println(lst.next()); 
+	 }
+	 System.out.println("In Backward Direction..");	 
+	 while(lst.hasPrevious())
+	 {
+		System.out.println(lst.previous()); 
+	 }
+	 
+  }
+}
+-----------------------------------------------------------------------
+ArrayListDemo4 [Pending Program] [Serialization and Deserialization]
+
+
+---------------------------------------------------------------------
+package com.ravi.arraylist;
+
+import java.util.ArrayList;
+import java.util.Collections;
+
+public class ArrayListDemo5
+{
+    public static void main(String[] args)
+    {        
+        ArrayList<String> cities = new ArrayList<>();
+
+        cities.add("Hyderabad");
+        cities.add("Delhi");
+        cities.add("Banglore");
+        cities.add("Chennai");
+        
+        System.out.println("Before sorting: " + cities);        
+        
+        
+        cities.sort((s1,s2)-> s1.compareTo(s2));
+        System.out.println("In Ascending Order :"+cities);          
+
+       
+        Collections.sort(cities, (s1,s2)-> s2.compareTo(s1));
+        System.out.println("In Descending Order :"+cities);      
+      
+
+    }
+}
+---------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

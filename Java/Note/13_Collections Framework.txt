@@ -1335,6 +1335,790 @@ public class ArrayListDemo5
     }
 }
 ---------------------------------------------------------------------
+21-05-2025
+-----------
+package com.ravi.arraylist;
+
+//Program on ArrayList that contains null values as well as we can pass 
+//the element based on the index position
+import java.util.ArrayList;
+import java.util.LinkedList;
+public class ArrayListDemo6
+{
+	public static void main(String[] args) 
+	{
+		ArrayList<Object> al = new ArrayList<>(); //Generic type
+		al.add(12);
+		al.add("Ravi");
+		al.add(12);		
+		al.add(3,"Hyderabad"); 
+		al.add(1,"Naresh");
+		al.add(null);
+		al.add(11);
+		System.out.println(al);  //12 Naresh Ravi 12 Hyderabad null 11
+	}
+}
+----------------------------------------------------------------------
+package com.ravi.arraylist;
+
+import java.util.ArrayList;
+import java.util.List;
+
+record Professor(String name, String specialization)
+{
+}
+
+class Department 
+{
+	private String departmentName;
+	private List<Professor> professors;	
+	
+	public Department(String departmentName)
+	{
+		this.departmentName = departmentName;
+		professors = new ArrayList<Professor>(); //Composition
+	}
+
+	public String getDepartmentName()
+	{
+		return this.departmentName;
+	}
+
+	public List<Professor> getProfessors() 
+	{
+		return this.professors;
+	}
+	
+	//Adding the Prof. in the department
+	public void addProfessor(Professor prof)
+	{
+		this.professors.add(prof);
+	}	
+}
+
+public class ArrayListDemo7
+{
+    public static void main(String[] args) 
+    {
+       Department dept = new Department("Computer Science");
+       dept.addProfessor(new Professor("Dr. Smith", "Java"));	
+       dept.addProfessor(new Professor("Dr. Alen", "Networking"));	
+       dept.addProfessor(new Professor("Dr. Scott", "Database"));	
+       
+       System.out.println("Professors in :"+dept.getDepartmentName());
+       dept.getProfessors().forEach(System.out::println);       
+       
+       Department department = new Department("Civil Engineering");
+       department.addProfessor(new Professor("Dr. Raj", "Engineering Drawing"));	
+       department.addProfessor(new Professor("Dr. Samir", "Concrete Technology"));	
+       department.addProfessor(new Professor("Dr. Ankit", "Environmental Engineering"));	
+       
+       System.out.println("Professors in :"+department.getDepartmentName());
+       department.getProfessors().forEach(System.out::println);
+       
+      
+    }
+}
+----------------------------------------------------------------------
+package com.ravi.arraylist;
+
+import java.util.ArrayList;
+
+public class ArrayListDemo8
+{
+    public static void main(String[] args) 
+    {
+        ArrayList<String> original = new ArrayList<>();
+        original.add("BCA");
+        original.add("MCA");
+        original.add("BBA");
+        
+        System.out.println("By using clone Method");
+        @SuppressWarnings("unchecked")
+		ArrayList<String> cloned = (ArrayList<String>) original.clone();
+        System.out.println(cloned);    
+        
+        
+      System.out.println("By using Copy Constructor");
+      ArrayList<String> copyConstr = new ArrayList<String>(original);
+      System.out.println(copyConstr);      
+       
+    }
+}
+----------------------------------------------------------------------
+public List subList(int fromIndex, int toIndex) :
+--------------------------------------------------
+It is used to fetch/retrieve the part of the List based on the given index. The return type of this method is List, Here fromIndex is inclusive and toIndex is exclusive.
+
+public boolean contains(Object element) :
+------------------------------------------
+It is used to find the given element object in the corresponsing List, if available it  will return true otherwise false.
+
+public default boolean removeIf(Predicate<T> filter) [JDK 1.8]
+----------------------------------------------------------------
+It is used to remove the elements based on boolean condition passed as a Predicate.
+
+----------------------------------------------------------------------
+package com.ravi.arraylist;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class ArrayListDemo9 {
+
+	public static void main(String[] args) 
+	{
+		ArrayList<Integer> list = new ArrayList<>();
+        list.add(1);
+        list.add(2);
+        list.add(3);
+        list.add(4);
+        list.add(5);
+        list.add(6);
+        list.add(7);
+        list.add(8);
+        list.add(9);
+        list.add(10);
+        
+        //public List subList(int fromIndex, int toIndex)
+        List<Integer> subList = list.subList(2, 5);  //3 4 5
+        System.out.println(subList);
+        
+       
+        System.out.println("........................");
+         
+        //public boolean contains(Object obj)
+        boolean contains = list.contains(10);
+        System.out.println(contains);
+       
+      
+        System.out.println("........................");
+        
+        //public int indexOf(Object obj)
+        System.out.println(list.indexOf(1));  
+        
+        System.out.println("................");
+        
+        //public void removeIf(Predicate<T> p)
+        list.removeIf(num -> num%2==1);
+        list.forEach(System.out::println);         
+        
+	}
+}
+
+//Program on removeIf(Predicate<T> p) method :
+-----------------------------------------------
+package com.ravi.arraylist;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.function.Predicate;
+
+public class RemoveIfDemo {
+
+	public static void main(String[] args) 
+	{
+		
+		List<String> listOfNames = new ArrayList<String>();
+		listOfNames.add("Raj");
+		listOfNames.add("Rohit");
+		listOfNames.add("Rohan");
+		listOfNames.add("Ankit");
+		listOfNames.add("Scott");
+		
+		System.out.println("Original List :"+listOfNames);
+				
+		listOfNames.removeIf(str -> str.startsWith("R"));
+		
+		System.out.println("After Removing :"+listOfNames);		
+	}
+}
+-----------------------------------------------------------------------
+public void trimToSize() 
+--------------------------
+[Shrinks the capacity equal to the size, Dynamically Growable]
+
+Used to reduce the capacity equals to the current size and then when we
+add more elements then dynamically Growable
+
+public void ensureCapacity(int minCapacity)
+--------------------------------------------
+Increase the capacity of the ArrayList to avoid frequent resizing. 
+
+The minCapacaity parameter will specify that ArrayList will definetly hold the number of elements specified in the parameter of ensureCapacity() method.
+
+After using  ensureCapacity() method, still it is dynamically growable.
+
+package com.ravi.arraylist;
+
+import java.util.ArrayList;
+import java.util.RandomAccess;
+
+public class ArrayListDemo10 {
+
+	public static void main(String[] args) 
+	{
+		ArrayList<String> list = new ArrayList<>(100); 
+        list.add("Java");
+        list.add("World");          
+        
+        //public void trimToSize()
+        list.trimToSize(); //Shrinks the capacity equal to the size
+        System.out.println("Trimmed List Size: " + list.size()); 
+        
+        System.out.println(".........................");
+        
+        
+        ArrayList<Integer> listOfNumber = new ArrayList<>();
+
+        // public void ensureCapacity(int minCapacity)
+        //Increase the capacity of the ArrayList to avoid frequent resizing.
+        listOfNumber.add(999);
+        
+        
+        
+        listOfNumber.ensureCapacity(100);
+
+        for (int i = 0; i < 50; i++) 
+        {
+        	listOfNumber.add(i);
+        }
+
+        System.out.println("List size: " + listOfNumber.size());
+    }
+
+}
+=======================================================================
+Time Complexity of ArrayList :
+-------------------------------
+The time complexity of ArrayList to insert OR delete an element from the middle OR Begning (not at last) would be O(n) [Big O of n] because 'n' number of elements will be re-located so, it is not a good choice to perform insertion and deletion operation in the middle OR begning of the List. 
+
+On the other hand time complexity of ArrayList to retrieve an element from the List would be O(1) because by using get(int index) method we can retrieve the element randomly from the list. ArrayList class implements RandomAccess marker interface which provides the facility to fetch the elements Randomly. [21-MAY-25]
+
+IF WE WANT TO PERFORM FREQUENET INSERTION OR DELETION IN THE LIST THEN WE SHOULD ANOTHER DATA STRUCTURE I.E LinkedList Data Structure.
+
+***LinkedList :
+--------------
+public class LinkedList<E> extends AbstractSequentialList<E> implements List<E>, Deque<E>, Cloneable, Serializable
+
+It is a predefined class available in java.util package under List interface from JDK 1.2v.
+
+It is ordered by index position like ArrayList except the elements (nodes) are doubly linked to one another. This linkage provide us new method for adding and removing the elements from the middle of LinkedList.
+
+It stores the elements in non-contiguous memory location.
+
+*The important thing is, LikedList may iterate more slowely than ArrayList but LinkedList is a good choice when we want to insert or delete the elements frequently in the list.
+
+From jdk 1.6 onwards LinkedList class has been enhanced to support basic queue operation by implementing Deque<E> interface.
+
+LinkedList methods are not synchronized.
+
+It inserts the elements by using Doubly linked List so insertion and deleteion is very easy.
+
+ArrayList is using Dynamic array data structure but LinkedList class is using LinkedList (Doubly LinkedList) data structure.
+
+At the time of searching an element, It will start searching from Head node OR tail node means closer one based on the index.
+
+**Here Iterators are Fail Fast Iterator.
+
+Constructor:
+-------------
+It has 2 constructors 
+
+1) LinkedList list1 = new LinkedList();
+    It will create a LinkedList object with 0 capacity.
+
+2) LinkedList list2 = new LinkedList(Collection c);
+    Interconversion between the collection
+
+Methods of LinkedList class:
+-------------------------------
+1) void addFirst(Object o)
+2) void addLast(Object o)
+
+3) Object getFirst()
+4) Object getLast()
+
+5) Object removeFirst()
+6) Object removeLast()
+
+The time complexcity for insertion and deletion is  O(1) The time complexcity for seraching O(n) because it serach the elemnts using node reference. 
+----------------------------------------------------------------------
+package com.ravi.collection;
+
+import java.util.LinkedList;
+
+public class SinglyLinkedList 
+{
+	static class Node
+	{
+		int item;
+		Node next;  //next [ANN -> Address of Next Node]
+		
+		public Node(int item)
+		{
+			this.item = item;
+			this.next = null;
+		}	
+	}
+
+	public static void main(String[] args) 
+	{
+		Node n1 = new Node(100);
+		Node n2 = new Node(200);
+		Node n3 = new Node(300);
+		
+		n1.next = n2;
+		n2.next = n3;
+		
+		
+		System.out.println(n1.item);
+		System.out.println(n1.next.item);
+		System.out.println(n1.next.next.item);	
+		
+		LinkedList l = null;
+		
+	}
+
+}
+----------------------------------------------------------------------
+package com.ravi.linked_list;
+
+import java.util.Iterator;
+import java.util.LinkedList;
+import java.util.List;
+public class LinkedListDemo
+{
+ public static void main(String args[])
+ { 
+      LinkedList<Object> list=new LinkedList<>();
+	  list.add("Ravi");
+	  list.add("Vijay");
+	  list.add("Ravi");
+	  list.add(null);
+	  list.add(42);	  
+	  
+	  System.out.println("1st Position Element is :"+list.get(1));
+	  //Iterator interface 	  
+	   Iterator<Object> itr = list.iterator();
+	   itr.forEachRemaining(System.out::println); //JDK 1.8	 
+  }
+}
+----------------------------------------------------------------------
+package com.ravi.linked_list;
+
+import java.util.*;
+public class LinkedListDemo1
+{
+      public static void main(String args[])
+      {
+           LinkedList<String> list= new LinkedList<>(); //generic
+           list.add("Item 2");//2  
+           list.add("Item 3");//3   
+           list.add("Item 4");// 4  
+           list.add("Item 5");// 5  
+           list.add("Item 6");// 6 
+           list.add("Item 7");// 7
+           
+           list.add("Item 9"); //10  
+
+           list.add(0,"Item 0");//0
+           list.add(1,"Item 1"); //1
+           
+           
+
+           list.add(8,"Item 8");//8
+		   list.add(9,"Item 10");//9
+            System.out.println(list);
+			
+         
+			list.remove("Item 5"); 
+			  
+			  System.out.println(list);
+			  
+			  
+			   list.removeLast(); 
+			    System.out.println(list);
+			   
+			     list.removeFirst(); 
+			    System.out.println(list);
+			   
+			  list.set(0,"Ajay"); //set() will replace the existing value
+			  list.set(1,"Vijay"); 
+			  list.set(2,"Anand"); 
+			  list.set(3,"Aman");
+			  list.set(4,"Suresh"); 
+			  list.set(5,"Ganesh");
+			  list.set(6,"Ramesh");
+			  list.forEach(x -> System.out.println(x)); 		
+			
+      } 
+}
+---------------------------------------------------------------------
+package com.ravi.linked_list;
+
+//Methods of LinkedList class
+import java.util.LinkedList;
+public class LinkedListDemo2
+{
+    public static void main(String[] argv) 
+    {
+          LinkedList<String> list = new LinkedList<>();
+          
+          list.addFirst("Ravi");  // Ravi  Rahul  Anand
+          list.add("Rahul"); 
+          list.addLast("Anand");	
+          
+          System.out.println(list.getFirst()); 
+          System.out.println(list.getLast()); 
+          
+          list.removeFirst();
+          list.removeLast(); 
+          
+          System.out.println(list); //[Rahul]        
+         
+    }
+}
+----------------------------------------------------------------------
+package com.ravi.linked_list;
+//ListIterator methods (add(), set(), remove())
+import java.util.*;
+public class LinkedListDemo3 
+{
+	public static void main(String[] args) 
+	{
+		LinkedList<String> city = new LinkedList<> ();
+         city.add("Kolkata");
+		 city.add("Bangalore");
+		 city.add("Hyderabad");
+		 city.add("Pune");
+		 System.out.println(city); 
+		
+		ListIterator<String> lt = city.listIterator();
+
+          while(lt.hasNext())
+		  {
+			String cityName =  lt.next();
+
+			if(cityName.equals("Kolkata"))
+			{
+                 lt.remove();
+			}
+			else if(cityName.equals("Hyderabad"))
+			{
+                 lt.add("Ameerpet");
+			}
+			else if(cityName.equals("Pune"))
+			{
+                 lt.set("Mumbai");
+			}
+		}
+		city.forEach(System.out::println);
+		
+	}
+}
+
+Here there is no ConcurrentModificationException because ListIterator is modifying the structure by it's own method hence there is no problem because it is internal structure modification.
+---------------------------------------------------------------------
+23-05-2025
+----------
+package com.ravi.linked_list;
+
+//Insertion, deletion, displaying and exit
+
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Scanner;
+
+public class LinkedListDemo4
+{
+ public static void main(String[] args)
+	{
+      List<Integer> linkedList = new LinkedList<>();
+      Scanner scanner = new Scanner(System.in);
+
+        while (true) 
+		{
+          System.out.println("Linked List: " + linkedList); //[]
+          System.out.println("1. Insert Element");
+          System.out.println("2. Delete Element");
+		  System.out.println("3. Display Element");
+          System.out.println("4. Exit");
+          System.out.print("Enter your choice: ");
+
+          int choice = scanner.nextInt();
+          switch (choice) 
+			{
+              case 1: 
+                  System.out.print("Enter the element to insert: ");
+                  int elementToAdd = scanner.nextInt();
+                  linkedList.add(elementToAdd);
+                  break;
+              case 2:
+                  if (linkedList.isEmpty()) 
+					{
+                      System.out.println("Linked list is empty. Nothing to delete.");
+                  } 
+					else 
+					{
+                      System.out.print("Enter the element to delete: ");
+                      int elemenetToDelete = scanner.nextInt(); 
+                      boolean remove = linkedList.remove(Integer.valueOf(elemenetToDelete));
+                         
+                      
+                       if(remove)
+                       {
+                    	   System.out.println("Element "+elemenetToDelete+ " is deleted Successfully" );
+                       }
+                       else
+                       {
+                    	   System.out.println("Element "+elemenetToDelete+" not available is the LinkedList");
+                       }
+                    
+                  }
+                  break;
+				case 3:
+					System.out.println("Elements in the linked list.");
+                    linkedList.forEach(System.out::println);
+				     break;
+              case 4:
+                  System.out.println("Exiting the program.");
+                  scanner.close();
+                  System.exit(0);
+              default:
+                  System.out.println("Invalid choice. Please try again.");
+          }
+      }
+  }
+}
+----------------------------------------------------------------------
+package com.ravi.linked_list;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.LinkedList;
+import java.util.List;
+
+public class LinkedListDemo5 {
+
+	public static void main(String[] args) 
+	{			
+		
+		List<String> listOfName = Arrays.asList("Ravi","Rahul","Ankit", "Rahul");
+		
+		LinkedList<String> list = new LinkedList<>(listOfName); 
+		list.forEach(System.out::println);
+		
+		System.out.println("....................");
+		
+		ArrayList<String> listOfCity = new ArrayList<>();
+		listOfCity.add("Hyderabad");
+		listOfCity.add("Bhubneswar");
+		listOfCity.add("Kolkata");	
+		
+		LinkedList<String> cities = new LinkedList<>(listOfCity);
+		cities.add("Pune");		
+		cities.forEach(System.out::println);
+		
+		
+		System.out.println("....................");
+		
+		LinkedList<String> fruits = new LinkedList<>();
+		fruits.add("Orange");
+		fruits.add("Apple");
+		fruits.add("Mango");
+		
+		List<String> synchronizedFruitList = Collections.synchronizedList(fruits);
+		synchronizedFruitList.forEach(System.out::println);	
+	}
+}
+----------------------------------------------------------------------
+package com.ravi.linked_list;
+
+import java.util.Iterator;
+import java.util.LinkedList;
+import java.util.List;
+
+record Product(Integer productId, String productName)
+{
+	
+}
+
+public class LinkedListDemo6 {
+
+	public static void main(String[] args)
+	{
+		List<Product> listOfProduct = new LinkedList<Product>();
+		listOfProduct.add(new Product(1, "ApplePhone"));
+		listOfProduct.add(new Product(2, "MiPhone"));
+		listOfProduct.add(new Product(3, "VivoPhone"));
+		
+		System.out.println("Is list empty :"+listOfProduct.isEmpty());
+		
+		Iterator<Product> iterator = listOfProduct.iterator();
+		iterator.forEachRemaining(prod -> System.out.println(prod.productName().toUpperCase()));
+		
+		Product product = listOfProduct.get(2);
+        System.out.println(product);
+	}
+
+}
+======================================================================
+Set<E> interface :
+-------------------
+Set<E> interface :
+-------------------
+Set interface is the sub interface of Collection available from JDK 1.2V
+
+Set interface never accept duplicate elements, Here internally equals(Object obj) method is working from the respective class.
+
+Set interface does not maintain any order (because internally It does not use Array concept, Actually It uses hashing algorithm) 
+
+On Set interface we can't use ListIterator interface.
+
+Set interface supports all the methods of Collection interface, few more methods were added from java 9v.
+
+Set interface Hierarchy :
+--------------------------
+Hierarchy is available in the paint diagram [19-FEB]
+
+What is hashing algorithm ?
+-------------------------------
+Hashing algorithm is a technique through which we can search, insert and delete an element in more efficient way in comparison to our classical indexing approach.
+
+Hashing algorithm, internally uses Hashtable data structute, Hashtable data structure internally uses Bucket data structure.
+
+Here elements are inserted by using hashing algorithm so the time complexity to insert, delete and search an element would be O(1).
+
+It is more efficient than our classical array approach which works on the basis of index.
+
+HashSet<E> [UNORDERED, UNSORTED, NO DUPLICATES]
+------------------------------------------------
+public class HashSet<E> extends AbstractSet<E> implements Set<E>, Clonabale, Serializable
+
+It is a predefined class available in java.util package under Set interface and introduced from JDK 1.2V.
+
+It is an unsorted and unordered set.  
+
+It accepts hetrogeneous and homogeneous both kind of data.
+
+It uses Hashtable data structure, default capacity is 16 that means 16 buckets will be created internally.
+
+*It uses the hashcode of the object being inserted into the Collection. Using this hashcode it finds the bucket location.
+
+It doesn't contain any duplicate elements as well as It does not maintain any order while iterating the elements from the collection.
+
+It can accept one null value.
+
+HashSet methods are not synchronized.
+
+HashSet is used for fast searching operation.
+
+It has constant performance in all the operations like insert, delete and search.
+--------------------------------------------------------------
+It contains 4 types of constructors :
+
+1) HashSet hs1 = new HashSet();
+    It will create the HashSet Object with default capacity is 16. The default load fator or Fill Ratio is 0.75   (75% of HashSet is filled up then new HashSet Object will be created having double capacity)
+
+2) HashSet hs2 = new HashSet(int initialCapacity);
+    will create the HashSet object with user specified capacity.
+
+
+3) HashSet hs3 = new HashSet(int initialCapacity, float loadFactor);
+    we can specify our own initialCapacity and loadFactor(by default load factor is 0.75)
+
+4) HashSet hs4 = new HashSet(Collection c);
+    Interconversion of Collection.
+
+-------------------------------------------------------------
+//Unsorted, Unordered and no duplicates
+import java.util.*;
+public class HashSetDemo 
+{
+ public static void main(String args[])
+ { 
+	    HashSet<Integer> hs = new HashSet<>();
+		hs.add(67); 
+		hs.add(89);		
+		hs.add(33);
+		hs.add(45);
+		hs.add(12);
+		hs.add(35);	
+		hs.add(null);
+		
+		hs.forEach(num-> System.out.println(num));
+	}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

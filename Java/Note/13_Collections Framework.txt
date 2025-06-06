@@ -10,7 +10,7 @@ It is implemented by using java.util package.
 
 It provides an architecture to store and manipulate group of objects.
 
-All the operations that we can perform on data such as searching, sorting, insertion and deletion can be done by using collections framework because It is the data structure of Java.
+All the operations that we can perform on data such as searching, sorting, inser	tion and deletion can be done by using collections framework because It is the data structure of Java.
 
 The simple meaning of collections is single unit of Objects.
 -------------------------------------------------------------
@@ -396,7 +396,6 @@ public class RetrievingCollectionObject {
 	}
 
 }
-//"
 ==========================================================================
 Working with List interface implemented class :
 -----------------------------------------------
@@ -2051,6 +2050,1809 @@ public class HashSetDemo
 		hs.forEach(num-> System.out.println(num));
 	}
 }
+---------------------------------------------------------------------
+26-05-2025
+----------
+import java.util.*;
+public class HashSetDemo1
+{
+      public static void main(String[] argv) 
+      {
+      HashSet<String> hs=new HashSet<>();	  
+	  hs.add("Ravi");  
+	  hs.add("Vijay");
+	  hs.add("Ravi"); 
+	  hs.add("Ajay");
+	  hs.add("Palavi");
+	  hs.add("Sweta");
+	  hs.add(null);   
+	  hs.add(null);
+	  hs.forEach(str -> System.out.println(str));
+      }
+}
+-------------------------------------------------------------------
+package com.ravi.collection;
+
+import java.util.Arrays;
+import java.util.HashSet;
+
+public class HashSetDemo2 
+{
+	public static void main(String[] args)
+	{
+		Boolean b1[] = new Boolean[6]; //true  true  false  true true true
+		
+		HashSet<Object> hs = new HashSet<>();
+		b1[0] = hs.add("NIT");
+		b1[1] = hs.add(12);
+		b1[2] = hs.add(new String("NIT"));
+		b1[3] = hs.add(false);
+		b1[4] = hs.add(new StringBuffer("HYD"));
+		b1[5] = hs.add(new StringBuffer("HYD"));
+		
+		System.out.println(Arrays.toString(b1));		
+		hs.forEach(System.out::println);			
+	}
+
+}
+--------------------------------------------------------------------
+//add, delete, display and exit
+import java.util.HashSet;
+import java.util.Scanner;
+
+public class HashSetDemo3
+{
+    public static void main(String[] args) 
+		{
+        HashSet<String> hashSet = new HashSet<>();
+        Scanner scanner = new Scanner(System.in);
+
+        while (true) 
+		{
+            System.out.println("Options:");
+            System.out.println("1. Add element");
+            System.out.println("2. Delete element");
+            System.out.println("3. Display HashSet");
+            System.out.println("4. Exit");
+
+            System.out.print("Enter your choice (1/2/3/4): ");
+            int choice = scanner.nextInt();
+
+            switch (choice) 
+			{
+                case 1:
+                    System.out.print("Enter the element to add: ");
+                    String elementToAdd = scanner.next();
+                    if (hashSet.add(elementToAdd)) 
+					{
+                        System.out.println("Element added successfully.");
+                    } 
+					else
+					{
+                        System.out.println("Element already exists in the HashSet.");
+                    }
+                    break;
+                    case 2:
+                    System.out.print("Enter the element to delete: ");
+                    String elementToDelete = scanner.next();
+                    if (hashSet.remove(elementToDelete)) 
+					{
+                        System.out.println("Element deleted successfully.");
+                    } 
+					else 
+					{
+                        System.out.println("Element not found in the HashSet.");
+                    }
+                    break;
+                    case 3:
+                    System.out.println("Elements in the HashSet:");
+                    hashSet.forEach(System.out::println);
+                    break;
+                    case 4:
+                    System.out.println("Exiting the program.");
+                    scanner.close();
+                    System.exit(0);
+                    default:
+                    System.out.println("Invalid choice. Please try again.");
+            }
+
+            System.out.println(); 
+        }
+    }
+}
+--------------------------------------------------------------------
+Map<K,V> interface :
+---------------------
+As we know Collection interface is used to hold single Or individual object but Map interface will hold group of objects in the form key and value pair. {key = value} 
+
+Map<K,V> interface is not the part the Collection, It is a separate interface.
+
+Before Map interface We have Dictionary<K,V>(abstract class) class and it is extended by Hashtable<K,V> class in JDK 1.0V
+
+Map interface works with key and value pair introduced from 1.2V.
+
+Here key and value both are objects.
+
+Here key must be unique and value may be duplicate.
+
+Each key and value pair is creating one Entry.(Entry is nothing but the combination of key and value pair)
+
+public interface Map<K,V>
+{   
+     public interface Entry<K,V>
+      {
+         //key and value
+      }
+}
+
+How to represent this entry interface (Map.Entry in .java) [Map$Entry in .class]
+
+In Map interface whenever we have a duplicate key then the old key value will be replaced by new key(duplicate key) value.
+
+Map interface has defined forEach(BiConsumer<T,U> cons) method to work with group of Objects.It does not extends Iterable interface.
+
+Iterator and ListIterator we can't work directly using Map.
+
+Map interface Hierarchy :
+--------------------------
+Paint Digram [26-MAY-25]
+
+Methods of Map interface :
+---------------------------
+1) Object put(Object key, Object value) :- To insert one entry in the Map collection. It will return the value of old Object key, if the key is already available(Duplicate key), If key is not available (new key) then it will return null.
+
+
+2) Object putIfAbsent(Object key, Object value) :- It will insert an entry, if and only if, key is not available , if the key is already available then it will not insert the Entry to the Map Collection
+
+
+3) Object get(Object key) :- It will return  corresponding key value, if the key is not available then it will return null.
+
+4) Object getOrDefault(Object key, Object defaultValue) :- To avoid null value this method has been introduced from JDK 1.8V, here we can pass some defaultValue to avoid the null value.
+
+
+5) boolean containsKey(Object key) :- To Search a particular key
+
+6) boolean containsValue(Object value) :- To Search a particular value
+
+7) int size() :- To count the number of Entries.
+
+8) remove(Object key) :- One complete entry will be removed.
+
+9) void clear() :- Used to clear the Map
+
+10) boolean isEmpty() :- To verify Map is empty or not?
+
+11) void putAll(Map m) :- Merging of two Map collection
+
+27-05-2025
+-----------
+Methods to convert the Map into Collection : [Collection view Methods]
+-----------------------------------------------------------------------
+We have Map interafce methods through which we can convert Map interface into Collection interface which is known as collection views method.
+
+1) public Set<Object> keySet() : It will retrieve all the keys.
+
+2) public Collection values() : It will retrieve all the values.
+
+3) public Set<Map.Entry> entrySet() : It will retrieve key and value both in a single object.
+              a) getKey()
+	      b) getValue()
+	      
+=======================================================================
+HashMap<K,V>  [UNORDERED, UNSORTED, NO DUPLICATE KEY]
+------------------------------------------------------
+public class HashMap<K,V> extends AbstractMap<K,V> implements Map<K,V>, Serializable, Clonable 
+
+It is a predefined class available in java.util package under Map interface available from JDK 1.2v.
+
+It gives us unsorted and Unordered map. when we need a map and we don't care about the order while iterating the elements through it then we should use HashMap.
+
+It inserts the element based on the hashCode of the Object key using hashing technique [hasing alogorithhm]
+
+It does not accept duplicate keys but value may be duplicate.
+
+It accepts only one null key(because duplicate keys are not allowed) but multiple null values are allowed.
+
+HashMap is not synchronized.  
+
+Time complexity of search, insert and delete will be O(1)
+
+We should use HashMap to perform fast searching opeartion.
+
+For eliminating duplicate keys in hashMap object we should compulsory follow the contract between hashcode and equals(Object obj) OR Use record
+
+It contains 4 types of constructor 
+
+1) HashMap hm1 = new HashMap();
+    It will create the HashMap Object with default capacity is 16. The default load fator or Fill Ratio is 0.75   (75% of HashMap is filled up then new HashMap Object will be created having double capacity)
+
+2) HashMap hm2 = new HashMap(int initialCapacity);
+    will create the HashMap object with user specified capacity
+
+
+3) HashMap hm3 = new HashMap(int initialCapacity, float loadFactor);
+    we can specify our own initialCapacity and loadFactor(by default load factor is 0.75)
+
+4)HashMap hm4 = new HashMap(Map m);
+    Interconversion of Map Collection
+
+=======================================================================
+***** How HashMap<K,V> works internally ?
+-----------------------------------------
+a) While working with HashSet or HashMap every object must be compared because duplicate objects are not allowed.
+
+b) Whenever we add any new key to verify whether key is unique or duplicate, HashMap internally uses hashCode(), == operator and equals method.
+
+c) While adding the key object in the HashMap, first of all it will invoke the hashCode() method to retrieve the corresponding key hashcode value.
+    Example :- hm.put(key,value);
+               then internally key.hashCode();
+
+d) If the newly added key and existing key hashCode value both are same (Hash collision), then only == operator is used for comparing those keys by using reference or memory address, if both keys references are same then existing key value will be replaced with new key value.
+
+        If the reference of both keys are different then only equals(Object obj) method is invoked to compare those keys by using content comparison. [If Overridden from Object class]
+
+	If the equals(Object obj) method returns true (content wise both keys are same), this new key is duplicate then existing key value will be replaced by new key value.
+
+	If equals(Object obj) method returns false, this new key is unique, new entry (key-value) will be inserted in the same Bucket by using Singly LinkedList
+
+	Note :- equals(Object obj) method is invoked only when two keys are having same hashcode as well as their references are different.
+
+e) Actually by calling hashcode method we are not comparing the objects, we are just storing the objects in a group so the currently adding key object will be compared with its SAME HASHCODE GROUP objects, but not with all the keys which are available in the Map.
+
+f) The main purpose of storing objects into the corresponding group to decrease the number of comparison so the efficiency of the program will increase.
+
+g) To insert an entry in the HashMap, HashMap internally uses Hashtable data structure.
+
+h) Now, for storing same hashcode object into a single group, hash table data structure internally uses one more data structure called Bucket.
+
+i) The Hashtable data structure internally uses Node class array object.[Node<K,V> []table ]
+
+j) The bucket data structure internally uses LinkedList data structure, It is a singly linked list again implemented by Node class only.
+
+*k) A bucket is group of entries of same hash code keys.
+
+l) Performance wise LinkedList is not good to serach, so from java 8 onwards LinkedList is changed to Binary tree to decrease the number of comparison within the same bucket hashcode if the number of entries are greater than 8.
+----------------------------------------------------------------
+** equals() and hashCode() method contract :
+-----------------------------------------
+Both the methods are working together to find out the duplicate objects in the Map.
+
+*If equals() method invoked on two objects and it returns true then hashcode of both the objects must be same.
+
+Note : IF TWO OBJECTS ARE HAVING SAME HASH CODE THEN IT MAY BE SAME OR DIFFERENT BUT IF EQUALS(OBJECT OBJ) METHOD RETURNS TRUE THEN BOTH OBJECTS MUST RETURN SAME HASHCODE.
+
+-----------------------------------------------------------------------
+
+package com.ravi.map;
+
+import java.util.HashMap;
+
+public class HashMapInternalDemo1 {
+
+	public static void main(String[] args) 
+	{
+		HashMap<String,Integer> hm1 = new HashMap<>();
+		hm1.put("A", 1);
+		hm1.put("A", 2);
+		hm1.put(new String("A"), 3);
+		System.out.println("Size is :"+hm1.size());
+		System.out.println(hm1);
+		
+		System.out.println("....................");
+		
+		
+		HashMap<Integer,Integer> hm2 = new HashMap<>();
+		hm2.put(128, 1);
+		hm2.put(128, 2);
+		System.out.println("Size is :"+hm2.size());
+		System.out.println(hm2);
+		System.out.println("....................");
+				
+		
+		HashMap<Object,Object> hm3 = new HashMap<>();
+		hm3.put("A", 1);
+		hm3.put("A", 2);
+		hm3.put(new String("A"), 3);
+		hm3.put(65, 4);
+		System.out.println("Size is :"+hm3.size());
+		System.out.println(hm3);    
+
+	}
+
+}
+-----------------------------------------------------------------------
+ What will happen if we don't follow the contract ?
+Case 1 :
+--------
+If we override only equals(Object obj)
+---------------------------------------
+If we override only equals(Object obj) method for content comparison
+then same object (duplicate object) will have different hashcode (due to Object class hashCode()) hence same object (content wise) will move into two different buckets [Duplication].
+
+Case 2 :
+--------
+If we override only hashCode() method 
+--------------------------------------
+If we overrdie only hashCode() method then two objects which are having same hashcode (due to overriding) will go to same bucket but == operator and equals(Object obj) method of Object class, both will return false hence duplicate object will be inserted into same bucket by using Singly LinkedList.
+
+So, the conclusion is, compulsory we need to override both the methods for removing duplicate elements.
+
+//Program
+
+package com.ravi.map;
+
+import java.util.HashMap;
+import java.util.Objects;
+
+class Customer
+{
+	private Integer customerId;
+	private String customerName;
+		
+	
+	@Override
+	public String toString() {
+		return "Customer [customerId=" + customerId + ", customerName=" + customerName + "]";
+	}
+
+	public Customer(Integer customerId, String customerName) 
+	{
+		super();
+		this.customerId = customerId;
+		this.customerName = customerName;
+	}
+
+	
+	@Override
+	public int hashCode() {
+		return Objects.hash(customerId, customerName);
+	}
+
+   
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Customer other = (Customer) obj;
+		return Objects.equals(customerId, other.customerId) && Objects.equals(customerName, other.customerName);
+	}
+	
+	
+}
+
+public class HashMapInternalDemo2
+{
+
+	public static void main(String[] args) 
+	{
+	   Customer c1 = new Customer(111, "Scott");	
+	   Customer c2 = new Customer(111, "Scott");	
+	   	   
+	   System.out.println(c1.equals(c2));
+	   System.out.println(c1.hashCode()+" : "+c2.hashCode());
+	   
+	  
+	   System.out.println("..............................");
+	   HashMap<Customer,String> map = new HashMap<>();
+	   map.put(c1, "A");   //c1 = A
+	   map.put(c2, "B");   
+	   
+	   System.out.println(map.size()); 
+	   System.out.println(map); 
+	  
+	}
+
+}
+
+Customer class we are using as a HashMap key so it must override 
+hashCode() and equals(Object obj) as well as at advanced level, It must be immutable class.
+
+All the Wrapper classes and String class are immutable as well as 
+hashCode() and equals(Object obj) methods are overridden in these classes so perfectly suitable to becoming HashMap key.
+	      
+so final conclusion is, In our user-defined class which we want to use as a HashMap key must be immutable and hashCode() and equals(Object obj) method must be overridden.
+----------------------------------------------------------------------
+While working with HashSet element OR HashMap key, If we accept custom 
+object then we should always prefer record because It is immutable as well as hashCode() and equals() methods are overridden.
+
+package com.ravi.map;
+
+import java.util.HashMap;
+import java.util.Objects;
+
+record Customer(Integer id, String name)
+{
+	
+}
+
+public class HashMapInternalDemo2
+{
+	public static void main(String[] args) 
+	{
+	   Customer c1 = new Customer(111, "Scott");	
+	   Customer c2 = new Customer(111, "Scott");	
+	   	   
+	   System.out.println(c1.equals(c2));
+	   System.out.println(c1.hashCode()+" : "+c2.hashCode());
+	   
+	
+	   System.out.println("..............................");
+	   HashMap<Customer,String> map = new HashMap<>();
+	   map.put(c1, "A");     
+	   map.put(c2, "B");   
+	   
+	   System.out.println(map.size()); 
+	   System.out.println(map); 
+	  
+	}
+
+}
+----------------------------------------------------------------------
+28-05-2025
+----------
+Custom HashCode for String class :
+----------------------------------
+package com.ravi.map;
+
+import java.util.Scanner;
+
+public class CustomStringHashCode 
+{
+    public static int customHashCode(String str)
+    {
+        if (str == null) 
+        {
+            return 0; // default hashCode value for null is 0
+        }
+
+        int hashCode = 0;  
+
+        for (int i = 0; i < str.length(); i++)  //NIT
+        {
+            char charValue = str.charAt(i);
+            hashCode = 31 * hashCode + charValue;
+        }
+
+        return hashCode;
+    }
+
+    public static void main(String[] args) 
+    {
+    	Scanner sc = new Scanner(System.in);
+    	System.out.print("Enter your String :");
+    	String str = sc.next();
+    	
+    	System.out.println(str+" hashcode from String class :"+str.hashCode());
+        
+    	System.out.println("..................");
+    	
+    	System.out.println(str+" hashcode for my class :"+CustomStringHashCode.customHashCode(str));
+       	
+    	sc.close();
+    }
+}
+-----------------------------------------------------------------------
+Role of hashCode() and equals(Object obj) while working with HashSet and HashMap key.
+
+package com.ravi.map;
+
+import java.util.HashSet;
+
+public class Testing
+{
+	public static void main(String[] args) 
+	{
+		
+	  String s1 = "india";	  
+	  String s2 = new String("india");  
+	  System.out.println(s1.hashCode() +" : "+s2.hashCode());
+	  	        
+	  StringBuffer sb1 = new StringBuffer("Java");
+	  StringBuffer sb2 = new StringBuffer("Java");
+	  System.out.println(sb1.hashCode() +" : "+sb2.hashCode());
+	  
+	  HashSet<String> hsString = new HashSet<String>();
+	  hsString.add(s1);
+	  hsString.add(s2);
+	  System.out.println(hsString.size());
+	  System.out.println(hsString);
+	  
+	  System.out.println(".................");
+	  
+	  HashSet<StringBuffer> hsBuffer = new HashSet<>();
+	  hsBuffer.add(sb1);
+	  hsBuffer.add(sb2);
+	  System.out.println(hsBuffer.size());
+	  System.out.println(hsBuffer);
+	    
+	}
+}
+-----------------------------------------------------------------------
+package com.ravi.map;
+
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map.Entry;
+import java.util.Set;
+
+public class HashMapDemo1 
+{
+	public static void main(String[] args) 
+	{      
+        HashMap<Integer, String> map = new HashMap<>();
+
+        map.put(1, "Vanilla"); 
+        map.put(2, "Butterscotch");
+        map.put(3, "Chocolate");
+        map.put(4, "Cotton Candy");
+
+        System.out.println("HashMap: " + map); //{key = value}
+    
+      
+        String value = map.get(2);
+        System.out.println("Value for key 2: " + value);
+        
+       
+        value = map.getOrDefault(3, "Key is not available");
+        System.out.println("Value for key 3: " + value);
+        
+               
+        boolean hasKey = map.containsKey(3);
+        System.out.println("HashMap contains key 3: " + hasKey);
+
+        boolean hasValue = map.containsValue("Vanilla");
+        System.out.println("HashMap contains value 'Vanilla': " + hasValue);
+       
+               
+        map.remove(1);
+        System.out.println("HashMap after removing key 1: " + map);
+
+             
+      System.out.println("Iterating through Iterator");
+        
+      Iterator<Entry<Integer, String>> itr = map.entrySet().iterator();
+      itr.forEachRemaining(System.out::println);
+            
+     
+      System.out.println("Iterating through forEach(BiConsumer<T,U>)");
+      map.forEach((k,v)-> System.out.println("Key is :"+k+" Value is :"+v));
+        
+         
+        int size = map.size();
+        System.out.println("Size of HashMap: " + size);
+       
+        map.clear();
+        System.out.println("HashMap after clearing: " + map); //{}       
+       
+    }
+}
+----------------------------------------------------------------------
+package com.ravi.map;
+
+import java.util.HashMap;
+
+public class HashMapDemo2
+{
+    public static void main(String[] args) 
+    {
+       HashMap<Integer, String> studentRecords = new HashMap<>();
+
+        studentRecords.put(101, "Scott");
+        studentRecords.put(102, "Smith");
+        studentRecords.put(103, "Martin");
+        studentRecords.put(104, "Aryan");
+
+        System.out.println("Student Records: " + studentRecords);
+
+     
+        
+        int searchId = 103;
+        String studentName = studentRecords.get(searchId);
+        
+        if (studentName != null)
+        {
+            System.out.println("Student with ID " + searchId + " is " + studentName);
+        } 
+        else
+        {
+            System.out.println("Student with ID " + searchId + " not found.");
+        }
+             
+      
+        System.out.println(studentRecords.put(103, "Rahul"));
+        System.out.println("Updated Records: " + studentRecords);
+        
+        
+        
+        studentRecords.remove(104);
+        System.out.println("Records after removal: " + studentRecords);
+
+        
+        int idToCheck = 101;
+        System.out.println("Does ID " + idToCheck + " exist? " + studentRecords.containsKey(idToCheck));
+
+            
+        String nameToCheck = "Aryan";
+        System.out.println("Does name '" + nameToCheck + "' exist? " + studentRecords.containsValue(nameToCheck));
+
+       
+       
+        System.out.println("Iterating through records:");
+        for(HashMap.Entry<Integer, String> entry : studentRecords.entrySet()) 
+        {
+            System.out.println("ID: " + entry.getKey() + ", Name: " + entry.getValue());
+        }
+
+        studentRecords.clear();
+        System.out.println("All records cleared: " + studentRecords); //{} 
+     
+     
+    }
+}
+----------------------------------------------------------------------
+package com.ravi.map;
+
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.Set;
+
+public class HashMapDemo3 
+{
+  public static void main(String[] args) 
+  {
+	    HashMap<Integer,String> newmap1 = new HashMap<>();
+
+		HashMap<Integer,String> newmap2 = new HashMap<>();	  
+
+		newmap1.put(1, "OCPJP");
+		newmap1.put(2, "is");
+		newmap1.put(3, "best");
+			  
+		System.out.println("Values in newmap1: "+ newmap1);
+
+		newmap2.put(4, "Exam");
+
+		newmap2.putAll(newmap1);
+
+		System.out.println("Iterating through forEach()");
+		newmap2.forEach((k,v)->System.out.println(k+" : "+v));
+		
+		System.out.println("All the Unique keys");
+		Set<Integer> setOfKeys = newmap2.keySet();
+		System.out.println(setOfKeys); //[]
+		
+		System.out.println("All the values");
+		Collection<String> values = newmap2.values();
+		System.out.println(values);	//[]	
+		
+		System.out.println("..............................");
+		
+		System.out.println("Loose Coupling for Merging one Map to another");
+		
+		HashMap<Integer, String> hm1 = new HashMap<>();
+
+		hm1.put(1, "Ravi");
+		hm1.put(2, "Rahul");
+		hm1.put(3, "Rajen");
+
+		HashMap<Integer, String> hm2 = new HashMap<>(hm1);
+
+		System.out.println("Mapping of HashMap hm1 are : "	+ hm1);
+	
+		System.out.println("Mapping of HashMap hm2 are : " + hm2);
+		
+  }
+}
+-----------------------------------------------------------------------
+package com.ravi.map;
+
+import java.util.HashMap;
+
+record Employee(Integer empId, String empName)
+{
+	
+}
+
+public class HashMapDemo4 
+{
+	public static void main(String[] args) 
+	{
+		Employee e1 = new Employee(101,"Aryan");
+		Employee e2 = new Employee(102,"Pooja");
+		Employee e3 = new Employee(101,"Aryan");
+		Employee e4 = e2;  
+		
+		HashMap<Employee,String> hm = new HashMap<>();
+		hm.put(e1,"Ameerpet");  
+		hm.put(e2,"S.R Nagar"); 
+		hm.put(e3,"Begumpet");
+		hm.put(e4,"Panjagutta");
+
+		hm.forEach((k,v)-> System.out.println(k+" : "+v));
+	}
+}
+-----------------------------------------------------------------------
+package com.ravi.map;
+
+import java.util.HashMap;
+import java.util.LinkedHashSet;
+
+public class HashMapDemo5
+{
+    public static void main(String[] args) 
+    {
+        // Create a HashMap to store book titles and their availability (true = available, false = borrowed)
+    	
+        HashMap<String, Boolean> library = new HashMap<>();
+
+        library.put("Core Java", true);
+        library.put("Advanced Java", true);
+        library.put("HTML", false);
+        library.put("JavaScript", true);
+
+        // Display the initial library status
+        System.out.println("Initial Library Status: " + library);
+        
+       
+        
+        // Borrow a book
+        String bookToBorrow = "Advanced Java";
+        
+        if (library.containsKey(bookToBorrow) && library.get(bookToBorrow)) 
+        {
+            library.put(bookToBorrow, false); 
+            System.out.println(bookToBorrow + " has been borrowed.");
+        } 
+        else
+        {
+            System.out.println(bookToBorrow + " is not available for borrowing.");
+        }
+        
+     
+        
+        String bookToReturn = "HTML";
+        
+        if (library.containsKey(bookToReturn) && !library.get(bookToReturn))
+        {
+            library.put(bookToReturn, true); // Mark the book as available
+            System.out.println(bookToReturn + "Book has been returned.");
+        } 
+        else 
+        {
+            System.out.println(bookToReturn + "Book is not borrowed.");
+        }   
+       
+     
+         
+        // Check the availability of a book
+        String bookToCheck = "JavaScript";
+        
+        if (library.containsKey(bookToCheck))
+        {
+          String availability = library.get(bookToCheck) ? "available" : "borrowed";
+            System.out.println(bookToCheck + " Book is " + availability + ".");
+        } 
+        else
+        {
+            System.out.println(bookToCheck + " is not in the library.");
+        }
+    
+        
+        //Display the final library status
+        
+        System.out.println("Final Library Status:");
+        for (HashMap.Entry<String, Boolean> entry : library.entrySet()) 
+        {
+            String status = entry.getValue() ? "Available" : "Borrowed";
+            System.out.println("Book: " + entry.getKey() + ", Status: " + status);
+        }
+       
+      
+    }
+}
+-----------------------------------------------------------------------
+LinkedHashSet<E> [It is the order version of HashSet]
+-----------------------------------------------------
+public class LinkedHashSet extends HashSet implements Set, Clonable, Serializable
+
+It is a predefined class in java.util package under Set interface and introduced from java 1.4v. 
+
+It is the sub class of HashSet class.
+
+It is an orderd version of HashSet that maintains a doubly linked list across all the elements. 
+
+It internally uses Hashtable and LinkedList data structures.
+
+We should use LinkedHashSet class when we want to maintain an order.
+
+When we iterate the elements through HashSet the order will be unpredictable, while when we iterate the elements through LinkedHashSet then the order will be same as they were inserted in the collection.
+
+It accepts hetrogeneous and null value is allowed.
+
+It has same constructor as HashSet class.
+-----------------------------------------------------------------------import java.util.*;
+public class LinkedHashSetDemo
+{
+ public static void main(String args[])
+	{ 
+		  LinkedHashSet<String> lhs=new LinkedHashSet<>();
+		  lhs.add("Ravi"); 
+		  lhs.add("Vijay");
+		  lhs.add("Ravi");
+		  lhs.add("Ajay");
+		  lhs.add("Pawan");
+		  lhs.add("Shiva");
+		  lhs.add(null);
+		  lhs.add("Ganesh");          
+		  lhs.forEach(str -> System.out.println(str));	   
+	}
+}
+----------------------------------------------------------------------
+import java.util.*;
+
+public class LinkedHashSetDemo1 
+{
+    public static void main(String[] args) 
+	{
+       LinkedHashSet<Integer> linkedHashSet = new LinkedHashSet<>();
+
+        linkedHashSet.add(10);
+        linkedHashSet.add(5);
+        linkedHashSet.add(15);
+        linkedHashSet.add(20);
+        linkedHashSet.add(5);
+		
+
+        System.out.println("LinkedHashSet elements: " + linkedHashSet);
+
+        System.out.println("LinkedHashSet size: " + linkedHashSet.size());
+
+        int elementToCheck = 15;
+        if (linkedHashSet.contains(elementToCheck)) 
+		{
+            System.out.println(elementToCheck + " is present in the LinkedHashSet.");
+        } 
+		else 
+		{
+            System.out.println(elementToCheck + " is not present in the LinkedHashSet.");
+        }
+
+        int elementToRemove = 10;
+        linkedHashSet.remove(elementToRemove);
+        System.out.println("After removing " + elementToRemove + ", LinkedHashSet elements: " + linkedHashSet);
+
+              linkedHashSet.clear(); 
+        System.out.println("After clearing, LinkedHashSet elements: " + linkedHashSet); //[]
+    }
+}
+----------------------------------------------------------------------
+LinkedHashMap<K,V> [It maintains insertion order]
+----------------------------------------------------
+public class LinkedHashMap<K,V> extends HashMap<K,V> implements Map<K,V>
+
+It is a predefined class available in java.util package under Map interface available from 1.4.
+
+It is the sub class of HashMap class.
+
+It maintains insertion order. It contains a doubly linked with the elements or nodes so It will iterate more slowly in comparison to HashMap.
+
+It uses Hashtable and LinkedList data structure.
+
+If We want to fetch the elements in the same order as they were inserted in the Map then we should go with LinkedHashMap.
+
+It accepts one null key and multiple null values.
+
+It is not synchronized.
+
+It has also 4 constructors same as HashMap
+
+1) LinkedHashMap hm1 = new LinkedHashMap();
+    will create a  LinkedHashMap with default capacity 16 and load factor 0.75
+
+2) LinkedHashMap hm1 = new LinkedHashMap(iny initialCapacity);
+
+3) LinkedHashMap hm1 = new LinkedHashMap(int initialCapacity, float loadFactor);
+
+
+4) LinkedHashMap hm1 = new LinkedHashMap(Map m);
+-------------------------------------------------------------------
+import java.util.*;
+public class LinkedHashMapDemo 
+{
+	public static void main(String[] args) 
+	{
+		LinkedHashMap<Integer,String> l = new LinkedHashMap<>();
+		l.put(1,"abc");
+		l.put(3,"xyz");
+		l.put(2,"pqr");
+		l.put(4,"def");
+		l.put(null,"ghi");
+		System.out.println(l);
+	}
+}
+-------------------------------------------------------------------
+import java.util.*;
+
+public class LinkedHashMapDemo1 
+{
+      public static void main(String[] a) 
+      {
+           Map<String,String> map = new LinkedHashMap<>();
+           map.put("Ravi", "1234");
+		   map.put("Rahul", "1234");
+		   map.put("Aswin", null);
+		   map.put("Samir", null);
+           
+		   map.forEach((k,v)->System.out.println(k+" : "+v));
+      }
+}
+------------------------------------------------------------------
+SortedSet<E> interface :
+----------------------
+It is the sub interface of Set<E> interface available from JDK 1.2V
+
+As we know we can't perform sorting operation on HashSet and LinkedHashSet object by using Collections.sort(List<E> list)
+
+In order to provide automatic sorting facility, java software people has provided SortedSet<E> interface.
+
+By default It will provide defult natural sorting order.
+
+It can sort the element either in default natural sorting order(java.lang.Comparable<E>) OR user defined sorting order (java.util.Comparator)
+
+--------------------------------------------------------------
+***Difference between Comparable<E> and Comparator<E>
+------------------------------------------------------------------
+//Program on Comparable :
+--------------------------
+package com.ravi.comparable;
+
+public record Employee(Integer id, String name, Double salary) implements Comparable<Employee>
+{
+	@Override
+	public int compareTo(Employee e2) 
+	{	
+		return this.id - e2.id; // 0 OR +ve OR -ve
+	}
+}
+
+
+
+
+package com.ravi.comparable;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+
+public class EmployeeComparable 
+{
+	public static void main(String[] args) 
+	{
+		ArrayList<Employee> listOfEmployee = new ArrayList<>();
+		listOfEmployee.add(new Employee(333, "Aryan", 34789D));
+		listOfEmployee.add(new Employee(111, "Zuber", 35789D));
+		listOfEmployee.add(new Employee(222, "Raj", 32789D));
+		
+		System.out.println("Original Data :");
+		listOfEmployee.forEach(System.out::println);
+		
+		Collections.sort(listOfEmployee);	
+		System.out.println("Data after Sorting based on the ID:");
+		listOfEmployee.forEach(System.out::println);	
+
+	}
+
+}
+
+Limitation of Comparable<T> interface :
+----------------------------------------
+1) Due to the current object support we need to modify the BLC
+   class so Lambda Expression will not work with Comparable even it is a functional interface.
+
+2) We can write only one sorting logic.
+
+
+In order avoid the above said problem, We introduced Comparator :
+-----------------------------------------------------------
+//Program on Comparator :
+---------------------------
+package com.ravi.comparator;
+
+public record Product(Integer id, String name) 
+{
+
+}
+
+package com.ravi.comparator;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+
+public class ProductComparator {
+
+	public static void main(String[] args) 
+	{
+		ArrayList<Product> listOfProduct = new ArrayList<>();
+		listOfProduct.add(new Product(333, "Mobile"));
+		listOfProduct.add(new Product(111, "Laptop"));
+		listOfProduct.add(new Product(222, "Camera"));
+		
+		System.out.println("Original Data :");
+		listOfProduct.forEach(System.out::println);
+		
+		System.out.println("Sorting Based on the Product Id :");		
+		Comparator<Product> compId = (p1,p2)-> p1.id().compareTo(p2.id());		
+		Collections.sort(listOfProduct, compId);		
+		listOfProduct.forEach(System.out::println);
+		
+
+		System.out.println("Sorting Based on the Product Name :");	
+		Collections.sort(listOfProduct, (p1,p2)-> p1.name().compareTo(p2.name()));
+		listOfProduct.forEach(System.out::println);
+	}
+
+}
+------------------------------------------------------------------
+//Ascending and Descending of Integer class :
+---------------------------------------------
+package com.ravi.comparator;
+
+import java.util.ArrayList;
+import java.util.Collections;
+
+public class IntegerDesc {
+
+	public static void main(String[] args) 
+	{
+		ArrayList<Integer> listOfNumber = new ArrayList<Integer>();
+		listOfNumber.add(78);
+		listOfNumber.add(12);
+		listOfNumber.add(9);
+		listOfNumber.add(45);		
+		
+		
+		listOfNumber.sort((i1,i2)-> i1.compareTo(i2));
+		System.out.println("Ascending Order");
+		listOfNumber.forEach(System.out::println);
+		
+		listOfNumber.sort((i1,i2)-> i2.compareTo(i1));
+		System.out.println("Descending Order");
+		listOfNumber.forEach(System.out::println);
+		
+	}
+
+}
+------------------------------------------------------------------
+30-05-2025
+-----------
+TreeSet<E>
+----------
+TreeSet<E>
+------------
+public class TreeSet<E> extends AbstractSet<E> implements NavigableSet<E>, Clonable, Serializable
+
+It is a predefined class available in java.util package under Set interface available from JDK 1.2v.
+
+TreeSet class uses Red Black tree data structure.
+
+It will sort the elements in natural sorting order i.e ascending order in case of number , and alphabetical order or Dictionary order in the case of String. In order to sort the elements according to user choice, It uses Comparable/Comparator  interface.
+
+It does not accept duplicate and null value (java.lang.NullPointerException) 
+
+It does not accept non comparable type of Objects if we try to insert it will throw a runtime exception i.e java.lang.ClassCastException
+
+TreeSet implements NavigableSet.
+
+NavigableSet extends SortedSet.
+
+It contains 4 types of constructors :
+----------------------------------------
+1) TreeSet t1 = new TreeSet();
+     create an empty TreeSet object, elements will be inserted in using Comparable.
+
+2) TreeSet t2 = new TreeSet(Comparator c);
+    Customized sorting order.
+
+3)  TreeSet t3 = new TreeSet(Collection c);
+    loose coupling.
+
+4) TreeSet t4 = new TreeSet(SortedSet s);
+   We can merge two TreeSet object to copy the data. 
+-------------------------------------------------------------------
+package com.ravi.treeset;
+
+import java.util.TreeSet;
+
+public class TreeSetDemo 
+{
+	public static void main(String[] args) 
+	{
+		TreeSet<Integer> ts = new TreeSet<>();
+		
+		ts.add(56);  //RED BLACK TREE DATA STRUCTURE
+		ts.add(12);  //compareTo()
+		ts.add(36);
+		ts.add(19);
+		
+		
+		System.out.println(ts);
+		
+	}
+
+}
+------------------------------------------------------------------
+package com.ravi.treeset;
+
+import java.util.Set;
+import java.util.TreeSet;
+
+public class TreeSetDemo2 
+{
+	public static void main(String[] args)
+	{
+		Set<String> ts = new TreeSet<String>();
+		ts.add("Orange");
+		ts.add("Mango");
+		ts.add("Apple");
+		ts.add("Papaya");
+		
+		System.out.println(ts);
+
+	}
+
+}
+-------------------------------------------------------------------
+package com.ravi.treeset;
+
+import java.util.TreeSet;
+
+record Lion(Integer id, String name) implements Comparable<Lion>
+{
+	@Override
+	public int compareTo(Lion y) 
+	{
+		return Integer.compare(this.id, y.id);		
+	}	
+}
+
+public class TreeSetDemo3 
+{
+	public static void main(String[] args) 
+	{
+		TreeSet<Lion> sortedLion = new TreeSet<>();
+		sortedLion.add(new Lion(2,"Simba"));
+		sortedLion.add(new Lion(1,"Lion"));
+		sortedLion.add(new Lion(3,"Tiger"));
+		
+		System.out.println("Soted By using ID :");
+		System.out.println(sortedLion);
+
+	}
+
+}
+------------------------------------------------------------------
+package com.ravi.treeset;
+
+import java.util.TreeSet;
+
+record Product(Integer id, String name) 
+{
+	
+}
+
+public class TreeSetDemo4 
+{
+	public static void main(String[] args) 
+	{
+		TreeSet<Product> products = new TreeSet<>((p1,p2)->p1.name().compareTo(p2.name()));
+		products.add(new Product(333, "Camera"));
+		products.add(new Product(222, "Mobile"));
+		products.add(new Product(111, "Laptop"));
+		
+		products.forEach(System.out::println);
+		
+
+	}
+
+}
+----------------------------------------------------------------
+package com.ravi.treeset;
+
+import java.util.ArrayList;
+import java.util.TreeSet;
+
+public class TreeSetDemo5 {
+
+	public static void main(String[] args) 
+	{
+		ArrayList<String> list = new ArrayList<>();
+		list.add("A");
+		list.add("A");
+		list.add("B");
+		list.add("C");
+		
+		TreeSet<String> ts = new TreeSet<>(list);
+		System.out.println(ts);
+		
+
+	}
+
+}
+------------------------------------------------------------------
+package com.ravi.treeset;
+
+import java.util.TreeSet;
+
+public class TreeSetDemo6 {
+
+	public static void main(String[] args) 
+	{
+		TreeSet<Double> ts1 = new TreeSet<Double>();
+		ts1.add(30.5);
+		ts1.add(20.5);
+		ts1.add(10.5);
+		
+		TreeSet<Double> ts2 = new TreeSet<Double>(ts1);
+		System.out.println(ts2);
+
+	}
+
+}
+-------------------------------------------------------------------
+package com.ravi.treeset;
+
+import java.util.TreeSet;
+
+record Student(Integer id, String name, Integer age)
+{	
+}
+
+public class TreeSetDemo7 
+{
+	public static void main(String[] args)
+	{
+		TreeSet<Student> ts1 = new TreeSet<Student>((s1,s2)-> s1.id() - s2.id());
+		ts1.add(new Student(333,"Aryan",24));
+		ts1.add(new Student(111,"Zuber",26));
+		ts1.add(new Student(222,"Raj",22));
+		
+		System.out.println("Sorting Student Based on the Id :");
+		ts1.forEach(std -> System.out.println(std));
+
+		
+		TreeSet<Student> ts2 = new TreeSet<Student>((s1,s2)-> s1.name().compareTo(s2.name()));
+		ts2.add(new Student(333,"Aryan",24));
+		ts2.add(new Student(111,"Zuber",26));
+		ts2.add(new Student(222,"Raj",22));
+		
+		System.out.println("Sorting Student Based on the Name :");
+		ts2.forEach(std -> System.out.println(std));
+	}
+
+}
+-------------------------------------------------------------------
+TreeMap<K,V>
+------------
+public class TreeMap<K,V> extends AbstractMap<K,V> implements NavigableMap<K,V> , Clonable, Serializable
+
+It is a predefined class avaialble in java.util package under Map interface available for 1.2V.
+
+It is a sorted map that means it will sort the elements by natural sorting order based on the key or by using Comparator interface as a constructor parameter.
+
+It does not allow non comparable keys.(ClassCastException)
+
+It does not accept null key but null value allowed.(NPE)
+
+It uses Red black tree data structure.
+
+TreeMap implements NavigableMap and NavigableMap extends SortedMap. SortedMap extends Map interface.
+
+TreeMap contains 4 types of Constructors :
+
+1) TreeMap tm1 = new TreeMap(); //creates an empty TreeMap
+
+2)  TreeMap tm2 = new TreeMap(Comparator cmp); //user defined sorting logic
+
+3)  TreeMap tm3 = new TreeMap(Map m); //loose Coupling
+
+4)  TreeMap tm4 = new TreeMap(SortedMap m);
+------------------------------------------------------------------
+import java.util.*;
+public class TreeMapDemo 
+{
+	public static void main(String[] args) 
+	{
+		TreeMap<Object,String> t = new TreeMap<>(); 
+		t.put(4,"Ravi");
+		t.put(7,"Aswin");
+		t.put(2,"Ananya");
+		t.put(1,"Dinesh");
+		t.put(9,"Ravi");	
+		t.put(3,"Ankita");
+		t.put(5,null);	
+		
+		System.out.println(t);
+	}
+}
+------------------------------------------------------------------
+import java.util.*;                        
+public class TreeMapDemo1 
+{
+      public static void main(String args[]) 
+      {
+            TreeMap map = new TreeMap();
+            map.put("one","1");
+            map.put("two",null);
+            map.put("three","3");
+			map.put("four",4);
+
+            displayMap(map);  
+
+	map.forEach((k, v) -> System.out.println("Key = " + k + ", Value = " + v));	 	       
+      }
+      static void displayMap(TreeMap map) 
+      {
+           Collection c = map.entrySet();   //Set<Map.Entry>
+
+           Iterator i = c.iterator();
+           i.forEachRemaining(x -> System.out.println(x));
+      }
+}
+------------------------------------------------------------------
+import java.util.*;
+public class TreeMapDemo2
+{
+    public static void main(String[] argv) 
+    {
+        Map<String,String> map = new TreeMap<String,String>();  
+        map.put("key2", "value2");
+        map.put("key3", "value3");
+        map.put("key1", "value1");
+
+        System.out.println(map); 
+        
+     }
+}
+------------------------------------------------------------------
+package com.ravi.collection;
+
+import java.util.TreeMap;
+
+record Employee(Integer id, String name, Integer age)
+{
+	
+}
+
+
+public class TreeMapSorting {
+
+	public static void main(String[] args) 
+	{
+		System.out.println("Sorting name -> Ascending Order");
+		
+		TreeMap<Employee,String> tm1 = new TreeMap<Employee,String>((e1,e2)->e1.name().compareTo(e2.name()) );
+		tm1.put(new Employee(101, "Zaheer", 24),"Hyderabad");
+		tm1.put(new Employee(201, "Aryan", 27),"Jamshedpur");
+		tm1.put(new Employee(301, "Pooja", 26),"Mumbai");
+		tm1.forEach((k,v)-> System.out.println(k+" : "+v));
+	}
+
+}
+------------------------------------------------------------------
+31-05-2025
+-----------
+Hashtable<K,V>
+---------------
+public class Hashtable<K,V> extends Dictionary<K,V> implements Map<K,V>, Cloneable, Serializable.
+
+It is predefined class available in java.util package under Map interface from JDK 1.0.
+
+Like Vector, Hashtable is also form the birth of java so called legacy class.
+
+It is the sub class of Dictionary class which is an abstract class.
+
+*The major difference between HashMap and Hashtable is, HashMap methods are not synchronized where as Hastable methods are synchronized. 
+
+HashMap can accept one null key and multiple null values where as Hashtable does not contain anything as a null(key and value both). if we try to add null then JVM will throw an exception i.e NullPointerException.
+
+The initial default capacity of Hashtable class is 11 where as loadFactor is 0.75.
+
+
+It has also same constructor as we have in HashMap.(4 constructors)
+
+1) Hashtable hs1 = new Hashtable();
+    It will create the Hashtable Object with default capacity as 11 as well as load factor is 0.75
+
+2) Hashtable hs2 = new Hashtable(int initialCapacity);
+    will create the Hashtable  object with specified capacity
+
+
+3) Hashtable hs3 = new Hashtable(int initialCapacity, float loadFactor);
+    we can specify our own initialCapacity and loadFactor
+
+4) Hashtable hs = new Hashtable(Map c);
+    Interconversion of Map Collection
+------------------------------------------------------------------
+import java.util.*;  
+public class HashtableDemo
+	{  
+	 public static void main(String args[])
+		{  
+		  Hashtable<Integer,String> map=new Hashtable<>(); 
+		  map.put(1, "Java");
+		  map.put(2, "is");
+		  map.put(3, "best");		
+		  map.put(4,"language");
+		  
+		  //map.put(5,null);  
+
+		  System.out.println(map);
+
+		  System.out.println(".......................");
+
+		    for(Map.Entry m : map.entrySet())
+			 {  
+				 System.out.println(m.getKey()+" = "+m.getValue());  
+			} 
+        }
+}  
+------------------------------------------------------------------
+import java.util.*;  
+public class HashtableDemo1
+{  
+   public static void main(String args[])
+	{  
+    Hashtable<Integer,String> map=new Hashtable<>();          
+     map.put(1,"Priyanka");    
+     map.put(2,"Ruby");   
+     map.put(3,"Vibha");    
+     map.put(4,"Kanchan");
+	
+	 map.putIfAbsent(5,"Bina");  
+	 map.putIfAbsent(24,"Pooja");
+	 map.putIfAbsent(26,"Ankita");     
+    
+     map.putIfAbsent(1,"Sneha");  
+     System.out.println("Updated Map: "+map); 
+ }  
+}  
+------------------------------------------------------------------
+**WeakHashMap<K,V>
+-----------------
+public class WeakHashMap<K,V> extends AbstractMap<K,V> implements Map<K,V>
+
+It is a predefined class in java.util package under Map interface.It was introduced from JDK 1.2v onwards.
+
+While working with HashMap, keys of HashMap are of strong reference type. This means the entry of  map will not be deleted by the garbage collector even though the key is set to be null as well as Object is also not eligible for Garbage Collector.
+
+On the other hand while working with WeakHashMap, keys of WeakHashMap are of weak reference type. This means the entry and corresponding object of a map is deleted by the garbage collector if the key value is set to be null because it is of weak type.
+
+So, HashMap dominates over Garbage Collector whereas Garbage Collector dominates over WeakHashMap.
+
+It does not implements Cloneable and Serailizable because It is mainly used for inventory system where we need to manage the data and we can insert and delete object data frequently in the inventory.
+
+
+It contains 4 types of Constructor :
+---------------------------------------
+1) WeakHashMap wm1 = new WeakHashMap();
+   
+    Creates an empty WeakHashMap object with default capacity is 16 and load fator 0.75
+
+
+2) WeakHashMap wm2 = new WeakHashMap(int initialCapacity);
+
+3) WeakHashMap wm3 = new WeakHashMap(int initialCapacity, float loadFactor);
+
+    Eg:- WeakHashMap wm = new WeakHashMap(10,0.9);
+
+    capacity - The capacity of this map is 10. Meaning, it can store 10 entries.
+
+    loadFactor - The load factor of this map is 0.9. This means whenever our hashtable is filled up by 90%, the entries are moved to a new hashtable of double the size of the original hashtable.
+
+4) WeakHashMap wm4 = new WeakHashMap(Map m);
+------------------------------------------------------------------
+package com.ravi.weak_hash_map;
+
+import java.util.WeakHashMap;
+
+record Product(Integer id, String name)
+{	
+	@Override
+	public void finalize()
+	{
+		System.out.println("Product object is eligible for GC");
+	}	
+}
+
+public class WeakHashMapDemo 
+{
+	public static void main(String[] args) throws InterruptedException 
+	{
+		Product p1 = new Product(111, "Camera");
+		
+		WeakHashMap<Product,String> map = new WeakHashMap<>();
+		map.put(p1, "Hyderabad");
+		
+		System.out.println(map);
+		
+		p1 = null;
+		
+		System.gc();
+		
+		Thread.sleep(5000);
+		
+		System.out.println(map); //{}
+
+	}
+
+}
+------------------------------------------------------------------
+How to generate OR find out System hashcode value :
+---------------------------------------------------
+System class has provided a predefined native and static method called identityHashCode(Object obj), It is used to 
+generate System hashcode.
+It accepts Object as a parameter and return type of this method is int.
+
+If we don't override hashCode() method in the corresponding class then System generated Hashcode and Object class hashcode would be same.
+
+public static native int identityHashCode(Object obj)
+
+package com.ravi.identity;
+
+class Employee
+{
+	
+}
+
+record Customer()
+{
+	
+}
+
+
+public class SystemHashCode 
+{
+	public static void main(String[] args) 
+	{
+		Employee e1 = new Employee();
+		Employee e2 = new Employee();
+
+		System.out.println(System.identityHashCode(e1));
+		System.out.println(System.identityHashCode(e2));
+		
+		System.out.println(".....................");
+		
+		Customer c1 = new Customer();
+		Customer c2 = new Customer();
+		System.out.println(c1.hashCode()+" : "+c2.hashCode());
+		
+		System.out.println(System.identityHashCode(c1));
+		System.out.println(System.identityHashCode(c2));
+		
+		
+		System.out.println("....................");
+		
+		String s1 = new String("india");
+		String s2 = "india";
+		
+		System.out.println(s1.hashCode()+" : "+s2.hashCode());
+		System.out.println(System.identityHashCode(s1));
+		System.out.println(System.identityHashCode(s2));
+		
+		
+	}
+
+}
+------------------------------------------------------------------
+IdentityHashMap<K,V>
+---------------------
+IdentityHashMap<K,V> [Comparing keys based on the Memory reference]
+---------------------
+public class IdentityHashMap<K,V> extends AbstractMap<K,V> implements Map<K,V>, Clonable, Serializable.
+
+It was introduced from JDK 1.4 onwards.
+
+The IdentityHashMap uses == operator to compare keys.
+
+As we know HashMap uses equals() and hashCode() method for comparing the keys based on the hashcode of the object it will serach the bucket location and insert the entry their only.
+
+So We should use IdentityHashMap where we need to compare the keys by using reference or memory address instead of logical equality.
+
+HashMap uses hashCode of the "Object key" to find out the bucket loaction in Hashtable, on the other hand IdentityHashMap does not use hashCode() method actually It uses System.identityHashCode(Object o)
+
+IdentityHashMap is more faster than HashMap in case of key Comparison.
+
+The default capacity is 32.
+
+It has three constrcutors, It does not contain loadFactor specific constructor.
+
+1) IdentityHashMap ihm1 = new IdentityHashMap();
+   Will create IdentityHashMap with default capacity is 32.
+
+2) IdentityHashMap ihm2 = new IdentityHashMap(int initialCapacity);
+   Will create IdentityHashMap with user specified capacity
+   
+3) IdentityHashMap ihm3 = new IdentityHashMap(Map map)
+------------------------------------------------------------------
+package com.ravi.identity;
+
+import java.util.HashMap;
+import java.util.IdentityHashMap;
+
+public class IdentityHashMapDemo 
+{
+	public static void main(String[] args) 
+	{
+		HashMap<String,String> map = new HashMap<>();
+		map.put("india", "Asia");
+		map.put(new String("india"), "Asia");
+		System.out.println(map.size());
+		System.out.println(map);
+		
+		IdentityHashMap<String, String> ihm = new IdentityHashMap<String, String>();
+		ihm.put("india", "Asia");
+		ihm.put(new String("india"), "Asia");
+		System.out.println(ihm.size());
+		System.out.println(ihm);
+
+	}
+
+}
+------------------------------------------------------------------
+Methods of SortedSet interface :
+--------------------------------------
+public E first() :- Will fetch first element
+
+public E last() :- Will fetch last element
+
+public SortedSet headSet(int range) :- Will fetch the values which are less than specified range.
+
+public SortedSet tailSet(int range) :- Will fetch the values which are equal and greater than the specified range.
+
+public SortedSet subSet(int startRange, int endRange) :- Will fetch the range of values where startRange is inclusive and endRange is exclusive.
+
+Note :- headSet(), tailSet() and subSet(), return type is SortedSet.
+------------------------------------------------------------------
+import java.util.*;
+public class SortedSetMethodDemo
+{
+       public static void main(String[] args) 
+       {
+            TreeSet<Integer> times = new TreeSet<>();
+            times.add(1205);
+            times.add(1505);
+            times.add(1545);
+			times.add(1600);
+            times.add(1830);
+            times.add(2010);
+            times.add(2100);
+            
+            SortedSet<Integer> sub = new TreeSet<>();
+            
+			sub =  times.subSet(1545,2100); 
+            System.out.println("Using subSet() :-"+sub);//[1545, 1600,1830,2010]
+            System.out.println(sub.first());
+            System.out.println(sub.last());   
+			
+			
+		    sub = times.headSet(1545); 
+			System.out.println("Using headSet() :-"+sub); //[1205, 1505]
+           
+		     sub =  times.tailSet(1545); 
+			 System.out.println("Using tailSet() :-"+sub); //[1545 to 2100] 
+			
+       }
+}
+------------------------------------------------------------------
+1:15AM
+
+3:00AM
+
+8:00AM
+
+12:00PM
+
+4:00PM
+
+9:00PM
+
+NaviagblsSet:
+-------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

@@ -10,7 +10,7 @@ It is implemented by using java.util package.
 
 It provides an architecture to store and manipulate group of objects.
 
-All the operations that we can perform on data such as searching, sorting, inser	tion and deletion can be done by using collections framework because It is the data structure of Java.
+All the operations that we can perform on data such as searching, sorting, insertion and deletion can be done by using collections framework because It is the data structure of Java.
 
 The simple meaning of collections is single unit of Objects.
 -------------------------------------------------------------
@@ -394,7 +394,7 @@ public class RetrievingCollectionObject {
 	     listOfCity.stream().forEach(System.out::println);
 	     
 	}
-
+//"
 }
 ==========================================================================
 Working with List interface implemented class :
@@ -1299,10 +1299,141 @@ public static void main(String args[])
 	 
   }
 }
------------------------------------------------------------------------
-ArrayListDemo4 [Pending Program] [Serialization and Deserialization]
+---------------------------------------------------------------------
+//Serialization and De-Serialization by using ArrayList :
+---------------------------------------------------------
+ArrayListDemo4.java
+--------------------
+//Serialization and De-serialization on ArrayList Object
+package com.ravi.arraylist;
+
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.util.ArrayList;
+
+public class ArrayListDemo4
+{ 
+  public static void main(String[] args) throws IOException 
+  {
+	ArrayList<String> listOfIceCream = new ArrayList<>();
+	listOfIceCream.add("Vanila");
+	listOfIceCream.add("Strwbarry");
+	listOfIceCream.add("Butter Scotch");
+	
+	//Serialization
+	var fout = new FileOutputStream("D:\\new\\IceCream.txt");
+	var oos = new ObjectOutputStream(fout);
+	
+	try(fout; oos)
+	{
+		oos.writeObject(listOfIceCream);
+		System.out.println("ArrayList object stored in the file");
+	}
+	catch(Exception e)
+	{
+		e.printStackTrace();
+	}
+	
+	//De-serialization
+	var fin = new FileInputStream("D:\\new\\IceCream.txt");
+	var ois = new ObjectInputStream(fin);
+	
+	try(fin; ois)
+	{
+		@SuppressWarnings("unchecked")
+		ArrayList<String> iceCream	= (ArrayList<String>)ois.readObject();
+		System.out.println(iceCream);
+	}
+	catch(Exception e)
+	{
+	  e.printStackTrace();	
+	}	
+  }       
+}         
+
+Note : Here we are perfroming Serialization operation on ArrayList object which internally storing String Object.
+
+Here ArrayList and String both are implementing from java.io.Serializable marker interface.
+
+But In future, If we work with any Custom Object like Product, Employee and so on and these classes must implements java.io.Serializable.
+
+package com.ravi.arraylist;
+
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.Serializable;
+import java.util.ArrayList;
+
+record Employee(Integer employeeId, String employeeName) implements Serializable
+{	
+}
 
 
+public class ArrayListSerialization 
+{	
+	public static void main(String[] args) throws IOException 
+	{
+				
+		ArrayList<Employee> listOfEmployees = new ArrayList<>();
+		listOfEmployees.add(new Employee(111, "A"));
+		listOfEmployees.add(new Employee(222, "B"));
+		listOfEmployees.add(new Employee(333, "C"));
+		listOfEmployees.add(new Employee(444, "D"));
+		listOfEmployees.add(new Employee(555, "E"));
+		
+		String filePath = "D:\\new\\Employee.txt";
+		//Serialization
+		var fos = new FileOutputStream(filePath);
+		var oos = new ObjectOutputStream(fos);
+		
+		try(fos; oos)
+		{
+			oos.writeObject(listOfEmployees);
+			System.out.println("Object data stored successfully");
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
+		
+		//De-Serialization
+		
+		var fin = new FileInputStream(filePath);
+		var ois = new ObjectInputStream(fin);
+		
+		try(fin; ois)
+		{
+			
+			@SuppressWarnings("unchecked")
+			ArrayList<Employee> empList = (ArrayList<Employee>) ois.readObject();
+			empList.forEach(System.out::println);
+			
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
+		
+		
+	}
+
+}
+---------------------------------------------------------------------
+How many ways we can create an Object in java :
+-----------------------------------------------
+The following are the ways to create an Object in java :
+
+1) By using new keyword
+2) By using Factory Method
+3) By using newInstance() method
+4) By using clone() method 
+5) By using Serialization
 ---------------------------------------------------------------------
 package com.ravi.arraylist;
 
@@ -2155,7 +2286,7 @@ public class HashSetDemo3
                     default:
                     System.out.println("Invalid choice. Please try again.");
             }
-
+//"
             System.out.println(); 
         }
     }
@@ -2851,7 +2982,7 @@ public class HashMapDemo5
             System.out.println("Book: " + entry.getKey() + ", Status: " + status);
         }
        
-      
+      //"
     }
 }
 -----------------------------------------------------------------------
@@ -3748,391 +3879,1066 @@ public class SortedSetMethodDemo
 			
        }
 }
-------------------------------------------------------------------
-1:15AM
 
-3:00AM
-
-8:00AM
-
-12:00PM
-
-4:00PM
-
-9:00PM
-
-NaviagblsSet:
--------------
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+By using above SortedSet<E> methods we can find the range of values but navigation among the element is not possible.
+
+In order to provide navigation among the element, Java software people has introduced NavigableSet(I) interface from JDK 1.6V.
+
+02-06-2025
+-----------
+NavigableSet :
+--------------
+It is a predefined interface available in java.util package from JDK 1.6v
+
+It is used to navigate among the elements, Unlike SortedSet which provides range of values. Here we can navigate among the values as shown below.
+
+import java.util.*;
+
+public class NavigableSetDemo 
+{   
+    public static void main(String[] args)
+    {
+        NavigableSet<Integer> ns = new TreeSet<>(); 
+        ns.add(1);
+        ns.add(2);
+        ns.add(3);
+        ns.add(4);
+        ns.add(5);
+        ns.add(6);
+
+		System.out.println("lower(3): " + ns.lower(3));//Just below than the specified element or null
+   
+       System.out.println("floor(3): " + ns.floor(3)); //Equal  less or null
+     
+       System.out.println("higher(3): " + ns.higher(3));//Just greater than specified element or null
+   
+       System.out.println("ceiling(3): " + ns.ceiling(3));//Equal or greater or null 
+     	
+    }
+}
+-------------------------------------------------------------------
+
+Methods of SortedMap<K,V> interface :
+--------------------------------
+1) firstKey()  //first key
+
+2) lastKey()  //last key
+
+3) headMap(int keyRange) //less than the specified range
+
+4) tailMap(int keyRange)  //equal or greater than the specified range
+
+5) subMap(int startKeyRange, int endKeyRange) //the range of key where startKey will be inclusive and endKey will be exclusive.
+
+return type of headMap(), tailMap() and subMap() return type would be SortedMap(I)
+-------------------------------------------------------------------
+import java.util.*;  
+public class SortedMapMethodDemo
+	{  
+ public static void main(String args[])
+	 {  
+		SortedMap<Integer,String> map=new TreeMap<>();    
+		  map.put(100,"Amit");    
+		  map.put(101,"Ravi");    
+
+		  map.put(102,"Vijay");    
+		  map.put(103,"Rahul");   
+
+		  System.out.println("First Key: "+map.firstKey());  //100
+		   System.out.println("Last Key "+map.lastKey());   //103
+		
+		   System.out.println("headMap: "+map.headMap(102));  //100 101
+		   System.out.println("tailMap: "+map.tailMap(102));  //102 103
+		   System.out.println("subMap: "+map.subMap(100, 102)); //100 101 
+          
+	 }
+ }  
+-------------------------------------------------------------------
+Assignment for NavigableMap Methods :
+-------------------------------------
+1) ceilingEntry(K key)
+2) ceilingKey(K key)
+3) floorEntry(K key)
+4) floorKey(K key)
+5) higherEntry(K key)
+6) higherKey(K key)
+7) lowerEntry(K key)
+8) lowerKey(K key)
+--------------------------------------------------------------------
+Properties :
+------------
+public class Properties extends Hashtable<K,V>
+
+It is a legacy class and It represents a persistent set of properties.
+
+It is subclass of Hashtable available in java.util package. 
+
+It is used to maintain the persistent data in the key-value form. It takes both key and value as a String format. 
+
+It is used to load properties file in our java application directly at runtime without compilation/deploymnet.
+
+Constructors :
+--------------
+Commonly we are using this constructor  :
+
+   Properties p1 = new Properties();
+   Creates an empty property list.
+
+Methods :
+----------
+1) public void load(InputStream stream): Reads a property list (key    and value pair) from the input byte stream.
+
+2) public void load(Reader reader):Reads a property list (key and       value pair) from the Character Oriented stream.
+
+3) Object setProperty(String key, String value) : It Calls the Hashtable method put internally to store the key and value pait in String format
+
+4) public String getProperty(String key) :Searches for the property     with the specified key in this property list.
+
+5) public void	store(OutputStream out, String comments) : It
+   Writes this property list (key and element pairs) in this Properties table to the output stream.
+
+6) public void	store(Writer writer, String comments) : It
+   Writes this property list (key and element pairs) in this Properties table to the character stream.
+
+
+Steps :
+--------
+1) Create a file whose extension must be  .properties as shown below
+
+database.properties
+---------------
+driver = oracle.jdbc.driver.OracleDriver
+user = scott
+password = ravi
+
+
+import java.util.*;
+import java.io.*;
+
+public class PropertiesDemo 
+{
+	public static void main(String[] args) throws IOException
+	{
+		var reader = new FileReader("D:\\new\\database.properties");
+		
+		//Load the Properties file
+		Properties p = new Properties(); //k,v String format
+		p.load(reader);
+					
+		String driver = p.getProperty("driver");
+		System.out.println(driver); 
+		
+		String user = p.getProperty("userName");
+		System.out.println(user); 
+		
+		String pwd = p.getProperty("password");
+		System.out.println(pwd); 		
+	}
+}
+
+Now make the changes in the database.properties file and execute java program directly without re-compilation and re-deployment
+--------------------------------------------------------------------
+package com.ravi.map;
+
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.Properties;
+
+public class PropertiesDemo2 {
+
+	public static void main(String[] args) throws IOException 
+	{     
+		
+		Properties properties = new Properties();
+		
+		
+		String filePath = "D:\\new\\data.properties";
+		
+		var writer = new FileWriter(filePath);
+		try(writer)
+		{
+			properties.setProperty("book", "Java");
+			properties.setProperty("author", "James");
+			properties.setProperty("price", "1200");
+			
+			//Storing properties in the Properties file
+			properties.store(writer, "Book Properties set");
+			
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
+		
+		//Reading the data from Properties file 
+		
+		var reader = new FileReader(filePath);
+		
+		try(reader)
+		{
+			properties.load(reader);
+			System.out.println("Book Name is "+properties.getProperty("book"));
+			System.out.println("Author Name is "+properties.getProperty("author"));
+			System.out.println("Price Name is "+properties.getProperty("price"));
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
+	}
+}
+-----------------------------------------------------------------
+03-06-2025
+----------
+Queue<E> interface 
+---------------------
+ 1) It is sub interface of Collection(I) available from JDK 1.5V hence it support all the methods of Collection interface.
+
+2) It works in FIFO(First In first out) 
+
+3) It is an ordered collection.
+
+4) In a queue, insertion is possible from last is called REAR end whereas deletion is possible from the starting is called FRONT end of the queue.
+
+5)In order to support Basis Queue operation, LinkedList class   implements Deque and Deque interface exetnds Queue  
+interface.
+
+PriorityQueue<E>
+-----------------
+public class PriorityQueue<E> extends AbstractQueue<E> implements Serializable
+   
+It is a predefined class in java.util package, available from Jdk 1.5 onwards.
+
+It stores the elements using balanced binary heap tree, meaning the smallest (higher Priority) element is at the head of the queue.
+
+The elements of the priority queue are ordered according to their natural ordering (binary heap tree), or by using Comparator provided at queue construction time, depending on which constructor is used.
+
+A priority queue does not permit null elements.
+
+It provides natural sorting order so we can't take non-comparable objects(hetrogeneous types of Object)
+
+The initial capacity of PriorityQueue is 11.
+
+Constructor :
+--------------
+1) PriorityQueue pq1 = new PriorityQueue();
+   Will create PriorityQueue object with default capacity is 11, Elements will be inserted based on binary heap tree.
+
+2) PriorityQueue pq2 = new PriorityQueue(int initialCapacity);
+Will create PriorityQueue with user specified capacity
+
+3) PriorityQueue pq3 = new PriorityQueue(int initialCapacity, Comparator cmp);
+Will create PriorityQueue with user specified capacity and own userdefined order.
+
+4) PriorityQueue pq4 = new PriorityQueue(Comparator cmp);
+   Will create PriorityQueue with user defined sorting order
+
+5) PriorityQueue pq5 = new PriorityQueue(Collection c);
+   Loose coupling
+   
+6) PriorityQueue pq6 = new PriorityQueue(PriorityQueue<E> p);
+
+7) PriorityQueue pq7 = new PriorityQueue(SortedSet<E> p);
  
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+Methods :
+----------
+public boolean offer(E e) /public boolean add(E e) :- Used to add an element in the Queue
+
+public E poll()  :- It is used to fetch the elements from head of the queue, after fetching it will delete the element.
+
+
+public E peek()  :- It is also used to fetch the elements from head of the queue, Unlike poll it will only fetch but not delete the element.
+
+public boolean remove(Object element) :- It is used to remove an element. The return  type is boolean. 
+ 
+------------------------------------------------------------------ 
+ import java.util.PriorityQueue;
+
+public class PriorityQueueDemo 
+{
+      public static void main(String[] argv)
+      {
+            PriorityQueue<Object> pq = new PriorityQueue<>();
+            pq.add("Orange");
+			pq.add("Apple");
+			pq.add("Mango");
+			pq.add("Guava");
+			pq.add("Grapes");			
+			//pq.add(null); // Inavlid
+			//pq.add(23);    //Invalid			
+			System.out.println(pq);           
+
+      }
+}
+-----------------------------------------------------------------
+ import java.util.PriorityQueue;
+public class PriorityQueueDemo1
+{
+      public static void main(String[] argv)
+      {
+            PriorityQueue<Integer> pq = new PriorityQueue<>();
+	    pq.add(11);
+            pq.add(2);
+            pq.add(4);          
+	    pq.add(6);
+           System.out.println(pq);  
+	  }
+}
+------------------------------------------------------------------   import java.util.PriorityQueue;
+public class PriorityQueueDemo2
+{
+      public static void main(String[] argv)
+      {
+            PriorityQueue<String> pq = new PriorityQueue<>();
+            pq.add("2");
+            pq.add("4");          
+			pq.add("6");  
+            System.out.print(pq.peek() + " ");  //   
+            pq.offer("1");
+			pq.offer("9");
+            pq.add("3");   //       
+			
+            pq.remove("1");
+            System.out.print(pq.poll() + " "); 
+            if (pq.remove("2"))
+		    {
+                System.out.print(pq.poll() + " ");
+			}
+            System.out.println(pq.poll() + " " + pq.peek()+"  "+pq.poll());
+	  }
+}
+-----------------------------------------------------------------
+package com.ravi.pq;
+
+import java.util.PriorityQueue;
+
+record Task(String name, Integer priority)
+{
+}
+
+
+public class PriorityQueueDemo3 {
+    public static void main(String[] args) 
+    {                                               
+        PriorityQueue<Task> taskQueue = new PriorityQueue<>((t1,t2)-> Integer.compare(t1.priority(), t2.priority()));
+
+        taskQueue.add(new Task("Submit report", 4));
+        taskQueue.add(new Task("Find Bug", 2));
+        taskQueue.add(new Task("Write Program", 1));
+        taskQueue.add(new Task("Execute Program", 3));
+
+        while (!taskQueue.isEmpty()) 
+        {
+            System.out.println("Executing: " + taskQueue.poll());
+        }
+    }
+}
+------------------------------------------------------------------
+What is the need of Generics ?
+-------------------------------
+As we know our compiler is known for Strict type checking because java is a statically typed checked language.  
+
+The basic problem with collection is, It can hold any kind of Object.
+
+ArrayList al = new ArrayList();
+al.add("Ravi");
+al.add("Aswin");
+al.add("Rahul");
+al.add("Raj");
+al.add("Samir");
+
+for(int i =0; i<al.size(); i++)
+{ 
+   String s = (String) al.get(i);
+   System.out.println(s);
+}
+
+By looking the above code it is clear that Collection stores everything in the form of Object so here even after adding String type only we need to provide casting as shown below.
+
+import java.util.*;
+class Test1 
+{
+	public static void main(String[] args) 
+	{
+		ArrayList al = new ArrayList(); //raw type
+		al.add("Ravi");
+		al.add("Ajay");
+		al.add("Vijay");
+							
+		for(int i=0; i<al.size(); i++)
+		{
+		String name =  (String) al.get(i); //type casting is required
+		System.out.println(name.toUpperCase());
+		}	
+		
+	}
+}
+-----------------------------------------------------------------
+ import java.util.*;
+class Test2
+{
+	public static void main(String[] args) 
+	{
+		ArrayList t = new ArrayList(); //raw type
+		t.add("alpha");
+		t.add("beta");
+		for (int i = 0; i < t.size(); i++) 
+		{
+		  String str =(String) t.get(i);
+		  System.out.println(str);
+		}
+
+		 t.add(1234);
+		 t.add(1256);
+		  for (int i = 0; i < t.size(); ++i)
+	       {	 
+			 String obj= (String)t.get(i); //we can't perform type casting here
+			 System.out.println(obj);
+		  }
+	}
+}
+
+Even after type casting there is no guarantee that the things which are coming from ArrayList Object is String only because we can add anything in the Collection as a result java.lang.ClassCastException.
+------------------------------------------------------------------
+
+To avoid all the above said problem Generics came into picture from JDK 1.5 onwards
+ 
+ -> It deals with type safe Object so there is a guarantee of both the end i.e putting inside and getting outside.
+ 
+ Example:-
+ ArrayList<String > al = new ArrayList<>();
+
+ Now here we have a guarantee that only String can be inserted as well as only String will come out from the Collection so we can perform String related operation.
+ 
+ 
+Advantages of Generics :
+------------------------
+ 1) Type Safe Object (No Compilation warning)
+ 2) No need of type casting
+ 3) Strict compile time checking. (*Type Erasure)
+
+import java.util.*;
+public class Test3
+{
+public static void main(String[] args) 
+{
+		ArrayList<String> al = new ArrayList<>();  //Generic type
+		al.add("Ravi");
+		al.add("Ajay");
+		al.add("Vijay");		
+		
+        for(int i=0; i<al.size(); i++)
+		{
+		String name = al.get(i); //no type casting is required
+		System.out.println(name.toUpperCase());
+		}
+   }
+}
+------------------------------------------------------------------
+package com.ravi.generic;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class Test4
+{
+	public static void main(String [] args)
+	{
+		Dog dog = new Dog();
+		Dog d1 = dog.getDogList().get(0);
+		System.out.println(d1);
+		
+	}
+}
+class Dog
+{
+	public List<Dog> getDogList()
+	{
+		ArrayList<Dog> listOfDog = new ArrayList<>();
+		listOfDog.add(new Dog());
+		listOfDog.add(new Dog());
+		listOfDog.add(new Dog());
+		
+		return listOfDog;
+		
+	}
+}
+
+NOte : This method return type is type safe List of Dog (List<Dog>)object so type casting is not required, If we use without generic(List ) then
+type casting is required 
+Dog d1 = (Dog) dog.getDogList().get(0);
+-----------------------------------------------------------------
+04-06-2025
+-----------
+Mixing Generic to non generic Type :
+-------------------------------------
+//Mixing generic with non-generic
+import java.util.*;
+
+class Car
+{
+}
+public class Test5
+{
+	public static void main(String [] args) 
+	{
+	ArrayList<Car> a = new ArrayList<>();
+	a.add(new Car());
+	a.add(new Car());
+    a.add(new Car());
+
+	ArrayList b = a;  //assigning Generic to raw type 	      
+		
+    System.out.println(b);   
+	}
+}
+-----------------------------------------------------------------
+//Mixing generic to non-generic
+import java.util.*; 
+public class Test6 
+{
+	public static void main(String[] args) 
+	{ 
+		List<Integer> myList = new ArrayList<>(); 
+		myList.add(4); 
+		myList.add(6); 
+		myList.add(5);
+        
+		UnknownClass u = new UnknownClass(); 
+		int total = u.addValues(myList); 
+		System.out.println("The sum of Integer Object is :"+total); 
+	} 
+}  
+class UnknownClass 
+{ 
+	public int addValues(List list)  //generic to raw type OR 
+	{ 
+	Iterator it = list.iterator();    
+	int total = 0; 
+	while (it.hasNext()) 
+	{
+		int i = ((Integer)it.next());
+		total += i;                           //total =  15
+	} 
+	return total; 
+	} 
+} 
+
+Note :-
+In the above program the compiler will not generate any warning message because even though we are assigning type safe Integer Object to unsafe or raw type List Object but this List Object is not inserting anything new in the collection so there is no risk to the caller.
+-----------------------------------------------------------------
+
+//Mixing generic to non-generic
+import java.util.*; 
+public class Test7 
+{
+	public static void main(String[] args) 
+	{ 
+		List<Integer> myList = new ArrayList<>();	
+
+		myList.add(4); 
+		myList.add(6); 
+		UnknownClass u = new UnknownClass(); 
+		int total = u.addValues(myList); 
+		System.out.println(total); 
+	} 
+}  
+class UnknownClass 
+{ 
+    public int addValues(List list)  //Generic to raw
+	{ 
+		list.add(5);	//adding object to raw type
+		Iterator it = list.iterator(); 
+		int total = 0; 
+		while (it.hasNext()) 
+		{
+		int i = ((Integer)it.next()); 
+		total += i; 
+		} 
+		return total; 
+	} 
+} 
+
+Here Compiler will generate warning message because the unsafe object is inserting the value 5 to safe object so caller method has problem.
+-------------------------------------------------------------
+*Type Erasure
+------------
+In the above program the compiler will  generate  warning message because the unsafe List Object is inserting the Integer object 5 so, the type safe Integer object is getting value 5 from unsafe type so there is a problem to the caller method.
+
+By writing ArrayList<Integer> actually JVM does not have any idea that our ArrayList was suppose to hold only Integers. 
+
+All the type safe generics information does not exist at runtime. All our generic code is Strictly for compiler. 
+
+There is a process done by java compiler called "Type erasure" in which the java compiler converts generic version to non-generic type.
+
+List<Integer> myList = new ArrayList<Integer>();
+
+At the compilation time it is fine but at runtime for JVM the code becomes
+
+List myList = new ArrayList();
+
+Note :- GENERIC IS STRICTLY COMPILE TIME PROTECTION.
+
+------------------------------------------------------------------
+import java.util.*;
+public class TypeErasure 
+{
+	public static void main(String[] args) 
+	{
+       
+	}
+	
+	public static void m1(ArrayList<Integer> list)
+	{
+	}
+	
+	public static void m1(ArrayList<String> list)
+	{
+	}
+}
+
+Note : It will generate compilation error due to type erasure.
+------------------------------------------------------------------
+Polymorphism with Array :
+------------------------
+//Polymorphism with array
+
+import java.util.*;
+abstract class Animal
+{
+	public abstract void checkup();
+}
+
+class Dog extends Animal
+{
+	@Override
+	public void checkup()
+	{
+		System.out.println("Dog checkup");
+	}
+}
+
+class Cat extends Animal
+{
+	@Override
+	public void checkup()
+	{
+		System.out.println("Cat checkup");
+	}
+}
+
+class Bird extends Animal
+{
+	@Override
+	public void checkup()
+	{
+		System.out.println("Bird checkup");
+	}
+}
+
+public class  Test8
+{
+	public static void checkAnimals(Animal ...animals) 
+	{
+		for(Animal animal : animals)
+		{
+			animal.checkup();
+		}
+	}
+
+	public static void main(String[] args) 
+	{
+		Dog []dogs={new Dog(), new Dog()};
+
+		Cat []cats={new Cat(), new Cat(), new Cat()};
+
+		Bird []birds = {new Bird(), new Bird()};
+	
+
+		checkAnimals(dogs);
+		checkAnimals(cats);
+		checkAnimals(birds);
+	}
+}
+Note :-From the above program it is clear that polymorphism(Upcasting) concept works with array.
+-------------------------------------------------------------
+import java.util.*;
+abstract class Animal
+{
+	public abstract void checkup();
+}
+
+class Dog extends Animal
+{
+    @Override
+	public void checkup()
+	{
+		System.out.println("Dog checkup");
+	}
+}
+
+class Cat extends Animal
+{
+	@Override
+	public void checkup()
+	{
+		System.out.println("Cat checkup");
+	}
+}
+class Bird extends Animal
+{
+	@Override
+	public void checkup()
+	{
+		System.out.println("Bird checkup");
+	}
+}
+public class Test9  
+{
+	
+	public void checkAnimals(List<Animal> animals)  
+	{
+		for(Animal animal : animals)
+		{
+             animal.checkup();
+		}
+	}
+	public static void main(String[] args) 
+	{
+		List<Dog> dogs = new ArrayList<>();
+		dogs.add(new Dog());
+		dogs.add(new Dog());
+
+		List<Cat> cats = new ArrayList<>();
+		cats.add(new Cat());
+		cats.add(new Cat());
+
+		List<Bird> birds = new ArrayList<>();
+		birds.add(new Bird());
+		birds.add(new Bird());
+		
+		Test9 t = new Test9();
+		t.checkAnimals(dogs);
+		t.checkAnimals(cats);
+		t.checkAnimals(birds);
+
+	}
+}
+
+
+Note :- The above program will generate compilation error.
+
+So from the above program it is clear that polymorphism does not work in the same way for generics as it does with arrays.
+
+Example :
+
+Parent [] arr = new Child[5]; //valid
+Object [] arr = new String[5]; //valid
+
+But in generics the same type is not valid
+
+List<Object> list = new ArrayList<Integer>(); //Invalid
+List<Parent> mylist = new ArrayList<Child>(); //Invalid
+------------------------------------------------------------------
+import java.util.*;
+public class Test10
+{
+public static void main(String [] args)
+	{	
+	   /*ArrayList<Object> al = new ArrayList<String>(); [Compile time ]
+	   ArrayList al = new ArrayList();  [Runtime, Type Erasure]
+	   al.add(true);*/
+	     
+
+		Object []obj = new String[3]; //valid with Array
+		obj[0] = "Ravi";
+		obj[1] = "hyd";
+		obj[2] =  90; //java.lang.ArrayStoreException
+		System.out.println(Arrays.toString(obj));
+	}
+}
+
+Note :- Program will generate java.lang.ArrayStoreException because we are trying to insert 90 (integer value) into String array.
+
+In Array we have an Exception called ArrayStoreException (Which protect us to assign some illegal value in the array at runtime) but the same Exception or such type of exception, is not available with Generics (due to Type Erasure) that is the reason in generics, compiler does not allow upcasting concept.
+(It is a strict compile time protection)
+---------------------------------------------------------------------
+WildCard (?)
+------------
+WildCard (?)
+-------------
+With wildcard we have different cases :
+
+<Dog>         : We can assign only <Dog> object
+
+<Animal>      : We can assign only <Animal> Object
+
+<?>           : It is unknown type so many possibilities.
+
+Here in this wildcard we can assign anything so many possibilities that means It can accept anything.
+
+In order to provide some boundation now we have following two flavors :
+
+a) <? extends Animal>  :  
+
+This is upper bound here we can replace wild-card (?) with any class which extends Animal but here there is a chance
+		      of wrong collection in the future because
+		      in future Animal can have more sub classes
+		      so, we can't add any element in the Collection.
+
+
+b) <? super Dog>  : 
+
+This is called lower bound, Here we can replace wild card (?) with with any class which is super of Dog i.e Animal, Object. Here compiler knows that the only classes which are super of Dog are allowed so adding element in the collection is allowed.
+
+
+import java.util.ArrayList;
+
+class Animal
+{
+	
+}
+
+class Dog extends Animal
+{
+}
+
+class Horse extends Animal
+{
+}
+
+class Rabbit extends Animal
+{
+}
+
+public class WildCardDemo1
+{
+
+	public static void main(String[] args)
+	{
+	   ArrayList<? super Dog> list = new ArrayList<Object>();
+	   list.add(new Dog());
+	   
+	   
+	  ArrayList<? extends Animal> list1 = new ArrayList<Horse>();
+      list1.add(new Horse()); //Invalid
+	}
+
+}
+--------------------------------------------------------------------
+import java.util.*;
+class Parent
+{
+}
+class Child extends Parent
+{
+}
+
+public class Test11
+{
+public static void main(String [] args)
+	{	
+		//ArrayList<Parent> lp = new ArrayList<Child>(); //error
+		
+		ArrayList<?> lp = new ArrayList<Child>(); 
+
+		ArrayList<Parent> lp1 = new ArrayList<Parent>(); 
+
+		ArrayList<Child> lp2 = new ArrayList<>(); 
+
+		System.out.println("Success");
+	}
+}
+-------------------------------------------------------------------
+//program on wild-card chracter
+import java.util.*;
+class Parent
+{
+
+}
+class Child extends Parent
+{
+}
+public class Test12
+{
+public static void main(String [] args)
+	{	
+		ArrayList<?> lp = new ArrayList<Parent>();
+		System.out.println("Wild card....");
+	}
+}
+------------------------------------------------------------------
+import java.util.*;
+public class Test13 
+{
+	public static void main(String[] args) 
+	{
+		List<? extends Number> list1 = new ArrayList<Double>();
+
+		List<? super String> list2 = new ArrayList<Object>();
+
+		List<? super Gamma> list3 = new ArrayList<Alpha>();
+
+		List list4 = new ArrayList();
+		
+		System.out.println("yes");
+	}
+}
+
+class Alpha
+{
+}
+class Beta extends Alpha
+{
+}
+class Gamma extends Beta
+{
+}
+--------------------------------------------------------------------
+class MyClass<T>     
+{
+	T obj;
+	public MyClass(T obj)       //Student obj = new Student(1, "A");
+	{
+		this.obj=obj;
+	}
+
+	T getObj()
+	{
+		return this.obj;
+	}
+}
+public class Test14
+{
+	public static void main(String[] args) 
+	{
+		Integer i=12;
+		MyClass<Integer> mi = new MyClass<>(i);
+		System.out.println("Integer object stored :"+mi.getObj());
+
+		Float f=12.34f;
+		MyClass<Float> mf = new MyClass<>(f);
+		System.out.println("Float object stored :"+mf.getObj());
+
+		MyClass<String> ms = new MyClass<>("Rahul");
+		System.out.println("String object stored :"+ms.getObj());
+
+		MyClass<Boolean> mb = new MyClass<>(false);
+		System.out.println("Boolean object stored :"+mb.getObj());
+
+		Double d=99.34;
+		MyClass<Double> md = new MyClass<>(d);
+		System.out.println("Double object stored :"+md.getObj());
+
+		MyClass<Student> std = new MyClass<>(new Student(1,"A"));
+		System.out.println("Student object stored :"+std.getObj());
+	}
+}
+
+record Student(int id, String name)
+{
+
+}
+-------------------------------------------------------------------
+05-06-2025
+----------
+//E stands for Element type
+class Fruit    
+{
+}
+class Apple extends Fruit   //Fruit is super, Apple is sub class
+{
+	@Override
+	public String toString()
+	{
+		return "Apple";
+	}
+}
+
+class Basket<E>   //E -> Fruit
+{
+	private E element;
+	
+	public void setElement(E element) //Fruit element 
+	{
+		this.element = element;
+	}
+	
+	public E getElement()
+	{
+		return this.element;
+	}	
+}
+
+public class Test15
+{
+	public static void main(String[] args) 
+	{
+	   Basket<Fruit> basket = new Basket<>();	
+	   basket.setElement(new Apple());
+	   Apple apple = (Apple) basket.getElement();
+	   System.out.println(apple);
+	   
+	   System.out.println("............");
+	   basket = new Basket<>();
+	   basket.setElement(new Mango());
+	   Mango mango = (Mango) basket.getElement();
+	   System.out.println(mango);
+	   
+	}
+}
+
+class Mango extends Fruit
+{
+	@Override
+	public String toString()
+	{
+		return "Mango";
+	}
+}
+-----------------------------------------------------------------
+//Generic Method
+
+public class Test16 
+{
+	public static void main(String[] args) 
+	{
+		Integer []intArr = {10,20,30,40,50};
+		printArray(intArr);
+		
+		System.out.println(".............");
+		
+		String []cities = {"Hyderabad", "Banglore", "Mumbai", "Kolkata"};
+		printArray(cities);
+		
+	}
+	
+	public static <T> void printArray(T[] array)
+	{
+		for(T element : array )
+		{
+			System.out.println(element);
+		}
+	}
+}
+=================================================================
+
+=================================================================
+LinkedList Part 01 :
+https://www.youtube.com/watch?v=5a_jJO2qGfQ&t=1359s
+
+Singly LinkedList implementation :
+https://youtu.be/s3Q8gi4jMsM
+
+How to Develop custom Vector :
+https://youtu.be/QjGLiN1bmU8
+
+1) Concurrent Collections Part 01
+https://youtu.be/aYvfjoUzs3Q         
+
+
+2) Concurrent Collections Part 02 
+https://youtu.be/sFbYNTpEW10       
+
+=====================================================================

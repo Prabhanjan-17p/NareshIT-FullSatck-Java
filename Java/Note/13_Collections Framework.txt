@@ -2504,7 +2504,7 @@ Case 2 :
 --------
 If we override only hashCode() method 
 --------------------------------------
-If we overrdie only hashCode() method then two objects which are having same hashcode (due to overriding) will go to same bucket but == operator and equals(Object obj) method of Object class, both will return false hence duplicate object will be inserted into same bucket by using Singly LinkedList.
+If we override only hashCode() method then two objects which are having same hashcode (due to overriding) will go to same bucket but == operator and equals(Object obj) method of Object class, both will return false hence duplicate object will be inserted into same bucket by using Singly LinkedList.
 
 So, the conclusion is, compulsory we need to override both the methods for removing duplicate elements.
 
@@ -3005,7 +3005,8 @@ When we iterate the elements through HashSet the order will be unpredictable, wh
 It accepts hetrogeneous and null value is allowed.
 
 It has same constructor as HashSet class.
------------------------------------------------------------------------import java.util.*;
+-----------------------------------------------------------------------
+import java.util.*;
 public class LinkedHashSetDemo
 {
  public static void main(String args[])
@@ -3950,7 +3951,7 @@ public class SortedMapMethodDemo
 		   System.out.println("headMap: "+map.headMap(102));  //100 101
 		   System.out.println("tailMap: "+map.tailMap(102));  //102 103
 		   System.out.println("subMap: "+map.subMap(100, 102)); //100 101 
-          
+          //"
 	 }
  }  
 -------------------------------------------------------------------
@@ -4185,7 +4186,8 @@ public class PriorityQueueDemo1
            System.out.println(pq);  
 	  }
 }
-------------------------------------------------------------------   import java.util.PriorityQueue;
+------------------------------------------------------------------   
+import java.util.PriorityQueue;
 public class PriorityQueueDemo2
 {
       public static void main(String[] argv)
@@ -4682,10 +4684,7 @@ In order to provide some boundation now we have following two flavors :
 
 a) <? extends Animal>  :  
 
-This is upper bound here we can replace wild-card (?) with any class which extends Animal but here there is a chance
-		      of wrong collection in the future because
-		      in future Animal can have more sub classes
-		      so, we can't add any element in the Collection.
+This is upper bound here we can replace wild-card (?) with any class which extends Animal but here there is a chance of wrong collection in the future because in future Animal can have more sub classes so, we can't add any element in the Collection.
 
 
 b) <? super Dog>  : 

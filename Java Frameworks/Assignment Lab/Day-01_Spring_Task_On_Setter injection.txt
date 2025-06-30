@@ -1,0 +1,326 @@
+Q1)
+You are tasked with developing a Spring Core application that prints the current date using setter-based dependency injection. The application will make use of LocalDate (a predefined class in Java) to demonstrate the setter injection of a LocalDate object.
+
+Requirements:
+DatePrinter Class:
+Create a DatePrinter class with the following attributes:
+LocalDate currentDate: This will store the current date.
+Implement a setter method setCurrentDate(LocalDate currentDate) to allow for dependency injection using Spring.
+Implement a printDate() method that prints the current date in the format YYYY-MM-DD.
+
+Note:
+------
+Use Xml file to configure Spring bean.
+
+Main Class:
+Create a main class that loads the Spring application context, retrieves the DatePrinter bean, and call printDate().
+
+ANS --
+package com.nit.main;
+
+import org.springframework.context.support.FileSystemXmlApplicationContext;
+
+import com.nit.sbean.DatePrinter;
+
+public class Main1 {
+
+	public static void main(String[] args) {
+		FileSystemXmlApplicationContext ctx = new FileSystemXmlApplicationContext("src/com/nit/cfgs/applicationContext.xml");
+		
+		Object obj = ctx.getBean("p1");
+		
+		DatePrinter date = (DatePrinter)obj;
+		
+		date.printDate();
+		
+		ctx.close();
+
+	}
+
+}
+
+package com.nit.sbean;
+
+import java.time.LocalDate;
+
+public class DatePrinter {
+	private LocalDate ccurrentDate;
+
+	public void setCcurrentDate(LocalDate ccurrentDate) {
+		System.out.println("DatePrinter.setCcurrentDate()");
+		this.ccurrentDate = ccurrentDate;
+	}
+	
+	public void printDate() {
+		System.out.println("Today's Date: "+ccurrentDate); //"
+	}
+}
+
+
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="
+        http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<bean id="ldate" class="java.time.LocalDate" factory-method="now" /> <!-- dependent spring bean cfg -->
+	
+	<bean id="p1" class="com.nit.sbean.DatePrinter"> <!-- target spring bean cfg -->
+		<property name="ccurrentDate" ref="ldate" />
+	</bean>
+
+</beans>
+
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------
+Q2)
+
+You are tasked with developing a Spring Core application that generates a wish message based on the current time of day using setter-based dependency injection. The application should use LocalDateTime to determine whether to send a "Good Morning", "Good Afternoon", or "Good Evening" message.
+
+Requirements:
+WishMessageGenerator Class:
+Create a WishMessageGenerator class with the following attributes:
+LocalDateTime currentDateTime: This will store the current date and time.
+Implement a setter method for currentDateTime to allow for dependency injection using Spring.
+
+Implement a generateWishMessage() method that returns:
+"Good Morning" if the time is before 12 PM.
+"Good Afternoon" if the time is between 12 PM and 6 PM.
+"Good Evening" if the time is after 6 PM.
+
+Note:
+------
+Use Xml file to configure Spring bean.
+
+
+Main Class:
+Create a main class that loads the Spring application context, retrieves the WishMessageGenerator bean, and prints the wish message based on the current time.
+
+Expected Output:
+If the current time is before 12 PM:
+	Good Morning
+If the current time is between 12 PM and 6 PM:
+	Good Afternoon
+If the current time is after 6 PM:
+	Good Evening
+
+
+ANS --
+package com.nit.main;
+
+import org.springframework.context.support.FileSystemXmlApplicationContext;
+
+import com.nit.sbean.WishMessageGenerator;
+
+public class Main2 {
+
+	public static void main(String[] args) {
+		FileSystemXmlApplicationContext ctx = new FileSystemXmlApplicationContext("src/com/nit/cfgs/wishContext.xml");
+		
+		Object obj = ctx.getBean("p2");
+		
+		WishMessageGenerator wishh = (WishMessageGenerator)obj;
+		
+		wishh.printgenerateWishMessage();
+		
+		ctx.close();
+	}
+
+}
+
+
+package com.nit.sbean;
+
+import java.time.LocalDateTime;
+
+public class WishMessageGenerator {
+	private LocalDateTime currentDateTime;
+
+	public void setCurrentDateTime(LocalDateTime currentDateTime) {
+		this.currentDateTime = currentDateTime;
+	}
+	
+	public void printgenerateWishMessage() {
+		int time = currentDateTime.getHour();
+		
+		if(time < 12) System.out.println("Good Morning");
+		else if(time < 18) System.out.println("Good Afternoon");
+		else System.out.println("Good Evening");
+	}
+}
+
+
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="
+        http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<bean id="ltime" class="java.time.LocalDateTime" factory-method="now" /> <!-- dependent spring bean cfg -->
+	
+	<bean id="p2" class="com.nit.sbean.WishMessageGenerator"> <!-- target spring bean cfg -->
+		<property name="currentDateTime" ref="ltime" />
+	</bean>
+
+</beans>
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------
+Q3)
+------
+ DiscountCalculator Using Setter Injection in Spring
+You are tasked with developing a Spring Core application that calculates discounts based on a product's price and the day of the week using setter-based dependency injection. The discount rate will change based on whether it's a weekday or weekend.
+
+Requirements:
+DiscountCalculator Class:
+Create a DiscountCalculator class with the following attributes:
+LocalDate currentDate: This will store the current date.
+double price: This will store the product price.
+Implement setter methods for currentDate and price to allow for dependency injection using Spring.
+Implement a calculateDiscount() method that returns:
+A 10% discount if the day is a weekday (Monday to Friday).
+A 20% discount if the day is a weekend (Saturday or Sunday).
+
+Note:
+------
+Use Xml file to configure Spring bean.
+
+
+Main Class:
+Create a main class that loads the Spring application context, retrieves the DiscountCalculator bean, and prints the discounted price based on the day of the week.
+
+Expected Output:
+If the current day is a weekday (e.g., Tuesday) and the price is 100:
+	Discounted Price: 90.0 (10% discount applied)
+
+If the current day is a weekend (e.g., Saturday) and the price is 100:
+	Discounted Price: 80.0 (20% discount applied)
+
+ANS --
+package com.nit.sbean;
+
+import java.time.DayOfWeek;
+import java.time.LocalDate;
+
+public class DiscountCalculator {
+	private LocalDate currentDate;
+	private double price;
+	
+	public void setCurrentDate(LocalDate currentDate) {
+		this.currentDate = currentDate;
+	}
+	public void setPrice(double price) {
+		this.price = price;
+	}
+	
+	public void calculateDiscount() {
+		DayOfWeek day = currentDate.getDayOfWeek();
+		switch (day) {
+		case FRIDAY: case MONDAY: case TUESDAY: case WEDNESDAY: case THURSDAY:
+			System.out.println("Total amount :: "+price);
+			System.out.println("10% discount :: "+(price*0.10));
+			price -= price*0.10;
+			System.out.println("Total pay amount :: "+price);
+			break;
+		case SUNDAY: case SATURDAY:
+			System.out.println("Total amount :: "+price);
+			System.out.println("20% discount :: "+(price*0.20));
+			price -= price*0.20;
+			System.out.println("Total pay amount :: "+price);
+			break;
+		default:
+			throw new IllegalArgumentException("Unexpected value: " + day);
+		}
+	}
+	
+}
+
+
+package com.nit.main;
+
+import org.springframework.context.support.FileSystemXmlApplicationContext;
+
+import com.nit.sbean.DiscountCalculator;
+
+public class Main3 {
+
+	public static void main(String[] args) {
+		FileSystemXmlApplicationContext ctx = new FileSystemXmlApplicationContext("src/com/nit/cfgs/discountContext.xml");
+		
+		Object obj = ctx.getBean("p3");
+		
+		DiscountCalculator dis = (DiscountCalculator)obj;
+		
+		dis.calculateDiscount();
+		
+		ctx.close();
+	}
+
+}
+
+
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="
+        http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<bean id="ldate" class="java.time.LocalDate" factory-method="now" /> <!-- dependent spring bean cfg -->
+	
+	<bean id="p3" class="com.nit.sbean.DiscountCalculator"> <!-- target spring bean cfg -->
+		<property name="currentDate" ref="ldate" />
+		<property name="price" value="10000"/>
+	</bean>
+</beans>
+
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------
+Q4) ElectricityBillGenerator Using Setter Injection
+🏢 Scenario:
+You are tasked to build a Spring-based application that calculates the electricity bill for households based on unit consumption and fixed rate per unit.
+
+🎯 Objective:
+Use setter injection to provide units consumed and rate per unit. Then calculate the total bill.
+
+🧱 Requirements
+1️.ElectricityBillGenerator Class
+Fields:
+
+int unitsConsumed
+
+double ratePerUnit
+
+Setters: for both fields
+
+Method:
+
+double generateBill()
+
+Logic: bill = unitsConsumed * ratePerUnit
+
+⚙️ Configuration
+Use XML configuration and inject values via <property> tag.
+
+🧪 Expected Output
+For: units = 250, rate = 6.5
+Total Electricity Bill: 1625.0
+
+============================================================================================================================================================
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

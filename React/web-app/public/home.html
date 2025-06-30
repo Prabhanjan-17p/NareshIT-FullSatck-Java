@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home Page</title>
+    <script src="../node_modules/react/umd/react.development.js"></script>
+    <script src="../node_modules/react-dom/umd/react-dom.development.js"></script>
+    <script src="../node_modules/@babel/standalone/babel.js"></script>
+    <script type="text/babel">
+
+        function Login() {
+            return(
+                <div>
+                    <h3>User login</h3>    
+                    <dl>
+                        <dt>User Name</dt>    
+                        <dd><input type="text" /></dd>
+                        <dt>Password</dt>
+                        <dd><input type="text" /></dd>
+                    </dl>
+                    <button>Submit </button>
+                </div>
+                
+            )
+        }
+        // ReactDOM.render(<Login/>,document.getElementById("root"))
+        ReactDOM.render("Welcome to React JS",document.getElementById("root"))
+
+    </script>
+</head>
+<body>
+    <noscript>Please enable Javascript on your browser.</noscript>
+    <div id="root"></div>
+</body>
+</html>

@@ -66,10 +66,9 @@ Note:  React latest is 19x [beta]
         b) react-dom
         c) babel
 
-    - "react" is the core library to enable react in page. It contains all basic react
-       methods.
+    - "react" is the core library to enable react in page. It contains all basic react methods.
     - "react-dom" is virtual DOM library.
-    - "babel"  is a JavaScript compiler for react. [JIT, AOT]
+    - "babel"  is a JavaScript compiler for react. [JIT(Just In Time), AOT(Ahed Of Time)]
 
 Note: You can get the libraries from CDN.
       - React 18x CDN is available on  https://legacy.reactjs.org/

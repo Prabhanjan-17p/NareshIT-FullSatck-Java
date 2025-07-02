@@ -307,6 +307,77 @@ Use XML configuration and inject values via <property> tag.
 For: units = 250, rate = 6.5
 Total Electricity Bill: 1625.0
 
+ANS 
+package com.nit.sbean;
+
+public class ElectricityBillGenerator {
+
+	int unitsConsumed;
+	double ratePerUnit;
+
+	public ElectricityBillGenerator() {
+		super();
+		System.out.println("ElectricityBillGenerator 0 parameter Constructor");
+	}
+
+	public void setUnitsConsumed(int unitsConsumed) {
+		System.out.println("ElectricityBillGenerator.setUnitsConsumed()");
+		this.unitsConsumed = unitsConsumed;
+	}
+
+	public void setRatePerUnit(double ratePerUnit) {
+		System.out.println("ElectricityBillGenerator.setRatePerUnit()");
+		this.ratePerUnit = ratePerUnit;
+	}
+
+	public double generateBill() { //"
+		return unitsConsumed * ratePerUnit;
+	}
+
+
+}
+
+
+package com.nit.main;
+
+import org.springframework.context.support.FileSystemXmlApplicationContext;
+
+import com.nit.sbean.ElectricityBillGenerator;
+
+public class Main4 {
+	public static void main(String[] args) {
+		try(FileSystemXmlApplicationContext ctx = new FileSystemXmlApplicationContext("src/com/nit/cfgs/electricbillContext.xml");){
+			ElectricityBillGenerator bill = (ElectricityBillGenerator) ctx.getBean("p4");
+			
+			double tot =  bill.generateBill();
+			
+			System.out.println("Total Electricity Bill: "+tot);
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+
+	}
+}
+
+
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="
+        http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	
+	<bean id="p4" class="com.nit.sbean.ElectricityBillGenerator">
+		<property name="unitsConsumed" value="250" />
+		<property name="ratePerUnit" value="6.5" />
+	</bean>
+
+</beans>
+
+
+
 ============================================================================================================================================================
 
 

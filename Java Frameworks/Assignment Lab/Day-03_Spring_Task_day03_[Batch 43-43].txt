@@ -1,0 +1,418 @@
+📘 Java Spring Core — Student Marks Calculator using Spring Beans
+__________________________________________________________________________________
+🎯 Objective:
+---------------------------
+Create a Spring-based application to calculate the average marks of a student
+based on different subjects using Spring Core IOC (Inversion of Control) with XML-based configuration.
+
+✅ Requirements
+---------------------------
+📁 1. Packages to be Created
+
+> com.implimentation.beans —  for Java class (Bean and main)
+> com.configuration.commons — for application-context.xml file (Spring configuration)
+
+🧱 2. Java Class - Student
+_______________________________
+Create a class Student that represents a student and stores:
+
+|- String student_name
+|- int student_rollNo
+|- int math_Marks
+|- int physics_Marks
+|- float chemistry_marks
+|- double english_marks
+|- double physicalEdu_marks
+|- boolean isExamAttended
+|- double average (calculated)
+
+➕ Behavior:
+------------------------
+> A method getResult():
+  |- If the student attended the exam, calculates and returns the average of 5 subjects.
+  |- If not attended, prints "Exam not attended!!" and returns 0.
+
+> A method examAttended() to check the attendance.
+  |- Standard getters, setters, and toString() method.
+
+🧾 3. Spring Bean Configuration - application-context.xml
+------------------------------------------------------------
+Create a Spring bean with id result and provide values for all student properties:
+|- first complete it by using setter injection 
+|- after that complete the same task by using constructor injection
+
+🖥️ 4. Main Class - StudentMarksUser
+____________________________________________
+Load Spring container using:
+ApplicationContext context = new ClassPathXmlApplicationContext("Path");
+Retrieve the bean using:
+|- get the object and call the method as well as toString()
+
+✅ Expected Output
+_____________________________________________
+If the student attended the exam:
+
+Student [student_name=abc, student_rollNo=101, math_Marks=80, physics_Marks=90, chemistry_marks=70.2, english_marks=70.5, physicalEdu_marks=90.5, average=82.24, isExamAttended=true]
+
+  
+If not attended:
+Student [student_name=abc, ... , average=0.0, isExamAttended=false]
+
+📦 Project Structure
+_________________________________________________
+src/
+├── com/
+│   ├── implimentation/
+│   │   ├── beans/
+│   │   │   ├── Student.java
+│   │   │   ├── StudentMarksUser.java
+│
+├── com/
+│   └── configuration/
+│       └── commons/
+│           └── application-context.xml
+_________________________________________________
+📄 Submission Checklist
+✅ Student.java
+
+✅ StudentMarksUser.java
+
+✅ application-context.xml
+
+ANS
+-----
+Using - constructor
+
+package com.nit.main;
+
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.context.support.FileSystemXmlApplicationContext;
+
+import com.nit.sbean.StudentConstructor;
+
+public class StudentMarksUser {
+
+	public static void main(String[] args) {
+		try {
+			
+			ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("com/nit/cfgs/applicationContextConstructor.xml");
+			
+			StudentConstructor s1 =(StudentConstructor)context.getBean("studentCon");
+			
+			if (s1.getResult() == 1) {
+				System.out.println(s1);
+			}else {
+				System.out.println(s1);
+			}
+			
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+	}
+
+}
+
+
+package com.nit.sbean;
+
+public class StudentConstructor {
+	String student_name;
+	int student_rollNo;
+	int math_Marks;
+	int physics_Marks;
+	float chemistry_marks;
+	double english_marks;
+	double physicalEdu_marks;
+	boolean isExamAttended;
+	double average ;
+	
+	
+	public StudentConstructor(String student_name, int student_rollNo, int math_Marks, int physics_Marks,
+			float chemistry_marks, double english_marks, double physicalEdu_marks, boolean isExamAttended) {
+		super();
+		this.student_name = student_name;
+		this.student_rollNo = student_rollNo;
+		this.math_Marks = math_Marks;
+		this.physics_Marks = physics_Marks;
+		this.chemistry_marks = chemistry_marks;
+		this.english_marks = english_marks;
+		this.physicalEdu_marks = physicalEdu_marks;
+		this.isExamAttended = isExamAttended;
+	}
+
+
+	public String getStudent_name() {
+		return student_name;
+	}
+
+
+	public int getStudent_rollNo() {
+		return student_rollNo;
+	}
+
+
+	public int getMath_Marks() {
+		return math_Marks;
+	}
+
+
+	public int getPhysics_Marks() {
+		return physics_Marks;
+	}
+
+
+	public float getChemistry_marks() {
+		return chemistry_marks;
+	}
+
+
+	public double getEnglish_marks() {
+		return english_marks;
+	}
+
+
+	public double getPhysicalEdu_marks() {
+		return physicalEdu_marks;
+	}
+
+
+	public boolean isExamAttended() {
+		return isExamAttended;
+	}
+
+
+	public double getAverage() {
+		return average;
+	}
+
+
+	public int getResult() {
+		if (isExamAttended()) {
+			average = (getMath_Marks()+getChemistry_marks()+getEnglish_marks()+getPhysicalEdu_marks()+getPhysics_Marks())/5;
+			return 1;
+		}
+		else {
+			System.out.println("Exam Not Attended!!");
+			math_Marks =0;physics_Marks=0;chemistry_marks=0;english_marks=0;physicalEdu_marks=0;average=0.0;
+			return 0;
+		}
+	}
+
+
+	@Override
+	public String toString() {
+		return "Student [student_name=" + student_name + ", student_rollNo=" + student_rollNo + ", math_Marks="
+				+ math_Marks + ", physics_Marks=" + physics_Marks + ", chemistry_marks=" + chemistry_marks
+				+ ", english_marks=" + english_marks + ", physicalEdu_marks=" + physicalEdu_marks + ", isExamAttended="
+				+ isExamAttended + ", average=" + average + "]";
+	}
+	
+	
+}
+
+
+
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="
+        http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd">
+	
+
+
+    <bean id="studentCon" class="com.nit.sbean.StudentConstructor">
+        <constructor-arg name="student_name" value="kanha" />
+		<constructor-arg name="student_rollNo" value="123" />
+		<constructor-arg name="math_Marks" value="80" />
+		<constructor-arg name="physics_Marks" value="80" />
+		<constructor-arg name="chemistry_marks" value="80" />
+		<constructor-arg name="english_marks" value="80" />
+		<constructor-arg name="physicalEdu_marks" value="80" />
+		<constructor-arg name="isExamAttended" value="true" />
+    </bean>
+
+</beans>
+
+Using - setter method
+
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="
+        http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd">
+	
+	<bean id="studentP1" class="com.nit.sbean.Student"> <!-- target spring bean cfg -->
+		<property name="student_name" value="kanha" />
+		<property name="student_rollNo" value="123" />
+		<property name="math_Marks" value="80" />
+		<property name="physics_Marks" value="80" />
+		<property name="chemistry_marks" value="80" />
+		<property name="english_marks" value="80" />
+		<property name="physicalEdu_marks" value="80" />
+		<property name="isExamAttended" value="false" />
+	</bean>
+
+</beans>
+
+package com.nit.main;
+
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.context.support.FileSystemXmlApplicationContext;
+
+import com.nit.sbean.StudentConstructor;
+
+public class StudentMarksUser {
+
+	public static void main(String[] args) {
+		try {
+			ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("com/nit/cfgs/applicationContext.xml");
+			
+			Student s1 =(Student)context.getBean("studentP1");
+			
+			if (s1.getResult() == 1) {
+				System.out.println(s1);
+			}else {
+				System.out.println(s1);
+			}
+			
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+	}
+
+}
+
+
+package com.nit.sbean;
+
+public class Student {
+	String student_name;
+	int student_rollNo;
+	int math_Marks;
+	int physics_Marks;
+	float chemistry_marks;
+	double english_marks;
+	double physicalEdu_marks;
+	boolean isExamAttended;
+	double average ;
+	
+	
+	public String getStudent_name() {
+		return student_name;
+	}
+
+
+	public void setStudent_name(String student_name) {
+		this.student_name = student_name;
+	}
+
+
+	public int getStudent_rollNo() {
+		return student_rollNo;
+	}
+
+
+	public void setStudent_rollNo(int student_rollNo) {
+		this.student_rollNo = student_rollNo;
+	}
+
+
+	public int getMath_Marks() {
+		return math_Marks;
+	}
+
+
+	public void setMath_Marks(int math_Marks) {
+		this.math_Marks = math_Marks;
+	}
+
+
+	public int getPhysics_Marks() {
+		return physics_Marks;
+	}
+
+
+	public void setPhysics_Marks(int physics_Marks) {
+		this.physics_Marks = physics_Marks;
+	}
+
+
+	public float getChemistry_marks() {
+		return chemistry_marks;
+	}
+
+
+	public void setChemistry_marks(float chemistry_marks) {
+		this.chemistry_marks = chemistry_marks;
+	}
+
+
+	public double getEnglish_marks() {
+		return english_marks;
+	}
+
+
+	public void setEnglish_marks(double english_marks) {
+		this.english_marks = english_marks;
+	}
+
+
+	public double getPhysicalEdu_marks() {
+		return physicalEdu_marks;
+	}
+
+
+	public void setPhysicalEdu_marks(double physicalEdu_marks) {
+		this.physicalEdu_marks = physicalEdu_marks;
+	}
+
+
+//	public boolean isExamAttended() {
+//		return isExamAttended;
+//	}
+
+
+	public void setIsExamAttended(boolean isExamAttended) {
+		this.isExamAttended = isExamAttended;
+	}
+
+
+	public double getAverage() {
+		return average;
+	}
+
+
+	public void setAverage(double average) {
+		this.average = average;
+	}
+
+
+	public int getResult() {
+		if (isExamAttended) {
+			average = (getMath_Marks()+getChemistry_marks()+getEnglish_marks()+getPhysicalEdu_marks()+getPhysics_Marks())/5;
+			return 1;
+		}
+		else {
+			System.out.println("Exam Not Attended!!");
+			math_Marks =0;physics_Marks=0;chemistry_marks=0;english_marks=0;physicalEdu_marks=0;average=0.0;
+			return 0;
+		}
+	}
+
+
+	@Override
+	public String toString() {
+		return "Student [student_name=" + student_name + ", student_rollNo=" + student_rollNo + ", math_Marks="
+				+ math_Marks + ", physics_Marks=" + physics_Marks + ", chemistry_marks=" + chemistry_marks
+				+ ", english_marks=" + english_marks + ", physicalEdu_marks=" + physicalEdu_marks + ", isExamAttended="
+				+ isExamAttended + ", average=" + average + "]";
+	}
+	
+	
+}

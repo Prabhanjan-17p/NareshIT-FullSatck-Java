@@ -11,8 +11,7 @@ History of Java :
 ----------------------------------------------------------------
 What is a function?
 -------------------
-A function is a self defined block which is used for calculation, printing the result or to perform some specific 
-operation.
+A function is a self defined block which is used for calculation, printing the result or to perform some specific  operation.
 
 A function can be divided into two types :
 
@@ -43,8 +42,7 @@ Once the complex task is divided into number of modules then it is very easy to 
 
 3) Reusability :
 --------------
-Based on our requirement we can reuse a particular module 'n'
-number of times.
+Based on our requirement we can reuse a particular module 'n' number of times.
 
 Note :In java we will always reuse our java classes.
 
@@ -83,6 +81,8 @@ In java language, We can't write a function outside of the class, It must be ins
 ----------
 **What is platform independency in java ?
 -----------------------------------------
+The meaning of platform-independent is that the java compiled code(byte code) can run on all operating systems. A program is written in a language that is a human-readable language. It may contain words, phrases, etc which the machine does not understand
+
 C and C++ programs are platform dependent programs that means the .exe file created on one machine will not be executed on the another machine if the system configuration is different.
 
 That is the reason C and C++ programs are not suitable for website development.
@@ -528,8 +528,7 @@ public class Command
 javac Command.java
 java Command 
 
-Here we are not passing any value and try to print the value of 
-0th index so, It will generate java.lang.ArrayIndexOutOfBoundsException
+Here we are not passing any value and try to print the value of 0th index so, It will generate java.lang.ArrayIndexOutOfBoundsException
 -------------------------------------------------------------------
 How to find out the length of an array :
 -----------------------------------------

@@ -239,14 +239,14 @@ No, Java is not a pure object oriented langauge because it is accepting primary 
 Only Objects are moving in the network but not the primary data type so java has introduced Wrapper class concept to convert the primary data types into corresponding wrapper object.
 
 Primary Data type           Wrapper Object
-	byte		:	Byte
-	short		:	Short
-	int			:	Integer
-	long		:	Long
-	float		:	Float
-	double		:	Double
-	char		:	Character
-	boolean		:	Boolean
+	byte			 :			Byte
+	short			 :			Short
+	int				 :			Integer
+	long			 :			Long
+	float			 :			Float
+	double			 :			Double
+	char			 :			Character
+	boolean			 :			Boolean
 
 
 Note : Apart from these 8 data types, Everything is an object in java so, if we remove all these 8 primitive data types then java will become pure OOP language.

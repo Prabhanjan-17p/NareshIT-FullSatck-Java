@@ -47,8 +47,7 @@ public class PrintingTable
 
 }
 
-2) WAP to find out the area of Circle in String format, If the 
-   radius is -ve OR Zero then it should return -1.
+2) WAP to find out the area of Circle in String format, If the radius is -ve OR Zero then it should return -1.
    
    package com.ravi.static_method_demo1;
 

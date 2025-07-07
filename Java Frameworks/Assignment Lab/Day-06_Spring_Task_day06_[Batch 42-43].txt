@@ -1,0 +1,424 @@
+Que-1
+________________________________
+📚 Objective:
+-------------------
+Create a Spring Core application that simulates launching a rocket using 
+only annotation-based configuration (without using XML or @Configuration classes).
+The application must demonstrate component scanning, dependency injection using @Autowired,
+and business logic encapsulation using POJOs and services.
+
+✅ Requirements:
+-------------------
+1. Component 1 – Rocket (Rocket.java)
+______________________________________________
+   |- Class must be annotated with @Component
+
+Methods:
+> ignite(String fuelType): Checks fuel and prints appropriate status
+> isfuel(String fuelType): Returns true if fuel type is "full", else false
+  |- If fuel is full, output: Rocket ignited!!
+  |- Otherwise: Rocket not started!!
+
+2. Component 2 – Launcher (Laucher.java)
+______________________________________________
+> Class must be annotated with @Component
+> Has a private field Rocket rocket (HAS-A relationship)
+> Use setter-based dependency injection with @Autowired
+> Method launch() must call rocket.ignite("full")
+
+3. Client – Main Application (Main.java)
+_______________________________________________
+Create AnnotationConfigApplicationContext withpackage scanning 
+(no XML or @Configuration)
+> Retrieve the Laucher bean from context
+> Call the launch() method
+
+🚀 Functional Behavior:
+_______________________________________________
+When you run the Main class, the output should be:
+Rocket ignited!!
+
+⚙️ Technical Constraints:
+__________________________________________________
+Requirement	            Value
+Framework	            Spring Core (without Spring Boot)
+Configuration Style	    Annotations only
+Dependency Injection Type   Setter-based using @Autowired
+Bean Discovery	            Via @Component and package scanning
+Configuration Class / XML	❌ Not Allowed
+
+ANS ------
+package com.nit.sbean;
+
+import org.springframework.stereotype.Component;
+
+@Component
+public class Rocket {
+	
+	public void ignite(String fuelType){
+		if (isfuel(fuelType) == "full") {
+			System.out.println("Rocket ignited"); 
+		}else {
+			System.out.println("Rocket not start");
+		}
+	}
+	
+	public String isfuel(String fuelType) {
+		return fuelType;
+	}
+}
+
+
+package com.nit.sbean;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
+@Component
+public class Laucher {
+	private Rocket rock;
+
+	@Autowired
+	public void setRock(Rocket rock) {
+		this.rock = rock;
+	}
+	
+	public void launch(){
+		rock.ignite("full");
+	}
+}
+
+
+
+package com.nit.cfgs;
+
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.Configuration;
+
+@Configuration
+@ComponentScan(basePackages = "com.nit.sbean")
+public class AppConfig {
+	
+}
+
+
+
+package com.nit.main;
+
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+
+import com.nit.cfgs.AppConfig;
+import com.nit.sbean.Laucher;
+
+public class Main {
+	public static void main(String[] args) {
+		try (AnnotationConfigApplicationContext ctx = new AnnotationConfigApplicationContext(AppConfig.class);){
+			Laucher lal = ctx.getBean(Laucher.class);
+			lal.launch();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+}
+
+__________________________________________________________________________________________________
+__________________________________________________________________________________________________
+✅ Que-2: Spring Core Assignment – Car Engine Startup Simulation
+____________________________________________________________________
+📚 Objective:
+---------------------------
+Develop a Spring Core application that simulates the process of starting a car based on
+multiple conditions using only annotation-based configuration.
+The application should demonstrate proper usage of Spring's dependency injection (@Autowired), 
+component scanning, and business logic encapsulation using plain Java classes.
+
+✅ Requirements:
+---------------------------
+🔹 1. Component 1 – Engine.java
+________________________________________
+ |- The class must be annotated with @Component
+ |- It must include the following methods:
+ |- start(String fuelType, int temp, int pressure)
+    |- Starts the engine if all conditions below are met:
+       |- Fuel type is "petrol"
+       |- Temperature is <= 30
+       |- Tyre pressure is between 35 and 40 (inclusive)
+
+If all conditions are satisfied:
+-------------------------------------
+Car started successfully!
+Engine started!!
+
+Otherwise:
+Engine failed to start!
+
+> isFuelValid(String fuelType)
+  |- Returns true if fuel type is "petrol", otherwise false
+
+> checkTemp(int temp)
+  |- Returns true if temp <= 30, otherwise false
+
+> tyrePressure(int pressure)
+  |- Returns true if pressure >= 35 && pressure <= 40, otherwise false
+
+🔹 2. Component 2 – Car.java
+___________________________________________
+|- Annotate the class with @Component
+|- Contains a private field of type Engine (HAS-A relationship)
+|- Use setter-based dependency injection with @Autowired
+|- Method drive() must invoke engine.start("petrol", 28, 37) (test values)
+
+🔹 3. Main Class – Main.java
+___________________________________________
+Use AnnotationConfigApplicationContext to 
+scan the base package com.task.vehicle
+
+> Retrieve the Car bean from the Spring context
+> Call the drive() method
+
+🚗 Functional Behavior:
+When the Main class is executed, the output should be:
+
+Car started successfully!
+Engine started!!
+
+If any condition fails (e.g., wrong fuel, high temperature, or incorrect tyre pressure), it should instead print:
+Engine failed to start!
+
+
+⚙️ Technical Constraints:
+________________________________________________
+Requirement	            Value
+Framework	            Spring Core (No Spring Boot)
+Configuration Style	    Annotation-based only
+Dependency Injection Type   Setter-based using @Autowired
+Bean Discovery	            Via @Component + package scanning
+XML / Java Config Class	❌ Not Allowed
+
+ANS----
+package com.nit.sbean;
+
+import org.springframework.stereotype.Component;
+
+@Component
+public class Engine {
+	public void start(String fuelType, int temp, int pressure){
+		if ( temp <= 30)  {
+			System.out.println("Car started successfully!\r\n"
+					+ "Engine started!!");
+		}else {
+			System.out.println("Engine failed to start!");
+		}
+	}
+	public boolean isFuelValid(String fuelType){
+		return fuelType =="petrol";
+	}
+	
+	public boolean checkTemp(int temp) {
+		return (temp <= 30);
+	}
+	
+	public boolean tyrePressure(int pressure){
+		return (pressure >= 35 && pressure <= 40);
+	}
+
+}
+package com.nit.sbean;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
+@Component
+public class Car {
+	private Engine eng;
+
+	@Autowired
+	public void setEng(Engine eng) {
+		this.eng = eng;
+	}
+	
+	public void drive() {
+		eng.start("petrol",48, 37);
+	}
+	
+}
+package com.nit.main;
+
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+
+import com.nit.cfgs.AppConfig2;
+import com.nit.sbean.Car;
+
+
+public class Main2 {
+	public static void main(String[] args) {
+		try (AnnotationConfigApplicationContext ctx = new AnnotationConfigApplicationContext(AppConfig2.class);){
+			Car car = ctx.getBean(Car.class);
+			car.drive();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+}
+package com.nit.cfgs;
+
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.Configuration;
+
+@Configuration
+@ComponentScan(basePackages = "com.nit.sbean")
+public class AppConfig2 {
+	
+}
+
+__________________________________________________________________________________________________
+✅ Que-3: Spring Core Assignment – Student Library Access Simulation
+__________________________________________________________________________________________________
+📚 Objective:
+-----------------------------
+Design a Spring Core application where a student attempts to access the library.
+The access depends on the student's registration status and whether their book due date matches the current date.
+
+The application must demonstrate:
+
+|- Component-based development using @Component
+|- Dependency Injection using @Autowired (setter-based)
+|- Service logic encapsulation in class
+|- All of this must be achieved without using XML or Java @Configuration classes.
+
+✅ Requirements:
+_______________________________________
+🔹 1. Component 1 – Library.java
+---------------------------------
+> Annotated with @Component
+> This class contains methods to control library access.
+
+Methods:
+---------------------------------
+grantAccess(String studentType, String clearBookDueDate)
+➤ If:
+   |- studentType is "registered"
+                 and 
+  |- clearBookDueDate matches the current system date
+
+➞ Then print:
+Access granted to library.
+
+➤ Otherwise, print:
+Access denied. Please register first or clear book dues.
+
+isRegistered(String studentType)
+➤ Returns true if studentType is "registered" (case-insensitive)
+
+bookDueDate(String date)
+➤ Returns true if the given date matches the current date
+➤ Use LocalDate.now().toString() for comparison
+
+🔹 2. Component 2 – Student.java
+__________________________________________________
+> Annotated with @Component
+> Has a private Library field (HAS-A relationship)
+> Inject the Library dependency using setter-based @Autowired
+
+Method:
+visitLibrary()
+➤ Calls library.grantAccess("registered", today’s date)
+➤ Use LocalDate.now().toString() to simulate current date
+
+🔹 3. Main Class – Main.java
+__________________________________________________
+|- Use AnnotationConfigApplicationContext to scan the package: com.task.student
+|- Retrieve the Student bean from Spring context
+|- Call the visitLibrary() method
+
+🎓 Functional Behavior:
+___________________________________________________
+When the application runs, 
+the expected output (assuming the student is registered and today's date is passed) is:
+> Access granted to library.
+
+If the student is unregistered or date doesn’t match:
+> Access denied. Please register first or clear book dues.
+
+⚙️ Technical Constraints:
+_____________________________________________________
+Requirement	           Value
+Framework	           Spring Core (without Spring Boot)
+Configuration Style	   Annotation-based only
+Dependency Injection Type  Setter-based using @Autowired
+Bean Discovery	           Via @Component + package scanning
+XML or Java Config	❌ Not Allowed
+
+ANS -----
+package com.nit.sbean;
+
+
+import java.time.LocalDate;
+
+import org.springframework.stereotype.Component;
+
+@Component
+public class Library {
+
+    public void grantAccess(String studentType, String clearBookDueDate) {
+        if (isRegistered(studentType) && bookDueDate(clearBookDueDate)) {
+            System.out.println("Access granted to library.");
+        } else {
+            System.out.println("Access denied. Please register first or clear book dues.");
+        }
+    }
+
+    public boolean isRegistered(String studentType) {
+        return "registered".equalsIgnoreCase(studentType);
+    }
+
+    public boolean bookDueDate(String date) {
+        return LocalDate.now().toString().equals(date);
+    }
+}
+
+
+package com.nit.sbean;
+
+
+import java.time.LocalDate;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
+@Component("std")
+public class Student {
+    private Library library;
+
+    @Autowired
+    public void setLibrary(Library library) {
+        this.library = library;
+    }
+
+    public void visitLibrary() {
+        String today = LocalDate.now().toString();
+        library.grantAccess("registered", today);
+    }
+}
+
+package com.nit.main;
+
+
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.Configuration;
+
+import com.nit.sbean.Student;
+
+@Configuration
+@ComponentScan(basePackages = "com.nit.sbean")
+public class Main3 {
+    public static void main(String[] args) {
+        try (AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(Main3.class)) {
+            Student student = context.getBean("std",Student.class);
+            student.visitLibrary();
+        }
+    }
+}

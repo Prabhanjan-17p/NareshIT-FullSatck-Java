@@ -651,7 +651,7 @@ this keyword in java :
 ----------------------
 Whenever instance variable name and parameter variable name both are same then at the time of instance variable initialization our runtime environment will provide more priority to parameter variable/local variable, parameter variables are hiding the instance variables (Due to variable shadow)
 
-To avoid the above said problen, Java software people introduced "this" keyword.
+To avoid the above said problem, Java software people introduced "this" keyword.
 
 this keyword always refers to the current object and instance variables are the part of the object so by using this keyword we can represent instance variable.
 
@@ -1227,7 +1227,8 @@ In order to achieve encapsulation we should follow the following two techniques 
 
 2) Write public methods to perform read(getter) and write(setter) operation on these private data like setter and getter.
 
-Note : If we decalre all our data with private access modifier then it is called TIGHTLY ENCAPSULATED CLASS. On the other hand if we declare our data other then private access modifier then it is called Loosely Encapsulated class.
+Note : If we decalre all our data with private access modifier then it is called "TIGHTLY ENCAPSULATED CLASS". 
+	 : On the other hand if we declare our data other then private access modifier then it is called "Loosely Encapsulated class".
 
 Program on Encapsulation :
 ---------------------------
@@ -1830,7 +1831,7 @@ public class ImmutableDemo1 {
 
 }
 
-Here : str is pointing to "Hello" object but Strins are immutable so original object will not be modified hence we will get the output as Hello Hello.
+Here : str is pointing to "Hello" object but String are immutable so original object will not be modified hence we will get the output as Hello Hello.
 -----------------------------------------------------------------
 package com.ravi.unmodifiable;
 
@@ -2458,8 +2459,7 @@ public class Calculate
 
 In order to call all the constructors in the same class, we need not to create multiple objects, with single object we can call all the constructors with the help of this() [this of].
 
-**THE FIRST LINE OF ANY CONSTRUCTOR IS RESERVED EITHER FOR this() OR
-super() [this of OR super of] that means the first line of any constructor is used to call another constructor either from same class (this()) OR from super class (super()).
+*** THE FIRST LINE OF ANY CONSTRUCTOR IS RESERVED EITHER FOR "this() OR super()" [this of OR super of] that means the first line of any constructor is used to call another constructor either from same class (this()) OR from super class (super()).
 
 this() [this of] must be the first line of any constructor, we can't write in the 2nd line.
 

@@ -149,6 +149,7 @@ public class SingleLevelExample {
 03-03-2025
 ----------
 How to initialize the super class properties (super class instance variable) through sub class object :
+------------------------------------------------------------------------------------------------------
 
 super keyword is used to access the member or to access the memory of super class.
 
@@ -200,8 +201,9 @@ public class VariableHidingDemo1
 
 }
 ================================================================
-Method Hiding = It is only possible with static method.
+Method Hiding     = It is only possible with static method.
 Method Overriding = It is only possible with non-static method.
+================================================================
 
 2) To call the method super class (Method Overriding)
 ------------------------------------------------------
@@ -790,8 +792,7 @@ Here the drawback is all objects will be initialized with same value.
     Test t1 = new Test();  t1.setData();  [x = 100   y = 200]
     Test t2 = new Test();  t2.setData();  [x = 100   y = 200]
     
-    Here also, all the objects will be iniatilized with same 
-    value.
+    Here also, all the objects will be iniatilized with same value.
 
     B) Second Approach (Method with Parameter)
     -------------------------------------------
@@ -802,7 +803,7 @@ Here the drawback is all objects will be initialized with same value.
       public void setData(int x, int y)  
       {                        
          this.x = x;
-	 this.y = y;
+	     this.y = y;
       }
    }
    

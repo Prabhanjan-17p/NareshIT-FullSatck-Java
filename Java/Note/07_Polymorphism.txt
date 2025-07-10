@@ -314,7 +314,7 @@ public class VarArgsDemo4
 -----------
 Wrapper classes in java :
 -------------------------
-We have 8 primitive data types in java i.e byte, short, int, long and so on.
+We have 8 primitive data types in java i.e byte, short, int, long, float, double, boolean, and char.
 
 Except these 8 primitive data types, everything in java is an object.
 
@@ -598,7 +598,7 @@ class BufferTest
 ---------------------------------------------------------------
 How to convert Integer object into String :
 -------------------------------------------
-Integer class has provided a static method called toString() through whicg we can convert the Integer Object into String type
+Integer class has provided a static method called toString() through which we can convert the Integer Object into String type
 
 public static String toString()
 
@@ -617,24 +617,16 @@ Unboxing :
 ----------------
 Converting wrapper object to corresponding primitive type is called Unboxing.
 
-Wrapper            Primitive
-Object               type               
-----------            ----------
-Byte		-	byte
-
-Short		-	short
-
-Integer		-	int
-
-Long		-	long
-
-Float		-	float
-
-Double		-	double
-
-Chracter	-	char
-
-Boolean		-	boolean
+Wrapper Object           Primitive type               
+--------------          ---------------
+Byte		      - 	 byte
+Short		      - 	 short
+Integer		      - 	 int
+Long		      - 	 long
+Float		      - 	 float
+Double		      - 	 double
+Chracter	      - 	 char
+Boolean		      - 	 boolean
 ----------------------------------------------------------------
 We have total 8 Wrapper classes.
 
@@ -756,12 +748,14 @@ In case of ambiguity where compiler can select more than one method then compile
 -----------------------
 Compiler alwyas provide more priority to most specific data type or class type.
 
-double > float [Here float is the most specific type]  
-float > long 
-long > int
-int > char     
-int > short  //[No relation between short and char]
-short > byte     
+most_specific_type		less_specific_type
+------------------		------------------
+            double   >   float [Here float is the most specific type]  
+            float    >   long 
+            long     >   int
+            int      >   char     
+            int      >   short  //[No relation between short and char]
+            short    >   byte     
 
 2) WAV [Widening ->  Autoboxing  -> Var Args]
 
@@ -1211,7 +1205,7 @@ The advantage of Method Overriding is, each sub class is specifying its own spec
 -----------
 Upcasting :- 
 ------------
-It is possble to assign sub class object to super class reference variable (up) using dynamic polymorphism. It is known as Upcasting.
+It is possible to assign sub class object to super class reference variable (up) using dynamic polymorphism. It is known as Upcasting.
 
 Example:-    Animal a = new Lion();  //valid [upcasting]
 

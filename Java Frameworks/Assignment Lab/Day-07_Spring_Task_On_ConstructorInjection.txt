@@ -1,0 +1,323 @@
+Task 1: Notification System Using Constructor Injection
+-------------
+🎯 Objective:
+Build a notification delivery system where messages can be sent via Email or SMS, with services injected via constructor using AppConfig.
+
+📌 Steps:
+Define an Interface
+Create a NotificationService interface with a method to send messages.
+
+Implement Two Services
+Implement EmailNotificationService and SmsNotificationService as concrete classes.
+
+Create a Notifier Component
+Define a Notifier class that receives a NotificationService through constructor injection.
+
+Configure AppConfig
+Use Java configuration to declare beans and inject the required service into Notifier.
+
+Run and Test
+Initialize the context with AnnotationConfigApplicationContext and test sending a notification.
+ANS -----
+package com.nit.main;
+
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+
+import com.nit.config.AppConfig;
+import com.nit.sbean.Notifier;
+
+public class Main {
+    public static void main(String[] args) {
+        try (AnnotationConfigApplicationContext ctx = new AnnotationConfigApplicationContext(AppConfig.class)) {
+            Notifier notifier = ctx.getBean(Notifier.class);
+            notifier.notifyUser("Welcome to Spring Constructor Injection!");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+}
+
+
+package com.nit.config;
+
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.Configuration;
+
+
+@Configuration
+@ComponentScan(basePackages = "com.nit.sbean")
+public class AppConfig {
+
+}
+
+
+
+package com.nit.sbean;
+
+import org.springframework.context.annotation.Primary;
+import org.springframework.stereotype.Component;
+
+@Component("email")
+@Primary 
+public class EmailNotificationService implements NotificationService {
+
+	@Override
+	public void sendMSG(String message) {
+		System.out.println("Send massege through Email!! :: " + message);
+	}
+
+}
+
+
+package com.nit.sbean;
+
+import org.springframework.stereotype.Component;
+
+@Component("sms")
+public class SmsNotificationService implements NotificationService {
+
+	@Override
+	public void sendMSG(String message) {
+		System.out.println("Send massege through SMS!! :: "+message);
+	}
+
+}
+
+
+package com.nit.sbean;
+
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Component;
+
+@Component
+public class Notifier {
+	
+	private NotificationService noti;
+
+	@Autowired
+	
+//	public Notifier(@Qualifier("sms")NotificationService noti) {
+//	public Notifier(@Qualifier("email")NotificationService noti) {
+	public Notifier(NotificationService noti) {
+
+		super();
+		this.noti = noti;
+	}
+	
+	public void notifyUser(String message) {
+		noti.sendMSG(message);
+	}
+}
+
+
+----------------------------------------------------------------------------------------------------------
+
+Task 2: Report Generator with Multiple Report Formats
+--------
+🎯 Objective:
+Design a reporting system where different report formats (PDF or Excel) can be generated using constructor injection with AppConfig.
+
+📌 Steps:
+Create an Interface
+Define ReportService with a method to generate reports.
+
+Implement PDF and Excel Generators
+Implement PdfReportService and ExcelReportService.
+
+Create a ReportGenerator Class
+This class takes ReportService via its constructor.
+
+Configure in AppConfig
+Register both implementations and inject the required one into ReportGenerator.
+
+Execute the Application
+Load the context and call the report generation method to simulate output.
+
+ANS ---
+package com.nit.sbean;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Component;
+
+@Component
+public class ReportGenerator {
+	private ReportService rep;
+
+	@Autowired
+//	public ReportGenerator(@Qualifier("pdf") ReportService rep) {
+	public ReportGenerator(@Qualifier("exc") ReportService rep) {
+		super();
+		this.rep = rep;
+	}
+
+	public void callReport() {
+		rep.generateReports();
+	}
+}
+
+package com.nit.sbean;
+
+public interface ReportService {
+	public void generateReports();
+}
+
+
+package com.nit.sbean;
+
+import org.springframework.stereotype.Component;
+
+@Component("pdf")
+public class PDF  implements ReportService{
+
+	@Override
+	public void generateReports() {
+		System.out.println("Generate Reports via PDF!!");
+	}
+
+}
+
+
+package com.nit.sbean;
+
+import org.springframework.stereotype.Component;
+
+@Component("exc")
+public class Excel implements ReportService{
+
+	@Override
+	public void generateReports() {
+		System.out.println("Generate Reports via Excel!!");
+	}
+
+}
+
+
+package com.nit.main;
+
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+
+import com.nit.config.AppConfig;
+import com.nit.sbean.Notifier;
+import com.nit.sbean.ReportGenerator;
+import com.nit.sbean.ReportService;
+
+public class Main2 {
+    public static void main(String[] args) {
+        try (AnnotationConfigApplicationContext ctx = new AnnotationConfigApplicationContext(AppConfig.class)) {
+            ReportGenerator rg = ctx.getBean(ReportGenerator.class);
+            rg.callReport();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+}
+
+-----------------------------------------------------------------------------------------------
+
+
+Task 3: Shipping System with Carrier Selection
+--------
+🎯 Objective:
+Develop a shipping system where a shipment can be processed by either FedEx or DHL, injected via constructor using AppConfig.
+
+📌 Steps:
+Define a Shipping Interface
+Create ShippingService with a method to ship a package.
+
+Implement Carriers
+Define FedExService and DhlService as implementations.
+
+Create a ShipmentProcessor
+Inject a ShippingService instance through the constructor.
+
+AppConfig Configuration
+Configure the preferred service as a bean and inject it into ShipmentProcessor.
+
+Load and Test
+Use Spring context to run a sample shipment request.
+
+ANS ----
+package com.nit.sbean;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Component;
+
+@Component
+public class ShipmentProcessor {
+	private Shipping ship;
+
+	@Autowired
+	public ShipmentProcessor(@Qualifier("dhl") Shipping ship) {
+//	public ShipmentProcessor(@Qualifier("fed") Shipping ship) {
+		super();
+		this.ship = ship;
+	}
+	
+	public void callDelivery(String name) {
+		ship.shipPackage(name);
+	}
+	
+}
+
+
+package com.nit.sbean;
+
+import org.springframework.stereotype.Component;
+
+@Component("dhl")
+public class DhlService implements Shipping{
+
+	@Override
+	public void shipPackage(String name) {
+		System.out.println(name+" Pass by DHL !!");
+	}
+
+}
+
+
+package com.nit.sbean;
+
+import org.springframework.context.annotation.Primary;
+import org.springframework.stereotype.Component;
+
+@Component("fed")
+@Primary // make it as default
+public class FedExService implements Shipping{
+
+	@Override
+	public void shipPackage(String name) {
+		System.out.println(name+" Pass by FedEx !!");
+	}
+
+}
+
+
+package com.nit.sbean;
+
+public interface Shipping {
+	public void shipPackage(String name);
+}
+
+
+package com.nit.main;
+
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+
+import com.nit.config.AppConfig;
+import com.nit.sbean.ShipmentProcessor;
+
+public class Main3 {
+	public static void main(String[] args) {
+		try (AnnotationConfigApplicationContext ctx = new AnnotationConfigApplicationContext(AppConfig.class);) {
+			ShipmentProcessor sp = ctx.getBean(ShipmentProcessor.class);
+			sp.callDelivery("Mobile");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+}
+==========================================================================================================

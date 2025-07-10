@@ -1,0 +1,552 @@
+Q1)
+------------
+Vehicle Manufacturing System
+You are tasked with developing a Spring Core application for a vehicle manufacturing system that produces different types of vehicles (Car, Truck, Motorcycle) based on user specifications. The system should implement the Factory Design Pattern to manage vehicle creation, including various features like electric or diesel engines, and different types of tires.
+
+Requirements:
+Vehicle Interface:
+Create a Vehicle interface with the following methods:
+String getDescription(): Returns a description of the vehicle.
+
+Car Class:
+Implements the Vehicle interface and has attributes for engine type and number of doors.
+Truck Class:
+Implements the Vehicle interface and has attributes for engine type and payload capacity.
+Motorcycle Class:
+Implements the Vehicle interface and has attributes for engine type and whether it has a sidecar.
+
+Engine Interface:
+Define an Engine interface with the method:
+String getEngineType(): Returns the type of engine (e.g., Electric, Diesel).
+
+ElectricEngine Class:
+Implements the Engine interface and returns "Electric" for getEngineType().
+DieselEngine Class:
+Implements the Engine interface and returns "Diesel" for getEngineType().
+
+VehicleFactory Interface:
+Define a VehicleFactory interface with the method:
+Vehicle createVehicle(String type, String engineType): This method should return a Vehicle object based on the provided type and engine type.
+
+ConcreteVehicleFactory Class:
+Implements the VehicleFactory interface. It should create instances of Car, Truck, and Motorcycle based on the provided type and engine type.
+
+VehicleService Class:
+Create a VehicleService class that uses the VehicleFactory to create and describe vehicles.
+Attributes:
+VehicleFactory vehicleFactory: Injected using @Autowired.
+Methods:
+createVehicle(String type, String engineType): Uses the factory to create a vehicle and returns its description.
+
+AppConfig Class:
+
+Create a configuration class annotated with @Configuration to enable component scanning for the vehicle and engine classes, and the factory.
+
+Main Class:
+Create a main class that:
+Loads the Spring application context.
+Uses the VehicleService to create a vehicle based on user input and prints its description.
+
+ANS -=--
+package com.nit.sbean;
+
+public interface Vehicle {
+	String getDescription();
+}
+
+package com.nit.sbean;
+
+public class Car implements Vehicle{
+	
+	int noOfDoor;
+	String engineType;
+
+	public Car(int noOfDoor, String engineType) {
+		super();
+		this.noOfDoor = noOfDoor;
+		this.engineType = engineType;
+	}
+
+	@Override
+	public String getDescription() {
+		return "Car :: Number of Doors-"+noOfDoor+" :: Engine Type-"+engineType;
+	}
+
+}
+
+
+package com.nit.sbean;
+
+
+public class Truck implements Vehicle{
+	
+	int payloadCapacity;
+	String engineType;
+
+	public Truck(int payloadCapacity, String engineType) {
+		super();
+		this.payloadCapacity = payloadCapacity;
+		this.engineType = engineType;
+	}
+
+
+	@Override
+	public String getDescription() {
+		return "Trck :: Payload Capacity-"+payloadCapacity+" :: Engine Type-"+engineType;
+	}
+
+}
+
+package com.nit.sbean;
+
+
+public class Motorcycle implements Vehicle {
+	
+	String engineType;
+	boolean hasSidecar;
+	
+	public Motorcycle(String engineType, boolean hasSidecar) {
+		super();
+		this.engineType = engineType;
+		this.hasSidecar = hasSidecar;
+	}
+
+	@Override
+	public String getDescription() {
+		return  "Motorcycle :: hasSidecar-"+hasSidecar+" :: Engine Type-"+engineType;
+	}
+	
+	
+}
+
+
+package com.nit.sbean;
+
+public interface Engine {
+	String getEngineType();
+}
+
+
+package com.nit.sbean;
+
+public class ElectricEngine implements Engine{
+
+	@Override
+	public String getEngineType() {
+		return "Electric";
+	}
+
+}
+
+
+package com.nit.sbean;
+
+
+public class DieselEngine implements Engine{
+
+	@Override
+	public String getEngineType() {
+		return "Diesel";
+	}
+
+}
+
+package com.nit.sbean;
+
+public interface VehicleFactory {
+	Vehicle createVehicle(String type, String engineType);
+}
+
+
+package com.nit.sbean;
+
+import org.springframework.stereotype.Component;
+
+@Component
+public class ConcreteVehicleFactory implements VehicleFactory {
+
+	@Override
+	public Vehicle createVehicle(String type, String engineType) {
+		// Choose engine type
+		Engine engine;
+		if (engineType.equalsIgnoreCase("Electric")) {
+			engine = new ElectricEngine();
+		} else if (engineType.equalsIgnoreCase("Diesel")) {
+			engine = new DieselEngine();
+		} else {
+			throw new IllegalArgumentException("Unsupported engine type: " + engineType);
+		}
+
+		switch (type.toLowerCase()) {
+		case "car":
+			return new Car(4,engine.getEngineType()); // default 4 doors
+		case "truck":
+			return new Truck(1000,engine.getEngineType()); // default payload 1000kg
+		case "motorcycle":
+			return new Motorcycle(engine.getEngineType(), false); // default no sidecar
+		default:
+			throw new IllegalArgumentException("Unsupported vehicle type: " + type);
+		}
+	}
+
+}
+
+
+package com.nit.sbean;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
+@Component
+public class VehicleService {
+
+	@Autowired
+    private VehicleFactory vehicleFactory;
+
+    public String createVehicle(String type, String engineType) {
+        Vehicle vehicle = vehicleFactory.createVehicle(type, engineType);
+        return vehicle.getDescription();
+    }
+}
+
+
+package com.nit.main;
+
+import java.util.Scanner;
+
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+
+import com.nit.config.AppConfig;
+import com.nit.sbean.VehicleService;
+
+public class Main {
+    public static void main(String[] args) {
+        // Load Spring application context
+        ApplicationContext context = new AnnotationConfigApplicationContext(AppConfig.class);
+
+        // Get the VehicleService bean
+        VehicleService vehicleService = context.getBean(VehicleService.class);
+
+        // Take user input
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Enter vehicle type (Car, Truck, Motorcycle): "); 
+        String type = scanner.nextLine();
+
+        System.out.print("Enter engine type (Electric, Diesel): ");//"
+        String engineType = scanner.nextLine();
+
+        // Create and describe vehicle
+        try {
+            String description = vehicleService.createVehicle(type, engineType);
+            System.out.println("Vehicle Created: " + description);
+        } catch (IllegalArgumentException e) {
+            System.out.println("Error: " + e.getMessage());
+        }
+
+        scanner.close();
+    }
+}
+
+
+package com.nit.config;
+
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.Configuration;
+
+@Configuration
+@ComponentScan(basePackages = "com.nit.sbean")
+public class AppConfig {
+
+}
+
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+Q2)
+------------
+Banking System with Factory Design Pattern
+
+Bank Interface:
+Methods:
+double getAmount(): Retrieves the current balance of the account.
+void setAmount(double amount): Updates the current balance of the account.
+String deposit(double amount): Deposits money into the account and returns a user-friendly message.
+String withdraw(double amount): Withdraws money from the account and returns a user-friendly message.
+String toString(): Returns a string representation of the current account balance.
+
+SBI Class:Implements Bank interface.
+Attributes:
+private double amount: Represents the balance in the SBI account.
+Methods:
+double getAmount(): Returns the current balance of the SBI account.
+void setAmount(double amount): Sets the balance in the SBI account.
+String deposit(double amount): Adds money to the SBI account.
+String withdraw(double amount): Withdraws money from the SBI account. If the balance is insufficient, it returns an error message.
+String toString(): Returns the current balance of the SBI account as a string.
+
+HDFC Class:Implements Bank interface.
+Attributes:
+private double amount: Represents the balance in the HDFC account.
+Methods:
+double getAmount(): Returns the current balance of the HDFC account.
+void setAmount(double amount): Sets the balance in the HDFC account.
+String deposit(double amount): Adds money to the HDFC account.
+String withdraw(double amount): Withdraws money from the HDFC account. If the balance is insufficient, it returns an error message.
+String toString(): Returns the current balance of the HDFC account as a string.
+
+BankFactory Interface:
+Methods:
+Bank createBank(String bankType): Returns a specific bank object (SBI or HDFC) based on the provided type.
+
+ConcreteBankFactory Class:
+Implements BankFactory interface.
+Attributes:
+@Autowired SBI sbi: Injects the SBI class.
+@Autowired HDFC hdfc: Injects the HDFC class.
+Methods:
+Bank createBank(String bankType): Creates and returns an instance of SBI or HDFC based on the provided bankType.
+
+Customer Class:
+Attributes:
+private int customerId: Represents the unique ID of the customer.
+private String customerName: Stores the name of the customer.
+private Bank bank: Reference to the associated bank account.
+@Autowired BankFactory bankFactory: Injects the BankFactory to create the bank.
+Methods:
+void setCustomerId(int customerId): Sets the customer ID.
+void setCustomerName(String customerName): Sets the customer name.
+void setBank(String bankType): Sets the customer's bank using BankFactory.
+void deposit(double amount): Deposits money into the customer's bank account.
+void withdraw(double amount): Withdraws money from the customer's bank account.
+void displayDetails(): Displays the customer's details including the bank account balance.
+
+AppConfig Class:
+Use @ComponentScan to configure component scanning for Spring to detect beans automatically.
+
+BankTester Class:
+Retrieves the Customer beans from the Spring application context.
+Methods:
+main(-): Demonstrates the functionality of the banking system by creating customer objects, associating them with banks, and performing deposit and withdrawal operations.
+
+ANS---
+package com.nit.main;
+
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+
+import com.nit.config.AppConfig;
+import com.nit.sbean.Customer;
+
+public class Main2 {
+	public static void main(String[] args) {
+		try (AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(AppConfig.class);) {
+
+			Customer customer = context.getBean(Customer.class);
+
+			customer.setCustomerId(101);
+			customer.setCustomerName("Prabhanjan");
+
+			// Set bank type (SBI or HDFC)
+			customer.setBank("SBI");
+
+			// Perform deposit and withdraw operations
+			customer.deposit(5000.0);
+			customer.withdraw(1500.0);
+
+			// Display customer and bank details
+			customer.displayDetails();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+	}
+}
+
+package com.nit.sbean;
+
+public interface Bank {
+	double getAmount();
+	void setAmount(double amount);
+	String deposit(double amount);
+	String withdraw(double amount) throws Exception;
+	String toString();
+}
+
+
+package com.nit.sbean;
+
+import org.springframework.stereotype.Component;
+
+@Component
+public class SBI implements Bank {
+
+	private double amount;
+
+	@Override
+	public double getAmount() {
+		return amount;
+	}
+
+	@Override
+	public void setAmount(double amount) {
+		this.amount = amount;
+	}
+
+	@Override
+	public String deposit(double amount) {
+		this.amount += amount;
+		return "Deposit Sccessfull (SBI) updated balance is :: " + amount;
+	}
+
+	@Override
+	public String withdraw(double amount) throws Exception {
+		if (this.amount < amount) {
+			throw new Exception("Incuficant Balance");
+		} else {
+			this.amount -= amount;
+			return "withdraw Sccessfull (SBI) updated balance is :: " + amount;
+		}
+
+	}
+
+	@Override
+	public String toString() {
+		return "SBI [amount=" + amount + "]";
+	}
+
+}
+
+
+package com.nit.sbean;
+
+import org.springframework.stereotype.Component;
+
+@Component
+public class HDFC implements Bank {
+
+	private double amount;
+
+	@Override
+	public double getAmount() {
+		return amount;
+	}
+
+	@Override
+	public void setAmount(double amount) {
+		this.amount = amount;
+	}
+
+	@Override
+	public String deposit(double amount) {
+		this.amount += amount;
+		return "Deposit Sccessfull (HDFC) updated balance is :: " + amount;
+	}
+
+	@Override
+	public String withdraw(double amount) throws Exception {
+		if (this.amount < amount) {
+			throw new Exception("Incuficant Balance");
+		} else {
+			this.amount -= amount;
+			return "Withdraw Sccessfull (HDFC) updated balance is :: " + amount;
+		}
+
+	}
+
+}
+
+
+package com.nit.sbean;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
+@Component
+public class ConcreteBankFactory implements BankFactory{
+	
+	@Autowired 
+	private SBI sbi;
+	@Autowired 
+	private HDFC hdfc;
+
+	@Override
+	public Bank createBank(String bankType) throws Exception  {
+		if (bankType.equalsIgnoreCase("sbi")) {
+			return sbi;
+		}else if (bankType.equalsIgnoreCase("hdfc")) {
+			return hdfc;
+		}else {
+			throw new Exception("Bank Type Not Found!!");
+		}
+	}
+
+}
+
+
+
+package com.nit.sbean;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
+@Component
+public class Customer {
+	private int customerId;
+	private String customerName;
+	private Bank bank;
+
+	@Autowired
+	private BankFactory bankFactory;
+	
+	public void setCustomerId(int customerId) {
+		this.customerId = customerId;
+	}
+	public void setCustomerName(String customerName){
+		this.customerName = customerName;
+		//: Sets the customer name.
+	}
+	public void setBank(String bankType) throws Exception {
+		// Sets the customer's bank using BankFactory
+		this.bank = bankFactory.createBank(bankType);
+	}
+
+	public void deposit(double amount) {
+		// Deposits money into the customer's bank account
+		String message = bank.deposit(amount);
+		System.out.println("Deposit Status: " + message);
+	}
+
+	public void withdraw(double amount) throws Exception {
+		// Withdraws money from the customer's bank account
+		String message = bank.withdraw(amount);
+		System.out.println("Withdrawal Status: " + message);
+	}
+
+	public void displayDetails() {
+		// Displays the customer's details including the bank account balance
+		System.out.println("Customer ID   : " + customerId);
+		System.out.println("Customer Name : " + customerName);
+		System.out.println("Bank Balance  : " + bank.toString());
+	}
+}
+
+
+package com.nit.sbean;
+
+public interface BankFactory {
+	Bank createBank(String bankType) throws Exception;
+}
+
+
+package com.nit.config;
+
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.Configuration;
+
+@Configuration
+@ComponentScan(basePackages = "com.nit.sbean")
+public class AppConfig {
+
+}
+

@@ -1,0 +1,349 @@
+✅ Assignment: Injecting Dependencies Using @Qualifier in Spring Java-Based Configuration
+__________________________________________________________________________________________
+📚 Objective:
+------------------------
+Understand how to use @Qualifier to resolve ambiguity when multiple 
+beans of the same type exist in a Spring Java-based configuration setup using @Configuration and @Bean.
+
+📝 Requirements:
+------------------------
+> Create a University class with a constructor that takes the university name.
+> Create a Student class that depends on a University instance (constructor injection).
+> Define two University beans in a Java-based configuration class using @Bean, with different names:
+> One named "delhiUniversity" with the value "Delhi University"
+> Another named "oxfordUniversity" with the value "Oxford University"
+> Use the @Qualifier annotation to inject the delhiUniversity bean into the Student class.
+
+Define a MainApp class to:
+---------------------------
+Load the Spring context
+
+|- Retrieve the Student bean
+|- Call a method that prints:
+
+
+Output:
+____________________________________
+Student belongs to: Delhi University
+
+🔧 Constraints:
+_____________________________________
+|- Use Java-based Spring configuration (@Configuration and @Bean)
+
+|- First use @component and @Autowire annotations for getting the requirement and then try 
+   with below requirement
+    |- Do not use @Component or @Autowired annotations
+
+|- Use constructor injection with @Qualifier
+
+Output must exactly match:
+Student belongs to: Delhi University
+
+✅ Expected Output:
+
+Student belongs to: Delhi University
+
+💡 Hint:
+______________________________________
+Use the @Qualifier("beanName") annotation in both the configuration class and in the constructor parameter to specify which bean to inject when multiple candidates exist.
+
+ANS -----
+package com.nit.sbean;
+
+public class Student {
+	private University university;
+
+	public Student(University university) {
+		super();
+		this.university = university;
+	}
+
+	public void showUniversity() {
+		System.out.println("Student belongs to: " + university.getUniversityName());
+	}
+}
+
+
+package com.nit.sbean;
+
+import org.springframework.stereotype.Component;
+
+@Component
+public class University {
+	private String name;
+
+	public University(String name) {
+		super();
+		this.name = name;
+	}
+	
+	public String getUniversityName() {
+		return this.name;
+	}
+	
+}
+
+
+package com.nit.config;
+
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.Configuration;
+
+import com.nit.sbean.Student;
+import com.nit.sbean.University;
+
+@Configuration
+public class AppConfig {
+	@Bean
+	public University delhiUniversity() {
+		return new University("Delhi University");
+	}
+
+	@Bean
+	public University oxfordUniversity() {
+		return new University("Oxford University");
+	}
+
+	@Bean
+	public Student student(@Qualifier("delhiUniversity") University university) {
+		return new Student(university);
+	}
+}
+
+
+package com.nit.main;
+
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+
+import com.nit.config.AppConfig;
+import com.nit.sbean.Student;
+
+public class Main {
+	public static void main(String[] args) {
+		AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(AppConfig.class);
+
+		Student student = context.getBean(Student.class);
+		student.showUniversity();
+		context.close();
+	}
+}
+
+_________________________________________________________________________________
+Que-2
+______________
+✅ Assignment: Calculate Profit Using @Component and @Autowired in Spring
+----------------------------------------------------------------------------
+📚 Objective:
+---------------------
+Understand how to use Spring annotations such as @Component, @Autowired, 
+and @ComponentScan for automatic bean detection and dependency injection.
+
+📝 Problem Statement:
+----------------------
+You are building a simple Spring-based application to calculate profit based on a product's cost price and selling price. You are required to use annotation-based configuration only (no XML) to manage the application context and dependency injection.
+
+🔧 Requirements:
+-----------------------
+> Create a class named Product in the package com.product:
+> Annotate it with @Component.
+> Provide two methods:
+> public int getCostPrice() – returns 100 or as per your choice
+> public int getSellingPrice() – returns 150 or as per your choice
+> Create a class named ProfitLoss in the package com.finance:
+> Annotate it with @Component.
+> Inject the Product bean using @Autowired.
+> Create a method public void calculateProfit() that:
+> Computes the profit as: sellingPrice - costPrice
+
+Prints the result as:
+Profit: 50
+
+Create a configuration class named AppConfig:
+______________________________________________
+> Annotate it with @Configuration
+> Use @ComponentScan to scan both com.product and com.finance packages
+
+In the main application, load the Spring context using AnnotationConfigApplicationContext,
+retrieve the ProfitLoss bean, and call its calculateProfit() method.
+
+🚀 Expected Output:
+    Profit: 50
+
+💡 Hint:
+    |- Use @ComponentScan(basePackages = {"com.product", "com.finance"}) to ensure both packages are scanned.
+    |- Use @Autowired for field injection inside the ProfitLoss class.
+
+ANS --
+package com.product;
+
+import org.springframework.stereotype.Component;
+
+@Component
+public class Product {
+	public int getCostPrice() {
+		return 100;
+	}
+	
+	public int getSellingPrice() {
+		return 150;
+	}
+}
+
+
+package com.nit.main;
+
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+
+import com.finance.ProfitLoss;
+import com.nit.config.AppConfig2;
+
+public class Main2 {
+	public static void main(String[] args) {
+		try (AnnotationConfigApplicationContext ctx = new AnnotationConfigApplicationContext(AppConfig2.class);){
+			ProfitLoss pl = ctx.getBean(ProfitLoss.class);
+			pl.calculateProfit();
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+	}
+}
+
+package com.nit.config;
+
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.Configuration;
+
+@Configuration
+@ComponentScan(basePackages = {"com.product", "com.finance"})
+public class AppConfig2 {
+
+}
+
+
+package com.finance;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
+import com.product.Product;
+
+@Component
+public class ProfitLoss {
+	
+	@Autowired
+	private Product product;
+	
+	public void calculateProfit() {
+		System.out.println("Profit: "+(product.getSellingPrice() - product.getCostPrice()));
+		;
+	}
+}
+
+__________________________________________________________________________________________
+Que-3
+_________________
+📝 Problem Statement:
+_______________________________
+You are tasked with creating a simple Spring application that models a Library holding a Book. 
+You need to configure Spring beans programmatically and inject dependencies using constructor injection.
+
+🔧 Requirements:
+__________________________
+Create a class named Book:
+|- It should have a method public String getTitle() that returns the title of the book (e.g., "Spring in Action").
+|- Create a class named Library:
+|- It should have a constructor that accepts a Book object.
+|- It should have a method public void showBook() that prints the book’s title in the format:
+
+Library has: Spring in Action
+
+> Create a Spring configuration class named AppConfig:
+> Annotate the class with @Configuration.
+
+Define two beans using @Bean:
+____________________________________________
+A Book bean that returns a new instance of Book.
+
+A Library bean that injects the Book bean via constructor.
+
+In the main application, load the Spring context using 
+AnnotationConfigApplicationContext, retrieve the Library bean, and call its showBook() method.
+
+✅ Expected Output:
+-----------------------------
+Library has: Spring in Action
+
+💡 Hint:
+|- Use constructor injection to provide the Book bean to the Library bean.
+|- Use Java-based configuration (@Configuration and @Bean) instead of XML or component scanning.
+
+ANS ---
+package com.nit.main;
+
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+
+import com.book.Library;
+import com.nit.config.AppConfig3;
+
+public class Main3 {
+	public static void main(String[] args) {
+		try (AnnotationConfigApplicationContext ctx = new AnnotationConfigApplicationContext(AppConfig3.class);){
+			Library lib = ctx.getBean(Library.class);
+			lib.showBook();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+}
+
+package com.nit.config;
+
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.Configuration;
+
+import com.book.Book;
+import com.book.Library;
+
+@Configuration
+@ComponentScan(basePackages = "com.book")
+public class AppConfig3 {
+
+	@Bean
+	public Book book() {
+		return new Book();
+	}
+
+	@Bean
+	public Library library() {
+		return new Library(book());
+	}
+}
+
+
+package com.book;
+
+public class Library {
+	private Book book;
+
+	public Library(Book book) {
+		super();
+		this.book = book;
+	}
+	
+	public void showBook() {
+		System.out.println("Book Title :: "+book.getTitle());
+	}
+}
+
+package com.book;
+
+public class Book {
+	public String getTitle() {
+		return "Spring in Action";
+	}
+}
+_________________________________________________________________________________

@@ -1218,7 +1218,7 @@ What is Type Parameter<?> in java ?
 ------------------------------------
 In java, It is represented by <T> type parameter.
 
-It is used to make our java application independent of data type.
+It is used to make our java application "independent of data type".
 
 It also known as Generics from JDK 1.5v
 

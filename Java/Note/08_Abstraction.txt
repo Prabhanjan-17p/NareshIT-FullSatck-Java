@@ -1280,18 +1280,19 @@ In order to work with day to day programming and to write concise coding, java h
 
 The following are the predefined functional interfaces available in java.lang.function sub package.
 
-1) Predicate<T>
-2) Consumer<T>
-3) Function<T,R>
-4) Supplier<T>
-5) BiPredicate<T,U>
-6) BiConsumer<T,U>
-7) BiFunction<T,U,R>
-8) UnaryOperator<T>
-9) BinaryOperator<T>
-10) ToIntFunction<T>
-11) ToLongFunction<T>
-12) ToDoubleFunction<T>
+1) Predicate<T> – takes T, returns boolean
+2) Consumer<T> – takes T, returns nothing
+3) Function<T, R> – takes T, returns R
+4) Supplier<T> – takes nothing, returns T
+5) BiPredicate<T, U> – takes T and U, returns boolean
+6) BiConsumer<T, U> – takes T and U, returns nothing
+7) BiFunction<T, U, R> – takes T and U, returns R
+8) UnaryOperator<T> – takes T, returns T
+9) BinaryOperator<T> – takes T and T, returns T
+10) ToIntFunction<T> – takes T, returns int
+11) ToLongFunction<T> – takes T, returns long
+12) ToDoubleFunction<T> – takes T, returns double
+
 
 like that we have total 43 predefined functional interfaces.
 
@@ -1375,6 +1376,34 @@ public class PredicateDemo3 {
 }
 ---------------------------------------------------------------------
 Assignment : Verify leap year, Person is eligible for Vote 
+
+import java.util.Scanner;
+import java.util.function.Predicate;
+
+public class PredicateAssignment {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        // Predicate to check leap year
+        Predicate<Integer> isLeapYear = year -> (year % 4 == 0 && year % 100 != 0) || (year % 400 == 0);
+
+        // Predicate to check voting eligibility
+        Predicate<Integer> isEligibleToVote = age -> age >= 18;
+
+        // Input year
+        System.out.print("Enter a year to check if it's a leap year: ");
+        int year = sc.nextInt();
+        System.out.println(year + (isLeapYear.test(year) ? " is a leap year." : " is not a leap year."));
+
+        // Input age
+        System.out.print("Enter your age to check voting eligibility: ");
+        int age = sc.nextInt();
+        System.out.println("You are " + (isEligibleToVote.test(age) ? "eligible" : "not eligible") + " to vote.");
+
+        sc.close();
+    }
+}
+
 --------------------------------------------------------------------
 Consumer<T> functional interface :
 ----------------------------------
@@ -1608,7 +1637,7 @@ public class SupplierDemo3
 
 }
 ---------------------------------------------------------------------
-Is it possible to develop our own functional interfaces with Different Parameter ?
+Q) Is it possible to develop our own functional interfaces with Different Parameter ?
 
 Yes, We can develop our own Functional Interfaces with different Parameter.
 

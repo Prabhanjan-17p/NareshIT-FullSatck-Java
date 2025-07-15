@@ -55,8 +55,7 @@ List<E> interface accepts duplicate elements.
 
 It stores the elements based on the index because List<E> interface internally uses Array concept. [List interface classes are implemented by Linear Data structure]
 
-It uses Array and LinkedList data structure so we can perform sorting 
-operation.
+It uses Array and LinkedList data structure so we can perform sorting operation.
 ------------------------------------------------------------------------
 List interface Hierarchy :
 ---------------------------
@@ -70,8 +69,7 @@ It stores everything in the form of Object.
 
 It uses Linear(Dynamic Array + LinkedList) data structure.
 
-By using generics we can eliminate compilation warning as well as we can 
-hold homogeneous and hetrogeneous types of element by using <Object>
+By using generics we can eliminate compilation warning as well as we can hold homogeneous and hetrogeneous types of element by using <Object>
 
 Few classes of List interface are DYNAMICALLY GROWABLE.
 -----------------------------------------------------------------------

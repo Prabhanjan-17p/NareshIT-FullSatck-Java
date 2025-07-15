@@ -20,8 +20,7 @@ public class Ravi
 
 Object class contains total 11 methods.
 
-Whenever we create an Object in java, due to constructor chaining, first of all Object class Constructor will be executed, Actually the execution of non static members will not be started without executing 
-this Object class Constructor.
+Whenever we create an Object in java, due to constructor chaining, first of all Object class Constructor will be executed, Actually the execution of non static members will not be started without executing this Object class Constructor.
 
 class Super
 {
@@ -124,8 +123,7 @@ It is a predefined non static method of Object class.
 
 It is used to calculate the hashCode of the Object.
 
-By using this hashCode of the Object, we can find the bucket location 
-of the Object in the hashtable data structure by using Collections Framework.
+By using this hashCode of the Object, we can find the bucket location of the Object in the hashtable data structure by using Collections Framework.
 
 The hashcode of the Object is not meant for object comparison (for Object comparison we should use equals(Object obj)) it is used to find the bucket location. 
 
@@ -183,9 +181,7 @@ It is "String representation of the Object" so anyone can easily read this conci
 
 In order to print the Object properties we should Override toString() method in the sub classes.
 
-If we don't override then it will call Object class toString() method 
-which will retun Fully Qualified Name @ and hexadecimal format of 
-hashcode of the object
+If we don't override then it will call Object class toString() method which will retun Fully Qualified Name @ and hexadecimal format of hashcode of the object.
 
 The logic written inside Object class toString() :
 --------------------------------------------------
@@ -250,8 +246,7 @@ public class ToStringDemo2 {
 
 }
 
-Note : toString() internally uses getClass() and hashCode() method of 
-       Object class.
+Note : toString() internally uses getClass() and hashCode() method of Object class.
 ----------------------------------------------------------------------
 4) public boolean equals(Object obj) :
 ------------------------------------
@@ -393,8 +388,7 @@ public class EqualsDemo1
 
 Note : Here we will get the output false and false because Object class equals(Object obj) method internally uses == Opeartor only.
 ------------------------------------------------------------------------
-If we want to compare two Objects BASED ON THE CONTENT but not memory address then we should override equals(Object obj) method from 
-Object class.
+If we want to compare two Objects BASED ON THE CONTENT but not memory address then we should override equals(Object obj) method from Object class.
 
 The following program explains how to compare two Objects based on the content by overriding equals(Object obj) method of Obejct class.
 
@@ -463,8 +457,7 @@ public class EqualsDemo2
 
 }
 ------------------------------------------------------------------------
-One more program to override equals(Object obj) method for content 
-comparison.
+One more program to override equals(Object obj) method for content comparison.
 
 package com.ravi.equals_demo;
 
@@ -590,7 +583,7 @@ public class EqualsDemo5 {
 		String s2 = new String("india");
 		
 		System.out.println(s1==s2); //false
-		System.out.println(s1.equals(s2)); //true [Overridden]	
+		System.out.println(s1.equals(s2)); //true [Overridden]	//Checking the content 
 		
 		System.out.println(s1.hashCode()+" "+s2.hashCode());		
 	}

@@ -1,0 +1,363 @@
+✅ Spring Core Assignment – Cab Billing Console Application
+_____________________________________________________________
+📚 Objective
+-------------------------
+Develop a Spring Core (Annotation-based) console application that simulates a cab booking billing system.
+The system should accept customer ride details and dynamically calculate the bill based on distance and customer history (first-time or repeated).
+
+📌 Requirements
+------------------------
+🔹 Functional Requirements
+
+The application should:
+Prompt the user continuously with a menu:
+ |- Press 1: Enter cab customer details and generate the bill.
+ |- Press 2: Exit the application.
+
+Accept the following customer details:
+
+> Customer ID
+> Customer Name
+> Pickup Location
+> Drop Location
+> Distance (in km)
+> Phone Number
+> Billing Rules:
+  |- If the phone number is booking for the first time, the bill is ₹0.
+  |- If not the first booking:
+     |- First 4 km → Flat rate: ₹80
+     |- Every additional km → ₹6 per km
+
+Print a message as output:
+----------------------------
+CustomerName, please pay your bill of Rs. <amount>
+
+📦 Modules and Components to Implement
+=======================================
+🔸 1. CabCustomer – POJO
+-----------------------------
+A plain Java object to store:
+
+> Customer ID
+> Customer Name
+> Pickup Location
+> Drop Location
+> Distance
+> Phone Number
+
+No annotations required.
+
+🔸 2. CabCustomerService – Service Bean
+---------------------------------------
+Responsibilities:
+|- Maintain a list of all customers
+|- Check if the current customer is a first-time user (based on phone number)
+|- Calculate bill based on distance and first-time check
+|- Register this bean using @Bean and @Qualifier("customerService") in configuration.
+
+🔸 3. BillingApp – Core Business Bean
+-----------------------------------------
+Responsibilities:
+
+|- Inject and hold a reference to CabCustomerService
+|- Receive customer details via setter method (setCustomer)
+
+Call service methods to:
+--------------------------
+Add customer to the record
+
+|- Print the final bill
+|- Declare as a bean with @Bean and @Qualifier("billingApp").
+
+🔸 4. AppConfig – Spring Configuration Class
+---------------------------------------------
+Responsibilities:
+
+|- Annotated with @Configuration and @ComponentScan
+
+Create and wire beans:
+
+> CabCustomerService
+> BillingApp (injecting the service via setter method)
+
+🔸 5. Main – Driver Class
+----------------------------
+Responsibilities:
+
+> Initialize Spring context with AnnotationConfigApplicationContext
+> Show continuous menu using Scanner inside a loop
+
+Dynamically:
+-----------------------------
+Read customer data from the console
+
+> Create CabCustomer objects
+> Inject into BillingApp and print bill
+
+💡 Spring Concepts Practiced
+
+> @Configuration	For creating Java-based config class
+
+> @ComponentScan	To enable auto-detection of components
+
+> @Bean	To define       CabCustomerService and BillingApp beans
+
+> @Qualifier	        To distinguish beans when injecting manually
+
+> Dependency Injection	Setter-based injection in BillingApp
+
+> Spring Context   	AnnotationConfigApplicationContext to manage beans
+
+✅ Expected Output Example:
+_________________________________
+Press 1 to print the bill
+Press 2 to exit
+Enter your choice: 1
+
+Enter the Customer id: 101
+Enter the Customer name: ABC
+Enter the pickup location: MG_Road
+Enter the drop location: Whitefield
+Enter the distance: 8
+Enter the phone number: 9876543210
+
+ABC, please pay your bill of Rs. 0.0   ← (First time)
+
+Press 1 to print the bill
+Press 2 to exit
+Enter your choice: 1
+
+Enter the Customer id: 102
+Enter the Customer name: DEF
+Enter the pickup location: Whitefield
+Enter the drop location: Silk Board
+Enter the distance: 8
+Enter the phone number: 9876543210
+
+DEF, please pay your bill of Rs. 104.0 ← (Second booking)
+
+package com.task2.config;
+
+public class CabCustomer {
+	private int custId;
+	private String customerName;
+	private String pickupLocation;
+	private String dropLocation;
+	private int distance;
+	private String phone;
+
+	public CabCustomer() {}
+
+	public CabCustomer(int custId, 
+			String customerName, String pickupLocation, 
+			String dropLocation, int distance,
+			String phone) {
+		this.custId = custId;
+		this.customerName = customerName;
+		this.pickupLocation = pickupLocation;
+		this.dropLocation = dropLocation;
+		this.distance = distance;
+		this.phone = phone;
+	}
+
+	public int getCustId() {
+		return custId;
+	}
+
+	public void setCustId(int custId) {
+		this.custId = custId;
+	}
+
+	public String getCustomerName() {
+		return customerName;
+	}
+
+	public void setCustomerName(String customerName) {
+		this.customerName = customerName;
+	}
+
+	public String getPickupLocation() {
+		return pickupLocation;
+	}
+
+	public void setPickupLocation(String pickupLocation) {
+		this.pickupLocation = pickupLocation;
+	}
+
+	public String getDropLocation() {
+		return dropLocation;
+	}
+
+	public void setDropLocation(String dropLocation) {
+		this.dropLocation = dropLocation;
+	}
+
+	public int getDistance() {
+		return distance;
+	}
+
+	public void setDistance(int distance) {
+		this.distance = distance;
+	}
+
+	public String getPhone() {
+		return phone;
+	}
+
+	public void setPhone(String phone) {
+		this.phone = phone;
+	}
+
+	@Override
+	public String toString() {
+		return "CabCustomer [custId=" + custId + ", customerName=" + customerName + ", pickupLocation="
+				+ pickupLocation + ", dropLocation=" + dropLocation + ", distance=" + distance + ", phone=" + phone
+				+ "]";
+	}
+}
+__________________________________________________________________________________________________________________________________________
+package com.task2.config;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class CabCustomerService {
+	private List<CabCustomer> customersList = new ArrayList<>();
+
+	public void addCustomer(CabCustomer customer) {
+		customersList.add(customer);
+	}
+
+	public boolean isFirstCustomer(CabCustomer customer) {
+		int count = 0;
+		for (CabCustomer c : customersList) {
+			if (c.getPhone().equals(customer.getPhone())) {
+				count++;
+			}
+		}
+		return count == 1;
+	}
+
+	public double calculateBill(CabCustomer customer) {
+		if (isFirstCustomer(customer)) {
+			return 0.0;
+		}
+		if (customer.getDistance() <= 4) {
+			return 80.0;
+		} else {
+			return 80.0 + (customer.getDistance() - 4) * 6.0;
+		}
+	}
+}
+________________________________________________________________________________________________________________________________________________
+package com.task2.config;
+
+public class BillingApp {
+	private CabCustomer customer;
+	private CabCustomerService service;
+
+	public void setCustomer(CabCustomer customer) {
+		this.customer = customer;
+	}
+
+	public void setService(CabCustomerService service) {
+		this.service = service;
+	}
+
+	public String printBill() {
+		service.addCustomer(customer); // Must add before checking isFirstCustomer
+		return customer.getCustomerName() + ", please pay your bill of Rs." + service.calculateBill(customer);
+	}
+}
+______________________________________________________________________________________________________________________________________________
+
+
+package com.task2.config;
+
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.Configuration;
+
+@Configuration
+@ComponentScan(basePackages = "com.task2.config")
+public class AppConfig {
+
+	@Bean
+	@Qualifier("customerService")
+	public CabCustomerService cabCustomerService() {
+		return new CabCustomerService();
+	}
+
+	@Bean
+	@Qualifier("billingApp")
+	public BillingApp billingApp(@Qualifier("customerService") CabCustomerService service) {
+		BillingApp app = new BillingApp();
+		app.setService(service); // Only service set initially
+		return app;
+	}
+}
+_______________________________________________________________________________________________________________________________________________
+package com.task2.config;
+
+import java.util.Scanner;
+
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+
+public class Main {
+	public static void main(String[] args) {
+
+		ApplicationContext context = new AnnotationConfigApplicationContext(AppConfig.class);
+
+		BillingApp app = context.getBean("billingApp", BillingApp.class);
+
+		Scanner sc = new Scanner(System.in);
+
+		while (true) {
+			System.out.println("\nPress 1 to print the bill");
+			System.out.println("Press 2 to exit");
+			System.out.print("Enter your choice: ");
+			int choice = sc.nextInt();
+			sc.nextLine(); // clear buffer
+
+			switch (choice) {
+				case 1:
+					System.out.println("Enter the Customer id:");
+					int id = sc.nextInt();
+					sc.nextLine(); // Clear buffer
+
+					System.out.println("Enter the Customer name:");
+					String name = sc.nextLine();
+
+					System.out.println("Enter the pickup location:");
+					String pickup = sc.nextLine();
+
+					System.out.println("Enter the drop location:");
+					String drop = sc.nextLine();
+
+					System.out.println("Enter the distance:");
+					int distance = sc.nextInt();
+					sc.nextLine();
+
+					System.out.println("Enter the phone number:");
+					String phone = sc.nextLine();
+
+					CabCustomer customer = new CabCustomer(id, name, pickup, drop, distance, phone);
+
+					app.setCustomer(customer); // inject into app
+					System.out.println(app.printBill());
+					break;
+
+				case 2:
+					System.out.println("Thanks for using the cab service. Goodbye!");
+					System.exit(0);
+					break;
+
+				default:
+					System.out.println("Invalid choice. Please try again.");
+			}
+		}
+	}
+}
+

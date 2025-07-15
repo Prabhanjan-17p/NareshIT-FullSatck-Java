@@ -1,0 +1,132 @@
+Question 1:
+-------------------------
+You need to build a system where different types of loans (like Home Loan, Car Loan) have different interest rates.
+The logic to calculate interest should be injected into a LoanProcessor class using constructor injection.
+
+🔧 Requirements:
+✅ 1. Interface
+Name: InterestCalculator
+
+Method:
+double calculateInterest(double principal);
+
+✅ 2. Implementations
+Class: HomeLoanCalculator
+
+double rateOfInterest = 8.5;
+
+Implements InterestCalculator
+
+Class: CarLoanCalculator
+---------------------------------------
+
+double rateOfInterest = 10.5;
+
+Implements InterestCalculator
+
+Each implementation must override the method calculateInterest(double principal) and compute:
+
+interest = (principal * rateOfInterest) / 100
+✅ 3. Dependent Class
+Class: LoanProcessor
+
+Dependency: InterestCalculator
+
+Inject this using a constructor.
+
+Method:
+void processLoan(double principal)
+This method should:
+
+Call calculateInterest(principal) on the injected object
+
+Print:
+
+Principal amount
+
+Calculated interest
+
+Total payable amount
+
+✅ 4. Java Configuration
+Class: AppConfig with @Configuration
+
+Define @Bean methods for:
+
+HomeLoanCalculator
+
+CarLoanCalculator
+
+LoanProcessor → inject either loan calculator (choose one for now)
+---------------------------------------------------------------------------------------------------------------------------------
+Question-2
+--------------------
+Scenario:
+The system should calculate the bill for food items ordered by the user. The bill varies based on whether the item is Veg or Non-Veg. The calculation logic should be injected into a FoodOrderApp class using constructor injection.
+
+🔧 Requirements:
+✅ 1. Interface
+Name: BillingService
+
+Method:
+double getBill(String item);
+Accepts food item name, returns total bill amount (price).
+
+✅ 2. Implementations
+Class: VegBillingService
+
+Predefined veg item prices: e.g., "Idli" → ₹30, "Dosa" → ₹50
+
+Implements BillingService
+
+Method should return the item's price or 0 if not found
+
+Class: NonVegBillingService
+
+Predefined non-veg prices: e.g., "Chicken Biryani" → ₹150, "Mutton Curry" → ₹200
+
+Implements BillingService
+
+Method should return the item's price or 0 if not found
+
+✅ 3. Dependent Class
+Class: FoodOrderApp
+
+Dependency: BillingService
+
+Injected via constructor
+
+Method:
+void orderFood(String item)
+This method should:
+
+Call getBill(item)
+
+Print:
+
+Item Name
+
+Price (Bill Amount)
+
+Message like "Thank you for your order!"
+
+✅ 4. Java Configuration
+Class: AppConfig with @Configuration
+
+Define @Bean methods for:
+
+VegBillingService
+
+NonVegBillingService
+
+FoodOrderApp → Inject one of the above services via constructor
+
+✅ 5. main() Method
+Load the Spring context using AnnotationConfigApplicationContext
+
+Get the FoodOrderApp bean
+
+Call orderFood("Dosa") or "Chicken Biryani"
+
+
+

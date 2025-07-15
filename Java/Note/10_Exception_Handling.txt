@@ -17,9 +17,9 @@ Different Criteria for Exception :
 ----------------------------------
 If we divide a number by zero (an int value) then at runtime we will get an exception i.e java.lang.ArithmeticException 
 
-                  int x = 18; 
-		  int y = 0; 
-		  int z = x/y;
+        int x = 18; 
+		int y = 0; 
+		int z = x/y;
   
 2) java.lang.ArrayIndexOutOfBoundException :
 ---------------------------------------------
@@ -68,15 +68,13 @@ System.out.println(s1.length()); //4
 
 5) java.lang.NegativeArraySizeException
 ---------------------------------------
-Whenever we create an array, the size of the array must be positive
-integer only otherwise we will get java.lang.NegativeArraySizeException
+Whenever we create an array, the size of the array must be positive integer only otherwise we will get java.lang.NegativeArraySizeException
 
 int []arr = new int[-12];
 
 6) java.lang.StringIndexOutOfBoundsException 
 ---------------------------------------------
-If we try to access the String index (String is character array) but if the index is out of the range then we will get 
-java.lang.StringIndexOutOfBoundsException 
+If we try to access the String index (String is character array) but if the index is out of the range then we will get java.lang.StringIndexOutOfBoundsException 
 
 String str = "Hyderabad";
 System.out.println(str.substring(2,-5)); 
@@ -86,8 +84,7 @@ Note : ArrayIndexOutOfBoundsException class StringIndexOutOfBoundsException clas
 
 7) java.util.InputMismatchException :
 -------------------------------------
-While reading the value using Scanner class, We should always read 
-appropriate value other we will get java.util.InputMismatchException
+While reading the value using Scanner class, We should always read appropriate value other we will get java.util.InputMismatchException
 
 Scanner sc = new Scanner(System.in);
 System.out.println("Enter a number :");

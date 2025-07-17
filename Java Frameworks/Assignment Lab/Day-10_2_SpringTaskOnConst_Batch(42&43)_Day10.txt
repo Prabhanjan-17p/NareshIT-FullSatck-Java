@@ -58,6 +58,104 @@ HomeLoanCalculator
 CarLoanCalculator
 
 LoanProcessor → inject either loan calculator (choose one for now)
+
+ANS ----
+package com.nit.config;
+
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.Configuration;
+
+@Configuration
+@ComponentScan(basePackages = "com.nit.sbean")
+public class AppConfig {
+	
+}
+
+
+package com.nit.main;
+
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+
+import com.nit.config.AppConfig;
+import com.nit.sbean.LoanProcessor;
+
+public class Main {
+	public static void main(String[] args) {
+		try(AnnotationConfigApplicationContext ctx = new AnnotationConfigApplicationContext(AppConfig.class);) {
+			LoanProcessor loanProcessor = ctx.getBean(LoanProcessor.class);
+			loanProcessor.processLoan(12000);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+}
+
+
+package com.nit.sbean;
+
+public interface InterestCalculator {
+	double calculateInterest(double principal);
+}
+
+
+package com.nit.sbean;
+
+import org.springframework.stereotype.Component;
+
+@Component("homeloan")
+public class HomeLoanCalculator implements InterestCalculator{
+
+	@Override
+	public double calculateInterest(double principal) {
+		double rateOfInterest = 8.5;
+		return (principal * rateOfInterest) / 100;
+	}
+
+}
+
+
+package com.nit.sbean;
+
+import org.springframework.stereotype.Component;
+
+@Component("carloan")
+public class CarLoanCalculator implements InterestCalculator{
+
+	@Override
+	public double calculateInterest(double principal) {
+		double rateOfInterest = 10.5;
+		return (principal * rateOfInterest) / 100;
+	}
+
+}
+
+
+package com.nit.sbean;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Component;
+
+@Component
+public class LoanProcessor {
+	//HAS-A
+	private InterestCalculator interestCalculator;
+
+	//Constructor
+	@Autowired
+	public LoanProcessor(@Qualifier("homeloan") InterestCalculator interestCalculator) {
+		super();
+		this.interestCalculator = interestCalculator;
+	}
+	
+	public void processLoan(double principal) {
+		double calculateInterest = interestCalculator.calculateInterest(principal);
+		System.out.println("Principle Amount :: "+principal);
+		System.out.println("Total Payable Amount :: "+calculateInterest);
+	}
+}
+
 ---------------------------------------------------------------------------------------------------------------------------------
 Question-2
 --------------------
@@ -128,5 +226,114 @@ Get the FoodOrderApp bean
 
 Call orderFood("Dosa") or "Chicken Biryani"
 
+ANS --
+package com.nit.main;
+
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+
+import com.nit.config.AppConfig2;
+import com.nit.sbean2.FoodOrderApp;
+
+public class Main2 {
+	public static void main(String[] args) {
+		try(AnnotationConfigApplicationContext ctx = new AnnotationConfigApplicationContext(AppConfig2.class);) {
+			FoodOrderApp foodOrderApp = ctx.getBean(FoodOrderApp.class);
+			foodOrderApp.orderFood("idli");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+}
 
 
+package com.nit.config;
+
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.Configuration;
+
+@Configuration
+@ComponentScan(basePackages = "com.nit.sbean2")
+public class AppConfig2 {
+	
+}
+
+
+package com.nit.sbean2;
+
+public interface BillingService {
+	double getBill(String item);
+}
+
+
+package com.nit.sbean2;
+
+import org.springframework.stereotype.Component;
+
+@Component("veg")
+public class VegBillingService implements BillingService{
+
+	@Override
+	public double getBill(String item) {
+		double price;
+		if (item.equalsIgnoreCase("Idli")) {
+			price = 30;
+		}else if (item.equalsIgnoreCase("Dosa")) {
+			price = 50;
+		}else {
+			price = 0;
+		}
+		return price;
+	}
+
+}
+
+
+package com.nit.sbean2;
+
+import org.springframework.stereotype.Component;
+
+@Component("nonveg")
+public class NonVegBillingService implements BillingService{
+
+	@Override
+	public double getBill(String item) {
+		double price;
+		if (item.equalsIgnoreCase("Chicken Biryani")) {
+			price = 150;
+		}else if (item.equalsIgnoreCase("Mutton Curry")) {
+			price = 200;
+		}else {
+			price = 0;
+		}
+		return price;
+	}
+
+}
+
+
+package com.nit.sbean2;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Component;
+
+@Component
+public class FoodOrderApp {
+	private BillingService billingService;
+
+	@Autowired
+	public FoodOrderApp(@Qualifier("nonveg") BillingService billingService) {
+		super();
+		this.billingService = billingService;
+	}
+	
+	public void orderFood(String item) {
+		double bill = billingService.getBill(item);
+		System.out.println("Item Name :: "+item
+				+ "\nPrice (Bill Amount) :: "+bill
+				+ "\nMessage like \"Thank you for your order!\"");
+	}
+	
+}
+
+============================================================================================================================================

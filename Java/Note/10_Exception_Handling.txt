@@ -97,8 +97,7 @@ Paint Digram [10th April]
 
 Note :- As a developer we are responsibe to handle the Exception. System admin is responsibe to handle the error because we cannot recover from error.
 ----------------------------------------------------------------------
-Q) WAP to show that Exception is the super class of all types of 
-   Exception whether it is checked Or unchecked
+Q) WAP to show that Exception is the super class of all types of Exception whether it is checked Or unchecked?
 
 Ans : From the Exception Hierarchy, It is clear that java.lang.Exception is the super class for all type of Exception whether it is checked OR Unchecked.
 
@@ -116,8 +115,8 @@ public class ExceptionDemo
 		Exception e2 = new ArrayIndexOutOfBoundsException();
 		System.out.println(e2);
 		
-                Exception e3 = new IOException();
-                System.out.println(e3);		
+        Exception e3 = new IOException();
+        System.out.println(e3);		
 	}
 
 }
@@ -134,8 +133,7 @@ System.out.println(e1.toString());
 
 java.lang.ArithmeticException:My error message
 -----------------------------------------------------------------------
-WAP that desribes, whenever an exception is encounter in the 
-program then our program will be terminated abnormally (halt in the middle)
+Q) WAP that desribes, whenever an exception is encounter in the program then our program will be terminated abnormally (halt in the middle).
 
 package com.ravi.exception_demo;
 
@@ -162,9 +160,7 @@ public class AbnormalTermination {
 
 In the above progran, If we put the value of y as 0 then the program will halt in the middle which is known as abnormal termination.
 
-By default, JVM has default exception handler which will handle the 
-execption, terminate the program in the middle (abnormal termination)
-and generate the exception message.
+By default, JVM has default exception handler which will handle the execption, terminate the program in the middle (abnormal termination) and generate the exception message.
 -----------------------------------------------------------------------
 11-04-2025
 ----------
@@ -231,8 +227,7 @@ public class TryDemo {
 
 }
 
-In the above program if we put the value of y as 0 but still program will be executed normally because we have used try-catch so it is a 
-normal termination even we have an exception in the program.
+In the above program if we put the value of y as 0 but still program will be executed normally because we have used try-catch so it is a normal termination even we have an exception in the program.
 -----------------------------------------------------------------------
 In case on any Exception in the try block, try block is responsible to create (with the help of JVM) exception object and throw the exception object to the nearest catch block but user can also explicitly create and throw the Exception object as shown below.
 
@@ -256,8 +251,7 @@ public class TryDemo
 }
 
 
-After throw keyword we can't write any kind of statement, It 
-will become un-reachable code. 
+After throw keyword we can't write any kind of statement, It will become un-reachable code. 
 ----------------------------------------------------------------------
 package com.ravi.exception;
 
@@ -292,7 +286,7 @@ With Exception Handling, If exception = Normal Termination.
 
 The actual use of Exception Handling :
 --------------------------------------
- The main purpose of exception handling to provide user-friendly message so client can enjoy the services of software/websites.   
+The main purpose of exception handling to provide user-friendly message so client can enjoy the services of software/websites.   
 
 Exception handlinag = No Abnormal Termination + User-friendly message on wrong input given by the client.
 
@@ -415,18 +409,15 @@ public class TryDemo
 	}
 }
 
-Note : Here catch(Exception e) block is unable to handle because Error and Exception both are sub classes of Throwable, In the catch block
-if we use Error OR Throwable then only catch block will handle.
+Note : Here catch(Exception e) block is unable to handle because Error and Exception both are sub classes of Throwable, In the catch block if we use Error OR Throwable then only catch block will handle.
 -----------------------------------------------------------------------
 Working with Infinity and Not a number(NaN) :
 ---------------------------------------------
-Working with Infinity and Not a number(NaN) :
----------------------------------------------
-10/0    -> Infinity (Java.lang.ArithmeticException)
-10/0.0  -> Infinity  (POSITIVE_INFINITY)
+10/0    -> Infinity (Java.lang.ArithmeticException)  //  System.out.println(10/0);   ---> java.lang.ArithmeticException: / by zero
+10/0.0  -> Infinity  (POSITIVE_INFINITY)             //  System.out.println(10/0.0); ---> Infinity
 
-0/0     -> Undefined (Java.lang.ArithmeticException)
-0/0.0   -> Undefined  (NaN)
+0/0     -> Undefined (Java.lang.ArithmeticException) //   System.out.println(0/0);   ---> java.lang.ArithmeticException: / by zero
+0/0.0   -> Undefined  (NaN)                          //  System.out.println(0/0.0);  ---> NaN
 
 While dividing a number with Integral literal in both the cases i.e Infinity (10/0) and Undefined (0/0) we will get java.lang.ArithmeticException because java software people has not provided any final, static variable support to deal with Infinity and Undefined.
 
@@ -669,13 +660,9 @@ Limitation of finally block :
 ------------------------------
 We have following limitations with finally block 
 
-1) A developer is responsible to write finally block, to close the 
-   resourses manually.
-2) User need to write finally block so It increases the length of the 
-   code.
-3) Any resourse which we want to close inside the finally block, must 
-   be declared outside of try otherwise it will become block level 
-   variable.
+1) A developer is responsible to write finally block, to close the resourses manually.
+2) User need to write finally block so It increases the length of the code.
+3) Any resourse which we want to close inside the finally block, must be declared outside of try otherwise it will become block level variable.
 
 package com.ravi.basic;
 
@@ -710,7 +697,7 @@ public class LimitationOfFinally
 
 }
 
-In order to resolve all the limitations of finally block, Java software people has introduced try with resourses from JDK 1.7V.
+In order to resolve all the limitations of finally block, Java software people has introduced "try with resourses" from JDK 1.7V.
 -----------------------------------------------------------------------
 15-04-2025
 -----------
@@ -763,8 +750,7 @@ public interface java.io.Closeable extends java.lang.AutoCloseable
    void close() throws IOException;
 }
 
-Whenever we pass any resourse class object as part of try with resources as a parameter then that class must implements either Closeable or AutoCloseable interface so, try with resourses will automatically call the respective class
-close() method even an exception is encountered in the try block.
+Whenever we pass any resourse class object as part of try with resources as a parameter then that class must implements either Closeable or AutoCloseable interface so, try with resourses will automatically call the respective class close() method even an exception is encountered in the try block.
 
 ResourceClass rc = new ResourceClass();
 try(rc)  
@@ -1066,8 +1052,7 @@ public class MethodWithCheckedException {
 
 }
 
-Note : It is strongly recommended that if, while working with checked exception, method uses throws keyword to skip from the current situation and try to send the exception object to the calledr method then any of the caller method must handle the 
-exception.
+Note : It is strongly recommended that if, while working with checked exception, method uses throws keyword to skip from the current situation and try to send the exception object to the caller method then any of the caller method must handle the exception.
 ----------------------------------------------------------------------
 Some important rules regarding the checked Exception :
 ------------------------------------------------------
@@ -1091,11 +1076,9 @@ public class CheckedDemo
 	
 }
 
-
-
 Note :- The above rule is not applicable for Unchecked Exception
 
-               try
+        try
 		{
 			
 		}
@@ -1116,7 +1099,6 @@ public class CatchingWithSuperClass
 {
 	public static void main(String[] args) 
 	{	
-		
 		try
 		{
 			
@@ -1163,8 +1145,7 @@ public class MethodOverridingWithChecked {
 }
 ----------------------------------------------------------------------
 d) If the super class method declare with throws keyword to throw a checked exception, then at the time of method overriding, sub class method may or may not use throws keyword.
-               If the Overridden method is also using throws
- keyword to throw checked exception then it must be either same exception class or sub class, it should not be super class as well as we can't add more exceptions in the overridden method.
+If the Overridden method is also using throws keyword to throw checked exception then it must be either same exception class or sub class, it should not be super class as well as we can't add more exceptions in the overridden method.
 
 package com.ravi.method_related_rule;
 
@@ -1458,20 +1439,72 @@ throw [THROWING THE EXCEPTION OBJCET EXPLICITLY.]
 We should use throw keyword to throw the exception object explicitly, In case of try block, try block is responsible to create the exception object with JVM as well as throw the exception object to the nearest catch block. 
 but if a developer wants to throw exception object explicitly then we use throw keyword.
 
-           throw new ArithmeticException();
-	   throw new LowBalanceException();
+    throw new ArithmeticException();
+	throw new LowBalanceException();
 
 after using throw keyword the control will transfer to the nearest catch block so after throw keyword statement, the remaining statements are un-reachable.
 
 throws :- 
 ---------
-throws keyword describes that the method might throw an Exception, It also might not. It is used only at the end of a
-method declaration to indicate what exceptions it supports OR what type of Exception it might throw at runtime.
+throws keyword describes that the method might throw an Exception, It also might not. It is used only at the end of a method declaration to indicate what exceptions it supports OR what type of Exception it might throw at runtime.
 
-It is used to skip from the current situation so now the execption will be propagated to the caller method OR JVM for 
-handling purpose.
+It is used to skip from the current situation so now the execption will be propagated to the caller method OR JVM for handling purpose.
 
 It is mainly used to work with Checked Exception.
+
+throw vs throws in Java
+------------------------
+1. Purpose:
+   - throw: Used to actually throw an exception.
+   - throws: Used to declare that a method might throw exceptions.
+
+2. Location:
+   - throw: Used inside a method or block of code.
+   - throws: Used in the method signature.
+
+3. Syntax:
+   - throw: throw new Exception("message");
+   - throws: public void myMethod() throws IOException, SQLException
+
+4. Follows:
+   - throw: An instance of an exception (e.g., new ArithmeticException()).
+   - throws: Class names of exceptions (e.g., IOException).
+
+5. Number of Exceptions:
+   - throw: Can throw only one exception at a time.
+   - throws: Can declare multiple exceptions, separated by commas.
+
+6. Usage:
+   - throw: For throwing exceptions explicitly based on some condition.
+   - throws: For informing the caller that the method may throw checked exceptions.
+
+7. Common Use:
+   - throw: Used to manually trigger exceptions.
+   - throws: Used to pass exception handling responsibility to the calling method.
+
+8. Example:
+
+   - throw:
+     public void validateAge(int age) {
+         if (age < 18) {
+             throw new IllegalArgumentException("Age must be 18 or older");
+         }
+     }
+
+   - throws:
+     public void readFile() throws IOException {
+         // code that might throw IOException
+     }
+
+9. Analogy:
+   - throw: Actually throwing the ball.
+   - throws: Warning that you might throw the ball.
+
+Summary:
+--------
+- 'throw' is used to throw an exception manually during runtime.
+- 'throws' is used in a method declaration to indicate the method may throw one or more exceptions.
+
 ----------------------------------------------------------------------
 19-04-2025
 ----------

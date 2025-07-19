@@ -78,7 +78,8 @@ In java Whenever we create a new String object by using String literal, first of
 If the String is pre-existing (already available) in the String Constant pool then JVM will not create any new String object, the same old existing String object would be refer by new reference variable as shown in the diagram.
 
 Note :- In SCP area we can't have duplicate String Object.[06-MAY]
-------------------------------------------------------------------------** Why Strings are immutable in java :
+------------------------------------------------------------------------
+** Why Strings are immutable in java :
 ---------------------------------------
 As we know a String object in the String constant pool can be refer by multiple reference variables, if any of the reference variable will modify the String Object value then it would be very difficult for the another reference variables pointing to same String object to get the original value, what they have defined earlier as shown in the diagram.(06-MAY)
 

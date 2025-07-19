@@ -2318,10 +2318,9 @@ public class  InterruptThread
 	}
 }
 
-Note : Here in the catch block, we are interrupting the thread once 
-       again so the interrupt flag which was false will again become 
-       true so the Thread will throw InterruptedException (if the thread will go into sleeping OR Waiting state)
-----------------------------------------------------------------------   class Interrupt extends Thread
+Note : Here in the catch block, we are interrupting the thread once again so the interrupt flag which was false will again become true so the Thread will throw InterruptedException (if the thread will go into sleeping OR Waiting state)
+----------------------------------------------------------------------   
+class Interrupt extends Thread
 {
    @Override
    public void run()
@@ -2353,8 +2352,7 @@ public class  InterruptThread1
 	}
 }
 
-Note : catch block is not inside the for loop hence for loop will be 
-       executed only one time.
+Note : catch block is not inside the for loop hence for loop will be executed only one time.
  ----------------------------------------------------------------------
  public class InterruptThread2
 {
@@ -2505,12 +2503,10 @@ Ans : Both are the ways in java.lang package to create a Thread.
        
        3) By using extends Thread we can't use Lambda Expression but using implements we can use Lambda Expression
        
-       4) A class extends a Thread then all the Thread class methdos
-          are available in the sub class but if we use implements 
-	  Runnable then Thread class methos are not available.
+       4) A class extends a Thread then all the Thread class methdos are available in the sub class but if we use implements Runnable then Thread class methos are not available.
 	  
----------------------------------------------------------------------- volatile Keyword in java : [Reading the value of the variable from 
-                            the main memory not from the cache memory] 
+---------------------------------------------------------------------- 
+volatile Keyword in java : [Reading the value of the variable from the main memory not from the cache memory] 
 -----------------------------------------------------------------------
 While working in a multithreaded environment multiple threads can perform read and write operation with common variable (chances of Data inconsistency so use synchronized OR AtomicInteger) concurrently.
 
@@ -2522,8 +2518,7 @@ package com.ravi.testing_demo;
 
 class SharedData
 {
-    private volatile boolean flag = false; //FLAG VALUE WILL COME 
-                                             FROM MAIN MEMORY
+    private volatile boolean flag = false; //FLAG VALUE WILL COME FROM MAIN MEMORY
     public void startThread()
     {
         Thread writer = new Thread(() ->
@@ -2579,8 +2574,7 @@ We can only perform clone() method operation, If the object is cloneable object 
 
 It is a protected method so we need to override the method and called the Object class clone() method.
 
-It throws a checked exception i.e. java.lang.CloneNotSupportedException
-so handling is compulsory.
+It throws a checked exception i.e. java.lang.CloneNotSupportedException so handling is compulsory.
 
 It follow deep copy concept so if we modify one object then another object remains unchanged.
 
@@ -2724,14 +2718,13 @@ public class FinalizeDemo
 
 Note : Here Product Object is eligible for GC then automatically finalize() method is invoked.
 
-Calling finalize() method is an indication that Object is eligible for 
-GC.
+Calling finalize() method is an indication that Object is eligible for GC.
 -----------------------------------------------------------------------
 ** What is the difference between final, finally and finalize()
-
+----------------------------------------------------------------
 final :
 -------
-It is used to provide some kind of restriction, by using final modifier we can declare our class, Method and variables as a a final.
+It is used to provide some kind of restriction, by using final modifier we can declare our class, Method and variables as a final.
 
 finally :
 ---------

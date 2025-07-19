@@ -2,8 +2,7 @@
 ----------
 Uniprocessing :- 
 ----------------
-In uniprocessing, only one process can occupy the memory So the
-major drawbacks are 
+In uniprocessing, only one process can occupy the memory So the major drawbacks are 
 
 1) Memory is westage
 2) Resources are westage
@@ -117,8 +116,7 @@ public class CustomThread
 
 }
 
-In the above program, we have two threads, main thread which is responsible to execute 
-main method and Thread-0 thread which is responsible to execute run() method. [21 APRIL]
+In the above program, we have two threads, main thread which is responsible to execute main method and Thread-0 thread which is responsible to execute run() method. [21 APRIL]
 
 In entire Multithreading concept start() is the only method which is responsible to create a new thread.
 -----------------------------------------------------------------------
@@ -243,8 +241,7 @@ public class ThreadLoop
 
 Note : Here processor is frequently switching from main thread to Thread-0 thread so output is un-predicatable.
 
-We have something called Thread Schedular which is responsible to schedule the thread that means it is schedular who will decide which 
-thread will get the processor time.
+We have something called Thread Schedular which is responsible to schedule the thread that means it is schedular who will decide which thread will get the processor time.
 ---------------------------------------------------------------------
 How to set and get the name of the Thread :
 -------------------------------------------
@@ -876,6 +873,7 @@ public class AnonymousApproach {
 Case 2 :
 ---------
 Anonymous inner class by using Thred class constructor :
+--------------------------------------------------------
 
 package com.ravi.cases;
 
@@ -925,6 +923,7 @@ public class RunnableByLambda {
 Case 4 :
 ---------
 Lambda by using Thred class constructor with/withot reference :
+---------------------------------------------------------------
 
 package com.ravi.cases;
 
@@ -1093,16 +1092,15 @@ In block level synchronization the entire method does not get synchronized, only
 
 Note :- In between method level synchronization and block level synchronization, block level synchronization is more preferable because all the threads can enter inside the method so only the PART OF THE METHOD GETS synchronized so only one thread will enter inside the synchronized block.
 
-Note :  Synchronized area is a restricated area, with 
-permission only a thread can enter inside synchronized area.
+Note :  Synchronized area is a restricated area, with permission only a thread can enter inside synchronized area.
 ---------------------------------------------------------------------
 How synchronization mechanism controls multiple thread OR Among 'n' number of threads which thread is allowed to enter inside synchronized area ?
---------------------------------------------------------
+--------------------------------------------------------------------------------------------------------------------------------------------------
 Every Object has a lock(monitor) in java environment and this lock can be given to only one Thread at a time.
 
 Actually this lock is available with each individual object provided by Object class. 
 
-The thread who acquires the lock from the object will enter inside the synchronized area, it will complete its task without any disturbance because at a time there will be only one thread inside the synchronized area(for single Object). *This is known as Thread-safety in java.
+*The thread who acquires the lock from the object will enter inside the synchronized area, it will complete its task without any disturbance because at a time there will be only one thread inside the synchronized area(for single Object). *This is known as Thread-safety in java.
 
 The thread which is inside the synchronized area, after completion of its task while going back will release the lock so the other threads (which are waiting outside for the lock) will get a chance to enter inside the synchronized area by again taking the lock from the object and submitting it to the synchronization mechanism.
 This is how synchronization mechanism controls multiple Threads.
@@ -1277,8 +1275,7 @@ public class ProblemWithObjectLevelSynchronization
 }
 
 
-Note : From the above program it is clear that synchronization logic 
-       will not work with multiple objects.
+Note : From the above program it is clear that synchronization logic will not work with multiple objects.
        
 ---------------------------------------------------------------------
 In order to avoid the drawback of Object level synchronization, Java software people introduced static synchronization.
@@ -1345,16 +1342,13 @@ public class StaticSynchronization
 		}
 }
 ------------------------------------------------------------------
-How to work with synchronized block, If we want to take the lock 
-from the class.
+How to work with synchronized block, If we want to take the lock from the class.
 
 synchronized(MyClass.class) //Taking the lock from the class
 {
 
 }
 --------------------------------------------------------------------
-Thread Priority :
------------------
 Thread Priority :
 -----------------
 It is possible in java to assign priority to a Thread. Thread class has provided two predefined methods setPriority(int newPriority) and getPriority() to set and get the priority of the thread respectively.
@@ -1525,8 +1519,7 @@ Here there is no guarantee that  after using yield() method the running Thread w
 
 If the thread which is in runnable state is having low priority than the current executing thread in Running state, will continue its execution.
 
-*It is mainly used to avoid the over-utilisation a CPU by the current Thread so all the threads will get equal chance of CPU 
-for execution.
+*It is mainly used to avoid the over-utilisation a CPU by the current Thread so all the threads will get equal chance of CPU for execution.
 
 package com.ravi.thread;
 
@@ -1592,8 +1585,7 @@ If a thread is waiting for object lock OR monitor to enter inside synchronized a
 
 WAITING :
 ---------
-A thread in the waiting state is waiting for another thread to
-perform a particular action but WITHOUT ANY TIMEOUT period. A thread that has called wait() method on an object is waiting for another thread to call notify() or notifyAll() on the same object OR A thread that has called join() method is waiting for a specified thread to terminate.
+A thread in the waiting state is waiting for another thread to perform a particular action but WITHOUT ANY TIMEOUT period. A thread that has called wait() method on an object is waiting for another thread to call notify() or notifyAll() on the same object OR A thread that has called join() method is waiting for a specified thread to terminate.
 
 TIMED_WAITING :
 ---------------
@@ -1667,8 +1659,7 @@ public class ITCDemo1
 }
 
 
-Note : From this program it is clear if we don't use wait() method 
-from the synchronized area then we will get java.lang.IllegalMonitoStateException.
+Note : From this program it is clear if we don't use wait() method from the synchronized area then we will get java.lang.IllegalMonitoStateException.
 
 //Program that describes if we don't use proper communication between two thraeds then output is un-predictable.
 
@@ -2047,8 +2038,7 @@ Thread t1 = new Thread(ThreadGroup tg, Runnable target, String name);
 
 By using ThreadGroup class, multiple threads will be executed under single group.
 
-WAP to assign different threads which are runing into a particular
-group.
+WAP to assign different threads which are runing into a particular group.
 
 package com.ravi.thread_group;
 
@@ -2149,7 +2139,7 @@ Daemon Thread [Service Level Thread]
 ------------------------------------
 Daemon thread is a low- priority thread which is used to provide background maintenance.  
 
-The main purpose of of Daemon thread to provide services to the user thread.              
+The main purpose of Daemon thread to provide services to the user thread.              
 
 JVM can't terminate the program till any of the non-daemon (user) thread is active, once all the user thread will be completed then JVM will automatically terminate all Daemon threads, which are running in the background to support user threads.
 
@@ -2157,11 +2147,9 @@ The example of Daemon thread is Garbage Collection thread, which is running in t
 
 In order to make a thread as a Daemon thread as well as to verify whether a thread is daemon thread or not, Java software people has provided the following two methods 
 
-1) public void setDaemon(boolean on) : If the boolean value 
-   is true the thread will work as a Daemon thread.
+1) public void setDaemon(boolean on) : If the boolean value is true the thread will work as a Daemon thread.
    
-2) public boolean isDaemon() : Will verify whether the 
-   thread is daemon thread OR user thread.
+2) public boolean isDaemon() : Will verify whether the thread is daemon thread OR user thread.
 ---------------------------------------------------------------------
 public class DaemonThreadDemo1 
 {
@@ -2243,8 +2231,7 @@ If we call interrupt method and if the thread is not in sleeping or waiting stat
 
 If we call interrupt method and if the thread is in sleeping or waiting state then we can stop the thread  gracefully.
 
-*Overall interrupt method is mainly used to interrupt the
-thread safely so we can manage the resources easily.
+*Overall interrupt method is mainly used to interrupt the thread safely so we can manage the resources easily.
 
 Methods :
 ---------
@@ -2291,9 +2278,7 @@ public class  InterruptThread
 	}
 }
 
-Note : In the above program main thread is interrupting child thread so interrupt flag value will become true, now once the child thread(in this program) will go into sleeping OR waiting state then child thread 
-will throw InterruptedException and interrupt flag value will become 
-false hence catch block would be executed only one time.
+Note : In the above program main thread is interrupting child thread so interrupt flag value will become true, now once the child thread(in this program) will go into sleeping OR waiting state then child thread will throw InterruptedException and interrupt flag value will become false hence catch block would be executed only one time.
 -----------------------------------------------------------------------
 class Interrupt extends Thread
 {

@@ -1,0 +1,288 @@
+Question 1: Shopping Cart with Offers (Amazon/Flipkart)
+=======================================================
+📘 Scenario:
+You are tasked with building a Shopping Cart System that supports two major e-commerce platforms: Amazon and Flipkart. Each platform has its own business rules for offering discounts and managing delivery. Users should be able to interact with the system via a console-based application, where they can perform typical shopping actions.
+
+The system must follow the Strategy Design Pattern and should be configured using Spring Annotation-Based Configuration. Dependency injection should be used to inject the appropriate platform's shopping logic at runtime.
+
+🧩 Core Functional Requirements:
+Design an interface named ShoppingService with the following methods:
+
+addItem(String item, double price): Adds an item to the shopping cart.
+
+checkout(): Applies platform-specific discount rules and finalizes the purchase.
+
+viewCart(): Displays all the items currently in the cart along with their prices.
+
+Create two different implementations of ShoppingService:
+
+AmazonService
+
+Applies a 10% discount on the total cart value.
+
+Prints a message indicating fast delivery (e.g., within 2 days).
+
+FlipkartService
+
+Applies a 5% discount on the total cart value.
+
+Offers free delivery if the discounted total is ₹500 or more, otherwise adds a fixed ₹50 shipping fee.
+
+Prints a message indicating standard delivery (e.g., 3–5 days).
+
+Create a class ShoppingContext (following the Has-A relationship) that holds a reference to a ShoppingService. Inject the concrete service (Amazon or Flipkart) via constructor injection using Spring.
+
+Implement a console-based application named ShoppingApplication that allows the user to:
+
+Choose a platform (Amazon or Flipkart) at the start.
+
+Perform operations from the following menu:
+
+Add Item to Cart
+
+View Cart
+
+Checkout
+
+Exit
+
+🧠 Implementation Constraints:
+Use Spring Annotation-based configuration (no XML).
+
+Follow Strategy Design Pattern to switch between Amazon and Flipkart logic.
+
+All classes should be declared as final to ensure immutability where possible.
+
+Do not use any static references; rely fully on Spring for object creation and management.
+
+ANS ----
+package com.nit.main;
+
+import java.util.Scanner;
+
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+
+import com.nit.config.AppConfig;
+import com.nit.sbean.ShoppingContext;
+import com.nit.sbean.ShoppingService;
+
+public final class ShoppingApplication {
+
+	public static void main(String[] args) {
+		AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(AppConfig.class);
+
+		Scanner scanner = new Scanner(System.in);
+
+		System.out.println("=== Welcome to the Shopping Cart System ===");
+		System.out.println("Choose a platform to start shopping:");
+		System.out.println("1. Amazon");
+		System.out.println("2. Flipkart");
+		System.out.print("Enter your choice: ");
+		int platformChoice = scanner.nextInt();
+		scanner.nextLine(); // consume newline
+
+		ShoppingService shoppingService = null;
+
+		switch (platformChoice) {
+		case 1:
+			shoppingService = context.getBean("amazonService", ShoppingService.class);
+			break;
+		case 2:
+			shoppingService = context.getBean("flipkartService", ShoppingService.class);
+			break;
+		default:
+			System.out.println("Invalid platform choice. Exiting.");
+			context.close();
+			return;
+		}
+
+		ShoppingContext shoppingContext = new ShoppingContext(shoppingService);
+
+		while (true) {
+			System.out.println("\n--- Shopping Menu ---");
+			System.out.println("1. Add Item to Cart");
+			System.out.println("2. View Cart");
+			System.out.println("3. Checkout");
+			System.out.println("4. Exit");
+			System.out.print("Enter your choice: ");
+			int userChoice = scanner.nextInt();
+			scanner.nextLine(); // consume newline
+
+			switch (userChoice) {
+			case 1:
+				System.out.print("Enter item name: ");
+				String itemName = scanner.nextLine();
+				System.out.print("Enter item price: ₹");
+				double price = scanner.nextDouble();
+				scanner.nextLine(); // consume newline
+				shoppingContext.addItem(itemName, price);
+				break;
+
+			case 2:
+				shoppingContext.viewCart();
+				break;
+
+			case 3:
+				shoppingContext.checkout();
+				break;
+
+			case 4:
+				System.out.println("Thank you for shopping with us!");
+				context.close();
+				return;
+
+			default:
+				System.out.println("Invalid choice. Please try again.");
+			}
+		}
+	}
+}
+
+
+package com.nit.config;
+
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.Configuration;
+
+@Configuration
+@ComponentScan(basePackages = "com.nit.sbean")
+public class AppConfig {
+
+}
+
+
+package com.nit.sbean;
+
+public class ShoppingContext {
+	private ShoppingService shoppingService;
+
+	public ShoppingContext(ShoppingService shoppingService) {
+		super();
+		this.shoppingService = shoppingService;
+	}
+
+	public void addItem(String item, double price) {
+		shoppingService.addItem(item, price);
+	}
+
+	public void viewCart() {
+		shoppingService.viewCart();
+	}
+
+	public void checkout() {
+		shoppingService.checkout();
+	}
+}
+
+
+package com.nit.sbean;
+
+public interface ShoppingService {
+	void addItem(String item, double price);
+	void checkout();
+	void viewCart();
+}
+
+
+package com.nit.sbean;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import org.springframework.stereotype.Component;
+
+@Component("amazonService")
+public class AmazonService implements ShoppingService {
+
+	private final List<String> cartItems = new ArrayList<>();
+	private final List<Double> prices = new ArrayList<>();
+
+	@Override
+	public void addItem(String item, double price) {
+		cartItems.add(item);
+		prices.add(price);
+		System.out.println("Item added to Amazon cart.");
+	}
+
+	@Override
+	public void viewCart() {
+		if (cartItems.isEmpty()) {
+			System.out.println("Amazon cart is empty.");
+			return;
+		}
+		System.out.println("Amazon Cart Contents:");
+		for (int i = 0; i < cartItems.size(); i++) {
+			System.out.printf("%s: ₹%.2f%n", cartItems.get(i), prices.get(i));
+		}
+	}
+
+	@Override
+	public void checkout() {
+		double total = prices.stream().mapToDouble(x -> x).sum();
+		double discount = total * 0.10;
+		double finalAmount = total - discount;
+
+		System.out.printf("Total: ₹%.2f%n", total);
+		System.out.printf("10%% Discount: ₹%.2f%n", discount);
+		System.out.printf("Final Amount: ₹%.2f%n", finalAmount);
+		System.out.println("Amazon offers fast delivery (within 2 days).");
+
+		cartItems.clear();
+		prices.clear();
+	}
+
+}
+
+
+package com.nit.sbean;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import org.springframework.stereotype.Component;
+
+@Component("flipkartService")
+public class FlipkartService implements ShoppingService {
+
+	private final List<String> cartItems = new ArrayList<>();
+	private final List<Double> prices = new ArrayList<>();
+
+	@Override
+	public void addItem(String item, double price) {
+		cartItems.add(item);
+		prices.add(price);
+		System.out.println("Item added to Flipkart cart.");
+	}
+
+	@Override
+	public void viewCart() {
+		if (cartItems.isEmpty()) {
+			System.out.println("Flipkart cart is empty.");
+			return;
+		}
+		System.out.println("Flipkart Cart Contents:");
+		for (int i = 0; i < cartItems.size(); i++) {
+			System.out.printf("%s: ₹%.2f%n", cartItems.get(i), prices.get(i));
+		}
+	}
+
+	@Override
+	public void checkout() {
+		double total = prices.stream().mapToDouble(Double::doubleValue).sum();
+		double discount = total * 0.05;
+		double discountedTotal = total - discount;
+
+		double deliveryCharge = discountedTotal >= 500 ? 0 : 50;
+		double finalAmount = discountedTotal + deliveryCharge;
+
+		System.out.printf("Total: ₹%.2f%n", total);
+		System.out.printf("5%% Discount: ₹%.2f%n", discount);
+		System.out.printf("Delivery Charge: ₹%.2f%n", deliveryCharge);
+		System.out.printf("Final Amount: ₹%.2f%n", finalAmount);
+		System.out.println("Flipkart offers standard delivery (3–5 days).");
+
+		cartItems.clear();
+		prices.clear();
+	}
+
+}

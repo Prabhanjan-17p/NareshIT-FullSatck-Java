@@ -114,7 +114,8 @@ String x = "Naresh";   [Creating String by Literal]
 
 String y = new String("Hyderabad"); [Creating String Object by new keyword]
 
-------------------------------------------------------------------------String x = "Naresh"; 
+------------------------------------------------------------------------
+String x = "Naresh"; 
 
 It will create one String object and one reference variable and String object will be created in the String constant pool.Actually to place this String object in the SCP area JVM internally calls intern() method.
 -------------------------------------------------------------------
@@ -257,9 +258,7 @@ public class StringCommonMethod {
 
 3) public boolean equals(Object obj) :
 --------------------------------------
-It is an overridden method, Overridden from Object class. It is used 
-to compare two Strings based on the content.Method return type is 
-boolean.
+It is an overridden method, Overridden from Object class. It is used to compare two Strings based on the content.Method return type is boolean.
 
 
 package com.ravi.string_demo;
@@ -353,11 +352,9 @@ Note : CE becoz x is an array variable and with array we have length property bu
 6) public String replace(CharSequence old, CharSequence new)
    public String replace(Char old, Char new)
 
-It is an overloaded method. CharSequence is an interface. String, StringBuffer and StringBuilder class, all are implementing from 
-CharSequence to provide loose coupling.
+It is an overloaded method. CharSequence is an interface. String, StringBuffer and StringBuilder class, all are implementing from CharSequence to provide loose coupling.
 
-It is used to replace a particular character OR a string value from the 
-given String. Method return type is String.
+It is used to replace a particular character OR a string value from the given String. Method return type is String.
 
 package com.ravi.string_demo;
 
@@ -381,8 +378,7 @@ public class StringCommonMethod {
 -------------------------------------
 String class implements from Comparable<T> functional interface. It provides a single abstract method compareTo(T x). The return type of this method in int.
 String class has overridden this compareTo(String str) methd to compare two Strings by using UNICODE value.
-Comparing two Strings character by character by using UNICODE value is 
-known as Lexicographical comparison or dictionary comparison or alphabetical comparison(String case). 
+Comparing two Strings character by character by using UNICODE value is known as Lexicographical comparison or dictionary comparison or alphabetical comparison(String case). 
 
 The return type of this method is int. It takes String as a parameter.
 
@@ -423,6 +419,7 @@ public class StringCommonMethod {
 -----------------------------------------------------------------------
 public String substring(int startIndex) 
 public String substring(int startIndex, int endIndex) 
+-------------------------------------------------------
 
 The main purpose of this method to extract the part of the specified string based on the index position.
 
@@ -430,8 +427,7 @@ In this method the startIndex starts from 0 whereas endIndex starts from 1.
 
 Both index will be inclusive for printing the value
 
-If end index will be less than start index then we will get an exception i.e StringIndexOutOfBoundsException  
-substring(5,2);
+If end index will be less than start index then we will get an exception i.e StringIndexOutOfBoundsException substring(5,2);
 
 If start index and end index both are equal, nothing will print
 
@@ -504,8 +500,7 @@ public class StringCommonMethod
 -----------
 public boolean isBlank() :
 --------------------------
-We have alraedy isEmpty() method which will verify the length of the 
-String. 
+We have alraedy isEmpty() method which will verify the length of the String.
 isBlank() is introduced from java 11V.
 It trurns true, If the String is empty OR it contais white space character.
 
@@ -532,7 +527,7 @@ public class StringCommonMethod
 ------------------------------------------------------------------------
 //public boolean startsWith(String prefix)
 //public boolean endsWith(String suffix)
-
+-------------------------------------------
 
 Both the methods are available in String class. 
 
@@ -816,8 +811,6 @@ public class CapacityDemo {
 		
 		buffer1.append("It is a great country. It is in Asia");
 		System.out.println("Capacity is :"+buffer1.capacity()); //(21 + 1)*2 [44]
-		
-		
 
 	}
 
@@ -854,12 +847,12 @@ class Test28
 		System.out.println(sb2);  //avaJ		
 		}
 }
----------------------------------------------------------------------//Program to demonstrate the performance of StringBuffer and  StringBuilder classes. 
+---------------------------------------------------------------------
+//Program to demonstrate the performance of StringBuffer and  StringBuilder classes. 
 
 How to calculate System current time :
 ---------------------------------------
-System class has provided a predefined static method called currentTimeMillis() which will system current time in ms.This method 
-return type is long.
+System class has provided a predefined static method called currentTimeMillis() which will system current time in ms.This method return type is long.
 
 public native static long currentTimeMillis()
 
@@ -984,8 +977,7 @@ Basically in java we have 2 types of Array
 1) 1D OR Single Diemensional Array ([])
 2) 2D OR Multi Diemensional Array  ([][])
 
-Note : We have also jagged array which is a Multi Diemensional Array
-       where each row can have different number of columns.
+Note : We have also jagged array which is a Multi Diemensional Array where each row can have different number of columns.
        
 Working with Single Diemensional Array :
 ----------------------------------------
@@ -1005,23 +997,18 @@ Example 2 :
 ------------
 We can also create an array by using new keyword with Inline Initialization [We can initializ the array in the same line]
 
-     int []arr = new int[]{12, 90, 67, 45}
+     int []arr = new int[]{12, 90, 67, 45};
 
-Note : Here instead of default value, array will be initialized with 
-       user value in the same line.
+Note : Here instead of default value, array will be initialized with user value in the same line.
        
-The above statement is duplicate expression because we already know 
-the data type and size (from left side of = operator) so java has 
-introduced another style of creating array which is known as 
-Anonymous array.
+The above statement is duplicate expression because we already know the data type and size (from left side of = operator) so java has introduced another style of creating array which is known as Anonymous array.
 
 Example 3 :
 -----------
-              int []arr = {12,90,56,34}; //Anonymous Array
+     int []arr = {12,90,56,34}; //Anonymous Array
 
 
-Now finally we can write [] symbol left OR right side as well as 
-space does not matter.
+Now finally we can write [] symbol left OR right side as well as space does not matter.
 
 int[]  num1;
 int [] num2;

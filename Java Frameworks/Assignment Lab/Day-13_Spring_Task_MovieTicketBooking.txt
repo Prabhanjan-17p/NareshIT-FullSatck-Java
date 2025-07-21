@@ -1,0 +1,467 @@
+Movie Ticket Booking System (Spring Java Config with @Qualifier):
+==================================================================
+You are required to build a movie ticket booking system using Java and Spring Framework, where users can interact with different movie booking services (BookMyShowService and InoxService) to perform operations such as book a ticket, cancel a ticket, and view available shows.
+
+The solution must use Spring Java-based configuration (@Configuration and @Bean) and inject the required implementation using @Qualifier.
+
+🎯 Requirements:
+📦 Package: com.MovieBookingApplication.requirement
+Define Interface:
+Create a BookingService interface with the following methods:
+void bookTicket(String movieName) throws MovieNotFoundException, InvalidBookingException
+
+void cancelTicket(String movieName) throws InvalidBookingException
+
+void viewShows()
+
+📦 Package: com.MovieBookingApplication.exception
+Custom Exceptions:
+
+Create two custom exceptions:
+MovieNotFoundException: Thrown when attempting to book a movie that doesn't exist in the show list.
+
+InvalidBookingException: Thrown when attempting to cancel a ticket that wasn't booked, or the movie name is invalid (null/empty).
+
+📦 Package: com.MovieBookingApplication.beans
+Implementations:
+
+Create two classes implementing BookingService:
+
+BookMyShowService
+
+InoxService
+
+Each class must include:
+private static String cinemaName;
+private static String location;
+private static String partnerCode;
+(Fields must be initialized via setter methods)
+
+private List<String> availableShows;
+
+private List<String> bookedTickets;
+
+Method Logic:
+
+bookTicket: Book only if the movie is in availableShows. Add to bookedTickets. Otherwise, throw MovieNotFoundException.
+
+cancelTicket: Cancel only if the movie is in bookedTickets. Remove it. Otherwise, throw InvalidBookingException.
+
+viewShows: Display all available shows.
+
+📦 Package: com.MovieBookingApplication.config
+Java-based Configuration:
+
+Create a BookingAppConfig class annotated with @Configuration. Define beans for both services:
+
+BookMyShowService bean
+
+InoxService bean
+
+A MovieBookingApplication bean that depends on BookingService, injected using @Qualifier
+
+📦 Package: com.MovieBookingApplication.implementation
+MovieBookingApplication Class:
+
+Create a MovieBookingApplication class that depends on BookingService. This class will be injected with the appropriate service using constructor injection. It delegates operations to the service.
+
+📦 Package: com.MovieBookingApplication.user
+MovieUser Class:
+
+Create a MovieUser class that:
+
+Accepts input from the user using Scanner
+
+Loads the Spring context using AnnotationConfigApplicationContext
+
+Retrieves the MovieBookingApplication bean
+
+Provides a menu-driven interface with the following options:
+
+Book a ticket
+
+Cancel a ticket
+
+View available shows
+
+ANS ----
+package com.MovieBookingApplication.requirement;
+
+import com.MovieBookingApplication.exception.InvalidBookingException;
+import com.MovieBookingApplication.exception.MovieNotFoundException;
+
+public interface BookingService {
+	void bookTicket(String movieName) throws MovieNotFoundException, InvalidBookingException;
+
+	void cancelTicket(String movieName) throws InvalidBookingException;
+
+	void viewShows();
+
+}
+
+
+package com.MovieBookingApplication.exception;
+
+public class MovieNotFoundException extends Exception {
+
+	public MovieNotFoundException() {
+		super("Movie that doesn't exist in the show list.");
+	}
+	
+	public MovieNotFoundException(String name) {
+		super(name);
+	}
+	
+}
+
+
+package com.MovieBookingApplication.exception;
+
+public class InvalidBookingException extends Exception{
+
+	public InvalidBookingException() {
+		super("cancel a ticket that wasn't booked, or the movie name is invalid (null/empty).");
+	}
+	public InvalidBookingException(String name) { //"
+		super(name);
+	}
+
+}
+
+
+package com.MovieBookingApplication.beans;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import org.springframework.stereotype.Component;
+
+import com.MovieBookingApplication.exception.InvalidBookingException;
+import com.MovieBookingApplication.exception.MovieNotFoundException;
+import com.MovieBookingApplication.requirement.BookingService;
+
+@Component("bookmy")
+public class BookMyShowService implements BookingService {
+
+	private static String cinemaName;
+	private static String location;
+	private static String partnerCode;
+
+	private List<String> availableShows;
+
+	private List<String> bookedTickets = new ArrayList<>();;
+
+	public void setAvailableShows(List<String> availableShows) {
+		this.availableShows = availableShows;
+	}
+
+	public void setBookedTickets(List<String> bookedTickets) {
+		this.bookedTickets = bookedTickets;
+	}
+
+	public static void setCinemaName(String cinemaName) {
+		BookMyShowService.cinemaName = cinemaName;
+	}
+
+	public static void setLocation(String location) {
+		BookMyShowService.location = location;
+	}
+
+	public static void setPartnerCode(String partnerCode) {
+		BookMyShowService.partnerCode = partnerCode;
+	}
+
+	@Override
+	public void bookTicket(String movieName) throws MovieNotFoundException, InvalidBookingException {
+		if (movieName == null || movieName.trim().isEmpty()) {
+			throw new InvalidBookingException("Movie name cannot be null or empty.");
+		}
+
+		boolean movieFound = false;
+		for (String mn : availableShows) {
+			if (mn.equalsIgnoreCase(movieName)) {
+				bookedTickets.add(movieName);
+				movieFound = true;
+				System.out.println("Ticket for '" + movieName + "' booked successfully!");
+				break;
+			}
+		}
+
+		if (!movieFound) {
+			throw new MovieNotFoundException("Movie '" + movieName + "' not found in available shows.");
+		}
+
+	}
+
+	@Override
+	public void cancelTicket(String movieName) throws InvalidBookingException {
+		if (movieName == null || movieName.trim().isEmpty()) {
+			throw new InvalidBookingException("Movie name cannot be null or empty.");
+		}
+
+		boolean isCancelled = false;
+
+		for (String booked : bookedTickets) {
+			if (booked.equalsIgnoreCase(movieName)) {
+				bookedTickets.remove(booked);
+				isCancelled = true;
+				System.out.println("Ticket for '" + movieName + "' cancelled successfully!");
+				break;
+			}
+		}
+
+		if (!isCancelled) {
+			throw new InvalidBookingException("You haven't booked a ticket for '" + movieName + "'.");
+		}
+	}
+
+	@Override
+	public void viewShows() {
+		availableShows.stream().forEach(x -> System.out.println(x));
+	}
+
+}
+
+
+package com.MovieBookingApplication.beans;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import org.springframework.stereotype.Component;
+
+import com.MovieBookingApplication.exception.InvalidBookingException;
+import com.MovieBookingApplication.exception.MovieNotFoundException;
+import com.MovieBookingApplication.requirement.BookingService;
+
+@Component("inox")
+public class InoxService implements BookingService {
+	private static String cinemaName;
+	private static String location;
+	private static String partnerCode;
+
+	private List<String> availableShows;
+
+	private List<String> bookedTickets = new ArrayList<>();;
+
+	public void setAvailableShows(List<String> availableShows) {
+		this.availableShows = availableShows;
+	}
+
+	public void setBookedTickets(List<String> bookedTickets) {
+		this.bookedTickets = bookedTickets;
+	}
+
+	public static void setCinemaName(String cinemaName) {
+		InoxService.cinemaName = cinemaName;
+	}
+
+	public static void setLocation(String location) {
+		InoxService.location = location;
+	}
+
+	public static void setPartnerCode(String partnerCode) {
+		InoxService.partnerCode = partnerCode;
+	}
+
+	@Override
+	public void bookTicket(String movieName) throws MovieNotFoundException, InvalidBookingException {
+		if (movieName == null || movieName.trim().isEmpty()) {
+			throw new InvalidBookingException("Movie name cannot be null or empty.");
+		}
+
+		boolean movieFound = false;
+		for (String mn : availableShows) {
+			if (mn.equalsIgnoreCase(movieName)) {
+				bookedTickets.add(movieName);
+				movieFound = true;
+				System.out.println("Ticket for '" + movieName + "' booked successfully!");
+				break;
+			}
+		}
+
+		if (!movieFound) {
+			throw new MovieNotFoundException("Movie '" + movieName + "' not found in available shows.");
+		}
+
+	}
+
+	@Override
+	public void cancelTicket(String movieName) throws InvalidBookingException {
+		if (movieName == null || movieName.trim().isEmpty()) {
+			throw new InvalidBookingException("Movie name cannot be null or empty.");
+		}
+
+		boolean isCancelled = false;
+
+		for (String booked : bookedTickets) {
+			if (booked.equalsIgnoreCase(movieName)) {
+				bookedTickets.remove(booked);
+				isCancelled = true;
+				System.out.println("Ticket for '" + movieName + "' cancelled successfully!");
+				break;
+			}
+		}
+
+		if (!isCancelled) {
+			throw new InvalidBookingException("You haven't booked a ticket for '" + movieName + "'.");
+		}
+	}
+
+	@Override
+	public void viewShows() {
+		availableShows.stream().forEach(x -> System.out.println(x));
+	}
+
+}
+
+
+package com.MovieBookingApplication.config;
+
+import java.util.Arrays;
+
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+
+import com.MovieBookingApplication.beans.BookMyShowService;
+import com.MovieBookingApplication.beans.InoxService;
+import com.MovieBookingApplication.implementation.MovieBookingApplication;
+import com.MovieBookingApplication.requirement.BookingService;
+
+@Configuration
+public class BookingAppConfig {
+	  @Bean
+	    public BookingService bookMyShowService() {
+	        BookMyShowService service = new BookMyShowService();
+	        service.setCinemaName("BookMyShow");
+	        service.setLocation("Mumbai");
+	        service.setPartnerCode("BMS123");
+	        service.setAvailableShows(
+	            Arrays.asList("Inception", "The Dark Knight", "Interstellar", "Titanic", "Avatar")
+	        );
+	        return service;
+	    }
+
+	    @Bean
+	    public BookingService inoxService() {
+	        InoxService service = new InoxService();
+	        service.setCinemaName("INOX");
+	        service.setLocation("Delhi");
+	        service.setPartnerCode("INOX456");
+	        service.setAvailableShows(
+	            Arrays.asList("Joker", "Avengers: Endgame", "Shazam", "Black Panther", "Oppenheimer")
+	        );
+	        return service;
+	    }
+
+	    @Bean
+	    public MovieBookingApplication movieBookingApplication(@Qualifier("bookMyShowService") BookingService service) {
+	        return new MovieBookingApplication(service);
+	    }
+	
+}
+
+
+
+package com.MovieBookingApplication.implementation;
+
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Component;
+
+import com.MovieBookingApplication.exception.InvalidBookingException;
+import com.MovieBookingApplication.exception.MovieNotFoundException;
+import com.MovieBookingApplication.requirement.BookingService;
+
+
+@Component
+public class MovieBookingApplication {
+	
+	private BookingService bookingService;
+
+	public MovieBookingApplication(BookingService bookingService) {
+		super();
+		this.bookingService = bookingService;
+	}
+	
+	public void bookTicket(String movieName) throws MovieNotFoundException, InvalidBookingException {
+        bookingService.bookTicket(movieName);
+    }
+
+    public void cancelTicket(String movieName) throws InvalidBookingException {
+        bookingService.cancelTicket(movieName);
+    }
+
+    public void viewShows() {
+        bookingService.viewShows();
+    }
+}
+
+
+package com.MovieBookingApplication.user;
+
+import java.util.Scanner;
+
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+
+import com.MovieBookingApplication.config.BookingAppConfig;
+import com.MovieBookingApplication.exception.InvalidBookingException;
+import com.MovieBookingApplication.exception.MovieNotFoundException;
+import com.MovieBookingApplication.implementation.MovieBookingApplication;
+
+public class MovieUser {
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        // Load Spring Context
+        ApplicationContext context = new AnnotationConfigApplicationContext(BookingAppConfig.class);
+
+        // Get the MovieBookingApplication bean
+        MovieBookingApplication bookingApp = context.getBean(MovieBookingApplication.class);
+
+        System.out.println("Welcome to the Movie Ticket Booking System ");
+
+        while (true) {
+            System.out.println("\nChoose an option:");
+            System.out.println("1. Book a Ticket");
+            System.out.println("2. Cancel a Ticket");
+            System.out.println("3. View Available Shows");
+            System.out.println("4. Exit");
+
+            System.out.print("Enter choice: ");
+            int choice = scanner.nextInt();
+            scanner.nextLine(); // consume newline
+
+            try {
+                switch (choice) {
+                    case 1:
+                        System.out.print("Enter movie name to book: ");
+                        String movieToBook = scanner.nextLine();
+                        bookingApp.bookTicket(movieToBook);
+                        break;
+
+                    case 2:
+                        System.out.print("Enter movie name to cancel: ");
+                        String movieToCancel = scanner.nextLine();
+                        bookingApp.cancelTicket(movieToCancel);
+                        break;
+
+                    case 3:
+                        bookingApp.viewShows();
+                        break;
+
+                    case 4:
+                        System.out.println("Thank you for using the Movie Ticket Booking System. Goodbye!");
+                        System.exit(0);
+
+                    default:
+                        System.out.println("Invalid choice. Please try again.");
+                }
+            } catch (MovieNotFoundException | InvalidBookingException e) {
+                System.out.println("Error: " + e.getMessage());
+            }
+        }
+    }
+}

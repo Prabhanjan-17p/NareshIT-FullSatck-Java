@@ -264,9 +264,6 @@ public class ArrayDemo9
         System.out.println("Middle element is :"+Arrays.toString(arr));
     }
    
-   
-   
-   
     public static int[] middleWay(int[] a, int[] b)
     {
         int[] myArray = new int[]{a[1], b[1]};  

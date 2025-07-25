@@ -120,8 +120,7 @@ There are 10 ways to retrieve the Collection Object which are as follows :
 *9) By using Method Reference (JDK 1.8)
 **10) By using Stream API (stream())  (JDK 1.8)
 
-Among all these, Enumeration, Iterator, ListIterator and SplIterator are 
-the cursors so It can move from one direction to another direction.
+Among all these, Enumeration, Iterator, ListIterator and SplIterator are the cursors so It can move from one direction to another direction.
 --------------------------------------------------------------------------
 Enumeration :
 ----------------
@@ -158,9 +157,7 @@ Example :
 Now, Iterator interface has provided two methods 
 
 
-public boolean hasNext() :- 
-
-It will verify, the element is available in the next position or not, if available it will return true otherwise it will return false.
+public boolean hasNext() :- It will verify, the element is available in the next position or not, if available it will return true otherwise it will return false.
 
 public Object next() :- It will return the collection object and move the cursor to the element object.
 --------------------------------------------------------------------------
@@ -176,14 +173,11 @@ Example :
 -----------
 ListIterator lit =   listOfCity.listIterator();
 
-1) public boolean hasNext() :- 
-It will verify the element is available in the next position or not, if available it will return true otherwise it will return false.
+1) public boolean hasNext() :- It will verify the element is available in the next position or not, if available it will return true otherwise it will return false.
 
 2) public Object next() :- It will return the next position collection object.
 
-3) public boolean hasPrevious() :- 
-It will verify the element is available in the previous position or not, if available it will return true otherwise it will return false.
-
+3) public boolean hasPrevious() :- It will verify the element is available in the previous position or not, if available it will return true otherwise it will return false.
 
 4) public Object previous () :- It will return the previous position collection object.
 
@@ -225,15 +219,10 @@ public class ForEachMethodInternalDemo1 {
 			}
 		 };
 	     
-         listOfCity.forEach(cons);
-		 
-		 
-		 
+         listOfCity.forEach(cons);		 
 	}
 
 }
-
-
 
 Case 2 :
 ---------
@@ -255,10 +244,7 @@ public class ForEachInternalDemo2
 	     //Lambda Approach
 	     Consumer<String> cons = city -> System.out.println(city.toUpperCase());
 	     
-         listOfCity.forEach(cons);
-		 
-		 
-		 
+         listOfCity.forEach(cons);	 
 	}
 }
 
@@ -280,9 +266,6 @@ public class ForEachInternalDemo3
 	     listOfCity.add("Indore");
 	          
          listOfCity.forEach(city -> System.out.println(city.toUpperCase()));
-		 
-		 
-		 
 	}
 }
 --------------------------------------------------------------------------
@@ -296,7 +279,8 @@ It contains a default method forEachRemaining(Consumer<T> cons).
 
 It internally uses do-while loop.
 
---------------------------------------------------------------------------Stream interface :
+--------------------------------------------------------------------------
+Stream interface :
 ------------------
 Stream is a predefined interface available in java.util.stream sub package.
 
@@ -769,8 +753,7 @@ public class VectorDemo6
 ----------------------------------------------------------------------
 default Iterator asIterator() :
 -------------------------------
-This method is added in Enumeration interface from java 9V to support 
-backward compatibility(suppoting old version)
+This method is added in Enumeration interface from java 9V to support backward compatibility(suppoting old version)
 
 package com.ravi.vector;
 
@@ -807,8 +790,7 @@ public class VectorDemo7
 ----------------------------------------------
 While retrieving the object from the collection by using Itearor interface or for each loop, if at any point of time the original structure is going to modify after the creation of Itearator then we will get java.util.ConcurrentModificationExacption.
 
-We will not get this exception, If it is modified by Iterators OWN 
-method like add() OR remove().
+We will not get this exception, If it is modified by Iterators OWN method like add() OR remove().
 
 package com.ravi.vector;
 
@@ -930,8 +912,6 @@ public class VectorDemo8
 
 }
 =======================================================================
-Stack<E> :
------------
 Stack<E> :
 ------------
 public class Stack<E> extends Vector<E>

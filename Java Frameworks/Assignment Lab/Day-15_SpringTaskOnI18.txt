@@ -1,0 +1,39 @@
+ Internationalization (i18n) Comprehensive Task – Spring Core.
+📝 Objective:
+--------------
+Demonstrate your understanding of Internationalization in Spring Core by completing a series of tasks using ResourceBundleMessageSource, ApplicationContext, and localized property files. You should handle multiple languages, dynamic user input, parameterized messages, and fallback mechanisms using both XML and Java-based configuration.
+
+✅ Tasks to Perform:
+---------------------
+Basic Language Switching
+1.Display a welcome message in Hindi,English,Telugu and French using property files and a configured message source.
+
+Console-Based Language Selection
+Prompt the user to input a language code (like en or fr) and dynamically display the welcome message in the selected language.
+
+Parameterized Messages
+Use placeholders in message files to insert dynamic values like name or platform. Demonstrate this by greeting a user by name and mentioning the technology (e.g., "Hello Alice, welcome to Spring").
+
+Default Fallback Message File
+Add a base message file to support fallback when an unsupported locale (e.g., German) is used. Show that it falls back to default content.
+
+Grouped Form Labels
+Use message files to manage and retrieve multiple related messages such as form labels — like name, email, and submit.
+
+Custom Directory for Properties
+Place your message files inside a custom folder (e.g., resources/i18n/) and configure Spring to load messages from this location.
+
+Java-based Configuration (Optional Advanced)
+Replace the traditional XML configuration with Java-based configuration using annotations, demonstrating full control over Spring's i18n setup programmatically.
+
+📦 Resources You Will Work With:
+Property files for different locales (messages_en.properties, messages_fr.properties, messages.properties)
+
+Spring’s ResourceBundleMessageSource
+
+ApplicationContext from Spring Core
+
+Console for user input and interaction
+
+XML-based and/or annotation-based Spring configuration
+

@@ -1,0 +1,587 @@
+Q1)
+You are tasked with developing a Spring Core application that manages player and team information for a cricket team. The application should load player and team details from an external player.properties file using a custom properties class. The system should then display the player and team information using Spring's dependency injection features.
+
+Requirements:
+Create a Properties File:
+Filename: player.properties
+Content:
+	player.id=1
+	player.name=Dhoni
+	player.yearsNumber=7
+	team.name=CSK
+
+Player Class: To hold the configuration properties loaded from player.properties.
+Attributes:
+private int playerId;
+private String playerName;
+private int yearsNumber;
+private String teamName;
+Methods:
+Getters and setters for all attributes.
+Use @Component to make it a Spring-managed bean.
+Use @PropertySource to specify the location of player.properties.
+Use @Value to inject property values.
+
+AppConfig Class:To configure Spring to scan for components and load the properties file.
+Annotations: @Configuration, @ComponentScan, @PropertySource
+
+PlayerService Class:
+Purpose: To demonstrate the usage of Player.
+Attributes:
+private Player player; (Injected using @Autowired)
+Methods:
+void displayPlayerInfo(): Prints the player and team information using the properties.
+
+Main Class (PlayerApp): To bootstrap the Spring application and invoke the PlayerService.
+Methods:
+public static void main(String[] args): Initializes the Spring context and calls displayPlayerInfo().
+
+ANS ----
+package com.nit.main;
+
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+
+import com.nit.config.AppConfig;
+import com.nit.sbean.Player;
+import com.nit.sbean.PlayerService;
+
+public class Main1 {
+
+	public static void main(String[] args) {
+		try(AnnotationConfigApplicationContext ctx = new AnnotationConfigApplicationContext(AppConfig.class);) {
+			PlayerService playerService = ctx.getBean(PlayerService.class);
+			playerService.displayPlayerInfo();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+	}
+
+}
+
+
+package com.nit.config;
+
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.PropertySource;
+
+@Configuration
+@ComponentScan(basePackages = "com.nit.sbean")
+@PropertySource("com/nit/common/player.properties")
+public class AppConfig {
+
+}
+
+player.properties
+    player.id=1
+	player.name=Dhoni
+	player.yearsNumber=7
+	team.name=CSK
+
+
+package com.nit.sbean;
+
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.PropertySource;
+import org.springframework.stereotype.Component;
+
+@Component("ply")
+public class Player {
+	@Value("${player.id}")
+	private int playerId;
+	
+	@Value("${player.name}")
+	private String playerName;
+	
+	@Value("${player.yearsNumber}")
+	private int yearsNumber;
+	
+	@Value("${team.name}")
+	private String teamName;
+	
+	public int getPlayerId() {
+		return playerId;
+	}
+	public void setPlayerId(int playerId) {
+		this.playerId = playerId;
+	}
+	public String getPlayerName() {
+		return playerName;
+	}
+	public void setPlayerName(String playerName) {
+		this.playerName = playerName;
+	}
+	public int getYearsNumber() {
+		return yearsNumber;
+	}
+	public void setYearsNumber(int yearsNumber) {
+		this.yearsNumber = yearsNumber;
+	}
+	public String getTeamName() {
+		return teamName;
+	}
+	public void setTeamName(String teamName) {
+		this.teamName = teamName;
+	}
+	
+	@Override
+	public String toString() {
+		return "Player [playerId=" + playerId + ", playerName=" + playerName + ", yearsNumber=" + yearsNumber
+				+ ", teamName=" + teamName + "]";
+	}
+	
+}
+
+
+package com.nit.sbean;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
+@Component("plSer")
+public class PlayerService {
+	@Autowired
+	private Player player;
+
+	public void displayPlayerInfo() {
+		System.out.println(player);
+	}
+}
+
+---------------------------------------------------------------------------------------------------------------------
+
+Q2)
+You are tasked with developing a Spring Core application for a Food Ordering System. The application should load food item and restaurant details from an external food.properties file using a custom properties class. The system should then display the food item information and restaurant details using Spring's dependency injection features.
+Requirements:
+
+Create a Properties File:
+Filename: food.properties
+Content:
+	food.id=1
+	food.name=Margherita Pizza
+	food.preparationTime=15
+	restaurant.name=Spice Hub
+
+FoodDetails Class:
+Purpose: To hold the configuration properties loaded from food.properties.
+Attributes:
+private int foodId;
+private String foodName;
+private int preparationTime;
+private String restaurantName;
+Methods:
+Getters and setters for all attributes.
+Annotations:
+Use @Component to make it a Spring-managed bean.
+Use @Value to inject property values.
+
+FoodService Class: To demonstrate the usage of FoodDetails.
+private FoodDetails foodDetails;
+Methods:
+void displayFoodInfo(): Prints the food item and restaurant information using the properties.
+
+AppConfig Class: To configure Spring to scan for components and load the properties file.
+Annotations:@Configuration, @ComponentScan, @PropertySource
+
+Main Class (FoodOrderingApp):
+Methods:
+public static void main(String[] args): Initializes the Spring context and calls displayFoodInfo().
+
+ANS ---
+package com.nit.main;
+
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+
+import com.nit.config.AppConfig;
+import com.nit.sbean.FoodService;
+import com.nit.sbean.Player;
+import com.nit.sbean.PlayerService;
+
+public class Main2 {
+
+	public static void main(String[] args) {
+		try(AnnotationConfigApplicationContext ctx = new AnnotationConfigApplicationContext(AppConfig.class);) {
+			FoodService foodService = ctx.getBean(FoodService.class);			
+			foodService.displayFoodInfo();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+	}
+
+}
+
+
+package com.nit.config;
+
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.PropertySource;
+
+@Configuration
+@ComponentScan(basePackages = "com.nit.sbean")
+@PropertySource("com/nit/common/food.properties")
+public class AppConfig {
+
+}
+
+//food.properties
+	food.id=1
+	food.name=Margherita Pizza
+	food.preparationTime=15
+	restaurant.name=Spice Hub
+
+
+package com.nit.sbean;
+
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Component;
+
+
+@Component("foodde")
+public class FoodDetails {
+	@Value("${food.id}")
+	private int foodId;
+	@Value("${food.name}")
+	private String foodName;
+	@Value("${food.preparationTime}")
+	private int preparationTime;
+	@Value("${restaurant.name}")
+	private String restaurantName;
+	
+	public int getFoodId() {
+		return foodId;
+	}
+	public void setFoodId(int foodId) {
+		this.foodId = foodId;
+	}
+	public String getFoodName() {
+		return foodName;
+	}
+	public void setFoodName(String foodName) {
+		this.foodName = foodName;
+	}
+	public int getPreparationTime() {
+		return preparationTime;
+	}
+	public void setPreparationTime(int preparationTime) {
+		this.preparationTime = preparationTime;
+	}
+	public String getRestaurantName() {
+		return restaurantName;
+	}
+	public void setRestaurantName(String restaurantName) {
+		this.restaurantName = restaurantName;
+	}
+	@Override
+	public String toString() {
+		return "FoodDetails [foodId=" + foodId + ", foodName=" + foodName + ", preparationTime=" + preparationTime
+				+ ", restaurantName=" + restaurantName + "]";
+	}
+}
+
+
+package com.nit.sbean;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
+@Component("foodser")
+public class FoodService {
+	@Autowired
+	private FoodDetails foodDetails;
+	
+	public void displayFoodInfo() {
+		System.out.println(foodDetails);
+	}
+}
+
+
+---------------------------------------------------------------------------------------------------------------------
+
+Q3)
+You are tasked with developing a flight booking system that uses a custom properties class to manage flight details and user booking information. The properties file should contain information about flights, including flight number, departure city, destination city, ticket price, and user details like user ID and name.
+
+Requirements:
+
+flightBooking.properties
+	flight.number=AI101
+	flight.departure=Delhi
+	flight.destination=Mumbai
+	flight.price=3500.00
+
+	user.id=1
+	user.name=Rahul Sharma
+	user.address.street=123 Main St
+	user.address.city=Mumbai
+	user.address.state=Maharashtra
+	user.address.zipCode=400001
+
+Flight Class:
+Attributes:
+String flightNumber: Represents the unique flight number.
+String departureCity: Represents the city from which the flight departs.
+String destinationCity: Represents the city to which the flight is heading.
+double ticketPrice: Represents the price of the ticket.
+Methods:
+Getters and setters for all attributes.
+String toString(): Returns a string representation of the flight.
+
+User Class:
+
+Attributes:
+int userId: Represents the unique identifier for the user.
+String userName: Represents the name of the user booking the flight.
+Address address: Represents the user's address (injected using @Autowired).
+Methods:
+Getters and setters for all attributes.
+String toString(): Returns a string representation of the user.
+
+Address Class:
+
+Attributes:
+String street: Represents the street name.
+String city: Represents the city.
+String state: Represents the state.
+String zipCode: Represents the ZIP code.
+Methods:
+Getters and setters for all attributes.
+String toString(): Returns a string representation of the address.
+
+AppConfig Class:
+Create a Spring configuration class to scan for components and load the properties file.
+
+Main Class:
+Create instances of Flight, User, and Address from the FlightProperties class and print out the flight and user booking information.
+
+ANS ----
+//flight.properties
+	flight.number=AI101
+	flight.departure=Delhi
+	flight.destination=Mumbai
+	flight.price=3500.00
+
+	user.id=1
+	user.name=Rahul Sharma
+	user.address.street=123 Main St
+	user.address.city=Mumbai
+	user.address.state=Maharashtra
+	user.address.zipCode=400001
+
+package com.nit.config;
+
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.PropertySource;
+
+@Configuration
+@ComponentScan(basePackages = "com.nit.sbean")
+@PropertySource("com/nit/common/flightBooking.properties")
+public class AppConfig {
+
+}
+
+
+package com.nit.main;
+
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+
+import com.nit.config.AppConfig;
+import com.nit.sbean.Address;
+import com.nit.sbean.Flight;
+import com.nit.sbean.FoodService;
+import com.nit.sbean.Player;
+import com.nit.sbean.PlayerService;
+import com.nit.sbean.User;
+
+public class Main3 {
+
+	public static void main(String[] args) {
+		try(AnnotationConfigApplicationContext ctx = new AnnotationConfigApplicationContext(AppConfig.class);) {
+			Flight flight = ctx.getBean(Flight.class);
+			User user = ctx.getBean(User.class);
+			Address address = ctx.getBean(Address.class);
+			System.out.println(flight +"\n"+user+"\n"+address);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+	}
+
+}
+
+
+
+package com.nit.sbean;
+
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Component;
+
+
+@Component("add")
+public class Address {
+	@Value("${user.address.state}")
+	String street;
+	
+	@Value("${user.address.city}")
+	String city;
+	
+	@Value("${user.address.street}")
+	String state;
+	
+	@Value("${user.address.zipCode}")
+	String zipCode;
+
+	public String getStreet() {
+		return street;
+	}
+
+	public void setStreet(String street) {
+		this.street = street;
+	}
+
+	public String getCity() {
+		return city;
+	}
+
+	public void setCity(String city) {
+		this.city = city;
+	}
+
+	public String getState() {
+		return state;
+	}
+
+	public void setState(String state) {
+		this.state = state;
+	}
+
+	public String getZipCode() {
+		return zipCode;
+	}
+
+	public void setZipCode(String zipCode) {
+		this.zipCode = zipCode;
+	}
+
+	@Override
+	public String toString() {
+		return "Address [street=" + street + ", city=" + city + ", state=" + state + ", zipCode=" + zipCode + "]";
+	}
+	
+}
+
+
+package com.nit.sbean;
+
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Component;
+
+@Component
+public class Flight {
+	@Value("${flight.number}")
+	String flightNumber;
+	
+	@Value("${flight.departure}")
+	String departureCity;
+	
+	@Value("${flight.destination}")
+	String destinationCity;
+	
+	@Value("${flight.price}")
+	double ticketPrice;
+	
+
+	public String getFlightNumber() {
+		return flightNumber;
+	}
+
+	public void setFlightNumber(String flightNumber) {
+		this.flightNumber = flightNumber;
+	}
+
+	public String getDepartureCity() {
+		return departureCity;
+	}
+
+	public void setDepartureCity(String departureCity) {
+		this.departureCity = departureCity;
+	}
+
+	public String getDestinationCity() {
+		return destinationCity;
+	}
+
+	public void setDestinationCity(String destinationCity) {
+		this.destinationCity = destinationCity;
+	}
+
+	public double getTicketPrice() {
+		return ticketPrice;
+	}
+
+
+	public void setTicketPrice(double ticketPrice) {
+		this.ticketPrice = ticketPrice;
+	}
+
+
+	@Override
+	public String toString() {
+		return "Flight [flightNumber=" + flightNumber + ", departureCity=" + departureCity + ", destinationCity="
+				+ destinationCity + ", ticketPrice=" + ticketPrice + "]";
+	}
+}
+
+
+package com.nit.sbean;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Component;
+
+
+@Component("user")
+public class User {
+	@Value("${user.id}")
+	int userId;
+	
+	@Value("${user.name}")
+	String userName;
+	
+	@Autowired
+	Address address;
+
+	public int getUserId() {
+		return userId;
+	}
+
+	public void setUserId(int userId) {
+		this.userId = userId;
+	}
+
+	public String getUserName() {
+		return userName;
+	}
+
+	public void setUserName(String userName) {
+		this.userName = userName;
+	}
+
+	public Address getAddress() {
+		return address;
+	}
+
+	public void setAddress(Address address) {
+		this.address = address;
+	}
+
+	@Override
+	public String toString() {
+		return "User [userId=" + userId + ", userName=" + userName + "]";
+	}
+
+}
+=====================================================================================================================================

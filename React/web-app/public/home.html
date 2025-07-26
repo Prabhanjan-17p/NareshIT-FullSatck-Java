@@ -7,6 +7,27 @@
     <script src="../node_modules/react/umd/react.development.js"></script>
     <script src="../node_modules/react-dom/umd/react-dom.development.js"></script>
     <script src="../node_modules/@babel/standalone/babel.js"></script>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        .navSec{
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+            gap: 12px;
+            height: 60px;
+            width: 100vw;
+            background-color: rebeccapurple;
+        }
+        .navLink{
+            display: flex;
+            gap: 23px;
+            font-size: 22px;
+        }
+    </style>
     <script type="text/babel">
 
         function Login() {
@@ -24,8 +45,22 @@
                 
             )
         }
+
+        function HeadSec() {
+            return(
+                <nav className="navSec">
+                    <span><img src="" alt="noIMG" className="img" /></span>    
+                    <div className="navLink">
+                        <span>Home</span>
+                        <span>About</span>
+                        <span>Contact</span>
+                    </div>
+                </nav>
+            )
+        }
         // ReactDOM.render(<Login/>,document.getElementById("root"))
-        ReactDOM.render("Welcome to React JS",document.getElementById("root"))
+        ReactDOM.render(<div><HeadSec/><Login/></div>,document.getElementById("root"))
+        // ReactDOM.render("Welcome to React JS",document.getElementById("root"))
 
     </script>
 </head>

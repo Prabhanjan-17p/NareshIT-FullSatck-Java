@@ -1054,9 +1054,7 @@ public class Stack4
 -----------
 ArrayList<E> :
 --------------
-public class ArrayList<E> extends AbstractList<E> implements List<E>,
-Cloneable, Serializable, RandomAccess
-
+public class ArrayList<E> extends AbstractList<E> implements List<E>,Cloneable, Serializable, RandomAccess
 
 It is a predefined class available in java.util package under List interface from java 1.2v.
 
@@ -1066,7 +1064,7 @@ It is dynamically growable array.
 
 It stores the elements on index basis so it is simillar to dynamic array.
 
-Initial capacity of ArrayList is 10. The new capacity of Arraylist can be calculated by using the  formula
+Initial capacity of ArrayList is 10. The new capacity of Arraylist can be calculated by using the  formula 
 new capacity = (current capacity * 3)/2 + 1  [Almost 50% increment]
 
 *All the methods declared inside an ArrayList is not synchronized so multiple thread can access the method of ArrayList so performance wise it is good.

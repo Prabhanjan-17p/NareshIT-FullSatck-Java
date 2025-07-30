@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+                           http://www.springframework.org/schema/beans/spring-beans.xsd">
+             
+            <!-- configure Spring beans -->
+            <bean id="a1"  class="com.nt.sbeans.A">
+               <!-- <constructor-arg name="b"  ref="b1"/> -->
+                 <property name="b" ref="b1"/>
+            </bean>
+            
+            <bean id="b1"  class="com.nt.sbeans.B">
+                <constructor-arg name="a" ref="a1"/>
+            </bean> 
+                          
+                           
+                           
+   </beans>

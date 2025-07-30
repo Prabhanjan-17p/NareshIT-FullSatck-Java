@@ -37,3 +37,85 @@ Console for user input and interaction
 
 XML-based and/or annotation-based Spring configuration
 
+ANS -
+#All Properties File
+welcome.message=Welcome to Spring Internationalization!
+greeting.message=Hello {0}, welcome to {1}!
+form.label.name=Name
+form.label.email=Email
+form.label.submit=Submit
+
+welcome.message=Bienvenue à Spring Internationalization !
+greeting.message=Bonjour {0}, bienvenue à {1} !
+form.label.name=Nom
+form.label.email=E-mail
+form.label.submit=Soumettre
+
+welcome.message=\u0938\u094D\u092A\u094D\u0930\u093F\u0902\u0917 \u0905\u0902\u0924\u0930\u0930\u093E\u0937\u094D\u091F\u094D\u0930\u0940\u092F\u0915\u0930\u0923 \u092E\u0947\u0902 \u0906\u092A\u0915\u093E \u0938\u094D\u0935\u093E\u0917\u0924 \u0939\u0948!
+greeting.message=\u0928\u092E\u0938\u094D\u0924\u0947 {0}, {1} \u092E\u0947\u0902 \u0906\u092A\u0915\u093E \u0938\u094D\u0935\u093E\u0917\u0924 \u0939\u0948!
+form.label.name=\u0928\u093E\u092E
+form.label.email=\u0908\u092E\u0947\u0932
+form.label.submit=\u091C\u092E\u093E \u0915\u0930\u0947\u0902
+
+welcome.message=\u0C38\u0C4D\u0C2A\u0C4D\u0C30\u0C3F\u0C02\u0C17\u0C4D \u0C07\u0C02\u0C1F\u0C30\u0C4D\u0C28\u0C47\u0C37\u0C28\u0C32\u0C48\u0C1C\u0C47\u0C37\u0C28\u0C4D\u200C\u0C15\u0C41 \u0C38\u0C4D\u0C35\u0C3E\u0C17\u0C24\u0C02!
+greeting.message=\u0C39\u0C32\u0C4B {0}, {1}\u0C15\u0C3F \u0C38\u0C4D\u0C35\u0C3E\u0C17\u0C24\u0C02!
+form.label.name=\u0C2A\u0C47\u0C30\u0C41
+form.label.email=\u0C07\u0C2E\u0C46\u0C2F\u0C3F\u0C32\u0C4D
+form.label.submit=\u0C38\u0C2E\u0C30\u0C4D\u0C2A\u0C3F\u0C02\u0C1A\u0C02\u0C21\u0C3F
+
+welcome.message=Welcome to Spring Internationalization!
+greeting.message=Hello {0}, welcome to {1}!
+form.label.name=Name
+form.label.email=Email
+form.label.submit=Submit
+
+
+package com.nit.config;
+
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.context.support.ResourceBundleMessageSource;
+
+@Configuration
+@ComponentScan(basePackages = "com.nit.sbean")
+public class AppConfig {
+	
+	@Bean(name = "messageSource")
+	public ResourceBundleMessageSource createRBMS() {
+		ResourceBundleMessageSource  rbms = new  ResourceBundleMessageSource();
+		rbms.setBasename("com/nit/commons/messages");// confugre  base proerties file
+		return rbms;
+	}
+}
+
+
+package com.nit.main;
+
+import java.util.Locale;
+import java.util.Scanner;
+
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+
+import com.nit.config.AppConfig;
+
+public class Main {
+	public static void main(String[] args) {
+		try (AnnotationConfigApplicationContext ctx = new AnnotationConfigApplicationContext(AppConfig.class);
+				Scanner sc = new Scanner(System.in)) {
+			System.out.println("Enter  language code ::");
+			String lang = sc.next();
+
+			System.out.println("Enter  country code ::");
+			String country = sc.next();
+
+			Locale locale = new Locale(lang, country);
+			String msg1 = ctx.getMessage("welcome.message", new Object[] {}, "message1", locale);
+			System.out.println(msg1);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+	}
+}

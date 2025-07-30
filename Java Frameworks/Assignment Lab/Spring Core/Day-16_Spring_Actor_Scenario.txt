@@ -1,0 +1,217 @@
+Spring Core Scenario-Based Programming Question
+==============================================
+
+Scenario: Movie Actor Configuration Using Spring Core (No XML)
+--------------------------------------------------------------
+
+You are tasked with designing a simple Spring Core application that manages an actor’s basic profile. 
+The application must use:
+
+- Java-based Spring configuration (no XML)
+- Externalized properties via a `.properties` file
+- Dependency Injection to set values into a POJO (Actor class)
+
+--------------------------------------------------------------------------------
+1. Model Class: Actor
+--------------------------------------------------------------------------------
+
+Package: model
+
+Create a class named `Actor` with the following private instance variables:
+
+| Variable Name | Data Type | Description                         |
+|---------------|-----------|-------------------------------------|
+| id            | int       | Unique identifier for the actor     |
+| name          | String    | Full name of the actor              |
+| movies        | String    | Comma-separated movie list          |
+
+Methods:
+- Provide setter methods for all three variables.
+- Implement a method:
+
+  ```java
+  public void display()
+  ```
+  This method should print the actor details in the following format:
+
+  ```
+  Actor Details:
+  ID     : <id>
+  Name   : <name>
+  Movies : <movies>
+  ```
+
+--------------------------------------------------------------------------------
+2. Configuration Class: AppConfig
+--------------------------------------------------------------------------------
+
+Package: config
+
+Create a class named `AppConfig` and annotate it as follows:
+
+- `@Configuration`
+- `@PropertySource("classpath:actor.properties")`
+
+Use `@Value` annotation to read the values from the properties file:
+
+| Property Key   | Injected To | Variable Name | Data Type |
+|----------------|-------------|---------------|-----------|
+| actor.id       | id          | int           |
+| actor.name     | name        | String        |
+| actor.movies   | movies      | String        |
+
+Define a method to return an `Actor` bean and annotate it with `@Bean`:
+
+```java
+@Bean
+public Actor actor() {
+    Actor a = new Actor();
+    a.setId(id);
+    a.setName(name);
+    a.setMovies(movies);
+    return a;
+}
+```
+
+--------------------------------------------------------------------------------
+3. Properties File: actor.properties
+--------------------------------------------------------------------------------
+
+File Location: src/main/resources/actor.properties
+
+Contents:
+
+```
+actor.id=201
+actor.name=Amitabh Bachchan
+actor.movies=Sholay, Piku, Don, Pink
+```
+
+--------------------------------------------------------------------------------
+4. Main Class: ActorApp
+--------------------------------------------------------------------------------
+
+Package: main
+
+Create a class named `ActorApp` with a `main()` method to run the application:
+
+- Load the Spring context using:
+
+  ```java
+  ApplicationContext context = new AnnotationConfigApplicationContext(AppConfig.class);
+  ```
+
+- Retrieve the Actor bean:
+
+  ```java
+  Actor actor = context.getBean(Actor.class);
+  ```
+
+- Call the `display()` method to show actor details.
+
+--------------------------------------------------------------------------------
+5. Output Format:
+--------------------------------------------------------------------------------
+
+Expected Output:
+```
+Actor Details:
+ID     : 201
+Name   : Amitabh Bachchan
+Movies : Sholay, Piku, Don, Pink
+```
+
+--------------------------------------------------------------------------------
+Constraints:
+--------------------------------------------------------------------------------
+- Do NOT use XML configuration.
+- Do NOT use annotations on the `Actor` class.
+- Do NOT use Spring Boot.
+- Use only Spring Core with Java-based configuration.
+
+ANS ---
+package com.nit.main;
+
+import java.util.Locale;
+
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+
+import com.nit.config.AppConfig;
+import com.nit.model.Actor;
+
+public class Main {
+	public static void main(String[] args) {
+		try (AnnotationConfigApplicationContext ctx = new AnnotationConfigApplicationContext(AppConfig.class);){
+			  Actor actor = ctx.getBean(Actor.class);
+			  
+			  actor.display();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+}
+
+
+#actor.properties
+actor.id=201
+actor.name=Amitabh Bachchan
+actor.movies=Sholay, Piku, Don, Pink
+
+package com.nit.config;
+
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.PropertySource;
+
+import com.nit.model.Actor;
+
+
+@Configuration
+@PropertySource("com/nit/commons/actor.properties")
+public class AppConfig {
+	@Value("${actor.id}")
+	private int id;
+	@Value("${actor.name}")
+	private String name;
+	@Value("${actor.movies}")
+	private String movies;
+	
+	@Bean
+	public Actor actor() {
+		Actor a = new Actor();
+	    a.setId(id);
+	    a.setName(name);
+	    a.setMovies(movies);
+	    return a;
+	}
+}
+
+
+package com.nit.model;
+
+public class Actor {
+	private int id;
+	private String name;
+	private String movies;
+	
+	//setter methods for all three variables.
+	public void setId(int id) {
+		this.id = id;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	public void setMovies(String movies) {
+		this.movies = movies;
+	}
+	
+	public void display() {
+		System.out.println("  Actor Details:\r\n"
+				+ "  ID     : "+id+"\r\n"
+				+ "  Name   : "+name+"\r\n"
+				+ "  Movies : "+movies+"");
+	}
+	
+}
+===========================================================================================================

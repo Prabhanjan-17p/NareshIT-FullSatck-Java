@@ -1188,8 +1188,7 @@ How to create fixed length Array and Immutable List :
 ------------------------------------------------------
 1) How to create a fixed length Array :
 ---------------------------------------
-java.util.Arrays class has provided a predefined static method
-asList(T ...x), It will create a fixed length array and the return type of this method is List interface. 
+java.util.Arrays class has provided a predefined static method asList(T ...x), It will create a fixed length array and the return type of this method is List interface. 
 
 In this fixed length array we can't perform add or remove opeartion otherwise we will get  java.lang.UnsupportedOperationException but we can replace the existing element.
 
@@ -1219,11 +1218,9 @@ public class FixedLengthArray
 
 2) Immutable List :
 -------------------
-List interface has provided a predefined static method called 
-of(T ...x) available from java 9V.
+List interface has provided a predefined static method called of(T ...x) available from java 9V.
 
-It will create an immutable list, return type of this method is 
-List<E>. Once it is created after that we can't pefrom any kind of operation like add(), remove() or replace [set(int index, Object obj)] otherwise we will get java.lang.UnsupportedOperationException
+It will create an immutable list, return type of this method is List<E>. Once it is created after that we can't pefrom any kind of operation like add(), remove() or replace [set(int index, Object obj)] otherwise we will get java.lang.UnsupportedOperationException
 
 package com.ravi.arraylist;
 
@@ -1644,8 +1641,7 @@ public void trimToSize()
 --------------------------
 [Shrinks the capacity equal to the size, Dynamically Growable]
 
-Used to reduce the capacity equals to the current size and then when we
-add more elements then dynamically Growable
+Used to reduce the capacity equals to the current size and then when we add more elements then dynamically Growable
 
 public void ensureCapacity(int minCapacity)
 --------------------------------------------
@@ -2073,8 +2069,6 @@ public class LinkedListDemo6 {
 ======================================================================
 Set<E> interface :
 -------------------
-Set<E> interface :
--------------------
 Set interface is the sub interface of Collection available from JDK 1.2V
 
 Set interface never accept duplicate elements, Here internally equals(Object obj) method is working from the respective class.
@@ -2087,7 +2081,7 @@ Set interface supports all the methods of Collection interface, few more methods
 
 Set interface Hierarchy :
 --------------------------
-Hierarchy is available in the paint diagram [19-FEB]
+Hierarchy is available in the paint diagram [23-May]
 
 What is hashing algorithm ?
 -------------------------------
@@ -2130,7 +2124,6 @@ It contains 4 types of constructors :
 
 2) HashSet hs2 = new HashSet(int initialCapacity);
     will create the HashSet object with user specified capacity.
-
 
 3) HashSet hs3 = new HashSet(int initialCapacity, float loadFactor);
     we can specify our own initialCapacity and loadFactor(by default load factor is 0.75)
@@ -2342,8 +2335,8 @@ We have Map interafce methods through which we can convert Map interface into Co
 2) public Collection values() : It will retrieve all the values.
 
 3) public Set<Map.Entry> entrySet() : It will retrieve key and value both in a single object.
-              a) getKey()
-	      b) getValue()
+        a) getKey()
+	    b) getValue()
 	      
 =======================================================================
 HashMap<K,V>  [UNORDERED, UNSORTED, NO DUPLICATE KEY]
@@ -2473,8 +2466,7 @@ Case 1 :
 --------
 If we override only equals(Object obj)
 ---------------------------------------
-If we override only equals(Object obj) method for content comparison
-then same object (duplicate object) will have different hashcode (due to Object class hashCode()) hence same object (content wise) will move into two different buckets [Duplication].
+If we override only equals(Object obj) method for content comparison then same object (duplicate object) will have different hashcode (due to Object class hashCode()) hence same object (content wise) will move into two different buckets [Duplication].
 
 Case 2 :
 --------
@@ -2555,16 +2547,13 @@ public class HashMapInternalDemo2
 
 }
 
-Customer class we are using as a HashMap key so it must override 
-hashCode() and equals(Object obj) as well as at advanced level, It must be immutable class.
+Customer class we are using as a HashMap key so it must override hashCode() and equals(Object obj) as well as at advanced level, It must be immutable class.
 
-All the Wrapper classes and String class are immutable as well as 
-hashCode() and equals(Object obj) methods are overridden in these classes so perfectly suitable to becoming HashMap key.
+All the Wrapper classes and String class are immutable as well as hashCode() and equals(Object obj) methods are overridden in these classes so perfectly suitable to becoming HashMap key.
 	      
 so final conclusion is, In our user-defined class which we want to use as a HashMap key must be immutable and hashCode() and equals(Object obj) method must be overridden.
 ----------------------------------------------------------------------
-While working with HashSet element OR HashMap key, If we accept custom 
-object then we should always prefer record because It is immutable as well as hashCode() and equals() methods are overridden.
+While working with HashSet element OR HashMap key, If we accept custom object then we should always prefer record because It is immutable as well as hashCode() and equals() methods are overridden.
 
 package com.ravi.map;
 

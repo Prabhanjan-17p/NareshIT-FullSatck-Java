@@ -1,0 +1,244 @@
+ Spring Boot Core Task: Season Finder:
+=======================================
+✅ Objective
+Build a Spring Boot Core-based console application that:
+Accepts a month number (1–12) as user input from the console.
+Determines the correct season (Winter, Spring, Summer, Autumn).
+Prints the result in the console.
+
+🛠 Task Requirements
+1.Main Application Class
+
+Use @SpringBootApplication.
+Launch the app using SpringApplication.run().
+Create a SeasonService class.
+Annotate it with @Component.
+
+Add a method:
+public String getSeason(int month)
+which returns the season string based on the month.
+Use Scanner to prompt the user:
+"Enter month number (1–12):"
+Pass input to SeasonService.getSeason().
+
+Print the result to the console.
+
+If the user enters an invalid month (outside 1–12), return:
+"Invalid month! Please enter 1–12."
+ANS ---
+package com.nt;
+
+import java.util.Scanner;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.ConfigurableApplicationContext;
+
+import com.nt.sbean.SeasonService;
+
+@SpringBootApplication
+public class Day01Application {
+	
+
+	public static void main(String[] args) {
+		try (ConfigurableApplicationContext ctx = SpringApplication.run(Day01Application.class, args);
+				Scanner sc = new Scanner(System.in)) {
+			SeasonService bean = ctx.getBean(SeasonService.class);
+			System.out.print("Enter your month number :: ");
+			int mon = sc.nextInt();
+			if (mon >= 1 && mon <= 12) {
+				String season = bean.getSeason(mon);
+				System.out.println(season);
+			}else {
+				System.err.println("Invalid month! Please enter 1–12.");
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+	}
+
+}
+
+
+package com.nt.sbean;
+
+import org.springframework.stereotype.Component;
+
+@Component("ss")
+public class SeasonService {
+	public String getSeason(int month) {
+		if (month >= 3 && month<=6) return "Summer Season!!!";
+		else if (month >= 7 && month<=9) return "Rainy Season!!!";
+		else return "Winter Season";
+	}
+}
+
+
+Program02.Spring Boot Core Task: Product Discount Calculator
+=======================================
+
+✅ Objective
+Build a Spring Boot Core-based console application that:
+
+Accepts product price and discount percentage.
+
+Calculates and prints the final price after discount.
+
+🛠 Task Requirements
+
+1️.Main Application Class
+
+Use @SpringBootApplication.
+
+Launch the app using SpringApplication.run().
+
+2️.DiscountService Class
+
+Annotate it with @Component.
+
+Add a method:
+public double applyDiscount(double price, double discountPercentage)
+→ returns the discounted price.
+
+3️.Input Handling
+
+Use Scanner to prompt:
+Enter original price:
+Enter discount percentage:
+4️.Output
+
+Print the result:
+Final price after discount: $450.0
+
+ANS ----
+package com.nt;
+
+import java.util.Scanner;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.ConfigurableApplicationContext;
+
+import com.nt.sbean.DiscountService;
+import com.nt.sbean.SeasonService;
+
+@SpringBootApplication
+public class Day01Application2 {
+	
+
+	public static void main(String[] args) {
+		try (ConfigurableApplicationContext ctx = SpringApplication.run(Day01Application2.class, args);
+				Scanner sc = new Scanner(System.in)) {
+			DiscountService bean = ctx.getBean(DiscountService.class);
+			System.out.print("Enter price of the product :: ");
+			int pric = sc.nextInt();
+			System.out.print("Enter discount :: ");
+			int dis = sc.nextInt();
+			
+			double discount = bean.applyDiscount(pric, dis);
+			System.out.println("Final price after discount: $"+(pric-discount));
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+	}
+
+}
+
+
+package com.nt.sbean;
+
+import org.springframework.stereotype.Component;
+
+@Component("ds")
+public class DiscountService {
+	public double applyDiscount(double price, double discountPercentage) {
+		return price*(discountPercentage/100.0);
+	}
+}
+
+Program03.Spring Boot Core Task: Even or Odd Checker
+====================================================
+
+✅ Objective
+Build a Spring Boot Core-based console application that:
+
+Accepts a number as input.
+
+Prints whether it’s even or odd.
+
+🛠 Task Requirements
+
+1️.Main Application Class
+
+Use @SpringBootApplication.
+
+Launch the app using SpringApplication.run().
+
+2️.NumberService Class
+
+Annotate it with @Component.
+
+Add a method:
+
+public String checkEvenOdd(int number)
+→ returns "even" or "odd".
+
+3️.Input Handling
+
+Use Scanner to prompt:
+Enter a number:
+4️.Output
+Print the result:
+42 is even.
+
+ANS 
+------
+package com.nt;
+
+import java.util.Scanner;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.ConfigurableApplicationContext;
+
+import com.nt.sbean.DiscountService;
+import com.nt.sbean.NumberService;
+import com.nt.sbean.SeasonService;
+
+@SpringBootApplication
+public class Day01Application3 {
+	
+
+	public static void main(String[] args) {
+		try (ConfigurableApplicationContext ctx = SpringApplication.run(Day01Application3.class, args);
+				Scanner sc = new Scanner(System.in)) {
+			NumberService bean = ctx.getBean(NumberService.class);
+			System.out.print("Enter a number to check \"Odd or Even\" :: ");
+			int num = sc.nextInt();
+			System.out.println(bean.checkOddEven(num));
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+	}
+
+}
+
+
+package com.nt.sbean;
+
+import org.springframework.stereotype.Component;
+
+@Component("ns")
+public class NumberService {
+    public static String checkOddEven(int number) {
+        if (number % 2 == 0) {
+            return number + " is Even";
+        } else {
+            return number + " is Odd";
+        }
+    }
+}
+============================================================================================================

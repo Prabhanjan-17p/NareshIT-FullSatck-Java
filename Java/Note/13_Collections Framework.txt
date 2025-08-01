@@ -3102,6 +3102,19 @@ It can sort the element either in default natural sorting order(java.lang.Compar
 
 --------------------------------------------------------------
 ***Difference between Comparable<E> and Comparator<E>
+
+Feature                     Comparable<E>                                  Comparator<E>
+-----------------------------------------------------------------------------------------------
+Package                     java.lang                                      java.util
+Purpose                     Provides default sorting logic                 Provides custom sorting logic
+Implemented by              The class itself                               A separate class or anonymous class/lambda
+Method to override          compareTo(E o)                                 compare(E o1, E o2)
+Affects class directly?     Yes — modifies the natural order               No — keeps class untouched
+Sorting flexibility         Less flexible (one logic per class)            More flexible (can define multiple comparators)
+Used in                     Collections.sort(List<T>)                      Collections.sort(List<T>, Comparator<T>)
+                            Arrays.sort(T[])                               
+Example Use Case            Sort Employee by ID (default order)            Sort Employee by name, age, salary, etc.
+
 ------------------------------------------------------------------
 //Program on Comparable :
 --------------------------
@@ -3147,8 +3160,7 @@ public class EmployeeComparable
 
 Limitation of Comparable<T> interface :
 ----------------------------------------
-1) Due to the current object support we need to modify the BLC
-   class so Lambda Expression will not work with Comparable even it is a functional interface.
+1) Due to the current object support we need to modify the BLC class so Lambda Expression will not work with Comparable even it is a functional interface.
 
 2) We can write only one sorting logic.
 
@@ -3227,8 +3239,6 @@ public class IntegerDesc {
 ------------------------------------------------------------------
 30-05-2025
 -----------
-TreeSet<E>
-----------
 TreeSet<E>
 ------------
 public class TreeSet<E> extends AbstractSet<E> implements NavigableSet<E>, Clonable, Serializable
@@ -3691,8 +3701,8 @@ public class WeakHashMapDemo
 ------------------------------------------------------------------
 How to generate OR find out System hashcode value :
 ---------------------------------------------------
-System class has provided a predefined native and static method called identityHashCode(Object obj), It is used to 
-generate System hashcode.
+System class has provided a predefined native and static method called identityHashCode(Object obj), It is used to generate System hashcode.
+
 It accepts Object as a parameter and return type of this method is int.
 
 If we don't override hashCode() method in the corresponding class then System generated Hashcode and Object class hashcode would be same.
@@ -3746,8 +3756,6 @@ public class SystemHashCode
 
 }
 ------------------------------------------------------------------
-IdentityHashMap<K,V>
----------------------
 IdentityHashMap<K,V> [Comparing keys based on the Memory reference]
 ---------------------
 public class IdentityHashMap<K,V> extends AbstractMap<K,V> implements Map<K,V>, Clonable, Serializable.
@@ -3841,7 +3849,7 @@ public class SortedSetMethodDemo
 			System.out.println("Using headSet() :-"+sub); //[1205, 1505]
            
 		     sub =  times.tailSet(1545); 
-			 System.out.println("Using tailSet() :-"+sub); //[1545 to 2100] 
+			 System.out.println("Using tailSet() :-"+sub); //[1545 to 2100] //"
 			
        }
 }
@@ -3872,13 +3880,13 @@ public class NavigableSetDemo
         ns.add(5);
         ns.add(6);
 
-		System.out.println("lower(3): " + ns.lower(3));//Just below than the specified element or null
+		System.out.println("lower(3): " + ns.lower(3));//Just below than the specified element or null 
    
        System.out.println("floor(3): " + ns.floor(3)); //Equal  less or null
      
        System.out.println("higher(3): " + ns.higher(3));//Just greater than specified element or null
    
-       System.out.println("ceiling(3): " + ns.ceiling(3));//Equal or greater or null 
+       System.out.println("ceiling(3): " + ns.ceiling(3));//Equal or greater or null //"
      	
     }
 }
@@ -3916,20 +3924,36 @@ public class SortedMapMethodDemo
 		   System.out.println("headMap: "+map.headMap(102));  //100 101
 		   System.out.println("tailMap: "+map.tailMap(102));  //102 103
 		   System.out.println("subMap: "+map.subMap(100, 102)); //100 101 
-          //"
+        
 	 }
  }  
 -------------------------------------------------------------------
 Assignment for NavigableMap Methods :
 -------------------------------------
 1) ceilingEntry(K key)
+   -> Returns the entry with the least key greater than or equal to the given key.
+
 2) ceilingKey(K key)
+   -> Returns the least key greater than or equal to the given key.
+
 3) floorEntry(K key)
+   -> Returns the entry with the greatest key less than or equal to the given key.
+
 4) floorKey(K key)
+   -> Returns the greatest key less than or equal to the given key.
+
 5) higherEntry(K key)
+   -> Returns the entry with the least key strictly greater than the given key.
+
 6) higherKey(K key)
+   -> Returns the least key strictly greater than the given key.
+
 7) lowerEntry(K key)
+   -> Returns the entry with the greatest key strictly less than the given key.
+
 8) lowerKey(K key)
+   -> Returns the greatest key strictly less than the given key.
+
 --------------------------------------------------------------------
 Properties :
 ------------
@@ -4059,7 +4083,7 @@ public class PropertiesDemo2 {
 ----------
 Queue<E> interface 
 ---------------------
- 1) It is sub interface of Collection(I) available from JDK 1.5V hence it support all the methods of Collection interface.
+1) It is sub interface of Collection(I) available from JDK 1.5V hence it support all the methods of Collection interface.
 
 2) It works in FIFO(First In first out) 
 
@@ -4067,8 +4091,7 @@ Queue<E> interface
 
 4) In a queue, insertion is possible from last is called REAR end whereas deletion is possible from the starting is called FRONT end of the queue.
 
-5)In order to support Basis Queue operation, LinkedList class   implements Deque and Deque interface exetnds Queue  
-interface.
+5) In order to support Basis Queue operation, LinkedList class   implements Deque and Deque interface exetnds Queue interface.
 
 PriorityQueue<E>
 -----------------

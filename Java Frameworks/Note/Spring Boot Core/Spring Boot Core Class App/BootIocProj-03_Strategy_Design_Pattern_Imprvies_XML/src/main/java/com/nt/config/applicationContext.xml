@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="
+        http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<bean id="ldate" class="java.time.LocalDate" factory-method="now" /> <!-- dependent spring bean cfg -->
+	
+	<bean id="p1" class="com.nit.sbean.DatePrinter"> <!-- target spring bean cfg -->
+		<property name="ccurrentDate" ref="ldate" />
+	</bean>
+
+</beans>

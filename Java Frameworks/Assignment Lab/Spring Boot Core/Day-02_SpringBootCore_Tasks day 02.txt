@@ -1,0 +1,154 @@
+
+Program04. Spring Boot Core Task: Temperature Converter
+=======================================================
+
+✅ Objective
+Build a Spring Boot Core-based console application that:
+Accepts temperature in Celsius as input from the user.
+Converts it to Fahrenheit.
+Prints the result in the console.
+
+🛠 Task Requirements
+
+1️. Main Application Class
+Use @SpringBootApplication.
+Launch the app using SpringApplication.run().
+
+2️. TemperatureService Class
+Annotate it with @Component.
+Add a method:
+public double convertToFahrenheit(double celsius)
+→ returns the temperature in Fahrenheit using the formula: (celsius * 9/5) + 32.
+
+3️. Input Handling
+Use Scanner to prompt:
+Enter temperature in Celsius:
+
+4️. Output
+Print the result:
+Temperature in Fahrenheit: 98.6
+
+-------------------------------------------------------
+
+Program05. Spring Boot Core Task: Simple Interest Calculator
+===========================================================
+
+✅ Objective
+Build a Spring Boot Core-based console application that:
+Accepts principal, rate, and time as input.
+Calculates simple interest.
+Prints the result.
+
+🛠 Task Requirements
+
+1️. Main Application Class
+Use @SpringBootApplication.
+Launch the app using SpringApplication.run().
+
+2️. InterestService Class
+Annotate it with @Component.
+Add a method:
+public double calculateSimpleInterest(double principal, double rate, double time)
+→ returns the simple interest using the formula: (P × R × T) / 100
+
+3️. Input Handling
+Use Scanner to prompt:
+Enter principal amount:
+Enter rate of interest:
+Enter time period in years:
+
+4️. Output
+Print the result:
+Simple Interest: 1500.0
+
+-------------------------------------------------------
+
+Program06. Spring Boot Core Task: Age Verifier
+=============================================
+
+✅ Objective
+Build a Spring Boot Core-based console application that:
+Accepts age as input.
+Determines if the person is a minor or an adult.
+Prints the result.
+
+🛠 Task Requirements
+
+1️. Main Application Class
+Use @SpringBootApplication.
+Launch the app using SpringApplication.run().
+
+2️. AgeService Class
+Annotate it with @Component.
+Add a method:
+public String verifyAge(int age)
+→ returns "Minor" if age < 18, otherwise "Adult".
+
+3️. Input Handling
+Use Scanner to prompt:
+Enter your age:
+
+4️. Output
+Print the result:
+You are an Adult.
+
+-------------------------------------------------------
+
+Program07. Spring Boot Core Task: Grade Evaluator
+=================================================
+
+✅ Objective
+Build a Spring Boot Core-based console application that:
+Accepts marks as input.
+Evaluates and prints the grade (A, B, C, Fail).
+
+🛠 Task Requirements
+
+1️. Main Application Class
+Use @SpringBootApplication.
+Launch the app using SpringApplication.run().
+
+2️. GradeService Class
+Annotate it with @Component.
+Add a method:
+public String evaluateGrade(int marks)
+→ returns "A" for >=90, "B" for >=75, "C" for >=50, "Fail" otherwise.
+
+3️. Input Handling
+Use Scanner to prompt:
+Enter marks obtained:
+
+4️. Output
+Print the result:
+Your grade is: B
+
+-------------------------------------------------------
+
+Program08. Spring Boot Core Task: Leap Year Checker
+===================================================
+
+✅ Objective
+Build a Spring Boot Core-based console application that:
+Accepts a year as input.
+Checks if it is a leap year or not.
+Prints the result.
+
+🛠 Task Requirements
+
+1️. Main Application Class
+Use @SpringBootApplication.
+Launch the app using SpringApplication.run().
+
+2️. LeapYearService Class
+Annotate it with @Component.
+Add a method:
+public String checkLeapYear(int year)
+→ returns "Leap Year" if divisible by 4 (but not 100 unless also 400), else "Not a Leap Year".
+
+3️. Input Handling
+Use Scanner to prompt:
+Enter year:
+
+4️. Output
+Print the result:
+2024 is a Leap Year.

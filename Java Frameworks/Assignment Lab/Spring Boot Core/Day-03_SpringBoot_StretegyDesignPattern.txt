@@ -1,0 +1,59 @@
+Task: Payment Processing System
+🎯 Objective:
+Create a Spring Boot console-based application that allows users to choose a payment method at runtime. Use the Strategy Design Pattern to process payments via Credit Card, PayPal, or UPI.
+
+📘 Use Case:
+A user shops on an application and chooses how to pay. Depending on the selected payment method, the application should apply the appropriate payment strategy.
+
+🔧 Key Components:
+Strategy Interface:
+
+PaymentStrategy
+
+Declares a method like pay(double amount).
+
+Concrete Strategies:
+
+CreditCardPayment
+
+PayPalPayment
+
+UPIPayment
+
+Each implements PaymentStrategy and contains specific logic for that payment method.
+
+Context Class:
+
+PaymentService
+
+Has a reference to PaymentStrategy.
+
+Calls the pay() method on the selected strategy.
+
+Main Application(Main Class):
+
+Prompts the user to enter an amount and choose a payment method.
+
+Based on input, injects the right strategy and delegates payment to PaymentService.
+
+🛠 Technologies Used:
+Java 8+
+
+Spring Boot (3.x preferred)
+
+Spring Core Annotations (@Component, @Autowired, @Qualifier)
+
+Console input using Scanner
+
+🧪 Example Flow:
+Console prompts:
+
+"Enter amount to pay:"
+
+"Choose payment method: 1. Credit Card 2. PayPal 3. UPI"
+
+User enters 2000 and selects 2
+
+Output:
+"Paid ₹2000 using PayPal"
+

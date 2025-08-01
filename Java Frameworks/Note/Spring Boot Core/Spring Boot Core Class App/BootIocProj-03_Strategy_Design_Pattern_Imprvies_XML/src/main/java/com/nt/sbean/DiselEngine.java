@@ -2,7 +2,7 @@ package com.nt.sbean;
 
 import org.springframework.stereotype.Component;
 
-@Component("disel")
+@Component("diesel")
 public class DiselEngine implements IEngine {
 
 	@Override

@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component;
 @Component("vehicle")
 public class Vehicle {
 	@Autowired
-	@Qualifier("cng")
+	@Qualifier("eng")
 	private IEngine engine;
 	
 	public void journey(String st,String end) {

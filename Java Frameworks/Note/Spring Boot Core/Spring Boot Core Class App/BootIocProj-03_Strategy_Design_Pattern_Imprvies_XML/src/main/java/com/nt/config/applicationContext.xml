@@ -1,14 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
        xsi:schemaLocation="
         http://www.springframework.org/schema/beans
-        http://www.springframework.org/schema/beans/spring-beans.xsd">
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd">
 
-	<bean id="ldate" class="java.time.LocalDate" factory-method="now" /> <!-- dependent spring bean cfg -->
-	
-	<bean id="p1" class="com.nit.sbean.DatePrinter"> <!-- target spring bean cfg -->
-		<property name="ccurrentDate" ref="ldate" />
-	</bean>
+    <!-- Load application.properties -->
+    <context:property-placeholder location="classpath:application.properties" />
+
+    <!-- Alias resolved from properties -->
+    <alias name="${engg.id}" alias="eng"/>
 
 </beans>

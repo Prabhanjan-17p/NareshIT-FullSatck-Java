@@ -28,6 +28,49 @@ Enter temperature in Celsius:
 Print the result:
 Temperature in Fahrenheit: 98.6
 
+ANS -----
+package com.nt.sbean;
+
+import org.springframework.stereotype.Component;
+
+@Component("tm")
+public class TemperatureService {
+	public double convertToFahrenheit(double celsius) {
+		return (celsius * 9/5) + 32;
+	}
+}
+
+
+
+package com.nt;
+
+import java.util.Scanner;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.ConfigurableApplicationContext;
+
+import com.nt.sbean.TemperatureService;
+
+@SpringBootApplication
+public class Day02Application {
+
+	public static void main(String[] args) {
+		try(ConfigurableApplicationContext context = SpringApplication.run(Day02Application.class, args);
+				Scanner sc = new Scanner(System.in)) {
+			System.out.print("Enter Temperatur in celsius :: ");
+			double cal = sc.nextDouble();
+			TemperatureService service = context.getBean(TemperatureService.class);
+			double convertToFahrenheit = service.convertToFahrenheit(cal);
+			System.out.println("Temperature in Fahrenheit: "+convertToFahrenheit);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+}
+
+
 -------------------------------------------------------
 
 Program05. Spring Boot Core Task: Simple Interest Calculator
@@ -61,6 +104,52 @@ Enter time period in years:
 Print the result:
 Simple Interest: 1500.0
 
+ANS ---
+package com.nt.sbean;
+
+import org.springframework.stereotype.Component;
+
+@Component("is")
+public class InterestService {
+	public double calculateSimpleInterest(double principal, double rate, double time) {
+		return (principal * rate * time) / 100;
+	}
+}
+
+
+package com.nt;
+
+import java.util.Scanner;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.ConfigurableApplicationContext;
+
+import com.nt.sbean.InterestService;
+import com.nt.sbean.TemperatureService;
+
+@SpringBootApplication
+public class Day02Application2 {
+
+	public static void main(String[] args) {
+		try(ConfigurableApplicationContext context = SpringApplication.run(Day02Application2.class, args);
+				Scanner sc = new Scanner(System.in)) {
+			System.out.print("Enter principal amount: ");
+			double pri = sc.nextDouble();
+			System.out.print("Enter rate of interest: ");
+			double rat = sc.nextDouble();
+			System.out.print("Enter time period in years: ");
+			double yr = sc.nextDouble();
+			InterestService service = context.getBean(InterestService.class);
+			double tot = service.calculateSimpleInterest(pri, rat, yr);
+			System.out.println("Simple Interest: "+tot);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+}
+
 -------------------------------------------------------
 
 Program06. Spring Boot Core Task: Age Verifier
@@ -92,6 +181,51 @@ Enter your age:
 Print the result:
 You are an Adult.
 
+ANS ---
+package com.nt.sbean;
+
+import org.springframework.stereotype.Component;
+
+@Component("age")
+public class AgeService {
+	public String verifyAge(int age) {
+		if(age > 18) return "Adult";
+		else return "Minor";
+	}
+}
+
+
+package com.nt;
+
+import java.util.Scanner;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.ConfigurableApplicationContext;
+
+import com.nt.sbean.AgeService;
+import com.nt.sbean.InterestService;
+import com.nt.sbean.TemperatureService;
+
+@SpringBootApplication
+public class Day02Application3 {
+
+	public static void main(String[] args) {
+		try(ConfigurableApplicationContext context = SpringApplication.run(Day02Application3.class, args);
+				Scanner sc = new Scanner(System.in)) {
+			System.out.print("Enter your age: ");
+			int no= sc.nextInt();
+			AgeService service = context.getBean(AgeService.class);
+			String tot = service.verifyAge(no);
+			System.out.println("You are an "+tot+".");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+}
+
+
 -------------------------------------------------------
 
 Program07. Spring Boot Core Task: Grade Evaluator
@@ -121,6 +255,60 @@ Enter marks obtained:
 4️. Output
 Print the result:
 Your grade is: B
+
+
+ANS ---
+package com.nt;
+
+import java.util.Scanner;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.ConfigurableApplicationContext;
+
+import com.nt.sbean.AgeService;
+import com.nt.sbean.GradeService;
+import com.nt.sbean.InterestService;
+import com.nt.sbean.TemperatureService;
+
+@SpringBootApplication
+public class Day02Application4 {
+
+	public static void main(String[] args) {
+		try(ConfigurableApplicationContext context = SpringApplication.run(Day02Application4.class, args);
+				Scanner sc = new Scanner(System.in)) {
+			System.out.print("Enter marks obtained: ");
+			int no= sc.nextInt();
+			GradeService service = context.getBean(GradeService.class);
+			String tot = service.evaluateGrade(no);
+			System.out.println("Your grade is: "+tot);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+}
+
+
+package com.nt.sbean;
+
+import org.springframework.stereotype.Component;
+
+@Component("gs")
+public class GradeService {
+
+	public String evaluateGrade(int marks) {
+		if (marks >= 90) {
+			return "A";
+		} else if (marks >= 75) {
+			return "B";
+		} else if (marks >= 50) {
+			return "C";
+		} else {
+			return "Fail";
+		}
+	}
+}
 
 -------------------------------------------------------
 
@@ -152,3 +340,53 @@ Enter year:
 4️. Output
 Print the result:
 2024 is a Leap Year.
+
+ANS ---
+package com.nt;
+
+import java.util.Scanner;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.ConfigurableApplicationContext;
+
+import com.nt.sbean.AgeService;
+import com.nt.sbean.GradeService;
+import com.nt.sbean.InterestService;
+import com.nt.sbean.LeapYearService;
+import com.nt.sbean.TemperatureService;
+
+@SpringBootApplication
+public class Day02Application4 {
+
+	public static void main(String[] args) {
+		try(ConfigurableApplicationContext context = SpringApplication.run(Day02Application4.class, args);
+				Scanner sc = new Scanner(System.in)) {
+			System.out.print("Enter year: ");
+			int no= sc.nextInt();
+			LeapYearService service = context.getBean(LeapYearService.class);
+			String tot = service.checkLeapYear(no);
+			System.out.println(tot+" is a Leap Year.");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+}
+
+
+package com.nt.sbean;
+
+import org.springframework.stereotype.Component;
+
+@Component("ly")
+public class LeapYearService {
+	public String checkLeapYear(int year) {
+		if ((year % 4 == 0 && year % 100 != 0) || (year % 400 == 0)) {
+			return "Leap Year";
+		} else {
+			return "Not a Leap Year";
+		}
+	}
+}
+============================================================================================================

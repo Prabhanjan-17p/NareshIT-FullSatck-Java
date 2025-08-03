@@ -57,3 +57,127 @@ User enters 2000 and selects 2
 Output:
 "Paid ₹2000 using PayPal"
 
+ANS ----
+package com.nt;
+
+import java.util.Scanner;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.ConfigurableApplicationContext;
+
+import com.nt.Service.PaymentService;
+import com.nt.Strategy.PaymentStrategy;
+
+@SpringBootApplication
+public class Day03Application {
+
+	public static void main(String[] args) {
+		try (ConfigurableApplicationContext ctx = SpringApplication.run(Day03Application.class, args);
+				Scanner sc = new Scanner(System.in)) {
+
+			System.out.print("Enter amount to pay: ");
+			double amt = sc.nextDouble();
+
+			System.out.print("Choose payment method: 1. Credit Card 2. PayPal 3. UPI: ");
+			int ch = sc.nextInt();
+
+			PaymentStrategy strategy = switch (ch) {
+			case 1 -> ctx.getBean("credit", PaymentStrategy.class);
+			case 2 -> ctx.getBean("paypal", PaymentStrategy.class);
+			case 3 -> ctx.getBean("upi", PaymentStrategy.class);
+			default -> null;
+			};
+
+			if (strategy == null) {
+				System.out.println("Invalid payment method selected.");
+			} else {
+				PaymentService paymentService = ctx.getBean(PaymentService.class);
+				paymentService.setPaymentStrategy(strategy);
+				paymentService.makePayment(amt);
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+}
+
+
+package com.nt.Strategy;
+
+public interface PaymentStrategy {
+	public void pay(double amount);
+}
+
+
+package com.nt.Strategy;
+
+import org.springframework.stereotype.Component;
+
+@Component("credit")
+public class CreditCardPayment implements PaymentStrategy {
+
+	@Override
+	public void pay(double amount) {
+        System.out.println("Paid ₹" + amount + " using Credit Card");
+	}
+
+}
+
+
+package com.nt.Strategy;
+
+import org.springframework.stereotype.Component;
+
+@Component("paypal")
+public class PayPalPayment implements PaymentStrategy {
+
+	@Override
+	public void pay(double amount) {
+        System.out.println("Paid ₹" + amount + " using PayPal");
+	}
+
+}
+
+
+package com.nt.Strategy;
+
+import org.springframework.stereotype.Component;
+
+@Component("upi")
+public class UPIPayment implements PaymentStrategy {
+
+	@Override
+	public void pay(double amount) {
+        System.out.println("Paid ₹" + amount + " using UPI");
+	}
+
+}
+
+
+package com.nt.Service;
+
+
+import org.springframework.stereotype.Service;
+
+import com.nt.Strategy.PaymentStrategy;
+
+@Service
+public class PaymentService {
+	
+	private PaymentStrategy paymentStrategy;
+
+	public void setPaymentStrategy(PaymentStrategy paymentStrategy) {
+		this.paymentStrategy = paymentStrategy;
+	}
+
+	public void makePayment(double amount) {
+		if (paymentStrategy == null) {
+			System.out.println("Payment method not set!");
+		} else {
+			paymentStrategy.pay(amount);
+		}
+	}
+}
+===========================================================================================================================================

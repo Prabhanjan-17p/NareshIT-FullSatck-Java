@@ -1,0 +1,293 @@
+Task Title: Product Inventory Management System
+🎯 Objective:
+Build a Spring Boot layered application (without database) to manage a list of products in memory. Allow adding new products, viewing all, and calculating the total value of inventory.
+
+✅ Features:
+Add a new product (ID, Name, Quantity, Price per unit).
+
+View all products.
+
+Calculate total inventory value (quantity × price for all products).
+
+🧱 Application Layers:
+1. Model Layer (Entity)
+Define a Product class with fields:
+
+Product ID
+
+Name
+
+Quantity
+
+Price
+
+2. Repository Layer (Simulated)
+No actual DB; use List<Product> or Map<Long, Product> to store data in memory.
+
+Simulate CRUD operations.
+
+3. Service Layer
+Business logic:
+
+Add a product to the in-memory list.
+
+Fetch all products.
+
+Calculate total inventory value.
+
+4. Controller Layer
+REST endpoints (or console input if preferred):
+
+/products/add → Add product
+
+/products/all → View all products
+
+/products/value → Show total inventory value
+
+🧪 Sample Use Case:
+Add Product A: 10 units × ₹100 = ₹1000
+
+Add Product B: 5 units × ₹200 = ₹1000
+
+Total Inventory Value: ₹2000
+
+🧰 Tech Stack:
+Spring Boot
+
+Spring Web
+
+No Database (only Java collections)
+
+ANS ----
+package com.nt;
+
+import java.util.List;
+import java.util.Scanner;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.ConfigurableApplicationContext;
+
+import com.nt.controller.ProductController;
+import com.nt.model.Product;
+
+@SpringBootApplication
+public class Day04Application {
+
+	public static void main(String[] args) {
+		try (ConfigurableApplicationContext ctx = SpringApplication.run(Day04Application.class, args);
+				Scanner sc = new Scanner(System.in)) {
+
+			ProductController controller = ctx.getBean(ProductController.class);
+			boolean bol = true;
+
+			while (bol) {
+				System.out.println("\n==========================");
+				System.out.println("Product Inventory System");
+				System.out.println("1. Add product");
+				System.out.println("2. View all products");
+				System.out.println("3. Show total inventory value");
+				System.out.println("4. Exit");
+				System.out.print("Enter your choice: ");
+
+				int key = sc.nextInt();
+
+				switch (key) {
+				case 1:
+					System.out.print("Enter Product ID: ");
+					Long id = sc.nextLong();
+					sc.nextLine(); 
+
+					System.out.print("Enter Product Name: ");
+					String name = sc.nextLine();
+
+					System.out.print("Enter Quantity: ");
+					int quantity = sc.nextInt();
+
+					System.out.print("Enter Price per Unit: ");
+					double price = sc.nextDouble();
+
+					Product product = new Product(id, name, quantity, price);
+					String addMsg = controller.addProduct(product);
+					System.out.println(addMsg);
+					break;
+
+				case 2:
+					List<Product> products = controller.getAllProducts();
+					if (products.isEmpty()) {
+						System.out.println("❗ No products available.");
+					} else {
+						System.out.println("\nProduct List:");
+						for (Product p : products) {
+							System.out.println("ID: " + p.getId() + ", Name: " + p.getName() + ", Qty: "
+									+ p.getQuantity() + ", Price: ₹" + p.getPrice());
+						}
+					}
+					break;
+
+				case 3:
+					String totalValueMsg = controller.getTotalInventoryValue();
+					System.out.println(totalValueMsg);
+					break;
+
+				case 4:
+					System.out.println("Exiting... Thank you!");
+					bol = false;
+					break;
+
+				default:
+					System.out.println("Invalid choice. Please try again.");
+					break;
+				}
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+}
+
+
+
+package com.nt.controller;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
+import com.nt.model.Product;
+import com.nt.service.ProductService;
+
+@Component
+public class ProductController {
+	@Autowired
+	private ProductService productService;
+
+	public String addProduct(Product product) {
+		productService.addProduct(product);
+		return "Product added successfully!";
+	}
+
+	public List<Product> getAllProducts() {
+		return productService.getAllProducts();
+	}
+
+	public String getTotalInventoryValue() {
+		double total = productService.getTotalInventoryValue();
+		return "Total Inventory Value: ₹" + total;
+	}
+}
+
+
+
+package com.nt.service;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.nt.model.Product;
+import com.nt.repository.ProductRepository;
+
+@Service
+public class ProductService {
+	@Autowired
+	private ProductRepository productRepository;
+
+	public void addProduct(Product product) {
+		productRepository.addProduct(product);
+	}
+
+	public List<Product> getAllProducts() {
+		return productRepository.findAll();
+	}
+
+	public double getTotalInventoryValue() {
+		return productRepository.calculateTotalValue();
+	}
+}
+
+
+package com.nt.repository;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import org.springframework.stereotype.Component;
+
+import com.nt.model.Product;
+
+@Component
+public class ProductRepository {
+	private final Map<Long, Product> productMap = new HashMap<>();
+
+    public void addProduct(Product product) {
+        productMap.put(product.getId(), product);
+    }
+
+    public List<Product> findAll() {
+        return new ArrayList<>(productMap.values());
+    }
+
+    public double calculateTotalValue() {
+        return productMap.values().stream()
+                .mapToDouble(p -> p.getPrice() * p.getQuantity())
+                .sum();
+    }
+}
+
+
+
+package com.nt.model;
+
+public class Product {
+    private Long id;
+    private String name;
+    private int quantity;
+    private double price;
+
+    public Product() {}
+
+    public Product(Long id, String name, int quantity, double price) {
+        this.id = id;
+        this.name = name;
+        this.quantity = quantity;
+        this.price = price;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
+    }
+
+    public double getPrice() {
+        return price;
+    }
+
+    public void setPrice(double price) {
+        this.price = price;
+    }
+}
+====================================================================================================================

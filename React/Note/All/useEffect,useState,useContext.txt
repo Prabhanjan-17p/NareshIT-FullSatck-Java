@@ -1,0 +1,154 @@
+Component Life Cycle
+- Constructor
+- Mount
+- Update
+- Unmount
+
+1. useEffect
+- It is used to configure the mount and unmount phase for component explicitly.
+- You can configure additional actions to perform at the time of mount & unmount.
+- Every component can mount & unmount only once.
+- It requires dependencies to configure, so that when ever dependency changes the component will mount again.
+
+Syntax:
+     useEffect( ()=>{
+
+         // actions on mount;
+   
+         return()=>{
+            // actions on unmount;
+         }
+
+      }, [ dependencies ] )
+
+FAQ's:
+a) Can we define multiple mount phases explicitly?
+
+b) Can we have multiple useEffect() configured for single component?
+
+Ans: Yes
+
+c) Why we need multiple useEffect() configured in a component?
+
+Ans: To implement conditional rendering.
+
+Syntax:
+        useEffect(()=>{ },[ id ])
+
+        useEffect(()=>{ }, [ ])
+
+
+2. useState()
+
+- State is configured for component while creating component.
+- useState() is a hook required to access the local state.
+- It is available only for current component.
+- It is not accessible to its child components.
+- You have to initialize values into state while allocating memory for state.
+- You can't set state while creating a component.
+- State is an object with getter & setter.
+- Getter reads and returns value.
+- Setter initializes value into state.
+
+Syntax:
+     const  [ getter, setter ] = useState(anyType);
+
+FAQ:
+a) What is  [getter, setters] refers to ?
+Ans: It is an object de-structure syntax.
+
+b) Why you have to declare state with const?
+Ans: State should not allow assignment. It must allow only initialization.
+     Hence it is recommended to configure using "const".
+
+c) Can we declare state using var or let?
+Ans: Yes. But not recommended.
+
+d) JavaScript is not strongly typed, then how use state will not allow any another type after initializing specific data type?
+Ans: React library is built using typescript as language. And useState is a generic
+    type. Generics are open for any type but will restrict to specific type.
+
+Syntax:
+       const [ get, set ] = useState('  ');
+
+       set( 'John' );        // valid
+       set(100);        // invalid
+       set(true);        // invalid
+
+3. useContext
+- Context is the memory configured for parent and accessible to its child.
+- Context memory is available to all components that run within the context of parent
+- If a child component is not controlled component, then data is passed from parent to child by using context.
+- If child component is controlled then you can pass data from parent to child using props.
+- React requires a context memory to be created explicitly by using "createContext()".
+
+Syntax:
+
+    let   contextName = createContext(null);
+
+    null    => expecting data into memory at runtime.
+
+- Every context requires a scope to configure, so that the data is accessible only to the child components that run within the context scope.
+
+Syntax:
+        <conextName.Provider    value={ any }>
+
+             <Child />
+       
+        </contextName.Provider>
+
+- Child component can access and use the context memory by using the hook
+   "useContext".
+
+Syntax:
+        let  ref  = useContext(contextName);
+
+Ex:
+context-demo.jsx
+
+import { createContext, useContext, useState } from "react";
+
+let userContext = createContext(null);
+
+export function Level1(){
+
+    let ref = useContext(userContext);
+
+    return(
+        <div className="bg-warning p-3">
+            <h3>Level-1 - {ref} </h3>
+            <Level2 />
+        </div>
+    )
+}
+
+export function Level2(){
+
+    let ref = useContext(userContext);
+
+    return(
+        <div className="bg-danger p-3">
+            <h3>Level-2 - {ref}</h3>
+        </div>
+    )
+}
+
+
+export function ContextDemo(){
+
+    const [uname, setUname] = useState('John');
+
+    function handleNameChange(e){
+        setUname(e.target.value);
+    }
+
+    return(
+        <div className="container-fluid bg-dark text-white p-4">
+            <h1>Main Component - <input type="text" onChange={handleNameChange} placeholder="User Name" /> </h1>
+            <userContext.Provider value={uname}>
+                  <Level1 />
+            </userContext.Provider>
+
+        </div>
+    )
+}

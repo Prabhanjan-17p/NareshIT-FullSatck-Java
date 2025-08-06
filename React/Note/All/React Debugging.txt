@@ -1,0 +1,42 @@
+Debugging
+1. Chrome React Dev Tools
+
+    - Monitoring State    
+    - Monitoring Props
+    - Monitoring Component
+
+    a) values stored in state
+    b) controlled component properties and values
+    c) hierarchy of components
+
+   > Run your react Vite app in dev mode
+       
+           npm run dev
+
+   > Launch application in Chrome browser   http://localhost:5173
+
+   > Right Click and Inspect in browser to open Debugging Tools
+
+   > Go to "Components" to view the hierarchy and select component to view
+       Its props, state and dependencies.
+
+   > Go to Profiler to monitor the render time for every component.
+
+Note: To monitor actual DOM cycle you have to go to Chrome Dev Tools "Performance"
+          category and use the "record" button to start profiling.
+
+2. Go to useEffect() hook in component and add "debugging", to setup break points.
+
+
+                            Testing
+- Testing is the process of verifying "AS-IS" & "TO-BE".
+- AS-IS refers to developer design & logic.
+- TO-BE refers to client requirement.
+
+        AS-IS === TO-BE        Test Pass
+        AS-IS !==  TO-BET        Test Fail
+
+- React can use various testing frameworks  
+        a) Jasmine Karma
+        b) JEST
+        c)  VI Test etc.

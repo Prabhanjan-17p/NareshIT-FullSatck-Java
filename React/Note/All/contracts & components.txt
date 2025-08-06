@@ -1,0 +1,209 @@
+TypeScript OOP
+1. Contracts
+- Contract defines set of rules.
+- A component is designed according to the rules defined.
+- Technically contract is designed using "interface".
+- It allows to make the rules reusable and extensible.
+
+Syntax:
+        interface  IName
+        {
+              // rules
+        }
+
+- Interface can define rules for both properties and methods.
+- It can contain only rules not the implementation.
+- You can configure optional rules by using null reference character "?".
+- You can configure "readonly" rules.
+
+         {
+            property?: type;
+            readonly property: type;
+         }
+
+FAQ: Why a contract needs optional Rules?
+Ans:  To configure and implement "Goals".
+
+FAQ: What is difference between objective and goal?
+Ans: Objective is time bound and mandatory.
+     Goal is without time bound and optional.
+
+Ex:
+index.ts
+
+interface IProduct
+{
+    Name:string;
+    Price:number;
+    Qty:number;
+    Total():number;
+    Print?():void;
+}
+let product:IProduct = {
+    Name: "TV",
+    Price: 30000,
+    Qty : 2,
+    Total: function(){
+        return this.Qty * this.Price;
+    },
+    Print: function(){
+        console.log(`Name=${this.Name}\nPrice=${this.Price}\nQty=${this.Qty}\nTotal=${this.Total()}`);
+    }
+}
+product.Print();
+
+- You can extend a contract with another contract.
+
+Syntax:
+     interface Ver1
+    {
+    }
+    interface  Ver2 extends Ver1
+    {
+    }
+
+- If same name members are defined then it uses the latest.
+- A contract allow to extend multiple contracts.
+
+Syntax:
+     interface  Ver3  extends  Ver1, Ver2
+     {
+     }
+
+Ex:
+interface ICategory
+{
+    CategoryName:string;
+}
+interface IVendor
+{
+    VendorName:string;
+}
+interface IProduct extends ICategory, IVendor
+{
+    Name:string;
+    Price:number;
+    Qty:number;
+    Total():number;
+    Print?():void;
+}
+
+let product:IProduct = {
+    Name: "TV",
+    Price: 30000,
+    Qty : 2,
+    CategoryName : "Electronics",
+    VendorName: "Reliance Digital",
+    Total: function(){
+        return this.Qty * this.Price;
+    },
+    Print: function(){
+        console.log(`Name=${this.Name}\nPrice=${this.Price}\nQty=${this.Qty}\nTotal=${this.Total()}\nCategory=${this.CategoryName}\nVendor=${this.VendorName}`);
+    }
+}
+product.Print();
+
+- If you are using contract as type then it can configure array type to handle multiple values.
+
+Syntax:
+         let  product : IProduct = {  }
+         let  products: IProduct[] = [ { }, { } ]
+
+Summary
+- Contract
+- Optional Rules
+- Read Only Rules
+- Extending Rules
+- Implementing Rules for Object
+- Implementing Rules for Collection
+
+2. Class
+- It is a program template.
+- Class declaration
+- Class Expression
+- Class Members
+    Property
+    Accessor
+    Method
+    Constructor
+- Static & Non Static Members
+- Property & Method is defined with data type.
+- Class can implement contract [Rules].
+- Class members can be defined with access modifiers
+    a) public
+    b) private
+    c) protected
+
+Public:
+- It is accessible from any location and from any object.
+- You can access within class or outside class.
+- You can access with current class object or using a derived class object.
+
+Private:
+- It is accessible only within class.
+- If static you can access by class name.
+- If non-static then you can access by using "this" keyword.
+
+Protected
+- It is accessible within the class.
+- It is accessible outside class but only within derived class and also by only by using a derived class reference.
+- You can't access outside derived class.
+
+Ex:
+
+class Product
+{
+     public Name:string = "TV";
+     private Price:number = 45000;
+     protected Stock:boolean = true;
+     public Print():void{
+         this.Price;            // private
+         this.Name;             // public
+         this.Stock;            // protected
+     }
+}
+
+class Derived extends Product
+{
+    public DerivedPrint(obj:Derived){
+        obj.Name;       // public
+        obj.Stock;      // protected
+    }
+
+}
+let obj1 = new Product();
+obj1.Name;                  // public
+
+let obj2 = new Derived();
+obj2.Name;                  // public
+
+Ex: class with rules
+
+interface IProduct
+{
+     Name:string;
+     Qty:number;
+     Price:number;
+     Total():number;
+     Print():void;
+}
+interface ICategory
+{
+    CategoryName:string;
+}
+class Product implements IProduct, ICategory
+{
+    Name = "TV";
+    Price = 56000;
+    Qty = 2;
+    CategoryName = "Electronics";
+    Total(){
+        return this.Qty *this.Price;
+    }
+    Print(){
+        console.log(`Name=${this.Name}\nTotal=${this.Total()}\nCategory=${this.CategoryName}`);
+    }
+}
+
+let obj = new Product();
+obj.Print();

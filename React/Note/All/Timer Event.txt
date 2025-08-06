@@ -1,0 +1,190 @@
+Timer Events
+
+1. setTimeout()
+- It is used to control and configure debounce.
+- Debounce allows to delay any task by specified duration.
+- It can lock and make task inactive for specific duration.
+
+Syntax:
+    setTimeout(function(){ }, interval)
+
+2. clearTimeout()
+- It is used to remove the task from memory before released into process.
+- It requires a reference memory name where the task is stored.
+- JavaScript uses variables to store tasks in memory reference.
+- React up to 17 also used variables.
+- React 18x version introduced a new hook by name "useRef()" to configure reference memory.
+
+Syntax:
+        clearTimeout(referenceName);
+
+
+                     React  useRef() Hook
+                    -------------------------------
+- It is a new hook in React from 18x version.
+- It allocates a reference memory.
+- Reference memory is intended to use in internal process.
+- It is not designed for rendering output. However it can be used for rendering output.
+- It allocates memory dynamically to store any thread.
+
+    Syntax:
+            let   ref   = useRef(null);
+
+- You have to configure and assign a value into reference memory by using "current" property.
+
+    Syntax:
+            ref.current = value | function;
+
+- You can access by using "current" property.
+
+Ex:
+  timer-demo.jsx
+
+import { useRef, useState } from "react"
+
+
+export function TimerDemo(){
+
+    const [msg, setMsg] = useState('Volume 0%');
+
+    let thread2 = useRef(null);
+
+    function Level1(){
+        setMsg('Volume Increased to 20%');
+    }
+    function Level2(){
+        setMsg('Volume Increased to 70%');
+    }
+    function Level3(){
+        setMsg('Volume Increased to 100%');
+    }
+
+   
+    function handleVolumeUpClick(){
+        setTimeout(Level1, 3000);
+        thread2.current = setTimeout(Level2, 5000);
+        setTimeout(Level3,10000);
+    }
+
+    function handleCancelClick(){
+        clearTimeout(thread2.current);
+    }
+
+    return(
+        <div className="container-fluid">
+            <div className="mt-4">
+                <button onClick={handleCancelClick} className="btn btn-warning mx-2">Cancel Level2</button>
+                <button onClick={handleVolumeUpClick} className="btn btn-primary bi bi-volume-up"></button>
+                <span className="mx-2">{msg}</span>
+            </div>
+        </div>
+    )
+}
+
+3. setInterval()
+- It is used to configure any task that requires "throttle".
+- Throttle is a mechanism where a task is initiated and executed repeatedly at regular intervals until removed from memory.
+
+Syntax:
+    setInterval(function(){}, interval)
+
+4. clearInterval()
+- It is used to stop the throttle.
+- It requires a memory reference where the task is configured.
+
+Syntax:
+     clearInterval(referenceName);
+
+Ex:
+timer-demo.jsx
+
+import { useEffect, useRef, useState } from "react"
+
+
+export function TimerDemo(){
+
+   
+    const [time, setTime] = useState();
+
+    function Timer(){
+        var now = new Date();
+        var time = now.toLocaleTimeString();
+        setTime(time);
+    }
+
+    useEffect(()=>{
+
+        setInterval(Timer,1000);
+
+    },[])
+   
+
+    return(
+        <div className="container-fluid">
+            <div className="mt-4 text-center">
+                {time}
+            </div>
+        </div>
+    )
+}
+
+Ex: Stop watch
+
+import { useEffect, useRef, useState } from "react"
+
+
+export function TimerDemo(){
+
+
+    const [ms, setMs] = useState(0);
+    const [sec, setSeconds] = useState(0);
+
+    let thread = useRef(null);
+   
+   var count = 0;
+   var seconds = 0;
+   function RunMilliSeconds(){
+       count++;
+       if(count===999){
+          seconds++;
+          count = 0;
+          setSeconds(seconds);
+       }
+       setMs(count);
+   }
+
+   function handleStartClick(){
+      thread.current = setInterval(RunMilliSeconds,0.1);
+   }
+   
+   function handleStopClick(){
+       clearInterval(thread.current);
+   }
+
+    return(
+        <div className="container-fluid">
+            <div className="mt-4 text-center d-flex justify-content-center">
+                 <div className="mx-4">
+                    <span>00</span>
+                    <span style={{fontSize:'10px'}}>h</span>
+                 </div>
+                 <div className="mx-4">
+                    <span>00</span>
+                    <span style={{fontSize:'10px'}}>m</span>
+                 </div>
+                 <div className="mx-4">
+                    <span>{sec}</span>
+                    <span style={{fontSize:'10px'}}>s</span>
+                 </div>
+                 <div className="mx-4">
+                    <span>{ms}</span>
+                    <span style={{fontSize:'10px'}}>ms</span>
+                 </div>
+            </div>
+            <div>
+                <button onClick={handleStartClick} className="btn btn-primary">Start</button>
+                <button onClick={handleStopClick} className="btn btn-danger">Stop</button>
+            </div>
+        </div>
+    )
+}

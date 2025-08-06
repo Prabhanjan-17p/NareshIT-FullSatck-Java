@@ -1,0 +1,246 @@
+Testing Vite React Application
+
+1. Install Testing library with JEST DOM & Vitest
+
+   > npm install --save-dev vitest @testing-library/react @testing-library/jest-dom jsdom
+
+ 2. Add a new file into  "src" folder  by name   "setupTests.js"
+
+    import '@testing-library/jest-dom';
+
+ 3. Go to "vite.config.js" in SRC folder and add the following properties
+
+    test: {
+            globals: true,
+            environment: 'jsdom',
+            setupFiles: ['./src/setupTests.js']
+      },
+
+ 4.  Vite uses "JSX" for testing, to test any component in your project add
+
+        "component.test.jsx"
+
+5. Import the following library into test file
+
+    import { test, expect } from 'vitest';
+    import { render, screen } from '@testing-library/react';
+
+    - Testing every function of component includes 3 phases
+   
+    a) Arrange     (test, render, screen)
+    b) Act        (expect)
+    c) Assert        (mock functions)
+
+Syntax:
+     test ('case_name', ()=>{
+       
+        render(<component />);
+       
+        var ref = screen.getBy..(/matching_pattern_or_id/);
+       
+        expect(ref).toBe..();
+        expect(ref).toHave..();
+
+    })
+
+6. To run test
+
+    > npx  vitest
+
+Ex:
+1. login.jsx
+
+import './login.css';
+import { useCaptcha } from '../../hooks/captcha';
+
+export function Login(){
+
+    let code = useCaptcha();
+
+
+    return(
+        <form className='form-background'>
+            <h3 data-testid='title'>Customer Login</h3>
+            <dl>
+                <dt>User Name</dt>
+                <dd><input type="text" /></dd>
+                <dt>Password</dt>
+                <dd><input type="password" /></dd>
+                <dt>Verify Code</dt>
+                <dd>{code}</dd>
+            </dl>
+            <button>Login</button>
+            <div>
+            </div>
+        </form>
+    )
+}
+
+2. login.test.jsx
+
+import { test, expect } from "vitest";
+import { render, screen } from "@testing-library/react";
+import { Login } from "./login";
+
+test('Title Test',()=>{
+    render(<Login />);
+
+    var title = screen.getByTestId('title');
+    expect(title).toHaveTextContent(/Customer Login/);
+})
+
+test('Forgot Password Link Test', ()=>{
+     render(<Login />);
+
+     var link = screen.getByText(/Forgot Password/);
+     expect(link).toBeInTheDocument();
+     expect(link).toHaveAttribute('href', '/forgot-password');
+})
+
+
+3. Weather-API.jsx
+
+import axios from "axios";
+import { createContext, useContext, useEffect, useState } from "react"
+
+let cityContext = createContext(null);
+
+export function WeatherWidget(){
+
+    let cityName = useContext(cityContext);
+
+    const [weatherObj, setWeatherObj] = useState({main:{temp:0}, weather:[{description:''}], wind:{speed:0}});
+
+
+    useEffect(()=>{
+       
+        axios.get(`https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=1318ca6725c69160d346c41fc0612596&units=metric`)
+        .then(response=> {
+            setWeatherObj(response.data);
+        })
+
+    },[cityName])
+
+     return(
+        <div>
+            <h2 data-testid="title">Weather App</h2>
+            <h3>{weatherObj.name}</h3>
+            <dl>
+                <dt>Temp</dt>
+                <dd>{weatherObj.main.temp} &deg; C </dd>
+                <dt className="bi bi-cloud"> Description</dt>
+                <dd>{weatherObj.weather[0].description}</dd>
+                <dt className="bi bi-water"> Wind Speed </dt>
+                <dd>{weatherObj.wind.speed.toLocaleString('en-in',{style:"unit", unit:"kilometer-per-hour"})}</dd>
+            </dl>
+        </div>
+     )
+}
+
+
+export function WeatherAPI(){
+
+    const [searchText, setSearchText] = useState();
+    const [contextValue, setContextValue] = useState('Hyderabad');
+
+    function handleTextChange(e){
+        setSearchText(e.target.value);
+    }
+
+    function handleSearchClick(){
+        setContextValue(searchText);
+    }
+
+    return(
+        <div className="container-fluid d-flex justify-content-center align-items-center">
+            <div className="p-4 border border-1 w-50">
+                <div className="input-group">
+                    <input type="text" onChange={handleTextChange} placeholder="Enter City Name" className="form-control" />
+                    <button onClick={handleSearchClick} className="btn btn-warning bi bi-search"></button>
+                </div>
+                <div className="mt-4">
+                    <cityContext.Provider value={contextValue}>
+                        <WeatherWidget />
+                    </cityContext.Provider>
+                </div>
+            </div>
+        </div>
+    )
+}
+
+4. Weather-API.test.jsx
+
+import { WeatherAPI } from './weather-api';
+import { test, expect } from 'vitest';
+import { render, screen } from '@testing-library/react';
+
+test('Title Test', ()=>{
+
+     render(<WeatherAPI />);
+
+     var title = screen.getByTestId('title');
+     expect(title).toHaveTextContent(/Weather App/);
+
+})
+
+                         Build and Deploy
+- Build is the process of
+    > compiling your code
+    > identifying the issues in code
+    > making the application production ready if there are no issues.
+
+- Production environment comprises of only one production folder "dist/build", which you have to use in deployment.
+
+1. Build your project
+
+        > npm  run build     (or)   vite build
+
+2. You can deploy on local static servers
+        - IIS
+        - XAMP
+        - WAMP
+        - Tomcat
+        - Express Static
+
+3. You can deploy on cloud server
+        - Vercel
+        - Netlify
+        - Firebase
+        - AWS
+        - AZURE etc..
+
+Deploying on Firebase [Google Cloud]
+
+1. Install firebase tools on your device
+
+    C:\> npm install -g  firebase-tools
+
+2. Login into firebase from browser and create a new project [Google Account]
+ 
+    > Go to console
+    > Create a new project    : my-latestweather-app
+    > Select default account [free]
+    > Continue
+    > Create
+
+3. Go to your Project terminal and login into firebase
+
+    > firebase  login            // login into same account where you have project
+
+   
+    > firebase init
+
+        ? Which Firebase features do you want to set up : hosting
+        ? Use an existing project  
+        ? Select project name : my-latestweather-app
+        ? public directory name : dist  
+        ? rewrite index.html : no
+        ? Github : no
+        ? rewrite index.html : no
+
+    > firebase deploy
+
+Note: After Every Change in Project
+       
+        > npm run build
+        > firebase deploy

@@ -1,0 +1,167 @@
+useState
+useEffect
+useContext  [ createContext ]
+
+Ex:
+products-search.jsx
+
+import axios from "axios";
+import { createContext, useContext, useEffect, useState } from "react"
+
+
+let searchContext = createContext(null);
+
+export function MainComponent(){
+
+    let search = useContext(searchContext);
+
+    const [products, setProducts] = useState([{id:0, title:'', category:'', price:0, description:'', image:'', rating:{rate:0, count:0}}]);
+
+    useEffect(()=>{
+
+         axios.get(`https://fakestoreapi.com/products/category/${search}`)
+         .then(response => {
+             setProducts(response.data);
+         });
+
+    },[search])
+
+    return(
+        <div>
+            <div className="h5">Search Results</div>
+            <main className="d-flex flex-wrap">
+                {
+                    products.map(product =>
+                        <div key={product.id} className="card p-2 m-2" style={{width:'200px'}}>
+                            <img className="card-img-top" src={product.image} height="120" />
+                            <div className="card-header">
+                                {product.title}
+                            </div>
+                            <div className="card-body">
+                                $ {product.price}
+                            </div>
+                        </div>
+                    )
+                }
+            </main>
+        </div>
+    )
+}
+
+export function ProductsSearch(){
+
+
+    const [searchString, setSearchString] = useState('');
+
+    const [contextValue, setContextValue] = useState('electronics');
+
+    function handleSearchChange(e){
+        setSearchString(e.target.value);
+    }
+    function handleSearchClick(){
+        setContextValue(searchString);
+    }
+
+    return(
+        <div className="container-fluid">
+            <header className="mt-3 p-4 d-flex justify-content-center">
+                <div className="input-group w-50">
+                    <input type="text" onChange={handleSearchChange} placeholder="Search Fakestore categories" className="form-control" /> <button onClick={handleSearchClick} className="bi bi-search btn btn-warning"></button>
+                </div>
+            </header>
+            <section className="mt-4">
+                <searchContext.Provider value={contextValue}>
+                     <MainComponent />
+                </searchContext.Provider>
+            </section>
+        </div>
+    )
+}
+
+Ex: Weather API
+
+1. Visit    https://openweathermap.org/api
+
+2. Signup for API key
+
+3. Sign in to account => Go to API's => Current Weather API => API DOC
+
+4. Select API with city name
+
+    https://api.openweathermap.org/data/2.5/weather?q={city name}&appid={API key}
+
+
+    apikey = 1318ca6725c69160d346c41fc0612596
+
+
+Ex:
+weather-api.jsx
+
+import axios from "axios";
+import { createContext, useContext, useEffect, useState } from "react"
+
+let cityContext = createContext(null);
+
+export function WeatherWidget(){
+
+    let cityName = useContext(cityContext);
+
+    const [weatherObj, setWeatherObj] = useState({main:{temp:0}, weather:[{description:''}], wind:{speed:0}});
+
+
+    useEffect(()=>{
+
+        axios.get(`https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=1318ca6725c69160d346c41fc0612596&units=metric`)
+        .then(response=> {
+            setWeatherObj(response.data);
+        })
+
+    },[cityName])
+
+     return(
+        <div>
+            <h3>{weatherObj.name}</h3>
+            <dl>
+                <dt>Temp</dt>
+                <dd>{weatherObj.main.temp} &deg; C </dd>
+                <dt className="bi bi-cloud"> Description</dt>
+                <dd>{weatherObj.weather[0].description}</dd>
+                <dt className="bi bi-water"> Wind Speed </dt>
+                <dd>{weatherObj.wind.speed.toLocaleString('en-in',{style:"unit", unit:"kilometer-per-hour"})}</dd>
+            </dl>
+        </div>
+     )
+}
+
+
+export function WeatherAPI(){
+
+    const [searchText, setSearchText] = useState();
+    const [contextValue, setContextValue] = useState('Hyderabad');
+
+    function handleTextChange(e){
+        setSearchText(e.target.value);
+    }
+
+    function handleSearchClick(){
+        setContextValue(searchText);
+    }
+
+    return(
+        <div className="container-fluid d-flex justify-content-center align-items-center" style={{height:'100vh'}}>
+            <div className="p-4 border border-1 w-50">
+                <div className="input-group">
+                    <input type="text" onChange={handleTextChange} placeholder="Enter City Name" className="form-control" />
+                    <button onClick={handleSearchClick} className="btn btn-warning bi bi-search"></button>
+                </div>
+                <div className="mt-4">
+                    <cityContext.Provider value={contextValue}>
+                        <WeatherWidget />
+                    </cityContext.Provider>
+                </div>
+            </div>
+        </div>
+    )
+}
+   
+                            useReducer

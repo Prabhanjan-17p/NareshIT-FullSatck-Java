@@ -1,0 +1,44 @@
+1. Add test dependencies
+npm install --save-dev vitest @testing-library/react @testing-library/jest-dom jsdom
+
+
+2. Add   src/setupTests.js
+
+    import '@testing-library/jest-dom';
+ 
+3. vite.config.js
+
+import { defineConfig } from 'vite'
+import react from '@vitejs/plugin-react'
+
+export default defineConfig({
+  plugins: [react()],
+  test: {
+    globals: true,
+    environment: 'jsdom',
+    setupFiles: ['./src/setupTests.js']
+  },
+})
+
+4. weather-api.test.jsx
+
+import { screen, render } from "@testing-library/react";
+import { WeatherAPI } from "./weather-api";
+import { expect, test } from "vitest";
+
+test("Title Test", ()=>{
+     render(<WeatherAPI />);
+     var title = screen.getByTestId("title");
+     expect(title).toHaveTextContent(/Weather App/);
+})
+
+
+5. package.json
+
+    "scripts": {
+           ....
+        "test": "vitest"
+  },
+
+6. Run
+    > npx  vitest

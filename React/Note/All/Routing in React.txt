@@ -1,0 +1,114 @@
+Routing in React
+- Routing is a technique used in web applications to configure user and SEO friendly URL's.
+
+     https://www.amazon.in/electronics.jsp?category=mobiles&brand=apple&model=16
+
+     https://www.amazon.in/electronics/mobiles/apple/16
+
+- Routing configures navigation in SPA. [ Single Page Application ]
+- User can stay on one page and can access everything from the page.
+- Routing implements AJAX implicitly.
+- It allows to add new details into page without reloading the page.
+- Routing provides a fluid UX for page.
+- Routing can be configured Server side and Client side.
+- React client side routes are defined by using "React Router DOM" library.
+
+        React up to 17 version uses     : Router DOM V5
+        React 18 & 19 uses         : Router DOM V6 & V7
+
+1. Install React Router DOM
+
+    > npm  install  react-router-dom  --save            // latest is 7x
+
+    > npm  install  react-router-dom@v5  --save        // for specific version
+
+
+2. Router DOM provides following components to configure routes
+
+    <BrowserRouter>            It is a provider for route.
+                            It transforms the virtual DOM route into actual DOM.
+                            It uses browser location object.
+
+    <Routes>                It configures a collection of routes.
+                            It is used to build a route table.
+
+    <Route>                    It configures individual routes.
+                            Every route have a path and component to render.
+
+    <Link>                    It is used to configure a hyperlink for route.
+                            It allows to navigate to any specific route path.
+
+    <Outlet>                    It configures outlet that refers to container where
+                            the resulting markup is rendered.
+                            It is used while configuring child routes.
+
+Syntax:
+    <BrowserRouter>
+
+        <Routes>
+
+             <Route  path=""   element={ } />
+             <Route  path=""   element={ } />
+
+        </Routes>
+
+    </BrowserRouter>
+
+- Route path can use wild card routes
+
+        path="/"            It requests a component when user request is not
+                        for any specific.
+
+        path="*"            It renders a component when requested path not found.
+
+- Always keep the wild card "*" as last route in routes list.
+- It is recommended to configure "/" as first route.
+- You can navigate to any route path using Link component.
+
+Syntax:
+     <Link  to="path">  Text | Image </Link>
+
+Ex:
+shopping-index.jsx
+
+import { BrowserRouter, Link, Route, Routes } from "react-router-dom";
+import { WeatherAPI } from "../components/weather-api/weather-api";
+import { EmiCalculator } from "../components/emi-calculator/emi-calculator";
+
+export function ShoppingIndex(){
+    return(
+        <div className="container-fluid">
+            <BrowserRouter>
+                <header className="p-2 text-center border border-1">
+                        <h2>Shopping</h2>
+                        <nav>
+                            <span className="mx-4"><Link to="/"> Home </Link></span>
+                            <span className="mx-4"><Link to="mobiles"> Mobiles </Link></span>
+                            <span className="mx-4"><Link to="women"> Women </Link></span>
+                            <span className="mx-4"><Link to="weather"> Weather </Link></span>
+                            <span className="mx-4"><Link to="emi"> EMI Calculator </Link></span>
+                        </nav>
+                </header>
+                <section className="mt-4 p-4">
+                    <Routes>
+                        <Route path="/" element={<div><h5>Shopping Home</h5><p>Women Fashion | Kids Fashion | Mobiles</p></div>} />
+                        <Route path="mobiles" element={<div><h5>Mobiles</h5><p>Apple | Samsung | RealMe</p></div>} />
+                        <Route path="women" element={<div><h5>Women Fashion</h5> <p>Clothing | Jewelery | Accessories</p> </div>} />
+                        <Route path="weather" element={<WeatherAPI />} />
+                        <Route path="emi" element={<EmiCalculator/>} />
+                        <Route path="*" element={<div><h5>Not Found</h5><p>Sorry the path requested can't be served.</p></div>} />
+                    </Routes>
+                </section>
+           
+            </BrowserRouter>
+        </div>
+    )
+}
+
+
+
+- Route Parameters
+- Child Routes
+- Nested Routes
+- Search Parameters
+- Route Authentication

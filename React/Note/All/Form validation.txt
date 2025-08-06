@@ -1,0 +1,270 @@
+Forms in React
+- FormData
+- Formik
+- useFormik
+- handleSubmit
+- handleChange
+
+                          Form Validation
+- Validation is the process of verifying user input.
+- Validation is required to ensure that contradictory and unauthorized data is not get stored into database.
+- HTML 5 provides pre-defined validations for elements, which include services like
+    a) required
+    b) minlength
+    c) min
+    d) max
+    e) pattern
+    f) email
+    g) url  etc..
+- It is recommended to disable the default validations, when you are configuring custom validations.
+
+Syntax:
+    <form  novalidate>
+    </form>
+
+- Formik allows to configure custom validation using 2 techniques
+
+    a) Manually writing a validation function
+    b) Using any validation schema library
+
+
+Manual Validation Function:
+
+1. Create a function that collects form data, validates the data and return errors.
+
+    function ValidateUser(formData)
+    {
+        var errors = { };
+
+         // your validation methods
+
+        return errors;
+     }
+
+2. Assign validation function to formik form.
+
+    const formik = useFormik({
+          initialValues: { },
+          validate: ValidateUser,
+          onSubmit: (values)=>{ }
+    })
+
+3. You can access and display errors messages by using "formik.errors"
+
+    <div> { formik.errors.fieldName } </div>
+
+Ex:
+form-demo.jsx
+
+
+import { useFormik } from "formik"
+
+export function FormDemo(){
+
+
+    function ValidateUser(formData){
+        var errors = {UserName:'', Email:'', Age:'', Gender:'', City:'', Mobile:''};
+
+        if(formData.UserName.length===0){
+            errors.UserName = 'User Name Required';
+        } else {
+            if(formData.UserName.length<4){
+                errors.UserName = 'Name too short';
+            }
+        }
+
+        if(formData.Age.length===0){
+            errors.Age = 'Age Required';
+        } else {
+            if(isNaN(formData.Age)){
+                errors.Age = 'Age must be a number';
+            } else {
+                errors.Age = '';
+            }
+        }
+
+        if(formData.Gender===''){
+            errors.Gender = 'Please Select Gender';
+        } else {
+            errors.Gender = '';
+        }
+
+        if(formData.City==='-1'){
+            errors.City = 'Please select your city';
+        } else {
+            errors.City = '';
+        }
+
+        if(formData.Mobile.match(/\+91\d{10}/)){
+            errors.Mobile = '';
+        } else {
+            errors.Mobile = 'Invalid Mobile +91 10 digits'
+        }
+
+
+        return errors;
+    }
+
+    const formik = useFormik({
+        initialValues: {
+            UserName : '',
+            Email: '',
+            Age: 0,
+            Gender: '',
+            City: '',
+            Mobile: ''
+        },
+        validate : ValidateUser,
+        onSubmit : (data) => {
+            console.log(data);
+        }
+    })
+   
+
+    return(
+        <div className="container-fluid">
+            <h3>Register User</h3>
+            <form onSubmit={formik.handleSubmit} noValidate>
+                <dl>
+                    <dt>User Name</dt>
+                    <dd><input type="text" minLength={4} onChange={formik.handleChange} name="UserName" /></dd>
+                    <dd className="text-danger">{formik.errors.UserName}</dd>
+                    <dt>Email</dt>
+                    <dd><input type="email" onChange={formik.handleChange} name="Email" /></dd>
+                    <dt>Age</dt>
+                    <dd><input type="age" onChange={formik.handleChange} name="Age" /></dd>
+                    <dd className="text-danger">{formik.errors.Age}</dd>
+                    <dt>Gender</dt>
+                    <dd>
+                        <input type="radio" onChange={formik.handleChange} name="Gender" value="Male"/ > <label> Male</label>  
+                        <input type="radio" onChange={formik.handleChange} name="Gender" value="Female"/ > <label> Female </label>
+                    </dd>
+                    <dd className="text-danger">{formik.errors.Gender}</dd>
+                    <dt>City</dt>
+                    <dd>
+                        <select name="City" onChange={formik.handleChange}>
+                            <option value="-1">Select City</option>
+                            <option value="Delhi">Delhi</option>
+                            <option value="Hyderabad">Hyderabad</option>
+                        </select>
+                    </dd>
+                    <dd className="text-danger">{formik.errors.City}</dd>
+                    <dt>Mobile</dt>
+                    <dd><input type="text" name="Mobile" onChange={formik.handleChange} /></dd>
+                    <dd className="text-danger">{formik.errors.Mobile}</dd>
+                </dl>
+                <button type="submit">Submit</button>
+                <h5>Please check the following errors:</h5>
+                <ul className="list-unstyled text-danger">
+                    {
+                        Object.keys(formik.errors).map(key=> <li key={key}>{formik.errors[key]}</li>)
+                    }
+                </ul>
+            </form>
+        </div>
+    )
+}
+
+                               Yup Library
+- It is a validation library used with Formik.
+- It provides pre-defined validation services.
+- It contains validation schema.
+- Service is predefined with functionality, you have to inject and customize according to the requirements.
+
+1. Install Yup library for project
+
+    > npm  install yup --save
+
+2. You can import all services or any specific required services into component
+
+    import  * as yup from "yup";
+   
+                 (or)
+
+    import  { required,  minLength, maxLength } from  "yup";
+
+
+3. You have to attach the schema using formik validation schema
+
+    const  formik = useFormik({
+        initialValue :  { },
+
+        validationSchema: yup.object({
+
+            fieldname: yup.dataType().required('message').minlength(n, 'message')
+        })
+
+    })
+
+Ex: Yup
+
+form-demo.jsx
+
+
+import { useFormik } from "formik";
+import * as yup from "yup";
+
+export function FormDemo(){
+
+
+   
+
+    const formik = useFormik({
+        initialValues: {
+            UserName : '',
+            Email: '',
+            Age: 0,
+            Gender: '',
+            City: '',
+            Mobile: ''
+        },
+        validationSchema: yup.object({
+            UserName: yup.string().required('User Name Required').min(4, 'Name too short'),
+            Age: yup.number('Age must be a number').min(15, 'Age min 15').max(35, 'Age max 35 only').required('Age Required'),
+            Mobile: yup.string().required('Mobile Required').matches(/\+91\d{10}/, 'Invalid Mobile'),
+            Email: yup.string().email('Invalid Email').required('Email Required')
+        }),
+        onSubmit : (data) => {
+            console.log(data);
+        }
+    })
+   
+
+    return(
+        <div className="container-fluid">
+            <h3>Register User</h3>
+            <form onSubmit={formik.handleSubmit} noValidate>
+                <dl>
+                    <dt>User Name</dt>
+                    <dd><input type="text" minLength={4} onChange={formik.handleChange} name="UserName" /></dd>
+                    <dd className="text-danger">{formik.errors.UserName}</dd>
+                    <dt>Email</dt>
+                    <dd><input type="text" onChange={formik.handleChange} name="Email" /></dd>
+                    <dt>Age</dt>
+                    <dd><input type="age" onChange={formik.handleChange} name="Age" /></dd>
+                    <dd className="text-danger">{formik.errors.Age}</dd>
+                    <dt>Gender</dt>
+                    <dd>
+                        <input type="radio" onChange={formik.handleChange} name="Gender" value="Male"/ > <label> Male</label>  
+                        <input type="radio" onChange={formik.handleChange} name="Gender" value="Female"/ > <label> Female </label>
+                    </dd>
+                    <dd className="text-danger">{formik.errors.Gender}</dd>
+                    <dt>City</dt>
+                    <dd>
+                        <select name="City" onChange={formik.handleChange}>
+                            <option value="-1">Select City</option>
+                            <option value="Delhi">Delhi</option>
+                            <option value="Hyderabad">Hyderabad</option>
+                        </select>
+                    </dd>
+                    <dd className="text-danger">{formik.errors.City}</dd>
+                    <dt>Mobile</dt>
+                    <dd><input type="text" name="Mobile" onChange={formik.handleChange} /></dd>
+                    <dd className="text-danger">{formik.errors.Mobile}</dd>
+                </dl>
+                <button type="submit">Submit</button>
+               
+            </form>
+        </div>
+    )
+}

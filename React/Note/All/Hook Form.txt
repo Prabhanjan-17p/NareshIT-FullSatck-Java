@@ -1,0 +1,111 @@
+React Hook Form
+Features:
+1. Performant
+    - light weight
+    - pre-defined
+    - faster
+
+2. Flexible and Extensible
+    - easy to add new features
+    - dynamically render elements
+    - dynamically can add elements
+    - extends functionality without making many changes in logic.
+
+3. Easy to validate
+    - uses HTML validations
+    - allow to customize HTML validation
+    - doesn't require any external library for validation
+
+How to explore any library document?
+
+1. Visit the official website
+    https://react-hook-form.com/
+
+2. Look for "API" in categories or menu items. It provides a complete overview of
+    all services provided by library.
+
+    React-Hook-Form API
+    - useForm
+    - useController
+    - useFormContext
+    - useWatch
+    - useFormState
+    - useFieldArray
+    - createFormControl
+
+3. Explore all the services provided and identify the service required for your requirements.
+
+
+4. Go back to get started in home page
+
+5. Install all required libraries and dependencies for project.
+
+    > npm  install  react-hook-form --save
+
+6. useForm is the hook required for designing and configuring form.
+
+    import  { useForm  }  from  "react-hook-form"
+
+7. It is an object type that returns 3 basic properties
+    a) register            : refers to form
+    b) handleSubmit        : refers to a function to execute on submit
+    c) formState            : refers to fields and their errors.
+
+Syntax:
+   
+    const { register, handleSubmit, formState: { errors } } = useForm();
+
+
+8. Create a function for handling submit
+
+    const  submit = (values) => { console.log(values); }
+
+
+9. Bind submit functionality with <form>
+
+     <form  onSubmit={ handleSubmit(submit) }>
+
+10. Bind form elements with hook-form so that it can validate and submit the field value.
+
+   <input type="text"  name="UserName"  { ...register("UserName", { validations }) } />
+
+
+Ex:
+import { useForm } from "react-hook-form";
+
+export function HookFormDemo(){
+
+
+    const {register, handleSubmit, formState:{errors}} = useForm();
+
+    const submit = (values) => {
+        console.log(values);
+    }
+
+    return(
+        <div className="container-fluid">
+            <h3>Register User</h3>
+            <form onSubmit={handleSubmit(submit)}>
+                <dl>
+                    <dt>User Name</dt>
+                    <dd><input type="text" name="UserName" {...register("UserName", {required:true, minLength:4})} /></dd>
+                    <dd className="text-danger">
+                        {
+                           ( errors.UserName?.type==="required") ? <span>User Name Required</span> : <span></span> &&
+                           ( errors.UserName?.type==="minLength") ? <span>Name too short</span>: <span></span>
+                        }
+                    </dd>
+                    <dt>Mobile</dt>
+                    <dd><input type="text" name="Mobile" {...register("Mobile", {required:true, pattern:/\+91\d{10}/})} /></dd>
+                    <dd>
+                        {
+                           ( errors.Mobile?.type==="required") ? <span>Mobile Required</span> : <span></span> &&
+                           ( errors.Mobile?.type==="pattern") ? <span>Invalid Mobile</span>: <span></span>
+                        }
+                    </dd>
+                </dl>
+                <button type="submit">Submit</button>
+            </form>
+        </div>
+    )
+}

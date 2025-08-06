@@ -1,0 +1,123 @@
+- Configuring Routes
+- Route Parameters
+- Child Routes
+- Absolute & Relative Routes
+
+
+                         Search Parameters
+- Search parameters refer to Query String.
+- You can transport additional data along with route parameters by using Query String.
+- Form submits data as Query String when configured with "GET" request.
+
+Syntax:
+               /route/params?key=value&key=value
+
+- You can access search parameters by using  "useSearchParams()" hook.
+
+Syntax:
+               let  [searchParams]  = useSearchParams();
+
+- useSearchParams returns a Map type.
+
+Syntax:
+                 searchParams.get("key");
+
+FAQ's:
+1. What is difference between route & search params?
+A. Route parameters can be configured by using a route path.
+    Route parameter can't use the form data to submit in the URL.
+   
+    Search parameter can use the form data.
+    It uses form data and submits in URL as query string on GET request.
+
+2. What is difference between  URLSearchParams() & useSearchParams()?
+A. URLSearchParams() is a browser window method that can access query string
+     using location.search.
+
+     useSearchParams() is a react router hook, used by virtual DOM to access the
+     query string.
+
+3. What is route outlet?
+A. Outlet is a component that is used to render resulting markup of a child route.
+
+4. Can we define multiple route outlets in a component?
+A. Yes.
+
+5. How to navigate dynamically to any route path?
+A. By using "useNavigate()" hook. [ V6 router-dom ]
+
+Syntax:
+     let navigate = useNavigate();
+
+     navigate("/path");        // relative or absolute
+
+           
+                        React Material UI
+                                 [MUI]
+- It provides various services like
+
+    a) MUI Core
+    b) MUI X
+    c) Templates
+    d) Toolpad
+    e) Design Kits
+
+- MUI Core is a component library with a set of pre-defined controlled components.
+- You can build interactive and responsive UI using MUI components.
+- MUI Core latest version is complete re-write of its previous versions.
+- It is added with new "@emotion" library.
+
+1. Install MUI with emotion library
+
+    > npm install @mui/material @emotion/react @emotion/styled
+
+2. Import specific component related module or all from the core module
+
+     import   Button  from  "@mui/material/button";
+
+     import   { Button, TextField,.. }  from  "@mui/material";
+
+Syntax:
+        <Button  props="" />
+
+Ex:
+mui-demo.jsx
+
+import { TextField, Button } from "@mui/material"
+import { useState } from "react"
+
+export function MUIDemo(){
+
+    const [uname, setUname] = useState('');
+
+    function handleNameChange(e){
+        setUname(e.target.value);
+    }
+
+    return(
+        <div className="container-fluid">
+            <h2>Bootstrap</h2>
+            <div className="mt-2 w-25">
+                <label className="form-label">User Name</label>
+                <div>
+                    <input type="text" placeholder="Your name" className="form-control"/>
+                </div>
+                <div className="mt-3">
+                    <button className="btn btn-primary w-100">Submit</button>
+                </div>
+            </div>
+            <h2>MUI</h2>
+            <div className="mt-2 w-25">
+                <div>
+                    <TextField  onChange={handleNameChange} className="w-100" label="Your name" variant="standard" ></TextField>
+                </div>
+                <div className="mt-4">
+                    <Button variant="contained" color="primary" className="w-100" > Submit </Button>
+                </div>
+            </div>
+            <div className="mt-4">
+                <h3>Hello ! {uname} </h3>
+            </div>
+        </div>
+    )
+}

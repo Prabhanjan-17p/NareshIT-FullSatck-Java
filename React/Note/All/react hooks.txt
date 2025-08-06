@@ -1,0 +1,123 @@
+Uncontrolled Components
+Conditional Render
+
+                            React Hooks
+- Hook is a service.
+- Service is a pre-defined business logic, which you can customize and implement according to the requirements.
+- Service is a set of factories with values and functions.
+- It uses a single ton pattern. An object is created for first request and same object is used across multiple requests.
+- Service comprises of
+    a) Provider
+    b) Injector
+    c) Consumer
+ 
+- Provider locates value in memory.
+- Injector injects into your component.
+- Consumer is the component that uses service.
+
+Configuring Custom Hook:
+- Hook must be a function.
+- Its name must start with "use" prefix.
+- It is recommended to use camel case for naming.
+- Every hook must return some functionality or value.
+- It can't be void type.
+- It can be parameterized or parameter less.
+
+Rules for using a hook:
+- You can't use hook in class component.
+- It is accessible only in function component.
+- You can't configure hook in a block.
+- It is always at higher level.
+
+Ex: Custom Hooks
+1. Add a new folder into project by name "hooks"
+
+2. Add hook files
+
+            captcha.jsx
+            fetch-data.jsx
+
+captcha.jsx
+
+export function useCaptcha()
+{
+    let code = ``;
+    code = `${Math.round(Math.random()*10)} ${Math.round(Math.random()*10)} ${Math.round(Math.random()*10)} ${Math.round(Math.random()*10)} ${Math.round(Math.random()*10)} ${Math.round(Math.random()*10)}`
+    return code;
+}
+
+fetch-data.jsx
+
+import { useEffect, useState } from "react";
+
+export function useFetchData(url)
+{  
+    const [data, setData] = useState([]);
+
+    useEffect(()=>{
+
+         fetch(url)
+         .then(response => response.json())
+         .then(apiData => {
+             setData(apiData);
+         })
+
+    },[url]);
+
+    return data;
+}
+
+3. Import and use hooks in any component
+
+login.jsx
+
+import './login.css';
+import { useCaptcha } from '../../hooks/captcha';
+import { useFetchData } from '../../hooks/fetch-data';
+
+export function Login(){
+
+    let code = useCaptcha();
+
+    let categories = useFetchData(`https://fakestoreapi.com/products/categories`);
+
+    return(
+        <form className='form-background'>
+            <h3>User Login</h3>
+            <dl>
+                <dt>User Name</dt>
+                <dd><input type="text" /></dd>
+                <dt>Password</dt>
+                <dd><input type="password" /></dd>
+                <dt>Verify Code</dt>
+                <dd>{code}</dd>
+            </dl>
+            <button>Login</button>
+            <ul>
+                {
+                    categories.map(category=><li key={category}>{category}</li>)
+                }
+            </ul>
+        </form>
+    )
+}
+
+Task:
+ - Create a hook that can sort and return your data.
+ - useSort(data, reverse:true/false);
+
+    useSort([ 'B', 'D', 'C' ], true);
+
+    sort().reverse()
+    D
+    C
+    B
+
+Task:
+ - Create a hook that returns string in title case.
+
+    useTitleCase('welcome to react');
+
+    Welcome To React
+
+                          React Built-in Hooks

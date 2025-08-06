@@ -1,0 +1,267 @@
+Style Binding
+Synthetic Events
+1. Mouse Events
+    onMouseOver
+    onMouseOut
+    onMouseDown
+    onMouseUp    
+    onMouseMove
+
+Ex:
+mouse-animation.jsx
+
+import { useState } from 'react';
+import './mouse-animation.css';
+
+export function MouseAnimation(){
+
+   
+    const [styleObj, setStyleObj] = useState({position:'', top:'', left:''});
+
+    function handleMouseMove(e){
+        setStyleObj({
+             position: 'absolute',
+             left: e.clientX + 'px',
+             top: e.clientY + 'px'
+        })
+    }
+
+    return(
+        <div className='container-fluid' onMouseMove={handleMouseMove}>
+            <div style={{height:'1000px'}}>
+                Move mouse pointer to test  
+            </div>
+            <img style={styleObj} src='flag.gif' width="50" height="50" />
+        </div>
+    )
+}
+
+2. Keyboard Events
+    onKeyUp
+    onKeyDown
+    onKeyPress
+
+   - Event arguments used with keyboard events are
+    keyCode         ]
+    charCode    ]   return the ASCII code of chars. [ "which" is more compatible" ]
+    which        ]
+   
+    shiftKey        ]
+    ctrlKey        ]  return true / false when used
+    altKey         ]
+
+   - KeyUp & KeyDown are good for verifying chars.
+   - KeyPress is good for verifying char code.
+
+Ex:
+public/users.json
+
+[
+    {
+        "user_id": "john"
+    },
+    {
+        "user_id": "john1"
+    },
+    {
+        "user_id": "john123"
+    },
+    {
+        "user_id": "john_nit"
+    },
+    {
+        "user_id": "david"
+    }
+]
+
+
+key-demo.jsx
+
+import axios from "axios";
+import { useEffect, useState } from "react"
+
+export function KeyDemo(){
+
+    const [users, setUsers] = useState([{user_id:''}]);
+    const [userMsg, setUserMsg] = useState('');
+    const [validationClass, setValidationClass] = useState('');
+    const [toggleMsg, setToggleMsg] = useState('d-none');
+
+    useEffect(()=>{
+        axios.get(`users.json`)
+        .then(response=>{
+             setUsers(response.data);
+        })
+    },[])
+
+    function handleKeyUp(e){
+        for(var user of users){
+            if(user.user_id===e.target.value){
+                setUserMsg('User Id Taken - Try another');
+                setValidationClass('text-danger');
+                break;
+            } else {
+                setUserMsg('User Id Available');
+                setValidationClass('text-success');
+            }
+        }
+    }
+    function handleKeyPress(e){
+        if(e.which>=65 && e.which<=90){
+            setToggleMsg('d-block');
+        } else {
+            setToggleMsg('d-none');
+        }
+    }
+
+    return(
+        <div className="container-fluid">
+            <h3>Register User</h3>
+            <dl>
+                <dt>User Id</dt>
+                <dd><input type="text" onKeyUp={handleKeyUp} /></dd>
+                <dd className={validationClass}>{userMsg}</dd>
+                <dt>Password</dt>
+                <dd><input type="password" onKeyPress={handleKeyPress} /></dd>
+                <dd className={toggleMsg}>
+                    <span className="bi text-warning bi-exclamation-triangle"> Warning : Caps ON </span>
+                </dd>
+            </dl>
+        </div>
+    )
+}
+
+Ex:
+key-demo.css
+
+
+.valid-style {
+    outline: none;
+    border:1px solid green;
+    box-shadow: 2px 2px 2px green;
+}
+.invalid-style{
+    outline: none;
+    border:1px solid red;
+    box-shadow: 2px 2px 2px red;
+}
+
+key-demo.jsx
+
+import axios from "axios";
+import { useEffect, useState } from "react";
+import './key-demo.css';
+
+export function KeyDemo(){
+
+    const [users, setUsers] = useState([{user_id:''}]);
+    const [userMsg, setUserMsg] = useState('');
+    const [validationClass, setValidationClass] = useState('');
+    const [toggleMsg, setToggleMsg] = useState('d-none');
+    const [textStyle, setTextStyle] = useState('');
+
+    useEffect(()=>{
+        axios.get(`users.json`)
+        .then(response=>{
+             setUsers(response.data);
+        })
+    },[])
+
+    function handleKeyUp(e){
+        for(var user of users){
+            if(user.user_id===e.target.value){
+                setUserMsg('User Id Taken - Try another');
+                setValidationClass('text-danger');
+                setTextStyle('invalid-style');
+                break;
+            } else {
+                setUserMsg('User Id Available');
+                setValidationClass('text-success');
+                setTextStyle('valid-style');
+            }
+        }
+    }
+    function handleKeyPress(e){
+        if(e.which>=65 && e.which<=90){
+            setToggleMsg('d-block');
+        } else {
+            setToggleMsg('d-none');
+        }
+    }
+
+    return(
+        <div className="container-fluid">
+            <h3>Register User</h3>
+            <dl>
+                <dt>User Id</dt>
+                <dd><input type="text" className={textStyle} onKeyUp={handleKeyUp} /></dd>
+                <dd className={validationClass}>{userMsg}</dd>
+                <dt>Password</dt>
+                <dd><input type="password" onKeyPress={handleKeyPress} /></dd>
+                <dd className={toggleMsg}>
+                    <span className="bi text-warning bi-exclamation-triangle"> Warning : Caps ON </span>
+                </dd>
+            </dl>
+        </div>
+    )
+}
+
+Ex:
+password-demo.jsx
+
+import { useState } from "react"
+
+
+export   function PasswordDemo(){
+
+    const [password, setPassword] = useState('');
+    const [msg, setMsg] = useState('');
+    const [progressBar, setProgressBar] = useState('');
+    const [progressWidth, setProgressWidth] = useState('');
+   
+
+    function handlePasswordChange(e){
+        setPassword(e.target.value);
+    }
+
+    function handleKeyUp(){
+        if(password.match(/(?=.*[A-Z])\w{4,15}/)){
+            setMsg('Strong Password');
+            setProgressBar('progress-bar bg-success progress-bar-animated progress-bar-striped');
+            setProgressWidth('100%');
+            console.log(progressWidth);
+        } else {
+             if(password.length<4){
+                setMsg('Poor Password - min 4 chars required');
+                setProgressBar('progress-bar bg-danger progress-bar-animated progress-bar-striped');
+                setProgressWidth('30%');
+                console.log(progressWidth);
+             } else {
+                setMsg('Weak Password - at least 1 uppercase is required');
+                setProgressBar('progress-bar bg-warning progress-bar-animated progress-bar-striped');
+                setProgressWidth('70%');
+                console.log(progressWidth);
+             }
+        }
+    }
+
+    return(
+        <div className="container-fluid">
+            <h2>Register</h2>
+            <dl className="w-25">
+                <dt>Your Password</dt>
+                <dd>
+                    <input type="password" className="form-control" onKeyUp={handleKeyUp} onChange={handlePasswordChange} />
+                </dd>
+                <dd className="progress">
+                    <div className={progressBar} style={{width:progressWidth}}>
+
+                    </div>
+                </dd>
+                <dd style={{fontSize:'12px'}}>
+                    {msg}
+                </dd>
+            </dl>
+        </div>
+    )
+}

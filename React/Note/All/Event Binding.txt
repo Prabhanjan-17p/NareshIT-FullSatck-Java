@@ -1,0 +1,200 @@
+Formatting Date & Time using Moment:
+
+1. Install moment for project
+
+    > npm  install  moment  --save
+
+2. Import moment into component
+
+    import  moment  from  "moment";
+
+3. Apply format for date using moment method
+
+    moment(your_date).format('your_format');
+
+    Your date format can have:
+
+            ddd        short weekday
+            dddd    long weekday
+           
+            DD        date value
+            Do        date value with suffix
+           
+            MM        month number
+            MMM    short month format
+            MMMM    long month format
+       
+            yy        short year format
+            yyyy        full year format
+
+Note: You can visit "https://momentjs.com/&quot;  for more formats.
+
+Ex:
+date-demo.jsx
+
+import { useEffect, useState } from "react";
+import moment from "moment";
+
+
+export function DateDemo(){
+
+    const [today, setToday] = useState();
+
+    useEffect(()=>{
+        var now = new Date('2025-06-22');
+        setToday(moment(now).format('dddd Do, MMMM yyyy'));
+    },[])
+
+    return(
+        <div className="container-fluid">
+            <h2>Date</h2>
+            {today}
+        </div>
+    )
+}
+
+Summary:
+- One Way Binding
+- Binding Various JavaScript Types
+    a) Primitive
+    b) Non Primitive
+- Number
+- String
+- Boolean
+- Null
+- Undefined
+- Big Int
+- Symbol
+- Array
+- Object
+- Date
+
+                          Two Way Binding
+- React supports only one way binding implicitly.
+- Two way binding requires explicit techniques.
+- To manage two way binding element requires "onChange" event to configure.
+- "onChange" maps to a function that collects new value and updates into source.
+
+Syntax:
+    <input type="text"  onChange={handleChange} />
+
+    function handleChange()
+    {
+    }
+
+                         Event Binding in React
+1. What is Event?
+- Event is a message sent by sender to its subscriber in order to notify change.
+- Event uses a communication pattern called "Observer".
+- Event follows a delegate mechanism (function pointer).
+
+Syntax:
+    function  handleClick()        => Subscriber
+    {
+    }
+
+    <button onclick="handleClick()">    => Sender
+
+- Subscriber defines actions to perform.
+- Sender triggers a notification to perform the functionality.
+
+2. What is Event handler?
+A. A handler is used to configure event for any element statically.
+    It uses "on" as prefix to attach any event with element.
+
+Syntax:
+        onclick="handleClick()"        // handler name
+        click                        // event name
+
+3. What is Event Listener?
+- A listener is used to configure event for element dynamically.
+- JavaScript uses "addEventListener()" function for configuring events.
+
+Syntax:
+   document.querySelector("button").addEventListener("event", function(){
+
+  })
+
+  event => click, blur, keyup, change etc.
+
+Ex:
+<!DOCTYPE html>
+<html lang="en">
+<head>
+     <meta charset="UTF-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <title>Document</title>
+     <script>
+          function bodyload(){
+               var btnDelete = document.createElement("button");
+               btnDelete.innerHTML = "Delete";
+               btnDelete.addEventListener("click", ()=>{
+                    document.write("Deleted Successfully..");
+               })
+               document.querySelector("body").appendChild(btnDelete);
+
+               document.getElementById("btnUpdate").addEventListener("click",()=>{
+                    document.write("Updated...");
+               })
+
+          }
+          function InsertClick(){
+               document.write("Inserted..");
+          }
+     </script>
+</head>
+<body onload="bodyload()">
+     <button onclick="InsertClick()">Insert</button>
+     <button id="btnUpdate">Update</button>
+</body>
+</html>
+
+4. What are Event Arguments?
+- Event arguments carry payload.
+- Payload is the data carried from one location to another.
+- JavaScript can use default arguments and custom arguments.
+- The default arguments are
+    a) this
+    b) event
+- "this" sends information about current element, which includes
+    id, name, className, src, width, height, href..
+- "event" sends information about current event, which includes
+    clientX,
+    clientY,
+    ctrlKey
+    altKey
+    shiftKey
+    keyCode
+    which etc..
+
+Syntax:
+    <button onclick="InsertClick(this, event)">
+
+    function InsertClick(obj, e)
+    {
+       obj.id, obj.value, obj.name..
+       e.clientX, e.keyCode, e.ctrlKey...
+    }
+
+Ex:
+<!DOCTYPE html>
+<html lang="en">
+<head>
+     <meta charset="UTF-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <title>Document</title>
+     <script>
+          function DataOperation(obj, e, list, ob){
+               console.log(`Id=${obj.id}\nX=${e.clientX}\nCtrlKey=${e.ctrlKey}`);
+               console.log(list);
+               console.log(ob);
+          }
+     </script>
+</head>
+<body>
+     
+
+     <button onclick="DataOperation(this, event, ['John', 'David'], {Name:'TV'})" id="btnInsert">Insert</button>
+     <button onclick="DataOperation(this, event, ['Delhi', 'Hyd'], {Rate:4.2})" id="btnUpdate">Update</button>
+</body>
+</html>

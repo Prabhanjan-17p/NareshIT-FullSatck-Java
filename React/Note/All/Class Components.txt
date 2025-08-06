@@ -1,0 +1,247 @@
+Class Components
+- Pure & Impure Components
+- Constructor calls super constructor
+- render(){ }
+
+Component Life Cycle Methods
+
+    componentWillMount()        ]    Pre mount
+    componentDidMount()        ]    Mount
+
+    componentDidUpdate()        ]     Update
+
+    componentWillUnmount()    ]    Unmount
+
+- Life cycle methods are members of  the base  React.PureComponent & React.Component
+
+State in Class Component:
+- Class components are known as stateful components.
+- Local state is configured implicitly for every component.
+- You have to configure state while creating component.
+- To access the current component state you have to use "this" keyword.
+- State is object type with key & value reference.
+
+Syntax:
+        constructor()
+        {
+            super();
+            this.state = {  key:value, key:value,.. }
+        }
+
+- You can access by using "this" keyword.
+
+        <p>  { this.state.key }  </p>
+
+- To assign data into state reference you have to use "setState()" method.
+
+        this.setState( { key: newValue } )
+
+Ex:
+import React from "react";
+
+
+export class DemoClassComponent extends React.PureComponent
+{
+      constructor(){
+         super();
+         this.state = {
+             title : "Amazon Shopping",
+             categories: []
+         }
+      }
+
+      componentDidMount(){
+          this.setState({
+              categories: ['Electronics', 'Footwear', 'Fashion']
+          })
+      }
+
+      render(){
+          return(
+            <div className="container-fluid">
+                <h2 className="mt-4 text-center">{this.state.title}</h2>
+                <ul>
+                  {
+                    this.state.categories.map(category=> <li key={category}> {category} </li>)
+                  }
+                </ul>
+            </div>
+          )
+      }
+}
+
+Data Binding, Style Binding, Class Binding:
+
+- Data Binding is same as in function component
+
+        { bindingExpression }
+
+- Style Binding same as in function component
+
+            <form  style={ { border:'1px solid black' } }>
+
+- Class Binding same as in function component
+
+        <form  className={`bg-dark text-white p-4 ${dynamicClass}`}>
+
+Event Binding in Class Component:
+- All events are derived from "Synthetic Event" base.
+- Synthetic Event maps to Browser Event.
+- Event points towards a method in classes.
+
+        handleInsertClick(e)
+        {
+
+        }
+
+        <button onClick={this.handleInsertClick}>
+
+Ex:
+import React from "react";
+
+
+export class DemoClassComponent extends React.PureComponent
+{
+      constructor(){
+         super();
+         
+      }
+
+      handleInsertClick(e){
+        console.log(`
+              Button Id :  ${e.target.id}\n
+              Button value:  ${e.target.value}\n
+              X Position : ${e.clientX}
+          `);
+      }
+     
+
+      render(){
+          return(
+            <div className="container-fluid">
+                <button id="btnInsert" onClick={this.handleInsertClick} value="Insert Button" className="btn btn-primary"> Insert </button>
+            </div>
+          )
+      }
+}
+
+Binding Event with State:
+- Event related methods can directly use DOM interactions but can't update data into state.
+- State & Event methods are configure in different timelines hence event method can't use the state directly.
+- Event methods require a "bind()" with current class memory in order to use the state.
+- There are various techniques of binding
+
+1. You can bind while creating object for component
+
+    constructor {
+        super();
+        this.handleInsertClick = this.handleInsertClick.bind(this);
+        this.handleNameChange = this.handleNameChange.bind(this);
+    }
+
+2. You can bind at the time of event trigger and use the class memory
+
+    <button onClick={ this.handleInsertClick.bind(this) }> Insert </button>
+
+3. You can access and use state without bind() method. It requires your event to
+     keep the memory alive even after the functionality completed.
+
+
+    <button onClick={ ()=> this.handleInsertClick() }> Insert </button>
+
+Ex:
+import React from "react";
+
+export class DemoClassComponent extends React.PureComponent
+{
+      constructor(){
+         super();
+         this.state = {
+             msg: ''
+         }
+         this.handleInsertClick = this.handleInsertClick.bind(this);
+         
+      }
+
+      handleInsertClick(){
+          this.setState({
+              msg: 'Record Inserted..'
+          })
+      }
+
+      handleDeleteClick(){
+          this.setState({
+            msg : 'Record Deleted Successfully..'
+          })
+      }
+      handleUpdateClick(){
+         this.setState({
+            msg : 'Record Updated..'
+          })
+      }
+     
+
+      render(){
+          return(
+            <div className="container-fluid">
+                <button id="btnInsert" onClick={this.handleInsertClick} value="Insert Button" className="btn btn-primary"> Insert </button>
+                <button onClick={this.handleDeleteClick.bind(this)} className="btn mx-2 btn-danger"> Delete </button>
+                <button onClick={()=>this.handleUpdateClick()} className="btn btn-warning">Update</button>
+                <p>{this.state.msg}</p>
+            </div>
+          )
+      }
+}
+
+API Requests in class component:
+
+- It is same as in function component.
+- You can use
+    a) XMLHttpRequest
+    b) fetch()
+    c) axios() etc.
+- However the data is set into state.
+
+Ex:
+import axios from "axios";
+import React from "react";
+
+
+export class DemoClassComponent extends React.PureComponent
+{
+      constructor(){
+         super();
+         this.state = {
+             products: []
+         }
+         
+      }
+
+      componentDidMount(){
+          axios.get(`https://fakestoreapi.com/products`)
+          .then(response=>{
+               this.setState({
+                  products : response.data
+               })
+          })
+      }
+     
+
+      render(){
+          return(
+            <div className="container-fluid">
+                <h2>Fakestore Products</h2>
+                <ul>
+                   {
+                     this.state.products.map(product=><li key={product.id}>
+                        {product.title}
+                     </li>)
+                   }
+                </ul>
+            </div>
+          )
+      }
+}
+
+Forms in Class Component
+Controlled Components

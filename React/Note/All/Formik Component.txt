@@ -1,0 +1,221 @@
+Custom Validation
+- Validate        : It uses a function that returns error object
+- ValidationSchema
+- Yup
+
+Formik Blur Action:
+- Formik provides  "handleBlur"
+- It validates the value in element when it is blur.
+- Validation is done onSubmit & onChange.
+- You can add onBlur for elements.
+
+Syntax:
+  <input type="text"  onChange={formik.handleChange}  onBlur={formik.handleBlur}>
+
+Formik Form State Services:
+
+1. errors            : It returns all errors in form. It is an object with key & value
+                  collection. Key is field name & value is its error.
+
+2. values            : It returns all form values. It is an object with key & value collection.
+                  Key is field name & value is the value defined in field.
+
+3. touched        : It is a Boolean property that returns true if any field is touched.
+                  [focus]
+                  You can use for input state, where it verifies specific field touched.
+
+Syntax:
+        {  formik.touched }         => verifies all fields, It returns true if any one field
+                                  inside form is touched.
+
+        {  formik.fieldName.touched }  => verifies specific field touched.
+
+4. dirty            : It returns true if any one field is modified at form state.
+                  It returns true if any specific field is modified at input state.
+
+Syntax:
+          { formik.dirty }
+          { formik.filedName.dirty }
+
+
+5. isValid            : It returns true if all form fields are valid at form state.
+
+Syntax:
+           { formik.isValid }
+
+
+6. getFieldProps()    : It is used to get all properties for formik and bind to any specific
+                  element. So that it can use all properties.
+                  It requires a spread approach.
+
+
+Syntax: without field props
+
+  <input type="text" onChange={formik.handleChange } onBlur={formik.handleBlur} />
+
+Syntax: with field props
+
+   <input type="text"  name="UserName"   { ...formik.getFieldProps("UserName") } />
+
+Ex:
+form-demo.jsx
+
+
+import { useFormik } from "formik";
+import * as yup from "yup";
+
+export function FormDemo(){
+
+
+   
+
+    const formik = useFormik({
+        initialValues: {
+            UserName : '',
+            Email: '',
+            Age: 0,
+            Gender: '',
+            City: '',
+            Mobile: ''
+        },
+        validationSchema: yup.object({
+            UserName: yup.string().required('User Name Required').min(4, 'Name too short'),
+            Age: yup.number('Age must be a number').min(15, 'Age min 15').max(35, 'Age max 35 only').required('Age Required'),
+            Mobile: yup.string().required('Mobile Required').matches(/\+91\d{10}/, 'Invalid Mobile'),
+            Email: yup.string().email('Invalid Email').required('Email Required')
+        }),
+        onSubmit : (data) => {
+            console.log(data);
+           
+        }
+    })
+   
+
+    return(
+        <div className="container-fluid">
+            <h3>Register User</h3>
+            <form onSubmit={formik.handleSubmit} noValidate>
+                <dl>
+                    <dt>User Name</dt>
+                    <dd><input type="text" {...formik.getFieldProps("UserName")} name="UserName" /></dd>
+                    <dd className="text-danger">{(formik.touched.UserName && formik.errors.UserName)?formik.errors.UserName:null}</dd>
+                    <dt>Email</dt>
+                    <dd><input type="text" onChange={formik.handleChange} onBlur={formik.handleBlur} name="Email" /></dd>
+                    <dt>Age</dt>
+                    <dd><input type="age" onChange={formik.handleChange} onBlur={formik.handleBlur} name="Age" /></dd>
+                    <dd className="text-danger">{(formik.touched.Age && formik.errors.Age)?formik.errors.Age:null}</dd>
+                    <dt>Gender</dt>
+                    <dd>
+                        <input type="radio" onChange={formik.handleChange} name="Gender" value="Male"/ > <label> Male</label>  
+                        <input type="radio" onChange={formik.handleChange} name="Gender" value="Female"/ > <label> Female </label>
+                    </dd>
+                    <dd className="text-danger">{(formik.touched.Gender && formik.errors.Gender)?formik.errors.Gender:null}</dd>
+                    <dt>City</dt>
+                    <dd>
+                        <select name="City" onChange={formik.handleChange}>
+                            <option value="-1">Select City</option>
+                            <option value="Delhi">Delhi</option>
+                            <option value="Hyderabad">Hyderabad</option>
+                        </select>
+                    </dd>
+                    <dd className="text-danger">{(formik.touched.City && formik.errors.City)?formik.errors.City:null}</dd>
+                    <dt>Mobile</dt>
+                    <dd><input type="text" name="Mobile" onBlur={formik.handleBlur} onChange={formik.handleChange} /></dd>
+                    <dd className="text-danger">{(formik.touched.Mobile && formik.errors.Mobile)?formik.errors.Mobile:null}</dd>
+                </dl>
+               
+                <button disabled={(formik.isValid)?false:true} type="submit">Submit</button>
+                <button style={{display:(formik.dirty)?'inline':'none'}}  type="submit" className="mx-2">Save</button>
+            </form>
+        </div>
+    )
+}
+               
+Note: React class components will not allow hooks.  You have to use formik built-in
+      components.
+
+Formik Components:
+
+    <Formik>
+    <Form>
+    <Field>
+    <ErrorMessage>
+
+Syntax:
+    <Formik  initialValues={ }   validationSchema={ }  onSubmit={ }>
+
+            <Form>
+            <Field type="text" />
+            <ErrorMessage name="fieldname" />
+        </Form>
+   
+    </Formik>
+
+Ex:
+formik-demo.jsx
+
+import { Formik, Form, Field, ErrorMessage } from "formik";
+import * as yup from "yup";
+
+export function FormikDemo(){
+    return(
+        <div className="container-fluid">
+            <h2>Register User</h2>
+            <Formik initialValues={{UserName:'', Age:0}} validationSchema={yup.object({UserName:yup.string().required('Name Required').min(4, 'Name too short'), Age: yup.number().required('Age Required')})} onSubmit={(values)=>{console.log(values)}} >
+                <Form>
+                    <dl>
+                        <dt>User Name</dt>
+                        <dd><Field type="text" name="UserName" /></dd>
+                        <dd className="text-danger"><ErrorMessage name="UserName"/></dd>
+                        <dt>Age</dt>
+                        <dd><Field type="number" name="Age" /></dd>
+                        <dd className="text-danger"><ErrorMessage name="Age" /></dd>
+                    </dl>
+                    <button type="submit">Submit</button>
+                </Form>
+            </Formik>
+        </div>
+    )
+}
+
+- You can access the form state for <Form> component by storing the return in a reference.
+
+Syntax:
+
+    {
+       form => <Form> </Form>
+    }
+
+     form.dirty
+     form.touched
+     form.isValid
+
+Ex:
+Formik-Demo.jsx
+
+import { Formik, Form, Field, ErrorMessage } from "formik";
+import * as yup from "yup";
+
+export function FormikDemo(){
+    return(
+        <div className="container-fluid">
+            <h2>Register User</h2>
+            <Formik initialValues={{UserName:'', Age:0}} validationSchema={yup.object({UserName:yup.string().required('Name Required').min(4, 'Name too short'), Age: yup.number().required('Age Required')})} onSubmit={(values)=>{console.log(values)}} >
+                {
+                    form =>
+                        <Form>
+                        <dl>
+                            <dt>User Name</dt>
+                            <dd><Field type="text" name="UserName" /></dd>
+                            <dd className="text-danger"><ErrorMessage name="UserName"/></dd>
+                            <dt>Age</dt>
+                            <dd><Field type="number" name="Age" /></dd>
+                            <dd className="text-danger"><ErrorMessage name="Age" /></dd>
+                        </dl>
+                        <button disabled={(form.isValid)?false:true} type="submit">Submit</button>
+                      </Form>
+                }
+            </Formik>
+        </div>
+    )
+}

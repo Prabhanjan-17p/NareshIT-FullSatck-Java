@@ -1,0 +1,250 @@
+TypeScript Architecture
+Setup TypeScript
+Language Concepts
+    - Variables
+    - Data Types
+Union of Types
+Array Type
+What is Tuple?
+    let values:any[] = [ ];
+What is Type Inference?
+   
+
+                            Object Data Type
+
+- JavaScript object is schema less.
+
+    {
+       Age:  "A",        // valid                    
+       Name: 22,        // valid
+    }
+
+- TypeScript allows to configure a schema for object.
+- Schema defines the keys allowed and their data type.
+
+Syntax:
+     let obj : { key: type, key: type }  =  {  }
+
+Ex:
+index.ts
+
+let product : {Name:string, Price:number, Cities:string[], Rating:{Rate:number}} = {
+    Name: "TV",
+    Price: 40000,
+    Cities: ['Delhi', 'Hyd'],
+    Rating: {Rate:4.5}
+}
+product.Price = 56000.44;
+console.log(`Name=${product.Name}\nPrice=${product.Price}\nCities=${product.Cities}\nRating=${product.Rating.Rate}`);
+
+- Every key defined in schema in a required key.
+- It is mandatory to define every key configured in schema.
+- You can't add a new key into data without configuring inside schema.
+- Object can define only known properties.
+
+Optional Keys:
+- TypeScript supports a null reference character "?".
+- It is used to configure nullable type.
+- You can define optional keys using "?".
+
+Syntax:
+    let  obj : { key? : type, key: type } = { }
+
+- If key is not defined then it is marked as "undefined".
+
+Ex:
+
+let product : {Name:string, Price:number, Cities:string[], Rating:{Rate:number}, Stock?:boolean} = {
+    Name: "TV",
+    Price: 40000,
+    Cities: ['Delhi', 'Hyd'],
+    Rating: {Rate:4.5},
+    Stock: true
+}
+product.Price = 56000.44;
+
+if(product.Stock){
+    console.log(`Name=${product.Name}\nPrice=${product.Price}\nCities=${product.Cities}\nRating=${product.Rating.Rate}\nStock=${product.Stock}`);
+} else {
+    console.log(`Name=${product.Name}\nPrice=${product.Price}\nCities=${product.Cities}\nRating=${product.Rating.Rate}`);
+}
+
+Read-Only Keys:
+
+- Every key can be initialized and assigned with a new value.
+- If you configure key are "readonly" then it will not allow to assign a value.
+
+Syntax:
+  let obj : { readonly key: type,  key: type } = { }
+
+Ex:
+index.ts
+
+let product : {Name:string, readonly Price:number, Cities:string[], Rating:{Rate:number}, Stock?:boolean} = {
+    Name: "TV",
+    Price: 40000,
+    Cities: ['Delhi', 'Hyd'],
+    Rating: {Rate:4.5},
+    Stock: true
+}
+product.Price = 56000.44;       // invalid Price is read-only and will not allow to assign
+
+if(product.Stock){
+    console.log(`Name=${product.Name}\nPrice=${product.Price}\nCities=${product.Cities}\nRating=${product.Rating.Rate}\nStock=${product.Stock}`);
+} else {
+    console.log(`Name=${product.Name}\nPrice=${product.Price}\nCities=${product.Cities}\nRating=${product.Rating.Rate}`);
+}
+
+Schema for Methods:
+- Object is a set of properties and methods.
+- Property is used to store data.
+- Method is used to configure a functionality.
+- Method defines actions for object.
+- You can configure rules for methods.
+- Method rule defines its return type and also the parameter type.
+
+Syntax:
+    let obj : { property: type,  method() : type | void } = {  };
+    let obj : { property: type,  method(param: type) : type | void } = {  };
+
+- You can configure optional methods.
+
+Syntax:
+    let obj : { property: type,  method?() : type | void } = {  };    
+
+- You can configure readonly methods. So that a new functionality can't be assigned.
+
+Syntax:
+    let obj : { property: type, readonly method?() : type | void } = {  };    
+
+Ex:
+index.ts
+
+let product: {Name:string, Price:number, Qty:number, Total():number, Print?():void} = {
+
+     Name: "Samsung TV",
+     Price: 45000.44,
+     Qty: 2,
+     Total: function(){
+        return this.Qty * this.Price;
+     },
+     Print: function(){
+        console.log(`Name=${this.Name}\nPrice=${this.Price}\nQty=${this.Qty}\nTotal=${this.Total()}`);
+     }
+}
+product.Print();
+
+Note: All object manipulations are same as in JavaScript
+
+Configuring a collection of objects:
+- JavaScript is a schema less collection of objects.
+
+        [
+           {   Name : "TV" },
+           {   Title : 30 },            // valid
+        ]
+
+- TypeScript allows to configure a schema for collection of object.
+
+Syntax:
+     let  data : {key:value} [ ]  = [ { }, { } ];
+
+Ex:
+index.ts
+
+let products:{id:number, title:string, rating:{rate:number}, price?:number}[] = [
+    {id: 1, title: 'TV', rating:{rate:4.4}, price: 35000 },
+    {id: 2, title: 'Mobile', rating:{rate:4.2}}
+];
+
+products.map(product=>{
+    console.log(product.title);
+})
+
+                            Map Type
+
+- Map is a key and value collection.
+- JavaScript Map can have any type key.
+- TypeScript Map can restrict the key and value type.
+- Map is a generic type, which is open for any type, however it can restrict key and value to specific type.
+
+Syntax:
+    let  data : Map<keyType, valueType> = new Map();
+
+    data.set(key, value)
+    data.get(key)
+    data.delete(key)
+    data.keys()
+    data.values()
+    data.entries()
+    data.size
+    data.has(key)  => true / false
+    etc..
+
+Ex:
+
+
+let data: Map<string, number[]> = new Map();
+
+data.set("TV", [40000, 5000] );
+data.set("Mobile", [6000, 3000]);
+
+console.log(data.get("TV"));
+
+
+                        Date Type
+- It is same as in JavaScript.
+- It uses a Date() constructor with format  "yy-mm-dd  hrs:min:sec.milliSec".
+
+Syntax:
+     let now : Date = new Date();
+
+- All date & time functions are same.
+
+    a) setter methods
+        setHours()
+        setMinutes()
+        setSeconds()...
+    b) getter methods
+        getHours()
+        getMinutes()...
+
+Ex:
+
+let Mfd: Date = new Date('2025-03-12 16:42:31');
+
+console.log(Mfd.toLocaleDateString());
+
+                        Regular Expression Type
+
+- RegExp  is a new data type handling regular expression in TypeScript
+- It allows meta characters and quantifiers enclosed in "/ /".
+- Regular expression is verified by using "match()" method.
+
+Syntax:
+    let pattern: RegExp  = / meta chars-quantifiers /;
+    let value:string = " ";
+
+    if(value.match(pattern))
+    {
+        // valid
+    }
+    else
+    {
+        // invalid
+    }
+
+Ex:
+index.ts
+
+let pattern:RegExp = /\+91\d{10}/;
+
+let mobile:string = "+919876543210";
+
+if(mobile.match(pattern)){
+    console.log(`Mobile Verified..`);
+} else {
+    console.log(`Invalid Mobile +91 & 10 digits required`);
+}
+
+                         TypeScript Functions

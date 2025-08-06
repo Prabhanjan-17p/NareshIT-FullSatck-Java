@@ -1,0 +1,191 @@
+useEffect
+useState
+useContext
+useReducer - store, reducer, state, action
+
+                               useRef()
+-  It configures and uses reference memory.
+-  A reference memory can store values, which are intended to use in the process instead of using in renders.
+- It is good for managing values for any thread in the process.
+
+Syntax:
+
+      let  thread  = useRef(null);
+
+      thread.current = newvalue;
+
+                          useMemo & useCallback
+
+- React usually re-renders a component on every change.
+- It renders all content every time.
+- useMemo can memorize a value, so that it can prevent re-render.
+- It can use a dependency that specifies when to render.
+
+Syntax:
+       const  value = useMemo(function(){
+   
+            return value;
+
+        },[dependency])
+
+Ex:
+import { useEffect, useMemo, useState } from "react"
+
+export function MemoDemo(){
+
+    const [ref, setRef] = useState();
+
+    function GetData(){
+        return 30;
+    }
+
+    const data = useMemo(()=>{
+        return GetData();
+    },[])
+
+    function handleClick(){
+       setRef(data);
+    }
+ 
+    return(
+        <div className="container-fluid">
+             <button onClick={handleClick}>Get Data</button>
+             {ref}
+        </div>
+    )
+}
+
+- useCallback is similar to memo but can memorize a function, so that it can save round trips when even requested.
+- It can re-render only when dependency changes.
+
+Syntax:
+    useCallback(function(){
+       
+        function(){ }
+       
+    },[dependency])
+
+Ex:
+import { useCallback, useEffect, useMemo, useState } from "react"
+
+export function MemoDemo(){
+
+    const [ref, setRef] = useState();
+    const [timer, setTimer] = useState();
+
+    function SetTime(){
+        var now = new Date();
+        setTimer(now.toLocaleTimeString());
+    }
+
+    useEffect(()=>{
+        SetTime();
+    },[])
+   
+    const fun =  useCallback(()=>{
+        function GetData(){
+             setRef(30);
+        }
+        GetData();
+        },[])
+   
+
+    function handleClick(){
+       fun();
+    }
+ 
+    return(
+        <div className="container-fluid">
+             <p>Component Rendered : {timer} </p>
+             <button onClick={handleClick}>Get Data</button>
+             {ref}
+        </div>
+    )
+}
+
+FAQ: What is difference between useMemo & useCallback?
+Ans:  useMemo can store a value in memory to avoid round-trips.
+      useCallback can store a function memory to avoid round-trips.
+
+FAQ: What is the purpose of memo & callback?
+Ans : To cache the value & function in order to avoid re-render.
+
+
+                        useCookies
+- Cookie is a simple text document appended into client memory.
+- It comprises of client related details, which you can use across requests and components.
+- useCookies is a "react-cookie" library hook that configures cookies.
+
+
+1. Install react-cookie library
+
+    > npm  install  react-cookie  --save
+
+2. Cookie is configure using "useCookies()"
+
+    const [cookies, setCookie, removeCookie] = useCookies(['name']);
+
+    setCookie('name', value, { expiry : date });
+
+3. You need to configure cookie provider in "main.jsx"
+
+      import   { CookiesProvider } from  "react-cookie";
+
+      <CookiesProvider>
+        <YourComponent />
+      </CookiesProvider>
+
+4. You can access and remove cookies from any component
+
+    cookies['name']            => to access cookie value
+    removeCookie('name')        => to remove cookie
+
+Ex:
+main.jsx
+
+import { CookieDemo } from './components/cookie-demo/cookie-demo.jsx';
+import { CookiesProvider } from 'react-cookie';
+
+createRoot(document.getElementById('root')).render(
+ 
+    <CookiesProvider>
+        <CookieDemo/>
+    </CookiesProvider>
+ 
+)
+
+cookie-demo.jsx
+
+import { useState } from "react";
+import { useCookies } from "react-cookie"
+
+export function CookieDemo(){
+
+    const [cookies, setCookie, removeCookie] = useCookies(['username']);
+    const [uname, setUname] = useState('');
+
+    function handleNameChange(e){
+        setUname(e.target.value);
+    }
+
+    function handleLoginClick(){
+        setCookie("username", uname);
+    }
+
+    function handleSignout(){
+        removeCookie('username');
+        console.log(cookies['username']);
+    }
+
+    return(
+        <div>
+            {
+                (cookies['username']) ? <h3>Home - { cookies['username'] } - <button onClick={handleSignout}>Signout</button> </h3> : <span><input type="text" placeholder="User Name" onChange={handleNameChange} /> <button onClick={handleLoginClick}>Login</button></span>
+            }
+           
+           
+        </div>
+    )
+}
+
+                               Routing

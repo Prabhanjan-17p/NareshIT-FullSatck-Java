@@ -1,0 +1,107 @@
+useReducer
+
+- Every web application comprises of a "Global State", which is known as "Application State".
+- Application comprises
+        a) application start
+        b) application end
+        c) session start
+        d) session end
+- Every user is defined with a session.
+- Session ends when user sign out.
+- The data of one session is not accessible to another session.
+- Application memory allows to store data, which is accessible to all sessions.
+- "useReducer" hook allows to access the global state.
+- "useReducer" allows to configure a predictable and maintainable global application state, so that it is easy to track, debug and test the application state.
+- useReducer comprises of following components
+
+        a) store
+        b) state
+        c) reducer
+        d) action
+
+Step-1: Store
+- Configure initial global state for storing values.
+- You can configure a reference that can handle any type of data.
+
+Syntax:
+        let   initialValues = {            => Global Variable
+
+                key: value,                
+        }
+
+
+Step-2: Reducer
+- It is a function that handles state & actions.
+- It can identify the action type in component and update data into initial values [store].
+
+Syntax:
+        function  reducer(state, action)
+        {
+             switch(action.type)
+             {
+                 case  "type":
+                  return  updated_data;    // state gets & updates
+             }
+        }
+
+
+Step-3: Use Reducer
+- A component can use the reducer.
+- Reducer will dispatch action and data.
+- It uses diff mechanism and updates the data into store on specified action.
+
+Syntax:
+
+      const  [state, dispatch]  = useReducer(reducer, initialValues)
+
+- In a component you need to dispatch action
+
+       function onClick()
+       {
+            dispatch({ type: action })
+       }
+
+Ex:
+reducer-demo.jsx
+
+import { useReducer } from "react"
+
+let initialState = {
+    ViewersCount: 0
+}
+
+function reducer(state, action){
+    switch(action.type){
+
+        case "join":
+        return { ViewersCount: state.ViewersCount + 1 }
+        case "exit":
+        return { ViewersCount: state.ViewersCount - 1 }
+    }
+}
+
+export function ReducerDemo(){
+
+   
+    const [state, dispatch] = useReducer(reducer, initialState);
+
+    function handleJoinClick(){
+        dispatch({type: "join"});
+    }
+
+    function handleExitClick(){
+        dispatch({type: "exit"});
+    }
+
+    return(
+        <div className="container-fluid">
+             <h3>Youtube Live</h3>
+             <iframe src="https://www.youtube.com/embed/4ZtfBdFZ-Pg&quot; width="400" height="300"></iframe>
+             <div className="my-4 bi bi-eye"> {state.ViewersCount} [Viewing] </div>
+             <div className="mt-4">
+                <button onClick={handleJoinClick} className="bi bi-door-open btn btn-success"> Join</button>
+                <button onClick={handleExitClick} className="bi bi-door-closed mx-2 btn btn-danger"> Exit</button>
+             </div>
+        </div>
+    )
+}

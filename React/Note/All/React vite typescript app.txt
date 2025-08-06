@@ -1,0 +1,205 @@
+TypeScript
+- Variables
+- Data Types
+- Operators
+- Statements
+- Functions
+- OOP Concepts
+    Contracts
+    Templates
+    Components
+    Access Modifiers
+    Inheritance
+    Ploy morphism
+    Generics
+    Enum
+    Namespace
+
+Creating a new React Application with Typescript as Language:
+
+1. Run the following command in any PC location
+
+    D:\> npm  create   vite@latest  app_name -- -- template  react-ts
+
+
+2. Change to project folder
+
+    D:\> cd  app_name
+
+    D:\app_name>
+
+3. Run the command
+
+     > npm install
+
+4. Open project folder in VS code
+
+5. The new file system comprises of  Typescript configuration files
+
+    tsconfig.app.json        application configuration
+    tsconfig.node.json        compiler configuration
+    tsconfig.json            rules for typescript
+
+6. TypeScript react application files require following specifications
+
+      .tsx            for components & hooks
+      .ts             for contracts, templates and other library files.
+
+7. All other component basics are same as JavaScript
+
+     - Component creation
+     - Component hooks
+     - Data Binding
+     - Style Binding
+     - Class Binding
+     - Event Binding
+
+State in TypeScript:
+- State is generic type.
+- If you initialize state then you can directly use the reference.
+- If you are not initializing state then it is configured as "nullable".
+
+Syntax:
+    const [categories, setCategories] = useState<string[]>();
+
+    {
+      categories?.map(category => <li> { category } </li>);
+    }
+
+    const [categories, setCategories] = useState<string[]>([]);
+   
+    {
+      categories.map()
+    }
+
+
+    - Forms are same
+    - API requests are same
+    - 3rd Party libraries for validation are same
+    - Hooks are same
+    - Routing is same
+
+Controlled Components:
+
+ - Controlled component requires "props".
+ - TypeScript based controlled component uses "props" as "any" type.
+ - You can configure a strongly typed props type by using any schema or contract.
+
+Syntax:
+    function  component(props: { key:datatype, key?:datatype })
+    {
+        return(
+            <div>
+                { props.key }
+            </div>
+    }
+
+Ex:
+controlled-components/navbar.tsx
+
+export  function Navbar(props:{brand:string, items:string[], theme?:string}){
+    return(
+        <nav style={{display:'flex', alignItems:'center' , border:'1px solid black', padding:'20px' , justifyContent:'space-between'}}>
+            <h2>{props.brand}</h2>
+            <div>
+                {
+                    props.items.map(item=><span style={{paddingLeft:'20px', paddingRight:'20px'}} key={item}>{item}</span>)
+                }
+            </div>
+        </nav>
+    )
+}
+
+
+components/data-binding.tsx
+
+import axios from "axios";
+import { useEffect, useState } from "react"
+import { Navbar } from "../../controlled-components/navbar";
+
+interface IFakestore
+{
+     id:number;
+     title:string;
+     price:number;
+     category:string;
+     description:string;
+     image:string;
+     rating:{rate:number, count:number};
+}
+
+export function DataBinding()
+{
+    const [categories, setCategories] = useState<string[]>();
+    const [products, setProducts] = useState<IFakestore[]>();
+
+    function GetCategories(){
+        axios.get(`https://fakestoreapi.com/products/categories`)
+        .then(response => {
+            setCategories(response.data);
+        })
+    }
+    function GetProducts(){
+         axios.get(`https://fakestoreapi.com/products`)
+        .then(response => {
+            setProducts(response.data);
+        })
+    }
+
+    useEffect(()=>{
+
+        GetCategories();
+        GetProducts();        
+
+    },[])
+
+    return(
+        <div>
+            <Navbar brand="Shopper" items={['Home', 'Shop', 'Pages', 'Blog']} />
+            <ul>
+                {
+                    categories?.map(category=> <li key={category}>{category}</li>)
+                }
+            </ul>
+            <div>
+                {
+                    products?.map(product=> <img key={product.id} src={product.image} width="100" height="100"/>)
+                }
+            </div>
+        </div>
+    )
+}
+
+                              MERN Stack
+
+M    MongoDB        Database
+E    Express JS        Middleware
+R    React            Front End Library
+N    Node JS            Server Side Scripting
+
+Video Library Application:
+   
+    a) Admin Module
+    b) User Module
+
+Admin Module
+- Admin can login
+- Admin have a dashboard
+- Admin can add videos [ YouTube embedded ]         => CRUD
+- Admin can edit videos
+- Admin can remove videos
+
+User Module
+- User can register
+- User can login
+- User have a dash board
+- User can view videos
+- User can search videos
+- User can save video to watch later [Redux tool kit]
+
+Setup Database:
+- Download and Install MongoDB community server
+
+         https://www.mongodb.com/try/download/community
+
+- Add "MongoDB Compass" tool. [ Client Tool ]

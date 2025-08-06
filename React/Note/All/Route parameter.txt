@@ -1,0 +1,61 @@
+Routing - SPA
+<BrowserRouter>
+<Routes>
+<Route>
+<Link>
+<Outlet>
+
+- Wild card routes
+    /
+    *
+
+                            Route Parameters
+
+- Route renders requested component.
+- Route parameter allows to query any content in component.
+
+Syntax: without route parameter
+
+    http://www.amazon.in/products?category=mobiles&brand=apple
+
+Syntax: with route parameter
+
+    http://www.amazon.in/products/mobiles/apple
+
+- Route is a configured for accepting parameters
+
+Syntax:
+       <Route  path="products/:param1/:param2"  element={  } />
+       <Route  path="products/:category/:brand"   element={ } />
+
+        /products/mobiles/apple
+
+- Route parameters are accessed by using  "useParams()"  hook.
+- It returns an object with key and value collection.
+
+Syntax:
+        let  params =  useParams();            // params : object { }
+
+        params.param1
+        params.param2
+
+        params.category
+        params.brand
+
+Note: Every route parameter is a required parameter. It is mandatory to pass a value into the parameter reference.
+
+FAQ: What is difference between "absolute & relative" route?
+Ans:  "Relative" routes are child routes with relative to their parent.
+     
+            <Link  to="details"> Details </Link>
+   
+            http://localhost/products/details
+   
+     "Absolute" routes are not relative to any parent, they are individual.
+
+            <Link to="/details"> Details </Link>
+
+            http://localhost/details
+
+Note: Relative routes add the current path to existing context.
+      Absolute routes add a new context by removing existing.

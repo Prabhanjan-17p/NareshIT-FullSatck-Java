@@ -1,0 +1,269 @@
+- Uncontrolled Components  
+- Controlled Components
+
+                        Conditional Rendering
+- Rendering is the process of generating output.
+- Conditional rendering is a technique where you can generate different output according to state and situation.
+
+1. You can render different components as a part of conditional rendering
+
+    Syntax:
+        if (condition)
+        {
+            <component1 />
+        }
+        else
+        {
+           <component2 />
+        }
+
+Ex:
+conditional-render.jsx
+
+import { useState } from "react";
+import { EmiCalculator  } from '../emi-calculator/emi-calculator';
+import { CarouselDemo } from '../carousel-demo/carousel-demo';
+
+export function ConditionalRender(){
+    const [component, setComponent] = useState();
+
+    function LoadComponent(cname){
+        if(cname==="emi"){
+            setComponent(<EmiCalculator />);
+        } else {
+            setComponent(<CarouselDemo />)
+        }
+    }
+
+    return(
+        <div className="container-fluid">
+                <button onClick={()=>{LoadComponent('emi')}}>EMI Calculator</button>
+                <button onClick={()=>{LoadComponent('carousel')}}>Carousel Demo</button>
+                <hr />
+                <div className="mt-4">
+                    { component }
+                </div>
+        </div>
+    )
+}
+
+2. A single component can render various fragments.
+
+Syntax:
+       function Component(props)
+       {
+         if(props.key)
+         {
+            return(
+                  <>
+                  fragment-1
+                  </>
+            );
+         } else {
+            return(
+              <>
+                 fragment-2
+              </>
+            );
+         }
+       }
+
+Ex:
+ controlled-components/data-grid.jsx
+
+export function DataGrid(props)
+{
+    if(props.layout==='grid'){
+        return(
+        <table className={`table ${props.theme} table-hover caption-top`}>
+            <caption>{props.caption}</caption>
+            <thead>
+                <tr>
+                    {
+                        props.fields.map(field=><th key={field}> {field} {(props.sorting===true)?<button className="btn bi bi-sort-alpha-down"></button>:null}  </th>)
+                    }
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {
+                    props.data.map((record,index)=>
+                        <tr key={index}>
+                            {
+                                Object.keys(record).map(key=> <td key={key}>{record[key]}</td>)
+                            }
+                            <td>
+                                <button className="btn btn-danger bi bi-trash"></button>
+                                <button className="btn btn-warning bi bi-pen mx-2"></button>
+                                <button className="btn btn-primary bi bi-eye"></button>
+                            </td>
+                        </tr>
+                    )
+                }
+            </tbody>
+        </table>
+        )
+    } else if(props.layout==='card') {
+        return(
+            <div className="d-flex flex-wrap flex-row">
+                {
+                    props.data.map((record, index)=>
+                      <div key={index} className="card p-2 m-2" style={{width:'200px'}}>
+                        <div className="card-header">
+                            {Object.keys(record)[0]} {Object.keys(record)[1]}
+                        </div>
+                        <div className="card-body">
+                            {record[Object.keys(record)[0]]}
+                             &nbsp;
+                            {record[Object.keys(record)[1]]}
+                        </div>
+                        <div className="card-footer">
+                            <button className="btn btn-warning bi bi-pen-fill mx-2"></button>
+                            <button className="btn btn-danger bi bi-trash"></button>
+                        </div>
+                    </div>
+                    )
+                }
+            </div>
+        )
+    } else {
+        return(
+            <div>
+                <h3>Please Select a Layout - To Display Data</h3>
+            </div>
+        )
+    }
+}
+
+components/custom-demo.jsx
+
+import { useState } from "react";
+import { DataGrid } from "../../controlled-components/data-grid";
+
+
+export function CustomDemo(){
+
+
+    const [layout, setLayout] = useState('card');
+
+    function handleLayoutChange(e){
+        setLayout(e.target.value);
+    }
+
+    return(
+        <div className="container-fluid">
+            <h2>Employee</h2>
+            <div className="my-3 w-25">
+                <label className="form-label">Select Layout</label>
+                <div>
+                  <select onChange={handleLayoutChange} className="form-select">
+                    <option>Select Layout</option>
+                    <option value='grid'>Grid</option>
+                    <option value='card'>Card</option>
+                  </select>
+                </div>
+            </div>
+            <DataGrid layout={layout} theme="table-warning" sorting={true} caption="Employees Data Table" fields={['First Name', 'Last Name', 'Designation', 'Salary']} data={[{FirstName:'Raj', LastName:'Kumar', Designation:'Developer', Salary:56000}, {FirstName:'Kiran', LastName:'Kumar', Designation:'Admin', Salary:46000}]} />
+            <h2>IPL Points Table</h2>
+            <DataGrid layout='grid' theme="table-danger" caption="Playoff's Table" fields={['TEAM', 'WON', 'LOST', 'NRR', 'PTS']} data={[{Team:'MI', Won:2, Lost:1, NRR:0.56, PTS:4}]} />
+        </div>
+    )
+}
+
+3. A component can change its content dynamically using conditional render.
+
+Syntax:
+
+       (condition) ? <span> true </span> : <span> false </span>
+
+Using Various Storages
+a) Session Storage
+    - It temporary storage.
+    - It is accessible with in current tab.
+    - It is removed when browser is closed.
+
+Syntax:
+     sessionStorage.setItem(key, value)
+                   .getItem(key)            
+                   .removeItem(key)
+
+b) Local Storage
+    - It is permanent storage.
+    - Accessible across tabs.
+    - Not deleted when browser closed.
+    - It is to be removed explicitly.
+
+Syntax:
+     localStorage.setItem(key, value)
+                  .getItem()
+                  .removeItem()
+
+c) Cookies
+    - It can temporary or permanent.
+    - If defined with expiry then it is permanent.
+
+Syntax:
+    document.cookie = "name=value, expires=ISOdateTime";
+
+
+Ex:
+state-condition.jsx
+
+import { useState } from "react";
+
+export function StateCondition(){
+
+
+    const [uname, setUname] = useState('');
+
+    function handleNameChange(e){
+        setUname(e.target.value);
+    }
+
+    function handleSigninClick(){
+        localStorage.setItem('username', uname);
+        alert('Signed In Successfully');
+        window.location.reload();
+    }
+    function handleSignoutClick(){
+        localStorage.removeItem('username');
+        alert('Signout Successfully');
+        window.location.reload();
+    }
+
+    return(
+        <div className="container-fluid">
+            <header className="d-flex p-4 justify-content-between align-items-center">
+                <div className="fs-3 fw-bold">Shopping</div>
+                {
+                    (localStorage.getItem('username')===null)?
+                    <div>
+                      <input type="text" onChange={handleNameChange} placeholder="User Name" /> <button onClick={handleSigninClick} className="btn btn-danger">Sign in</button>
+                    </div>:
+                    <div>
+                        <span>{localStorage.getItem('username')}</span>
+                        <button onClick={handleSignoutClick} className="btn btn-warning ms-3">Signout</button>
+                    </div>
+                }
+            </header>
+        </div>
+    )
+}
+
+Task - Conditional Render
+
+1. Create an array with data
+
+    [  { Name:"" ,  Price:""  } ]
+
+2. Present data in table
+
+3. Every row must have edit button
+
+4. On Edit click every cell must display data in textbox and edit button must change to "save" button.
+
+5. On save click new value is collected and saved, it changes from textbox to label.
+
+https://demos.telerik.com/kendo-ui/grid/editing-inline
+
+                         React Hooks

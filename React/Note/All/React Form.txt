@@ -1,0 +1,238 @@
+Event Binding in React
+
+Clipboard Events
+    onCut
+    onCopy
+    onPaste
+
+- The content that you cut or copy is kept in temporary memory of your device known as clipboard.
+- You can defined actions related to clipboard.
+- You can disable by using a function that returns false.
+
+Ex:
+ event-demo.jsx
+
+ import { useState } from "react"
+
+export function EventDemo(){
+    const [msg, setMsg] = useState('');
+    function handleCopy(){
+        setMsg('Number Copied');
+    }
+    function handlePaste(){
+        document.onpaste = function(){
+            return false;
+        }
+    }
+    return (
+        <div className="container-fluid">
+            <h2>Bank Details</h2>
+            <dl>
+                <dt>Account Number</dt>
+                <dd><input type="text" onCopy={handleCopy} /></dd>
+                <dd>{msg}</dd>
+                <dt>Verify Account</dt>
+                <dd><input type="text" onPaste={handlePaste} /></dd>
+            </dl>
+        </div>
+    )
+}
+
+Touch Events:
+ onTouchStart
+ onTouchEnd
+ onTouchMove
+
+Ex:
+ event-demo.jsx
+
+import { useState } from "react"
+
+export function EventDemo(){
+   
+
+    const [msg, setMsg] = useState();
+
+    function GetDetails(msg){
+        setMsg(msg);
+    }
+
+    return (
+        <div className="container-fluid">
+            <img src="Java.png" onTouchStart={()=> GetDetails('New Java Batch Starts 26-May-2025') } width="200" height="200" className="mx-4 mt-4" />
+            <img src="sales-force.png" onTouchStart={()=> GetDetails('Demo on Sales Force - Live @ 10:00 AM 24 May 2025') }  width="200" height="200" className="mt-4" />
+            <h2>{msg}</h2>
+        </div>
+    )
+}
+
+Form Events
+    onSubmit
+    onReset
+
+- Submit and Reset events are configured for <form> element.
+- They define actions to perform on submit and reset of form.
+
+Syntax:
+      <form  onSubmit={ }    onReset={ }>
+
+Summary
+1. Components [ Function Components ]
+2. Data Binding
+    a) One Way
+    b) Two Way
+3. Style Binding
+4. Class Binding
+5. Event Binding
+
+                         React Forms
+
+- React provides "FormData", which is a key/value pair representing form fields and their values.
+- You can access any form element and de-structure using FormData.
+
+Syntax:
+        function handleSubmit(e)
+        {
+           const  form = e.target;        
+           const  formData = new FormData(form);
+        }
+
+        <form onSubmit={handleSubmit}>
+
+- FormData is a "map" type with set of members like
+           
+        get()
+        set()
+        keys()
+        values()
+        entries()
+        has()
+        delete()  etc..
+
+Syntax:
+        { formData.get("key") }
+
+Ex:
+ form-demo.jsx
+
+
+export function FormDemo(){
+
+
+    function handleSubmit(e){
+        e.preventDefault();
+        const form = e.target;
+        const formData = new FormData(form);
+        for(var item of formData.values()){
+            console.log(item);
+        }
+        console.log(`User Age : ${formData.get('Age')}`);
+    }
+
+
+    return(
+        <div className="container-fluid">
+            <h3>Register User</h3>
+            <form onSubmit={handleSubmit}>
+                <dl>
+                    <dt>User Name</dt>
+                    <dd><input type="text" name="UserName" /></dd>
+                    <dt>Email</dt>
+                    <dd><input type="email" name="Email" /></dd>
+                    <dt>Age</dt>
+                    <dd><input type="age" name="Age" /></dd>
+                    <dt>Gender</dt>
+                    <dd>
+                        <input type="radio" name="Gender" value="Male"/ > <label> Male</label>  
+                        <input type="radio" name="Gender" value="Female"/ > <label> Female </label>
+                    </dd>
+                </dl>
+                <button>Submit</button>
+            </form>
+        </div>
+    )
+}
+
+React 3rd party form libraries:
+- React can plugin with various 3rd party forms like
+    a) Formik
+    b) Telerik Kendo Form
+    c) React Hook Form etc..
+- These 3rd party libraries provide pre-defined functions for form interactions and validations.
+
+Formik Library:
+
+1. Install formik for project
+
+    > npm install formik --save
+
+2. Import formik core library into component
+
+     import   fromik as alias from  "formik"         // for aliasing and importing all
+
+3. You can configure a form using "useFormik" hook
+
+      import  { useFormik }  from  "formik";
+
+      const  formik = useFormik({
+            initialValues: { },                // refer to "FormData"
+            validation: function(){},
+            validationSchema: schemaObject,
+            onSubmit: function(){ },
+            enableReinitialize: Boolean,
+       })
+
+4. Bind on change for every element
+
+    <input type="text"  onChange={ formik.handleChange } />
+
+5. Bind on Submit for form element
+
+     <form  onSubmit={ formik.handleSubmit }>
+
+Ex:
+  form-demo.jsx
+
+
+import { useFormik } from "formik"
+
+export function FormDemo(){
+
+
+    const formik = useFormik({
+        initialValues: {
+            UserName : '',
+            Email: '',
+            Age: 0,
+            Gender: ''
+        },
+        onSubmit : (data) => {
+            console.log(data);
+        }
+    })
+   
+
+    return(
+        <div className="container-fluid">
+            <h3>Register User</h3>
+            <form onSubmit={formik.handleSubmit}>
+                <dl>
+                    <dt>User Name</dt>
+                    <dd><input type="text" onChange={formik.handleChange} name="UserName" /></dd>
+                    <dt>Email</dt>
+                    <dd><input type="email" onChange={formik.handleChange} name="Email" /></dd>
+                    <dt>Age</dt>
+                    <dd><input type="age" onChange={formik.handleChange} name="Age" /></dd>
+                    <dt>Gender</dt>
+                    <dd>
+                        <input type="radio" onChange={formik.handleChange} name="Gender" value="Male"/ > <label> Male</label>  
+                        <input type="radio" onChange={formik.handleChange} name="Gender" value="Female"/ > <label> Female </label>
+                    </dd>
+                </dl>
+                <button type="submit">Submit</button>
+            </form>
+        </div>
+    )
+}
+
+                           Form Validation

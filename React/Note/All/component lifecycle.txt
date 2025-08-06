@@ -1,0 +1,62 @@
+Ex:
+cycle-demo.jsx
+
+import { useEffect, useState } from "react"
+
+export function Login(){
+
+
+    useEffect(()=>{
+        console.log('Login Component Mounted');
+        return()=>{
+            console.log('Login Component Unmounted');
+        }
+    },[])
+
+    return(
+        <div>
+            <h2>Login</h2>
+        </div>
+    )
+}
+export function Register(){
+
+     
+     useEffect(()=>{
+        console.log('Register Component Mounted');
+        return()=>{
+            console.log('Register Component Unmounted');
+        }
+    },[])
+    return(
+        <div>
+            <h2>Register</h2>
+        </div>
+    )
+}
+
+export function CycleDemo(){
+
+
+    const [component, setComponent] = useState();
+
+
+    function handleButtonClick(comp){
+        if(comp==='login'){
+            setComponent(<Login />);
+        } else {
+            setComponent(<Register />);
+        }
+    }
+
+    return(
+        <div className="container-fluid">
+            <button onClick={()=> handleButtonClick('login')} >Login</button>
+            <button onClick={()=> handleButtonClick('register')}>Register</button>
+            <hr />
+            {
+                component
+            }
+        </div>
+    )
+}

@@ -1,0 +1,167 @@
+TypeScript Variables
+TypeScript DataTypes
+TypeScript Operators
+TypeScript Statements
+
+                         TypeScript Functions
+
+- It requires type specification for function and its parameters.
+- All function concepts are same
+    - Function Declaration
+    - Function Expression
+    - Function Signature
+    - Parameterized Function
+    - Rest Parameters
+    - Spread Operator
+    - Function Closure
+    - Function Return
+    - Function Call Back    
+    - Function Promise
+    - Higher Order Function
+    - Function Chaining
+    - Function Currying
+    - Function Generator
+    - Anonymous Function
+    - Arrow Function
+    - Async Function
+
+FAQ's:
+1. What is closure?
+2. What are higher order functions?
+3. What is function currying?
+4. What is difference between callback and promise?
+5. What is difference between rest and spread?
+6. How to access anonymous function? [ IIFE ]
+7. What is a generator?
+8. What is function chaining?
+
+Ex:
+
+function Demo()
+{
+     return {
+        A(){
+            console.log(`A Called`);
+            return this;
+        },
+        B(){
+            console.log(`B Called`);
+            return this;
+        }
+     }
+}
+let obj = Demo();
+obj.B().A();
+
+Syntax:
+           function  Name(param: datatype) : type | void
+           {
+           }
+
+Ex:
+index.ts
+
+function Addition(a:number, b:number) : number
+{
+     return a + b;
+}
+
+function List() : string[]
+{
+    return ["A", "B"];
+}
+
+function Product(): {Name:string, Price:number}
+{
+    return {Name: 'TV', Price: 56000}
+}
+
+function Print():void {
+    console.log(`Addition=${Addition(40, 50)}\nList=${List().join(' --> ')}\nProduct Name=${Product().Name}`);
+}
+
+Print();
+
+Optional Parameters:
+- You can define optional parameters by using null reference character "?".
+
+         function Name(param?: datatype)
+        {
+        }
+
+- To handle optional parameters you have to verify undefined type.
+- A required parameter can't follow an optional parameter.
+- All optional parameters must be last in formal list.
+   
+        function Name( param1?: datatype,  param2: datatype) {  }   => invalid
+       
+Ex:
+
+function Details(id:number,stock:boolean,price?:number)
+{
+     if(price){
+         console.log(`id=${id}\nstock=${stock}\nprice=${price}`);
+     } else {
+        console.log(`id=${id}\nstock=${stock}`);
+     }
+}
+Details(1, true);
+Details(2, false, 5000);
+
+- You can configure default parameters.
+- It allows to initialize a value.
+- You can't initialize optional parameter.
+- If parameter is not defined then it uses the default value.
+
+Ex:
+
+function Details(id:number,stock:boolean, price:number = 45000)
+{
+     if(price){
+         console.log(`id=${id}\nstock=${stock}\nprice=${price}`);
+     } else {
+        console.log(`id=${id}\nstock=${stock}`);
+     }
+}
+Details(1, true);
+Details(2, false, 5000);
+
+- REST parameter is any type array.
+
+Syntax:
+      function  Name(...param: any[])
+      {
+      }
+
+
+Ex: Rest Parameter
+
+function Details(...product:any[])
+{
+      var [id, name, price] = product;
+
+      console.log(`Id=${id}\nName=${name}\nPrice=${price}`);
+}
+
+Details(1, 'TV', 46000);
+
+Ex:
+
+function Details(id:number, name:string, price:number)
+{
+     
+      console.log(`Id=${id}\nName=${name}\nPrice=${price}`);
+}
+
+Details(...[2, "Mobile", 56000]);
+
+Ex: Arrow
+
+let data:string[] = ['A', 'B', 'C'];
+
+data.map( (item:string) => {
+    console.log(item);
+});
+
+       
+                        TypeScript OOP

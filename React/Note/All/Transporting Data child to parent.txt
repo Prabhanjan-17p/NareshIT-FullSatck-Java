@@ -1,0 +1,177 @@
+useState
+useEffect
+useContext
+
+FAQ: How to transport data from child to parent?
+Ans:  By configuring custom events for child that emits a value, which can be accessed
+     and used in parent.
+
+1. Configure a child component with custom event
+
+    function  Child({ eventName } )
+    {
+    }
+
+2. Define the payload for event to transport. It requires a local event to trigger custom event
+       child component
+       {
+           function handleClick() {
+            const data = { };
+            eventName(data);
+        }
+      }
+
+3. Child component in parent is defined with custom event
+
+       <Child  eventName={ ParentfunctionName } />
+
+        function  ParentfunctionName(data) {
+            // use in parent
+         }
+
+Ex:
+data-transport.jsx
+
+import { useState } from "react";
+
+export function ChildComponent({ onChildComponentClick }){
+
+    function handleClick(){
+         const data = 'Hello from child';
+         onChildComponentClick(data);
+    }
+
+    return(
+        <div className="container bg-danger text-white p-4">
+            <h5>Child Component</h5>
+            <button onClick={handleClick} className="btn btn-warning">Send data to parent</button>
+        </div>
+    )
+}
+
+export function DataTransport(){
+
+    const [childData, setChildData] = useState('');
+
+    function handleChildClick(data){
+        setChildData(data);
+    }
+
+    return(
+        <div className="container-fluid p-4 bg-secondary text-white">
+            <h3>Parent Component - {childData} </h3>
+            <ChildComponent onChildComponentClick={handleChildClick} />
+        </div>
+    )
+}
+
+Ex: Transporting data from child to parent
+
+products-search.jsx
+
+import axios from "axios";
+import { createContext, useContext, useEffect, useState } from "react"
+
+
+let searchContext = createContext(null);
+
+export function MainComponent({ addToCart }){
+
+    let search = useContext(searchContext);
+
+    const [products, setProducts] = useState([{id:0, title:'', category:'', price:0, description:'', image:'', rating:{rate:0, count:0}}]);
+
+    useEffect(()=>{
+
+         axios.get(`https://fakestoreapi.com/products/category/${search}`)
+         .then(response => {
+             setProducts(response.data);
+         });
+
+    },[search])
+
+    function handleAddClick(product){
+        addToCart(product);
+    }
+
+    return(
+        <div>
+            <div className="h5">Search Results</div>
+            <main className="d-flex flex-wrap overflow-auto p-4" style={{height:'400px'}}>
+                {
+                    products.map(product =>
+                        <div key={product.id} className="card p-2 m-2" style={{width:'200px'}}>
+                            <img className="card-img-top" src={product.image} height="120" />
+                            <div className="card-header overflow-auto" style={{height:'110px'}}>
+                                {product.title}
+                            </div>
+                            <div className="card-body">
+                                $ {product.price}
+                            </div>
+                            <div className="card-footer">
+                                <button onClick={()=> handleAddClick(product) } className="btn btn-warning w-100 bi bi-cart3"> Add to Cart </button>
+                            </div>
+                        </div>
+                    )
+                }
+            </main>
+        </div>
+    )
+}
+
+export function ProductsSearch(){
+
+
+    const [searchString, setSearchString] = useState('');
+
+    const [contextValue, setContextValue] = useState('electronics');
+
+    const [cartItems] = useState([]);
+
+    const [cartCount, setCartCount] = useState(0);
+
+    function handleSearchChange(e){
+        setSearchString(e.target.value);
+    }
+    function handleSearchClick(){
+        setContextValue(searchString);
+    }
+   
+    function handleAddClickfromChild(product){
+        alert(`${product.title}\n Added to Cart`);
+        cartItems.push(product);
+        setCartCount(cartItems.length);
+    }
+
+    return(
+        <div className="container-fluid">
+            <header className="mt-3 border border-2 p-4 d-flex justify-content-between align-items-center">
+               <div>
+                  <span className="fs-3 fw-bold">Shopping</span>
+               </div>
+               <div>
+                 <div className="input-group" style={{width:'400px'}}>
+                    <input type="text" onChange={handleSearchChange} placeholder="Search Fakestore categories" className="form-control" /> <button onClick={handleSearchClick} className="bi bi-search btn btn-warning"></button>
+                  </div>
+               </div>
+               <div>
+                  <button className="btn btn-warning bi bi-cart4 position-relative">
+                      <span className="badge bg-danger rounded rounded-circle position-absolute">{cartCount}</span>
+                  </button>
+               </div>
+            </header>
+            <section className="mt-4 row">
+                <div className="col-9">
+                     <searchContext.Provider value={contextValue}>
+                     <MainComponent addToCart={handleAddClickfromChild} />
+                     </searchContext.Provider>
+                </div>
+                <div className="col-3">
+
+                </div>
+            </section>
+        </div>
+    )
+}
+
+                          useReducer  => Redux

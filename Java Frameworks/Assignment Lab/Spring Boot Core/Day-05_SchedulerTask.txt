@@ -1,0 +1,127 @@
+Question 1: Basic Usage
+-----------------------------------------------
+How do you enable scheduling in a Spring Boot application, and which annotation is used to schedule a method to run every 5 seconds?
+
+Expected Answer:
+
+Add @EnableScheduling to the main application class.
+
+Use @Scheduled(fixedRate = 5000) on the method.
+
+ANS ----
+
+package com.nt;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.ApplicationContext;
+import org.springframework.scheduling.annotation.EnableScheduling;
+
+import com.nt.model.ReportGenerate;
+
+@SpringBootApplication
+@EnableScheduling
+public class Day05Application {
+
+	public static void main(String[] args) {
+		ApplicationContext ctx = SpringApplication.run(Day05Application.class, args);
+
+		ReportGenerate report = ctx.getBean(ReportGenerate.class);
+		report.generateReport();
+	}
+
+}
+
+
+package com.nt.model;
+
+import java.util.Date;
+
+import org.springframework.scheduling.annotation.Scheduled;
+import org.springframework.stereotype.Component;
+
+@Component("report")
+public class ReportGenerate {
+	
+	@Scheduled(fixedRate = 5000)
+	public void generateReport() {
+		System.out.println("Start on SaleReport :: "+new Date());
+//		try {
+//			Thread.sleep(5000);
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
+		System.out.println("End Sales Report on :: "+new Date());
+	}
+}
+
+=======================================================================================================================
+ Question 2: Cron Expression
+-------------------------------------------------
+Write a cron expression that runs a scheduled task every day at 10:30 AM. Which annotation property do you use?
+
+Expected Answer:
+
+Cron expression: 0 30 10 * * ?
+
+Use it like: @Scheduled(cron = "0 30 10 * * ?")
+
+ANS ----
+
+package com.nt;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.ApplicationContext;
+import org.springframework.scheduling.annotation.EnableScheduling;
+
+import com.nt.model.QNS2;
+
+@SpringBootApplication
+@EnableScheduling
+public class Day05Application {
+
+	public static void main(String[] args) {
+		ApplicationContext ctx = SpringApplication.run(Day05Application.class, args);
+		
+		QNS2 report2 = ctx.getBean(QNS2.class);
+		report2.runTask();
+	}
+
+}
+
+
+package com.nt.model;
+
+import java.util.Date;
+
+import org.springframework.scheduling.annotation.Scheduled;
+import org.springframework.stereotype.Component;
+
+@Component("report")
+public class QNS2 {
+
+    /**
+     * Cron expression: second minute hour day-of-month month day-of-week
+     * "0 30 10 * * *" -> at 10:30:00 every day
+     */
+    @Scheduled(cron = "0 30 10 * * *")
+    public void runTask() {
+        System.out.println("Start on SaleReport :: " + new Date());
+        // Do your processing here (avoid long blocking operations on the scheduler thread)
+        System.out.println("End Sales Report on :: " + new Date());
+    }
+}
+
+================================================================================================================
+Question 3: Cron Thingy in Scheduler
+-----------------------------------------------
+So like… if I want my method to run every day at exactly 10:30 in the morning, what’s that weird cron expression thing I gotta use? And how do I even tell Spring Boot to use it?
+
+ Expected Answer (explained casually):
+You still need that @EnableScheduling on your main class, or nothing's gonna work.
+
+Use this annotation on your method:
+@Scheduled(cron = "0 30 10 * * ?")
+(I know, it looks scary, but it just means 10:30 AM every day.)
+

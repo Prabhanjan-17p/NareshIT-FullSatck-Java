@@ -1,0 +1,167 @@
+Create React TypeScript Application
+Video Library Project
+
+
+                            Setup Database
+
+1. Install MongoDB Community Server on your PC
+   
+        https://www.mongodb.com/try/download/community
+
+    MongoDB Server        :  mongodb://127.0.0.1:27017
+
+    MongoDB Client        :  MongoDB Compass [ GUI / CLI ]
+
+
+2. Start MongoDB server
+
+       Programs => Services.msc => MongoDB Server => Start
+
+3. Open MongoDB Compass and connect to MongoDB Server using connection string
+
+        mongodb://127.0.0.1:27017
+
+
+MongoDB Terminology:
+
+        Database                It is a store
+   
+        Collection            It comprises of data related to specific module
+                            [ like tables ]
+
+        Document            It is a record to store individual details.
+
+       
+        Oracle                MongoDB
+        -----------------------------------------------
+        Database                Database
+        Tables                Collections
+        Records                Documents
+        Fields                Fields
+
+Create Data for Video Library Project:  [ Shell Commands ]
+
+1. Create a new database
+
+        > use   video-project
+
+2. Create Collections [ Tables ]
+
+       > db.createCollection("tbladmin")
+       > db.createCollection("tblusers")
+       > db.createCollection("tblcategories")
+       > db.createCollection("tblvideos")
+
+       > show collections
+
+3. Insert data into collection
+
+    a) insertOne()        
+    b) insertMany()
+
+    > db.collection_name.insertOne({ field:value, field:value })
+    > db.collection_name.insertMany([ { }, { } ])
+
+        tbladmin:
+
+        > db.tbladmin.insertOne({ admin_id: "john_admin", password: "john@admin"})
+
+    tblcategories:
+
+        > db.tblcategories.insertMany(
+            [
+              {  category_id: 1, category_name: "React" },
+              {  category_id: 2, category_name: "Java" },
+              {  category_id: 3, category_name: "Cloud" }
+            ]
+              )
+
+    tblusers:
+
+        > db.tblusers.insertOne(
+            {
+              user_id : "sam_123",
+              user_name: "samson",
+              password: "sam123",
+              email: "sam@gmail.com",
+              mobile: "+919876543210"
+            } )
+
+    tblvideos
+
+        > db.tblvideos.insertOne(
+            {
+              video_id : 1,
+              title: "React FAQ's",
+              description: "React Interview QA",
+              comments: "something",
+              likes: 100,
+              views: 600,
+              url: "https://www.youtube.com/embed/tcvvmiNRiOg&quot;,
+              category_id: 1
+             }
+            )
+
+4. Querying Data from collection requires  "find()" method
+
+        > db.collection_name.find({ })        // returns all documents
+        > db.tblcategories.find({})
+
+        $gt        greater than
+        $gte        greater than or equal
+        $lt        less than
+        $lte        less than or equal
+        $eq        equal
+        $ne        not equal
+        $and    AND
+        $or        OR
+
+        > db.tblcategories.find({ category_id : 2 })
+        > db.tblvideos.find({ likes: {$gte:1000} })
+        > db.tblvideos.find({$and:[ {views:{$gte:1000}}, {views:{$lte:5000}} ]})
+
+5. Updating data
+
+        a) updateOne()
+        b) updateMany()
+
+        > db.collection_name.updateOne( {findquery}, {updatequery})
+
+        $set        It is used to update value in any field
+       
+    > db.tblvideos.updateOne( {category_id:2}, {$set: {category_name:"Core Java"}})
+
+
+6. Deleting Data
+
+        a) deleteOne()
+        b) deleteMany()
+
+    > db.collection_name.deleteOne({findquery});
+    > db.tblcategories.deleteOne({category_id:2});
+
+    > db.tblvideos.deleteMany({category_id:2});
+
+   
+                    Server Side Business Logic
+- Node JS
+    * It is responsible for creating server and server side web application.
+    * It is an open source, cross platform JavaScript runtime.
+
+- Express JS
+    * It is a middleware framework.
+    * Middleware provides features that enable communication between client and
+      server in network applications.
+    * You can create API.
+
+- Go to your project [ React TS Application ] and install following libraries for server side business logic
+
+    > npm  install  express   --save
+    > npm  install  mongodb  --save
+    > npm  install  cors  --save
+
+
+        express            : middleware library to create API
+        mongodb            : database driver to connect with mongodb in backend.
+        cors                : Cross Origin Resource Sharing, it is required to manage
+                          various http requests. [GET, POST, PUT, DELETE..]

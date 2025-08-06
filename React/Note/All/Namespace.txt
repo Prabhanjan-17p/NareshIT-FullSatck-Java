@@ -1,0 +1,251 @@
+TypeScript OOP
+Generics
+
+Note: You can't use operators on Generic types. All manipulations are managed using
+      functions.
+
+      Syntax:
+            (a:T, b:T)  => a ** b;            // invalid
+            (a:T, b:T)  => Math.pow(a,b);        // valid
+
+Ex: Generic Function
+
+function Sum(a:any, b:any){
+     return a + b;
+}
+
+function Add<T>(a:T, b:T){
+     return Sum(a,b);
+}
+
+console.log(`Addition=${Add<number>(30,10)}`);
+
+Ex: Generic Property
+
+
+interface IMongoDB
+{
+     Url:string;
+}
+interface IMySQL
+{
+     host:string;
+     user:string;
+     password:string;
+}
+
+class Database<T>
+{
+     public ConnectionString:T|null = null;
+
+     public Connect(){
+          for(var property in this.ConnectionString){
+               console.log(`${property} : ${this.ConnectionString[property]}`);
+          }
+     }
+}
+
+let mongodb = new Database<IMongoDB>();
+
+mongodb.ConnectionString = { Url: "mongodb://127.0.0.1:27017" };
+mongodb.Connect();
+
+let mysql = new Database<IMySQL>();
+
+mysql.ConnectionString = {host: 'localhost', user:'root', password:'1234' };
+
+mysql.Connect();
+
+Ex: Generic Method
+
+interface IProduct
+{
+     Id:number;
+     Title:string;
+     Rating:number;
+}
+
+class API<T>
+{
+     public FetchData<T>(response:T){
+          console.log(response);
+     }
+}
+
+let product = new API<IProduct>()
+product.FetchData<IProduct>({Id:1, Title:'TV', Rating:3.4});
+product.FetchData<IProduct[]>([{Id:2, Title:'Mobile', Rating:4.2}]);
+
+
+                               Enum
+                         [Enumeration]
+
+- Enum is a collection of constants.
+- Constant in Enum can be
+    a) Number
+    b) String
+    c) Expression
+- Number constants support auto increment.
+
+Syntax:
+        enum  Name
+        {
+           key = value,
+           key = value
+        }
+
+        Name.key;        // returns value
+
+- If constants are numbers, then value is initialized according to the previous.
+- Constants increments previous value by 1 and initializes to the next.
+- If there is no previous value, then it starts with 0.
+- If previous is a string type then it will not support auto increment.
+
+Ex:
+enum StatusCodes
+{
+     OK = 200,
+     NotFound = 404,
+     RequestTimeOut,
+}
+console.log(`Page Not Found : ${StatusCodes.NotFound}`);
+
+
+FAQ: Why Boolean types are not supported in Enum?
+Ans:  Boolean is not a constant type. It requires to switch between true of false.
+
+Ex: Expression
+
+enum StatusCodes
+{
+     A = 10,
+     B = 20,
+     C = A + B
+}
+console.log(`Addition : ${StatusCodes.C}`);
+
+FAQ: What is Enum reverse mapping?
+Ans:  Reverse mapping is a technique of accessing a key with reference of value.
+
+Ex:
+enum StatusCodes
+{
+     NotFound = 404
+}
+console.log(`${StatusCodes.NotFound} : ${StatusCodes[404]}`);
+
+FAQ: Which operator is not allowed in Enum expression?
+Ans:  Any operator that returns a Boolean is not allowed.
+
+
+
+                            Namespace
+- Namespace is a collection of sub-namespace and OOP components.
+- It can have contracts, templates and components.
+- It is used to build complex library that can be modular.
+
+Syntax:
+      namespace  Name
+      {
+        namespace Module
+        {
+            // members;
+        }
+     }
+
+     Name.Module.Member
+
+- Namespace allows aliasing.
+
+Syntax:
+    import  alias = Name.Module.Member;
+
+- Members defined in namespace are imported by using " ///<reference /> " directive.
+
+- You have to compile namespace based library file by using "-outFile"  flag.
+
+Syntax:
+      > tsc  -outFile   app.js    app.ts
+
+Ex:
+1. contracts/ProductContract.ts
+
+namespace Project
+{
+      export namespace Contracts
+      {
+            export interface ProductContract
+            {
+                Name:string;
+                Price:number;
+                Qty:number;
+                Total():number;
+                Print():void;
+            }
+      }
+}
+
+2. templates/ProductTemplate.ts
+
+
+/// <reference path="../contracts/ProductContract.ts"/>
+
+import ProductContract = Project.Contracts.ProductContract;
+
+namespace Project
+{
+     export namespace Templates
+     {
+          export abstract class ProductTemplate implements ProductContract
+          {
+              public Name:string = "";
+              public Price:number = 0;
+              public Qty: number = 0;
+              public abstract Total():number;
+              public abstract Print():void;
+          }
+     }
+}
+
+3. component/ProductComponent.ts
+
+
+///<reference path="../templates/ProductTemplate.ts"/>
+
+
+import ProductTemplate  = Project.Templates.ProductTemplate;
+
+namespace Project
+{
+       export namespace Components
+       {
+            export class ProductComponent extends ProductTemplate
+            {
+                Name = "Samsung TV";
+                Price = 45000;
+                Qty = 2;
+                Total(){
+                     return this.Qty * this.Price;
+                }
+                Print(){
+                    console.log(`Name=${this.Name}\nQty=${this.Qty}\nPrice=${this.Price}\nTotal=${this.Total()}`);
+                }
+            }
+       }
+}
+
+4. app/app.ts
+
+
+///<reference path="../components/ProductComponent.ts" />
+
+import ProductComponent = Project.Components.ProductComponent;
+
+let obj = new ProductComponent();
+obj.Print();
+
+5. Run
+
+    > tsc  -outFile  app.js  app.ts
+
+    > node app.js

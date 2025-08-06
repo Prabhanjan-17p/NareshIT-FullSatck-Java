@@ -1,0 +1,166 @@
+TypeScript
+- What is TypeScript?
+- Features
+- Architecture
+1. Core Compiler
+2. TS Standalone Compiler
+3. TS Services
+4. TS Server
+5. VS Shims
+6. Managed Language Service
+
+    - Typescript code is compiled into unmanaged code which is native to specific
+       operating system.
+    - The trans compiler can convert into Managed code.
+    - Managed code uses Managed language service which makes Typescript
+      services understandable to all operating systems.
+
+Setup and Install TypeScript
+
+1. Open command prompt on your PC
+
+2. Run the command
+
+        C:\>npm install  -g  typescript  
+
+        -g   global
+
+3. Check the version
+       
+        C:\> tsc  -v
+
+Create Project for TypeScript language:
+
+1.  Create a new folder for project
+
+        C:\ts-project>
+
+2.  Open in VS code
+
+3.  Run the commands
+
+        > npm init  -y            [ package.json ]
+
+        > tsc  --init            [ tsconfig.json ]
+
+   
+    - tsconfig.json  defines rules and configuration.
+    - In older versions rules are defined using "tsLint.json"
+    - Latest versions merged every thing into "tsconfig.json"
+
+
+4. Add a new Typescript file with extension .ts
+
+            index.ts
+
+5. Write your typescript code and trans compile into JavaScript
+
+            > tsc   index.ts            // generates  index.js
+
+
+6. You can link index.js to any web page for DOM interactions.
+
+     <script src="./index.js"> </script>
+
+7. You can directly compile and run the JavaScript file using code compiler
+
+        > node   index.js
+
+    If you are trying to execute and run using node compiler make sure that
+    code doesn't contain any BOM & DOM methods.
+
+TypeScript Language
+
+1. Variables
+- Declaration and configuration is same using var, let & const.
+- Typescript variables are strongly typed hence they require data type specification.
+
+Syntax:        
+        let   variableName: datatype  = value;
+
+        let   price: number = 2000;
+        let   name: string  = "TV";
+
+- If type is not defined then the default type is "any".
+
+        let   stock;        // stock: any
+
+- TypeScript supports "Type Inference", which allow to configure data type according to the value initialized.
+
+        let  stock = true;        // stock : boolean
+        stock = 30;            // invalid
+
+        let  stock;                // stock is any
+        stock = true;            // Boolean
+        stock = 10;            // number
+
+- The data type are all same that you use in JavaScript
+
+    a) Primitive Types
+    b) Non Primitive Types
+
+- Primitive Types
+    a) number
+    b) string
+    c) boolean
+    d) null
+    e) undefined
+    f)  symbol
+
+- TypeScript supports "Union" of types, which allows a variable to handle multiple data types.
+
+Syntax:
+      let  name: datatype1 | datatype2 | .. ;
+
+Ex:
+       let  user : string | null  = prompt("enter name");
+
+       let  x : string | boolean | number;
+
+
+- All number & string manipulations are same as in JavaScript.
+
+
+TypeScript Non Primitive Types:
+
+1. Array
+ - TS array can be configured in 2 ways.
+ 
+    a) handling similar type data
+    b) handling different data types
+
+Syntax:
+       let  name: string[]  = new Array();
+       let  name: string[]  = [ ];
+
+       let  values: any[]  = [ ];        // handle various types
+
+- If you configured array memory using "Array()" constructor then it will not allow various data types to initialize even when the type is "any". How ever you can assign different types.
+
+Syntax:
+         let  values: any[] = new Array(10, "A", true);        // invalid
+
+         Array() is generic type, it is open for any type but when you pass first value
+         it sets the data type for rest values based on the first type.
+
+         let values: any[] = new Array();
+         values[0] = 10;
+         values[1] = "A";                => valid
+         values[2]  = true;
+
+- If array memory is configured using array [] meta character then it is referred as "Tuple" which supports both initialization and assignment of various types of values when data type is set to "any".
+
+Syntax:
+        let values : any[ ] = [ 10, "A",  true];        // valid
+
+- Array supports union of types.
+- However it allows initialization of same type.
+- But allows to assign the types configured in union.
+
+Syntax:
+        let  values: string[ ] | number[ ]  = [10, "A"] ;    // invalid
+
+        values[0] = 10;        
+        values[1] = "A";        => valid
+
+- All array manipulations are same as in JavaScript.

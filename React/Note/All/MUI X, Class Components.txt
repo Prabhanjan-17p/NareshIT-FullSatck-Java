@@ -1,0 +1,182 @@
+MUI  - Material UI Core
+- Button
+- TextField
+
+To Try:
+- Dropdown
+- Dialog
+- Card
+
+                         MUI - X  [Components]
+1. Go to Date & Time Pickers
+
+2. Select Quick Reference to know about library & dependencies
+
+3. Install the following
+
+        > npm install @mui/x-date-pickers   --save
+
+        > npm install dayjs        (or)   npm  install  moment
+
+4. Import  Localization Provider and Dayjs  Adapter into "main.jsx"
+
+import { LocalizationProvider } from '@mui/x-date-pickers';
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+
+Note: If you want to continue with your moment date library then import moment adapter.
+        > npm  install  moment  --save
+
+import { AdapterMoment } from '@mui/x-date-pickers/AdapterMoment';
+
+
+5. Enclose the component inside provider scope.
+
+    <LocalizationProvider dateAdapter={AdapterDayjs}>
+     
+        <Your_startup_component />
+       
+       </LocalizationProvider>
+
+Ex: main.jsx
+
+import { MUIDemo } from './components/mui-demo/mui-demo.jsx';
+import { LocalizationProvider } from '@mui/x-date-pickers';
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+
+createRoot(document.getElementById('root')).render(
+ 
+      <LocalizationProvider dateAdapter={AdapterDayjs}>
+            <MUIDemo/>
+      </LocalizationProvider>  
+ 
+)
+
+6. Import Date picker component into your component
+
+     import  { DatePicker }  from  "@mui/x-date-pickers";
+
+
+     <DatePicker />
+
+Ex: Mui-demo.jsx
+
+import { DatePicker } from "@mui/x-date-pickers";
+
+
+export function MUIDemo(){
+
+ 
+    return(
+        <div className="container-fluid">
+           <h2>Date Picker</h2>
+           <DatePicker />
+        </div>
+    )
+}
+
+                           React Class Components
+
+JavaScript Class Overview:
+1. JavaScript OOP
+    a) Features
+        - Code Reusability
+        - Code Separation
+        - Code Extensibility
+        - Code Level Security
+    b) Issues
+        - Tedious
+        - Slow
+        - Heavy
+        - Requires more memory
+        - Complex in configuration
+
+2. JavaScript Class
+    a) Class Declaration
+    b) Class Expression
+    c) Class Members
+        - Property
+        - Accessor
+        - Method
+        - Constructor
+    d) Static & Non Static Members
+    e) Member Prefix
+        #member        => Private
+        _member        => Use internally
+
+    f) Inheritance
+        - Rule : A derived class constructor must call super class constructor.
+
+    g) Polymorphism
+
+React Class Component:
+
+1. A component in React can be designed using JavaScript class
+
+    export  class  Name
+    {
+
+    }
+
+2. A component class must extend  
+   
+    a) React.Component
+    b) React.PureComponent
+
+   To get the component behavior.
+
+Syntax:
+   
+    export class Name extends  React.Component | React.PureComponent
+    {
+    }
+
+FAQ: What is difference between Pure and Impure Component?
+Ans:  Impure component re-renders complete component for every change.
+     Pure Component renders only the changes.
+
+3. Every component class must configure explicit constructor, in order to use state and
+    Properties.
+
+4. Component constructor must call super constructor
+
+Syntax:
+     export class  Name extends  React.Component
+     {
+     constructor() {
+        super();
+      }
+     }
+
+5. Every component must return JSX element, class component returns JSX element by using "render()" method.
+
+Syntax:
+    export class Name extends React.Component
+     {
+    constructor(){
+        super();
+     }
+     render(){
+          return(
+            <>  JSX Fragment </>
+         )
+     }
+    }
+
+Ex:
+demo-class-component.jsx
+
+import React from "react";
+
+export class DemoClassComponent extends React.PureComponent
+{
+      constructor(){
+         super();
+      }
+      render(){
+          return(
+            <div className="container-fluid">
+                <h2 className="mt-4 text-center">Welcome to Class Components</h2>
+            </div>
+          )
+      }
+}

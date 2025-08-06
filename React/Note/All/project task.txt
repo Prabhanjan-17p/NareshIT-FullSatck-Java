@@ -1,0 +1,25 @@
+Actions to configure in video library project
+
+1. User Module
+    - Set validation for all field in user-register and user-login
+           
+            a) user id, password, email, mobile, name are required
+            b) password must have at least on special char.
+            c) email must be a valid email
+            d) mobile must be in Indian format.
+
+    - Add confirm password into user-register.
+   
+2. User Dashboard
+   
+    - Add a search bar to search videos by title.
+    - Add a dropdown to select category , so that it can show only videos belong to
+      specified category.
+    - Likes button must increment and add to database.
+   
+3. Admin
+    - Create a cookie for login and logout
+    - Try edit and delete operations as child routes in dash board.
+
+
+                             Redux

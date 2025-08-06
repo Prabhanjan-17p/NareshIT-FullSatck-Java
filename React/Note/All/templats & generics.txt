@@ -1,0 +1,146 @@
+TypeScript OOP
+- Contracts
+    - interface
+- Components
+    - class
+    - access modifiers
+    - static & non static members
+    - implements contract
+    - extends class
+
+- Templates
+
+                             Templates in OOP
+- Template comprises of pre-defined data and logic, which you can customize and implement according to requirements.
+
+- Templates are mostly used in "Rollouts" and implementation of sensitive modules in various business applications.
+
+- Templates hide the structure and provides only functionality to application.
+
+- The process of hiding structure and providing functionality is known as "Abstraction".
+
+- Templates are configured as "abstract classes".
+
+- Abstract class comprises of members already implemented and some of them need to be implemented.
+
+- The members that requires implementation are marked as "abstract".
+
+- If a class contains at least one abstract member, then class is also marked as "abstract".
+
+Syntax:
+    abstract class Name
+    {
+         abstract Property: datatype;
+         abstract Method(): datatype;         // abstract member
+         Property: datatype;                    
+         Method: datatype;                // non abstract member
+    }
+
+- You have to extend abstract class to implement and customize.
+
+Syntax:
+     class Name extends  abstract_class
+     {
+     }
+
+- You can't create an object for abstract class as it have members that require implementation.
+
+- Extend the abstract class and create an instance for derived class in order to access the functionality.
+
+1. Add following folders into project
+
+        - app
+        - contracts
+        - templates
+        - components
+
+2.  contracts/ProductContract.ts
+
+export interface ProductContract
+{
+    Name:string;
+    Price:number;
+    Qty:number;
+    Total():number;
+    Print():void;
+}
+
+3. templates/ProductTemplate.ts
+
+
+import { ProductContract } from "../contracts/ProductContract";
+
+export abstract class ProductTemplate implements ProductContract
+{
+     public Name:string = "";
+     public Price:number = 0;
+     public Qty:number = 0;
+     public abstract Total():number;
+     public abstract Print(): void;
+}
+
+4. components/ProductComponent.ts
+
+import { ProductTemplate } from "../templates/ProductTemplate";
+
+export class ProductComponent extends ProductTemplate
+{
+    Name = "Samsung TV";
+    Price = 45000;
+    Qty = 2;
+    Total(){
+        return this.Qty * this.Price;
+    }
+    Print(){
+        console.log(`Name=${this.Name}\nPrice=${this.Price}\nQty=${this.Qty}\nTotal=${this.Total()}`);
+    }
+}
+
+5. app/app.ts
+
+
+import { ProductComponent } from "../components/ProductComponent";
+
+let obj = new ProductComponent();
+obj.Print();
+
+6. Run app.ts
+
+    >tsc app.ts
+    >node app.js
+
+                            Generics
+- Generic refers to "Type Safe".
+- A type safe component is ready to handle any type of data and can be strongly typed for specific data type.
+- Generic can defined for
+    a) Function
+    b) Parameter
+    c) Class
+    d) Method
+    e) Property
+
+Ex: Generic Class & Generic Parameter
+
+interface IOracle
+{
+     User:string;
+     Password:string;
+     Database:string;
+}
+interface IMongoDB
+{
+    Url:string;
+}
+
+class Database<T>
+{
+     constructor(connectionString:T){
+          for(var property in connectionString){
+               console.log(`${property} : ${connectionString[property]}`);
+          }
+     }
+}
+
+let oracle = new Database<IOracle>({User:'scott', Password:'tiger', Database:'empdb'});
+
+let mongodb = new Database<IMongoDB>({Url:'mongodb://127.0.0.1:27017'});

@@ -1,0 +1,92 @@
+Next JS & React for Server Side Components
+
+Note: You can't access a server component inside client component.
+
+                             React Native
+
+- React is a library for web and native applications.
+- Native applications refers to mobile applications.
+- Mobile applications can use various frameworks for UI [React]
+        - Cordova
+        - Flutter
+        - Ionic
+        - Native Script
+        - React Native etc..
+
+React Native:
+- It is built with react library.
+- It is native to react library.
+- It supports all react components.
+- It can use all react hooks and API's.
+- It can use Redux, Formik, Yup, Axios etc.
+- It provides native components for better functionality and performance.
+- It provides "One-Code-Base" for everyone. You can write once and run everywhere.
+  [Android, iOS, Windows, Browser]
+
+1. Download and Install  "expo" CLI on your PC
+    - Expo is a command line tool that provides various commands for managing
+      native applications
+
+    C:\> npm  install  -g  expo-cli  
+
+
+2. Create React Native Application
+
+
+     D:\> npx  create-expo-app   app_name  
+                (or)
+     D:\> npx  create-expo-app@latest
+
+
+3. You can run for various environments
+   
+    > npm  run web        - to test on browser
+    > npm  run android
+    > npm  run ios
+
+Note: If you created a default template then install AJV modules before you run application.
+
+        > npm install ajv --save              // JavaScript Validation Library
+
+4. You can customize the home screen by modifying  "app/tabs/index.tsx"
+
+5. The native components used for mobile development includes following
+
+    Component            Description
+    ---------------------------------------------------------------------------------------------------
+     <View>                It is like a <div> in HTML
+
+     <Text>                It is to display plain text <label> <span>
+
+    <Image>                It is to display images
+
+    <TextInput>            It for textbox <input type="text">
+
+    <Button>                It is a push button
+
+    <Switch>                It is toggle switch [bootstrap checkbox - switch]
+
+    <Modal>                It is a dialog that pops up
+
+6. Native uses different Synthetic Events
+
+    onPress                 It is similar to onClick
+
+    onLongPress            It is like mouse down
+
+    onChangeText        It is like onChange
+
+    onTouchStart        ]
+    onTouchEnd        ]    Relative to touch
+    onTouchMove        ]
+   
+    onScroll            ]     Actions on scrolling
+    etc..
+
+Note: You can also use "addEventListener" for dynamically adding events
+
+                          Debug, Test & Deploy
+
+1. You have to install React Dev Tools for  Chrome or Fire Fox
+
+2. Run your react application in chrome browser

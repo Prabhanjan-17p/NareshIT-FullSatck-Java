@@ -1,0 +1,174 @@
+Database Design
+Create API - Node JS & Express JS
+Library
+    > npm i  express  mongodb  cors --save
+
+Creating API :  [ api.cjs ]
+
+1. Import the modules using CJS module system.  [ES - import / export] [ CJS - require()]
+
+        const  mongodb  = require("mongodb");        
+        const  cors  = require("cors");
+        const  express = require("express");
+
+2. Create a server app using express
+
+        const  app  = express();
+
+3. Create API end points using various http request methods
+
+    Video Library Project API End Points [Routes]
+   
+     GET            /get-admin                return all admin users
+     GET            /get-videos                return all videos
+     POST            /add-video                adds a new video into database
+     PUT            /edit-video/id                edit video by ID
+     DELETE        /delete-video/id            delete video by ID
+
+     POST            /register-user                add  new user into database
+     GET            /get-users                get all users.
+     GET            /get-video/cat_id            get all videos belong to specific                                                 category.
+      GET            /get-video-by-id/id            get video by specific id.
+
+       GET            /get-categories            get all categories.
+
+
+Syntax:
+    app.get("path", (request, response)=>{  })
+    app.post("path", (request, response) =>{ })
+    app.get("/", (request, response) => { })
+        app.get("*", (response, response) => { })
+
+
+4. Connecting with backend database to handle various interactions
+
+     const  mongoClient = require("mongodb").MongoClient;    // class name
+
+     mongoClient.connect("connection_string").then(function(clientObject){
+
+            // by using clientObject you can interact with any collection in DB.
+
+    }).catch(function(error){
+            // reports error when it fails to connect
+    })
+
+
+5. Start your server app using "listen()" method
+
+    app.listen(port);
+    console.log("Server Started http://127.0.0.1:port&quot;);
+
+Note: API requests are tested by using  Web Debuggers like
+    a) Postman
+    b) Fiddler
+    c) Swagger etc..
+
+6. Your API can handle GET requests by default. To handle other requests like POST, PUT & DELETE you have to enable CORS and convert requested data into JSON.
+
+    app.use(cors());                                // enable all requests
+   
+    app.use(express.urlencoded({ extended : true }));   // enables conversion
+    app.use(express.json());                            // converts to JSON
+
+
+                        server/api.cjs
+
+const express = require("express");
+const cors = require("cors");
+const mongoClient = require("mongodb").MongoClient;
+
+const app = express();
+
+app.use(cors());
+
+app.use(express.urlencoded({extended:true}));
+app.use(express.json());
+
+app.get("/get-categories", (req, res)=>{
+
+      mongoClient.connect("mongodb://127.0.0.1:27017")
+      .then(clientObj=>{
+            var database = clientObj.db("video-project");
+            database.collection("tblcategories").find({}).toArray().then(documents=>{
+                  res.send(documents);
+                  res.end();
+            });
+      });
+});
+
+app.get("/get-users", (req, res)=>{
+
+      mongoClient.connect("mongodb://127.0.0.1:27017")
+      .then(clientObj=>{
+            var database = clientObj.db("video-project");
+            database.collection("tblusers").find({}).toArray().then(documents=>{
+                  res.send(documents);
+                  res.end();
+            });
+      });
+});
+
+app.get("/get-admin", (req, res)=>{
+
+      mongoClient.connect("mongodb://127.0.0.1:27017")
+      .then(clientObj=>{
+            var database = clientObj.db("video-project");
+            database.collection("tbladmin").find({}).toArray().then(documents=>{
+                  res.send(documents);
+                  res.end();
+            });
+      });
+});
+
+app.get("/get-videos", (req, res)=>{
+
+      mongoClient.connect("mongodb://127.0.0.1:27017")
+      .then(clientObj=>{
+            var database = clientObj.db("video-project");
+            database.collection("tblvideos").find({}).toArray().then(documents=>{
+                  res.send(documents);
+                  res.end();
+            });
+      });
+});
+
+app.get("/get-video/:id", (req, res)=>{
+
+      var id = parseInt(req.params.id);
+
+      mongoClient.connect("mongodb://127.0.0.1:27017")
+      .then(clientObj=>{
+            var database = clientObj.db("video-project");
+            database.collection("tblvideos").find({video_id:id}).toArray().then(documents=>{
+                  res.send(documents);
+                  res.end();
+            });
+      });
+});
+
+app.post("/register-user", (req, res)=>{
+
+      var user = {
+            user_id: req.body.user_id,
+            user_name: req.body.user_name,
+            password: req.body.password,
+            mobile: req.body.mobile,
+            email:req.body.email
+      };
+
+      mongoClient.connect("mongodb://127.0.0.1:27017").then(clientObj=>{
+
+            var database = clientObj.db("video-project");
+
+            database.collection("tblusers").insertOne(user).then(()=>{
+                   console.log('User Registered..');
+                   res.end();
+            })
+
+      })
+
+
+})
+
+app.listen(5050);
+console.log(`API Started http://127.0.0.1:5050`);

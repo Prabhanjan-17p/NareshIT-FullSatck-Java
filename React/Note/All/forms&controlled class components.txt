@@ -1,0 +1,194 @@
+Class Components
+- Event Binding
+- bind()
+- without bind()
+    <button  onClick={ ()=> handleClick() }>
+
+Handling Forms in Class Component:
+- You can't use any library that uses hooks.
+- You need a library that provides only components.
+- Formik provides components for handling form and elements.
+- You can use Yup schema for formik to handle validation.
+   
+        <Formik>
+        <Form>
+        <Field>
+        <ErrorMessage>
+
+Ex:
+import axios from "axios";
+import React from "react";
+import { Formik, Form, Field, ErrorMessage } from "formik";
+import * as yup from "yup";
+
+export class DemoClassComponent extends React.PureComponent
+{
+      constructor(){
+         super();
+      }
+
+      render(){
+          return(
+            <div className="container-fluid">
+               <h2>Register User</h2>
+                           <Formik initialValues={{UserName:'', Age:0}} validationSchema={yup.object({UserName:yup.string().required('Name Required').min(4, 'Name too short'), Age: yup.number().required('Age Required')})} onSubmit={(values)=>{console.log(values)}} >
+                               {
+                                   form =>
+                                       <Form>
+                                       <dl>
+                                           <dt>User Name</dt>
+                                           <dd><Field type="text" name="UserName" /></dd>
+                                           <dd className="text-danger"><ErrorMessage name="UserName"/></dd>
+                                           <dt>Age</dt>
+                                           <dd><Field type="number" name="Age" /></dd>
+                                           <dd className="text-danger"><ErrorMessage name="Age" /></dd>
+                                       </dl>
+                                       <button disabled={(form.isValid)?false:true} type="submit">Submit</button>
+                                     </Form>
+                               }
+                           </Formik>
+            </div>
+          )
+      }
+}
+
+Controlled Components using Class:
+- Class component have built in properties.
+- React.Component & React.PureComponent provides "props" to control a component.
+- Properties can accept data from parent component.
+- You can directly use "props" as they are in-built with component.
+
+Syntax:
+          export  class  Component extends React.Component
+      {
+        constructor() {
+            super();
+        }
+            render(){
+            return (
+               <div> {this.props.key } </div>
+            )
+        }
+      }
+
+Ex:
+controlled-components/toolbar.jsx
+
+toolbar.jsx
+
+import React from "react";
+
+export class Toolbar extends React.Component
+{
+      constructor(){
+          super();
+      }
+      render(){
+         return(
+            <div className="btn-toolbar bg-danger">
+                <button className="btn btn-danger">{this.props.brandName}</button>    
+                {
+                    this.props.menuItems.map(item=> <button className="btn btn-danger" key={item}>{item}</button>)
+                }
+            </div>
+         )
+      }
+}
+
+demo-class.jsx
+
+import axios from "axios";
+import React from "react";
+import { Formik, Form, Field, ErrorMessage } from "formik";
+import * as yup from "yup";
+import { WeatherAPI  } from "../components/weather-api/weather-api";
+import { Toolbar } from "../controlled-components/toolbar";
+
+export class DemoClassComponent extends React.PureComponent
+{
+      constructor(){
+         super();
+      }
+
+      render(){
+          return(
+            <div className="container-fluid">
+               <Toolbar brandName="Shopper." menuItems={['Home', 'Shop', 'Pages', 'Blog']} />
+               <h2>Weather</h2>
+                <WeatherAPI />
+               <h2>Register User</h2>
+              <Formik initialValues={{UserName:'', Age:0}} validationSchema={yup.object({UserName:yup.string().required('Name Required').min(4, 'Name too short'), Age: yup.number().required('Age Required')})} onSubmit={(values)=>{console.log(values)}} >
+                  {
+                      form =>
+                          <Form>
+                          <dl>
+                              <dt>User Name</dt>
+                              <dd><Field type="text" name="UserName" /></dd>
+                              <dd className="text-danger"><ErrorMessage name="UserName"/></dd>
+                              <dt>Age</dt>
+                              <dd><Field type="number" name="Age" /></dd>
+                              <dd className="text-danger"><ErrorMessage name="Age" /></dd>
+                          </dl>
+                          <button disabled={(form.isValid)?false:true} type="submit">Submit</button>
+                        </Form>
+                  }
+              </Formik>
+            </div>
+          )
+      }
+}
+
+                              TypeScript
+
+Issues with JavaScript:
+- It is not strongly typed.
+- It is not implicitly strictly typed.
+- It is not an OOP language.
+- It supports only few features of OOPS.
+- Limited code security & extensibility.
+
+What is TypeScript?
+- It is strictly typed mode of JavaScript.
+- It is a language built by Microsoft to design large scale applications.
+- Anders Hejlberg is the architect of TypeScript. [ well known for "C#" language ]
+
+Features:
+- It is strongly typed.
+- It is strictly typed.
+- It is an OOP language.
+- It is built in TypeScript.
+- It can directly interact with OS & Hardware services.
+
+Note: TypeScript is trans compiled into JavaScript.
+      TypeScript is just an alternative for JavaScript, it is not replacement.
+
+TypeScript Architecture:
+1. Core Compiler
+   - It translates typescript language.
+   - It identifies and reports the issues in code.
+
+    a) scanner.ts            handles input
+    b) emitter.ts            handles output
+    c) program.ts            handles program flow [start to end]
+    d) parser.ts            converting one type to another
+    e) checker.ts             verifying the data types
+    f) core.ts                it provides all services required for configure a program
+
+2. TSCompiler [Standalone]
+   - It is responsible for translating TypeScript code into JavaScript
+   - It is managed by "tsc.ts"
+
+3. Language Service
+   - Service is a set of factories
+   - Factory is a set of values and functions.
+   - "Services.ts" provides the library required for TypeScript language.
+
+4. TS Server
+  - It is responsible for hosting and serving the application.
+  - It listens to request and sends response.
+  - All typescript programs are hosted, compiled and processed on "server.ts"
+
+5. Shimmer  [VS Shims]
+  - It makes typescript cross platform.
+  - It is platform neutral.
+  - "shims.ts" is responsible for converting the unmanaged code into managed code.

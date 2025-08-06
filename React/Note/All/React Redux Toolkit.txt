@@ -1,0 +1,124 @@
+Redux Toolkit
+- Application comprises of 2 states
+    a) Application State
+    b) Session State
+
+- Application State is global and accessible across multiple sessions.
+- It uses a single ton pattern, where object is created for first request and the same is used across multiple requests.
+- Redux is a JavaScript library used to configure global application state for JavaScript based applications.
+- It is predictable, debuggable and testable.
+- A toolkit provides various components for managing state at high level.
+- The major components of redux include
+        a) store
+        b) state
+        c) reducer
+
+    Store    : It comprises of global state
+    State    : It can access the store
+    Reducer    : It defines actions and updates the store
+
+1. Install Redux Toolkit for React
+
+    > npm  install  @reduxjs/toolkit   react-redux   --save
+
+
+2.  Redux toolkit provides a slicer
+
+    - You have to create a slicer.
+    - Slicer in redux comprises of initial state and reducer
+    - Initial State refers to the data that you want to store in global state.
+    - Reducer defines the actions to perform. It updates data into store.
+    - You can configure actions and update data using reducer.
+    - Slicer is create by using createSlicer object.    
+
+    > Add a new folder into "src" by name  "slicers"
+    > Add a new file  "video-slicer.tsx"
+
+Syntax:
+        import   { createSlice }  from  @reduxjs/toolkit;
+
+        const initialState = {
+             videos: [ ],                // saved videos list
+             videosCount: 0            // saved videos count
+         }
+
+        const  videoSlice = createSlice({
+             name : 'videos',
+             initialState,
+             reducers: {
+                addToSavedList : (state:any, action) => {
+                    state.videos.push(action.payload);
+                    state.videosCount = state.videos.length;
+                 },
+                removeForSavedList: ( ) =>{  
+                    // logic to remove data from store
+                 }
+             }
+        })
+       
+        export const { addToSavedList } = videoSlice.actions;
+        export default videoSlice.reducer;
+
+Note: In module system the variables are exported using default.
+      There can be only one default export.
+
+        a) state        : It can access the members initial state
+        b) action        : It collects the payload from UI and updates into state.
+                      [action.payload]
+        c) reducers    : It configure a set of actions to manage from UI.
+                      [add, remove..]
+
+3. Redux toolkit provides a store to configure
+
+    - Store can access the state
+    - Store can access the reducer actions and use the actions.
+    - Store creates a global state for application and saves your data.
+
+     > Go to "src" folder and add a new folder by name "store"
+     > Add a new file by name "store.tsx"
+     > Redux toolkit provides "configureStore()" method to create a store and use
+        the data with actions.
+
+Syntax:
+        import  { configureStore }  from  "@reduxjs/toolkit";
+        import  videoSlicer from  "../slicers/video-slicer";
+
+        export default  configureStore({
+            reducer : videoSlicer
+        })
+
+4. Configure provider in "main.tsx"
+
+    import store from './store/store.tsx';
+    import { Provider } from 'react-redux';
+
+   <StrictMode>
+    <CookiesProvider>
+       <Provider store={store}>
+          <App />
+       </Provider>
+    </CookiesProvider>
+  </StrictMode>,
+
+5. Go to "user-dashboard.tsx"
+
+    import { useDispatch } from "react-redux";
+        import { addToSaveList } from "../slicers/video-slicer";
+
+
+    let dispatch = useDispatch();
+
+
+     function handleSaveClick(video:VideoContract){
+        dispatch(addToSaveList(video));
+         }
+
+    <button onClick={()=>{ handleSaveClick(video) }} className="btn btn-success bi bi-floppy"></button>
+
+
+     "Download Redux devTools Extension for your browser"
+
+6. To access and use global state
+
+    { store.getState().videos.map() }
+    { store.getState().videosCount }

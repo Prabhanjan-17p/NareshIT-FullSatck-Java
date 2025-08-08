@@ -29,4 +29,13 @@ public class EmployeeServiceIMPL implements EmployeeService {
 		return list;
 	}
 
+	
+	@Override
+	public String insertEmpDetails(String name, String job, double sal) throws Exception {
+		name = name.toUpperCase();
+		job = job.toUpperCase();
+		int insertEmpDetails = emp.insertEmpDetails(name, job, sal);
+		return insertEmpDetails == 1?"Insert Successfull":"Please Try Agin!!!";
+	}
+
 }

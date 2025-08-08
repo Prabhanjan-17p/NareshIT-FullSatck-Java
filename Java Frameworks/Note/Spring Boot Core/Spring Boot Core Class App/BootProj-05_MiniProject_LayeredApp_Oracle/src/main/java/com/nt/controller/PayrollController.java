@@ -17,4 +17,9 @@ public class PayrollController {
 		List<Employee> list = emp.fetchEmpByDesn(s1, s2, s3);
 		return list;
 	}
+	
+	public String insertEmpDetails(String name,String job,double sal) throws Exception {
+		String details = emp.insertEmpDetails(name, job, sal);
+		return details;
+	}
 }

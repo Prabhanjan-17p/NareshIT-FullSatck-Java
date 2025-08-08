@@ -1,0 +1,167 @@
+Task 1: Hourly System Health Logger
+🎯 Goal:
+Log a system health check message to the console every hour.
+
+⏰ Trigger:
+
+@Scheduled(cron = "0 0 * * * *")
+Runs at the start of every hour (e.g., 1:00, 2:00, 3:00, ...)
+
+🧩 Step-by-Step:
+Create a Scheduler class
+
+Use @Component and @Scheduled
+
+Method runs every hour
+
+Inside the method:
+
+Get current time
+
+Log a simple message:
+
+✅ System is healthy at: [time]
+
+Enable scheduling
+
+Use @EnableScheduling in the main class
+
+No DB, No external dependencies
+
+Just logs to console
+
+📦 Output Example:
+
+✅ System is healthy at: 2025-08-06T14:00
+✅ System is healthy at: 2025-08-06T15:00
+✅ System is healthy at: 2025-08-06T16:00
+✅ Use Case:
+Great for:
+
+System monitoring
+
+Dev/testing logs
+
+Scheduled audit hooks
+
+
+Task 2: Daily Quote Printer
+🎯 Goal:
+Print a motivational quote to the console every day at 8 AM.
+
+⏰ Trigger:
+
+@Scheduled(cron = "0 0 8 * * *")
+→ Runs every day at 8:00 AM
+
+🧩 Step-by-Step:
+Create a list of motivational quotes.
+
+Every morning at 8 AM:
+
+Randomly pick one quote
+
+Print it to the console
+
+Rotate quotes daily to avoid repetition (optional)
+
+📦 Output Example:
+
+🌟 Quote of the Day: "Believe you can and you're halfway there."
+🌟 Quote of the Day: "Success is not final, failure is not fatal."
+
+✅ Task 3: Every 10 Seconds Greeting Logger
+🎯 Goal:
+Log a "Hello from Scheduler" message every 10 seconds.
+
+⏰ Trigger:
+
+@Scheduled(fixedRate = 10000)
+→ Runs every 10 seconds (after previous execution completes)
+
+🧩 Step-by-Step:
+Use a method with @Scheduled(fixedRate = 10000)
+
+Inside the method:
+
+Print Hello from Scheduler! with current time
+
+No user input or database needed
+
+📦 Output Example:
+
+Hello from Scheduler! Time: 14:00:10
+Hello from Scheduler! Time: 14:00:20
+Hello from Scheduler! Time: 14:00:30
+
+
+Task 4: Auto Renewal Reminder & Deactivation System
+
+Define User Data Structure
+Create a basic structure to represent users.
+
+Each user should have:
+
+ID
+
+Name
+
+Email
+
+Subscription End Date
+
+Status (ACTIVE / INACTIVE)
+
+2️⃣ Create a Sample List of Users
+Prepare a collection (e.g., a list) of users with different subscription end dates.
+
+Include users with:
+
+Active subscriptions
+
+Subscriptions expiring soon
+
+Already expired subscriptions
+
+3️⃣ Identify Upcoming Expiries
+Check each user:
+
+If their subscription ends within the next 7 days (from today)
+
+And their status is ACTIVE
+
+For these users:
+
+Log a reminder message with name and expiry date.
+
+4️⃣ Identify Expired Subscriptions
+Check each user:
+
+If their subscription end date is before today
+
+And their status is still ACTIVE
+
+For these users:
+
+Change status to INACTIVE
+
+Log a deactivation message
+
+5️⃣ Schedule the Process
+Set up a scheduled task that runs automatically:
+
+Every day at 9 AM
+
+Only on Monday to Saturday
+
+Use scheduling annotation/configuration for this behavior.
+
+6️⃣ Log the Output
+Print/log messages to the console:
+
+🔔 Reminders for upcoming expiries
+
+❌ Deactivation for expired users
+
+Ensure the output is clear and time-stamped if needed.
+

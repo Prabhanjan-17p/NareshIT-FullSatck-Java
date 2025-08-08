@@ -1,0 +1,62 @@
+You -->You
+Father--> mother's Husband
+Mother--> Father's wife
+Brother--> your parent's son
+Sister--> your parent's daughter
+father's/mother's brother --> Uncle
+father's/mother's Sister --> Aunt
+paternal uncle's son--> cousin
+paternal Aunt's son--> cousin
+maternal uncle's daughter--> cousin
+maternal Aunt's son--> cousin
+-----------------------------------------------
+uncle's or aunt's child(male/female)--> cousin
+-----------------------------------------------
+Father's father--> paternal grand father
+Mother's father--> maternal grand father
+Father's Mother--> paternal grand mother
+Mother's mother--> maternal grand mother
+------------------------------------------------
+grand father's brother --> grand uncle
+grand father's sister --> grand Aunt
+-------------------------------------------------
+father of grand father--> great grand father
+Mother of grand father--> great grand mother
+-------------------------------------------------
+brother's wife--> sister in law
+sister's husband --> Brother in law
+-------------------------------------------------
+broter's or sister's male child--> Nephew
+brother's or sister's female child --> niece
+--------------------------------------------------
+wife's mother--> Mother in law
+wife's father--> Father in law
+wife's brother --> brother in law
+wife's sister --> sister in law
+wife's son --> Son
+wife's daughter --> daughter
+--------------------------------------------------
+Son's wife --> daughter in law
+daughter's husband--> son in law
+son's son--> grand Son
+son's daughter--> grand daughter.
+grand son's son--> great grand son.
+grand son's daughter--> great grand daughter.
+---------------------------------------------------
+
+A is the son of B. but B is not the father of A.
+how B is related to A. (Mother)
+---------------------------------------------------
+pointing to a photograph,latha says to urmila that "she is the only
+daughter of my mother".to whose photograph latha was pointing?
+ans: it was her photo she was pointing.
+----------------------------------------------------
+pointing to a photograph, ram says "he is the only son in law of my 
+brother's mother". how is that person related to ram?
+ans : brother in law
+
+
+
+
+
+

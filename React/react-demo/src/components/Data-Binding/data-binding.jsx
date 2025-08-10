@@ -1,20 +1,18 @@
+import { useEffect, useState } from "react"
 
 export function DataBinding() {
-    var username ="kanha"
-    var defaultcity ="Angul"
-    
+   
+    const [stock, setSrock] = useState(true)
+
+    useEffect(()=>{
+
+        setSrock(true)
+
+    },[])
     return(
-        <div>
-            <div><h1>Hello ! {username}</h1></div>
-            <div>
-                <h2>Select Your City</h2>
-                <select value={defaultcity}>
-                    <option value="-1">Select</option>
-                    <option value="Bhubaneswar">Bhubaneswar</option>
-                    <option value="Angul">Angul</option>
-                    <option value="Cuttack">Cuttack</option>
-                </select>
-            </div>
+        <div className="container-fluid">
+            <h1> Stock : {(stock === true)?"Available":"Out of stock"}</h1>
         </div>
     )
+
 }

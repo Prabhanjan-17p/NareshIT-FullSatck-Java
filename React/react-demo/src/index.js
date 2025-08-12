@@ -8,11 +8,12 @@ import '../node_modules/bootstrap-icons/font/bootstrap-icons.css'
 import bootstrap from 'bootstrap';
 import { Home } from './components/Home-ex/home';
 import { DataBinding } from './components/Data-Binding/data-binding';
+import { UseS } from './components/Data-Binding/use-state';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <DataBinding />
+    <UseS/>
   </React.StrictMode>
 );
 

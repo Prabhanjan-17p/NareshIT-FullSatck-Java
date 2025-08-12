@@ -1,0 +1,73 @@
+✅ Task 2: Student Grade Management System Using Plain JDBC
+🎯 Objective:
+Build a console-based Java application using Plain JDBC to manage students and their grades. The system allows adding student records, viewing all students, and calculating the average marks.
+
+✅ Features:
+Add a new student (Student ID, Name, Subject, Marks)
+
+View all student records
+
+Calculate and display average marks of all students
+
+🧱 Application Layers:
+1️⃣ Model Layer (Entity)
+Define a Student class with:
+
+long Student ID
+
+String Name
+
+String Subject
+
+double Marks
+
+2️⃣ DAO Layer (Database Access)
+Use Plain JDBC to perform:
+
+Insert new student records
+
+Retrieve all students
+
+Compute average of all marks
+
+3️⃣ Service Layer (Business Logic)
+Delegate tasks to DAO
+
+Provide methods to get all student data and calculate average marks
+
+4️⃣ Controller Layer (Console UI)
+Offer options to:
+
+/add → Add student
+
+/all → View all students
+
+/average → Show average marks
+
+🛢️ Database Setup (MySQL)
+Table: students
+Columns:
+
+id (BIGINT, Primary Key)
+
+name (VARCHAR)
+
+subject (VARCHAR)
+
+marks (DOUBLE)
+
+🧪 Sample Use Case:
+Add Student A (Math, 85.0)
+
+Add Student B (Science, 95.0)
+
+Average Marks: 90.0
+
+🧰 Tech Stack:
+Java 8+
+
+Plain JDBC
+
+MySQL
+
+Console input/output

@@ -1,0 +1,133 @@
+Task: Spring Boot Mail — Send a Simple Email
+🎯 Objective:
+Create a Spring Boot application that sends a plain text email using Spring Boot Mail and Gmail SMTP.
+
+✅ Requirements:
+1. Project Setup
+Use Spring Boot 3.1.5 (Java 17 or higher).
+
+Add the following dependencies in pom.xml:
+
+spring-boot-starter-mail
+
+spring-boot-starter
+
+
+2. Mail Configuration
+Configure application.properties with:
+
+SMTP host (smtp.gmail.com)
+
+Port (587)
+
+Your Gmail email & App Password (not normal password)
+
+Enable authentication and TLS
+
+Example:
+
+properties
+
+spring.mail.host=smtp.gmail.com
+spring.mail.port=587
+spring.mail.username=your_email@gmail.com
+spring.mail.password=your_app_password
+spring.mail.properties.mail.smtp.auth=true
+spring.mail.properties.mail.smtp.starttls.enable=true
+3. Mail Service Class
+Create a MailService class annotated with @Component.
+
+Inject JavaMailSender.
+
+Create sendMail(String to, String subject, String text) method.
+
+Inside the method:
+
+Create a SimpleMailMessage object.
+
+Set recipient, subject, and text.
+
+Send email using mailSender.send(message).
+
+4. Main Application Class
+Create a Spring Boot main class implementing CommandLineRunner.
+
+In run() method, call mailService.sendMail(...) with a sample recipient and message.
+
+Print a confirmation message after sending.
+
+5. Execution
+Run the application using:
+Verify that the recipient email inbox contains the sent message.
+
+ANS-----
+spring.application.name=Day-06
+
+spring.mail.host=smtp.gmail.com
+spring.mail.port=587
+spring.mail.username=17kgaming2003@gmail.com
+spring.mail.password=mgmfrsujtpmsixxq
+spring.mail.properties.mail.smtp.auth=true
+spring.mail.properties.mail.smtp.starttls.enable=true
+spring.mail.default-encoding=UTF-8
+
+package com.nt.service;
+
+import java.util.Date;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.core.io.ClassPathResource;
+import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.MimeMessageHelper;
+import org.springframework.stereotype.Component;
+
+import jakarta.mail.internet.MimeMessage;
+
+@Component("mailSer")
+public class MailService {
+	@Autowired
+	private JavaMailSender sendMail;
+	
+	@Value("${spring.mail.username}")
+	private String fromMail;
+	
+	
+	public String sendMails(String to, String subject, String text)  throws Exception {
+		MimeMessage message = sendMail.createMimeMessage();
+		MimeMessageHelper helper = new MimeMessageHelper(message,true);
+		helper.setFrom(fromMail);
+		helper.setTo(to);
+		helper.setSubject(subject);
+		helper.setSentDate(new Date());
+		helper.setText(text);
+		sendMail.send(message);
+		return "mail sent sucessfully done.";
+	}
+}
+
+
+package com.nt;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.ConfigurableApplicationContext;
+
+import com.nt.service.MailService;
+
+@SpringBootApplication
+public class Day08Application {
+
+	public static void main(String[] args) {
+		try(ConfigurableApplicationContext run = SpringApplication.run(Day08Application.class, args);) {
+			MailService bean = run.getBean(MailService.class);
+			String sendMail = bean.sendMails("pravanjanamanta@gmail.com", "Assignment Day-08 for testing.", "Here it is testing purpose nothing else thank you.");
+			System.out.println(sendMail);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+	}
+
+}
+============================================================================================================================    

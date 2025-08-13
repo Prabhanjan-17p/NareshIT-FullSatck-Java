@@ -1,5 +1,6 @@
 import moment from "moment"
 import { useEffect, useState } from "react"
+import $ from 'jquery';
 
 export function UseS() {
 
@@ -163,14 +164,204 @@ export function UseS() {
 
     //Custom Arguments in React Events-5
 
-    function handleClick(e,name,price,stock) {
-        alert(`Name : ${name} \nPrice : ${price} \nStock : ${stock} \nX Position : ${e.clientX} \nButton ID : ${e.id}`)        
+    // function handleClick(e,name,price,stock) {
+    //     alert(`Name : ${name} \nPrice : ${price} \nStock : ${stock} \nX Position : ${e.clientX} \nButton ID : ${e.id}`)        
+    // }
+
+    // return(
+    //     <div className="container-fluid">
+    //         <button id="btnInsert" onClick={(e)=>handleClick(e,'TV',9800,true)}>Insert</button>
+    //     </div>
+    // )
+
+
+
+    //Stop Propagration 
+
+    // function navClick(e) {
+    //     alert("Nav Cliked!!")
+    // }
+    // function btnClick(e) {
+    //     e.stopPropagation();
+    //     alert("Btn Cliked!!")
+    // }
+
+    // return (
+    //     <div className="container-fluid">
+    //         <nav className="nav bg-dark text-white p-2  mt-2" onClick={navClick}>
+    //             <span className="h3">NavBar</span>
+    //             <button className="btn btn-outline-light ms-auto" onClick={btnClick}>
+    //                 <i className="bi bi-search-heart-fill"></i>
+    //             </button>
+    //         </nav>
+    //     </div>
+    // );
+
+
+    //Prevent Default
+
+    // function submitData(e) {
+    //     e.preventDefault();
+    //     alert("Data submit sucessfully!!")
+    // }
+    // return(
+    //     <div className="container-fluid mt-3">
+    //         <form onSubmit={submitData}>
+    //             Name : <input name="userName" type="text" /> <button type="submit">Submit</button>
+    //         </form>
+    //     </div>
+    // )
+
+    //Handle Ajax 
+    //1- XMLHttpRequest
+    // const [product, setProduct] = useState({
+    //     title: "", price: 79999, ratings: { rating: 1500, rate: 4.6, reviews: 65000 }, offer: ["", "", "", ""],image:''
+    // })
+
+    // function loadData() {
+
+    //     var http = new XMLHttpRequest();
+
+    //     http.open("get", "product.json", true);
+    //     http.send();
+
+    //     http.onreadystatechange = function () {
+    //         if (http.readyState === 4 && http.status === 200) {
+    //             setProduct(JSON.parse(http.responseText));
+    //         }
+    //     };
+
+    // }
+
+    // useEffect(() => {
+    //     loadData()
+    // }, [])
+
+    // return (
+    //     <div className="container-fluid">
+    //         <div className="mt-4 row">
+    //             <div className="col-4">
+    //                 <img src={product.image} alt="" height="450" width="100%"/>
+    //             </div>
+    //             <div className="col-8">
+    //                 <div className="fs-4">{product.title}</div>
+    //                 <div className="mt-2">
+    //                     <span className="badge bg-success">{product.ratings.rate} <span className="bi bi-star-fill"></span> </span>
+    //                     <span className="text-secondary fw-bold ms-2">{product.ratings.rating.toLocaleString()} rating & {product.ratings.reviews.toLocaleString()} reviews</span>
+    //                 </div>
+    //                 <div className="mt-3 fw-bold fs-1">
+    //                     {
+    //                         product.price.toLocaleString('en-in',{style:'currency',currency:'INR'})
+    //                     }
+    //                 </div>
+    //                 <div className="mt-3">
+    //                     <h5>Avalaible Offer</h5>
+    //                     <ul className="list-unstyled">
+    //                         {
+    //                             product.offer.map(key => <li className="bi bi-tag-fill my-3 text-success" key={key}><span className="  ms-2 text-secondary">{key}</span></li>)
+    //                         }
+    //                     </ul>
+                        
+    //                 </div>
+    //             </div>
+    //         </div>
+    //     </div>
+    // );
+
+    //2- Fetch()
+    // const [product, setProduct] = useState({
+    //     title: "", price: 0, ratings: { rating: 0, rate: 0.0, reviews: 0 }, offer: [],image:''
+    // })
+
+    // function loadData() {
+    //     fetch("product.json")
+    //     .then(res => res.json())
+    //     .then(product => setProduct(product))
+    // }
+
+    // useEffect(() => {
+    //     loadData()
+    // }, [])
+
+    // return (
+    //     <div className="container-fluid">
+    //         <div className="mt-4 row">
+    //             <div className="col-4">
+    //                 <img src={product.image} alt="" height="450" width="100%"/>
+    //             </div>
+    //             <div className="col-8">
+    //                 <div className="fs-4">{product.title}</div>
+    //                 <div className="mt-2">
+    //                     <span className="badge bg-success">{product.ratings.rate} <span className="bi bi-star-fill"></span> </span>
+    //                     <span className="text-secondary fw-bold ms-2">{product.ratings.rating.toLocaleString()} rating & {product.ratings.reviews.toLocaleString()} reviews</span>
+    //                 </div>
+    //                 <div className="mt-3 fw-bold fs-1">
+    //                     {
+    //                         product.price.toLocaleString('en-in',{style:'currency',currency:'INR'})
+    //                     }
+    //                 </div>
+    //                 <div className="mt-3">
+    //                     <h5>Avalaible Offer</h5>
+    //                     <ul className="list-unstyled">
+    //                         {
+    //                             product.offer.map(key => <li className="bi bi-tag-fill my-3 text-success" key={key}><span className="  ms-2 text-secondary">{key}</span></li>)
+    //                         }
+    //                     </ul>
+                        
+    //                 </div>
+    //             </div>
+    //         </div>
+    //     </div>
+    // );
+
+
+    //3-jQuery method
+     const [product, setProduct] = useState({
+        title: "", price: 0, ratings: { rating: 0, rate: 0.0, reviews: 0 }, offer: [],image:''
+    })
+
+    function loadData() {
+        $.ajax({
+            method: "get",
+            url:"product.json",
+            success: (product) =>{
+                setProduct(product)
+            }
+        })
     }
 
-    return(
-        <div className="container-fluid">
-            <button id="btnInsert" onClick={(e)=>handleClick(e,'TV',9800,true)}>Insert</button>
-        </div>
-    )
+    useEffect(() => {
+        loadData()
+    }, [])
 
+    return (
+        <div className="container-fluid">
+            <div className="mt-4 row">
+                <div className="col-4">
+                    <img src={product.image} alt="" height="450" width="100%"/>
+                </div>
+                <div className="col-8">
+                    <div className="fs-4">{product.title}</div>
+                    <div className="mt-2">
+                        <span className="badge bg-success">{product.ratings.rate} <span className="bi bi-star-fill"></span> </span>
+                        <span className="text-secondary fw-bold ms-2">{product.ratings.rating.toLocaleString()} rating & {product.ratings.reviews.toLocaleString()} reviews</span>
+                    </div>
+                    <div className="mt-3 fw-bold fs-1">
+                        {
+                            product.price.toLocaleString('en-in',{style:'currency',currency:'INR'})
+                        }
+                    </div>
+                    <div className="mt-3">
+                        <h5>Avalaible Offer</h5>
+                        <ul className="list-unstyled">
+                            {
+                                product.offer.map(key => <li className="bi bi-tag-fill my-3 text-success" key={key}><span className="  ms-2 text-secondary">{key}</span></li>)
+                            }
+                        </ul>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    );
 }

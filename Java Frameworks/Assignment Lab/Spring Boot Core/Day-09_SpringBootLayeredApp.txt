@@ -1,0 +1,451 @@
+University Student Registration System (JDBC Version)
+🎯 Objective
+Develop a Spring Boot layered application to register and manage students with a manually configured DataSource.
+
+✅ Requirements
+
+Layers:
+
+Entity: Student (id, name, email, course, registrationDate).
+
+Repository: Executes SQL statements via JdbcTemplate.
+
+Controller: Maps HTTP requests and returns views.
+
+Features:
+
+Add new student (INSERT).
+
+View all students (SELECT).
+
+Edit student details (UPDATE).
+
+Delete student record (DELETE).
+
+Search by name or course (SELECT ... WHERE).
+
+ANS ----
+package com.nt;
+
+import java.time.LocalDate;
+import java.util.List;
+import java.util.Scanner;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.ConfigurableApplicationContext;
+
+import com.nt.controller.StudentController;
+import com.nt.entity.Student;
+
+@SpringBootApplication
+public class Day09Application {
+
+	public static void main(String[] args) {
+		try (ConfigurableApplicationContext ctx = SpringApplication.run(Day09Application.class, args);
+				Scanner sc = new Scanner(System.in)) {
+
+			StudentController controller = ctx.getBean("stdCon", StudentController.class);
+
+			boolean running = true;
+			while (running) {
+				System.out.println("\n=== University Student Registration System ===");
+				System.out.println("1. Add Student");
+				System.out.println("2. View All Students");
+				System.out.println("3. Update Student");
+				System.out.println("4. Delete Student");
+				System.out.println("5. Search by Name");
+				System.out.println("6. Exit");
+				System.out.print("Enter choice: ");
+
+				int choice = sc.nextInt();
+				sc.nextLine();
+
+				switch (choice) {
+				case 1:
+					System.out.print("Enter Name: ");
+					String name = sc.nextLine();
+					System.out.print("Enter Email: ");
+					String email = sc.nextLine();
+					System.out.print("Enter Course: ");
+					String course = sc.nextLine();
+
+					String inserted = controller.insertStudentDetails(name, email, course, LocalDate.now());
+					System.out.println(inserted);
+					break;
+
+				case 2:
+					List<Student> students = controller.fetchAllDetals();
+					if (students.isEmpty()) {
+						System.out.println("No students found.");
+					} else {
+						students.forEach(System.out::println);
+					}
+					break;
+
+				case 3:
+					System.out.print("Enter Student ID to Update: ");
+					long upId = sc.nextLong();
+					sc.nextLine();
+					System.out.print("Enter New Name: ");
+					String upName = sc.nextLine();
+					System.out.print("Enter New Email: ");
+					String upEmail = sc.nextLine();
+					System.out.print("Enter New Course: ");
+					String upCourse = sc.nextLine();
+
+					String updated = controller.updateDetails(upName, upEmail, upCourse, upId);
+					System.out.println(updated);
+					break;
+
+				case 4:
+					System.out.print("Enter Student ID to Delete: ");
+					long delId = sc.nextLong();
+					String deleted = controller.deleteDetails(delId);
+					System.out.println(deleted);
+					break;
+
+				case 5:
+					System.out.print("Enter name to search: ");
+					String searchName = sc.nextLine();
+					List<Student> found = controller.searchByName(searchName);
+					if (found.isEmpty()) {
+						System.out.println("No students found.");
+					} else {
+						found.forEach(System.out::println);
+					}
+					break;
+
+				case 6:
+					running = false;
+					System.out.println("Exiting...");
+					break;
+
+				default:
+					System.out.println("Invalid choice! Try again.");
+					break;
+				}
+			}
+		} catch (Exception e) {
+			System.err.println("Error :: " + e.getMessage());
+		}
+	}
+}
+
+
+package com.nt.controller;
+
+import java.time.LocalDate;
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Controller;
+
+import com.nt.entity.Student;
+import com.nt.service.IServiceStudent;
+
+@Controller("stdCon")
+//@Component
+public class StudentController {
+	@Autowired
+	private IServiceStudent std;
+	
+	public String insertStudentDetails(String name, String email, String course, LocalDate ldate) throws Exception {
+		email = email.toLowerCase();
+		String ins = std.insertStudentDetails(name, email, course, ldate);
+		return ins;
+	}
+	
+	public List<Student> fetchAllDetals() throws Exception {
+		List<Student> list = std.fetchAllDetals();
+		return list;
+	}
+
+	public String updateDetails(String name, String email, String course, long id) throws Exception {
+		email = email.toLowerCase();
+		String upd = std.updateDetails(name, email, course, id);
+		return upd;
+	}
+
+	public String deleteDetails(long id) throws Exception {
+		String del = std.deleteDetails(id);
+		return del;
+	}
+
+	public List<Student> searchByName(String name) throws Exception {
+		List<Student> list = std.searchByName(name);
+		return list;
+	}
+}
+
+
+package com.nt.dao;
+
+import java.time.LocalDate;
+import java.util.List;
+
+import com.nt.entity.Student;
+
+public interface IStudentDAO {
+	public int insertStudentDetails(String name, String email,String course,LocalDate ldate) throws Exception;
+	public List<Student> fetchAllDetals()throws Exception;
+	public int updateDetails(String name, String email,String course,long id) throws Exception;
+	public int deleteDetails(long id) throws Exception;
+	public List<Student> searchByName(String name) throws Exception;
+}
+
+
+package com.nt.dao;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.sql.DataSource;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
+
+import com.nt.entity.Student;
+
+@Repository("stdRepo")
+public class StudentDAOImpl implements IStudentDAO {
+	@Autowired
+	private DataSource ds;
+
+	private final String INSERT_DATA = "INSERT INTO registrations (name, email, course, registrationDate) VALUES(?, ?, ?, ?)";
+	private final String FETCH_ALL = "SELECT * FROM registrations ";
+	private final String DELETE_BY_ID = "DELETE FROM registrations WHERE id = ?";
+	private final String UPDATE_BY_ID = "UPDATE registrations SET name = ?, email = ?, course = ? WHERE id = ?";
+	private final String SEARCH_BY_NAME = "SELECT * FROM registrations WHERE name LIKE ?";
+
+	@Override
+	public int insertStudentDetails(String name, String email, String course, LocalDate ldate) throws Exception {
+		int count = 0;
+		try (Connection con = ds.getConnection(); PreparedStatement stm = con.prepareStatement(INSERT_DATA);) {
+
+			stm.setString(1, name);
+			stm.setString(2, email);
+			stm.setString(3, course);
+			stm.setDate(4, java.sql.Date.valueOf(ldate));
+
+			count = stm.executeUpdate();
+
+		} catch (Exception e) {
+			throw e;
+		}
+		return count;
+	}
+
+	@Override
+	public List<Student> fetchAllDetals() throws Exception {
+		List<Student> list;
+		try (Connection con = ds.getConnection();
+				PreparedStatement stm = con.prepareStatement(FETCH_ALL);
+				ResultSet rs = stm.executeQuery();) {
+
+			list = new ArrayList<Student>();
+			while (rs.next()) {
+				Student std = new Student();
+				std.setId(rs.getLong(1));
+				std.setName(rs.getString(2));
+				std.setEmail(rs.getString(3));
+				std.setCourse(rs.getString(4));
+				std.setRegistrationDate(rs.getDate(5).toLocalDate());
+
+				list.add(std);
+
+			}
+		} catch (Exception e) {
+			throw e;
+		}
+		return list;
+	}
+
+	@Override
+	public int updateDetails(String name, String email, String course,long id) throws Exception {
+		int count = 0;
+		try (Connection con = ds.getConnection(); PreparedStatement stm = con.prepareStatement(UPDATE_BY_ID)) {
+
+			stm.setString(1, name);
+			stm.setString(2, email);
+			stm.setString(3, course);
+			stm.setLong(4, id); 
+
+			count = stm.executeUpdate();
+		} catch (Exception e) {
+			throw e;
+		}
+		return count;
+	}
+
+	@Override
+	public int deleteDetails(long id) throws Exception {
+		int count = 0;
+		try (Connection con = ds.getConnection(); PreparedStatement stm = con.prepareStatement(DELETE_BY_ID)) {
+
+			stm.setLong(1, id);
+			count = stm.executeUpdate();
+
+		} catch (Exception e) {
+			throw e;
+		}
+		return count;
+	}
+
+	@Override
+	public List<Student> searchByName(String name) throws Exception {
+		List<Student> list = new ArrayList<>();
+		try (Connection con = ds.getConnection(); PreparedStatement stm = con.prepareStatement(SEARCH_BY_NAME)) {
+
+			stm.setString(1, "%" + name + "%");
+			try (ResultSet rs = stm.executeQuery()) {
+				while (rs.next()) {
+					Student std = new Student();
+					std.setId(rs.getLong(1));
+					std.setName(rs.getString(2));
+					std.setEmail(rs.getString(3));
+					std.setCourse(rs.getString(4));
+					std.setRegistrationDate(rs.getDate(5).toLocalDate());
+					list.add(std);
+				}
+			}
+		} catch (Exception e) {
+			throw e;
+		}
+		return list;
+	}
+
+}
+
+
+package com.nt.entity;
+
+import java.time.LocalDate;
+
+import lombok.Data;
+
+@Data
+public class Student {
+	private Long id;
+	private String name;
+	private String email;
+	private String course;
+	private LocalDate registrationDate;
+}
+
+
+package com.nt.service;
+
+import java.time.LocalDate;
+import java.util.List;
+
+import com.nt.entity.Student;
+
+public interface IServiceStudent {
+	public String insertStudentDetails(String name, String email, String course, LocalDate ldate) throws Exception;
+
+	public List<Student> fetchAllDetals() throws Exception;
+
+	public String updateDetails(String name, String email, String course, long id) throws Exception;
+
+	public String deleteDetails(long id) throws Exception;
+
+	public List<Student> searchByName(String name) throws Exception;
+}
+
+
+
+package com.nt.service;
+
+import java.time.LocalDate;
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
+
+import com.nt.dao.IStudentDAO;
+import com.nt.entity.Student;
+
+@Service("stdSer")
+//@Component
+public class StudentServiceIMPL implements IServiceStudent {
+	@Autowired
+	private IStudentDAO std;
+
+	@Override
+	public String insertStudentDetails(String name, String email, String course, LocalDate ldate) throws Exception {
+		email = email.toLowerCase();
+		int ins = std.insertStudentDetails(name, email, course, ldate);
+		return ins==1?"Insert Sucessfully":"Not Insert error!!";
+	}
+
+	@Override
+	public List<Student> fetchAllDetals() throws Exception {
+		List<Student> list = std.fetchAllDetals();
+		return list;
+	}
+
+	@Override
+	public String updateDetails(String name, String email, String course, long id) throws Exception {
+		email = email.toLowerCase();
+		int upd = std.updateDetails(name, email, course, id);
+		return upd==1?"Update sucessfully":"Not Update!!";
+	}
+
+	@Override
+	public String deleteDetails(long id) throws Exception {
+		int del = std.deleteDetails(id);
+		return del==1?"Delete data sucessfully":"Not Delete";
+	}
+
+	@Override
+	public List<Student> searchByName(String name) throws Exception {
+		List<Student> list = std.searchByName(name);
+		return list;
+	}
+
+}
+
+
+spring.application.name=Day-09
+
+spring.datasource.url=jdbc:mysql://localhost:3306/nit_test_db
+spring.datasource.username=root
+spring.datasource.password=kanha123
+spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver
+
+
+
+2. Hospital Appointment Scheduling System (JDBC Version)
+🎯 Objective
+Build a Spring Boot layered application to manage hospital appointments with a configured DataSource.
+
+✅ Requirements
+
+Layers:
+
+Entity: Appointment (id, patientName, doctorName, appointmentDate, department, status).
+
+Repository: Uses datasource for CRUD SQL queries.
+
+Service: Business logic for scheduling/cancelling appointments.
+
+Controller: Handles requests and returns result.
+
+Features:
+
+Add a new appointment (INSERT).
+
+View all appointments (SELECT).
+
+Update appointment details (UPDATE).
+
+Cancel appointment (DELETE).
+
+Search by patient or doctor name (SELECT ... WHERE).

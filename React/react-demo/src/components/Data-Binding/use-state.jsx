@@ -1,6 +1,6 @@
 import moment from "moment"
 import { useEffect, useState } from "react"
-import $ from 'jquery';
+import axios, { Axios } from "axios"
 
 export function UseS() {
 
@@ -316,17 +316,63 @@ export function UseS() {
 
 
     //3-jQuery method
+    //  const [product, setProduct] = useState({
+    //     title: "", price: 0, ratings: { rating: 0, rate: 0.0, reviews: 0 }, offer: [],image:''
+    // })
+
+    // function loadData() {
+    //     $.ajax({
+    //         method: "get",
+    //         url:"product.json",
+    //         success: (product) =>{
+    //             setProduct(product)
+    //         }
+    //     })
+    // }
+
+    // useEffect(() => {
+    //     loadData()
+    // }, [])
+
+    // return (
+    //     <div className="container-fluid">
+    //         <div className="mt-4 row">
+    //             <div className="col-4">
+    //                 <img src={product.image} alt="" height="450" width="100%"/>
+    //             </div>
+    //             <div className="col-8">
+    //                 <div className="fs-4">{product.title}</div>
+    //                 <div className="mt-2">
+    //                     <span className="badge bg-success">{product.ratings.rate} <span className="bi bi-star-fill"></span> </span>
+    //                     <span className="text-secondary fw-bold ms-2">{product.ratings.rating.toLocaleString()} rating & {product.ratings.reviews.toLocaleString()} reviews</span>
+    //                 </div>
+    //                 <div className="mt-3 fw-bold fs-1">
+    //                     {
+    //                         product.price.toLocaleString('en-in',{style:'currency',currency:'INR'})
+    //                     }
+    //                 </div>
+    //                 <div className="mt-3">
+    //                     <h5>Avalaible Offer</h5>
+    //                     <ul className="list-unstyled">
+    //                         {
+    //                             product.offer.map(key => <li className="bi bi-tag-fill my-3 text-success" key={key}><span className="  ms-2 text-secondary">{key}</span></li>)
+    //                         }
+    //                     </ul>
+                        
+    //                 </div>
+    //             </div>
+    //         </div>
+    //     </div>
+    // );
+
+    //4- Axios (React 3rd party liberies)
      const [product, setProduct] = useState({
         title: "", price: 0, ratings: { rating: 0, rate: 0.0, reviews: 0 }, offer: [],image:''
     })
 
     function loadData() {
-        $.ajax({
-            method: "get",
-            url:"product.json",
-            success: (product) =>{
-                setProduct(product)
-            }
+        axios.get('product.json').then(pro =>{
+            setProduct(pro.data);
         })
     }
 

@@ -1,14 +1,27 @@
 package com.nt.service;
 
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.MethodOrderer;
+import org.junit.jupiter.api.MethodOrderer.MethodName;
+import org.junit.jupiter.api.Order;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestMethodOrder;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
+
+@DisplayName("Testing String Method")
+@TestMethodOrder(MethodName.class)
+//@TestMethodOrder(MethodOrderer.OrderAnnotation.class) //For Order
+//@TestMethodOrder(MethodOrderer.DisplayName.class) //For Display Name
+//@TestMethodOrder(MethodOrderer.Random.class) //For Randomly come all (default) 
 public class StringTest {
 	TestUtilityStringHandle ts = new TestUtilityStringHandle();
 	
@@ -24,7 +37,17 @@ public class StringTest {
 	
 	 // ----------------- countVowels() Tests -----------------
 
+	//Using count parameter
+	@ParameterizedTest
+	@ValueSource(strings = {"aidd","kanha","doraa"})
+	public void testCountVowels_UsingParameterzied(String text) {
+		System.out.println("StringTest.testCountVowels_UsingParameterzied()");
+		int result = ts.countVowels("Education");
+        assertEquals(5, result, "Should count vowels correctly");
+	}
+	
     @Test
+    @Order(10)
     public void testCountVowels_NormalString() {
     	System.out.println("StringTest.testCountVowels_NormalString()");
         int result = ts.countVowels("Education");
@@ -32,6 +55,7 @@ public class StringTest {
     }
 
     @Test
+    @Order(15)
     public void testCountVowels_NoVowels() {
     	System.out.println("StringTest.testCountVowels_NoVowels()");
         int result = ts.countVowels("Rhythm");
@@ -39,6 +63,7 @@ public class StringTest {
     }
 
     @Test
+    @Order(2)
     public void testCountVowels_AllVowelsUppercase() {
     	System.out.println("StringTest.testCountVowels_AllVowelsUppercase()");
         int result = ts.countVowels("AEIOU");
@@ -46,6 +71,7 @@ public class StringTest {
     }
 
     @Test
+    @DisplayName("a")
     public void testCountVowels_EmptyString() {
     	System.out.println("StringTest.testCountVowels_EmptyString()");
         int result = ts.countVowels("");
@@ -53,6 +79,7 @@ public class StringTest {
     }
 
     @Test
+    @DisplayName("b")
     public void testCountVowels_WithNumbersAndSymbols() {
     	System.out.println("StringTest.testCountVowels_WithNumbersAndSymbols()");
         int result = ts.countVowels("H3ll0@W0rld");
@@ -62,13 +89,16 @@ public class StringTest {
     // ----------------- removeSpaces() Tests -----------------
 
     @Test
-    public void testRemoveSpaces_NormalString() {
+    @Order(1)
+    @DisplayName("a")
+    public void testRemoveSpaces_NormalStri() {
     	System.out.println("StringTest.testRemoveSpaces_NormalString()");
         String result = ts.removeSpaces("Hello World");
         assertEquals("HelloWorld", result, "Should remove single space between words");
     }
 
     @Test
+    @DisplayName("c")
     public void testRemoveSpaces_MultipleSpaces() {
     	System.out.println("StringTest.testRemoveSpaces_MultipleSpaces()");
         String result = ts.removeSpaces("Java    Programming   Language");
@@ -76,6 +106,7 @@ public class StringTest {
     }
 
     @Test
+    @DisplayName("b")
     public void testRemoveSpaces_LeadingAndTrailingSpaces() {
     	System.out.println("StringTest.testRemoveSpaces_LeadingAndTrailingSpaces()");
         String result = ts.removeSpaces("   Trim This   ");
@@ -90,6 +121,7 @@ public class StringTest {
     }
 
     @Test
+    @Order(1)
     public void testRemoveSpaces_EmptyString() {
     	System.out.println("StringTest.testRemoveSpaces_EmptyString()");
         String result = ts.removeSpaces("");

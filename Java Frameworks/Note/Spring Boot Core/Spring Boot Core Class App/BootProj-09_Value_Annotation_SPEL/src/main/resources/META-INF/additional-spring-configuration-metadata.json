@@ -1,0 +1,32 @@
+{"properties": [
+  {
+    "name": "std.name",
+    "type": "java.lang.String",
+    "description": "A description for 'std.name'"
+  },
+  {
+    "name": "std.javafee",
+    "type": "java.lang.String",
+    "description": "A description for 'std.javafee'"
+  },
+  {
+    "name": "std.reactfee",
+    "type": "java.lang.String",
+    "description": "A description for 'std.reactfee'"
+  },
+  {
+    "name": "std.advjavafee",
+    "type": "java.lang.String",
+    "description": "A description for 'std.advjavafee'"
+  },
+  {
+    "name": "std.springfee",
+    "type": "java.lang.String",
+    "description": "A description for 'std.springfee'"
+  },
+  {
+    "name": "std.oraclefee",
+    "type": "java.lang.String",
+    "description": "A description for 'std.oraclefee'"
+  }
+]}

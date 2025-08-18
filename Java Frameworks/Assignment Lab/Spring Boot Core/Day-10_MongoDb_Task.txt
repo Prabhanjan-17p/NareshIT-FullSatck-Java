@@ -1,0 +1,47 @@
+Task: Student Management System using MongoDB
+🎯 Objective:
+
+Build a simple application that performs CRUD operations on a Student collection stored in MongoDB.
+
+📂 Requirements:
+Entity: Student
+
+id (ObjectId / UUID)
+
+name (String)
+
+email (String - must be unique)
+
+course (String)
+
+marks (Integer)
+
+enrolledDate (Date)
+
+🔹 Operations to Implement (CRUD)
+
+Create (C)
+
+Add a new student.
+
+Read (R)
+
+Fetch all students.
+
+Fetch student by id.
+
+Fetch students enrolled in a specific course.
+
+Fetch students with marks greater than a given value.
+
+Update (U)
+
+Update student details (e.g., change course or marks).
+
+Example: Update marks of a student with given id.
+
+Delete (D)
+
+Delete a student record by id.
+
+Delete all students of a particular course.

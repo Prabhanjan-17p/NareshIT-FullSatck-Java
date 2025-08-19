@@ -371,7 +371,8 @@ export function UseS() {
     })
 
     function loadData() {
-        axios.get('product.json').then(pro =>{
+        axios.get('product.json')
+        .then(pro =>{
             setProduct(pro.data);
         })
     }

@@ -9,11 +9,13 @@ import bootstrap from 'bootstrap';
 import { Home } from './components/Home-ex/home';
 import { DataBinding } from './components/Data-Binding/data-binding';
 import { UseS } from './components/Data-Binding/use-state';
+import { MouseEvent } from './components/Mouse-Event/mouse-event';
+import { MouseAnimation } from './components/Mouse-Animation/mouse-animation';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <UseS/>
+    <MouseAnimation />
   </React.StrictMode>
 );
 

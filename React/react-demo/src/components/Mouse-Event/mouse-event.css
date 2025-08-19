@@ -1,0 +1,7 @@
+.col-1 img{
+    border: 2px solid black;
+}
+
+.col-1 img:hover{
+    border: 3px solid blue;
+}

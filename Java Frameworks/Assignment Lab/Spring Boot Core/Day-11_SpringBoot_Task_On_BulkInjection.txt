@@ -1,0 +1,341 @@
+Task 1: Notification System with Multiple Channels
+
+Scenario:
+You are building a notification system that can send messages through different channels such as Email, SMS, Push Notification, and WhatsApp.
+
+Requirements:
+
+Create a NotificationService interface with a method send(String message).
+
+Implement four services: EmailNotification, SMSNotification, PushNotification, WhatsAppNotification.
+
+Use bulk injection (List<NotificationService>) in a NotificationManager to send the same message through all channels.
+
+Also inject using Map<String, NotificationService> so that the user can choose a specific channel (e.g., "email", "sms").
+
+Add logic to block sending notifications via WhatsApp if the message length exceeds 100 characters.
+
+ANS ---
+package com.nt;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.ConfigurableApplicationContext;
+
+import com.nt.maneger.NotificationManager;
+import com.nt.service.NotificationService;
+
+@SpringBootApplication
+public class Day11Application {
+
+	public static void main(String[] args) {
+		try (ConfigurableApplicationContext ctx = SpringApplication.run(Day11Application.class, args);) {
+			NotificationManager notificationManager = ctx.getBean(NotificationManager.class);
+
+			String msg = "Hello, this is a notification!";
+			String longMsg = "This is a very long WhatsApp message that exceeds the character limit of 100. "
+					+ "It should not be sent over WhatsApp.";
+
+			System.out.println("\n--- Sending to All Channels ---");
+			notificationManager.sendToAll(msg);
+
+			System.out.println("\n--- Sending specifically via Email ---");
+			notificationManager.sendToChannel("email", msg);
+
+			System.out.println("\n--- Sending long message via WhatsApp ---");
+			notificationManager.sendToChannel("whatsapp", longMsg);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+	}
+
+}
+
+
+package com.nt.maneger;
+
+import java.util.List;
+import java.util.Map;
+
+import org.springframework.stereotype.Component;
+
+import com.nt.service.NotificationService;
+
+@Component
+public class NotificationManager {
+	private final List<NotificationService> notificationServices;
+	private final Map<String, NotificationService> notificationServiceMap;
+
+	public NotificationManager(List<NotificationService> notificationServices,
+			Map<String, NotificationService> notificationServiceMap) {
+		super();
+		this.notificationServices = notificationServices;
+		this.notificationServiceMap = notificationServiceMap;
+	}
+	
+	public void sendToAll(String msg) {
+		for(NotificationService notser : notificationServices) {
+			notser.send(msg);
+		}
+	}
+	
+	public void sendToChannel(String channel, String msg) {
+		NotificationService service = notificationServiceMap.get(channel.toLowerCase());
+        if (service != null) {
+            service.send(msg);
+        } else {
+            System.out.println("No such channel: " + channel);
+        }
+	}
+
+}
+
+
+package com.nt.service;
+
+import org.springframework.stereotype.Service;
+
+@Service("email")
+public class EmailNotification implements NotificationService {
+
+	@Override
+	public void send(String message) {
+		System.out.println("Sending Email: " + message);
+	}
+
+}
+
+
+package com.nt.service;
+
+public interface NotificationService {
+	public void send(String message);
+}
+
+
+package com.nt.service;
+
+import org.springframework.stereotype.Service;
+
+@Service("push")
+public class PushNotification implements NotificationService {
+
+	@Override
+	public void send(String message) {
+		System.out.println("Sending Push: " + message);
+	}
+
+}
+
+
+package com.nt.service;
+
+import org.springframework.stereotype.Service;
+
+@Service("msg")
+public class SMSNotification implements NotificationService {
+
+	@Override
+	public void send(String message) {
+		System.out.println("Sending SMS: " + message);
+	}
+
+}
+
+
+package com.nt.service;
+
+import org.springframework.stereotype.Service;
+
+@Service("whatsapp")
+public class WhatsAppNotification implements NotificationService {
+
+	@Override
+	public void send(String message) {
+		if (message.length() > 100) {
+			System.out.println("WhatsApp message too long. Not sending.");
+		} else {
+			System.out.println("Sending WhatsApp message: " + message);
+		}
+	}
+
+}
+----------------------------------------------------------------------------------------------------
+
+🔹 Task 2: Discount Strategy for Shopping Cart
+
+Scenario:
+An e-commerce application applies different discount strategies based on payment method or festival offers.
+
+Requirements:
+
+Create a DiscountService interface with a method double applyDiscount(double amount).
+
+Implement multiple strategies: NewYearDiscount, DiwaliDiscount, CreditCardDiscount, CouponDiscount.
+
+Inject all discounts as a Set<DiscountService> in DiscountProcessor and show the final amount for each discount.
+
+Use a Map<String, DiscountService> to apply a selected discount based on user input.
+
+If no discount matches, fallback to a NoDiscountService.
+
+ANS ----
+package com.nt;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.ConfigurableApplicationContext;
+
+import com.nt.maneger.DiscountProcessor;
+
+@SpringBootApplication
+public class Day1102Application {
+
+	public static void main(String[] args) {
+		try (ConfigurableApplicationContext ctx = SpringApplication.run(Day1102Application.class, args);) {
+			DiscountProcessor processor = ctx.getBean(DiscountProcessor.class);
+
+			double cartAmount = 1000;
+
+			System.out.println("\n--- Showing All Discounts ---");
+			processor.showAllDiscounts(cartAmount);
+
+			System.out.println("\n--- Applying Selected Discount (diwali) ---");
+			double diwaliAmt = processor.applySelectedDiscount("diwali", cartAmount);
+			System.out.println("Final Amount with Diwali Discount: " + diwaliAmt);
+
+			System.out.println("\n--- Applying Invalid Discount (summer) ---");
+			double summerAmt = processor.applySelectedDiscount("summer", cartAmount);
+			System.out.println("Final Amount with Fallback: " + summerAmt);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+	}
+
+}
+//"
+
+
+package com.nt.maneger;
+
+import java.util.Map;
+import java.util.Set;
+
+import org.springframework.stereotype.Component;
+
+import com.nt.service.DiscountService;
+
+@Component
+public class DiscountProcessor {
+	private final Set<DiscountService> dis;
+	private final Map<String, DiscountService> selectDis;
+
+	public DiscountProcessor(Set<DiscountService> dis, Map<String, DiscountService> selectDis) {
+		super();
+		this.dis = dis;
+		this.selectDis = selectDis;
+	}
+
+	public void showAllDiscounts(double amount) {
+		for (DiscountService service : dis) {
+			System.out
+					.println(service.getClass().getSimpleName() + " -> Final Amount: " + service.applyDiscount(amount));
+		}
+	}
+
+	public double applySelectedDiscount(String discountType, double amount) {
+		DiscountService service = selectDis.get(discountType.toLowerCase());
+		if (service != null) {
+			return service.applyDiscount(amount);
+		} else {
+			System.out.println("No matching discount, applying NoDiscount.");
+			return selectDis.get("nodiscount").applyDiscount(amount);
+		}
+	}
+
+}
+
+
+package com.nt.service;
+
+public interface DiscountService {
+	public double applyDiscount(double amount);
+}
+
+
+package com.nt.service;
+
+import org.springframework.stereotype.Service;
+
+@Service("coupon")
+public class CouponDiscount implements DiscountService {
+
+	@Override
+	public double applyDiscount(double amount) {
+		return amount - 100;
+	}
+
+}
+
+
+package com.nt.service;
+
+import org.springframework.stereotype.Service;
+
+@Service("credit")
+public class CreditCardDiscount implements DiscountService {
+
+	@Override
+	public double applyDiscount(double amount) {
+		return amount * 0.9;
+	}
+
+}
+
+
+package com.nt.service;
+
+import org.springframework.stereotype.Service;
+
+@Service("diwali")
+public class DiwaliDiscount implements DiscountService {
+
+	@Override
+	public double applyDiscount(double amount) {
+		return amount * 0.7;
+	}
+
+}
+
+
+package com.nt.service;
+
+import org.springframework.stereotype.Service;
+
+@Service("newyear")
+public class NewYearDiscount implements DiscountService {
+
+	@Override
+	public double applyDiscount(double amount) {
+		return amount * 0.8;
+	}
+
+}
+
+
+package com.nt.service;
+
+import org.springframework.stereotype.Service;
+
+@Service("nodiscount")
+public class NoDiscountService implements DiscountService {
+
+	@Override
+	public double applyDiscount(double amount) {
+		return amount;
+	}
+
+}
+============================================================================================

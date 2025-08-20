@@ -1,0 +1,30 @@
+package com.nt.entity;
+
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
+
+import com.mongodb.lang.NonNull;
+
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.RequiredArgsConstructor;
+
+@Data
+@Document("Product Class 2")
+@NoArgsConstructor
+@AllArgsConstructor
+@RequiredArgsConstructor
+public class Product2 {
+	@Id
+	private Integer id;
+	@NonNull
+	private String name;
+	@NonNull
+	private Double price;
+	@NonNull
+	private Double qnt;
+	@NonNull
+	private String desc;
+	
+}

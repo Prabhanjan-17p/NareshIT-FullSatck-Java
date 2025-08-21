@@ -1,0 +1,342 @@
+Q1)
+You are tasked with developing a Spring Core application that manages player and team information for a cricket team. The application should load player and team details from an external player.properties file using a custom properties class. The system should then display the player and team information using Spring's dependency injection features.
+
+Requirements:
+Create a Properties File:
+Filename: player.properties
+Content:
+	player.id=1
+	player.name=Dhoni
+	player.yearsNumber=7
+	team.name=CSK
+
+Player Class: To hold the configuration properties loaded from player.properties.
+Attributes:
+private int playerId;
+private String playerName;
+private int yearsNumber;
+private String teamName;
+Methods:
+Getters and setters for all attributes.
+Use @Component to make it a Spring-managed bean.
+Use @PropertySource to specify the location of player.properties.
+Use @Value to inject property values.
+
+AppConfig Class:To configure Spring to scan for components and load the properties file.
+Annotations: @Configuration, @ComponentScan, @PropertySource
+
+PlayerService Class:
+Purpose: To demonstrate the usage of Player.
+Attributes:
+private Player player; (Injected using @Autowired)
+Methods:
+void displayPlayerInfo(): Prints the player and team information using the properties.
+
+Main Class (PlayerApp): To bootstrap the Spring application and invoke the PlayerService.
+Methods:
+public static void main(String[] args): Initializes the Spring context and calls displayPlayerInfo().
+
+ANS ---
+package com.nt;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.ConfigurableApplicationContext;
+
+import com.nt.service.PlayerService;
+
+@SpringBootApplication
+public class Day12Application {
+
+	public static void main(String[] args) {
+		ConfigurableApplicationContext ctx = SpringApplication.run(Day12Application.class, args);
+
+		PlayerService service = ctx.getBean(PlayerService.class);
+
+		service.displayPlayerInfo();
+
+		ctx.close();
+	}
+
+}
+
+
+package com.nt.config;
+
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.PropertySource;
+
+@Configuration
+@ComponentScan(basePackages = "com.nt")
+@PropertySource("classpath:player.properties")
+public class AppConfig {
+
+}
+
+
+package com.nt.model;
+
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Component;
+
+import lombok.Getter;
+import lombok.Setter;
+
+@Component("player")
+@Getter
+@Setter
+public class Player {
+    @Value("${player.id}")
+    private int playerId;
+
+    @Value("${player.name}")
+    private String playerName;
+
+    @Value("${player.yearsNumber}")
+    private int yearsNumber;
+
+    @Value("${team.name}")
+    private String teamName;
+}
+
+
+package com.nt.service;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.nt.model.Player;
+
+@Service("plySer")
+public class PlayerService {
+	@Autowired
+	private Player player;
+
+	public void displayPlayerInfo() {
+		System.out.println("Player ID: " + player.getPlayerId());
+		System.out.println("Player Name: " + player.getPlayerName());
+		System.out.println("Jersey Number: " + player.getYearsNumber());
+		System.out.println("Team Name: " + player.getTeamName());
+	}
+}
+
+
+spring.application.name=Day-12
+
+
+player.id=1
+player.name=Dhoni
+player.yearsNumber=7
+team.name=CSK
+
+---------------------------------------------------------------------------------------------------------------------
+
+Q2)
+You are tasked with developing a Spring Core application for a Food Ordering System. The application should load food item and restaurant details from an external food.properties file using a custom properties class. The system should then display the food item information and restaurant details using Spring's dependency injection features.
+Requirements:
+
+Create a Properties File:
+Filename: food.properties
+Content:
+	food.id=1
+	food.name=Margherita Pizza
+	food.preparationTime=15
+	restaurant.name=Spice Hub
+
+FoodDetails Class:
+Purpose: To hold the configuration properties loaded from food.properties.
+Attributes:
+private int foodId;
+private String foodName;
+private int preparationTime;
+private String restaurantName;
+Methods:
+Getters and setters for all attributes.
+Annotations:
+Use @Component to make it a Spring-managed bean.
+Use @Value to inject property values.
+
+FoodService Class: To demonstrate the usage of FoodDetails.
+private FoodDetails foodDetails;
+Methods:
+void displayFoodInfo(): Prints the food item and restaurant information using the properties.
+
+AppConfig Class: To configure Spring to scan for components and load the properties file.
+Annotations:@Configuration, @ComponentScan, @PropertySource
+
+Main Class (FoodOrderingApp):
+Methods:
+public static void main(String[] args): Initializes the Spring context and calls displayFoodInfo().
+
+ANS ---
+package com.nt.config;
+
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.PropertySource;
+
+@Configuration
+@ComponentScan(basePackages = "com.nt")
+@PropertySource("com/nt/properties/food.properties")
+public class AppConfig {
+
+}
+
+
+package com.nt.main;
+
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+
+import com.nt.config.AppConfig;
+import com.nt.service.FoodService;
+
+public class Main {
+
+	public static void main(String[] args) {
+		AnnotationConfigApplicationContext ctx = new AnnotationConfigApplicationContext(AppConfig.class);
+
+		FoodService service = ctx.getBean(FoodService.class);
+		service.displayFoodInfo();
+
+		ctx.close();
+	}
+
+}
+
+
+package com.nt.model;
+
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Component;
+
+@Component("foodD")
+public class FoodDetails {
+	@Value("${food.id}")
+	private int foodId;
+
+	@Value("${food.name}")
+	private String foodName;
+
+	@Value("${food.preparationTime}")
+	private int preparationTime;
+
+	@Value("${restaurant.name}")
+	private String restaurantName;
+
+	public int getFoodId() {
+		return foodId;
+	}
+
+	public void setFoodId(int foodId) {
+		this.foodId = foodId;
+	}
+
+	public String getFoodName() {
+		return foodName;
+	}
+
+	public void setFoodName(String foodName) {
+		this.foodName = foodName;
+	}
+
+	public int getPreparationTime() {
+		return preparationTime;
+	}
+
+	public void setPreparationTime(int preparationTime) {
+		this.preparationTime = preparationTime;
+	}
+
+	public String getRestaurantName() {
+		return restaurantName;
+	}
+
+	public void setRestaurantName(String restaurantName) {
+		this.restaurantName = restaurantName;
+	}
+}
+
+
+food.id=1
+food.name=Margherita Pizza
+food.preparationTime=15
+restaurant.name=Spice Hub
+
+package com.nt.service;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.nt.model.FoodDetails;
+
+@Service
+public class FoodService {
+
+	@Autowired
+	private FoodDetails foodDetails;
+
+	public void displayFoodInfo() {
+		System.out.println("Food ID: " + foodDetails.getFoodId());
+		System.out.println("Food Name: " + foodDetails.getFoodName());
+		System.out.println("Preparation Time: " + foodDetails.getPreparationTime() + " mins");
+		System.out.println("Restaurant Name: " + foodDetails.getRestaurantName());
+	}
+}
+
+---------------------------------------------------------------------------------------------------------------------
+
+Q3)
+You are tasked with developing a flight booking system that uses a custom properties class to manage flight details and user booking information. The properties file should contain information about flights, including flight number, departure city, destination city, ticket price, and user details like user ID and name.
+
+Requirements:
+
+flightBooking.properties
+	flight.number=AI101
+	flight.departure=Delhi
+	flight.destination=Mumbai
+	flight.price=3500.00
+
+	user.id=1
+	user.name=Rahul Sharma
+	user.address.street=123 Main St
+	user.address.city=Mumbai
+	user.address.state=Maharashtra
+	user.address.zipCode=400001
+
+Flight Class:
+Attributes:
+String flightNumber: Represents the unique flight number.
+String departureCity: Represents the city from which the flight departs.
+String destinationCity: Represents the city to which the flight is heading.
+double ticketPrice: Represents the price of the ticket.
+Methods:
+Getters and setters for all attributes.
+String toString(): Returns a string representation of the flight.
+
+User Class:
+
+Attributes:
+int userId: Represents the unique identifier for the user.
+String userName: Represents the name of the user booking the flight.
+Address address: Represents the user's address (injected using @Autowired).
+Methods:
+Getters and setters for all attributes.
+String toString(): Returns a string representation of the user.
+
+Address Class:
+
+Attributes:
+String street: Represents the street name.
+String city: Represents the city.
+String state: Represents the state.
+String zipCode: Represents the ZIP code.
+Methods:
+Getters and setters for all attributes.
+String toString(): Returns a string representation of the address.
+
+AppConfig Class:
+Create a Spring configuration class to scan for components and load the properties file.
+
+Main Class:
+Create instances of Flight, User, and Address from the FlightProperties class and print out the flight and user booking information.

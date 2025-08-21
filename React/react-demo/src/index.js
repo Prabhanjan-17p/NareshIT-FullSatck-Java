@@ -14,11 +14,12 @@ import { MouseAnimation } from './components/Mouse-Animation/mouse-animation';
 import { ClassBinding } from './components/Class-Binding/class-binding';
 import { MouseMove } from './components/Mouse-Move/mouse-move';
 import { KeyDemo } from './components/Key-Demo/key-demo';
+import { DebounceDemo } from './components/Debounce-Demo/debounce-demo';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <KeyDemo />
+    <DebounceDemo />
   </React.StrictMode>
 );
 

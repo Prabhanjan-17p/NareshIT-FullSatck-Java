@@ -1,0 +1,457 @@
+Task 1: Employee Payroll Configuration System
+
+Prefix: payroll
+
+Steps
+Create the configuration keys under payroll.
+
+Define simple values:
+
+companyName (String), currency (String), taxRate (double), overtimeEnabled (boolean)
+
+Define collections:
+
+departments (List of strings)
+
+salaryBands (Map: band → amount)
+
+Define a nested object:
+
+holidayPolicy with maxLeaves (int), carryForward (boolean), paidLeaves (int)
+
+Define a list of objects:
+
+benefits with each object having name (String), description (String), amount (double)
+
+
+Bind all the above in a payroll properties holder class.
+
+Inject the holder into a PayrollService.
+
+Implement service behaviors:
+
+Print company payroll policy snapshot (currency, tax, overtime flag)
+
+List all benefits (name + amount)
+
+Show salary bands and departments
+
+Run via main class to verify values appear as configured.
+
+ANS -----
+package com.nt;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+@SpringBootApplication
+public class Day13Application {
+
+	public static void main(String[] args) {
+		SpringApplication.run(Day13Application.class, args);
+	}
+
+}
+
+
+spring.application.name=Day-13
+
+
+payroll.companyName=TechCorp Pvt Ltd
+payroll.currency=INR
+payroll.taxRate=18.0
+payroll.overtimeEnabled=true
+
+payroll.departments[0]=HR
+payroll.departments[1]=IT
+payroll.departments[2]=Finance
+payroll.departments[3]=Marketing
+
+payroll.salaryBands.Junior=30000
+payroll.salaryBands.Mid=50000
+payroll.salaryBands.Senior=80000
+
+payroll.holidayPolicy.maxLeaves=24
+payroll.holidayPolicy.carryForward=true
+payroll.holidayPolicy.paidLeaves=20
+
+payroll.benefits[0].name=Health Insurance
+payroll.benefits[0].description=Full coverage health insurance
+payroll.benefits[0].amount=5000
+
+payroll.benefits[1].name=Transport Allowance
+payroll.benefits[1].description=Monthly transport allowance
+payroll.benefits[1].amount=2000
+
+
+package com.nt.model;
+
+import java.util.List;
+import java.util.Map;
+
+import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.stereotype.Component;
+
+import lombok.Data;
+
+@Data
+@Component
+@ConfigurationProperties(prefix = "payroll")
+public class PayrollProperties {
+    private String companyName;
+    private String currency;
+    private double taxRate;
+    private boolean overtimeEnabled;
+
+    private List<String> departments;
+    private Map<String, Double> salaryBands;
+    private HolidayPolicy holidayPolicy;
+    private List<Benefit> benefits;
+}
+
+
+package com.nt.model;
+
+import lombok.Data;
+
+@Data
+public class HolidayPolicy {
+	private int maxLeaves;
+	private boolean carryForward;
+	private int paidLeaves;
+}
+
+
+package com.nt.model;
+
+import lombok.Data;
+
+@Data
+public class Benefit {
+    private String name;
+    private String description;
+    private double amount;
+}
+
+
+package com.nt.service;
+
+import org.springframework.stereotype.Service;
+
+import com.nt.model.PayrollProperties;
+
+@Service
+public class PayrollService {
+	private PayrollProperties payrollProperties;
+
+	public PayrollService(PayrollProperties payrollProperties) {
+		super();
+		this.payrollProperties = payrollProperties;
+	}
+
+	public void printPayrollSnapshot() {
+		System.out.println("Company: " + payrollProperties.getCompanyName());
+		System.out.println("Currency: " + payrollProperties.getCurrency());
+		System.out.println("Tax Rate: " + payrollProperties.getTaxRate() + "%");
+		System.out.println("Overtime Enabled: " + payrollProperties.isOvertimeEnabled());
+		System.out.println("Max Leaves: " + payrollProperties.getHolidayPolicy().getMaxLeaves());
+		System.out.println("Carry Forward Allowed: " + payrollProperties.getHolidayPolicy().isCarryForward());
+		System.out.println("Paid Leaves: " + payrollProperties.getHolidayPolicy().getPaidLeaves());
+	}
+
+	public void listAllBenefits() {
+		System.out.println("\n--- Benefits ---");
+		payrollProperties.getBenefits().forEach(b -> System.out.println(b.getName() + " : " + b.getAmount()));
+	}
+
+	public void showSalaryBandsAndDepartments() {
+		System.out.println("\n--- Departments ---");
+		payrollProperties.getDepartments().forEach(System.out::println);
+
+		System.out.println("\n--- Salary Bands ---");
+		payrollProperties.getSalaryBands().forEach((band, amount) -> System.out.println(band + " : " + amount));
+	}
+}
+
+
+package com.nt.runner;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.CommandLineRunner;
+import org.springframework.stereotype.Component;
+
+import com.nt.service.PayrollService;
+
+@Component
+public class TestRunner implements CommandLineRunner {
+	@Autowired
+	private PayrollService payrollService;
+
+	@Override
+	public void run(String... args) throws Exception {
+		payrollService.printPayrollSnapshot();
+        payrollService.listAllBenefits();
+        payrollService.showSalaryBandsAndDepartments();
+	}
+
+}
+
+-------------------------------------------------------------------------
+
+Task 2: Online Course Platform Configuration
+
+Prefix: courseplatform
+
+Steps
+
+Create the configuration keys under courseplatform.
+
+Define simple values:
+
+platformName (String), defaultLanguage (String), subscriptionFee (double), active (boolean)
+
+Define collections:
+
+     (List of strings)
+
+storageLimits (Map: plan → DataSize)
+
+Define a nested object:
+
+defaultCourse with title (String), duration (Duration), instructor (String), price (double)
+
+Define a list of objects:
+
+courses with each object having title (String), duration (Duration), instructor (String), price (double), tags (List of strings)
+
+Define a map of objects:
+
+instructorDirectory where each key maps to an object with name (String), expertise (String), rating (double), bio (String)
+
+Bind all the above in a courseplatform properties holder class.
+
+Inject the holder into a CoursePlatformService.
+
+Implement service behaviors:
+
+Print default course details
+
+List all supported languages
+
+List all courses with prices and durations
+
+Run via main class to verify values.
+
+ANS -----
+package com.nt;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+@SpringBootApplication
+public class Day13Application {
+
+	public static void main(String[] args) {
+		SpringApplication.run(Day13Application.class, args);
+	}
+
+}
+
+
+package com.nt.runner;
+
+import org.springframework.boot.CommandLineRunner;
+import org.springframework.stereotype.Component;
+
+import com.nt.service.CoursePlatformService;
+
+
+@Component
+public class TestRunner implements CommandLineRunner {
+	private final CoursePlatformService service;
+
+    public TestRunner(CoursePlatformService service) {
+        this.service = service;
+    }
+
+    @Override
+    public void run(String... args) throws Exception {
+        service.printDefaultCourse();
+        service.listSupportedLanguages();
+        service.listAllCourses();
+        service.listInstructors();
+    }
+
+}
+
+
+spring.application.name=Day-13
+
+# Simple values
+courseplatform.platformName=EduMaster
+courseplatform.defaultLanguage=English
+courseplatform.subscriptionFee=499.99
+courseplatform.active=true
+
+# List of supported languages
+courseplatform.supportedLanguages[0]=English
+courseplatform.supportedLanguages[1]=Spanish
+courseplatform.supportedLanguages[2]=French
+courseplatform.supportedLanguages[3]=German
+
+# Map of storage limits per plan (in GB)
+courseplatform.storageLimits.Basic=50
+courseplatform.storageLimits.Standard=200
+courseplatform.storageLimits.Premium=500
+
+# Nested default course
+courseplatform.defaultCourse.title=Java Mastery
+courseplatform.defaultCourse.duration=PT10H30M
+courseplatform.defaultCourse.instructor=John Doe
+courseplatform.defaultCourse.price=999.99
+
+# List of courses
+courseplatform.courses[0].title=Spring Boot Fundamentals
+courseplatform.courses[0].duration=PT8H
+courseplatform.courses[0].instructor=Alice Smith
+courseplatform.courses[0].price=799.99
+courseplatform.courses[0].tags[0]=Spring
+courseplatform.courses[0].tags[1]=Java
+courseplatform.courses[0].tags[2]=Backend
+
+courseplatform.courses[1].title=React JS Advanced
+courseplatform.courses[1].duration=PT12H
+courseplatform.courses[1].instructor=Bob Johnson
+courseplatform.courses[1].price=899.99
+courseplatform.courses[1].tags[0]=React
+courseplatform.courses[1].tags[1]=Frontend
+courseplatform.courses[1].tags[2]=JavaScript
+
+courseplatform.courses[2].title=Full-Stack Development
+courseplatform.courses[2].duration=PT20H
+courseplatform.courses[2].instructor=Carol White
+courseplatform.courses[2].price=1299.99
+courseplatform.courses[2].tags[0]=Full-Stack
+courseplatform.courses[2].tags[1]=Java
+courseplatform.courses[2].tags[2]=React
+
+# Map of instructor directory
+courseplatform.instructorDirectory.johnDoe.name=John Doe
+courseplatform.instructorDirectory.johnDoe.expertise=Java, Spring Boot
+courseplatform.instructorDirectory.johnDoe.rating=4.9
+courseplatform.instructorDirectory.johnDoe.bio=Senior Java developer with 10 years experience.
+
+courseplatform.instructorDirectory.aliceSmith.name=Alice Smith
+courseplatform.instructorDirectory.aliceSmith.expertise=Spring Boot, Microservices
+courseplatform.instructorDirectory.aliceSmith.rating=4.8
+courseplatform.instructorDirectory.aliceSmith.bio=Expert in backend development and cloud applications.
+
+courseplatform.instructorDirectory.bobJohnson.name=Bob Johnson
+courseplatform.instructorDirectory.bobJohnson.expertise=React, JavaScript, Frontend
+courseplatform.instructorDirectory.bobJohnson.rating=4.7
+courseplatform.instructorDirectory.bobJohnson.bio=Frontend engineer specializing in React and modern JS frameworks.
+
+
+package com.nt.model;
+
+import java.util.List;
+import java.util.Map;
+
+import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.stereotype.Component;
+
+import lombok.Data;
+@Data
+@Component
+@ConfigurationProperties(prefix = "courseplatform")
+public class CoursePlatformProperties {
+    private String platformName;
+    private String defaultLanguage;
+    private double subscriptionFee;
+    private boolean active;
+
+    private List<String> supportedLanguages;
+
+    private Map<String, Integer> storageLimits;
+
+    private Course defaultCourse;
+
+    private List<Course> courses;
+
+    private Map<String, Instructor> instructorDirectory;
+}
+
+
+package com.nt.model;
+
+import java.time.Duration;
+import java.util.List;
+
+import lombok.Data;
+
+@Data
+public class Course {
+	private String title;
+	private Duration duration; 
+	private String instructor;
+	private double price;
+	private List<String> tags; 
+}
+
+
+package com.nt.model;
+
+import lombok.Data;
+
+@Data
+public class Instructor {
+	private String name;
+	private String expertise;
+	private double rating;
+	private String bio;
+}
+
+package com.nt.service;
+
+import org.springframework.stereotype.Service;
+
+import com.nt.model.Course;
+import com.nt.model.CoursePlatformProperties;
+import com.nt.model.Instructor;
+
+@Service
+public class CoursePlatformService {
+	private final CoursePlatformProperties properties;
+
+	public CoursePlatformService(CoursePlatformProperties properties) {
+		this.properties = properties;
+	}
+	
+	public void printDefaultCourse() {
+        Course c = properties.getDefaultCourse();
+        System.out.println("--- Default Course ---");
+        System.out.println("Title: " + c.getTitle());
+        System.out.println("Duration: " + c.getDuration());
+        System.out.println("Instructor: " + c.getInstructor());
+        System.out.println("Price: " + c.getPrice());
+    }
+
+    public void listSupportedLanguages() {
+        System.out.println("\n--- Supported Languages ---");
+        properties.getSupportedLanguages().forEach(System.out::println);
+    }
+
+    public void listAllCourses() {
+        System.out.println("\n--- Courses ---");
+        for (Course c : properties.getCourses()) {
+            System.out.println("Title: " + c.getTitle() + ", Duration: " + c.getDuration() + ", Price: " + c.getPrice());
+        }
+    }
+
+    public void listInstructors() {
+        System.out.println("\n--- Instructors ---");
+        for (Instructor i : properties.getInstructorDirectory().values()) {
+            System.out.println("Name: " + i.getName() + ", Expertise: " + i.getExpertise() + ", Rating: " + i.getRating());
+        }
+    }
+}

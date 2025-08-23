@@ -15,11 +15,13 @@ import { ClassBinding } from './components/Class-Binding/class-binding';
 import { MouseMove } from './components/Mouse-Move/mouse-move';
 import { KeyDemo } from './components/Key-Demo/key-demo';
 import { DebounceDemo } from './components/Debounce-Demo/debounce-demo';
+import { ThrottleDemo } from './components/Throttle-Demo/throttle-demo';
+import { FakeStoreProducts } from './components/FakeStore-API/fakestore-product';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <DebounceDemo />
+    <FakeStoreProducts />
   </React.StrictMode>
 );
 

@@ -1,0 +1,3 @@
+2025-08-23 17:57:50 [main] DEBUG  com.nt.main.SelectTest.main(SelectTest.java:70) - Connection obj is closed - 1023 - 
+2025-08-23 17:57:50 [main] DEBUG  com.nt.main.SelectTest.main(SelectTest.java:75) - end of finally block - 1040 - 
+2025-08-23 17:57:50 [main] DEBUG  com.nt.main.SelectTest.main(SelectTest.java:77) - end of main(-) method - 1041 - 

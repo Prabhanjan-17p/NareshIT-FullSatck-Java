@@ -1,0 +1,22 @@
+2025-08-23 18:13:06 [main] DEBUG  com.nt.main.SelectTest.main(SelectTest.java:19) - start of main(-) method - 514 - 
+2025-08-23 18:13:07 [main] INFO   com.nt.main.SelectTest.main(SelectTest.java:26) - Connection is established with DB s/w - 874 - 
+2025-08-23 18:13:07 [main] DEBUG  com.nt.main.SelectTest.main(SelectTest.java:29) - PreparedStatement object is created - 948 - 
+2025-08-23 18:13:07 [main] INFO   com.nt.main.SelectTest.main(SelectTest.java:32) - ResultSet object is created - 1034 - 
+2025-08-23 18:13:07 [main] DEBUG  com.nt.main.SelectTest.main(SelectTest.java:38) - ResultSet object is processsed - 1044 - 
+2025-08-23 18:13:07 [main] DEBUG  com.nt.main.SelectTest.main(SelectTest.java:49) - start of finally block - 1045 - 
+2025-08-23 18:13:07 [main] DEBUG  com.nt.main.SelectTest.main(SelectTest.java:53) - ResultSet obj is closed - 1060 - 
+2025-08-23 18:13:07 [main] DEBUG  com.nt.main.SelectTest.main(SelectTest.java:61) - PreparedStatement obj is closed - 1062 - 
+2025-08-23 18:13:07 [main] DEBUG  com.nt.main.SelectTest.main(SelectTest.java:70) - Connection obj is closed - 1063 - 
+2025-08-23 18:13:07 [main] DEBUG  com.nt.main.SelectTest.main(SelectTest.java:75) - end of finally block - 1064 - 
+2025-08-23 18:13:07 [main] DEBUG  com.nt.main.SelectTest.main(SelectTest.java:77) - end of main(-) method - 1064 - 
+2025-08-23 18:13:30 [main] DEBUG  com.nt.main.SelectTest.main(SelectTest.java:19) - start of main(-) method - 537 - 
+2025-08-23 18:13:30 [main] INFO   com.nt.main.SelectTest.main(SelectTest.java:26) - Connection is established with DB s/w - 916 - 
+2025-08-23 18:13:30 [main] DEBUG  com.nt.main.SelectTest.main(SelectTest.java:29) - PreparedStatement object is created - 985 - 
+2025-08-23 18:13:30 [main] INFO   com.nt.main.SelectTest.main(SelectTest.java:32) - ResultSet object is created - 1075 - 
+2025-08-23 18:13:30 [main] DEBUG  com.nt.main.SelectTest.main(SelectTest.java:38) - ResultSet object is processsed - 1087 - 
+2025-08-23 18:13:30 [main] DEBUG  com.nt.main.SelectTest.main(SelectTest.java:49) - start of finally block - 1088 - 
+2025-08-23 18:13:30 [main] DEBUG  com.nt.main.SelectTest.main(SelectTest.java:53) - ResultSet obj is closed - 1088 - 
+2025-08-23 18:13:30 [main] DEBUG  com.nt.main.SelectTest.main(SelectTest.java:61) - PreparedStatement obj is closed - 1090 - 
+2025-08-23 18:13:30 [main] DEBUG  com.nt.main.SelectTest.main(SelectTest.java:70) - Connection obj is closed - 1091 - 
+2025-08-23 18:13:30 [main] DEBUG  com.nt.main.SelectTest.main(SelectTest.java:75) - end of finally block - 1092 - 
+2025-08-23 18:13:30 [main] DEBUG  com.nt.main.SelectTest.main(SelectTest.java:77) - end of main(-) method - 1092 - 

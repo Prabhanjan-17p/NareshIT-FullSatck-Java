@@ -1,0 +1,24 @@
+2025-08-23 18:43:39.005 [main] DEBUG SelectTest  - 1092 - PreparedStatement object is created
+2025-08-23 18:43:39.107 [main] INFO  SelectTest  - 1194 - ResultSet object is created
+2025-08-23 18:43:39.124 [main] DEBUG SelectTest  - 1211 - ResultSet object is processsed
+2025-08-23 18:43:39.124 [main] DEBUG SelectTest  - 1211 - start of finally block
+2025-08-23 18:43:39.124 [main] DEBUG SelectTest  - 1211 - ResultSet obj is closed
+2025-08-23 18:43:39.126 [main] DEBUG SelectTest  - 1213 - PreparedStatement obj is closed
+2025-08-23 18:43:39.128 [main] DEBUG SelectTest  - 1215 - Connection obj is closed
+2025-08-23 18:43:39.129 [main] DEBUG SelectTest  - 1216 - end of finally block
+2025-08-23 18:43:39.129 [main] DEBUG SelectTest  - 1216 - end of main(-) method
+2025-08-23 18:43:43.171 [main] DEBUG SelectTest  - 597 - start of main(-) method
+2025-08-23 18:43:43.516 [main] INFO  SelectTest  - 942 - Connection is established with DB s/w
+2025-08-23 18:43:43.584 [main] DEBUG SelectTest  - 1010 - PreparedStatement object is created
+2025-08-23 18:43:43.686 [main] INFO  SelectTest  - 1112 - ResultSet object is created
+2025-08-23 18:43:43.705 [main] DEBUG SelectTest  - 1131 - ResultSet object is processsed
+2025-08-23 18:43:43.705 [main] DEBUG SelectTest  - 1131 - start of finally block
+2025-08-23 18:43:43.705 [main] DEBUG SelectTest  - 1131 - ResultSet obj is closed
+2025-08-23 18:43:43.710 [main] DEBUG SelectTest  - 1136 - PreparedStatement obj is closed
+2025-08-23 18:43:43.712 [main] DEBUG SelectTest  - 1138 - Connection obj is closed
+2025-08-23 18:43:43.712 [main] DEBUG SelectTest  - 1138 - end of finally block
+2025-08-23 18:43:43.712 [main] DEBUG SelectTest  - 1138 - end of main(-) method
+2025-08-23 18:43:48.546 [main] DEBUG SelectTest  - 578 - start of main(-) method
+2025-08-23 18:43:48.943 [main] INFO  SelectTest  - 975 - Connection is established with DB s/w
+2025-08-23 18:43:49.019 [main] DEBUG SelectTest  - 1051 - PreparedStatement object is created
+2025-08-23 18:43:49.133 [main] INFO  SelectTest  - 1165 - ResultSet object is created

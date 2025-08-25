@@ -1,0 +1,24 @@
+2025-08-23 18:43:16.482 [main] DEBUG SelectTest  - 550 - start of main(-) method
+2025-08-23 18:43:16.840 [main] INFO  SelectTest  - 908 - Connection is established with DB s/w
+2025-08-23 18:43:16.916 [main] DEBUG SelectTest  - 984 - PreparedStatement object is created
+2025-08-23 18:43:17.013 [main] INFO  SelectTest  - 1081 - ResultSet object is created
+2025-08-23 18:43:17.027 [main] DEBUG SelectTest  - 1095 - ResultSet object is processsed
+2025-08-23 18:43:17.028 [main] DEBUG SelectTest  - 1096 - start of finally block
+2025-08-23 18:43:17.028 [main] DEBUG SelectTest  - 1096 - ResultSet obj is closed
+2025-08-23 18:43:17.032 [main] DEBUG SelectTest  - 1100 - PreparedStatement obj is closed
+2025-08-23 18:43:17.034 [main] DEBUG SelectTest  - 1102 - Connection obj is closed
+2025-08-23 18:43:17.050 [main] DEBUG SelectTest  - 1118 - end of finally block
+2025-08-23 18:43:17.050 [main] DEBUG SelectTest  - 1118 - end of main(-) method
+2025-08-23 18:43:32.973 [main] DEBUG SelectTest  - 564 - start of main(-) method
+2025-08-23 18:43:33.324 [main] INFO  SelectTest  - 915 - Connection is established with DB s/w
+2025-08-23 18:43:33.393 [main] DEBUG SelectTest  - 984 - PreparedStatement object is created
+2025-08-23 18:43:33.500 [main] INFO  SelectTest  - 1091 - ResultSet object is created
+2025-08-23 18:43:33.514 [main] DEBUG SelectTest  - 1105 - ResultSet object is processsed
+2025-08-23 18:43:33.514 [main] DEBUG SelectTest  - 1105 - start of finally block
+2025-08-23 18:43:33.514 [main] DEBUG SelectTest  - 1105 - ResultSet obj is closed
+2025-08-23 18:43:33.519 [main] DEBUG SelectTest  - 1110 - PreparedStatement obj is closed
+2025-08-23 18:43:33.521 [main] DEBUG SelectTest  - 1112 - Connection obj is closed
+2025-08-23 18:43:33.521 [main] DEBUG SelectTest  - 1112 - end of finally block
+2025-08-23 18:43:33.521 [main] DEBUG SelectTest  - 1112 - end of main(-) method
+2025-08-23 18:43:38.498 [main] DEBUG SelectTest  - 585 - start of main(-) method
+2025-08-23 18:43:38.924 [main] INFO  SelectTest  - 1011 - Connection is established with DB s/w

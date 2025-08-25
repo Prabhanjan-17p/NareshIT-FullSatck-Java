@@ -1,0 +1,7 @@
+2025-08-23 18:43:49.150 [main] DEBUG SelectTest  - 1182 - ResultSet object is processsed
+2025-08-23 18:43:49.154 [main] DEBUG SelectTest  - 1186 - start of finally block
+2025-08-23 18:43:49.154 [main] DEBUG SelectTest  - 1186 - ResultSet obj is closed
+2025-08-23 18:43:49.160 [main] DEBUG SelectTest  - 1192 - PreparedStatement obj is closed
+2025-08-23 18:43:49.161 [main] DEBUG SelectTest  - 1193 - Connection obj is closed
+2025-08-23 18:43:49.162 [main] DEBUG SelectTest  - 1194 - end of finally block
+2025-08-23 18:43:49.162 [main] DEBUG SelectTest  - 1194 - end of main(-) method

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="WARN" monitorInterval="30">
+  
+  <!-- Appenders -->
+  <Appenders>
+
+    <!-- Rolling File Appender with Time-based rollover -->
+    <RollingFile name="TimeBasedRollingFile"
+                 fileName="app.log"
+                 filePattern="app-%d{yyyy-MM-dd-HH-mm}-%i.txt">
+
+      <!-- Pattern Layout -->
+      <PatternLayout pattern="%d{yyyy-MM-dd HH:mm:ss.SSS} [%t] %-5p %c{1}  - %r - %m%n"/>
+
+      <!-- Policies -->
+      <Policies>
+        <!-- Rollover every 1 minute -->
+        <TimeBasedTriggeringPolicy interval="1" modulate="true"/>
+        <!-- Optional: also roll if file size exceeds 2kb -->
+        <SizeBasedTriggeringPolicy size="2 kb"/>
+      </Policies>
+
+      <!-- Keep only last 30 rolled files -->
+      <DefaultRolloverStrategy max="10"/>
+    </RollingFile>
+
+    <!-- Console Appender (for debugging) -->
+    <Console name="Console" target="SYSTEM_OUT">
+      <PatternLayout pattern="%d{HH:mm:ss} %-5level %c{1} - %msg%n"/>
+    </Console>
+
+  </Appenders>
+
+  <!-- Loggers -->
+  <Loggers>
+    <!-- Application loggers -->
+    <Logger name="com.nt" level="debug" additivity="false">
+      <AppenderRef ref="TimeBasedRollingFile"/>
+      <AppenderRef ref="Console"/>
+    </Logger>
+
+    <!-- Root logger -->
+    <Root level="info">
+      <AppenderRef ref="TimeBasedRollingFile"/>
+      <AppenderRef ref="Console"/>
+    </Root>
+  </Loggers>
+
+</Configuration>

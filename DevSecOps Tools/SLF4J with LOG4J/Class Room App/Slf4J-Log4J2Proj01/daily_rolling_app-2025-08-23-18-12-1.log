@@ -1,0 +1,11 @@
+2025-08-23 18:12:53 [main] DEBUG  com.nt.main.SelectTest.main(SelectTest.java:19) - start of main(-) method - 467 - 
+2025-08-23 18:12:54 [main] INFO   com.nt.main.SelectTest.main(SelectTest.java:26) - Connection is established with DB s/w - 805 - 
+2025-08-23 18:12:54 [main] DEBUG  com.nt.main.SelectTest.main(SelectTest.java:29) - PreparedStatement object is created - 874 - 
+2025-08-23 18:12:54 [main] INFO   com.nt.main.SelectTest.main(SelectTest.java:32) - ResultSet object is created - 959 - 
+2025-08-23 18:12:54 [main] DEBUG  com.nt.main.SelectTest.main(SelectTest.java:38) - ResultSet object is processsed - 972 - 
+2025-08-23 18:12:54 [main] DEBUG  com.nt.main.SelectTest.main(SelectTest.java:49) - start of finally block - 973 - 
+2025-08-23 18:12:54 [main] DEBUG  com.nt.main.SelectTest.main(SelectTest.java:53) - ResultSet obj is closed - 988 - 
+2025-08-23 18:12:54 [main] DEBUG  com.nt.main.SelectTest.main(SelectTest.java:61) - PreparedStatement obj is closed - 991 - 
+2025-08-23 18:12:54 [main] DEBUG  com.nt.main.SelectTest.main(SelectTest.java:70) - Connection obj is closed - 992 - 
+2025-08-23 18:12:54 [main] DEBUG  com.nt.main.SelectTest.main(SelectTest.java:75) - end of finally block - 992 - 
+2025-08-23 18:12:54 [main] DEBUG  com.nt.main.SelectTest.main(SelectTest.java:77) - end of main(-) method - 992 - 

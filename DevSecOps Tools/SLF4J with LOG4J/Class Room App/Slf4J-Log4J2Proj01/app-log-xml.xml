@@ -1,0 +1,77 @@
+
+  <Event xmlns="http://logging.apache.org/log4j/2.0/events" timeMillis="1755953872755" thread="main" level="DEBUG" loggerName="com.nt.main.SelectTest" endOfBatch="false" loggerFqcn="org.apache.logging.slf4j.Log4jLogger" threadId="1" threadPriority="5">
+    <Instant epochSecond="1755953872" nanoOfSecond="755778100"/>
+    <Message>start of main(-) method</Message>
+    <ContextMap/>
+    <Source classLoaderName="app" class="com.nt.main.SelectTest" method="main" file="SelectTest.java" line="19"/>
+  </Event>
+
+  <Event xmlns="http://logging.apache.org/log4j/2.0/events" timeMillis="1755953873245" thread="main" level="INFO" loggerName="com.nt.main.SelectTest" endOfBatch="false" loggerFqcn="org.apache.logging.slf4j.Log4jLogger" threadId="1" threadPriority="5">
+    <Instant epochSecond="1755953873" nanoOfSecond="245692500"/>
+    <Message>Connection is established with DB s/w</Message>
+    <ContextMap/>
+    <Source classLoaderName="app" class="com.nt.main.SelectTest" method="main" file="SelectTest.java" line="26"/>
+  </Event>
+
+  <Event xmlns="http://logging.apache.org/log4j/2.0/events" timeMillis="1755953873311" thread="main" level="DEBUG" loggerName="com.nt.main.SelectTest" endOfBatch="false" loggerFqcn="org.apache.logging.slf4j.Log4jLogger" threadId="1" threadPriority="5">
+    <Instant epochSecond="1755953873" nanoOfSecond="311323700"/>
+    <Message>PreparedStatement object is created</Message>
+    <ContextMap/>
+    <Source classLoaderName="app" class="com.nt.main.SelectTest" method="main" file="SelectTest.java" line="29"/>
+  </Event>
+
+  <Event xmlns="http://logging.apache.org/log4j/2.0/events" timeMillis="1755953873407" thread="main" level="INFO" loggerName="com.nt.main.SelectTest" endOfBatch="false" loggerFqcn="org.apache.logging.slf4j.Log4jLogger" threadId="1" threadPriority="5">
+    <Instant epochSecond="1755953873" nanoOfSecond="407245100"/>
+    <Message>ResultSet object is created</Message>
+    <ContextMap/>
+    <Source classLoaderName="app" class="com.nt.main.SelectTest" method="main" file="SelectTest.java" line="32"/>
+  </Event>
+
+  <Event xmlns="http://logging.apache.org/log4j/2.0/events" timeMillis="1755953873423" thread="main" level="DEBUG" loggerName="com.nt.main.SelectTest" endOfBatch="false" loggerFqcn="org.apache.logging.slf4j.Log4jLogger" threadId="1" threadPriority="5">
+    <Instant epochSecond="1755953873" nanoOfSecond="423718500"/>
+    <Message>ResultSet object is processsed</Message>
+    <ContextMap/>
+    <Source classLoaderName="app" class="com.nt.main.SelectTest" method="main" file="SelectTest.java" line="38"/>
+  </Event>
+
+  <Event xmlns="http://logging.apache.org/log4j/2.0/events" timeMillis="1755953873424" thread="main" level="DEBUG" loggerName="com.nt.main.SelectTest" endOfBatch="false" loggerFqcn="org.apache.logging.slf4j.Log4jLogger" threadId="1" threadPriority="5">
+    <Instant epochSecond="1755953873" nanoOfSecond="424715500"/>
+    <Message>start of finally block</Message>
+    <ContextMap/>
+    <Source classLoaderName="app" class="com.nt.main.SelectTest" method="main" file="SelectTest.java" line="49"/>
+  </Event>
+
+  <Event xmlns="http://logging.apache.org/log4j/2.0/events" timeMillis="1755953873425" thread="main" level="DEBUG" loggerName="com.nt.main.SelectTest" endOfBatch="false" loggerFqcn="org.apache.logging.slf4j.Log4jLogger" threadId="1" threadPriority="5">
+    <Instant epochSecond="1755953873" nanoOfSecond="425715400"/>
+    <Message>ResultSet obj is closed</Message>
+    <ContextMap/>
+    <Source classLoaderName="app" class="com.nt.main.SelectTest" method="main" file="SelectTest.java" line="53"/>
+  </Event>
+
+  <Event xmlns="http://logging.apache.org/log4j/2.0/events" timeMillis="1755953873428" thread="main" level="DEBUG" loggerName="com.nt.main.SelectTest" endOfBatch="false" loggerFqcn="org.apache.logging.slf4j.Log4jLogger" threadId="1" threadPriority="5">
+    <Instant epochSecond="1755953873" nanoOfSecond="428826400"/>
+    <Message>PreparedStatement obj is closed</Message>
+    <ContextMap/>
+    <Source classLoaderName="app" class="com.nt.main.SelectTest" method="main" file="SelectTest.java" line="61"/>
+  </Event>
+
+  <Event xmlns="http://logging.apache.org/log4j/2.0/events" timeMillis="1755953873431" thread="main" level="DEBUG" loggerName="com.nt.main.SelectTest" endOfBatch="false" loggerFqcn="org.apache.logging.slf4j.Log4jLogger" threadId="1" threadPriority="5">
+    <Instant epochSecond="1755953873" nanoOfSecond="431828200"/>
+    <Message>Connection obj is closed</Message>
+    <ContextMap/>
+    <Source classLoaderName="app" class="com.nt.main.SelectTest" method="main" file="SelectTest.java" line="70"/>
+  </Event>
+
+  <Event xmlns="http://logging.apache.org/log4j/2.0/events" timeMillis="1755953873431" thread="main" level="DEBUG" loggerName="com.nt.main.SelectTest" endOfBatch="false" loggerFqcn="org.apache.logging.slf4j.Log4jLogger" threadId="1" threadPriority="5">
+    <Instant epochSecond="1755953873" nanoOfSecond="431828200"/>
+    <Message>end of finally block</Message>
+    <ContextMap/>
+    <Source classLoaderName="app" class="com.nt.main.SelectTest" method="main" file="SelectTest.java" line="75"/>
+  </Event>
+
+  <Event xmlns="http://logging.apache.org/log4j/2.0/events" timeMillis="1755953873432" thread="main" level="DEBUG" loggerName="com.nt.main.SelectTest" endOfBatch="false" loggerFqcn="org.apache.logging.slf4j.Log4jLogger" threadId="1" threadPriority="5">
+    <Instant epochSecond="1755953873" nanoOfSecond="432829500"/>
+    <Message>end of main(-) method</Message>
+    <ContextMap/>
+    <Source classLoaderName="app" class="com.nt.main.SelectTest" method="main" file="SelectTest.java" line="77"/>
+  </Event>

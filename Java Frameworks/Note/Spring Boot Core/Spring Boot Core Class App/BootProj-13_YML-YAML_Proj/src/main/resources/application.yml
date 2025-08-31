@@ -1,0 +1,29 @@
+spring:
+  application:
+    name: BootProj-13_YML-YAML_Proj
+
+nit:
+  emp:
+    id: 101
+    name: "Prabhanjan"
+    address: "Bhubaneswar"
+    sal: 55000.0
+#    favColor: [red, blue, green]
+    favColor: 
+      - Red
+      - Blue
+      - Green
+    skills:
+      - Java
+      - Spring Boot
+      - React
+    phoneNumbers: [9876543210, 9123456789]
+    idDetails:
+      aadhar: "XXXX-YYYY-ZZZZ"
+      pan: "ABCDE1234F"
+    com:
+      name: HCL
+      address: Hyderabad
+      totEmp: 2500
+      estYear: 1899
+      

@@ -17,11 +17,16 @@ import { KeyDemo } from './components/Key-Demo/key-demo';
 import { DebounceDemo } from './components/Debounce-Demo/debounce-demo';
 import { ThrottleDemo } from './components/Throttle-Demo/throttle-demo';
 import { FakeStoreProducts } from './components/FakeStore-API/fakestore-product';
+import { ClipboardDemo } from './components/Clipboard-Demo/clipboard-demo';
+import { FormDemo } from './components/Form-Demo/form-demo';
+import { FormikDemo } from './components/Formik-Demo/formik-demo';
+import { FormikWithYup } from './components/Formik-Demo/formik-yup';
+import { FormikComponent } from './components/Formik-Demo/formik-component';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <FakeStoreProducts />
+    < FormikComponent />
   </React.StrictMode>
 );
 

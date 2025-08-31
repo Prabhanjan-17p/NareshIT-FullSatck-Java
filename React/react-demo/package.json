@@ -10,13 +10,15 @@
     "axios": "^1.11.0",
     "bootstrap": "^5.3.7",
     "bootstrap-icons": "^1.13.1",
+    "formik": "^2.4.6",
     "jquery": "^3.7.1",
     "jQuery": "^1.7.4",
     "moment": "^2.30.1",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-scripts": "^5.0.1",
-    "web-vitals": "^2.1.4"
+    "web-vitals": "^2.1.4",
+    "yup": "^1.7.0"
   },
   "scripts": {
     "start": "react-scripts start",

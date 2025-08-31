@@ -1,0 +1,9 @@
+spring:
+  application:
+    name: BootProj-14MiniProjectWithProfiles
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    password: kanha123
+    type: com.mchange.v2.c3p0.ComboPooledDataSource
+    url: jdbc:mysql:///nit_test_db
+    username: root

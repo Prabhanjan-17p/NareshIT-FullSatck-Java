@@ -1,0 +1,5 @@
+spring:
+  application:
+    name: BootProj-14MiniProjectWithProfiles
+  profiles:
+    active: prod

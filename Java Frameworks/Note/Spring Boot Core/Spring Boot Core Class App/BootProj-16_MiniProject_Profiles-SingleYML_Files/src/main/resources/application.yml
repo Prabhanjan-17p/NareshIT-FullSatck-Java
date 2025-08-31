@@ -1,0 +1,52 @@
+spring:
+  application:
+    name: BootProj-16MiniProjectWithProfiles
+  profiles:
+    active: prod
+
+---
+spring:
+  config:
+    activate:
+      on-profiles: dev
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    password: kanha123
+    type: org.apache.commons.dbcp2.BasicDataSource
+    url: jdbc:mysql:///nit_test_db
+    username: root			
+
+---
+spring:
+  config:
+    activate:
+      on-profiles: test
+  datasource:
+    driver-class-name: oracle.jdbc.OracleDriver
+    password: MYDB
+    type: oracle.ucp.jdbc.PoolDataSourceImpl
+    url: jdbc:oracle:thin:@localhost:1521:orcl
+    username: MYDB
+
+---
+spring:
+  config:
+    activate:
+      on-profiles: uat
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    password: kanha123
+    type: com.mchange.v2.c3p0.ComboPooledDataSource
+    url: jdbc:mysql:///nit_test_db
+    username: root
+
+---
+spring:
+  config:
+    activate:
+      on-profiles: prod
+  datasource:
+    driver-class-name: oracle.jdbc.OracleDriver
+    password: MYDB
+    url: jdbc:oracle:thin:@localhost:1521:orcl
+    username: MYDB				

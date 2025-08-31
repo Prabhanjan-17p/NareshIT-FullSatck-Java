@@ -1,0 +1,177 @@
+Task 1: Employee Search System (Finder Methods)
+Problem Statement
+
+You are developing an Employee Search System using Spring Boot and MongoDB.
+The system stores employee details and allows searching employees using Finder Methods.
+
+Requirements
+
+Entity: Employee (id, name, department, salary, joiningDate)
+
+Repository (Finder Methods):
+
+Find employees by department
+
+Find employees with salary greater than a given amount
+
+Find employees joined after a given date
+
+Find employees by name containing a keyword (case-insensitive)
+
+Runner: Insert sample data and execute all finder queries on startup.
+
+ANS ---------
+package com.nt;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+@SpringBootApplication
+public class Day14Application {
+
+	public static void main(String[] args) {
+		SpringApplication.run(Day14Application.class, args);
+	}
+
+}
+
+
+package com.nt.model;
+
+import java.time.LocalDate;
+
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
+
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.NonNull;
+
+@Data
+@Document(collection = "Employees")
+@NoArgsConstructor
+@AllArgsConstructor
+public class Employees {
+    @Id
+    private String id;
+    @NonNull
+    private String name;
+    @NonNull
+    private String department;
+    @NonNull
+    private double salary;
+    @NonNull
+    private LocalDate joiningDate;
+}
+
+
+
+package com.nt.repository;
+
+import java.time.LocalDate;
+import java.util.List;
+
+import org.springframework.data.mongodb.repository.MongoRepository;
+
+import com.nt.model.Employees;
+
+public interface EmployeeRepository extends MongoRepository<Employees, String>{
+	// 1. Find employees by department
+    List<Employees> findByDepartment(String department);
+
+    // 2. Find employees with salary greater than a given amount
+    List<Employees> findBySalaryGreaterThan(double salary);
+
+    // 3. Find employees joined after a given date
+    List<Employees> findByJoiningDateAfter(LocalDate date);
+
+    // 4. Find employees by name containing a keyword (case-insensitive)
+    List<Employees> findByNameContainingIgnoreCase(String keyword);
+}
+
+
+package com.nt.runners;
+
+import java.time.LocalDate;
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.CommandLineRunner;
+import org.springframework.stereotype.Component;
+
+import com.nt.model.Employees;
+import com.nt.repository.EmployeeRepository;
+
+@Component
+public class TestRunners implements CommandLineRunner{
+	@Autowired
+	private EmployeeRepository repo;
+
+	@Override
+	public void run(String... args) throws Exception {
+//		// Clear old data
+//        repo.deleteAll();
+//
+//        // Insert sample data
+//        repo.saveAll(List.of(
+//                new Employees(null, "Prabhanjan Amanta", "IT", 60000, LocalDate.of(2022, 5, 10)),
+//                new Employees(null, "Rohit Sharma", "HR", 45000, LocalDate.of(2023, 3, 15)),
+//                new Employees(null, "Sneha Patnaik", "Finance", 70000, LocalDate.of(2021, 8, 25)),
+//                new Employees(null, "Anil Kumar", "IT", 52000, LocalDate.of(2024, 1, 12)),
+//                new Employees(null, "Priya Singh", "Marketing", 48000, LocalDate.of(2023, 10, 5))
+//        ));
+
+        // 1. Find employees by department
+        System.out.println("\nEmployees in IT Department:");
+        repo.findByDepartment("IT").forEach(System.out::println);
+
+        // 2. Find employees with salary greater than 50000
+        System.out.println("\nEmployees with salary > 50000:");
+        repo.findBySalaryGreaterThan(50000).forEach(System.out::println);
+
+        // 3. Find employees joined after 2023-01-01
+        System.out.println("\nEmployees joined after 2021-12-01:");
+        repo.findByJoiningDateAfter(LocalDate.of(2021,12,01)).forEach(System.out::println);
+
+        // 4. Find employees by name containing keyword
+        System.out.println("\nEmployees name contains 'an':");
+        repo.findByNameContainingIgnoreCase("an").forEach(System.out::println);
+	}
+
+}
+
+
+spring:
+  application:
+    name: Day-14
+
+  data:
+    mongodb:
+      host: localhost
+      port: 27017
+      database: NTPSBMS718
+
+--------------------------------------------------------------------------------------------------
+Task 2: Product Catalog System (@Query Methods)
+Problem Statement
+
+You are designing a Product Catalog System for an e-commerce platform.
+The system allows searching and filtering products stored in MongoDB using @Query methods.
+
+Requirements
+
+Entity: Product (id, name, category, price, stock)
+
+Repository (@Query methods):
+
+Find products by category
+
+Find products with price less than a given value
+
+Find products with stock greater than 0 (available products)
+
+Find products by name containing a keyword (case-insensitive search)
+
+Runner: Insert sample products and run all queries on startup.
+

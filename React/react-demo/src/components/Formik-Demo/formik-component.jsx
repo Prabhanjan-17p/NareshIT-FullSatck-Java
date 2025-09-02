@@ -18,24 +18,32 @@ export function FormikComponent() {
                 })}
                 onSubmit={(product) => console.log(product)}
             >
+                {
+                    form => <Form>
+                        <dl>
+                            <dt>ProductID</dt>
+                            <dd> <Field type="number" name="ProductID"></Field></dd>
+                            <dd className="text-danger"> <ErrorMessage name="ProductID" /></dd>
 
-                <Form>
-                    <dl>
-                        <dt>ProductID</dt>
-                        <dd> <Field type="number" name="ProductID"></Field></dd>
-                        <dd className="text-danger"> <ErrorMessage name="ProductID" /></dd>
+                            <dt>Name</dt>
+                            <dd> <Field type="string" name="Name"></Field></dd>
+                            <dd className="text-danger"> <ErrorMessage name="Name" /></dd>
 
-                        <dt>Name</dt>
-                        <dd> <Field type="string" name="Name"></Field></dd>
-                        <dd className="text-danger"> <ErrorMessage name="Name" /></dd>
-
-                        <dt>Mobile</dt>
-                        <dd> <Field type="string" name="Mobile"></Field></dd>
-                        <dd className="text-danger"> <ErrorMessage name="Mobile" /></dd>
-                    </dl>
-                    <button type="submit">Register</button>
-                </Form>
-
+                            <dt>Mobile</dt>
+                            <dd> <Field type="string" name="Mobile"></Field></dd>
+                            <dd className="text-danger"> <ErrorMessage name="Mobile" /></dd>
+                        </dl>
+                        <button className="me-2" disabled={!form.isValid} type="submit">Register</button>
+                        <button className={(form.dirty) ? 'd-inline' : 'd-none'} type="submit">Save</button>
+                        <div className={(form.isValid)?'d-none':'d-block'}>
+                            <h4>Please check the following errors</h4>
+                            {
+                                Object.keys(form.errors).map(pro => <li>{form.errors[pro]}</li>)
+                            }
+                        </div>
+                        
+                    </Form>
+                }
             </Formik>
         </div>
     )

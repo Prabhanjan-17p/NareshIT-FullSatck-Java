@@ -1,0 +1,222 @@
+Task: Spring Boot JMS Order Notification System
+🎯 Objective
+
+Build a Spring Boot JMS application where a producer sends order notifications to a JMS queue and a consumer receives and processes them —.
+
+🔹 Step-Wise Task
+Step 1: Setup Project
+
+Create a Spring Boot project named OrderNotificationJMS.
+
+Add dependencies:
+
+spring-boot-starter-activemq (for JMS).
+
+spring-boot-starter.
+
+(Optional) spring-boot-starter-data-jpa if persistence is required.
+
+Step 2: Configure ActiveMQ
+
+Install and run ActiveMQ broker (default URL → tcp://localhost:61616).
+
+Add ActiveMQ connection settings inside application.properties.
+
+Step 3: Define Model Class
+
+Create an Order class with fields:
+
+orderId
+
+customerName
+
+product
+
+quantity
+
+Step 4: Producer (Message Sender)
+
+Create a Spring Boot component named OrderProducer.
+
+Inside CommandLineRunner, prepare some sample Order objects.
+
+Use JmsTemplate to send orders to the queue (order-queue).
+
+Step 5: Consumer (Message Listener)
+
+Create a OrderConsumer class.
+
+Annotate a method with @JmsListener(destination = "order-queue").
+
+Inside this method, print or process the received order.
+
+Step 6: Run & Test
+
+Start the ActiveMQ broker.
+
+Run the Spring Boot application.
+
+The producer will automatically send messages to the queue when the app starts.
+
+The consumer will listen and print:
+
+ANS ---
+###### Day-16_OrderNotificationJMS
+package com.nt;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+@SpringBootApplication
+public class Day16OrderNotificationJmsApplication {
+
+	public static void main(String[] args) {
+		SpringApplication.run(Day16OrderNotificationJmsApplication.class, args);
+	}
+
+}
+
+package com.nt.model;
+
+import java.io.Serializable;
+
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+public class Order implements Serializable {
+    private static final long serialVersionUID = 1L;
+	private String orderId;
+	private String customerName;
+	private String product;
+	private Integer quantity;
+}
+
+package com.nt.sender;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.CommandLineRunner;
+import org.springframework.jms.core.JmsTemplate;
+import org.springframework.stereotype.Component;
+
+import com.nt.model.Order;
+
+@Component
+public class Producer implements CommandLineRunner {
+	@Autowired
+	private JmsTemplate jmsTemplate;
+
+	@Override
+	public void run(String... args) throws Exception {
+		System.out.println("Sending orders...");
+
+        Order order1 = new Order("101", "Kanha", "Laptop", 1);
+        Order order2 = new Order("102", "Hari", "Mobile", 2);
+        Order order3 = new Order("103", "Ritesh", "Headphones", 5);
+
+        jmsTemplate.convertAndSend("order-queue", order1);
+        jmsTemplate.convertAndSend("order-queue", order2);
+        jmsTemplate.convertAndSend("order-queue", order3);
+
+        System.out.println("Orders sent successfully!");
+	}
+
+}
+
+
+spring.application.name=Day-16_OrderNotificationJMS
+
+
+# URL of the ActiveMQ broker
+spring.activemq.broker-url=tcp://localhost:61616
+
+# ActiveMQ username
+spring.activemq.user=admin
+
+# ActiveMQ password
+spring.activemq.password=admin
+
+# false = use Queue (point-to-point messaging)
+# true  = use Topic (publish-subscribe messaging)
+spring.jms.pub-sub-domain=false
+
+spring.activemq.packages.trust-all=true
+
+
+
+###### Day-16_OrderNotificationJMS-Receiver
+package com.nt;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+@SpringBootApplication
+public class Day16OrderNotificationJmsReceiverApplication {
+
+	public static void main(String[] args) {
+		SpringApplication.run(Day16OrderNotificationJmsReceiverApplication.class, args);
+	}
+
+}
+
+
+package com.nt.model;
+
+import java.io.Serializable;
+
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+public class Order implements Serializable {
+    private static final long serialVersionUID = 1L;
+	private String orderId;
+	private String customerName;
+	private String product;
+	private Integer quantity;
+}
+
+
+package com.nt.receiver;
+
+import org.springframework.jms.annotation.JmsListener;
+import org.springframework.stereotype.Component;
+
+import com.nt.model.Order;
+
+@Component
+public class JMS_Reciever {
+	
+	
+	@JmsListener(destination = "order-queue")
+	public void readMessageConsumer(Order ord) {
+		System.out.println("Recieved Message :: "+ord);
+	}
+}
+
+
+spring.application.name=Day-16_OrderNotificationJMS-Receiver
+
+
+# URL of the ActiveMQ broker
+spring.activemq.broker-url=tcp://localhost:61616
+
+# ActiveMQ username
+spring.activemq.user=admin
+
+# ActiveMQ password
+spring.activemq.password=admin
+
+# false = use Queue (point-to-point messaging)
+# true  = use Topic (publish-subscribe messaging)
+spring.jms.pub-sub-domain=false
+
+spring.activemq.packages.trust-all=true
+
+===================================================================================================

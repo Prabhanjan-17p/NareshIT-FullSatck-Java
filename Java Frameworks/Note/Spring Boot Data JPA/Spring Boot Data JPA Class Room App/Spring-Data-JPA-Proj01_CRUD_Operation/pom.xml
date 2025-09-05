@@ -9,9 +9,9 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>nit</groupId>
-	<artifactId>Spring-Data-JPA-Proj01-</artifactId>
+	<artifactId>Spring-Data-JPA-Proj01_CRUD_Operation</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>Spring-Data-JPA-Proj01-</name>
+	<name>Spring-Data-JPA-Proj01_CRUD_Operation</name>
 	<description>Spring Boot Data JPA</description>
 	<url/>
 	<licenses>

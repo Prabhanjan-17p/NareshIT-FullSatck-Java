@@ -23,11 +23,12 @@ import { FormikDemo } from './components/Formik-Demo/formik-demo';
 import { FormikWithYup } from './components/Formik-Demo/formik-yup';
 import { FormikComponent } from './components/Formik-Demo/formik-component';
 import { HookFormDemo } from './components/Hook-Form-Demo/home-form-demo';
+import { CustomDemo } from './components/Costum-Demo/costum-demo';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    < HookFormDemo />
+    < CustomDemo />
   </React.StrictMode>
 );
 

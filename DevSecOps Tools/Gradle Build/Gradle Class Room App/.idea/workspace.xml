@@ -1,0 +1,352 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="1613f8e3-7ba2-4f44-a0a9-bae5309e1cd1" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/../Gradle Build Class App/.metadata/.lock" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Gradle Build Class App/.metadata/.lock_info" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Gradle Build Class App/.metadata/.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Gradle Build Class App/.metadata/.mylyn/.taskListIndex/segments_1" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Gradle Build Class App/.metadata/.mylyn/.taskListIndex/write.lock" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Gradle Build Class App/.metadata/.mylyn/.tasks.xml.zip" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Gradle Build Class App/.metadata/.mylyn/repositories.xml.zip" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Gradle Build Class App/.metadata/.mylyn/tasks.xml.zip" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Gradle Build Class App/.metadata/.plugins/org.eclipse.buildship.core/gradle/versions.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Gradle Build Class App/.metadata/.plugins/org.eclipse.buildship.core/init.d/eclipsePlugin.gradle" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Gradle Build Class App/.metadata/.plugins/org.eclipse.buildship.ui/dialog_settings.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Gradle Build Class App/.metadata/.plugins/org.eclipse.core.resources/.history/97/f04adf655c8b0010176ba4c5a4b32956" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Gradle Build Class App/.metadata/.plugins/org.eclipse.core.resources/.history/bb/e050929f568b0010144ad734a68f880f" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Gradle Build Class App/.metadata/.plugins/org.eclipse.core.resources/.projects/.org.eclipse.egit.core.cmp/.location" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Gradle Build Class App/.metadata/.plugins/org.eclipse.core.resources/.root/.indexes/history.version" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Gradle Build Class App/.metadata/.plugins/org.eclipse.core.resources/.root/.indexes/properties.index" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Gradle Build Class App/.metadata/.plugins/org.eclipse.core.resources/.root/.indexes/properties.version" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Gradle Build Class App/.metadata/.plugins/org.eclipse.core.resources/.root/1.tree" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Gradle Build Class App/.metadata/.plugins/org.eclipse.core.resources/.safetable/org.eclipse.core.resources" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Gradle Build Class App/.metadata/.plugins/org.eclipse.core.runtime/.settings/Docker.prefs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Gradle Build Class App/.metadata/.plugins/org.eclipse.core.runtime/.settings/org.eclipse.core.resources.prefs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Gradle Build Class App/.metadata/.plugins/org.eclipse.core.runtime/.settings/org.eclipse.debug.ui.prefs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Gradle Build Class App/.metadata/.plugins/org.eclipse.core.runtime/.settings/org.eclipse.egit.core.prefs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Gradle Build Class App/.metadata/.plugins/org.eclipse.core.runtime/.settings/org.eclipse.help.base.prefs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Gradle Build Class App/.metadata/.plugins/org.eclipse.core.runtime/.settings/org.eclipse.jdt.core.prefs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Gradle Build Class App/.metadata/.plugins/org.eclipse.core.runtime/.settings/org.eclipse.jdt.ui.prefs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Gradle Build Class App/.metadata/.plugins/org.eclipse.core.runtime/.settings/org.eclipse.jsch.core.prefs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Gradle Build Class App/.metadata/.plugins/org.eclipse.core.runtime/.settings/org.eclipse.m2e.apt.prefs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Gradle Build Class App/.metadata/.plugins/org.eclipse.core.runtime/.settings/org.eclipse.m2e.discovery.prefs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Gradle Build Class App/.metadata/.plugins/org.eclipse.core.runtime/.settings/org.eclipse.mylyn.context.core.prefs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Gradle Build Class App/.metadata/.plugins/org.eclipse.core.runtime/.settings/org.eclipse.mylyn.monitor.ui.prefs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Gradle Build Class App/.metadata/.plugins/org.eclipse.core.runtime/.settings/org.eclipse.mylyn.tasks.ui.prefs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Gradle Build Class App/.metadata/.plugins/org.eclipse.core.runtime/.settings/org.eclipse.php.core.prefs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Gradle Build Class App/.metadata/.plugins/org.eclipse.core.runtime/.settings/org.eclipse.ui.editors.prefs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Gradle Build Class App/.metadata/.plugins/org.eclipse.core.runtime/.settings/org.eclipse.ui.ide.prefs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Gradle Build Class App/.metadata/.plugins/org.eclipse.core.runtime/.settings/org.eclipse.ui.prefs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Gradle Build Class App/.metadata/.plugins/org.eclipse.core.runtime/.settings/org.eclipse.ui.views.log.prefs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Gradle Build Class App/.metadata/.plugins/org.eclipse.core.runtime/.settings/org.eclipse.ui.workbench.prefs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Gradle Build Class App/.metadata/.plugins/org.eclipse.core.runtime/.settings/org.eclipse.wst.jsdt.ui.prefs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Gradle Build Class App/.metadata/.plugins/org.eclipse.core.runtime/.settings/org.springframework.ide.eclipse.boot.dash.prefs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Gradle Build Class App/.metadata/.plugins/org.eclipse.core.runtime/.settings/org.springframework.ide.eclipse.imports.prefs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Gradle Build Class App/.metadata/.plugins/org.eclipse.core.runtime/.settings/org.springsource.ide.eclipse.commons.frameworks.core.prefs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Gradle Build Class App/.metadata/.plugins/org.eclipse.core.runtime/.settings/org.springsource.ide.eclipse.commons.ui.prefs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Gradle Build Class App/.metadata/.plugins/org.eclipse.dltk.core/Containers.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Gradle Build Class App/.metadata/.plugins/org.eclipse.dltk.ui/OpenTypeHistoryorg_eclipse_php_core_PHPNature.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Gradle Build Class App/.metadata/.plugins/org.eclipse.e4.workbench/workbench.xmi" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Gradle Build Class App/.metadata/.plugins/org.eclipse.egit.core/.org.eclipse.egit.core.cmp/.project" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Gradle Build Class App/.metadata/.plugins/org.eclipse.egit.core/.org.eclipse.egit.core.cmp/.settings/org.eclipse.core.resources.prefs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Gradle Build Class App/.metadata/.plugins/org.eclipse.equinox.p2.ui/dialog_settings.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Gradle Build Class App/.metadata/.plugins/org.eclipse.jdt.core/assumedExternalFilesCache" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Gradle Build Class App/.metadata/.plugins/org.eclipse.jdt.core/externalFilesCache" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Gradle Build Class App/.metadata/.plugins/org.eclipse.jdt.core/javaLikeNames.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Gradle Build Class App/.metadata/.plugins/org.eclipse.jdt.core/nonChainingJarsCache" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Gradle Build Class App/.metadata/.plugins/org.eclipse.jdt.core/variablesAndContainers.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Gradle Build Class App/.metadata/.plugins/org.eclipse.jdt.launching/.install.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Gradle Build Class App/.metadata/.plugins/org.eclipse.jdt.launching/libraryInfos.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Gradle Build Class App/.metadata/.plugins/org.eclipse.jdt.ui/OpenTypeHistory.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Gradle Build Class App/.metadata/.plugins/org.eclipse.jdt.ui/QualifiedTypeNameHistory.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Gradle Build Class App/.metadata/.plugins/org.eclipse.jdt.ui/dialog_settings.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Gradle Build Class App/.metadata/.plugins/org.eclipse.m2e.core/workspaceState.ser" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Gradle Build Class App/.metadata/.plugins/org.eclipse.m2e.logback/0.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Gradle Build Class App/.metadata/.plugins/org.eclipse.m2e.logback/logback.2.6.1.20240411-1122.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Gradle Build Class App/.metadata/.plugins/org.eclipse.m2e.logback/logback.2.7.100.20250418-1315.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Gradle Build Class App/.metadata/.plugins/org.eclipse.mylyn.github.ui/avatars.ser" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Gradle Build Class App/.metadata/.plugins/org.eclipse.oomph.setup/workspace.setup" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Gradle Build Class App/.metadata/.plugins/org.eclipse.pde.core/.cache/clean-cache.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Gradle Build Class App/.metadata/.plugins/org.eclipse.swt/EBWebView/BrowserMetrics/BrowserMetrics-68BC8906-82DC.pma" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Gradle Build Class App/.metadata/.plugins/org.eclipse.swt/EBWebView/BrowserMetrics/BrowserMetrics-68BC891A-50A4.pma" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Gradle Build Class App/.metadata/.plugins/org.eclipse.swt/EBWebView/Crashpad/metadata" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Gradle Build Class App/.metadata/.plugins/org.eclipse.swt/EBWebView/Crashpad/settings.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Gradle Build Class App/.metadata/.plugins/org.eclipse.swt/EBWebView/Crashpad/throttle_store.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Gradle Build Class App/.metadata/.plugins/org.eclipse.swt/EBWebView/CrashpadMetrics-active.pma" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Gradle Build Class App/.metadata/.plugins/org.eclipse.swt/EBWebView/Default/AutofillStrikeDatabase/LOCK" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Gradle Build Class App/.metadata/.plugins/org.eclipse.swt/EBWebView/Default/AutofillStrikeDatabase/LOG" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Gradle Build Class App/.metadata/.plugins/org.eclipse.swt/EBWebView/Default/AutofillStrikeDatabase/LOG.old" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Gradle Build Class App/.metadata/.plugins/org.eclipse.swt/EBWebView/Default/BookmarkMergedSurfaceOrdering" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Gradle Build Class App/.metadata/.plugins/org.eclipse.swt/EBWebView/Default/BrowsingTopicsSiteData" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Gradle Build Class App/.metadata/.plugins/org.eclipse.swt/EBWebView/Default/BrowsingTopicsSiteData-journal" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Gradle Build Class App/.metadata/.plugins/org.eclipse.swt/EBWebView/Default/BrowsingTopicsState" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Gradle Build Class App/.metadata/.plugins/org.eclipse.swt/EBWebView/Default/BudgetDatabase/LOCK" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Gradle Build Class App/.metadata/.plugins/org.eclipse.swt/EBWebView/Default/BudgetDatabase/LOG" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Gradle Build Class App/.metadata/.plugins/org.eclipse.swt/EBWebView/Default/BudgetDatabase/LOG.old" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Gradle Build Class App/.metadata/.plugins/org.eclipse.swt/EBWebView/Default/ClientCertificates/LOCK" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Gradle Build Class App/.metadata/.plugins/org.eclipse.swt/EBWebView/Default/ClientCertificates/LOG" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Gradle Build Class App/.metadata/.plugins/org.eclipse.swt/EBWebView/Default/ClientCertificates/LOG.old" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Gradle Build Class App/.metadata/.plugins/org.eclipse.swt/EBWebView/Default/Code Cache/js/index" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Gradle Build Class App/.metadata/.plugins/org.eclipse.swt/EBWebView/Default/Code Cache/js/index-dir/the-real-index" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Gradle Build Class App/.metadata/.plugins/org.eclipse.swt/EBWebView/Default/Code Cache/wasm/index" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Gradle Build Class App/.metadata/.plugins/org.eclipse.swt/EBWebView/Default/Code Cache/wasm/index-dir/the-real-index" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Gradle Build Class App/.metadata/.plugins/org.eclipse.swt/EBWebView/Default/DIPS" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Gradle Build Class App/.metadata/.plugins/org.eclipse.swt/EBWebView/Default/DawnGraphiteCache/data_0" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Gradle Build Class App/.metadata/.plugins/org.eclipse.swt/EBWebView/Default/DawnGraphiteCache/data_1" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Gradle Build Class App/.metadata/.plugins/org.eclipse.swt/EBWebView/Default/DawnGraphiteCache/data_2" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Gradle Build Class App/.metadata/.plugins/org.eclipse.swt/EBWebView/Default/DawnGraphiteCache/data_3" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Gradle Build Class App/.metadata/.plugins/org.eclipse.swt/EBWebView/Default/DawnGraphiteCache/index" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Gradle Build Class App/.metadata/.plugins/org.eclipse.swt/EBWebView/Default/DawnWebGPUCache/data_0" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Gradle Build Class App/.metadata/.plugins/org.eclipse.swt/EBWebView/Default/DawnWebGPUCache/data_1" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Gradle Build Class App/.metadata/.plugins/org.eclipse.swt/EBWebView/Default/DawnWebGPUCache/data_2" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Gradle Build Class App/.metadata/.plugins/org.eclipse.swt/EBWebView/Default/DawnWebGPUCache/data_3" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Gradle Build Class App/.metadata/.plugins/org.eclipse.swt/EBWebView/Default/DawnWebGPUCache/index" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Gradle Build Class App/.metadata/.plugins/org.eclipse.swt/EBWebView/Default/Download Service/EntryDB/LOCK" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Gradle Build Class App/.metadata/.plugins/org.eclipse.swt/EBWebView/Default/Download Service/EntryDB/LOG" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Gradle Build Class App/.metadata/.plugins/org.eclipse.swt/EBWebView/Default/Download Service/EntryDB/LOG.old" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Gradle Build Class App/.metadata/.plugins/org.eclipse.swt/EBWebView/Default/EdgeEDrop/EdgeEDropSQLite.db" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Gradle Build Class App/.metadata/.plugins/org.eclipse.swt/EBWebView/Default/EdgeEDrop/EdgeEDropSQLite.db-journal" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Gradle Build Class App/.metadata/.plugins/org.eclipse.swt/EBWebView/Default/Extension Rules/000003.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Gradle Build Class App/.metadata/.plugins/org.eclipse.swt/EBWebView/Default/Extension Rules/CURRENT" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Gradle Build Class App/.metadata/.plugins/org.eclipse.swt/EBWebView/Default/Extension Rules/LOCK" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Gradle Build Class App/.metadata/.plugins/org.eclipse.swt/EBWebView/Default/Extension Rules/LOG" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Gradle Build Class App/.metadata/.plugins/org.eclipse.swt/EBWebView/Default/Extension Rules/MANIFEST-000001" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Gradle Build Class App/.metadata/.plugins/org.eclipse.swt/EBWebView/Default/Extension Scripts/000003.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Gradle Build Class App/.metadata/.plugins/org.eclipse.swt/EBWebView/Default/Extension Scripts/CURRENT" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Gradle Build Class App/.metadata/.plugins/org.eclipse.swt/EBWebView/Default/Extension Scripts/LOCK" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Gradle Build Class App/.metadata/.plugins/org.eclipse.swt/EBWebView/Default/Extension Scripts/LOG" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Gradle Build Class App/.metadata/.plugins/org.eclipse.swt/EBWebView/Default/Extension Scripts/MANIFEST-000001" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Gradle Build Class App/.metadata/.plugins/org.eclipse.swt/EBWebView/Default/Extension State/000003.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Gradle Build Class App/.metadata/.plugins/org.eclipse.swt/EBWebView/Default/Extension State/CURRENT" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Gradle Build Class App/.metadata/.plugins/org.eclipse.swt/EBWebView/Default/Extension State/LOCK" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Gradle Build Class App/.metadata/.plugins/org.eclipse.swt/EBWebView/Default/Extension State/LOG" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Gradle Build Class App/.metadata/.plugins/org.eclipse.swt/EBWebView/Default/Extension State/LOG.old" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Gradle Build Class App/.metadata/.plugins/org.eclipse.swt/EBWebView/Default/Extension State/MANIFEST-000001" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Gradle Build Class App/.metadata/.plugins/org.eclipse.swt/EBWebView/Default/ExtensionActivityComp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Gradle Build Class App/.metadata/.plugins/org.eclipse.swt/EBWebView/Default/ExtensionActivityComp-journal" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Gradle Build Class App/.metadata/.plugins/org.eclipse.swt/EBWebView/Default/ExtensionActivityEdge" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Gradle Build Class App/.metadata/.plugins/org.eclipse.swt/EBWebView/Default/ExtensionActivityEdge-journal" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Gradle Build Class App/.metadata/.plugins/org.eclipse.swt/EBWebView/Default/Favicons" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Gradle Build Class App/.metadata/.plugins/org.eclipse.swt/EBWebView/Default/Favicons-journal" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Gradle Build Class App/.metadata/.plugins/org.eclipse.swt/EBWebView/Default/Feature Engagement Tracker/AvailabilityDB/LOCK" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Gradle Build Class App/.metadata/.plugins/org.eclipse.swt/EBWebView/Default/Feature Engagement Tracker/AvailabilityDB/LOG" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Gradle Build Class App/.metadata/.plugins/org.eclipse.swt/EBWebView/Default/Feature Engagement Tracker/AvailabilityDB/LOG.old" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Gradle Build Class App/.metadata/.plugins/org.eclipse.swt/EBWebView/Default/Feature Engagement Tracker/EventDB/LOCK" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Gradle Build Class App/.metadata/.plugins/org.eclipse.swt/EBWebView/Default/Feature Engagement Tracker/EventDB/LOG" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Gradle Build Class App/.metadata/.plugins/org.eclipse.swt/EBWebView/Default/Feature Engagement Tracker/EventDB/LOG.old" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Gradle Build Class App/.metadata/.plugins/org.eclipse.swt/EBWebView/Default/GPUCache/data_0" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Gradle Build Class App/.metadata/.plugins/org.eclipse.swt/EBWebView/Default/GPUCache/data_1" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Gradle Build Class App/.metadata/.plugins/org.eclipse.swt/EBWebView/Default/GPUCache/data_2" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Gradle Build Class App/.metadata/.plugins/org.eclipse.swt/EBWebView/Default/GPUCache/data_3" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Gradle Build Class App/.metadata/.plugins/org.eclipse.swt/EBWebView/Default/GPUCache/index" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Gradle Build Class App/.metadata/.plugins/org.eclipse.swt/EBWebView/Default/History" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Gradle Build Class App/.metadata/.plugins/org.eclipse.swt/EBWebView/Default/History-journal" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Gradle Build Class App/.metadata/.plugins/org.eclipse.swt/EBWebView/Default/LOCK" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Gradle Build Class App/.metadata/.plugins/org.eclipse.swt/EBWebView/Default/LOG" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Gradle Build Class App/.metadata/.plugins/org.eclipse.swt/EBWebView/Default/LOG.old" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Gradle Build Class App/.metadata/.plugins/org.eclipse.swt/EBWebView/Default/Local Storage/leveldb/000003.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Gradle Build Class App/.metadata/.plugins/org.eclipse.swt/EBWebView/Default/Local Storage/leveldb/CURRENT" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Gradle Build Class App/.metadata/.plugins/org.eclipse.swt/EBWebView/Default/Local Storage/leveldb/LOCK" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Gradle Build Class App/.metadata/.plugins/org.eclipse.swt/EBWebView/Default/Local Storage/leveldb/LOG" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Gradle Build Class App/.metadata/.plugins/org.eclipse.swt/EBWebView/Default/Local Storage/leveldb/LOG.old" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Gradle Build Class App/.metadata/.plugins/org.eclipse.swt/EBWebView/Default/Local Storage/leveldb/MANIFEST-000001" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Gradle Build Class App/.metadata/.plugins/org.eclipse.swt/EBWebView/Default/Login Data" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Gradle Build Class App/.metadata/.plugins/org.eclipse.swt/EBWebView/Default/Login Data-journal" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Gradle Build Class App/.metadata/.plugins/org.eclipse.swt/EBWebView/Default/Network Action Predictor" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Gradle Build Class App/.metadata/.plugins/org.eclipse.swt/EBWebView/Default/Network Action Predictor-journal" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Gradle Build Class App/.metadata/.plugins/org.eclipse.swt/EBWebView/Default/Network/Cookies" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Gradle Build Class App/.metadata/.plugins/org.eclipse.swt/EBWebView/Default/Network/Cookies-journal" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Gradle Build Class App/.metadata/.plugins/org.eclipse.swt/EBWebView/Default/Network/Network Persistent State" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Gradle Build Class App/.metadata/.plugins/org.eclipse.swt/EBWebView/Default/Network/NetworkDataMigrated" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Gradle Build Class App/.metadata/.plugins/org.eclipse.swt/EBWebView/Default/Network/Reporting and NEL" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Gradle Build Class App/.metadata/.plugins/org.eclipse.swt/EBWebView/Default/Network/Reporting and NEL-journal" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Gradle Build Class App/.metadata/.plugins/org.eclipse.swt/EBWebView/Default/Network/SCT Auditing Pending Reports" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Gradle Build Class App/.metadata/.plugins/org.eclipse.swt/EBWebView/Default/Network/Sdch Dictionaries" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Gradle Build Class App/.metadata/.plugins/org.eclipse.swt/EBWebView/Default/Network/Trust Tokens" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Gradle Build Class App/.metadata/.plugins/org.eclipse.swt/EBWebView/Default/Network/Trust Tokens-journal" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Gradle Build Class App/.metadata/.plugins/org.eclipse.swt/EBWebView/Default/PersistentOriginTrials/LOCK" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Gradle Build Class App/.metadata/.plugins/org.eclipse.swt/EBWebView/Default/PersistentOriginTrials/LOG" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Gradle Build Class App/.metadata/.plugins/org.eclipse.swt/EBWebView/Default/PersistentOriginTrials/LOG.old" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Gradle Build Class App/.metadata/.plugins/org.eclipse.swt/EBWebView/Default/Preferences" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Gradle Build Class App/.metadata/.plugins/org.eclipse.swt/EBWebView/Default/PreferredApps" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Gradle Build Class App/.metadata/.plugins/org.eclipse.swt/EBWebView/Default/README" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Gradle Build Class App/.metadata/.plugins/org.eclipse.swt/EBWebView/Default/Safe Browsing Network/NetworkDataMigrated" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Gradle Build Class App/.metadata/.plugins/org.eclipse.swt/EBWebView/Default/Safe Browsing Network/Safe Browsing Cookies" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Gradle Build Class App/.metadata/.plugins/org.eclipse.swt/EBWebView/Default/Safe Browsing Network/Safe Browsing Cookies-journal" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Gradle Build Class App/.metadata/.plugins/org.eclipse.swt/EBWebView/Default/Secure Preferences" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Gradle Build Class App/.metadata/.plugins/org.eclipse.swt/EBWebView/Default/ServerCertificate" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Gradle Build Class App/.metadata/.plugins/org.eclipse.swt/EBWebView/Default/ServerCertificate-journal" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Gradle Build Class App/.metadata/.plugins/org.eclipse.swt/EBWebView/Default/Session Storage/000003.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Gradle Build Class App/.metadata/.plugins/org.eclipse.swt/EBWebView/Default/Session Storage/CURRENT" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Gradle Build Class App/.metadata/.plugins/org.eclipse.swt/EBWebView/Default/Session Storage/LOCK" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Gradle Build Class App/.metadata/.plugins/org.eclipse.swt/EBWebView/Default/Session Storage/LOG" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Gradle Build Class App/.metadata/.plugins/org.eclipse.swt/EBWebView/Default/Session Storage/LOG.old" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Gradle Build Class App/.metadata/.plugins/org.eclipse.swt/EBWebView/Default/Session Storage/MANIFEST-000001" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Gradle Build Class App/.metadata/.plugins/org.eclipse.swt/EBWebView/Default/Shared Dictionary/cache/index" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Gradle Build Class App/.metadata/.plugins/org.eclipse.swt/EBWebView/Default/Shared Dictionary/cache/index-dir/the-real-index" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Gradle Build Class App/.metadata/.plugins/org.eclipse.swt/EBWebView/Default/Shared Dictionary/db" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Gradle Build Class App/.metadata/.plugins/org.eclipse.swt/EBWebView/Default/Shared Dictionary/db-journal" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Gradle Build Class App/.metadata/.plugins/org.eclipse.swt/EBWebView/Default/SharedStorage" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Gradle Build Class App/.metadata/.plugins/org.eclipse.swt/EBWebView/Default/Site Characteristics Database/000003.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Gradle Build Class App/.metadata/.plugins/org.eclipse.swt/EBWebView/Default/Site Characteristics Database/CURRENT" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Gradle Build Class App/.metadata/.plugins/org.eclipse.swt/EBWebView/Default/Site Characteristics Database/LOCK" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Gradle Build Class App/.metadata/.plugins/org.eclipse.swt/EBWebView/Default/Site Characteristics Database/LOG" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Gradle Build Class App/.metadata/.plugins/org.eclipse.swt/EBWebView/Default/Site Characteristics Database/LOG.old" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Gradle Build Class App/.metadata/.plugins/org.eclipse.swt/EBWebView/Default/Site Characteristics Database/MANIFEST-000001" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Gradle Build Class App/.metadata/.plugins/org.eclipse.swt/EBWebView/Default/Sync Data/LevelDB/000003.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Gradle Build Class App/.metadata/.plugins/org.eclipse.swt/EBWebView/Default/Sync Data/LevelDB/CURRENT" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Gradle Build Class App/.metadata/.plugins/org.eclipse.swt/EBWebView/Default/Sync Data/LevelDB/LOCK" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Gradle Build Class App/.metadata/.plugins/org.eclipse.swt/EBWebView/Default/Sync Data/LevelDB/LOG" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Gradle Build Class App/.metadata/.plugins/org.eclipse.swt/EBWebView/Default/Sync Data/LevelDB/LOG.old" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Gradle Build Class App/.metadata/.plugins/org.eclipse.swt/EBWebView/Default/Sync Data/LevelDB/MANIFEST-000001" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Gradle Build Class App/.metadata/.plugins/org.eclipse.swt/EBWebView/Default/Top Sites" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Gradle Build Class App/.metadata/.plugins/org.eclipse.swt/EBWebView/Default/Top Sites-journal" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Gradle Build Class App/.metadata/.plugins/org.eclipse.swt/EBWebView/Default/Vpn Tokens" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Gradle Build Class App/.metadata/.plugins/org.eclipse.swt/EBWebView/Default/Vpn Tokens-journal" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Gradle Build Class App/.metadata/.plugins/org.eclipse.swt/EBWebView/Default/Web Data" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Gradle Build Class App/.metadata/.plugins/org.eclipse.swt/EBWebView/Default/Web Data-journal" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Gradle Build Class App/.metadata/.plugins/org.eclipse.swt/EBWebView/Default/commerce_subscription_db/LOCK" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Gradle Build Class App/.metadata/.plugins/org.eclipse.swt/EBWebView/Default/commerce_subscription_db/LOG" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Gradle Build Class App/.metadata/.plugins/org.eclipse.swt/EBWebView/Default/commerce_subscription_db/LOG.old" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Gradle Build Class App/.metadata/.plugins/org.eclipse.swt/EBWebView/Default/discount_infos_db/LOCK" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Gradle Build Class App/.metadata/.plugins/org.eclipse.swt/EBWebView/Default/discount_infos_db/LOG" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Gradle Build Class App/.metadata/.plugins/org.eclipse.swt/EBWebView/Default/discount_infos_db/LOG.old" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Gradle Build Class App/.metadata/.plugins/org.eclipse.swt/EBWebView/Default/discounts_db/LOCK" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Gradle Build Class App/.metadata/.plugins/org.eclipse.swt/EBWebView/Default/discounts_db/LOG" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Gradle Build Class App/.metadata/.plugins/org.eclipse.swt/EBWebView/Default/discounts_db/LOG.old" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Gradle Build Class App/.metadata/.plugins/org.eclipse.swt/EBWebView/Default/favorites_diagnostic.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Gradle Build Class App/.metadata/.plugins/org.eclipse.swt/EBWebView/Default/heavy_ad_intervention_opt_out.db" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Gradle Build Class App/.metadata/.plugins/org.eclipse.swt/EBWebView/Default/heavy_ad_intervention_opt_out.db-journal" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Gradle Build Class App/.metadata/.plugins/org.eclipse.swt/EBWebView/Default/optimization_guide_hint_cache_store/LOCK" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Gradle Build Class App/.metadata/.plugins/org.eclipse.swt/EBWebView/Default/optimization_guide_hint_cache_store/LOG" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Gradle Build Class App/.metadata/.plugins/org.eclipse.swt/EBWebView/Default/optimization_guide_hint_cache_store/LOG.old" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Gradle Build Class App/.metadata/.plugins/org.eclipse.swt/EBWebView/Default/parcel_tracking_db/LOCK" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Gradle Build Class App/.metadata/.plugins/org.eclipse.swt/EBWebView/Default/parcel_tracking_db/LOG" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Gradle Build Class App/.metadata/.plugins/org.eclipse.swt/EBWebView/Default/parcel_tracking_db/LOG.old" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Gradle Build Class App/.metadata/.plugins/org.eclipse.swt/EBWebView/Default/shared_proto_db/000003.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Gradle Build Class App/.metadata/.plugins/org.eclipse.swt/EBWebView/Default/shared_proto_db/CURRENT" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Gradle Build Class App/.metadata/.plugins/org.eclipse.swt/EBWebView/Default/shared_proto_db/LOCK" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Gradle Build Class App/.metadata/.plugins/org.eclipse.swt/EBWebView/Default/shared_proto_db/LOG" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Gradle Build Class App/.metadata/.plugins/org.eclipse.swt/EBWebView/Default/shared_proto_db/LOG.old" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Gradle Build Class App/.metadata/.plugins/org.eclipse.swt/EBWebView/Default/shared_proto_db/MANIFEST-000001" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Gradle Build Class App/.metadata/.plugins/org.eclipse.swt/EBWebView/Default/shared_proto_db/metadata/000003.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Gradle Build Class App/.metadata/.plugins/org.eclipse.swt/EBWebView/Default/shared_proto_db/metadata/CURRENT" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Gradle Build Class App/.metadata/.plugins/org.eclipse.swt/EBWebView/Default/shared_proto_db/metadata/LOCK" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Gradle Build Class App/.metadata/.plugins/org.eclipse.swt/EBWebView/Default/shared_proto_db/metadata/LOG" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Gradle Build Class App/.metadata/.plugins/org.eclipse.swt/EBWebView/Default/shared_proto_db/metadata/LOG.old" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Gradle Build Class App/.metadata/.plugins/org.eclipse.swt/EBWebView/Default/shared_proto_db/metadata/MANIFEST-000001" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Gradle Build Class App/.metadata/.plugins/org.eclipse.swt/EBWebView/GrShaderCache/data_0" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Gradle Build Class App/.metadata/.plugins/org.eclipse.swt/EBWebView/GrShaderCache/data_1" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Gradle Build Class App/.metadata/.plugins/org.eclipse.swt/EBWebView/GrShaderCache/data_2" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Gradle Build Class App/.metadata/.plugins/org.eclipse.swt/EBWebView/GrShaderCache/data_3" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Gradle Build Class App/.metadata/.plugins/org.eclipse.swt/EBWebView/GrShaderCache/f_000001" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Gradle Build Class App/.metadata/.plugins/org.eclipse.swt/EBWebView/GrShaderCache/f_000002" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Gradle Build Class App/.metadata/.plugins/org.eclipse.swt/EBWebView/GrShaderCache/f_000003" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Gradle Build Class App/.metadata/.plugins/org.eclipse.swt/EBWebView/GrShaderCache/f_000004" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Gradle Build Class App/.metadata/.plugins/org.eclipse.swt/EBWebView/GrShaderCache/f_000005" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Gradle Build Class App/.metadata/.plugins/org.eclipse.swt/EBWebView/GrShaderCache/f_000006" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Gradle Build Class App/.metadata/.plugins/org.eclipse.swt/EBWebView/GrShaderCache/f_000007" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Gradle Build Class App/.metadata/.plugins/org.eclipse.swt/EBWebView/GrShaderCache/f_000008" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Gradle Build Class App/.metadata/.plugins/org.eclipse.swt/EBWebView/GrShaderCache/f_000009" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Gradle Build Class App/.metadata/.plugins/org.eclipse.swt/EBWebView/GrShaderCache/index" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Gradle Build Class App/.metadata/.plugins/org.eclipse.swt/EBWebView/GraphiteDawnCache/data_0" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Gradle Build Class App/.metadata/.plugins/org.eclipse.swt/EBWebView/GraphiteDawnCache/data_1" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Gradle Build Class App/.metadata/.plugins/org.eclipse.swt/EBWebView/GraphiteDawnCache/data_2" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Gradle Build Class App/.metadata/.plugins/org.eclipse.swt/EBWebView/GraphiteDawnCache/data_3" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Gradle Build Class App/.metadata/.plugins/org.eclipse.swt/EBWebView/GraphiteDawnCache/index" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Gradle Build Class App/.metadata/.plugins/org.eclipse.swt/EBWebView/Last Version" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Gradle Build Class App/.metadata/.plugins/org.eclipse.swt/EBWebView/Local State" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Gradle Build Class App/.metadata/.plugins/org.eclipse.swt/EBWebView/ShaderCache/data_0" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Gradle Build Class App/.metadata/.plugins/org.eclipse.swt/EBWebView/ShaderCache/data_1" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Gradle Build Class App/.metadata/.plugins/org.eclipse.swt/EBWebView/ShaderCache/data_2" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Gradle Build Class App/.metadata/.plugins/org.eclipse.swt/EBWebView/ShaderCache/data_3" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Gradle Build Class App/.metadata/.plugins/org.eclipse.swt/EBWebView/ShaderCache/index" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Gradle Build Class App/.metadata/.plugins/org.eclipse.swt/EBWebView/SmartScreen/RemoteData/customSettings" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Gradle Build Class App/.metadata/.plugins/org.eclipse.swt/EBWebView/SmartScreen/RemoteData/customSettings_F95BA787499AB4FA9EFFF472CE383A14" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Gradle Build Class App/.metadata/.plugins/org.eclipse.swt/EBWebView/SmartScreen/RemoteData/edgeSettings" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Gradle Build Class App/.metadata/.plugins/org.eclipse.swt/EBWebView/SmartScreen/RemoteData/edgeSettings_2.0-0" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Gradle Build Class App/.metadata/.plugins/org.eclipse.swt/EBWebView/Variations" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Gradle Build Class App/.metadata/.plugins/org.eclipse.swt/EBWebView/component_crx_cache/metadata.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Gradle Build Class App/.metadata/.plugins/org.eclipse.tips.ide/dialog_settings.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Gradle Build Class App/.metadata/.plugins/org.eclipse.ui.ide/dialog_settings.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Gradle Build Class App/.metadata/.plugins/org.eclipse.ui.intro/introstate" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Gradle Build Class App/.metadata/.plugins/org.eclipse.ui.workbench/workingsets.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Gradle Build Class App/.metadata/version.ini" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Gradle Build Class App/GradelProj01/.gitattributes" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Gradle Build Class App/GradelProj01/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Gradle Build Class App/GradelProj01/.project" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Gradle Build Class App/GradelProj01/.settings/org.eclipse.buildship.core.prefs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Gradle Build Class App/GradelProj01/gradle/libs.versions.toml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Gradle Build Class App/GradelProj01/gradle/wrapper/gradle-wrapper.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Gradle Build Class App/GradelProj01/gradle/wrapper/gradle-wrapper.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Gradle Build Class App/GradelProj01/gradlew" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Gradle Build Class App/GradelProj01/gradlew.bat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Gradle Build Class App/GradelProj01/lib/build.gradle.kts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Gradle Build Class App/GradelProj01/lib/src/main/java/_GradelProj01/Library.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Gradle Build Class App/GradelProj01/lib/src/test/java/_GradelProj01/LibraryTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Gradle Build Class App/GradelProj01/settings.gradle.kts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Gradle Build Class App/GradelProj01x/.gitattributes" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Gradle Build Class App/GradelProj01x/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Gradle Build Class App/GradelProj01x/.project" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Gradle Build Class App/GradelProj01x/.settings/org.eclipse.buildship.core.prefs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Gradle Build Class App/GradelProj01x/gradle.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Gradle Build Class App/GradelProj01x/gradle/libs.versions.toml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Gradle Build Class App/GradelProj01x/gradle/wrapper/gradle-wrapper.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Gradle Build Class App/GradelProj01x/gradle/wrapper/gradle-wrapper.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Gradle Build Class App/GradelProj01x/gradlew" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Gradle Build Class App/GradelProj01x/gradlew.bat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Gradle Build Class App/GradelProj01x/lib/build.gradle.kts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Gradle Build Class App/GradelProj01x/lib/src/main/java/_GradelProj01x/Library.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Gradle Build Class App/GradelProj01x/lib/src/test/java/_GradelProj01x/LibraryTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Gradle Build Class App/GradelProj01x/settings.gradle.kts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Java Frameworks/Note/Common Topics/Class Room App/Spring_Boot_Batch-Process_Proj01/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../../Java Frameworks/Note/Common Topics/Class Room App/Spring_Boot_Batch-Process_Proj01/pom.xml" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../../.." />
+  </component>
+  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
+  "lastFilter": {
+    "state": "OPEN",
+    "assignee": "Prabhanjan-17p"
+  }
+}]]></component>
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/Prabhanjan-17p/NareshIT-FullSatck-Java.git",
+    "accountId": "c14c6323-f707-4909-aca1-8679ad84d506"
+  }
+}]]></component>
+  <component name="ProjectColorInfo"><![CDATA[{
+  "associatedIndex": 7
+}]]></component>
+  <component name="ProjectId" id="32Nn7enExtGdTIcvm226vNzxpLH" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "git-widget-placeholder": "main",
+    "last_opened_file_path": "D:/NareshIT-FullSatck-Java/NareshIT-FullSatck-Java/DevSecOps Tools/Gradle Build/Gradle Class Room App"
+  }
+}]]></component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="1613f8e3-7ba2-4f44-a0a9-bae5309e1cd1" name="Changes" comment="" />
+      <created>1757269731782</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1757269731782</updated>
+    </task>
+    <servers />
+  </component>
+</project>

@@ -14,11 +14,21 @@ export function DataGrid(props) {
                             <th key={field}>
                                 <div className="d-flex justify-content-between">
                                     <span>{field.toUpperCase()}</span>
-                                    <span> <button className="bi bi-three-dots-vertical btn btn-primary"></button></span>
+                                    <span>
+                                        <div class="dropdown">
+                                            <button class="bi bi-three-dots-vertical btn btn-primary " type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            </button>
+                                            <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                                <a className="dropdown-item" href="#">Sorting Ascending <span className="bi bi-sort-up"></span></a>
+                                                <a className="dropdown-item" href="#">Sorting Descending <span className="bi bi-sort-down"></span></a>
+                                            </div>
+                                        </div>
+                                    </span>
                                 </div>
                             </th>)
                     }
                 </tr>
+                
             </thead>
             <tbody>
                 {

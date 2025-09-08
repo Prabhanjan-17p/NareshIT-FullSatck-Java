@@ -1,0 +1,345 @@
+Assignment:
+===========
+Travel Booking Management System (Console-Based Application)
+Requirements:
+1. Database Configuration:
+--------------------------
+Configure the database connection in application.properties.
+2. Travel Entity Class:
+-----------------------
+Create a Travel class with the following fields:
+
+id (Long)
+destination (String)
+transportationMode (String)
+price (Double)
+Include getters, setters, and constructors.
+3. TravelRepository:
+--------------------
+Define a TravelRepository interface extending CrudRepository for data handling.
+4. ITravelService Interface:
+----------------------------
+Define an ITravelService interface with methods:
+
+void addTravel(Travel travel): Adds a new travel booking.
+Iterable<Travel> getAllTravels(): Retrieves all travel bookings.
+Optional<Travel> findTravelById(Long id): Finds a travel booking by ID.
+void deleteTravelById(Long id): Deletes a travel booking by ID.
+boolean existsById(Long id): Checks if a travel booking exists by ID.
+long count(): Returns the total number of travel bookings.
+void delete(Travel travel): Deletes a specific travel booking object.
+void deleteAll(): Deletes all travel bookings.
+5. TravelService:
+-----------------
+Implement TravelService class that implements ITravelService.
+Inject TravelRepository and define method implementations.
+6. TravelController:
+--------------------
+Create TravelController with methods:
+
+addTravel(Travel travel): Prompts the user for travel details and saves the booking.
+retrieveAllTravels(): Lists all travel bookings.
+findTravelById(Long id): Finds and displays a travel booking by its ID.
+deleteTravelById(Long id): Deletes a travel booking by ID.
+checkIfTravelExists(Long id): Checks if a travel booking exists.
+countTravels(): Retrieves the total number of travel bookings.
+deleteTravelObject(Travel travel): Deletes a specific travel booking.
+deleteAllTravels(): Deletes all travel bookings.
+7. TravelApplicationRunner:
+----------------------------
+Implement TravelApplicationRunner class that implements CommandLineRunner.
+In run(), display a menu to the user with options:
+
+1.Add a new travel booking.
+2.Retrieve all travel bookings.
+3.Find a travel booking by ID.
+4.Delete a travel booking by ID.
+5.Check if a travel booking exists.
+6.Count total travel bookings.
+7.Delete a specific travel booking.
+8.Delete all travel bookings.
+9.Exit.
+
+ANS ----
+package com.nt;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+@SpringBootApplication
+public class Day02Application {
+
+	public static void main(String[] args) {
+		SpringApplication.run(Day02Application.class, args);
+	}
+
+}
+
+
+package com.nt.entity;
+
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.NonNull;
+import lombok.RequiredArgsConstructor;
+
+@Data
+@Entity
+@Table(name = "Spring_JPA_Day02")
+@AllArgsConstructor
+@NoArgsConstructor
+@RequiredArgsConstructor
+public class Travel {
+	@Id
+	private Long id;
+	@Column(name = "Destination")
+	@NonNull
+	private String destination;
+	@Column(name = "TransportationMode")
+	@NonNull
+	private String transportationMode;
+	@Column(name = "Price", length = 8)
+	@NonNull
+	private Double price;
+}
+
+
+package com.nt.repository;
+
+import org.springframework.data.repository.CrudRepository;
+
+import com.nt.entity.Travel;
+
+public interface TravelRepository extends CrudRepository<Travel, Long> {
+
+}
+
+
+package com.nt.runners;
+
+import java.util.Scanner;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.CommandLineRunner;
+import org.springframework.stereotype.Component;
+
+import com.nt.entity.Travel;
+import com.nt.service.TravelServiceIMPL;
+
+@Component
+public class TravelApplicationRunner implements CommandLineRunner {
+
+	@Autowired
+	private TravelServiceIMPL serviceIMPL;
+
+	@Override
+	public void run(String... args) throws Exception {
+		Scanner sc = new Scanner(System.in);
+		boolean exit = false;
+
+		while (!exit) {
+			System.out.println("\n========= Travel Booking Menu =========");
+			System.out.println("1. Add a new travel booking");
+			System.out.println("2. Retrieve all travel bookings");
+			System.out.println("3. Find a travel booking by ID");
+			System.out.println("4. Delete a travel booking by ID");
+			System.out.println("5. Check if a travel booking exists");
+			System.out.println("6. Count total travel bookings");
+			System.out.println("7. Delete a specific travel booking");
+			System.out.println("8. Delete all travel bookings");
+			System.out.println("9. Exit");
+			System.out.print("Enter your choice: ");
+
+			int choice = sc.nextInt();
+			sc.nextLine(); // consume newline
+
+			switch (choice) {
+			case 1:
+				System.out.print("Enter Travel ID: ");
+				Long id = sc.nextLong();
+				sc.nextLine();
+				System.out.print("Enter Destination: ");
+				String destination = sc.nextLine();
+				System.out.print("Enter Traveler Name: ");
+				String traveler = sc.nextLine();
+				System.out.print("Enter Price: ");
+				Double price = sc.nextDouble();
+
+				Travel travel = new Travel(id, destination, traveler, price);
+				serviceIMPL.addTravel(travel);
+				System.out.println("✅ Travel booking added successfully!");
+				break;
+
+			case 2:
+				System.out.println("📋 All Travel Bookings:");
+				serviceIMPL.getAllTravels().forEach(System.out::println);
+				break;
+
+			case 3:
+				System.out.print("Enter Travel ID to find: ");
+				Long findId = sc.nextLong();
+				serviceIMPL.findTravelById(findId).ifPresentOrElse(t -> System.out.println("Found: " + t),
+						() -> System.out.println("❌ Travel not found!"));
+				break;
+
+			case 4:
+				System.out.print("Enter Travel ID to delete: ");
+				Long delId = sc.nextLong();
+				serviceIMPL.deleteTravelById(delId);
+				System.out.println("🗑️ Travel booking deleted (if existed)."); //"
+				break;
+
+			case 5:
+				System.out.print("Enter Travel ID to check: ");
+				Long chkId = sc.nextLong();
+				System.out.println(serviceIMPL.existsById(chkId) ? "✅ Travel booking exists."
+						: "❌ Travel booking does not exist.");
+				break;
+
+			case 6:
+				System.out.println("📊 Total travel bookings: " + serviceIMPL.count());
+				break;
+
+			case 7:
+				System.out.print("Enter Travel ID to delete specific booking: ");
+				Long delObjId = sc.nextLong();
+				serviceIMPL.findTravelById(delObjId).ifPresentOrElse(t -> {
+					serviceIMPL.delete(t);
+					System.out.println("🗑️ Travel booking deleted successfully!");
+				}, () -> System.out.println("❌ Travel not found!"));
+				break;
+
+			case 8:
+				serviceIMPL.deleteAll();
+				System.out.println("🗑️ All travel bookings deleted.");
+				break;
+
+			case 9:
+				System.out.println("👋 Exiting... Thank you!");
+				exit = true;
+				break;
+
+			default:
+				System.out.println("⚠️ Invalid choice! Try again.");
+			}
+		}
+
+		sc.close();
+	}
+}
+
+
+package com.nt.service;
+
+import java.util.Optional;
+
+import com.nt.entity.Travel;
+
+public interface ITravelService {
+	// Adds a new travel booking
+	void addTravel(Travel travel);
+
+	// Retrieves all travel bookings
+	Iterable<Travel> getAllTravels();
+
+	// Finds a travel booking by ID
+	Optional<Travel> findTravelById(Long id);
+
+	// Deletes a travel booking by ID
+	void deleteTravelById(Long id);
+
+	// Checks if a travel booking exists by ID
+	boolean existsById(Long id);
+
+	// Returns the total number of travel bookings
+	long count();
+
+	// Deletes a specific travel booking object
+	void delete(Travel travel);
+
+	// Deletes all travel bookings
+	void deleteAll();
+}
+
+
+package com.nt.service;
+
+import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.nt.entity.Travel;
+import com.nt.repository.TravelRepository;
+
+@Service
+public class TravelServiceIMPL implements ITravelService {
+	@Autowired
+	private TravelRepository repo;
+
+	@Override
+	public void addTravel(Travel travel) {
+		Travel save = repo.save(travel);
+	}
+
+	@Override
+	public Iterable<Travel> getAllTravels() {
+		Iterable<Travel> all = repo.findAll();
+		return all;
+	}
+
+	@Override
+	public Optional<Travel> findTravelById(Long id) {
+		Optional<Travel> byId = repo.findById(id);
+		return byId;
+	}
+
+	@Override
+	public void deleteTravelById(Long id) {
+		repo.deleteById(id);
+	}
+
+	@Override
+	public boolean existsById(Long id) {
+		boolean existsById = repo.existsById(id);
+		return existsById;
+	}
+
+	@Override
+	public long count() {
+		return repo.count();
+	}
+
+	@Override
+	public void delete(Travel travel) {
+		repo.delete(travel);
+	}
+
+	@Override
+	public void deleteAll() {
+		repo.deleteAll();
+	}
+
+}
+
+
+spring.application.name=Day_02
+
+# MySQL DB Connection
+spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver
+spring.datasource.url=jdbc:mysql://localhost:3306/nit_jpa_718
+spring.datasource.username=root
+spring.datasource.password=kanha123
+
+# JPA Settings
+spring.jpa.hibernate.ddl-auto=update
+spring.jpa.show-sql=true  
+spring.jpa.database-platform=org.hibernate.dialect.MySQL8Dialect
+======================================================================================

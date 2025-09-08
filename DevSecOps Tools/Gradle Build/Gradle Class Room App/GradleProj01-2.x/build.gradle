@@ -1,0 +1,30 @@
+plugins {
+    id 'org.springframework.boot' version '3.2.0'
+    id 'io.spring.dependency-management' version '1.1.4'
+    id 'java'
+}
+
+group = 'nit'
+version = '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    // Spring Boot starter for building REST APIs / Web apps
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+
+    // Spring Boot starter for JPA (if using DB like MySQL/Postgres)
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+
+    // Lombok (to reduce boilerplate code)
+    compileOnly 'org.projectlombok:lombok'
+    annotationProcessor 'org.projectlombok:lombok'
+
+    // H2 database (for testing/demo purposes)
+    runtimeOnly 'com.h2database:h2'
+
+    // Testing with Spring Boot support
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+}

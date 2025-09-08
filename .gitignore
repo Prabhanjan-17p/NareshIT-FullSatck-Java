@@ -1,2 +1,52 @@
 # SonarLint settings
 .sonarlint/
+
+
+# -----------------------
+# Eclipse related files
+# -----------------------
+.project
+.classpath
+.settings/
+bin/
+tmp/
+*.launch
+*.pydevproject
+
+# Eclipse specific metadata
+*.log
+*.bak
+*.swp
+*.tmp
+
+# -----------------------
+# Java related files
+# -----------------------
+# Compiled class files
+*.class
+
+# Log files
+*.log
+
+# Package files
+*.jar
+*.war
+*.ear
+
+# JVM crash logs
+hs_err_pid*
+
+# -----------------------
+# OS related files
+# -----------------------
+# Windows
+Thumbs.db
+Desktop.ini
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Linux
+*~

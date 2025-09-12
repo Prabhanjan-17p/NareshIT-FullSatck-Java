@@ -27,6 +27,9 @@ export function DataGrid(props) {
                                 </div>
                             </th>)
                     }
+                    <th className="text-center">
+                        ACTION
+                    </th>
                 </tr>
                 
             </thead>
@@ -37,6 +40,10 @@ export function DataGrid(props) {
                             {
                                 Object.keys(record).map(field => <td>{record[field]}</td>)
                             }
+                            <td className="text-center">
+                                <button className="bi bi-pen-fill btn btn-warning"></button>
+                                <button className="bi bi-trash btn btn-danger ms-2"></button>
+                            </td>
                         </tr>
                     )
                 }

@@ -1,0 +1,235 @@
+Task: Employee Management System using CrudRepository
+
+🎯 Objective
+
+Build a Spring Boot console-based Employee Management System that demonstrates the usage of all CrudRepository methods.
+
+📌 Requirements
+
+Entity
+
+Create an Employee entity with the following fields:
+
+id (Primary Key, auto-generated)
+
+name (String)
+
+department (String)
+
+salary (Double)
+
+Repository
+
+Create an EmployeeRepository interface extending CrudRepository<Employee, Long>.
+
+Demonstrate all CrudRepository methods:
+
+save() → Insert a single employee record.
+
+saveAll() → Insert multiple employee records at once.
+
+findById() → Fetch an employee by its ID.
+
+findAll() → Retrieve all employees.
+
+existsById() → Check if an employee exists with a given ID.
+
+count() → Get the total number of employees.
+
+deleteById() → Delete an employee by ID.
+
+delete(entity) → Delete a specific employee entity.
+
+deleteAll(Iterable) → Delete multiple employees at once.
+
+deleteAll() → Delete all employees from the table.
+
+Runner
+
+Implement a CommandLineRunner in the main Spring Boot application class to test all the above methods in sequence.
+
+Print the results to the console.
+
+✅ Expected Console Flow
+
+Insert single and multiple employees.
+
+Retrieve employee details by ID.
+
+Display all employees.
+
+Check if an employee exists.
+
+Show the total employee count.
+
+Delete employees using different delete methods.
+
+Verify deletion by fetching all employees again.
+
+
+ANS -----
+package com.nt;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+@SpringBootApplication
+public class Day03Application {
+
+	public static void main(String[] args) {
+		SpringApplication.run(Day03Application.class, args);
+	}
+
+}
+
+
+package com.nt.entity;
+
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.NonNull;
+import lombok.RequiredArgsConstructor;
+
+@Entity
+@Data
+@Table(name = "Spring_JPA_Day03")
+@AllArgsConstructor
+@NoArgsConstructor
+@RequiredArgsConstructor
+public class Employee {
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private Long id;
+	@Column(name = "Name", length = 30)
+	@NonNull
+	private String name;
+	@Column(name = "Department", length = 30)
+	@NonNull
+	private String department;
+	@Column(name = "Salary")
+	@NonNull
+	private Double salary;
+}
+
+
+package com.nt.repository;
+
+import org.springframework.data.repository.CrudRepository;
+
+import com.nt.entity.Employee;
+
+public interface IEmployeeRepository extends CrudRepository<Employee, Long> {
+
+}
+
+
+package com.nt.runner;
+
+import java.util.Arrays;
+import java.util.List;
+import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.CommandLineRunner;
+import org.springframework.boot.SpringApplication;
+import org.springframework.stereotype.Component;
+
+import com.nt.entity.Employee;
+import com.nt.repository.IEmployeeRepository;
+
+@Component
+public class EmployeeManagementApplication implements CommandLineRunner {
+
+    @Autowired
+    private IEmployeeRepository employeeRepository;
+
+    public static void main(String[] args) {
+        SpringApplication.run(EmployeeManagementApplication.class, args);
+    }
+
+    @Override
+    public void run(String... args) {
+
+        System.out.println("========== EMPLOYEE MANAGEMENT SYSTEM ==========");
+
+        // 1. save() -> Insert single employee
+        Employee e1 = new Employee("Kanha", "IT", 55000.0);
+        Employee savedEmp = employeeRepository.save(e1);
+        System.out.println("Saved Single Employee: " + savedEmp);
+
+        // 2. saveAll() -> Insert multiple employees
+        List<Employee> employees = Arrays.asList(
+                new Employee("Ramesh", "HR", 45000.0),
+                new Employee("Suresh", "Finance", 60000.0),
+                new Employee("Mahesh", "Admin", 40000.0)
+        );
+        Iterable<Employee> savedAll = employeeRepository.saveAll(employees);
+        System.out.println("Saved Multiple Employees: ");
+        savedAll.forEach(System.out::println);
+
+        // 3. findById() -> Fetch employee by ID
+        Optional<Employee> empById = employeeRepository.findById(1L);
+        System.out.println("Find By ID (1): " + empById.orElse(null));
+
+        // 4. findAll() -> Retrieve all employees
+        System.out.println("All Employees:");
+        employeeRepository.findAll().forEach(System.out::println);
+
+        // 5. existsById()
+        boolean exists = employeeRepository.existsById(2L);
+        System.out.println("Does Employee with ID 2 exist? " + exists);
+
+        // 6. count()
+        long count = employeeRepository.count();
+        System.out.println("Total Employees: " + count);
+
+        // 7. deleteById()
+        employeeRepository.deleteById(3L);
+        System.out.println("Deleted Employee with ID 3");
+
+        // 8. delete(entity)
+        Employee empToDelete = employeeRepository.findById(2L).orElse(null);
+        if (empToDelete != null) {
+            employeeRepository.delete(empToDelete);
+            System.out.println("Deleted Employee: " + empToDelete);
+        }
+
+        // 9. deleteAll(Iterable)
+        List<Employee> empList = (List<Employee>) employeeRepository.findAll();
+        if (!empList.isEmpty()) {
+            employeeRepository.deleteAll(empList.subList(0, 1));
+            System.out.println("Deleted one employee using deleteAll(Iterable)");
+        }
+
+        // 10. deleteAll()
+        employeeRepository.deleteAll();
+        System.out.println("Deleted ALL employees");
+
+        // Verify deletion
+        System.out.println("All Employees After Deletion:");
+        employeeRepository.findAll().forEach(System.out::println);
+
+        System.out.println("========== END ==========");
+    }
+}
+
+
+spring.application.name=Day_03
+
+# Oracle DB Connection
+spring.datasource.driver-class-name=oracle.jdbc.OracleDriver
+spring.datasource.url=jdbc:oracle:thin:@localhost:1521:orcl
+spring.datasource.username=MYDB
+spring.datasource.password=MYDB
+
+# JPA Settings
+spring.jpa.hibernate.ddl-auto=update
+spring.jpa.show-sql=true
+spring.jpa.database-platform=org.hibernate.dialect.OracleDialect

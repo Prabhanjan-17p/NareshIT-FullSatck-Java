@@ -24,11 +24,13 @@ import { FormikWithYup } from './components/Formik-Demo/formik-yup';
 import { FormikComponent } from './components/Formik-Demo/formik-component';
 import { HookFormDemo } from './components/Hook-Form-Demo/home-form-demo';
 import { CustomDemo } from './components/Costum-Demo/costum-demo';
+import { CustomeRenderingDemo } from './components/Component-Render/component-render';
+import { CustomeRenderingDemoTwo } from './components/Component-Render/component-rendertwo';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    < CustomDemo />
+    < CustomeRenderingDemoTwo />
   </React.StrictMode>
 );
 

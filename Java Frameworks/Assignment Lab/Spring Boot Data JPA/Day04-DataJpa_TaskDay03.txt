@@ -1,0 +1,189 @@
+Spring Boot Data JPA Finder Method Tasks
+🔹 Task 1: Product Catalog System
+
+🎯 Objective
+Build a Spring Boot console-based application where products can be searched using Finder Methods.
+
+📌 Requirements
+
+Entity Class: Product
+
+id (Long, primary key)
+
+name (String)
+
+category (String)
+
+price (Double)
+
+brand (String)
+
+createdDate (LocalDate)
+
+Repository Interface: ProductRepository
+Extend JpaRepository<Product, Long>.
+
+Define finder methods like:
+
+findByName(String name)
+
+findByCategory(String category)
+
+findByPriceBetween(Double min, Double max)
+
+findByBrandAndCategory(String brand, String category)
+
+findByCreatedDateAfter(LocalDate date)
+
+findByNameContaining(String keyword)
+
+Runner Class: ProductRunner
+
+Insert sample products.
+
+Perform queries using above finder methods.
+
+Print results in console.
+
+Database Setup
+Use MySQL / H2 / Oracle with configuration in application.properties.
+ANS ---
+package com.nt;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+@SpringBootApplication
+public class Day04Application {
+
+	public static void main(String[] args) {
+		SpringApplication.run(Day04Application.class, args);
+	}
+
+}
+
+
+package com.nt.entity;
+
+import java.time.LocalDate;
+
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.NonNull;
+import lombok.RequiredArgsConstructor;
+
+@Entity
+@Table(name = "JPA_Day_04")
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@RequiredArgsConstructor
+public class Product {
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private Long id;
+	@Column(name = "Name", length = 50)
+	@NonNull
+	private String name;
+	@Column(name = "Category", length = 50)
+	@NonNull
+	private String category;
+	@Column(name = "Price")
+	@NonNull
+	private Double price;
+	@Column(name = "Brand", length = 50)
+	@NonNull
+	private String brand;
+	@Column(name = "Created_Date")
+	@NonNull
+	private LocalDate createdDate;
+}
+
+
+package com.nt.repository;
+
+import java.time.LocalDate;
+import java.util.List;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import com.nt.entity.Product;
+
+public interface ProductRepository extends JpaRepository<Product, Long> {
+	List<Product> findByName(String name);
+    List<Product> findByCategory(String category);
+    List<Product> findByPriceGreaterThan(Double price);
+    List<Product> findByBrandAndCategory(String brand, String category);
+    List<Product> findByCreatedDateBefore(LocalDate date);
+    List<Product> findByNameContaining(String keyword);
+}
+
+
+package com.nt.runner;
+
+import java.time.LocalDate;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.CommandLineRunner;
+import org.springframework.stereotype.Component;
+
+import com.nt.entity.Product;
+import com.nt.repository.ProductRepository;
+
+@Component
+public class ProductRunner implements CommandLineRunner {
+	@Autowired
+	private ProductRepository repo;
+
+	@Override
+	public void run(String... args) throws Exception {
+		  // Insert sample products (comment later to avoid duplicate inserts)
+        repo.save(new Product("Laptop", "Electronics", 50000.0, "Dell", LocalDate.of(2023, 5, 10)));
+        repo.save(new Product("Shirt", "Clothing", 1500.0, "Nike", LocalDate.of(2022, 3, 15)));
+        repo.save(new Product("Mobile", "Electronics", 30000.0, "Samsung", LocalDate.of(2021, 7, 20)));
+        repo.save(new Product("Headphones", "Electronics", 5000.0, "Sony", LocalDate.of(2020, 1, 5)));
+        repo.save(new Product("Shoes", "Footwear", 2500.0, "Puma", LocalDate.of(2024, 2, 1)));
+
+        // Finder Methods in action
+        System.out.println("🔍 Find by Name:");
+        repo.findByName("Shirt").forEach(System.out::println);
+
+        System.out.println("🔍 Find by Category (Electronics):");
+        repo.findByCategory("Electronics").forEach(System.out::println);
+
+        System.out.println("🔍 Find by Price > 10000:");
+        repo.findByPriceGreaterThan(10000.0).forEach(System.out::println);
+
+        System.out.println("🔍 Find by Brand & Category:");
+        repo.findByBrandAndCategory("Sony", "Electronics").forEach(System.out::println);
+
+        System.out.println("🔍 Find products created before 2022:");
+        repo.findByCreatedDateBefore(LocalDate.of(2022, 1, 1)).forEach(System.out::println);
+
+        System.out.println("🔍 Find by Name containing 'o':");
+        repo.findByNameContaining("o").forEach(System.out::println);
+	}
+
+}
+
+
+spring.application.name=Day_04
+
+# Oracle DB Connection
+spring.datasource.driver-class-name=oracle.jdbc.OracleDriver
+spring.datasource.url=jdbc:oracle:thin:@localhost:1521:orcl
+spring.datasource.username=MYDB
+spring.datasource.password=MYDB
+
+# JPA Settings
+spring.jpa.hibernate.ddl-auto=update
+spring.jpa.show-sql=true
+spring.jpa.database-platform=org.hibernate.dialect.OracleDialect
+==============================================================================================

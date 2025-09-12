@@ -1,0 +1,559 @@
+Spring Boot Data JPA Task — Finder Methods
+Task: Employee Search System
+🎯 Objective
+
+Create a Spring Boot console-based application using Spring Data JPA where employees can be searched using finder methods.
+
+📌 Requirements
+
+Entity Class: Employee
+
+Fields:
+
+id (Long, primary key)
+
+name (String)
+
+department (String)
+
+salary (Double)
+
+designation (String)
+
+dateOfJoining (LocalDate)
+
+Repository Interface: EmployeeRepository
+
+Extend JpaRepository<Employee, Long>.
+
+Define custom finder methods like:
+
+findByName(String name)
+
+findByDepartment(String department)
+
+findBySalaryGreaterThan(Double salary)
+
+findByDesignationAndDepartment(String designation, String department)
+
+findByDateOfJoiningBefore(LocalDate date)
+
+findByNameContaining(String keyword)
+
+Runner Class: EmployeeRunner
+
+Insert sample employees into the database.
+
+Perform multiple finder queries.
+
+Print results on the console.
+
+Database Setup
+
+Use MySQL / H2 database/oracle database
+
+Configure connection in application.properties.
+ANS ---
+package com.nt;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+@SpringBootApplication
+public class Day05Application {
+
+	public static void main(String[] args) {
+		SpringApplication.run(Day05Application.class, args);
+	}
+
+}
+
+
+package com.nt.entity;
+
+import java.time.LocalDate;
+
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.NonNull;
+import lombok.RequiredArgsConstructor;
+
+@Data
+@Entity
+@Table(name = "JPA_Day_05")
+@AllArgsConstructor
+@NoArgsConstructor
+@RequiredArgsConstructor
+public class Employee {
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private Long id;
+	@NonNull
+	@Column(name = "Name", length = 40)
+	private String name;
+	@NonNull
+	@Column(name = "Department", length = 40)
+	private String department;
+	@NonNull
+	@Column(name = "Salary")
+	private Double salary;
+	@NonNull
+	@Column(name = "Designation", length = 40)
+	private String designation;
+	@NonNull
+	@Column(name = "Date_Of_Joining")
+	private LocalDate dateOfJoining;
+}
+
+
+package com.nt.repository;
+
+import java.time.LocalDate;
+import java.util.List;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import com.nt.entity.Employee;
+
+public interface EmployeeRepository extends JpaRepository<Employee, Long> {
+	List<Employee> findByName(String name);
+	List<Employee> findByDepartment(String department);
+	List<Employee> findBySalaryGreaterThan(Double salary);
+	List<Employee> findByDesignationAndDepartment(String designation, String department);
+	List<Employee> findByDateOfJoiningBefore(LocalDate date);
+	List<Employee> findByNameContaining(String keyword);
+}
+
+
+package com.nt.runner;
+
+import java.time.LocalDate;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.CommandLineRunner;
+import org.springframework.stereotype.Component;
+
+import com.nt.entity.Employee;
+import com.nt.repository.EmployeeRepository;
+
+@Component
+public class EmployeeRunner implements CommandLineRunner {
+	@Autowired
+	private EmployeeRepository repo;
+
+	@Override
+	public void run(String... args) throws Exception {
+		 // Insert sample employees (only once, comment later)
+        repo.save(new Employee("Prabhanjan", "IT", 50000.0, "Developer", LocalDate.of(2023, 5, 10)));
+        repo.save(new Employee("Amit", "HR", 40000.0, "HR Manager", LocalDate.of(2022, 3, 15)));
+        repo.save(new Employee("Sneha", "Finance", 60000.0, "Accountant", LocalDate.of(2021, 7, 20)));
+        repo.save(new Employee("Ravi", "IT", 70000.0, "Team Lead", LocalDate.of(2020, 1, 5)));
+        repo.save(new Employee("Kiran", "Sales", 45000.0, "Sales Executive", LocalDate.of(2024, 2, 1)));
+
+        // Finder Methods in action
+        System.out.println("🔍 Find by Name:");
+        repo.findByName("Amit").forEach(System.out::println);
+
+        System.out.println("🔍 Find by Department (IT):");
+        repo.findByDepartment("IT").forEach(System.out::println);
+
+        System.out.println("🔍 Find by Salary > 50000:");
+        repo.findBySalaryGreaterThan(50000.0).forEach(System.out::println);
+
+        System.out.println("🔍 Find by Designation & Department:");
+        repo.findByDesignationAndDepartment("Developer", "IT").forEach(System.out::println);
+
+        System.out.println("🔍 Find employees joined before 2022:");
+        repo.findByDateOfJoiningBefore(LocalDate.of(2022, 1, 1)).forEach(System.out::println);
+
+        System.out.println("🔍 Find by Name containing 'ra':");
+        repo.findByNameContaining("ra").forEach(System.out::println);//"
+	}
+
+}
+
+
+spring.application.name=Day_05
+
+# MySQL DB Connection
+spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver
+spring.datasource.url=jdbc:mysql://localhost:3306/nit_jpa_718
+spring.datasource.username=root
+spring.datasource.password=kanha123
+
+# JPA Settings
+spring.jpa.hibernate.ddl-auto=update
+spring.jpa.show-sql=true  
+spring.jpa.database-platform=org.hibernate.dialect.MySQL8Dialect
+
+🔹 Task 2: Student Management System
+---------------------------------------
+🎯 Objective
+Create a Spring Boot console-based application that searches students using Finder Methods.
+
+📌 Requirements
+
+Entity Class: Student
+
+id (Long, primary key)
+
+name (String)
+
+course (String)
+
+marks (Double)
+
+admissionDate (LocalDate)
+
+city (String)
+
+Repository Interface: StudentRepository
+Extend JpaRepository<Student, Long>.
+
+Define finder methods like:
+
+findByName(String name)
+
+findByCourse(String course)
+
+findByMarksGreaterThan(Double marks)
+
+findByCityAndCourse(String city, String course)
+
+findByAdmissionDateBefore(LocalDate date)
+
+findByNameContainingIgnoreCase(String keyword)
+
+Runner Class: StudentRunner
+
+Insert sample students.
+
+Run multiple finder queries.
+
+Print results in console.
+
+Database Setup
+Use MySQL / H2 / Oracle with configuration in application.properties.
+ANS ----
+package com.nt;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+@SpringBootApplication
+public class Day052Application {
+
+	public static void main(String[] args) {
+		SpringApplication.run(Day052Application.class, args);
+	}
+
+}
+
+
+package com.nt.entity;
+
+import java.time.LocalDate;
+
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.NonNull;
+import lombok.RequiredArgsConstructor;
+
+@Data
+@Entity
+@Table(name = "JPA_Day_05-2")
+@AllArgsConstructor
+@NoArgsConstructor
+@RequiredArgsConstructor
+public class Student {
+	@Id
+	@GeneratedValue(strategy = GenerationType.SEQUENCE)
+	private Long id;
+	@NonNull
+	@Column(name = "Name", length = 30)
+	private String name;
+	@NonNull
+	@Column(name = "Course", length = 30)
+	private String course;
+	@NonNull
+	@Column(name = "Mark")
+	private Double marks;
+	@NonNull
+	@Column(name = "Admission_Date")
+	private LocalDate admissionDate;
+	@NonNull
+	@Column(name = "City", length = 30)
+	private String city;
+}
+
+
+package com.nt.repository;
+
+import java.time.LocalDate;
+import java.util.List;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import com.nt.entity.Student;
+
+public interface StudentRepository extends JpaRepository<Student, Long> {
+    List<Student> findByName(String name);
+    List<Student> findByCourse(String course);
+    List<Student> findByMarksGreaterThan(Double marks);
+    List<Student> findByCityAndCourse(String city, String course);
+    List<Student> findByAdmissionDateBefore(LocalDate date);
+    List<Student> findByNameContainingIgnoreCase(String keyword);
+}
+
+
+package com.nt.runner;
+
+import java.time.LocalDate;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.CommandLineRunner;
+import org.springframework.stereotype.Component;
+
+import com.nt.entity.Student;
+import com.nt.repository.StudentRepository;
+
+@Component
+public class StudentRunner implements CommandLineRunner {
+	@Autowired
+	private StudentRepository repo;
+
+	@Override
+	public void run(String... args) throws Exception {
+		   // Insert sample students
+        repo.save(new Student("Ravi", "Java", 85.0, LocalDate.of(2022, 5, 10), "Delhi"));
+        repo.save(new Student("Anita", "Python", 90.0, LocalDate.of(2021, 3, 15), "Mumbai"));
+        repo.save(new Student("Karan", "Java", 70.0, LocalDate.of(2020, 8, 20), "Delhi"));
+        repo.save(new Student("Sneha", "C++", 60.0, LocalDate.of(2023, 1, 5), "Bangalore"));
+        repo.save(new Student("Arjun", "JavaScript", 88.0, LocalDate.of(2022, 2, 1), "Hyderabad"));
+
+        // Finder queries
+        System.out.println("🔍 Find by Name (Anita): " + repo.findByName("Anita"));
+        System.out.println("🔍 Find by Course (Java): " + repo.findByCourse("Java"));
+        System.out.println("🔍 Find by Marks > 80: " + repo.findByMarksGreaterThan(80.0));
+        System.out.println("🔍 Find by City & Course (Delhi, Java): " + repo.findByCityAndCourse("Delhi", "Java"));
+        System.out.println("🔍 Find by Admission Date before 2022: " + repo.findByAdmissionDateBefore(LocalDate.of(2022, 1, 1)));
+        System.out.println("🔍 Find by Name containing 'an' (ignore case): " + repo.findByNameContainingIgnoreCase("an")); //"
+
+	}
+
+}
+
+
+spring.application.name=Day_05-2
+
+
+# MySQL DB Connection
+spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver
+spring.datasource.url=jdbc:mysql://localhost:3306/nit_jpa_718
+spring.datasource.username=root
+spring.datasource.password=kanha123
+
+# JPA Settings
+spring.jpa.hibernate.ddl-auto=update
+spring.jpa.show-sql=true  
+spring.jpa.database-platform=org.hibernate.dialect.MySQL8Dialect
+
+
+
+🔹 Task 3: Book Library System
+-------------------------------------
+🎯 Objective
+Develop a Spring Boot console-based application where books can be searched using Finder Methods.
+
+📌 Requirements
+
+Entity Class: Book
+
+id (Long, primary key)
+
+title (String)
+
+author (String)
+
+genre (String)
+
+price (Double)
+
+publishedDate (LocalDate)
+
+Repository Interface: BookRepository
+Extend JpaRepository<Book, Long>.
+
+Define finder methods like:
+
+findByTitle(String title)
+
+findByAuthor(String author)
+
+findByGenre(String genre)
+
+findByPriceLessThan(Double price)
+
+findByAuthorAndGenre(String author, String genre)
+
+findByPublishedDateAfter(LocalDate date)
+
+findByTitleContainingIgnoreCase(String keyword)
+
+Runner Class: BookRunner
+
+Insert sample books.
+
+Perform queries using finder methods.
+
+Print results in console.
+
+Database Setup
+Use MySQL / H2 / Oracle with configuration in application.properties.
+ANS ---
+package com.nt;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+@SpringBootApplication
+public class Day053Application {
+
+	public static void main(String[] args) {
+		SpringApplication.run(Day053Application.class, args);
+	}
+
+}
+
+
+package com.nt.runner;
+
+import java.time.LocalDate;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.CommandLineRunner;
+import org.springframework.stereotype.Component;
+
+import com.nt.entity.Book;
+import com.nt.repository.BookRepository;
+
+@Component
+public class BookRunner implements CommandLineRunner {
+	@Autowired
+	private BookRepository repo;
+
+	@Override
+	public void run(String... args) throws Exception {
+		 // Insert sample books
+        repo.save(new Book("Spring in Action", "Craig Walls", "Programming", 750.0, LocalDate.of(2021, 5, 15)));
+        repo.save(new Book("Clean Code", "Robert C. Martin", "Programming", 650.0, LocalDate.of(2008, 8, 1)));
+        repo.save(new Book("The Alchemist", "Paulo Coelho", "Fiction", 300.0, LocalDate.of(1990, 6, 20)));
+        repo.save(new Book("Atomic Habits", "James Clear", "Self-Help", 400.0, LocalDate.of(2018, 10, 16)));
+        repo.save(new Book("Effective Java", "Joshua Bloch", "Programming", 850.0, LocalDate.of(2017, 12, 27)));
+
+        // Finder Methods in action
+        System.out.println("🔍 Find by Title (Clean Code): " + repo.findByTitle("Clean Code"));
+        System.out.println("🔍 Find by Author (Paulo Coelho): " + repo.findByAuthor("Paulo Coelho"));
+        System.out.println("🔍 Find by Genre (Programming): " + repo.findByGenre("Programming"));
+        System.out.println("🔍 Find by Price < 500: " + repo.findByPriceLessThan(500.0));
+        System.out.println("🔍 Find by Author & Genre (James Clear, Self-Help): " + repo.findByAuthorAndGenre("James Clear", "Self-Help"));
+        System.out.println("🔍 Find books published after 2015: " + repo.findByPublishedDateAfter(LocalDate.of(2015, 1, 1)));
+        System.out.println("🔍 Find Title containing 'Java' (ignore case): " + repo.findByTitleContainingIgnoreCase("java")); //"
+   
+
+	}
+
+}
+
+
+package com.nt.repository;
+
+import java.time.LocalDate;
+import java.util.List;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import com.nt.entity.Book;
+
+public interface BookRepository extends JpaRepository<Book, Long>  {
+    List<Book> findByTitle(String title);
+    List<Book> findByAuthor(String author);
+    List<Book> findByGenre(String genre);
+    List<Book> findByPriceLessThan(Double price);
+    List<Book> findByAuthorAndGenre(String author, String genre);
+    List<Book> findByPublishedDateAfter(LocalDate date);
+    List<Book> findByTitleContainingIgnoreCase(String keyword);
+}
+
+
+package com.nt.entity;
+
+import java.time.LocalDate;
+
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.NonNull;
+import lombok.RequiredArgsConstructor;
+
+@Data
+@Entity
+@Table(name = "JPA_Day_05-3")
+@AllArgsConstructor
+@NoArgsConstructor
+@RequiredArgsConstructor
+public class Book {
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
+	@NonNull
+	@Column(name = "Title", length = 20)
+	private String title;
+	@NonNull
+	@Column(name = "Author", length = 20)
+	private String author;
+	@NonNull
+	@Column(name = "Genre", length = 20)
+	private String genre;
+	@NonNull
+	@Column(name = "Price")
+	private Double price;
+	@NonNull
+	@Column(name = "Publish_Date")
+	private LocalDate publishedDate;
+}
+
+
+spring.application.name=Day_05-3
+
+
+# MySQL DB Connection
+spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver
+spring.datasource.url=jdbc:mysql://localhost:3306/nit_jpa_718
+spring.datasource.username=root
+spring.datasource.password=kanha123
+
+# JPA Settings
+spring.jpa.hibernate.ddl-auto=update
+spring.jpa.show-sql=true  
+spring.jpa.database-platform=org.hibernate.dialect.MySQL8Dialect

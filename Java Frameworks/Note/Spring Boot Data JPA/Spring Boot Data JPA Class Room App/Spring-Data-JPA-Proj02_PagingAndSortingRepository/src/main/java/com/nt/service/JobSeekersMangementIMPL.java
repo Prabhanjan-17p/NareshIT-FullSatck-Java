@@ -21,7 +21,7 @@ public class JobSeekersMangementIMPL implements IJobServiceMangement {
 
 	@Override
 	public String saveAllJobSeeker(List<JobSeekers> list) {
-		List<JobSeekers> saveAll = repo.saveAll(list);
+		Iterable<JobSeekers> add = repo.saveAll(list);
 		return "Data added successfully!";
 	}
 

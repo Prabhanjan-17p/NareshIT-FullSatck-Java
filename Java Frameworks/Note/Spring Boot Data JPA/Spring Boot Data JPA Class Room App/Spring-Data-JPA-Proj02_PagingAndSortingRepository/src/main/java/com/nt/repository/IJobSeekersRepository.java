@@ -1,10 +1,10 @@
 package com.nt.repository;
 
-import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.repository.Repository;
+import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.repository.PagingAndSortingRepository;
 
 import com.nt.entity.JobSeekers;
 
-public interface IJobSeekersRepository extends JpaRepository<JobSeekers, Integer> {
+public interface IJobSeekersRepository extends CrudRepository<JobSeekers, Integer>,PagingAndSortingRepository<JobSeekers, Integer>  {
 
 }

@@ -26,11 +26,19 @@ import { HookFormDemo } from './components/Hook-Form-Demo/home-form-demo';
 import { CustomDemo } from './components/Costum-Demo/costum-demo';
 import { CustomeRenderingDemo } from './components/Component-Render/component-render';
 import { CustomeRenderingDemoTwo } from './components/Component-Render/component-rendertwo';
+import { StateDemo } from './components/State-Demo/state-demo';
+import { CookiesProvider } from 'react-cookie';
+import { HooksDemo } from './components/Hooks-Demo/hooks-demo';
+import { HooksDemoTwo } from './components/Hooks-Demo/hooks-demotwo';
+import { HooksDemoThree } from './components/Hooks-Demo/hooks-demothree';
+
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    < CustomeRenderingDemoTwo />
+    < CookiesProvider >
+      < HooksDemoThree />
+    </CookiesProvider>
   </React.StrictMode>
 );
 

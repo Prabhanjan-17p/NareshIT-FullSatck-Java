@@ -1,66 +1,66 @@
 package com.nt.config;
 
+import javax.sql.DataSource;
+
 import org.springframework.batch.core.Job;
 import org.springframework.batch.core.Step;
 import org.springframework.batch.core.job.builder.JobBuilder;
 import org.springframework.batch.core.launch.support.RunIdIncrementer;
 import org.springframework.batch.core.repository.JobRepository;
 import org.springframework.batch.core.step.builder.StepBuilder;
-import org.springframework.batch.item.data.RepositoryItemWriter;
-import org.springframework.batch.item.data.builder.RepositoryItemWriterBuilder;
+import org.springframework.batch.item.data.MongoItemWriter;
+import org.springframework.batch.item.data.builder.MongoItemWriterBuilder;
 import org.springframework.batch.item.file.FlatFileItemReader;
 import org.springframework.batch.item.file.builder.FlatFileItemReaderBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.ClassPathResource;
+import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.transaction.PlatformTransactionManager;
 
-import com.nt.entity.Employees;
 import com.nt.listener.JobMonitoringListner;
-import com.nt.processor.EmployeeProcessor;
-import com.nt.repository.IEmployeeRepository;
+import com.nt.model.ExamResult;
+import com.nt.processor.ExamResultIteamProcessor;
 
 @Configuration
 public class AppConfig {
 	@Autowired
 	private JobMonitoringListner listner;
 	@Autowired
-	private EmployeeProcessor processor;
+	private DataSource ds;
 	@Autowired
-	private IEmployeeRepository empRepo;
+	private ExamResultIteamProcessor processor;
+	@Autowired
+	private MongoTemplate template;
 	
-	
-	
-	//For Job Reader Object
-	@Bean(name = "ffir")
-	public FlatFileItemReader<Employees> createReader(){
-		return new FlatFileItemReaderBuilder<Employees>()
-				.name("ffir")
-				.resource(new ClassPathResource("MOCK_DATA.csv"))
-				.delimited()
-				.names("eno","ename","eadd","email","salary")
-				.targetType(Employees.class)
-				.build();
+	@Bean
+	public FlatFileItemReader<ExamResult> createReader() {
+	    return new FlatFileItemReaderBuilder<ExamResult>()
+	            .name("writer")
+	            .resource(new ClassPathResource("TopBrain.csv"))
+	            .delimited().delimiter(",")
+	            .names("id","dob","percentage","semester")
+	            .targetType(ExamResult.class)
+	            .build();
 	}
 	
-	
-	// For Job Writer Object
-	@Bean(name = "riw")
-	public RepositoryItemWriter<Employees> createWriter(){
-		return new RepositoryItemWriterBuilder<Employees>()
-				.repository(empRepo)
-				.methodName("save")
+	@Bean
+	public MongoItemWriter<ExamResult> createWriter(){
+		return new MongoItemWriterBuilder<ExamResult>()
+				.collection("SuperTopBrain")
+				.template(template)
 				.build();
-	}
-	
+				
+	}	
+
 	
 	//Creating a Step Object
 	@Bean(name ="step1")
 	public Step createStep1(JobRepository repository, PlatformTransactionManager txMgmr) {
 		System.out.println("AppConfig.createStep1()");
 		return new StepBuilder("step1", repository)
-				.<Employees, Employees> chunk(10,txMgmr)
+				.<ExamResult, ExamResult> chunk(10,txMgmr)
 				.reader(createReader())
 				.processor(processor)
 				.writer(createWriter())

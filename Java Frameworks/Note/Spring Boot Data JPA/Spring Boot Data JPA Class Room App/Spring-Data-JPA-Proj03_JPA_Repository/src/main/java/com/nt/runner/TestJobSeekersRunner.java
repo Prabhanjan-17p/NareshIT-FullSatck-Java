@@ -56,8 +56,21 @@ public class TestJobSeekersRunner implements CommandLineRunner {
 //			 System.out.println(saveAllJobSeeker);
 			
 			
-			String batch = service.removeJobSeekersInBatch(List.of(1031,1032));
-			System.out.println(batch);
+//			String batch = service.removeJobSeekersInBatch(List.of(1031,1032));
+//			System.out.println(batch);
+			
+			
+//			JobSeekers js = new JobSeekers();
+//			js.setCourse("java");//js.setSalary(400000.0);
+//			List<JobSeekers> data = service.searchJobSeekerByData(js, true, "name");
+//			data.forEach(System.out::println);
+			
+//			JobSeekers id = service.fetchJSByID(1057);
+//			System.out.println(id);
+			
+			JobSeekers proxy = service.showByID(1057);
+			System.out.println("Proxy obj class name :: "+proxy.getClass()+"----"+proxy.getClass().getSuperclass());
+			System.out.println(proxy);
 
 		} catch (Exception e) {
 			e.printStackTrace();

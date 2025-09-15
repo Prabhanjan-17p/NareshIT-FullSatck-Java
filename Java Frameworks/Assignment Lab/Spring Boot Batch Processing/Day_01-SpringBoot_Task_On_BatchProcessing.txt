@@ -1,0 +1,102 @@
+Task 1: Order Discount Batch Processor
+Step 1: Define Database Schema
+
+Input Table: orders
+
+Columns: orderId, customerName, amount
+
+Output Table: processed_orders
+
+Columns: orderId, customerName, amount, discount, finalAmount
+
+Step 2: Configure Batch Job
+
+Reader → Reads order records from orders table.
+
+Processor → Applies discount logic:
+
+≥ 10000 → 20% discount
+
+≥ 5000 → 10% discount
+
+Else → 5% discount
+
+Calculates finalAmount = amount - discount.
+
+Writer → Saves processed records into processed_orders table.
+
+Step 3: Set Batch Parameters
+
+Chunk size: 10
+
+Commit interval: After every 10 records
+
+Job Listener: Logs job start & end status
+
+🔹 Task 2: Employee Bonus Batch Processor
+Step 1: Define Database Schema
+
+Input Table: employees
+
+Columns: empId, name, department, salary
+
+Output Table: employee_bonus
+
+Columns: empId, name, department, salary, bonus, totalSalary
+
+Step 2: Configure Batch Job
+
+Reader → Reads employee details from employees.
+
+Processor → Bonus calculation logic:
+
+IT → 15% bonus
+
+HR → 10% bonus
+
+Others → 5% bonus
+
+Calculates totalSalary = salary + bonus.
+
+Writer → Stores processed data in employee_bonus table.
+
+Step 3: Set Batch Parameters
+
+Chunk size: 20
+
+Commit interval: After every 20 records
+
+Job Listener: Logs how many employees were processed
+
+🔹 Task 3: Product Stock Batch Processor
+Step 1: Define Database Schema
+
+Input Table: products
+
+Columns: productId, productName, quantity
+
+Output Table: product_status
+
+Columns: productId, productName, quantity, status
+
+Step 2: Configure Batch Job
+
+Reader → Reads product details from products.
+
+Processor → Applies stock status rules:
+
+Quantity > 50 → "In Stock"
+
+10 ≤ Quantity ≤ 50 → "Low Stock"
+
+Quantity < 10 → "Out of Stock"
+
+Writer → Inserts results into product_status table.
+
+Step 3: Set Batch Parameters
+
+Chunk size: 15
+
+Commit interval: After every 15 records
+
+Job Listener: Sends log or notification after completion

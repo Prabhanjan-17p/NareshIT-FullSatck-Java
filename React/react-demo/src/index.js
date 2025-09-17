@@ -31,15 +31,18 @@ import { CookiesProvider } from 'react-cookie';
 import { HooksDemo } from './components/Hooks-Demo/hooks-demo';
 import { HooksDemoTwo } from './components/Hooks-Demo/hooks-demotwo';
 import { HooksDemoThree } from './components/Hooks-Demo/hooks-demothree';
+import { HooksDemoFour } from './components/Hooks-Demo/hooks-demofour';
+import { ContextDemo } from './components/Context-Demo/context-demo';
+import { ContextDemoTwo } from './components/Context-Demo/context-demotwo';
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <React.StrictMode>
+  // <React.StrictMode>
     < CookiesProvider >
-      < HooksDemoThree />
+      < ContextDemoTwo />
     </CookiesProvider>
-  </React.StrictMode>
+  // </React.StrictMode>
 );
 
 // If you want to start measuring performance in your app, pass a function

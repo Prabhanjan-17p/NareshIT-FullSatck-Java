@@ -34,13 +34,15 @@ import { HooksDemoThree } from './components/Hooks-Demo/hooks-demothree';
 import { HooksDemoFour } from './components/Hooks-Demo/hooks-demofour';
 import { ContextDemo } from './components/Context-Demo/context-demo';
 import { ContextDemoTwo } from './components/Context-Demo/context-demotwo';
+import { ReducerDemo } from './components/Reducer-Demo/reducer-demo';
+import { Fakestore } from './components/Fakestore/fakestore';
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   // <React.StrictMode>
     < CookiesProvider >
-      < ContextDemoTwo />
+      < Fakestore />
     </CookiesProvider>
   // </React.StrictMode>
 );

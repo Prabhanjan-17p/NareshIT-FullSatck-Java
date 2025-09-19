@@ -1,0 +1,70 @@
+Task — Product Catalog Search using @Query
+===========================================
+🎯 Objective
+Build a Spring Boot console-based application that manages a product catalog using Spring Data JPA and @Query.
+
+✅ Features
+
+Add Products
+
+Each product has:
+
+id (Long)
+
+name (String)
+
+category (String)
+
+price (Double)
+
+stock (Integer)
+
+Search Products using @Query
+
+Find products by category (@Query)
+
+Find products with price greater than a given value (@Query)
+
+Find products by name containing keyword (@Query)
+
+Count total products in a category (@Query)
+
+Update and Delete
+
+Update product stock by id (@Query with @Modifying)
+
+Delete product by name (@Query with @Modifying)
+
+Console Menu
+
+Add product
+
+View all products
+
+Search using the above queries
+
+Update stock
+
+Delete product
+
+Exit
+
+📤 Expected Output Example
+
+=== Product Catalog Menu ===
+1. Add Product
+2. View All Products
+3. Find Products by Category
+4. Find Products Above Price
+5. Search Products by Name
+6. Count Products in Category
+7. Update Product Stock
+8. Delete Product by Name
+9. Exit
+
+
+👉 When user selects Find Products by Category (Electronics):
+
+Found Products:
+[101, Laptop, Electronics, 55000.0, 10]
+[102, Mobile, Electronics, 25000.0, 15]

@@ -1,5 +1,5 @@
 import axios from "axios";
-import { useEffect, useState } from "react"
+import { useCallback, useEffect, useMemo, useState } from "react"
 
 
 
@@ -20,25 +20,72 @@ export function Fakestore() {
 
 
     //Async Await Function 
-    function LoadCategories() {
-        axios.get(`https://fakestoreapi.com/products/categories`)
-            .then(async res => {
-                await res.data.unshift("all");
-                setCategories(await res.data)
-            })
-    }
+    // function LoadCategories() {
+    //     axios.get(`https://fakestoreapi.com/products/categories`)
+    //         .then(async res => {
+    //             await res.data.unshift("all");
+    //             setCategories(await res.data)
+    //         })
+    // }
 
-    function LoadProducts(url) {
-        axios.get(url)
-            .then(res => {
-                setProducts(res.data)
-            })
-    }
+    //Cache Data Callback() function --> Acutlly it is a means useCallback is return a function and this function return another function (means function of function --> ex :: function(){return function(){}}) 
+    //and if we used useCallback with async wait then it return only one function 
+        // useCallback is similar to memo but can memorize a function, so that it can save round trips when even requested.
+        // It can re-render only when dependency changes.
+        // Essentially, it returns a function that can be reused without being recreated on each render.
+        // When used with async/await, `useCallback` still returns a single memoized async function.
+        // Example: async function that fetches categories and updates state without recreating the function each render.        
+    const LoadCategories = useCallback(async ()=>{
 
+        const response = axios.get(`https://fakestoreapi.com/products/categories`);
+
+        (await response).data.unshift("all");
+        setCategories((await response).data);
+
+        //for checking purpose
+        var now = new Date();
+        console.log(now.toLocaleTimeString())
+
+    },[])
+
+    //For normal means every time request to the server 
+    // For normal fetching: makes a server request every time the function is called without caching or memoization.
+    // function LoadProducts(url) {
+    //     axios.get(url)
+    //         .then(res => {
+    //             setProducts(res.data)
+    //         })
+    // }
+
+
+    // Cache data using useMemo: memoizes an async function to fetch products and update state, preventing unnecessary re-creations on each render.
+    // useMemo - is only used to stored the data 
+    // not every time used the server only first time any change in API then it will request into the server means
+        // useMemo is used to cache the function itself, not call the server every time; the API is requested only when explicitly invoked with a URL.
+    const LoadProducts = useMemo(()=> async(url)=>{
+
+        const response = axios.get(url);
+
+        setProducts((await response).data)
+
+    },[])
+
+
+    //Changin Data Callback() function
     useEffect(() => {
+        //for checking purpose
+        var now = new Date();
+        console.log(now.toLocaleTimeString())
+
         LoadCategories();
         LoadProducts(`https://fakestoreapi.com/products`)
-    }, [])
+    }, [LoadCategories, LoadProducts])
+
+    //for only Async Await
+    // useEffect(() => {
+    //     LoadCategories();
+    //     LoadProducts(`https://fakestoreapi.com/products`)
+    // }, [])
 
     function handleCategoryChange(e) {
         if (e.target.value === "all") {

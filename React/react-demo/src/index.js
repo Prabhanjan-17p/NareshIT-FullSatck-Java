@@ -36,13 +36,17 @@ import { ContextDemo } from './components/Context-Demo/context-demo';
 import { ContextDemoTwo } from './components/Context-Demo/context-demotwo';
 import { ReducerDemo } from './components/Reducer-Demo/reducer-demo';
 import { Fakestore } from './components/Fakestore/fakestore';
+import { DemoClassComponent } from './Class-Components/demo-class';
+import { DemoClassComponentTwo } from './Class-Components/constructor-inside-event-handler';
+import { DirectEventHandler } from './Class-Components/bind-method-directly-event-handler';
+import { ReturnAContinuousMemory } from './Class-Components/event-handler-memory-return-usestate-memory-continuous-memory';
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   // <React.StrictMode>
     < CookiesProvider >
-      < Fakestore />
+      < ReturnAContinuousMemory />
     </CookiesProvider>
   // </React.StrictMode>
 );

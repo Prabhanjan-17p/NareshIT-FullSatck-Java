@@ -40,13 +40,15 @@ import { DemoClassComponent } from './Class-Components/demo-class';
 import { DemoClassComponentTwo } from './Class-Components/constructor-inside-event-handler';
 import { DirectEventHandler } from './Class-Components/bind-method-directly-event-handler';
 import { ReturnAContinuousMemory } from './Class-Components/event-handler-memory-return-usestate-memory-continuous-memory';
+import { FormInClass } from './Class-Components/form-in-class';
+import { FormInClassTwo } from './Class-Components/formik-in-class';
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   // <React.StrictMode>
     < CookiesProvider >
-      < ReturnAContinuousMemory />
+      < FormInClassTwo />
     </CookiesProvider>
   // </React.StrictMode>
 );

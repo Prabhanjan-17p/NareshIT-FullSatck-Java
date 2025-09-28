@@ -1,5 +1,7 @@
 package com.nt.entity;
 
+import java.io.Serializable;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -18,11 +20,12 @@ import lombok.RequiredArgsConstructor;
 @NoArgsConstructor
 @RequiredArgsConstructor
 @Table(name = "SPRING_REDIS_JOBSEEKERS")
-public class JobSeekers {
+public class JobSeekers implements Serializable {
+	private static final long serialVersionUID = 1L;
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "JS_ID")
-	private Integer id;
+	private Long id;
 	@Column(length = 30, name = "JS_NAME")
 	@NonNull
 	private String name;

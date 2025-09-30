@@ -42,15 +42,27 @@ import { DirectEventHandler } from './Class-Components/bind-method-directly-even
 import { ReturnAContinuousMemory } from './Class-Components/event-handler-memory-return-usestate-memory-continuous-memory';
 import { FormInClass } from './Class-Components/form-in-class';
 import { FormInClassTwo } from './Class-Components/formik-in-class';
+import { ClassControledComponent } from './Class-Components/control-components';
+import { MUIDemo } from './components/MUI-demo/mui-demo';
+import { LocalizationProvider } from '@mui/x-date-pickers';
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import { DatePickerTime } from './components/MUI-demo/mui-date-packer';
+import { HomeReactRout } from './components/react-rout/home';
+import { FakeStoreApi } from './FakestoredAPI/fakestore-api';
+
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   // <React.StrictMode>
-    < CookiesProvider >
-      < FormInClassTwo />
-    </CookiesProvider>
+    // < CookiesProvider >
+    //   < MUIDemo />
+    // </CookiesProvider>
   // </React.StrictMode>
+
+  <LocalizationProvider dateAdapter={AdapterDayjs}>
+    <FakeStoreApi />
+  </LocalizationProvider>
 );
 
 // If you want to start measuring performance in your app, pass a function

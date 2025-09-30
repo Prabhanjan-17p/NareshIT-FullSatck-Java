@@ -3,6 +3,10 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@emotion/react": "^11.14.0",
+    "@emotion/styled": "^11.14.1",
+    "@mui/material": "^7.3.2",
+    "@mui/x-date-pickers": "^8.12.0",
     "@testing-library/dom": "^10.4.1",
     "@testing-library/jest-dom": "^6.6.4",
     "@testing-library/react": "^16.3.0",
@@ -10,6 +14,7 @@
     "axios": "^1.11.0",
     "bootstrap": "^5.3.7",
     "bootstrap-icons": "^1.13.1",
+    "dayjs": "^1.11.18",
     "formik": "^2.4.6",
     "jquery": "^3.7.1",
     "jQuery": "^1.7.4",
@@ -18,6 +23,7 @@
     "react-cookie": "^8.0.1",
     "react-dom": "^18.3.1",
     "react-hook-form": "^7.62.0",
+    "react-router-dom": "^7.9.3",
     "react-scripts": "^5.0.1",
     "web-vitals": "^2.1.4",
     "yup": "^1.7.0"

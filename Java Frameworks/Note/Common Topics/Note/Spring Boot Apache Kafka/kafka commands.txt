@@ -10,3 +10,4 @@ kafka-console-consumer.bat  --bootstrap-server localhost:9092  --topic  tpc123
 
 
 
+----- Make sure delete tmp file in your D drive --------------------------------

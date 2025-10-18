@@ -1,0 +1,78 @@
+Create a React App
+
+
+
+1. npx create-react-app react-demo / npx create-react-app@latest react-demo
+
+2. npm install bootstrap bootstrap-icons --save
+
+3. configure this 3 import are index.js
+	// Import Bootstrap CSS
+	import '../node_modules/bootstrap/dist/css/bootstrap.css'
+
+	// Import Bootstrap Icons
+	import '../node_modules/bootstrap-icons/font/bootstrap-icons.css'
+
+	// Import Bootstrap JS bundle (optional for components like modals, dropdowns)
+	import bootstrap from "bootstrap"
+
+--------------------------------------
+
+1. Install React Router DOM
+
+    > npm  install  react-router-dom  --save            // latest is 7x
+
+    > npm  install  react-router-dom@v5  --save        // for specific version
+
+
+-------------------------------------------
+
+
+1. For react-router-dom
+
+Run this command:
+
+	npm install react-router-dom
+
+
+Once installed successfully, you can safely use:
+
+	import { BrowserRouter, Link, Route, Routes } from "react-router-dom";
+
+
+-----------------------------------------
+1. Install React Cookie
+	npm install react-cookie
+
+	import { useCookies } from "react-cookie";
+
+  	// Initialize cookies
+	const [cookies, setCookie, removeCookie] = useCookies(["username"]);
+
+---------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

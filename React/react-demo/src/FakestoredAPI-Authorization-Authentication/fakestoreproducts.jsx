@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
+import { useCookies } from "react-cookie";
 import { Link, Outlet, useNavigate, useParams } from "react-router-dom";
 
 export function FakeStoreProducts() {
@@ -8,17 +9,24 @@ export function FakeStoreProducts() {
 
     let param = useParams();
 
-    let navigate = useNavigate();
+    const navigate = useNavigate();
+
+    const [cookies, setCookie, removeCookie] = useCookies(['username'])
+
 
     useEffect(() => {
-        axios.get(`https://fakestoreapi.com/products/category/${param.category}`)
+        if (cookies['username']) {
+            axios.get(`https://fakestoreapi.com/products/category/${param.category}`)
             .then(res => {
                 setProduct(res.data)
             })
+        }else{
+            navigate('/')
+        }
     }, [])
 
     function handleBackToHome() {
-        navigate("/")
+        navigate("/home")
     }
 
     return (

@@ -49,6 +49,7 @@ import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { DatePickerTime } from './components/MUI-demo/mui-date-packer';
 import { HomeReactRout } from './components/react-rout/home';
 import { FakeStoreApi } from './FakestoredAPI/fakestore-api';
+import { FakeStoreApiAUTH } from './FakestoredAPI-Authorization-Authentication/fakestore-api';
 
 
 
@@ -60,9 +61,13 @@ root.render(
     // </CookiesProvider>
   // </React.StrictMode>
 
-  <LocalizationProvider dateAdapter={AdapterDayjs}>
-    <FakeStoreApi />
-  </LocalizationProvider>
+  // <LocalizationProvider dateAdapter={AdapterDayjs}>
+  //   <FakeStoreApi />
+  // </LocalizationProvider>
+
+  <CookiesProvider>
+    <FakeStoreApiAUTH />
+  </CookiesProvider>
 );
 
 // If you want to start measuring performance in your app, pass a function

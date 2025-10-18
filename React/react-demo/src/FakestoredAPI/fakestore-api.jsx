@@ -19,8 +19,9 @@ export function FakeStoreApi() {
                 <section>
                     <Routes>
                         <Route path="/" element={<FakeStoreHome />} />
-                        <Route path="products/:category" element={<FakeStoreProducts />} />
-                        <Route path="details/:id" element={<FakeStoreDetails />} />
+                        <Route path="products/:category" element={<FakeStoreProducts />} > 
+                            <Route path="details/:id" element={<FakeStoreDetails />} />
+                        </Route>                        
                     </Routes>
                 </section>
             </BrowserRouter>

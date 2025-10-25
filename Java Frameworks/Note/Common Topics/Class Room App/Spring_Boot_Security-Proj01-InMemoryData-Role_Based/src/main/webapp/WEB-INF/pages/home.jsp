@@ -13,5 +13,6 @@
     <a href="offers">Show Offers</a> <br><br>
     <a href="balance">Check Balance</a> <br><br>
     <a href="accessDenied">Access Denied (Demo)</a>
+    <a href="logout">Logout</a>
 </body>
 </html>

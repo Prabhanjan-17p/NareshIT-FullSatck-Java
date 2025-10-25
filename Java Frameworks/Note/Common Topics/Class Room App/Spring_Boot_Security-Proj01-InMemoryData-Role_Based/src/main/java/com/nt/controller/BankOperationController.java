@@ -30,8 +30,9 @@ public class BankOperationController {
         map.put("offer1", new String[]{"10% off on Credit Card", "20% off on Debit Card"});
         map.put("offer2", new String[]{"Buy 1 Get 50% Off", "Buy 2 Get 70% Off"});
         map.put("offer3", new String[]{"Buy 3 Get 1 Free", "Buy 5 Get 3 Free"});
-        return "show_offers";
+        return "show_offers"; // resolves to /WEB-INF/pages/show_offers.jsp
     }
+
 
     @GetMapping("/loanApprove")
     public String showLoanApprove(Map<String, Object> map) {
@@ -46,4 +47,6 @@ public class BankOperationController {
         System.out.println("BankOperationController.showAccess()");
         return "authorization_failed";
     }
+    
+    
 }

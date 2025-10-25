@@ -11,5 +11,6 @@
     <h3 style="color:green;">₹${balance}</h3>
     <br>
     <a href="./">Home</a>
+    <a href="logout">Logout</a>
 </body>
 </html>

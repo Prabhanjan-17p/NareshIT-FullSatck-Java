@@ -12,5 +12,6 @@
     <h3 style="color:green;">₹${loanAmount}</h3>
     <br>
     <a href="./">Home</a>
+    <a href="logout">Logout</a>
 </body>
 </html>

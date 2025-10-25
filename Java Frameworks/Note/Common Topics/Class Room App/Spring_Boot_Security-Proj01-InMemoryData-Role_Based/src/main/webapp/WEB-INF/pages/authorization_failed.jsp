@@ -10,5 +10,6 @@
     <p>You are not authorized to access this resource.</p>
     <br>
     <a href="./">Back to Home</a>
+    <a href="logout">Logout</a>
 </body>
 </html>

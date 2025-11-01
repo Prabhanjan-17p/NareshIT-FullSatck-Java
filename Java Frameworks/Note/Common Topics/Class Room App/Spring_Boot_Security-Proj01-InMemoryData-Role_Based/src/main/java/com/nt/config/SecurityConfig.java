@@ -12,7 +12,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     // ==============================
-    // 1️⃣ Authentication Configuration
+    // 1️Authentication Configuration
     // ==============================
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
@@ -39,7 +39,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     }
     // ==============================
-    // 2️⃣ Authorization Configuration
+    // 2Authorization Configuration
     // ==============================
     @Override
     protected void configure(HttpSecurity http) throws Exception {

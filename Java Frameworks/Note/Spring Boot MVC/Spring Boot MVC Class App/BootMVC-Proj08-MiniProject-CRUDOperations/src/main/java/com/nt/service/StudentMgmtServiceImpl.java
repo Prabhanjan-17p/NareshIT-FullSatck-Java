@@ -30,4 +30,11 @@ public class StudentMgmtServiceImpl implements IStudentMgmtService {
 		return empVo;
 	}
 
+	@Override
+	public String registerEmployee(EmployeeEntity emp) {
+		repo.save(emp);
+		
+		return "Register Successfully Having ID:: "+ emp.getEmpno();
+	}
+
 }

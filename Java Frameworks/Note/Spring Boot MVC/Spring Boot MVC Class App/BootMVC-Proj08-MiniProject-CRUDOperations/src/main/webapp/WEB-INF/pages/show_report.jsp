@@ -89,7 +89,7 @@
 
 <div class="nav-links">
     <a href="./">Home</a>
-    <a href="addEmployee.jsp">Add New Employee</a>
+    <a href="emp_add">Add New Employee</a>
 </div>
 
 <c:choose>

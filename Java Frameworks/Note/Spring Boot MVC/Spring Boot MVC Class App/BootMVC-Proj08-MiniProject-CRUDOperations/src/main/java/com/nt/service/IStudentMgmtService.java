@@ -7,6 +7,8 @@ import com.nt.vo.EmployeeVO;
 
 public interface IStudentMgmtService {
 	List<EmployeeVO> showAllData();
-
 	String registerEmployee(EmployeeEntity emp);
+	EmployeeVO getEmpByNo(int eno);
+	String editEmpData(EmployeeVO emp);
+	String removeEmployeeById(int no);
 }

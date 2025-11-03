@@ -3,11 +3,15 @@ package com.nt.controller;
 import java.util.List;
 import java.util.Map;
 
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.nt.entity.EmployeeEntity;
 import com.nt.service.IStudentMgmtService;
@@ -63,5 +67,42 @@ public class EmployeeOperationController {
 	    return "redirect:report";
 	}
 	
+	
+	@GetMapping("/edit")
+	public String showEditEmpPage(@RequestParam("no") int no, @ModelAttribute("emp") EmployeeVO emp) {
+		EmployeeVO emp1 = service.getEmpByNo(no);
+		BeanUtils.copyProperties(emp1, emp);
+		
+		return "edit_employee_form";
+	}
+	
+	@PostMapping("/edit")
+	public String editEmployee(@ModelAttribute("emp") EmployeeVO vo, RedirectAttributes attrs) {
+		try {
+			// use Service method
+			String msg = service.editEmpData(vo);
+			// keep result in FlashAttributes
+			attrs.addFlashAttribute("resultMsg", msg);
+			// redirect the request
+			return "redirect:report";
+		} catch (Exception e) {
+			attrs.addFlashAttribute("resultMsg", "Problem in Edit Employee operation");
+			return "redirect:report";
+		}
+	}
 
+	@GetMapping("/delete")
+	public String removeEmp(@RequestParam("no") int no, RedirectAttributes attrs) {
+		try {
+			// use service
+			String msg = service.removeEmployeeById(no);
+			// keep result as flash attribute
+			attrs.addFlashAttribute("resultMsg", msg);
+			// redirect the request
+			return "redirect:report";
+		} catch (Exception e) {
+			attrs.addFlashAttribute("resultMsg", "Problem in delete operation");
+			return "redirect:report";
+		}
+	}
 }

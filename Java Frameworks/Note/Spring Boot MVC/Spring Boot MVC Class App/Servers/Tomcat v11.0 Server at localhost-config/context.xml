@@ -26,4 +26,18 @@
     <!--
     <Manager pathname="SESSIONS.ser" />
     -->
+    
+    <!-- ✅ Server-managed JDBC Connection Pool for Oracle -->
+    <Resource
+        name="jdbc/DsJndi"
+        auth="Container"
+        type="javax.sql.DataSource"
+        driverClassName="oracle.jdbc.OracleDriver"
+        url="jdbc:oracle:thin:@localhost:1521:orcl"
+        username="MYDB"
+        password="MYDB"
+        maxTotal="20"
+        maxIdle="10"
+        maxWaitMillis="-1"
+    />
 </Context>

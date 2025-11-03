@@ -1,8 +1,5 @@
 package com.nt.config;
 
-import javax.sql.DataSource;
-
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -13,9 +10,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
-	@Autowired
-	private DataSource ds;
-	
+
     // ==============================
     // 1️Authentication Configuration
     // ==============================
@@ -31,23 +26,18 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 //            .and()
 //                .withUser("nayak").password("{noop}nayak").roles("SALESMAN");
     	
-//    	auth.inMemoryAuthentication()
-//        .passwordEncoder(new BCryptPasswordEncoder()).withUser("raja").password("$2a$10$5vp7M1uvBeF2.ENbAt303OqPb1auj.Wnl4zsOPsoEsUjv.q8m38Nq").roles("CUSTOMER")
-//    .and()
-//    	.passwordEncoder(new BCryptPasswordEncoder()).withUser("kanha").password("$2a$10$kVIC6M3QGpPZ1H745ztq/ON2cTMZQogjxXPDclARqn2xjzEaWam6.").roles("MANAGER")
-//    .and()
-//    	.passwordEncoder(new BCryptPasswordEncoder()).withUser("babu").password("$2a$10$Ytyxrd.KCSQqOQtf9W5R/.fukkR5DgVI9rIzmt/JDI7Ghgwd/Dndy").roles("CUSTOMER", "MANAGER")
-//    .and()
-////    	.passwordEncoder(new BCryptPasswordEncoder()).withUser("nayak").password("$2a$10$Y/oEKWNvrpSQRLhhEoRiXOZXf6HWgMZhEAfG.VlY/7tjY/UbrdclK").roles("SALESMAN");
-//    	.passwordEncoder(new BCryptPasswordEncoder()).withUser("nayak").password("$2a$10$Y/oEKWNvrpSQRLhhEoRiXOZXf6HWgMZhEAfG.VlY/7tjY/UbrdclK").roles("SALESMAN").accountLocked(true); // Account Teamperally Locked
+    	auth.inMemoryAuthentication()
+        .passwordEncoder(new BCryptPasswordEncoder()).withUser("raja").password("$2a$10$5vp7M1uvBeF2.ENbAt303OqPb1auj.Wnl4zsOPsoEsUjv.q8m38Nq").roles("CUSTOMER")
+    .and()
+    	.passwordEncoder(new BCryptPasswordEncoder()).withUser("kanha").password("$2a$10$kVIC6M3QGpPZ1H745ztq/ON2cTMZQogjxXPDclARqn2xjzEaWam6.").roles("MANAGER")
+    .and()
+    	.passwordEncoder(new BCryptPasswordEncoder()).withUser("babu").password("$2a$10$Ytyxrd.KCSQqOQtf9W5R/.fukkR5DgVI9rIzmt/JDI7Ghgwd/Dndy").roles("CUSTOMER", "MANAGER")
+    .and()
+//    	.passwordEncoder(new BCryptPasswordEncoder()).withUser("nayak").password("$2a$10$Y/oEKWNvrpSQRLhhEoRiXOZXf6HWgMZhEAfG.VlY/7tjY/UbrdclK").roles("SALESMAN");
+    	.passwordEncoder(new BCryptPasswordEncoder()).withUser("nayak").password("$2a$10$Y/oEKWNvrpSQRLhhEoRiXOZXf6HWgMZhEAfG.VlY/7tjY/UbrdclK").roles("SALESMAN").accountLocked(true); // Account Teamperally Locked
 
-    	
-    	auth.jdbcAuthentication().dataSource(ds).passwordEncoder(new BCryptPasswordEncoder())
-    	.usersByUsernameQuery("SELECT UNAME,PWD,STATUS FROM USERS WHERE UNAME=?")
-    	.authoritiesByUsernameQuery("SELECT UNAME,ROLE FROM USER USER_ROLES WHERE UNAME=?");
+
     }
-    
-    
     // ==============================
     // 2Authorization Configuration
     // ==============================

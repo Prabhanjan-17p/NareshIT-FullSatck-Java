@@ -162,7 +162,7 @@
              Note: The pattern used is equivalent to using pattern="common" -->
         <Valve className="org.apache.catalina.valves.AccessLogValve" directory="logs" pattern="%h %l %u %t &quot;%r&quot; %s %b" prefix="localhost_access_log" suffix=".txt"/>
 
-      <Context docBase="Spring_Boot_Security-Proj01-InMemoryData-Role_Based" path="/Spring_Boot_Security-Proj01-InMemoryData-Role_Based" reloadable="true" source="org.eclipse.jst.jee.server:Spring_Boot_Security-Proj01-InMemoryData-Role_Based"/></Host>
+      <Context docBase="Spring_Boot_Security-Proj02-Use_DB-MYSQL" path="/Spring_Boot_Security-Proj02-Use_DB-MYSQL" reloadable="true" source="org.eclipse.jst.jee.server:Spring_Boot_Security-Proj02-Use_DB-MYSQL"/></Host>
     </Engine>
   </Service>
 </Server>

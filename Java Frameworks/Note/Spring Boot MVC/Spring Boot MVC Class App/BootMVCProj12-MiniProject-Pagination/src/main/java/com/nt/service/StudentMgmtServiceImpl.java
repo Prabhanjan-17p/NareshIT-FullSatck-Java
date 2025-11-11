@@ -1,0 +1,94 @@
+package com.nt.service;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import org.springframework.beans.BeanUtils;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+
+import org.springframework.data.domain.Pageable;
+import org.springframework.stereotype.Service;
+
+import com.nt.entity.EmployeeEntity;
+import com.nt.error.EmployeeNotFoundException;
+import com.nt.repository.IStudentRepository;
+import com.nt.vo.EmployeeVO;
+
+@Service
+public class StudentMgmtServiceImpl implements IStudentMgmtService {
+	@Autowired
+	private IStudentRepository repo;
+
+	@Override
+	public List<EmployeeVO> showAllData() {
+		List<EmployeeEntity> list = repo.findAll();
+		List<EmployeeVO> empVo = new ArrayList<EmployeeVO>();
+		list.forEach(entiry -> {
+			EmployeeVO emp = new EmployeeVO();
+			BeanUtils.copyProperties(entiry, emp);
+			emp.setGrossSal(emp.getSalary() + emp.getSalary() * 0.5);
+			emp.setNetSal(emp.getGrossSal() - emp.getGrossSal() * 0.2);
+			empVo.add(emp);
+		});
+		return empVo;
+	}
+
+	@Override
+	public String registerEmployee(EmployeeEntity emp) {
+		repo.save(emp);
+
+		return "Register Successfully Having ID:: " + emp.getEmpno();
+	}
+
+	@Override
+	public EmployeeVO getEmpByNo(int eno) {
+		EmployeeEntity empEntity = repo.findById(eno).orElseThrow(() -> new IllegalArgumentException("Invalid ID"));
+		EmployeeVO emp = new EmployeeVO();
+		BeanUtils.copyProperties(empEntity, emp);
+		return emp;
+	}
+
+	@Override
+	public String editEmpData(EmployeeVO emp) {
+		EmployeeEntity empEntity = repo.findById(emp.getEmpno())
+				.orElseThrow(() -> new IllegalArgumentException("Invalid ID"));
+		BeanUtils.copyProperties(emp, empEntity);
+		empEntity.setUpdatedBy(System.getProperty("user.name"));
+		// update the object
+		repo.save(empEntity);
+		return emp.getEmpno() + " Employee Data is Updated";
+	}
+
+	@Override
+	public String removeEmployeeById(int no) {
+		// load the object
+		EmployeeEntity empEntity = repo.findById(no).orElseThrow(() -> new EmployeeNotFoundException("Invalid Id"));
+		// use repo
+		repo.deleteById(no);
+
+		return no + " Employee is Deleted";
+	}
+
+	@Override
+	public Page<EmployeeVO> showEmployeesByPagination(Pageable pageable) {
+		Page<EmployeeEntity> pageEntity = repo.findAll(pageable);
+
+		List<EmployeeEntity> listEntity = pageEntity.getContent();
+
+		List<EmployeeVO> listVO = new ArrayList<EmployeeVO>();
+
+		listEntity.forEach(entity -> {
+			EmployeeVO vo = new EmployeeVO();
+			BeanUtils.copyProperties(entity, vo);
+			vo.setGrossSal(vo.getSalary() + vo.getSalary() * 0.5);
+			vo.setNetSal(vo.getGrossSal() - vo.getGrossSal() * 0.3);
+			listVO.add(vo);
+		});
+		// convert Page<EmployeeEntity> object to Page<EmployeeVO> object
+		Page<EmployeeVO> pageVO = new PageImpl<EmployeeVO>(listVO, pageable, repo.count());
+		return pageVO;
+	}
+
+}

@@ -28,7 +28,7 @@
     -->
     
     <!-- ✅ Server-managed JDBC Connection Pool for Oracle -->
-    <Resource
+    <!-- <Resource
         name="jdbc/DsJndi"
         auth="Container"
         type="javax.sql.DataSource"
@@ -39,5 +39,5 @@
         maxTotal="20"
         maxIdle="10"
         maxWaitMillis="-1"
-    />
+    /> -->
 </Context>
